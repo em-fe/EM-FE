@@ -1,0 +1,62 @@
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>emui 测试页面</title>
+  <!-- 引入样式 -->
+  <link rel="stylesheet" href="../../dist/css/emui.css">
+  <style>
+  .blue {
+    padding: 30px 0;
+    text-align: center;
+  }
+
+  .demo-col:nth-of-type(even)  .blue {
+    background: rgba(255, 155, 0, 0.6);
+  }
+  </style>
+</head>
+<body>
+  <div id="app">
+    0. 请确定是用文件夹访问的
+    1. 请确保已经本电脑已经有 node npm git 等前端必备程序。
+    <br>
+    2. 请确保已经运行 npm install
+    <br>
+    3. 请确保已经运行 npm run build
+    <br>
+    <br>
+    <h4>栅格系统的小例子</h4>
+    <br>
+    <em-row type="flex">
+      <em-col class-name="demo-col" :span="12">
+        <div class="blue">50%</div>
+      </em-col>
+      <em-col class-name="demo-col" :span="12">
+        <div class="blue">50%</div>
+      </em-col>
+    </em-row>
+    <em-row gutter="24" type="flex">
+      <em-col class-name="demo-col" :span="12">
+        <div class="blue">50%</div>
+      </em-col>
+      <em-col class-name="demo-col" :span="12">
+        <div class="blue">50%</div>
+      </em-col>
+    </em-row>
+  </div>
+</body>
+  <!-- 先引入 Vue -->
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <!-- 引入组件库 -->
+  <script src="../../dist/emui.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: function() {
+        return { visible: false }
+      }
+    })
+  </script>
+</html>
