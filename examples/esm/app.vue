@@ -5,6 +5,7 @@
       <ul>
         <li><router-link to="/grid">栅格系统( grid )</router-link></li>
         <li><router-link to="/iconpage">字体图标( icon )</router-link></li>
+        <li><router-link to="/tooltippage">文字提示( tooltip )</router-link></li>
       </ul>
     </nav>
     <router-view></router-view>

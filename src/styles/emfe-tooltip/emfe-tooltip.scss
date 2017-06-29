@@ -1,0 +1,17 @@
+.#{$prefix}tooltip {
+  display: inline-block;
+
+  &-popper {
+    display: block;
+    visibility: visible;
+    position: absolute;
+    font-size: 12px;
+    line-height: 1;
+    z-index: 1060;
+    padding: 8px;
+    background: rgba(0, 0, 0, 0.1);
+    white-space: nowrap;
+    text-align: left;
+    text-decoration: none;
+  }
+}

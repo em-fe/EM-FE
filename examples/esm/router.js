@@ -11,6 +11,10 @@ const router = new VueRouter({
       path: '/iconpage',
       component: require('./components/IconPage.vue'),
     },
+    {
+      path: '/tooltippage',
+      component: require('./components/TooltipPage.vue'),
+    },
   ],
 });
 
