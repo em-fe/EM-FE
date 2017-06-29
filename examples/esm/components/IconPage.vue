@@ -1,13 +1,13 @@
 <template>
   <div class="icon">
-    <h2>emui 字体图标</h2>
+    <h2>EMFE 字体图标</h2>
     <h3>示例</h3>
-    <Row gutter="8" v-for="(type, typeIndex) in types" :key="typeIndex">
-      <Col span="8" v-for="(iconName, iconIndex) in type" :key="iconIndex">
+    <emfe-row gutter="8" v-for="(type, typeIndex) in types" :key="typeIndex">
+      <emfe-col span="8" v-for="(iconName, iconIndex) in type" :key="iconIndex">
         <h3>{{ iconName }}</h3>
-        <p><Icon :type="iconName" className="icon-page"></Icon></p>
-      </Col>
-    </Row>
+        <p><emfe-icon :type="iconName" className="icon-page"></emfe-icon></p>
+      </emfe-col>
+    </emfe-row>
     <h3>API</h3>
     <table>
       <thead>

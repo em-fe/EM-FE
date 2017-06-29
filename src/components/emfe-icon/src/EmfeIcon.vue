@@ -2,8 +2,10 @@
   <i :class="name"></i>
 </template>
 <script>
+const prefixCls = 'emfe-icon';
+
 export default {
-  name: 'Icon',
+  name: 'EmfeIcon',
   props: {
     className: {
       type: String,
@@ -13,7 +15,7 @@ export default {
   },
   computed: {
     name() {
-      const icon = `icon-${this.type}`;
+      const icon = `${prefixCls}-${this.type}`;
       const newName = this.className ? ` ${this.className}` : '';
       return `${icon}${newName}`;
     },

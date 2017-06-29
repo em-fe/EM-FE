@@ -6,10 +6,10 @@
 <script>
 import _ from '../../../tools/lodash';
 
-const prefixCls = 'row';
+const prefixCls = 'emfe-row';
 
 export default {
-  name: 'Row',
+  name: 'EmfeRow',
   props: {
     gutter: {
       type: [Number, String],

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>活动时 emui 测试页面</h1>
+    <h1>活动时 EMFE 测试页面</h1>
     <nav>
       <ul>
         <li><router-link to="/grid">栅格系统( grid )</router-link></li>
