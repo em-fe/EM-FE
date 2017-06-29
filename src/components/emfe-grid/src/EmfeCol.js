@@ -1,7 +1,7 @@
-const prefixCls = 'col';
+const prefixCls = 'emfe-col';
 
 export default {
-  name: 'Col',
+  name: 'EmfeCol',
   props: {
     span: [Number, String],
     tag: {

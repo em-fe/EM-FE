@@ -7,15 +7,15 @@ import App from './app.vue';
 import router from './router';
 
 // 开发版
-import emui from '../../src/index';
-import '../../src/styles/emui.scss';
+import emfe from '../../src/index';
+import '../../src/styles/emfe.scss';
 
 // 生产版
-// import emui from '../../dist/emui-esm';
-// import '../../dist/css/emui.css';
+// import emfe from '../../dist/emfe-esm';
+// import '../../dist/css/emfe.css';
 
 Vue.use(VueRouter);
-Vue.use(emui);
+Vue.use(emfe);
 
 // 开启debug模式
 Vue.config.debug = true;

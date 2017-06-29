@@ -8,7 +8,7 @@ const version = process.env.VERSION || pkg.version
 
 const banner =
   '/*!\n' +
-  ' * EMUI.js v' + version + '\n' +
+  ' * EMFE.js v' + version + '\n' +
   ' * (c) 2014-' + new Date().getFullYear() + ' '+ pkg.author +'\n' +
   ' * Released under the MIT License.\n' +
   ' */'
@@ -16,63 +16,63 @@ const banner =
 const builds = {
   'default': {
     entry: 'src/index.js',
-    dest: 'dist/emui.js',
+    dest: 'dist/emfe.js',
     format: 'umd',
   },
   'default.min': {
     entry: 'src/index.js',
-    dest: 'dist/emui.min.js',
+    dest: 'dist/emfe.min.js',
     format: 'umd',
   },
   'amd': {
     entry: 'src/index.js',
-    dest: 'dist/emui-amd.js',
+    dest: 'dist/emfe-amd.js',
     format: 'amd',
   },
   'cjs': {
     entry: 'src/index.js',
-    dest: 'dist/emui-cjs.js',
+    dest: 'dist/emfe-cjs.js',
     format: 'cjs',
   },
   'es': {
     entry: 'src/index.js',
-    dest: 'dist/emui-esm.js',
+    dest: 'dist/emfe-esm.js',
     format: 'es',
   },
   'umd': {
     entry: 'src/index.js',
-    dest: 'dist/emui-umd.js',
+    dest: 'dist/emfe-umd.js',
     format: 'umd',
   },
   'iife': {
     entry: 'src/index.js',
-    dest: 'dist/emui-iife.js',
+    dest: 'dist/emfe-iife.js',
     format: 'iife',
     banner,
   },
   'amd.min': {
     entry: 'src/index.js',
-    dest: 'dist/emui-amd.min.js',
+    dest: 'dist/emfe-amd.min.js',
     format: 'amd',
   },
   'cjs.min': {
     entry: 'src/index.js',
-    dest: 'dist/emui-cjs.min.js',
+    dest: 'dist/emfe-cjs.min.js',
     format: 'cjs',
   },
   'es.min': {
     entry: 'src/index.js',
-    dest: 'dist/emui-esm.min.js',
+    dest: 'dist/emfe-esm.min.js',
     format: 'es',
   },
   'umd.min': {
     entry: 'src/index.js',
-    dest: 'dist/emui-umd.min.js',
+    dest: 'dist/emfe-umd.min.js',
     format: 'umd',
   },
   'iife.min': {
     entry: 'src/index.js',
-    dest: 'dist/emui-iife.min.js',
+    dest: 'dist/emfe-iife.min.js',
     format: 'iife',
     banner,
   },
@@ -84,7 +84,7 @@ function genConfig (opts) {
     dest: opts.dest,
     format: opts.format,
     banner: banner,
-    moduleName: 'emui',
+    moduleName: 'emfe',
     plugins: [
       replace({
         __VERSION__: version
