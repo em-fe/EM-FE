@@ -9,9 +9,206 @@
     line-height: 1;
     z-index: 1060;
     padding: 8px;
-    background: rgba(0, 0, 0, 0.1);
+    color: #fff;
     white-space: nowrap;
     text-align: left;
     text-decoration: none;
+  }
+
+  &-arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+
+    &-top {
+      @include tooltip(top);
+
+      left: 50%;
+      margin-left: -$tooltip-arrow-size;
+
+      &-end {
+        @include tooltip(top);
+
+        right: 8px;
+      }
+
+      &-start {
+        @include tooltip(top);
+
+        left: 8px;
+      }
+    }
+
+    &-right {
+      @include tooltip(right);
+
+      top: 50%;
+      margin-top: -$tooltip-arrow-size;
+
+      &-end {
+        @include tooltip(right);
+
+        bottom: 8px;
+      }
+
+      &-start {
+        @include tooltip(right);
+
+        top: 8px;
+      }
+    }
+
+    &-bottom {
+      @include tooltip(bottom);
+
+      left: 50%;
+      margin-left: -$tooltip-arrow-size;
+
+      &-end {
+        @include tooltip(bottom);
+
+        right: 8px;
+      }
+
+      &-start {
+        @include tooltip(bottom);
+
+        left: 8px;
+      }
+    }
+
+    &-left {
+      @include tooltip(left);
+
+      top: 50%;
+      margin-top: -$tooltip-arrow-size;
+
+      &-end {
+        @include tooltip(left);
+
+        top: 50%;
+        bottom: 8px;
+      }
+
+      &-start {
+        @include tooltip(left);
+
+        top: 8px;
+      }
+    }
+  }
+
+  &-dark {
+    &-popper {
+      @include tooltipBackgroundThemes();
+    }
+
+    &-arrow {
+      &-top {
+        @include tooltipBorderThemes(top);
+
+        &-end {
+          @include tooltipBorderThemes(top);
+        }
+
+        &-start {
+          @include tooltipBorderThemes(top);
+        }
+      }
+
+      &-right {
+        @include tooltipBorderThemes(right);
+
+        &-end {
+          @include tooltipBorderThemes(right);
+        }
+
+        &-start {
+          @include tooltipBorderThemes(right);
+        }
+      }
+
+      &-bottom {
+        @include tooltipBorderThemes(bottom);
+
+        &-end {
+          @include tooltipBorderThemes(bottom);
+        }
+
+        &-start {
+          @include tooltipBorderThemes(bottom);
+        }
+      }
+
+      &-left {
+        @include tooltipBorderThemes(left);
+
+        &-end {
+          @include tooltipBorderThemes(left);
+        }
+
+        &-start {
+          @include tooltipBorderThemes(left);
+        }
+      }
+    }
+  }
+
+  &-light {
+    &-popper {
+      @include tooltipBackgroundThemes(light);
+    }
+
+    &-arrow {
+      &-top {
+        @include tooltipBorderThemes(top, light);
+
+        &-end {
+          @include tooltipBorderThemes(top, light);
+        }
+
+        &-start {
+          @include tooltipBorderThemes(top, light);
+        }
+      }
+
+      &-right {
+        @include tooltipBorderThemes(right, light);
+
+        &-end {
+          @include tooltipBorderThemes(right, light);
+        }
+
+        &-start {
+          @include tooltipBorderThemes(right, light);
+        }
+      }
+
+      &-bottom {
+        @include tooltipBorderThemes(bottom, light);
+
+        &-end {
+          @include tooltipBorderThemes(bottom, light);
+        }
+
+        &-start {
+          @include tooltipBorderThemes(bottom, light);
+        }
+      }
+
+      &-left {
+        @include tooltipBorderThemes(left, light);
+
+        &-end {
+          @include tooltipBorderThemes(left, light);
+        }
+
+        &-start {
+          @include tooltipBorderThemes(left, light);
+        }
+      }
+    }
   }
 }

@@ -1,10 +1,12 @@
 <template>
-  <div class="emfe-tooltip" :class="tooltipName" @mouseenter="showPopper" @mouseleave="hidePopper">
+  <div class="emfe-tooltip" :class="tooltipName" @mouseenter="showPopper"
+  @mouseleave="hidePopper">
     <div class="emfe-tooltip-slot" :class="slotName" ref="reference">
       <slot name="render"></slot>
     </div>
     <transition name="fade" v-on:enter="enter" v-on:before-enter="beforeEnter" v-on:after-enter="afterEnter" v-on:before-leave="beforeLeave" v-on:after-leave="afterLeave">
       <div class="emfe-tooltip-popper" :class="popperName" :style="popperStyle" v-show="popperStatus" ref="popper">
+        <i class="emfe-tooltip-arrow" :class="arrowPlacement" v-if="arrowStatus"></i>
         <slot name="tip"></slot>
       </div>
     </transition>
@@ -22,6 +24,14 @@ export default {
     className: {
       type: String,
       default: '',
+    },
+    theme: {
+      type: String,
+      default: 'dark',
+    },
+    arrowStatus: {
+      type: Boolean,
+      default: true,
     },
     offset: {
       type: [Number, String],
@@ -53,7 +63,10 @@ export default {
       return `${this.className}-slot`;
     },
     popperName() {
-      return `${this.className}-popper`;
+      return [`${this.className}-popper`, `emfe-tooltip-${this.theme}-popper`];
+    },
+    arrowPlacement() {
+      return [`emfe-tooltip-${this.theme}-arrow`, `emfe-tooltip-arrow-${this.placement}`, `emfe-tooltip-${this.theme}-arrow-${this.placement}`];
     },
   },
   created() {

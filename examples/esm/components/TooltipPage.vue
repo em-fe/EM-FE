@@ -1,7 +1,7 @@
 <template>
   <div class="tooltip-page">
     <div class="tip-top">
-      <emfe-tooltip placement="top-start">
+      <emfe-tooltip placement="top-start" theme="light" :arrowStatus="false">
         <button slot="render">top-start</button>
         <ul slot="tip">
           <li>这是top-start1</li>
