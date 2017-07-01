@@ -15,6 +15,10 @@ const router = new VueRouter({
       path: '/tooltippage',
       component: require('./components/TooltipPage.vue'),
     },
+    {
+      path: '/transition',
+      component: require('./components/TransitionPage.vue'),
+    },
   ],
 });
 
