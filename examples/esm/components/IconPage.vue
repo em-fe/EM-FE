@@ -41,14 +41,13 @@ export default {
   data() {
     return {
       types: [
-        ['pull-down', 'hint', 'QR-code'],
-        ['publish', 'list', 'start'],
-        ['pause', 'stick', 'statistics'],
-        ['financial-statement', 'side-bar', 'order-center'],
-        ['public', 'member-center', 'customer-service'],
-        ['paradise', 'commodity-management', 'sale'],
-        ['marketing-center', 'site-management', 'account-management'],
-        ['ihotel-management', 'eventelogo'],
+        ['hint', 'qr', 'hotel'],
+        ['publish', 'list', 'eventelogo'],
+        ['stick', 'statistics', 'account'],
+        ['financial', 'sidebar', 'order'],
+        ['public', 'diadema', 'service'],
+        ['paradise', 'commodity', 'sale'],
+        ['marketing', 'site'],
       ],
     };
   },

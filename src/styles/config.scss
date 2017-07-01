@@ -1,3 +1,5 @@
+// 前缀
+$prefix: 'emfe-';
 // 屏幕设置
 $screen-sm: 768px;
 $screen-md: 992px;
@@ -8,4 +10,8 @@ $gridColumns: 24 !default;
 // 字体设置
 $ionicons-font-path: './iconfont/fonts';
 $ionicons-font-family: 'Ionicons';
-$ionicons-version: '2.0.0';
+$ionicons-version: 'vjtjwq';
+// tooltip 颜色
+$tooltip-dark-color: rgba(70, 76, 91, 0.9);
+$tooltip-light-color: rgba(25, 166, 0, 0.9);
+$tooltip-arrow-size: 5px;

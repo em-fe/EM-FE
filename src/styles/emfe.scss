@@ -1,6 +1,8 @@
 @import "./config.scss";
 @import "./reset.scss";
-@import "./common.scss";
+@import "./mixin/mixin.scss";
+@import "./emfe-transition/emfe-transition.scss";
 @import "./iconfont/ionicons.scss";
-@import "./grid/col.scss";
-@import "./grid/row.scss";
+@import "./emfe-grid/emfe-col.scss";
+@import "./emfe-grid/emfe-row.scss";
+@import "./emfe-tooltip/emfe-tooltip.scss";
