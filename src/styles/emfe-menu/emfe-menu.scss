@@ -1,0 +1,11 @@
+.#{$prefix}menu {
+  padding: 0 20px;
+  float: left;
+  background: rgba(0, 0, 0, 0.3);
+
+  &-header {
+    height: 48px;
+    line-height: 48px;
+    font-size: 12px;
+  }
+}

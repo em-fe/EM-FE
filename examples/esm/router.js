@@ -19,6 +19,10 @@ const router = new VueRouter({
       path: '/transition',
       component: require('./components/TransitionPage.vue'),
     },
+    {
+      path: '/menu',
+      component: require('./components/MenuPage.vue'),
+    },
   ],
 });
 
