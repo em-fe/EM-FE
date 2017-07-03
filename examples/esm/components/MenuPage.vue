@@ -1,6 +1,6 @@
 <template>
   <div class="menu-page">
-    <emfe-menu :data="menus">123</emfe-menu>
+    <emfe-menu className="page" :datas="menus" @update="updateMenu">123</emfe-menu>
   </div>
 </template>
 <script>
@@ -11,26 +11,42 @@ export default {
       menus: [
         {
           title: '直接跳转',
-          icon: 'ihotel-management',
-          routers: 'aaa',
+          icon: 'hotel',
+          routers: {
+            path: '/transition',
+          },
         },
         {
           title: '有二级',
-          icon: 'ihotel-management',
+          icon: 'hotel',
           columns: [
             {
               title: '直接跳转',
-              icon: 'ihotel-management',
-              routers: 'aaa',
+              routers: {
+                path: '/tooltippage',
+              },
             },
             {
-              title: '有下拉',
-              icon: 'ihotel-management',
-              child: [
+              title: '有下拉1',
+              icon: 'hotel',
+              childs: [
                 {
                   title: '直接跳转1',
-                  icon: 'ihotel-management',
-                  routers: 'aaa',
+                  routers: {
+                    path: '/grid',
+                  },
+                },
+              ],
+            },
+            {
+              title: '有下拉2',
+              icon: 'hotel',
+              childs: [
+                {
+                  title: '直接跳转1',
+                  routers: {
+                    path: '/iconpage',
+                  },
                 },
               ],
             },
@@ -38,8 +54,17 @@ export default {
         },
       ],
     }
-  }
-}
+  },
+  methods: {
+    updateMenu() {
+      console.log('update');
+    },
+  },
+};
 </script>
 <style>
+.page-menu {
+  position: fixed;
+  height: 100%;
+}
 </style>

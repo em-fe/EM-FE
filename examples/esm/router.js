@@ -5,22 +5,27 @@ const router = new VueRouter({
   routes: [
     {
       path: '/grid',
+      name: 'grid',
       component: require('./components/grid.vue'),
     },
     {
       path: '/iconpage',
+      name: 'iconpage',
       component: require('./components/IconPage.vue'),
     },
     {
       path: '/tooltippage',
+      name: 'tooltippage',
       component: require('./components/TooltipPage.vue'),
     },
     {
       path: '/transition',
+      name: 'transition',
       component: require('./components/TransitionPage.vue'),
     },
     {
       path: '/menu',
+      name: 'menu',
       component: require('./components/MenuPage.vue'),
     },
   ],

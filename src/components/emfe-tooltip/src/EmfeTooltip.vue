@@ -47,6 +47,10 @@ export default {
       },
       default: 'top',
     },
+    disable: {
+      type: [Boolean, String],
+      default: false,
+    },
   },
   data() {
     return {
@@ -57,13 +61,15 @@ export default {
   },
   computed: {
     tooltipName() {
-      return `${this.className}-tooltip`;
+      return this.className ? `${this.className}-tooltip` : '';
     },
     slotName() {
-      return `${this.className}-slot`;
+      return this.className ? `${this.className}-slot` : '';
     },
     popperName() {
-      return [`${this.className}-popper`, `emfe-tooltip-${this.theme}-popper`];
+      return [{
+        [`${this.className}-popper`]: !!this.className,
+      }, `emfe-tooltip-${this.theme}-popper`];
     },
     arrowPlacement() {
       return [`emfe-tooltip-${this.theme}-arrow`, `emfe-tooltip-arrow-${this.placement}`, `emfe-tooltip-${this.theme}-arrow-${this.placement}`];
@@ -161,6 +167,9 @@ export default {
       this.popperStyle = `left: ${iLeft}px;top: ${iTop}px;`;
     },
     showPopper() {
+      if (this.disable) {
+        return;
+      }
       if (this.popperStatus) {
         clearTimeout(enterTimer);
         clearTimeout(leaveTimer);
@@ -170,6 +179,9 @@ export default {
       }, this.delayDefault);
     },
     hidePopper() {
+      if (this.disable) {
+        return;
+      }
       if (!this.popperStatus) {
         clearTimeout(enterTimer);
       }
