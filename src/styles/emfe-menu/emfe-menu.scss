@@ -6,7 +6,7 @@
   &-main {
     @include box-shadow();
 
-    width: 155px;
+    width: $menu-md-width;
     height: 100%;
     float: left;
     position: relative;
@@ -48,12 +48,14 @@
 
       &:hover {
         background: $background-on-color;
+        color: $btn-hover-color;
       }
 
       &-on {
         @include border(left, $border-on-color, 4px);
 
         background: $background-on-color;
+        color: $btn-active-color;
       }
     }
 
@@ -61,6 +63,7 @@
       @include border(left, $border-on-color, 4px);
 
       background: $background-on-color;
+      color: $btn-active-color;
     }
 
     &-icon {
@@ -136,11 +139,13 @@
 
       &:hover {
         background: $background-on-color;
+        color: $btn-hover-color;
       }
     }
 
     &-link.router-link-active {
       background: $background-on-color;
+      color: $btn-active-color;
     }
 
     &-childitem {
@@ -160,17 +165,19 @@
 
       &:hover {
         background: $background-on-color;
+        color: $btn-hover-color;
       }
     }
 
     &-childlink.router-link-active {
       background: $background-on-color;
+      color: $btn-active-color;
     }
   } // end emfe-menu-minor
 
   &-on {
     .emfe-menu-main {
-      width: 65px;
+      width: $menu-sm-width;
     }
 
     .emfe-menu-main-text {
