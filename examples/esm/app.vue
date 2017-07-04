@@ -84,6 +84,22 @@ module.exports = {
             },
           ],
         },
+        {
+          title: '功能组件',
+          icon: 'hotel',
+          columns: [
+            {
+              title: '复制',
+              icon: 'hotel',
+              routers: {
+                path: '/copy',
+                query: {
+                  main: 4,
+                },
+              },
+            },
+          ],
+        },
       ],
       menuClass: 'main-full',
     }
