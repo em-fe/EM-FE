@@ -1,5 +1,10 @@
 <template>
-  <div class="menu-page">
+  <div class="copy-page">
+    <h2>EMFE 复制组件</h2>
+    <br>
+    <h3>示例</h3>
+    <br>
+    <emfe-copy className="pay" :copyValue="copyData" @copySuccess="copySuc" @copyFail="copyFail"></emfe-copy>
     <h3>API</h3>
     <table>
       <thead>
@@ -12,9 +17,9 @@
       </thead>
       <tbody>
         <tr>
-          <td>datas</td>
-          <td>导航数据。如果需要有二级展开则在里面加入columns属性，如果需要路由跳转加入routers属性。如果需要外跳到某网站，加入url属性。详情请参考本example的导航数据。</td>
-          <td>Array</td>
+          <td>copyValue</td>
+          <td>复制的内容。</td>
+          <td>String</td>
           <td>-</td>
         </tr>
         <tr>
@@ -37,14 +42,14 @@
       </thead>
       <tbody>
         <tr>
-          <td>short</td>
-          <td>当点击一级导航顶部变小按钮的时候触发。请参考example的导航示例</td>
-          <td>一级导航状态(是否被展开), 二级导航状态(是否被展开)</td>
+          <td>copySuccess</td>
+          <td>复制成功触发</td>
+          <td>-</td>
         </tr>
         <tr>
-          <td>column</td>
-          <td>当点击一级导航中的菜单，有二级导航出现的时候触发。请参考example的导航示例</td>
-          <td>一级导航状态(是否被展开), 二级导航状态(是否被展开)</td>
+          <td>copyFail</td>
+          <td>复制失败触发</td>
+          <td>-</td>
         </tr>
       </tbody>
     </table>
@@ -52,6 +57,19 @@
 </template>
 <script>
 export default {
-  name: "MenuPage",
+  name: 'CopyPage',
+  data() {
+    return {
+      copyData: 'http://baidu.com',
+    };
+  },
+  methods: {
+    copySuc() {
+      alert('已复制好，可贴粘。');
+    },
+    copyFail() {
+      alert('复制失败，请手动复制');
+    },
+  },
 };
 </script>

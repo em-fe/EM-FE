@@ -2,15 +2,6 @@
   <div :class="menuClass">
     <h1>活动时 EMFE 测试页面</h1>
     <emfe-menu className="main" :datas="menus" @short="shortMenu" @column="columnMenu"></emfe-menu>
-    <!-- <nav>
-      <ul>
-        <li><router-link to="/grid">栅格系统( grid )</router-link></li>
-        <li><router-link to="/iconpage">字体图标( icon )</router-link></li>
-        <li><router-link to="/tooltippage">文字提示( tooltip )</router-link></li>
-        <li><router-link to="/transition">运动( transition )</router-link></li>
-        <li><router-link to="/menu">导航( menu )</router-link></li>
-      </ul>
-    </nav> -->
     <div class="warp">
       <router-view></router-view>
     </div>
@@ -22,7 +13,12 @@ module.exports = {
     return {
       menus: [
         {
-          title: '直接跳转',
+          title: '去百度',
+          icon: 'hotel',
+          url: 'http://baidu.com',
+        },
+        {
+          title: '运动组件',
           icon: 'hotel',
           routers: {
             path: '/transition',
@@ -32,11 +28,11 @@ module.exports = {
           },
         },
         {
-          title: '有二级',
+          title: '提示组件',
           icon: 'hotel',
           columns: [
             {
-              title: '直接跳转',
+              title: '全文提示',
               routers: {
                 path: '/tooltippage',
                 query: {
@@ -45,13 +41,13 @@ module.exports = {
               },
             },
             {
-              title: '有下拉1',
+              title: '图标',
               icon: 'hotel',
               childs: [
                 {
-                  title: '直接跳转1',
+                  title: '字体图标',
                   routers: {
-                    path: '/grid',
+                    path: '/iconpage',
                     query: {
                       column: 1,
                       main: 1,
@@ -60,21 +56,47 @@ module.exports = {
                 },
               ],
             },
+          ],
+        },
+        {
+          title: '排版',
+          icon: 'hotel',
+          columns: [
             {
-              title: '有下拉2',
+              title: '栅格',
               icon: 'hotel',
-              childs: [
-                {
-                  title: '直接跳转1',
-                  routers: {
-                    path: '/iconpage',
-                    query: {
-                      column: 2,
-                      main: 1,
-                    },
-                  },
+              routers: {
+                path: '/grid',
+                query: {
+                  main: 3,
                 },
-              ],
+              },
+            },
+            {
+              title: '导航',
+              icon: 'hotel',
+              routers: {
+                name: 'menu',
+                query: {
+                  main: 3,
+                },
+              },
+            },
+          ],
+        },
+        {
+          title: '功能组件',
+          icon: 'hotel',
+          columns: [
+            {
+              title: '复制',
+              icon: 'hotel',
+              routers: {
+                path: '/copy',
+                query: {
+                  main: 4,
+                },
+              },
             },
           ],
         },
@@ -115,6 +137,11 @@ module.exports = {
   top: 88px;
   left: 0;
   height: 100%;
+}
+.warp {
+  border: 1px solid #dcdcdc;
+  height: 2000px;
+  padding: 24px;
 }
 .main-full {
   .warp {

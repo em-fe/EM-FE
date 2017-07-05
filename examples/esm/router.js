@@ -28,6 +28,11 @@ const router = new VueRouter({
       name: 'menu',
       component: require('./components/MenuPage.vue'),
     },
+    {
+      path: '/copy',
+      name: 'copy',
+      component: require('./components/CopyPage.vue'),
+    },
   ],
 });
 
