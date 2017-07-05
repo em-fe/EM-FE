@@ -36,7 +36,7 @@ module.exports = {
               routers: {
                 path: '/tooltippage',
                 query: {
-                  main: 1,
+                  main: 2,
                 },
               },
             },
@@ -50,7 +50,7 @@ module.exports = {
                     path: '/iconpage',
                     query: {
                       column: 1,
-                      main: 1,
+                      main: 2,
                     },
                   },
                 },

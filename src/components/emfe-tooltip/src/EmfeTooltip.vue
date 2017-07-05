@@ -26,7 +26,9 @@ export default {
       default: '',
     },
     theme: {
-      type: String,
+      validator(value) {
+        return _.has(value, ['dark', 'light']);
+      },
       default: 'dark',
     },
     arrowStatus: {

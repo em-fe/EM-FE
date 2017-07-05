@@ -157,6 +157,98 @@
         <p slot="tip">这是事件的示例</p>
       </emfe-tooltip>
     </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h3>API</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>属性</th>
+          <th>说明</th>
+          <th>类型</th>
+          <th>默认值</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>theme</td>
+          <td>主题设置。dark | light</td>
+          <td>String</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>arrowStatus</td>
+          <td>小三角是否显示</td>
+          <td>Boolean</td>
+          <td>true</td>
+        </tr>
+        <tr>
+          <td>offset</td>
+          <td>提示框与选中文本之间的距离</td>
+          <td>Number | String</td>
+          <td>16</td>
+        </tr>
+        <tr>
+          <td>delay</td>
+          <td>延迟显示，单位毫秒</td>
+          <td>Number | String</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>placement</td>
+          <td>提示框出现的位置，可选值为toptop-starttop-endbottombottom-startbottom-endleftleft-startleft-endrightright-startright-end</td>
+          <td>String</td>
+          <td>top</td>
+        </tr>
+        <tr>
+          <td>disabled</td>
+          <td>是否禁用提示框</td>
+          <td>Boolean | String</td>
+          <td>false</td>
+        </tr>
+        <tr>
+          <td>className(class-name)</td>
+          <td>自定义的 class 名称。</td>
+          <td>String</td>
+          <td>-</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <h3>注册的方法</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>事件名</th>
+          <th>说明</th>
+          <th>返回值</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>before-show</td>
+          <td>显示之前触发</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>after-show</td>
+          <td>显示之后触发</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>after-hide</td>
+          <td>隐藏之后触发</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>after-hide</td>
+          <td>隐藏之后触发</td>
+          <td>-</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 <script>
