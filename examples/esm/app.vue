@@ -98,6 +98,16 @@ module.exports = {
                 },
               },
             },
+            {
+              title: '上传',
+              icon: 'hotel',
+              routers: {
+                path: 'upload',
+                query: {
+                  main: 4,
+                },
+              },
+            },
           ],
         },
       ],
