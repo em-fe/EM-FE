@@ -9,6 +9,11 @@ const router = new VueRouter({
       component: require('./components/grid.vue'),
     },
     {
+      path: '/upload',
+      name: 'upload',
+      component: require('./components/Uploadpage.vue'),
+    },
+    {
       path: '/iconpage',
       name: 'iconpage',
       component: require('./components/IconPage.vue'),
