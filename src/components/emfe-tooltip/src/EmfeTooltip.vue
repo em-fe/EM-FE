@@ -1,5 +1,5 @@
 <template>
-  <div class="emfe-tooltip" :class="tooltipName" :style="relativeStyle" @mouseenter="showPopper"><!--  @mouseleave="hidePopper"-->
+  <div class="emfe-tooltip" :class="tooltipName" :style="relativeStyle" @mouseenter="showPopper" @mouseleave="hidePopper">
     <div class="emfe-tooltip-slot" :class="slotName" ref="reference">
       <slot name="render"></slot>
     </div>
@@ -17,6 +17,34 @@ import { getStyle, getElementTop, getElementLeft } from '../../../tools/assist';
 
 let enterTimer = null;
 let leaveTimer = null;
+
+const checkPosition = (self) => {
+  let parentNodeHasPosition = false;
+  let parentNodePosition = getStyle(self.$parent.$el, 'position');
+  self.parentPositionHasFixed = parentNodePosition === 'fixed';
+  self.parentPositionHasRelative = parentNodePosition === 'relative';
+  self.positionStyle = self.parentPositionHasFixed ? 'fixed' : 'absolute';
+  let parent = self.$el;
+  // 循环查找父级有没有定位
+  while (parent && parent.nodeName.toLocaleLowerCase() !== 'body') {
+    parent = parent.parentNode;
+    parentNodePosition = getStyle(parent, 'position');
+
+    if (!parentNodeHasPosition) {
+      parentNodeHasPosition = parentNodePosition !== 'static';
+    }
+
+    if (!self.parentPositionHasFixed) {
+      self.parentPositionHasFixed = parentNodePosition === 'fixed';
+    }
+
+    if (!self.parentPositionHasRelative) {
+      self.parentPositionHasRelative = parentNodePosition === 'relative';
+    }
+  }
+  // 根据父级是否有固定定位判断悬浮窗是否有固定定位
+  self.positionStyle = self.parentPositionHasFixed ? 'fixed' : 'absolute';
+};
 
 export default {
   name: 'EmfeTooltip',
@@ -98,33 +126,6 @@ export default {
     afterLeave() {
       this.$emit('after-hide');
     },
-    checkPosition() {
-      let parentNodeHasPosition = false;
-      let parentNodePosition = getStyle(this.$parent.$el, 'position');
-      this.parentPositionHasFixed = parentNodePosition === 'fixed';
-      this.parentPositionHasRelative = parentNodePosition === 'relative';
-      this.positionStyle = this.parentPositionHasFixed ? 'fixed' : 'absolute';
-      let parent = this.$el;
-      // 循环查找父级有没有定位
-      while (parent && parent.nodeName.toLocaleLowerCase() !== 'body') {
-        parent = parent.parentNode;
-        parentNodePosition = getStyle(parent, 'position');
-
-        if (!parentNodeHasPosition) {
-          parentNodeHasPosition = parentNodePosition !== 'static';
-        }
-
-        if (!this.parentPositionHasFixed) {
-          this.parentPositionHasFixed = parentNodePosition === 'fixed';
-        }
-
-        if (!this.parentPositionHasRelative) {
-          this.parentPositionHasRelative = parentNodePosition === 'relative';
-        }
-      }
-      // 根据父级是否有固定定位判断悬浮窗是否有固定定位
-      this.positionStyle = this.parentPositionHasFixed ? 'fixed' : 'absolute';
-    },
     setPoperStyle() {
       // 只设定一次位置
       if (!this.setStyled) {
@@ -142,7 +143,7 @@ export default {
       let popperLeft = 0;
       let popperTop = 0;
       // 定位检测
-      this.checkPosition();
+      checkPosition(this);
       // 如果父级没有定位
       if (this.placement.indexOf('left') > -1) {
         popperLeft = left - popperPos.width - this.offsetDefault;
