@@ -1,6 +1,5 @@
 <template>
-  <div class="emfe-tooltip" :class="tooltipName" @mouseenter="showPopper"
-  @mouseleave="hidePopper">
+  <div class="emfe-tooltip" :class="tooltipName" :style="relativeStyle" @mouseenter="showPopper"><!--  @mouseleave="hidePopper"-->
     <div class="emfe-tooltip-slot" :class="slotName" ref="reference">
       <slot name="render"></slot>
     </div>
@@ -14,6 +13,7 @@
 </template>
 <script>
 import _ from '../../../tools/lodash';
+import { getStyle, getElementTop, getElementLeft } from '../../../tools/assist';
 
 let enterTimer = null;
 let leaveTimer = null;
@@ -59,6 +59,7 @@ export default {
       popperStyle: '',
       popperStatus: false,
       setStyled: true,
+      relativeStyle: '',
     };
   },
   computed: {
@@ -97,76 +98,137 @@ export default {
     afterLeave() {
       this.$emit('after-hide');
     },
-    setPoperStyle() {
-      if (!this.setStyled) {
-        return;
-      }
+    checkPosition() {
+      let parentNodeHasPosition = false;
+      let parentNodePosition = getStyle(this.$parent.$el, 'position');
+      this.parentPositionHasFixed = parentNodePosition === 'fixed';
+      this.parentPositionHasRelative = parentNodePosition === 'relative';
+      this.positionStyle = this.parentPositionHasFixed ? 'fixed' : 'absolute';
+      let parent = this.$el;
+      // 循环查找父级有没有定位
+      while (parent && parent.nodeName.toLocaleLowerCase() !== 'body') {
+        parent = parent.parentNode;
+        parentNodePosition = getStyle(parent, 'position');
 
-      if (!/^(top|bottom|left|right)(-start|-end)?$/g.test(this.placement)) {
+        if (!parentNodeHasPosition) {
+          parentNodeHasPosition = parentNodePosition !== 'static';
+        }
+
+        if (!this.parentPositionHasFixed) {
+          this.parentPositionHasFixed = parentNodePosition === 'fixed';
+        }
+
+        if (!this.parentPositionHasRelative) {
+          this.parentPositionHasRelative = parentNodePosition === 'relative';
+        }
+      }
+      // 根据父级是否有固定定位判断悬浮窗是否有固定定位
+      this.positionStyle = this.parentPositionHasFixed ? 'fixed' : 'absolute';
+    },
+    setPoperStyle() {
+      // 只设定一次位置
+      if (!this.setStyled) {
         return;
       }
 
       this.setStyled = false;
 
       const { reference, popper } = this.$refs;
-      const bodyScrollTop = document.body.scrollTop;
-      const bodyScrollLeft = document.body.scrollLeft;
-      const bodyHeight = document.body.clientHeight;
-      const bodyWidth = document.body.clientWidth;
-
-      const referencePos = reference.getBoundingClientRect();
+      const { scrollLeft, scrollTop, clientWidth, clientHeight } = document.body;
       const popperPos = popper.getBoundingClientRect();
+      const referencePos = reference.getBoundingClientRect();
       const { left, right, top, bottom, width, height } = referencePos;
-      let iLeft = 0;
-      let iTop = 0;
 
+      let popperLeft = 0;
+      let popperTop = 0;
+      // 定位检测
+      this.checkPosition();
+      // 如果父级没有定位
       if (this.placement.indexOf('left') > -1) {
-        iLeft += left - popperPos.width - this.offsetDefault;
+        popperLeft = left - popperPos.width - this.offsetDefault;
       } else if (this.placement.indexOf('right') > -1) {
-        iLeft = right + this.offsetDefault;
+        popperLeft = right + this.offsetDefault;
       } else if (this.placement.indexOf('bottom') > -1) {
-        iTop = bottom + this.offsetDefault;
+        popperTop = bottom + this.offsetDefault;
       } else {
-        iTop = top - popperPos.height - this.offsetDefault;
+        popperTop = top - popperPos.height - this.offsetDefault;
       }
 
       if (/left|right/g.test(this.placement)) {
         if (this.placement.indexOf('start') > -1) {
-          iTop = top;
+          popperTop = top;
         } else if (this.placement.indexOf('end') > -1) {
-          iTop = bottom - popperPos.height;
+          popperTop = bottom - popperPos.height;
         } else {
-          iTop = ((height - popperPos.height) / 2) + top;
+          popperTop = ((height - popperPos.height) / 2) + top;
         }
       }
 
       if (/bottom|top/g.test(this.placement)) {
         if (this.placement.indexOf('start') > -1) {
-          iLeft = left;
+          popperLeft = left;
         } else if (this.placement.indexOf('end') > -1) {
-          iLeft = right - popperPos.width;
+          popperLeft = right - popperPos.width;
         } else {
-          iLeft = ((width - popperPos.width) / 2) + left;
+          popperLeft = ((width - popperPos.width) / 2) + left;
         }
       }
-
-      iTop += bodyScrollTop;
-      iLeft += bodyScrollLeft;
-
-      if (iLeft + popperPos.width > bodyWidth) {
-        iLeft = left;
-      } else if (iLeft < 0) {
-        iLeft = right + this.offsetDefault;
+      // 如果没有固定定位，处理有滚动距离
+      if (!this.parentPositionHasFixed) {
+        popperTop += scrollTop;
+        popperLeft += scrollLeft;
       }
+      // 如果父级有相对定位，并且不存在固定定位
+      if (this.parentPositionHasRelative && !this.parentPositionHasFixed) {
+        const elTop = getElementTop(this.$el);
+        const elParentTop = getElementTop(this.$el.parentNode);
+        const elLeft = getElementLeft(this.$el);
+        const elParentLeft = getElementLeft(this.$el.parentNode);
 
-      if (iTop + popperPos.height > bodyHeight) {
-        const bottomOffset = /bottom/g.test(this.placement) ? height + this.offsetDefault : 0;
-        iTop = (bottom + this.offsetDefault) - bottomOffset;
-      } else if (iTop < 0) {
-        iTop = 0;
-      }
+        popperTop = elTop - elParentTop;
+        popperLeft = elLeft - elParentLeft;
 
-      this.popperStyle = `left: ${iLeft}px;top: ${iTop}px;`;
+        const popperRight = popperLeft + width;
+        const popperBottom = popperTop + height;
+        // 如果父级没有定位
+        if (this.placement.indexOf('left') > -1) {
+          popperLeft -= popperPos.width + this.offsetDefault;
+        } else if (this.placement.indexOf('right') > -1) {
+          popperLeft = popperRight + this.offsetDefault;
+        } else if (this.placement.indexOf('bottom') > -1) {
+          popperTop = popperBottom + this.offsetDefault;
+        } else {
+          popperTop -= popperPos.height + this.offsetDefault;
+        }
+        // 设置右边和左边
+        if (/left-end|right-end/g.test(this.placement)) {
+          popperTop = popperBottom - popperPos.height;
+        } else if (/(left|right)$/g.test(this.placement)) {
+          popperTop += (height - popperPos.height) / 2;
+        }
+        // 设置上面和下面
+        if (/bottom-end|top-end/g.test(this.placement)) {
+          popperLeft += width - popperPos.width;
+        } else if (/(bottom|top)$/g.test(this.placement)) {
+          popperLeft += (width - popperPos.width) / 2;
+        }
+      } else {
+        // 如果没有定位，超出 document 高度处理
+        if (popperLeft + popperPos.width > clientWidth) {
+          popperLeft = left - popperPos.width - this.offsetDefault;
+        } else if (popperLeft < 0) {
+          popperLeft = right + this.offsetDefault;
+        }
+
+        if (popperTop + popperPos.height > clientHeight) {
+          popperTop = popperTop - height - this.offsetDefault;
+        } else if (popperTop < 0) {
+          const bottomOffset = /bottom/g.test(this.placement) ? height + this.offsetDefault : 0;
+          popperTop = (bottom + this.offsetDefault) - bottomOffset;
+        }
+      } // end 如果父级有相对定位，并且不存在固定定位
+
+      this.popperStyle = `position: ${this.positionStyle}; left: ${popperLeft}px; top: ${popperTop}px;`;
     },
     showPopper() {
       if (this.disable) {
