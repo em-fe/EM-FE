@@ -52,7 +52,7 @@ import O from '../../../tools/o';
 
 let columnsLast = 0; // 记录上一个点击的二级手风琴的索引
 let columnStatus = false; // 记录二级是否打开
-let screenMd = false; // 屏幕是否大于992
+let screenMd = ''; // 屏幕是否大于992
 
 export default {
   name: 'EmfeMenu',
@@ -95,15 +95,17 @@ export default {
       this.toColumns(this.datas[this.mainIndex], this.mainIndex);
     }
 
-    screenMd = srceen.screenMd();
-
-    window.addEventListener('resize', () => {
+    const resizeHandle = () => {
       const screenMdResize = srceen.screenMd();
       if (screenMd !== screenMdResize) {
         screenMd = screenMdResize;
         this.menuToShort('resize');
       }
-    });
+    };
+
+    resizeHandle();
+
+    window.addEventListener('resize', resizeHandle);
   },
   methods: {
     toogleChild(itemIndex) {
