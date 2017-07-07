@@ -4,6 +4,7 @@ import Grid from './components/emfe-grid/index';
 import EmfeIcon from './components/emfe-icon/index';
 import EmfeTooltip from './components/emfe-tooltip/index';
 import EmfeTransition from './components/emfe-transition/index';
+import EmfeModal from './components/emfe-popup/index';
 
 const emui = {
   EmfeCol: Grid.EmfeCol,
@@ -11,6 +12,7 @@ const emui = {
   EmfeIcon,
   EmfeTooltip,
   EmfeTransition,
+  EmfeModal,
 };
 
 //, opts = {}

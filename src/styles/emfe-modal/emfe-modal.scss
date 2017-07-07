@@ -1,0 +1,28 @@
+.emfe-modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 500;
+
+  &-mask {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 505;
+  }
+
+  &-wrap {
+    width: 800px;
+    height: 397px;
+    background: rgba(255, 255, 255, 1);
+    z-index: 1000;
+    margin: 0 auto;
+    margin-top: 320px;
+    position: relative;
+  }
+}
