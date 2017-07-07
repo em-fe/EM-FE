@@ -89,6 +89,16 @@ module.exports = {
           icon: 'hotel',
           columns: [
             {
+              title: '颜色选择器',
+              icon: 'hotel',
+              routers: {
+                path: '/color',
+                query: {
+                  main: 4,
+                },
+              },
+            },
+            {
               title: '复制',
               icon: 'hotel',
               routers: {

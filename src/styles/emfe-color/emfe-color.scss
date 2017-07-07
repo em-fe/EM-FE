@@ -1,0 +1,150 @@
+.#{$prefix}color {
+  @include border();
+
+  width: 272px;
+  height: 148px;
+  overflow: hidden;
+  display: -none;
+  background: $background-color;
+  border-radius: 5px;
+  user-select: none;
+  padding: 8px;
+
+  &-color {
+    @include border();
+
+    background: linear-gradient(transparent, #000), linear-gradient(to right, #fff, rgba(255, 255, 255, 0));
+    width: 130px;
+    height: 130px;
+    overflow: hidden;
+    cursor: crosshair;
+    float: left;
+    position: relative;
+  }
+
+  &-hue {
+    @include border();
+
+    width: 20px;
+    height: 130px;
+    cursor: n-resize;
+    background: linear-gradient(to bottom, #f00, #ff0080, #f0f, #8000ff, #00f, #0080ff, #0ff, #00ff80, #0f0, #80ff00, #ff0, #ff8000, #f00);
+    float: left;
+    margin: 0 16px;
+    position: relative;
+  }
+
+  &-left,
+  &-right {
+    content: ' ';
+    border-color: transparent;
+    border-style: solid;
+    width: 0;
+    height: 0;
+    position: absolute;
+  }
+
+  &-left {
+    @include arrow(left);
+    @include arrowColor(left);
+
+    left: -7px;
+  }
+
+  &-right {
+    @include arrow(right);
+    @include arrowColor(right);
+
+    left: auto;
+    right: -7px;
+  }
+
+  &-selector-inner {
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    top: 50px;
+    left: 50%;
+    box-shadow: 0 0 0 1px #fff, 0 0 0 2px #000;
+    border-radius: 50%;
+  }
+
+  &-field {
+    @include border();
+
+    height: 18px;
+    width: 72px;
+    overflow: hidden;
+    background: #fff;
+    color: #b8b8b8;
+    font-size: 12px;
+    border-radius: 3px;
+    margin: 4px 0 0;
+  }
+
+  &-inp {
+    margin: 0;
+    padding: 0;
+    height: 16px;
+    width: 54px;
+    line-height: 16px;
+    background: transparent;
+    border: none;
+    font-size: 12px;
+    color: #555;
+    text-align: right;
+    outline: none;
+    float: left;
+  }
+
+  &-sub {
+    @include border();
+
+    width: 72px;
+    height: 20px;
+    line-height: 20px;
+    background: #efefef;
+    text-align: center;
+    color: #555;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 3px;
+    padding: 0;
+    margin: 4px 0 0;
+  }
+
+  &-handle {
+    float: left;
+    width: 72px;
+    height: 150px;
+  }
+
+  &-title {
+    @include border(right);
+
+    margin: 0;
+    width: 12px;
+    height: 16px;
+    line-height: 16px;
+    padding-left: 3px;
+    font-size: 12px;
+    background: #efefef;
+    font-weight: bold;
+    color: #777;
+    float: left;
+  }
+
+  &-show-color {
+    @include border();
+
+    height: 17px;
+    width: 72px;
+  }
+
+  &-new-color,
+  &-current-color {
+    height: 15px;
+    width: 35px;
+    float: left;
+  }
+}

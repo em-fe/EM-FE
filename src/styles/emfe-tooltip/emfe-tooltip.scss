@@ -23,80 +23,80 @@
     border-style: solid;
 
     &-top {
-      @include tooltip(top);
+      @include arrow(top);
 
       left: 50%;
       margin-left: -$tooltip-arrow-size;
 
       &-end {
-        @include tooltip(top);
+        @include arrow(top);
 
         left: auto;
         right: 8px;
       }
 
       &-start {
-        @include tooltip(top);
+        @include arrow(top);
 
         left: 8px;
       }
     }
 
     &-right {
-      @include tooltip(right);
+      @include arrow(right);
 
       top: 50%;
       margin-top: -$tooltip-arrow-size;
 
       &-end {
-        @include tooltip(right);
+        @include arrow(right);
 
         top: auto;
         bottom: 8px;
       }
 
       &-start {
-        @include tooltip(right);
+        @include arrow(right);
 
         top: 8px;
       }
     }
 
     &-bottom {
-      @include tooltip(bottom);
+      @include arrow(bottom);
 
       left: 50%;
       margin-left: -$tooltip-arrow-size;
 
       &-end {
-        @include tooltip(bottom);
+        @include arrow(bottom);
 
         left: auto;
         right: 8px;
       }
 
       &-start {
-        @include tooltip(bottom);
+        @include arrow(bottom);
 
         left: 8px;
       }
     }
 
     &-left {
-      @include tooltip(left);
+      @include arrow(left);
 
       top: 50%;
       margin-top: -$tooltip-arrow-size;
 
       &-end {
-        @include tooltip(left);
+        @include arrow(left);
 
         top: auto;
         bottom: 8px;
       }
 
       &-start {
-        @include tooltip(left);
+        @include arrow(left);
 
         top: 8px;
       }
@@ -110,50 +110,50 @@
 
     &-arrow {
       &-top {
-        @include tooltipBorderThemes(top);
+        @include arrowColor(top);
 
         &-end {
-          @include tooltipBorderThemes(top);
+          @include arrowColor(top);
         }
 
         &-start {
-          @include tooltipBorderThemes(top);
+          @include arrowColor(top);
         }
       }
 
       &-right {
-        @include tooltipBorderThemes(right);
+        @include arrowColor(right);
 
         &-end {
-          @include tooltipBorderThemes(right);
+          @include arrowColor(right);
         }
 
         &-start {
-          @include tooltipBorderThemes(right);
+          @include arrowColor(right);
         }
       }
 
       &-bottom {
-        @include tooltipBorderThemes(bottom);
+        @include arrowColor(bottom);
 
         &-end {
-          @include tooltipBorderThemes(bottom);
+          @include arrowColor(bottom);
         }
 
         &-start {
-          @include tooltipBorderThemes(bottom);
+          @include arrowColor(bottom);
         }
       }
 
       &-left {
-        @include tooltipBorderThemes(left);
+        @include arrowColor(left);
 
         &-end {
-          @include tooltipBorderThemes(left);
+          @include arrowColor(left);
         }
 
         &-start {
-          @include tooltipBorderThemes(left);
+          @include arrowColor(left);
         }
       }
     }
@@ -166,50 +166,50 @@
 
     &-arrow {
       &-top {
-        @include tooltipBorderThemes(top, light);
+        @include arrowColor(top, light);
 
         &-end {
-          @include tooltipBorderThemes(top, light);
+          @include arrowColor(top, light);
         }
 
         &-start {
-          @include tooltipBorderThemes(top, light);
+          @include arrowColor(top, light);
         }
       }
 
       &-right {
-        @include tooltipBorderThemes(right, light);
+        @include arrowColor(right, light);
 
         &-end {
-          @include tooltipBorderThemes(right, light);
+          @include arrowColor(right, light);
         }
 
         &-start {
-          @include tooltipBorderThemes(right, light);
+          @include arrowColor(right, light);
         }
       }
 
       &-bottom {
-        @include tooltipBorderThemes(bottom, light);
+        @include arrowColor(bottom, light);
 
         &-end {
-          @include tooltipBorderThemes(bottom, light);
+          @include arrowColor(bottom, light);
         }
 
         &-start {
-          @include tooltipBorderThemes(bottom, light);
+          @include arrowColor(bottom, light);
         }
       }
 
       &-left {
-        @include tooltipBorderThemes(left, light);
+        @include arrowColor(left, light);
 
         &-end {
-          @include tooltipBorderThemes(left, light);
+          @include arrowColor(left, light);
         }
 
         &-start {
-          @include tooltipBorderThemes(left, light);
+          @include arrowColor(left, light);
         }
       }
     }
