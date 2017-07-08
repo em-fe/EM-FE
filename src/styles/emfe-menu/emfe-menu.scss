@@ -1,7 +1,7 @@
 .#{$prefix}menu {
   @include clearfix();
 
-  // background: rgba(0, 0, 0, 0.3);
+  font-size: 14px;
 
   &-main {
     @include box-shadow();
@@ -40,7 +40,6 @@
       color: $menu-text-color;
       height: 48px;
       line-height: 48px;
-      font-size: 16px;
       width: 100%;
       display: block;
       display: flex;
@@ -51,11 +50,16 @@
         color: $btn-hover-color;
       }
 
+      &:active {
+        background: $background-on-color;
+        color: $btn-active-color;
+      }
+
       &-on {
         @include border(left, $border-on-color, 4px);
 
         background: $background-on-color;
-        color: $btn-active-color;
+        color: $btn-color;
       }
     }
 
@@ -63,12 +67,11 @@
       @include border(left, $border-on-color, 4px);
 
       background: $background-on-color;
-      color: $btn-active-color;
+      color: $btn-color;
     }
 
     &-icon {
       padding: 0 10px 0 16px;
-      font-size: 16px;
     }
   } // end emfe-menu-main
 
@@ -87,9 +90,8 @@
       width: 100%;
       height: 66px;
       line-height: 66px;
-      font-size: 18px;
       color: $title-color;
-      padding-left: 20px;
+      padding-left: 24px;
     }
 
     &-item {
@@ -118,10 +120,9 @@
     }
 
     &-btn {
-      color: $menu-text-color;
+      color: $title-color;
       height: 48px;
       line-height: 48px;
-      font-size: 14px;
       width: 100%;
       display: block;
       padding-left: 32px;
@@ -132,20 +133,29 @@
       color: $menu-text-color;
       height: 48px;
       line-height: 48px;
-      font-size: 14px;
       width: 100%;
       display: block;
       padding-left: 32px;
 
       &:hover {
         background: $background-on-color;
-        color: $btn-hover-color;
+        color: $btn-color;
+      }
+
+      &:active {
+        background: $background-on-color;
+        color: $btn-active-color;
       }
     }
 
     &-link.router-link-active {
       background: $background-on-color;
-      color: $btn-active-color;
+      color: $btn-color;
+
+      &:active {
+        background: $background-on-color;
+        color: $btn-active-color;
+      }
     }
 
     &-childitem {
@@ -158,7 +168,6 @@
       color: $menu-text-color;
       height: 48px;
       line-height: 48px;
-      font-size: 14px;
       padding-left: 40px;
       width: 100%;
       display: block;
@@ -167,11 +176,26 @@
         background: $background-on-color;
         color: $btn-hover-color;
       }
+
+      &:active {
+        background: $background-on-color;
+        color: $btn-active-color;
+      }
     }
 
     &-childlink.router-link-active {
       background: $background-on-color;
-      color: $btn-active-color;
+      color: $btn-color;
+
+      &:hover {
+        background: $background-on-color;
+        color: $btn-hover-color;
+      }
+
+      &:active {
+        background: $background-on-color;
+        color: $btn-active-color;
+      }
     }
   } // end emfe-menu-minor
 
