@@ -1,12 +1,14 @@
+$handle-size: 66px;
+
 .#{$prefix}color {
+  @include box-shadow();
   @include border();
 
-  width: 272px;
+  width: 266px;
   height: 148px;
   overflow: hidden;
   display: -none;
-  background: $background-color;
-  border-radius: 5px;
+  border-radius: $radius-size;
   user-select: none;
   padding: 8px;
 
@@ -73,50 +75,46 @@
     @include border();
 
     height: 18px;
-    width: 72px;
+    width: $handle-size;
     overflow: hidden;
     background: #fff;
-    color: #b8b8b8;
+    color: $title-color;
     font-size: 12px;
-    border-radius: 3px;
+    border-radius: $radius-size;
     margin: 4px 0 0;
   }
 
   &-inp {
     margin: 0;
-    padding: 0;
     height: 16px;
-    width: 54px;
+    width: 52px;
     line-height: 16px;
     background: transparent;
     border: none;
     font-size: 12px;
-    color: #555;
-    text-align: right;
+    color: $title-color;
     outline: none;
     float: left;
+    padding: 0 4px;
   }
 
   &-sub {
     @include border();
 
-    width: 72px;
     height: 20px;
     line-height: 20px;
-    background: #efefef;
+    background: $background-color;
     text-align: center;
-    color: #555;
+    color: $title-color;
     font-size: 12px;
-    font-weight: bold;
-    border-radius: 3px;
-    padding: 0;
+    border-radius: $radius-size;
     margin: 4px 0 0;
+    padding: 0 24px;
   }
 
   &-handle {
     float: left;
-    width: 72px;
-    height: 150px;
+    width: $handle-size;
   }
 
   &-title {
@@ -126,11 +124,10 @@
     width: 12px;
     height: 16px;
     line-height: 16px;
-    padding-left: 3px;
-    font-size: 12px;
-    background: #efefef;
-    font-weight: bold;
-    color: #777;
+    font-size: 10px;
+    background: $background-color;
+    color: $title-color;
+    text-align: center;
     float: left;
   }
 
@@ -138,13 +135,13 @@
     @include border();
 
     height: 17px;
-    width: 72px;
+    width: $handle-size;
   }
 
   &-new-color,
   &-current-color {
     height: 15px;
-    width: 35px;
+    width: $handle-size / 2 - 1;
     float: left;
   }
 }
