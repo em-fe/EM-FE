@@ -1,12 +1,22 @@
 <template>
-  <div id="emfe-color" class="emfe-color">
-    <div id="emfe-color-color" class="emfe-color-color" style="background-color: rgb(212, 0, 255);">
-      <div id="emfe-inner" class="emfe-color-selector-inner"></div>
-    </div>
-    <div class="emfe-color-hue">
+  <div class="emfe-color">
+    <!-- <div class="" style="background-color: rgb(212, 0, 255);">
+      <emfe-drag className="emfe-color" @beforeDrag="beforeDrag" @drag="drag" @afterDrag="afterDrag" limit="true"></emfe-drag>
+    </div> -->
+    <emfe-drag className="emfe-color" limit="true" :dragEl="colorMove" style="background-color: rgb(212, 0, 255);">
+      <div class="emfe-color-inner" ref="color"></div>
+    </emfe-drag>
+    <!-- <div class="emfe-color-color" style="background-color: rgb(212, 0, 255);">
+      <emfe-drag className="emfe-color" @beforeDrag="beforeDrag" @drag="drag" @afterDrag="afterDrag" limit="true"></emfe-drag>
+    </div> -->
+    <emfe-drag className="emfe-color-hue" :dragEl="hueMove" initialValue="-4">
+      <i class="emfe-color-left" style="top: -4px;" ref="hueMoveLeft"></i>
+      <i class="emfe-color-right" style="top: -4px;" ref="hueMoveRight"></i>
+    </emfe-drag>
+    <!-- <div class="emfe-color-hue">
       <i class="emfe-color-left" style="top: -4px;"></i>
       <i class="emfe-color-right" style="top: -4px;"></i>
-    </div>
+    </div> -->
     <div class="emfe-color-handle">
       <div class="emfe-color-show-color">
         <div class="emfe-color-new-color" style="background:red;"></div>
@@ -33,7 +43,35 @@
   </div>
 </template>
 <script>
+import EmfeDrag from '../../emfe-drag';
+
 export default {
   name: 'EmfeColor',
+  data() {
+    return {
+      hueMove: [],
+      colorMove: [],
+    };
+  },
+  mounted() {
+    this.hueMove.push(this.$refs.hueMoveLeft);
+    this.hueMove.push(this.$refs.hueMoveRight);
+    this.colorMove.push(this.$refs.color);
+    console.log(this.hueMove, 90);
+  },
+  component: {
+    EmfeDrag,
+  },
+  methods: {
+    beforeDrag() {
+      console.log('beforeDrag');
+    },
+    drag() {
+      console.log('drag');
+    },
+    afterDrag() {
+      console.log('afterDrag');
+    },
+  },
 };
 </script>

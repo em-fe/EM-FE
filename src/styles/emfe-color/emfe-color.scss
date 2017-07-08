@@ -11,8 +11,11 @@ $handle-size: 66px;
   border-radius: $radius-size;
   user-select: none;
   padding: 8px;
+  position: absolute;
+  left: 100px;
+  top: 100px;
 
-  &-color {
+  &-drag {
     @include border();
 
     background: linear-gradient(transparent, #000), linear-gradient(to right, #fff, rgba(255, 255, 255, 0));
@@ -24,7 +27,19 @@ $handle-size: 66px;
     position: relative;
   }
 
-  &-hue {
+  // &-color {
+  //   @include border();
+  //
+  //   background: linear-gradient(transparent, #000), linear-gradient(to right, #fff, rgba(255, 255, 255, 0));
+  //   width: 130px;
+  //   height: 130px;
+  //   overflow: hidden;
+  //   cursor: crosshair;
+  //   float: left;
+  //   position: relative;
+  // }
+
+  &-hue-drag {
     @include border();
 
     width: 20px;
@@ -61,15 +76,25 @@ $handle-size: 66px;
     right: -7px;
   }
 
-  &-selector-inner {
+  &-inner {
     position: absolute;
-    width: 9px;
-    height: 9px;
+    width: 8px;
+    height: 8px;
     top: 50px;
     left: 50%;
     box-shadow: 0 0 0 1px #fff, 0 0 0 2px #000;
-    border-radius: 50%;
+    border-radius: $radius-size;
   }
+
+  // &-drag {
+  //   position: absolute;
+  //   width: 8px;
+  //   height: 8px;
+  //   top: 50px;
+  //   left: 50%;
+  //   box-shadow: 0 0 0 1px #fff, 0 0 0 2px #000;
+  //   border-radius: $radius-size;
+  // }
 
   &-field {
     @include border();
