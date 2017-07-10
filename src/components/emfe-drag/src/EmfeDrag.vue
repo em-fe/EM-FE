@@ -96,12 +96,13 @@ export default {
       document.addEventListener('mousemove', this.move, false);
       document.addEventListener('mouseup', this.up, false);
 
+      let downTop = e.clientY - this.parentTop;
+      let downLeft = e.clientX - this.parentLeft;
+
       if (this.dragEl && this.dragEl.length > 0) {
-        let downTop = e.clientY - this.parentTop;
         downTop -= this.parentPaddingTop;
         downTop += this.scrollTop;
         downTop += this.initialValue;
-        let downLeft = e.clientX - this.parentLeft;
         downLeft -= this.parentPaddingLeft;
         downLeft += this.scrollLeft;
         downLeft += this.initialValue;
@@ -116,7 +117,7 @@ export default {
           }
         });
       }
-      this.$emit('beforeDrag', e);
+      this.$emit('beforeDrag', e, downLeft, downTop);
     },
     move(e) {
       const disPosX = e.pageX - refPos.x;

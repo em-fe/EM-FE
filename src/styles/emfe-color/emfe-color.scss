@@ -1,19 +1,20 @@
 $handle-size: 66px;
 
 .#{$prefix}color {
-  @include box-shadow();
-  @include border();
+  &-box {
+    @include box-shadow();
+    @include border();
 
-  width: 266px;
-  height: 148px;
-  overflow: hidden;
-  display: -none;
-  border-radius: $radius-size;
-  user-select: none;
-  padding: 8px;
-  position: absolute;
-  left: 300px;
-  top: 100px;
+    width: 266px;
+    height: 148px;
+    overflow: hidden;
+    border-radius: $radius-size;
+    user-select: none;
+    padding: 8px;
+    position: absolute;
+    left: 300px;
+    top: 100px;
+  }
 
   &-drag {
     @include border();
@@ -26,18 +27,6 @@ $handle-size: 66px;
     float: left;
     position: relative;
   }
-
-  // &-color {
-  //   @include border();
-  //
-  //   background: linear-gradient(transparent, #000), linear-gradient(to right, #fff, rgba(255, 255, 255, 0));
-  //   width: 130px;
-  //   height: 130px;
-  //   overflow: hidden;
-  //   cursor: crosshair;
-  //   float: left;
-  //   position: relative;
-  // }
 
   &-hue-drag {
     @include border();
@@ -90,23 +79,11 @@ $handle-size: 66px;
     position: absolute;
     width: 8px;
     height: 8px;
-    // top: 50px;
-    // left: 50%;
-    top: 0;
-    left: 0;
+    top: -4px;
+    left: -4px;
     box-shadow: 0 0 0 1px #fff, 0 0 0 2px #000;
     border-radius: $radius-size;
   }
-
-  // &-drag {
-  //   position: absolute;
-  //   width: 8px;
-  //   height: 8px;
-  //   top: 50px;
-  //   left: 50%;
-  //   box-shadow: 0 0 0 1px #fff, 0 0 0 2px #000;
-  //   border-radius: $radius-size;
-  // }
 
   &-field {
     @include border();
