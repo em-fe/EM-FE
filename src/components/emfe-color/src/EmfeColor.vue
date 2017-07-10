@@ -3,15 +3,17 @@
     <!-- <div class="" style="background-color: rgb(212, 0, 255);">
       <emfe-drag className="emfe-color" @beforeDrag="beforeDrag" @drag="drag" @afterDrag="afterDrag" limit="true"></emfe-drag>
     </div> -->
-    <emfe-drag className="emfe-color" limit="true" :dragEl="colorMove" style="background-color: rgb(212, 0, 255);">
+    <emfe-drag className="emfe-color" limit="true" :dragEl="colorMove" style="background-color: rgb(212, 0, 255);" :initialValue="-6" :borderSize="2" limitPosition="center">
       <div class="emfe-color-inner" ref="color"></div>
     </emfe-drag>
     <!-- <div class="emfe-color-color" style="background-color: rgb(212, 0, 255);">
       <emfe-drag className="emfe-color" @beforeDrag="beforeDrag" @drag="drag" @afterDrag="afterDrag" limit="true"></emfe-drag>
     </div> -->
-    <emfe-drag className="emfe-color-hue" :dragEl="hueMove" initialValue="-4">
-      <i class="emfe-color-left" style="top: -4px;" ref="hueMoveLeft"></i>
-      <i class="emfe-color-right" style="top: -4px;" ref="hueMoveRight"></i>
+    <emfe-drag className="emfe-color-hue" :dragEl="hueMove" direction="vertical" limit="true">
+      <span class="emfe-color-hueMove" ref="hueMove">
+        <i class="emfe-color-left"></i>
+        <i class="emfe-color-right"></i>
+      </span>
     </emfe-drag>
     <!-- <div class="emfe-color-hue">
       <i class="emfe-color-left" style="top: -4px;"></i>
@@ -54,8 +56,7 @@ export default {
     };
   },
   mounted() {
-    this.hueMove.push(this.$refs.hueMoveLeft);
-    this.hueMove.push(this.$refs.hueMoveRight);
+    this.hueMove.push(this.$refs.hueMove);
     this.colorMove.push(this.$refs.color);
     console.log(this.hueMove, 90);
   },

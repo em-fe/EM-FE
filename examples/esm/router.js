@@ -9,6 +9,11 @@ const router = new VueRouter({
       component: require('./components/grid.vue'),
     },
     {
+      path: '/drag',
+      name: 'drag',
+      component: require('./components/DragPage.vue'),
+    },
+    {
       path: '/color',
       name: 'color',
       component: require('./components/ColorPage.vue'),
