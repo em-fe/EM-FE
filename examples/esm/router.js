@@ -14,6 +14,11 @@ const router = new VueRouter({
       component: require('./components/Uploadpage.vue'),
     },
     {
+      path: '/input',
+      name: 'input',
+      component: require('./components/Inputpage.vue'),
+    },
+    {
       path: '/iconpage',
       name: 'iconpage',
       component: require('./components/IconPage.vue'),

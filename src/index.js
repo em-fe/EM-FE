@@ -7,6 +7,7 @@ import EmfeTransition from './components/emfe-transition/index';
 import EmfeMenu from './components/emfe-menu/index';
 import EmfeCopy from './components/emfe-copy/index';
 import EmfeUpload from './components/emfe-upload/index';
+import EmfeInput from './components/emfe-input/index';
 
 const emfe = {
   EmfeCol: Grid.EmfeCol,
@@ -17,6 +18,7 @@ const emfe = {
   EmfeMenu,
   EmfeCopy,
   EmfeUpload,
+  EmfeInput,
 };
 
 //, opts = {}
