@@ -151,7 +151,6 @@ module.exports = {
       }
     },
     columnMenu(menuShort, columnsStatus) {
-      console.log('column');
       if (menuShort) {
         this.menuClass = 'main-small-column';
       } else {

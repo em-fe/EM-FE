@@ -1,19 +1,27 @@
-$handle-size: 66px;
+$handle-size: 75px;
+$color-size: 200px + $handle-size;
+$input-size: $handle-size - 14;
 
 .#{$prefix}color {
-  &-box {
-    @include box-shadow();
-    @include border();
+  position: relative;
 
-    width: 266px;
+  &-btn {
+    display: inline-block;
+  }
+
+  &-box {
+    @include box-shadow(y);
+
+    width: $color-size;
     height: 148px;
     overflow: hidden;
     border-radius: $radius-size;
+    background: #fff;
     user-select: none;
     padding: 8px;
     position: absolute;
-    left: 300px;
-    top: 100px;
+    // left: 300px;
+    top: 0;
   }
 
   &-drag {
@@ -101,7 +109,7 @@ $handle-size: 66px;
   &-inp {
     margin: 0;
     height: 16px;
-    width: 52px;
+    width: $input-size;
     line-height: 16px;
     background: transparent;
     border: none;

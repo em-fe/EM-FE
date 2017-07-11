@@ -12,12 +12,8 @@ export default {
     const scaleB = self.colorboxSize * newB;
     let iTop = parseInt(scaleB / 2, 10);
 
-    if (iTop === 0) {
-      iTop -= pointInitial;
-    }
-    if (iLseft === 0) {
-      iLseft -= pointInitial;
-    }
+    iTop -= pointInitial;
+    iLseft -= pointInitial;
 
     return {
       top: iTop,

@@ -1,5 +1,5 @@
 <template>
-  <div class="emfe-drag" :class="dragName" @mousedown="down" :style="dragStyle" ref="drag">
+  <div class="emfe-drag" :class="dragName" @mousedown.stop="down" @click.stop :style="dragStyle" ref="drag">
     <slot></slot>
   </div>
 </template>
@@ -167,12 +167,12 @@ export default {
           }
         });
       } else {
+        this.dragStyle = `left: ${elLeft}px; top: ${elTop}px`;
         if (this.direction === 'vertical') {
           this.dragStyle = `top: ${elTop}px`;
         } else if (this.direction === 'horizontal') {
           this.dragStyle = `left: ${elLeft}px;`;
         }
-        this.dragStyle = `left: ${elLeft}px; top: ${elTop}px`;
       }
       this.$emit('drag', e, elLeft, elTop);
     },
