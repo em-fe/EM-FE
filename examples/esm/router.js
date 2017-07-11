@@ -53,6 +53,11 @@ const router = new VueRouter({
       name: 'copy',
       component: require('./components/CopyPage.vue'),
     },
+    {
+      path: '/button',
+      name: 'button',
+      component: require('./components/ButtonPage.vue'),
+    },
   ],
 });
 
