@@ -8,6 +8,7 @@ import EmfeCopy from './components/emfe-copy';
 import EmfeUpload from './components/emfe-upload';
 import EmfeColor from './components/emfe-color';
 import EmfeDrag from './components/emfe-drag';
+import EmfeInput from './components/emfe-input';
 
 const emfe = {
   EmfeCol: Grid.EmfeCol,
@@ -20,6 +21,7 @@ const emfe = {
   EmfeUpload,
   EmfeColor,
   EmfeDrag,
+  EmfeInput,
 };
 
 //, opts = {}

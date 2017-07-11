@@ -1,0 +1,77 @@
+.#{$prefix}input {
+  &-box {
+    display: flex;
+    height: 34px;
+
+    &-input {
+      @include border(all);
+
+      box-sizing: border-box;
+      height: 32px;
+      background: $nothing-color;
+      border-radius: 4px;
+      padding: 8px;
+      font-size: 14px;
+      color: $title-color;
+      letter-spacing: 1px;
+      line-height: 14px;
+      transition: border 0.2s ease-in-out;
+
+      &:focus {
+        @include border(all,$btn-color);
+
+        background: $nothing-color;
+        outline: none;
+      }
+
+      &[disabled] {
+        background-color: #f3f3f3;
+        opacity: 1;
+        cursor: not-allowed;
+        color: #ccc;
+      }
+    }
+
+    &-text {
+      padding-left: 8px;
+      margin-top: 4px;
+      font-size: 12px;
+      color: #ff4949;
+      letter-spacing: 1.08px;
+      line-height: 12px;
+    }
+
+    &-icon {
+      box-sizing: border-box;
+      width: 220px;
+      height: 34px;
+      background: $nothing-color;
+      border-radius: 4px;
+      position: relative;
+
+      &-el {
+        position: absolute;
+        top: 50%;
+        left: 8px;
+        width: 16px;
+        height: 16px;
+        transform: translate3d(0, -50%, 0);
+      }
+
+      & input {
+        text-indent: 24px;
+      }
+    }
+  }
+
+  & input::-webkit-input-placeholder {
+    color: #999;
+    letter-spacing: 1.08px;
+    line-height: 16px;
+    font-size: 14px;
+  }
+
+  & .error {
+    @include border(all,#ff4949);
+  }
+}
