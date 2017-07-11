@@ -10,6 +10,7 @@ import EmfeColor from './components/emfe-color';
 import EmfeDrag from './components/emfe-drag';
 import EmfeInput from './components/emfe-input';
 import EmfeButton from './components/emfe-button';
+import EmfeMessage from './components/emfe-message';
 
 const emfe = {
   EmfeCol: Grid.EmfeCol,
@@ -33,6 +34,8 @@ const install = (Vue) => {
   Object.keys(emfe).forEach((key) => {
     Vue.component(key, emfe[key]);
   });
+
+  Vue.prototype.$EmfeMessage = EmfeMessage;
 };
 
 if (typeof window !== 'undefined' && window.Vue) {
