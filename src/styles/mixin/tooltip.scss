@@ -1,35 +1,3 @@
-@mixin tooltip($direction) {
-  @if $direction == top {
-    bottom: -$tooltip-arrow-size;
-    border-width: $tooltip-arrow-size $tooltip-arrow-size 0;
-  }
-
-  @else if $direction == right {
-    left: -$tooltip-arrow-size;
-    border-width: $tooltip-arrow-size $tooltip-arrow-size $tooltip-arrow-size 0;
-  }
-
-  @else if $direction == bottom {
-    top: -$tooltip-arrow-size;
-    border-width: 0 $tooltip-arrow-size $tooltip-arrow-size;
-  }
-
-  @else {
-    right: -$tooltip-arrow-size;
-    border-width: $tooltip-arrow-size 0 $tooltip-arrow-size $tooltip-arrow-size;
-  }
-}
-
-@mixin tooltipBorderThemes($direction, $theme: dark) {
-  @if $theme == light {
-    border-#{$direction}-color: $tooltip-light-color;
-  }
-
-  @else {
-    border-#{$direction}-color: $tooltip-dark-color;
-  }
-}
-
 @mixin tooltipBackgroundThemes($theme: dark) {
   @if $theme == light {
     background: $tooltip-light-color;

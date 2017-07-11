@@ -9,6 +9,7 @@
 
 body {
   margin: 0;
+  font-family: '微软雅黑', 'Arial';
 }
 
 h1,
@@ -52,4 +53,14 @@ li {
 
 a {
   text-decoration: none;
+}
+
+input {
+  &:focus {
+    outline: none;
+  }
+}
+
+p {
+  margin: 0;
 }

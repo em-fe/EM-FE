@@ -99,6 +99,26 @@ module.exports = {
           icon: 'hotel',
           columns: [
             {
+              title: '拖拽',
+              icon: 'hotel',
+              routers: {
+                path: '/drag',
+                query: {
+                  main: 4,
+                },
+              },
+            },
+            {
+              title: '颜色选择器',
+              icon: 'hotel',
+              routers: {
+                path: '/color',
+                query: {
+                  main: 4,
+                },
+              },
+            },
+            {
               title: '复制',
               icon: 'hotel',
               routers: {
@@ -141,7 +161,6 @@ module.exports = {
       }
     },
     columnMenu(menuShort, columnsStatus) {
-      console.log('column');
       if (menuShort) {
         this.menuClass = 'main-small-column';
       } else {
