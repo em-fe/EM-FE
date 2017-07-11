@@ -92,6 +92,16 @@ module.exports = {
                 },
               },
             },
+            {
+              title: '按钮',
+              icon: 'hotel',
+              routers: {
+                path: '/button',
+                query: {
+                  main: 3,
+                },
+              },
+            },
           ],
         },
         {
