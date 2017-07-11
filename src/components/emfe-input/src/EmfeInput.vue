@@ -1,17 +1,8 @@
 <template>
   <div class="emfe-input">
 		<div :class="[classList]" >
-  		<emfe-icon v-if="iconOk"
-  		           :type="type"
-  		           className="emfe-input-box-icon-el">
-  		</emfe-icon>
-	    <input type="text"
-	    	v-bind="$props"
-				:class={error:errOk}
-				:value="currentValue"
-				v-on:input="change"
-	    	class="emfe-input-box-input"
-	    	>
+  		<emfe-icon v-if="iconOk" :type="type" className="emfe-input-box-icon-el"></emfe-icon>
+	    <input type="text" v-bind="$props" :class={error:errOk} :value="currentValue" v-on:input="change" class="emfe-input-box-input">
 		</div>
   	<div class="emfe-input-box-text" v-if="$slots.error"><slot name="error"></slot></div>
 	</div>
