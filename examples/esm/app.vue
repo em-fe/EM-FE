@@ -73,6 +73,16 @@ module.exports = {
               },
             },
             {
+              title: 'input输入框',
+              icon: 'hotel',
+              routers: {
+                path: '/input',
+                query: {
+                  main: 3,
+                },
+              },
+            },
+            {
               title: '导航',
               icon: 'hotel',
               routers: {
