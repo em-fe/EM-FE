@@ -1,0 +1,26 @@
+.#{$prefix}message {
+  @include box-shadow(y);
+
+  width: 640px;
+  margin-left: -320px;
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  background: rgba(123, 44, 0, 0.4);
+  border-radius: $radius-size;
+
+  &-box {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  &-text {
+    line-height: 32px;
+    padding: 0 48px 0 32px;
+    font-size: 12px;
+    color: $nothing-color;
+    word-break: break-all;
+  }
+}
