@@ -32,9 +32,18 @@ module.exports = {
           icon: 'hotel',
           columns: [
             {
-              title: '全文提示',
+              title: '文字提示',
               routers: {
                 path: '/tooltippage',
+                query: {
+                  main: 2,
+                },
+              },
+            },
+            {
+              title: '全局提示',
+              routers: {
+                path: '/message',
                 query: {
                   main: 2,
                 },

@@ -58,6 +58,11 @@ const router = new VueRouter({
       name: 'button',
       component: require('./components/ButtonPage.vue'),
     },
+    {
+      path: '/message',
+      name: 'message',
+      component: require('./components/MessagePage.vue'),
+    },
   ],
 });
 
