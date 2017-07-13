@@ -1,32 +1,25 @@
 import Message from './src/message';
 
-const prefixCls = 'emfe-message';
 const prefixKey = 'emfe_message_key_';
 
 let messageInstance;
-let name = 1;
+let delayTime = 5000;
+let style = {};
+let close = () => {};
 
 function getMessageInstance() {
-  messageInstance = messageInstance || Message.newInstance({
-    prefixCls,
-  });
+  messageInstance = messageInstance || Message.newInstance();
   return messageInstance;
 }
 
 function notice(params) {
   const instance = getMessageInstance();
   params.name = `${prefixKey}${name}`;
+  params.delayTime = params.delayTime || delayTime;
+  params.style = params.style || style;
+  params.close = params.close || close;
 
   instance.notice(params);
-
-  // 用于手动消除
-  return (() => {
-    const target = name++;
-
-    return () => {
-      instance.remove(`${prefixKey}${target}`);
-    };
-  })();
 }
 
 export default {
@@ -46,7 +39,15 @@ export default {
     params.type = 'error';
     return notice(params);
   },
-  config() {
-    console.log('config');
+  config(params) {
+    if (params.delayTime) {
+      delayTime = params.delayTime;
+    }
+    if (params.style) {
+      style = params.style;
+    }
+    if (params.close) {
+      close = params.close;
+    }
   },
 };

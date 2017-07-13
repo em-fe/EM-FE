@@ -1,9 +1,7 @@
 import Vue from 'vue';
 import EmfeMessage from './EmfeMessage.vue';
 
-EmfeMessage.newInstance = (properties) => {
-  const props = properties || {};
-
+EmfeMessage.newInstance = (props = {}) => {
   const Instance = new Vue({
     data: props,
     render(h) {
@@ -19,7 +17,6 @@ EmfeMessage.newInstance = (properties) => {
 
   return {
     notice(noticeProps) {
-      console.log('noticeProps', noticeProps);
       notification.add(noticeProps);
     },
   };

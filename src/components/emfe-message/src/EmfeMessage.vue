@@ -1,9 +1,9 @@
 <template>
-  <div class="emfe-message-box">
-    <div class="emfe-message" v-for="(notice, noticeIndex) in notices" :key="noticeIndex">
-      <p class="emfe-message-text" v-once>{{ notice.content }}</p>
+  <transition-group tag="div" class="emfe-message-box" name="fade">
+    <div class="emfe-message-main" :class="[`emfe-message-${notice.type}`]" v-for="(notice, noticeIndex) in notices" :key="noticeIndex" :style="notice.style">
+      <p class="emfe-message-text">{{ notice.content }}</p>
     </div>
-  </div>
+  </transition-group>
 </template>
 <script>
 let seed = 0;
@@ -25,25 +25,23 @@ export default {
       const name = notice.name || getUuid();
       // 继承一下参数
       const newNotice = Object.assign({
-        styles: {
-          top: 8,
-        },
         content: '',
         name,
         type: 'info',
-        autoClose: false,
+        style: {},
+        close() {},
       }, notice);
+      // 添加到队列中
       this.notices.push(newNotice);
-      console.log('111newNotice', notice, newNotice);
-      // setTimeout(this.close.bind(this, name), 1000);
+      // 自动关闭
+      setTimeout(this.close.bind(this, name), notice.delayTime);
     },
     close(name) {
-      for (let i = 0, iLen = this.notices.length; i < iLen; i++) {
-        if (this.notices[i].name === name) {
-          this.notices.splice(i, 1);
-          break;
-        }
-      }
+      this.notices.every((notice, noticeIndex) => {
+        this.notices.splice(noticeIndex, 1);
+        notice.close();
+        return notice.name !== name;
+      });
     },
   },
 };
