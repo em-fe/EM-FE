@@ -10,6 +10,8 @@ import EmfeColor from './components/emfe-color';
 import EmfeDrag from './components/emfe-drag';
 import EmfeInput from './components/emfe-input';
 import EmfeButton from './components/emfe-button';
+import EmfeDate from './components/emfe-date';
+// 服务
 import EmfeMessage from './components/emfe-message';
 
 const emfe = {
@@ -25,6 +27,7 @@ const emfe = {
   EmfeDrag,
   EmfeInput,
   EmfeButton,
+  EmfeDate,
 };
 
 //, opts = {}
