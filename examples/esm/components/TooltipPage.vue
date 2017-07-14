@@ -1,6 +1,56 @@
 <template>
   <div class="tooltip-page">
+    <h3>示例</h3>
+    <div style="position: relative;width: 200px;height:100px;margin: 40px 0 0;border: 1px solid green;">
+      <span>父级有相对定位的时候</span>
+      <emfe-tooltip placement="left-end" style="margin: 40px 0 0;">
+        <button slot="render" style="border: 1px solid yellow">有fixed, 有relative</button>
+        <ul slot="tip">
+          <li>a</li>
+          <li>a</li>
+          <li>a</li>
+        </ul>
+      </emfe-tooltip>
+    </div>
+    <div style="position: fixed;right: 0;">
+      <emfe-tooltip placement="left-start" theme="light" :arrowStatus="false">
+        <button slot="render">只有fixed</button>
+        <ul slot="tip">
+          <li>left</li>
+        </ul>
+      </emfe-tooltip>
+    </div>
+    <div style="position: fixed;right:0px;top: 2px;">
+      <div style="position: relative;border: 1px solid red;">
+        <emfe-tooltip placement="right-start" theme="light" :arrowStatus="false">
+          <button slot="render">只有fixed，出现在右边<br>因为靠边了，处理到左边</button>
+          <ul slot="tip">
+            <li>left</li>
+          </ul>
+        </emfe-tooltip>
+      </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <p>父级有相对定位的时候</p>
+    <div style="position: relative;border: 1px solid red;">
+      <emfe-tooltip placement="top-start" theme="light" :arrowStatus="false" style="margin-top: 40px;">
+        <button slot="render">只有relative</button>
+        <ul slot="tip">
+          <li>这是top-start</li>
+        </ul>
+      </emfe-tooltip>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
     <div class="tip-top">
+      <p>父级没有定位的时候</p>
       <emfe-tooltip placement="top-start" theme="light" :arrowStatus="false">
         <button slot="render">top-start</button>
         <ul slot="tip">
@@ -154,9 +204,101 @@
     <div class="tip-event">
       <emfe-tooltip className="demo" @before-show="beforeShow" @after-show="afterShow" @before-hide="beforeHide" @after-hide="afterHide">
         <button slot="render">event</button>
-        <p slot="tip">这是事件的示例</p>
+        <p slot="tip">这是事件的示例，有console.log输出</p>
       </emfe-tooltip>
     </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h3>API</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>属性</th>
+          <th>说明</th>
+          <th>类型</th>
+          <th>默认值</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>theme</td>
+          <td>主题设置。dark | light</td>
+          <td>String</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>arrowStatus</td>
+          <td>小三角是否显示</td>
+          <td>Boolean</td>
+          <td>true</td>
+        </tr>
+        <tr>
+          <td>offset</td>
+          <td>提示框与选中文本之间的距离</td>
+          <td>Number | String</td>
+          <td>16</td>
+        </tr>
+        <tr>
+          <td>delay</td>
+          <td>延迟显示，单位毫秒</td>
+          <td>Number | String</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>placement</td>
+          <td>提示框出现的位置，可选值为toptop-starttop-endbottombottom-startbottom-endleftleft-startleft-endrightright-startright-end</td>
+          <td>String</td>
+          <td>top</td>
+        </tr>
+        <tr>
+          <td>disabled</td>
+          <td>是否禁用提示框</td>
+          <td>Boolean | String</td>
+          <td>false</td>
+        </tr>
+        <tr>
+          <td>className(class-name)</td>
+          <td>自定义的 class 名称。</td>
+          <td>String</td>
+          <td>-</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <h3>注册的方法</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>事件名</th>
+          <th>说明</th>
+          <th>返回值</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>before-show</td>
+          <td>显示之前触发</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>after-show</td>
+          <td>显示之后触发</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>after-hide</td>
+          <td>隐藏之后触发</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>after-hide</td>
+          <td>隐藏之后触发</td>
+          <td>-</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 <script>

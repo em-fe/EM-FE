@@ -628,7 +628,7 @@ export default {
   background: #eee;
   padding: 20px;
 }
-.col {
+.emfe-col {
 
   .blue {
     padding: 30px 0;

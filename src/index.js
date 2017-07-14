@@ -5,22 +5,28 @@ import EmfeIcon from './components/emfe-icon/index';
 import EmfeTooltip from './components/emfe-tooltip/index';
 import EmfeTransition from './components/emfe-transition/index';
 import EmfeModal from './components/emfe-popup/index';
+import EmfeMenu from './components/emfe-menu/index';
+import EmfeCopy from './components/emfe-copy/index';
+import EmfeUpload from './components/emfe-upload/index';
 
-const emui = {
+const emfe = {
   EmfeCol: Grid.EmfeCol,
   EmfeRow: Grid.EmfeRow,
   EmfeIcon,
   EmfeTooltip,
   EmfeTransition,
   EmfeModal,
+  EmfeMenu,
+  EmfeCopy,
+  EmfeUpload,
 };
 
 //, opts = {}
 const install = (Vue) => {
   if (install.installed) return;
 
-  Object.keys(emui).forEach((key) => {
-    Vue.component(key, emui[key]);
+  Object.keys(emfe).forEach((key) => {
+    Vue.component(key, emfe[key]);
   });
 };
 

@@ -1,19 +1,176 @@
 <template>
-  <div>
+  <div :class="menuClass">
     <h1>活动时 EMFE 测试页面</h1>
-    <nav>
-      <ul>
-        <li><router-link to="/grid">栅格系统( grid )</router-link></li>
-        <li><router-link to="/iconpage">字体图标( icon )</router-link></li>
-        <li><router-link to="/tooltippage">文字提示( tooltip )</router-link></li>
-        <li><router-link to="/transition">运动( transition )</router-link></li>
-        <li><router-link to="/modal">弹出框( popup )</router-link></li>
-      </ul>
-    </nav>
-    <router-view></router-view>
+    <emfe-menu className="main" :datas="menus" @short="shortMenu" @column="columnMenu"></emfe-menu>
+    <div class="warp">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 <script>
 module.exports = {
+  data() {
+    return {
+      menus: [
+        {
+          title: '去百度',
+          icon: 'hotel',
+          url: 'http://baidu.com',
+        },
+        {
+          title: '运动组件',
+          icon: 'hotel',
+          routers: {
+            path: '/transition',
+            query: {
+              main: 0,
+            },
+          },
+        },
+        {
+          title: '提示组件',
+          icon: 'hotel',
+          columns: [
+            {
+              title: '全文提示',
+              routers: {
+                path: '/tooltippage',
+                query: {
+                  main: 2,
+                },
+              },
+            },
+            {
+              title: '图标',
+              icon: 'hotel',
+              childs: [
+                {
+                  title: '字体图标',
+                  routers: {
+                    path: '/iconpage',
+                    query: {
+                      column: 1,
+                      main: 2,
+                    },
+                  },
+                },
+              ],
+            },
+          ],
+        },
+        {
+          title: '排版',
+          icon: 'hotel',
+          columns: [
+            {
+              title: '栅格',
+              icon: 'hotel',
+              routers: {
+                path: '/grid',
+                query: {
+                  main: 3,
+                },
+              },
+            },
+            {
+              title: '导航',
+              icon: 'hotel',
+              routers: {
+                name: 'menu',
+                query: {
+                  main: 3,
+                },
+              },
+            },
+          ],
+        },
+        {
+          title: '功能组件',
+          icon: 'hotel',
+          columns: [
+            {
+              title: '复制',
+              icon: 'hotel',
+              routers: {
+                path: '/copy',
+                query: {
+                  main: 4,
+                },
+              },
+            },
+            {
+              title: '上传',
+              icon: 'hotel',
+              routers: {
+                path: 'upload',
+                query: {
+                  main: 4,
+                },
+              },
+            },
+          ],
+        },
+      ],
+      menuClass: 'main-full',
+    }
+  },
+  methods: {
+    shortMenu(menuShort, columnsStatus) {
+      if (menuShort) {
+        if (columnsStatus) {
+          this.menuClass = 'main-small-column';
+        } else {
+          this.menuClass = 'main-small';
+        }
+      } else {
+        if (columnsStatus) {
+          this.menuClass = 'main-full-column';
+        } else {
+          this.menuClass = 'main-full';
+        }
+      }
+    },
+    columnMenu(menuShort, columnsStatus) {
+      console.log('column');
+      if (menuShort) {
+        this.menuClass = 'main-small-column';
+      } else {
+        this.menuClass = 'main-full-column';
+      }
+    },
+  },
 };
 </script>
+<style lang="scss">
+.main-menu {
+  position: fixed;
+  top: 88px;
+  left: 0;
+  height: 100%;
+}
+.warp {
+  border: 1px solid #dcdcdc;
+  height: 2000px;
+  padding: 24px;
+}
+.main-full {
+  .warp {
+    margin-left: 170px;
+  }
+}
+.main-full-column {
+  .warp {
+    margin-left: 290px;
+  }
+}
+.main-small {
+  .warp {
+    margin-left: 78px;
+  }
+}
+.main-small-column {
+  .warp {
+    margin-left: 202px;
+  }
+}
+</style>
