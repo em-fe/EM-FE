@@ -1,20 +1,374 @@
-.green {
-  color: #0f0;
-}
+$header-height: 32px;
 
-.red {
-  color: #f00;
-}
+.#{$prefix}date {
+  font-size: 12px;
+  width: 100%;
+  position: relative;
 
-.gray {
-  color: #999;
-  cursor: not-allowed;
-}
+  &-box {
+    width: 100%;
+    background: $nothing-color;
 
-.today {
-  background: #00f;
-}
+    &-position {
+      @include border();
+      @include box-shadow(y);
 
-.choice {
-  background: #d0f;
+      position: absolute;
+      left: 0;
+      top: 40px;
+      z-index: 2;
+      border-radius: $radius-size;
+    }
+  } // end emfe-date-box
+
+  &-header {
+    @include clearfix();
+    @include border(bottom);
+
+    height: $header-height;
+    position: relative;
+    margin-bottom: 8px;
+  } // end emfe-date-header
+
+  &-prevyear {
+    height: $header-height;
+    line-height: $header-height;
+    position: absolute;
+    left: 8px;
+    width: 24px;
+    top: 0;
+    cursor: pointer;
+
+    &:hover {
+      color: $btn-hover-color;
+    }
+
+    &:active {
+      color: $btn-active-color;
+    }
+  } // end emfe-date-prevyear
+
+  &-prevmonth {
+    height: $header-height;
+    line-height: $header-height;
+    position: absolute;
+    width: 24px;
+    left: 32px;
+    top: 0;
+    cursor: pointer;
+
+    &:hover {
+      color: $btn-hover-color;
+    }
+
+    &:active {
+      color: $btn-active-color;
+    }
+  } // end emfe-date-prevmonth
+
+  &-text {
+    @include clearfix();
+
+    text-align: center;
+    height: $header-height;
+    width: 100%;
+    display: block;
+    color: $menu-text-color;
+    cursor: pointer;
+
+    &-yearrange {
+      line-height: $header-height;
+      display: inline-block;
+      cursor: auto;
+    }
+
+    &-year {
+      line-height: $header-height;
+      display: inline-block;
+
+      &:hover {
+        color: $btn-hover-color;
+      }
+
+      &:active {
+        color: $btn-active-color;
+      }
+    }
+
+    &-month {
+      line-height: $header-height;
+      display: inline-block;
+
+      &:hover {
+        color: $btn-hover-color;
+      }
+
+      &:active {
+        color: $btn-active-color;
+      }
+    }
+  } // end emfe-date-text
+
+  &-nextyear {
+    height: $header-height;
+    line-height: $header-height;
+    position: absolute;
+    top: 0;
+    right: 8px;
+    width: 24px;
+    text-align: center;
+    cursor: pointer;
+
+    &:hover {
+      color: $btn-hover-color;
+    }
+
+    &:active {
+      color: $btn-active-color;
+    }
+  }
+
+  &-nextmonth {
+    height: $header-height;
+    line-height: $header-height;
+    position: absolute;
+    top: 0;
+    right: 32px;
+    width: 24px;
+    text-align: center;
+    cursor: pointer;
+
+    &:hover {
+      color: $btn-hover-color;
+    }
+
+    &:active {
+      color: $btn-active-color;
+    }
+  }
+
+  &-week {
+    display: flex;
+    width: 100%;
+    padding: 0 8px;
+
+    &-item {
+      padding: 8px;
+      width: calc(100% / 7);
+      height: 36px;
+      line-height: 20px;
+      text-align: center;
+      color: $menu-text-color;
+    }
+  } // end emfe-date-week
+
+  &-day {
+    @include clearfix();
+
+    padding: 0 8px;
+  }
+
+  &-item {
+    float: left;
+    padding: 8px;
+    width: calc(100% / 7);
+    text-align: center;
+    color: $menu-text-color;
+    cursor: pointer;
+
+    &.today {
+      &:hover {
+        &::after {
+          background: $nothing-color;
+        }
+      }
+    }
+
+    &:hover {
+      background: $btn-hover-color;
+      color: $nothing-color;
+
+      &.emfe-date-today {
+        &::after {
+          background: $nothing-color;
+        }
+      }
+    }
+
+    &:active {
+      background: $btn-active-color;
+      color: $nothing-color;
+    }
+
+    &-prev {
+      color: $text-color;
+
+      &:hover {
+        background: none;
+        color: $text-color;
+      }
+    }
+
+    &-next {
+      color: $text-color;
+
+      &:hover {
+        background: none;
+        color: $text-color;
+      }
+    }
+
+    &-disable {
+      color: $border-color;
+      cursor: not-allowed;
+
+      &:hover {
+        background: none;
+        color: $border-color;
+      }
+    }
+  } // end emfe-date-item
+
+  &-month {
+    @include clearfix();
+
+    padding: 0 8px;
+
+    &-item {
+      float: left;
+      padding: 8px;
+      width: calc(100% / 3);
+      text-align: center;
+      color: $menu-text-color;
+      cursor: pointer;
+      margin: 8px 0 16px;
+
+      &:hover {
+        background: $btn-hover-color;
+        color: $nothing-color;
+      }
+
+      &:active {
+        background: $btn-active-color;
+        color: $nothing-color;
+      }
+    }
+  } // end emfe-date-month
+
+  &-year {
+    @include clearfix();
+
+    padding: 0 8px;
+
+    &-item {
+      float: left;
+      padding: 8px;
+      width: calc(100% / 3);
+      text-align: center;
+      color: $menu-text-color;
+      cursor: pointer;
+      margin: 8px 0 16px;
+
+      &:hover {
+        background: $btn-hover-color;
+        color: $nothing-color;
+      }
+
+      &:active {
+        background: $btn-active-color;
+        color: $nothing-color;
+      }
+    }
+  } // end emfe-date-year
+
+  &-btn {
+    @include border();
+
+    width: 100%;
+    height: 32px;
+    line-height: 32px;
+    cursor: pointer;
+    border-radius: $radius-size;
+
+    &:hover {
+      @include border(all, $btn-hover-color);
+    }
+
+    &:active {
+      @include border(all, $btn-active-color);
+    }
+
+    &-text {
+      padding: 0 8px;
+      text-align: left;
+      display: block;
+      color: $text-color;
+
+      &-choice {
+        color: $menu-text-color;
+      }
+    }
+  } // end emfe-date-btn
+
+  &-icon {
+    position: absolute;
+    right: 8px;
+    top: 0;
+    line-height: 32px;
+    height: 32px;
+  }
+
+  &-footer {
+    @include border(top);
+
+    display: flex;
+    justify-content: flex-end;
+    padding: 8px;
+    margin-top: 8px;
+  }
+
+  &-ok {
+    padding: 0 24px;
+    height: 32px;
+    line-height: 32px;
+    background: $btn-color;
+    color: $nothing-color;
+    border-radius: $radius-size;
+    cursor: pointer;
+
+    &:hover {
+      background: $btn-hover-color;
+    }
+
+    &:active {
+      background: $btn-active-color;
+    }
+  }
+
+  &-today {
+    position: relative;
+
+    &::after {
+      content: "";
+      display: block;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: $background-active-color;
+      position: absolute;
+      top: 4px;
+      right: 4px;
+    }
+  }
+
+  &-choice {
+    background: $background-active-color;
+    color: $nothing-color;
+
+    &.emfe-date-today {
+      &::after {
+        background: $nothing-color;
+      }
+    }
+  }
 }

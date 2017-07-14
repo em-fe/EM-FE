@@ -1,50 +1,57 @@
 <template>
-  <div class="emfe-date" v-documentclick="close">
-    <button class="emfe-data-btn" @click.stop="toggle" v-if="!open">
-      <span>{{ date }}</span>
+  <div class="emfe-date" :class="dateName" v-documentclick="close">
+    <button class="emfe-date-btn" @click.stop="toggle" v-if="!open">
+      <span class="emfe-date-btn-text" :class="{'emfe-date-btn-text-choice': choiced}">{{ date }}</span>
       <!-- 日期 -->
-      <emfe-icon type="hint" v-show="!choiced" @icon-click="toggle"></emfe-icon>
+      <emfe-icon type="hint" className="emfe-date" v-show="!choiced" @icon-click="toggle"></emfe-icon>
       <!-- 取消 -->
-      <emfe-icon type="qr" v-show="choiced" @icon-click="cancel"></emfe-icon>
+      <emfe-icon type="qr" className="emfe-date" v-show="choiced" @icon-click="cancel"></emfe-icon>
     </button>
     <emfe-transition name="fade">
-      <div class="emfe-date-box" v-show="status">
-        <div>
-          <button @click.stop="prevYear">&lt;&lt;</button>
-          <button @click.stop="prevMonth" v-show="currentView === 'date'">&lt;</button>
-          <span v-show="currentView === 'date'"><i @click.stop="yearHandle">{{year}}</i> - <i @click.stop="monthHandle">{{month+1}}</i></span>
-          <span v-show="currentView === 'month'"><i @click.stop="yearHandle">{{year}}</i></span>
-          <span v-show="currentView === 'year'"><i @click.stop="yearHandle">{{startYear}} - {{years[years.length - 1]}}</i></span>
-          <button @click.stop="nextMonth" v-show="currentView === 'date'">&gt;</button>
-          <button @click.stop="nextYear">&gt;&gt;</button>
+      <div class="emfe-date-box" :class="{'emfe-date-box-position': !open}" v-show="status">
+        <div class="emfe-date-header">
+          <button class="emfe-date-prevyear" @click.stop="prevYear">&lt;&lt;</button>
+          <button class="emfe-date-prevmonth" @click.stop="prevMonth" v-show="currentView === 'date'">&lt;</button>
+          <span class="emfe-date-text" v-show="currentView === 'date'">
+            <i class="emfe-date-text-year" @click.stop="yearHandle">{{year}}</i>
+            <em>-</em>
+            <i class="emfe-date-text-month" @click.stop="monthHandle">{{month+1}}</i>
+          </span>
+          <span class="emfe-date-text" v-show="currentView === 'month'">
+            <i class="emfe-date-text-year" @click.stop="yearHandle">{{year}}</i>
+          </span>
+          <span class="emfe-date-text" v-show="currentView === 'year'">
+            <i class="emfe-date-text-yearrange" @click.stop="yearHandle">{{startYear}} - {{years[years.length - 1]}}</i>
+          </span>
+          <button class="emfe-date-nextmonth" @click.stop="nextMonth" v-show="currentView === 'date'">&gt;</button>
+          <button class="emfe-date-nextyear" @click.stop="nextYear">&gt;&gt;</button>
         </div>
+        <!-- 日期 -->
         <div v-show="currentView === 'date'">
-          <div style="width: 140px;">
-            <span style="float:left;width: 20px;">日</span>
-            <span style="float:left;width: 20px;">一</span>
-            <span style="float:left;width: 20px;">二</span>
-            <span style="float:left;width: 20px;">三</span>
-            <span style="float:left;width: 20px;">四</span>
-            <span style="float:left;width: 20px;">五</span>
-            <span style="float:left;width: 20px;">六</span>
+          <div class="emfe-date-week">
+            <span class="emfe-date-week-item">日</span>
+            <span class="emfe-date-week-item">一</span>
+            <span class="emfe-date-week-item">二</span>
+            <span class="emfe-date-week-item">三</span>
+            <span class="emfe-date-week-item">四</span>
+            <span class="emfe-date-week-item">五</span>
+            <span class="emfe-date-week-item">六</span>
           </div>
-          <div style="width: 140px;">
-            <span class="red" :class="{'gray': day.undo}" v-for="day in lastMonthDays" style="float:left;width: 20px;" @click.stop="choicePrevMonthDay(day)">{{ day.num }}</span>
-            <span :class="{'gray': day.undo, 'today': day.today, 'choice': day.choice}" v-for="day in days" style="float:left;width: 20px;" @click.stop="choiceDay(day)">{{ day.num }}</span>
-            <span class="green" :class="{'gray': day.undo}" v-for="day in nextMonthDays" style="float:left;width: 20px;" @click.stop="choiceNextMonthDay(day)">{{ day.num }}</span>
-          </div>
-        </div>
-        <div v-show="currentView === 'month'">
-          <div style="width: 140px;">
-            <span v-for=" month in months" style="float:left;width: 40px;" @click.stop="choiceMonth(month)">{{  month }}</span>
+          <div class="emfe-date-day">
+            <span class="emfe-date-item emfe-date-item-prev" :class="{'emfe-date-item-disable': day.undo}" v-for="day in lastMonthDays" @click.stop="choicePrevMonthDay(day)">{{ day.num }}</span>
+            <span class="emfe-date-item" :class="{'emfe-date-item-disable': day.undo, 'emfe-date-today': day.today, 'emfe-date-choice': day.choice}" v-for="day in days" @click.stop="choiceDay(day)">{{ day.num }}</span>
+            <span class="emfe-date-item emfe-date-item-prev" :class="{'emfe-date-item-disable': day.undo}" v-for="day in nextMonthDays" @click.stop="choiceNextMonthDay(day)">{{ day.num }}</span>
           </div>
         </div>
-        <div v-show="currentView === 'year'">
-          <div style="width: 140px;">
-            <span v-for=" year in years" style="float:left;width: 40px;" @click.stop="choiceYear(year)">{{  year }}</span>
-          </div>
+        <!-- 月份 -->
+        <div class="emfe-date-month" v-show="currentView === 'month'">
+          <span class="emfe-date-month-item" v-for=" month in months" @click.stop="choiceMonth(month)">{{  month }}</span>
         </div>
-        <div v-if="confirm">
+        <!-- 年 -->
+        <div class="emfe-date-year" v-show="currentView === 'year'">
+          <span class="emfe-date-year-item" v-for=" year in years" @click.stop="choiceYear(year)">{{  year }}</span>
+        </div>
+        <div v-if="confirm" class="emfe-date-footer">
           <button class="emfe-date-ok" @click.stop="ok">确定</button>
         </div>
       </div>
@@ -99,8 +106,16 @@ export default {
       type: Function,
       default: () => false,
     },
+    className: String,
   },
   computed: {
+    dateName() {
+      return [
+        {
+          [`${this.className}-date`]: !!this.className,
+        },
+      ];
+    },
     lastMonthDays() {
       const date = new Date(this.year, this.month, 1);
       const maxDaysNum = date.getDay();
@@ -254,10 +269,10 @@ export default {
     },
     close(e, noClose) {
       if (!this.open) {
-        this.status = false;
-        if (!noClose) {
+        if (!noClose && this.status) {
           this.$emit('close', this.date);
         }
+        this.status = false;
       }
     },
     cancel() {

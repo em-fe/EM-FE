@@ -16,7 +16,7 @@ export default {
   computed: {
     name() {
       const icon = `${prefixCls}-${this.type}`;
-      const newName = this.className ? ` ${this.className}` : '';
+      const newName = this.className ? ` ${this.className}-icon` : '';
       return `${icon}${newName}`;
     },
   },

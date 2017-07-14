@@ -4,7 +4,16 @@
     <br>
     <br>
     <p>当前日期： {{ demo1 }}</p>
-    <emfe-date @ok="demo1ok" @cancel="demo1cancel" @close="demo1close"></emfe-date>
+    <emfe-date className="diy" @ok="demo1ok" @cancel="demo1cancel" @close="demo1close"></emfe-date>
+    <br>
+    <br>
+    <h3>固定宽度示例</h3>
+    <br>
+    <br>
+    <p>当前日期： {{ demo5 }}</p>
+    <div style="width: 300px;">
+      <emfe-date @ok="demo5ok" @cancel="demo5cancel"></emfe-date>
+    </div>
     <br>
     <br>
     <h3>没有确认按钮示例</h3>
@@ -23,15 +32,13 @@
     <br>
     <br>
     <br>
-    <br>
-    <br>
-    <br>
-    <br>
     <h3>可用筛选示例</h3>
     <br>
     <br>
     <p>当前日期： {{ demo4 }}</p>
-    <emfe-date :open="true" :confirm="false" @ok="demo4ok" @cancel="demo4cancel" :disabledDate="demo4opts"></emfe-date>
+    <div style="width: 210px;">
+      <emfe-date :open="true" :confirm="false" @ok="demo4ok" @cancel="demo4cancel" :disabledDate="demo4opts"></emfe-date>
+    </div>
     <br>
     <br>
     <br>
@@ -41,6 +48,8 @@
     <br>
     <br>
     <h3>API</h3>
+    <br>
+    <br>
     <table>
       <thead>
         <tr>
@@ -84,7 +93,10 @@
       </tbody>
     </table>
     <br>
+    <br>
     <h3>注册的方法</h3>
+    <br>
+    <br>
     <table>
       <thead>
         <tr>
@@ -132,6 +144,7 @@ export default {
       demo2: '',
       demo3: '',
       demo4: '',
+      demo5: '',
       demo4opts: (date) => {
         return date && date.valueOf() < Date.now() - 86400000;
       },
@@ -165,6 +178,17 @@ export default {
     demo4cancel(date) {
       this.demo4 = '';
     },
+    demo5ok(date) {
+      this.demo5 = date;
+    },
+    demo5cancel(date) {
+      this.demo5 = '';
+    },
   },
 };
 </script>
+<style>
+.diy-date {
+  width: 90%;
+}
+</style>
