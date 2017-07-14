@@ -1,0 +1,15 @@
+.#{$prefix}time {
+  font-size: 12px;
+
+  &-box {
+    @include clearfix();
+  }
+
+  &-item {
+    float: left;
+    margin: 0 8px;
+    overflow: scroll;
+    height: 90px;
+    width: 100px;
+  }
+}

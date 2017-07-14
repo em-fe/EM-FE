@@ -11,6 +11,7 @@ import EmfeDrag from './components/emfe-drag';
 import EmfeInput from './components/emfe-input';
 import EmfeButton from './components/emfe-button';
 import EmfeDate from './components/emfe-date';
+import EmfeTime from './components/emfe-time';
 // 服务
 import EmfeMessage from './components/emfe-message';
 // 指令
@@ -30,6 +31,7 @@ const emfeCpt = {
   EmfeInput,
   EmfeButton,
   EmfeDate,
+  EmfeTime,
 };
 
 const emfeDir = {

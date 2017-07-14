@@ -128,6 +128,16 @@ module.exports = {
               },
             },
             {
+              title: '时间',
+              icon: 'hotel',
+              routers: {
+                path: 'timepage',
+                query: {
+                  main: 4,
+                },
+              },
+            },
+            {
               title: '拖拽',
               icon: 'hotel',
               routers: {
