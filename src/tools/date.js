@@ -10,6 +10,12 @@ export const getDayCountOfMonth = (year, month) => {
   return 31;
 };
 
+export const clearHours = (time = '') => {
+  const cloneDate = new Date(time);
+  cloneDate.setHours(0, 0, 0, 0);
+  return cloneDate.getTime();
+};
+
 export const initTimeDate = () => {
   const date = new Date();
   date.setHours(0);

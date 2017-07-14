@@ -33,6 +33,23 @@
         </tr>
       </tbody>
     </table>
+    <h3>注册的方法</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>事件名</th>
+          <th>说明</th>
+          <th>返回值</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>click</td>
+          <td>点击触发。并且是阻止冒泡。</td>
+          <td>-</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 <script>

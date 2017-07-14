@@ -1,5 +1,5 @@
 <template>
-  <i :class="name"></i>
+  <i :class="name" @click.stop="click"></i>
 </template>
 <script>
 const prefixCls = 'emfe-icon';
@@ -18,6 +18,11 @@ export default {
       const icon = `${prefixCls}-${this.type}`;
       const newName = this.className ? ` ${this.className}` : '';
       return `${icon}${newName}`;
+    },
+  },
+  methods: {
+    click() {
+      this.$emit('icon-click');
     },
   },
 };
