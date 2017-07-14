@@ -10,9 +10,13 @@ import EmfeColor from './components/emfe-color';
 import EmfeDrag from './components/emfe-drag';
 import EmfeInput from './components/emfe-input';
 import EmfeButton from './components/emfe-button';
+import EmfeDate from './components/emfe-date';
+// 服务
 import EmfeMessage from './components/emfe-message';
+// 指令
+import emfeDocumentclick from './directives/emfe-documentclick';
 
-const emfe = {
+const emfeCpt = {
   EmfeCol: Grid.EmfeCol,
   EmfeRow: Grid.EmfeRow,
   EmfeIcon,
@@ -25,14 +29,23 @@ const emfe = {
   EmfeDrag,
   EmfeInput,
   EmfeButton,
+  EmfeDate,
+};
+
+const emfeDir = {
+  emfeDocumentclick,
 };
 
 //, opts = {}
 const install = (Vue) => {
   if (install.installed) return;
 
-  Object.keys(emfe).forEach((key) => {
-    Vue.component(key, emfe[key]);
+  Object.keys(emfeCpt).forEach((key) => {
+    Vue.component(key, emfeCpt[key]);
+  });
+
+  Object.keys(emfeDir).forEach((key) => {
+    Vue.directive(key, emfeDir[key]);
   });
 
   Vue.prototype.$EmfeMessage = EmfeMessage;

@@ -9,6 +9,11 @@ const router = new VueRouter({
       component: require('./components/grid.vue'),
     },
     {
+      path: '/datepage',
+      name: 'datepage',
+      component: require('./components/DatePage.vue'),
+    },
+    {
       path: '/drag',
       name: 'drag',
       component: require('./components/DragPage.vue'),
