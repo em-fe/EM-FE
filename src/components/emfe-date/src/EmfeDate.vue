@@ -1,5 +1,5 @@
 <template>
-  <div class="emfe-date" :class="dateName" v-documentclick="close">
+  <div class="emfe-date" :class="dateName" v-emfe-documentclick="close">
     <button class="emfe-date-btn" @click.stop="toggle" v-if="!open">
       <span class="emfe-date-btn-text" :class="{'emfe-date-btn-text-choice': choiced}">{{ date }}</span>
       <!-- 日期 -->
@@ -60,7 +60,6 @@
 </template>
 <script>
 import { getDayCountOfMonth, initTimeDate, clearHours } from '../../../tools/date';
-import documentclick from '../../../directives/documentclick';
 
 // 日期里面只有 42 天（上月 | 本月 | 下月）
 const allDays = 42;
@@ -279,9 +278,6 @@ export default {
       this.date = this.placeholder;
       this.$emit('cancel', this.date);
     },
-  },
-  directives: {
-    documentclick,
   },
 };
 </script>
