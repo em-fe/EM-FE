@@ -19,6 +19,11 @@ const router = new VueRouter({
       component: require('./components/TimePage.vue'),
     },
     {
+      path: '/datetimepage',
+      name: 'datetimepage',
+      component: require('./components/DatetimePage.vue'),
+    },
+    {
       path: '/drag',
       name: 'drag',
       component: require('./components/DragPage.vue'),

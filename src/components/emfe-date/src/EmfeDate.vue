@@ -244,7 +244,7 @@ export default {
         const month = this.month + 1 > 9 ? this.month + 1 : `0${this.month + 1}`;
         this.date = `${this.year}${this.format}${month}${this.format}${this.day}`;
         // 如果有确定按钮
-        if (this.confirm) {
+        if (!this.confirm) {
           this.$emit('choice', this.date);
         } else {
           this.ok();

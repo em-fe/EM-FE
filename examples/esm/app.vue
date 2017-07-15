@@ -118,6 +118,16 @@ module.exports = {
           icon: 'hotel',
           columns: [
             {
+              title: '日期时间',
+              icon: 'hotel',
+              routers: {
+                path: 'datetimepage',
+                query: {
+                  main: 4,
+                },
+              },
+            },
+            {
               title: '日期',
               icon: 'hotel',
               routers: {
