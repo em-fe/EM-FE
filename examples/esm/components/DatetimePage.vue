@@ -4,7 +4,7 @@
     <br>
     <br>
     <p>当前日期： {{ demo1 }}</p>
-    <emfe-datetime className="diy" @ok="demo1ok" @cancel="demo1cancel" @close="demo1close"></emfe-datetime>
+    <emfe-datetime @ok="demo1ok" @cancel="demo1cancel" @close="demo1close"></emfe-datetime>
     <br>
     <br>
     <h3>固定宽度示例</h3>
@@ -21,7 +21,7 @@
     <br>
     <p>当前日期： {{ demo3 }}</p>
     <div style="width: 210px;">
-      <emfe-datetime :open="true" :confirm="false" @ok="demo3ok" @cancel="demo3cancel" :disabledDate="demo3opts" :disabledHours="[0, 1, 2]" :disabledMinutes="[1, 2]" :disabledSeconds="[0, 2, 44, 55]"></emfe-datetime>
+      <emfe-datetime @ok="demo3ok" @cancel="demo3cancel" :disabledDate="demo3opts" :disabledHours="[0, 1, 2]" :disabledMinutes="[1, 2]" :disabledSeconds="[0, 2, 44, 55]"></emfe-datetime>
     </div>
     <br>
     <br>
