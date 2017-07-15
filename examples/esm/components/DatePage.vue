@@ -117,11 +117,6 @@
           <td>日期</td>
         </tr>
         <tr>
-          <td>ok</td>
-          <td>确定触发</td>
-          <td>日期</td>
-        </tr>
-        <tr>
           <td>close</td>
           <td>关闭触发</td>
           <td>日期</td>
