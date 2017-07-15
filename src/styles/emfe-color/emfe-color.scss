@@ -1,0 +1,169 @@
+$handle-size: 75px;
+$color-size: 200px + $handle-size;
+$input-size: $handle-size - 14;
+
+.#{$prefix}color {
+  position: relative;
+
+  &-btn {
+    display: inline-block;
+  }
+
+  &-box {
+    @include box-shadow(y);
+
+    width: $color-size;
+    height: 148px;
+    overflow: hidden;
+    border-radius: $radius-size;
+    background: #fff;
+    user-select: none;
+    padding: 8px;
+    position: absolute;
+    // left: 300px;
+    top: 0;
+  }
+
+  &-drag {
+    @include border();
+
+    background: linear-gradient(transparent, #000), linear-gradient(to right, #fff, rgba(255, 255, 255, 0));
+    width: 130px;
+    height: 130px;
+    overflow: hidden;
+    cursor: crosshair;
+    float: left;
+    position: relative;
+  }
+
+  &-hue-drag {
+    @include border();
+
+    width: 20px;
+    height: 130px;
+    cursor: n-resize;
+    background: linear-gradient(to bottom, #f00, #ff0080, #f0f, #8000ff, #00f, #0080ff, #0ff, #00ff80, #0f0, #80ff00, #ff0, #ff8000, #f00);
+    float: left;
+    margin: 0 16px;
+    position: relative;
+  }
+
+  &-hueMove {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.4);
+  }
+
+  &-left,
+  &-right {
+    content: ' ';
+    border-color: transparent;
+    border-style: solid;
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: -4px;
+  }
+
+  &-left {
+    @include arrow(left);
+    @include arrowColor(left);
+
+    left: -7px;
+  }
+
+  &-right {
+    @include arrow(right);
+    @include arrowColor(right);
+
+    left: auto;
+    right: -7px;
+  }
+
+  &-inner {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    top: -4px;
+    left: -4px;
+    box-shadow: 0 0 0 1px #fff, 0 0 0 2px #000;
+    border-radius: $radius-size;
+  }
+
+  &-field {
+    @include border();
+
+    height: 18px;
+    width: $handle-size;
+    overflow: hidden;
+    background: #fff;
+    color: $title-color;
+    font-size: 12px;
+    border-radius: $radius-size;
+    margin: 4px 0 0;
+  }
+
+  &-inp {
+    margin: 0;
+    height: 16px;
+    width: $input-size;
+    line-height: 16px;
+    background: transparent;
+    border: none;
+    font-size: 12px;
+    color: $title-color;
+    outline: none;
+    float: left;
+    padding: 0 4px;
+  }
+
+  &-sub {
+    @include border();
+
+    height: 20px;
+    line-height: 20px;
+    background: $background-color;
+    text-align: center;
+    color: $title-color;
+    font-size: 12px;
+    border-radius: $radius-size;
+    margin: 4px 0 0;
+    padding: 0 24px;
+  }
+
+  &-handle {
+    float: left;
+    width: $handle-size;
+  }
+
+  &-title {
+    @include border(right);
+
+    margin: 0;
+    width: 12px;
+    height: 16px;
+    line-height: 16px;
+    font-size: 10px;
+    background: $background-color;
+    color: $title-color;
+    text-align: center;
+    float: left;
+  }
+
+  &-show-color {
+    @include border();
+
+    height: 17px;
+    width: $handle-size;
+  }
+
+  &-new-color,
+  &-current-color {
+    height: 15px;
+    width: $handle-size / 2 - 1;
+    float: left;
+  }
+}

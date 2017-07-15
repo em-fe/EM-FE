@@ -1,4 +1,4 @@
-.emfe-row {
+.#{$prefix}row {
   @include clearfix();
 
   position: relative;

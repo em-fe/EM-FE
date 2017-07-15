@@ -1,5 +1,22 @@
 .#{$prefix}upload {
-  height: 200px;
-  width: 200px;
-  border: 1px solid #f00;
+  &-plus {
+    position: relative;
+    width: 160px;
+    height: 160px;
+
+    &-btn {
+      @include border(all, $border-color, 1px, dashed);
+
+      width: 100%;
+      height: 100%;
+    }
+
+    &-file {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
 }

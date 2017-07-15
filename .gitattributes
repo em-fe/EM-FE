@@ -5,7 +5,7 @@
 *.jpg   binary
 *.png   binary
 *.gif   binary
-#*.svg   binary
-#*.eot   binary
-#*.woff   binary
-#*.ttf   binary
+*.svg   binary
+*.eot   binary
+*.woff   binary
+*.ttf   binary

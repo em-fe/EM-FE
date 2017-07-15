@@ -18,11 +18,57 @@
 
   &-wrap {
     width: 800px;
-    height: 397px;
+    height: auto;
     background: rgba(255, 255, 255, 1);
     z-index: 1000;
     margin: 0 auto;
     margin-top: 320px;
     position: relative;
+  }
+
+  &-icon {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+
+    &-close {
+      width: 1.25rem;
+      height: 1.25rem;
+      color: #dcdcdc;
+    }
+  }
+
+  &-header {
+    width: 100%;
+    height: 2.75rem;
+    border-bottom: 1px solid #f5f5f5;
+
+    &-inner {
+      text-align: center;
+      line-height: 2.75rem;
+    }
+  }
+
+  &-main {
+    width: 100%;
+    padding: 0.5rem;
+    box-sizing: border-box;
+  }
+
+  &-footer {
+    height: 2.75rem;
+    width: 100%;
+    border-top: 1px solid #f5f5f5;
+    display: flex;
+
+    div {
+      flex: 1;
+      text-align: center;
+      line-height: 2.75rem;
+
+      &:first-child {
+        border-right: 1px solid #f5f5f5;
+      }
+    }
   }
 }

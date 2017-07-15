@@ -9,9 +9,24 @@ const router = new VueRouter({
       component: require('./components/grid.vue'),
     },
     {
+      path: '/drag',
+      name: 'drag',
+      component: require('./components/DragPage.vue'),
+    },
+    {
+      path: '/color',
+      name: 'color',
+      component: require('./components/ColorPage.vue'),
+    },
+    {
       path: '/upload',
       name: 'upload',
       component: require('./components/Uploadpage.vue'),
+    },
+    {
+      path: '/input',
+      name: 'input',
+      component: require('./components/Inputpage.vue'),
     },
     {
       path: '/iconpage',
@@ -30,6 +45,7 @@ const router = new VueRouter({
     },
     {
       path: '/modal',
+      name: 'modal',
       component: require('./components/modal.vue'),
     },
     {
@@ -41,6 +57,16 @@ const router = new VueRouter({
       path: '/copy',
       name: 'copy',
       component: require('./components/CopyPage.vue'),
+    },
+    {
+      path: '/button',
+      name: 'button',
+      component: require('./components/ButtonPage.vue'),
+    },
+    {
+      path: '/message',
+      name: 'message',
+      component: require('./components/MessagePage.vue'),
     },
   ],
 });

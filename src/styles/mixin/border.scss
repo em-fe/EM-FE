@@ -1,9 +1,9 @@
-@mixin border($type: all, $color: $border-color, $size: 1px) {
-  @if $type == all {
-    border: $size solid $color;
+@mixin border($direction: all, $color: $border-color, $size: 1px, $type: solid) {
+  @if $direction == all {
+    border: $size $type $color;
   }
 
   @else {
-    border-#{$type}: $size solid $color;
+    border-#{$direction}: $size $type $color;
   }
 }

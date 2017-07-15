@@ -32,9 +32,18 @@ module.exports = {
           icon: 'hotel',
           columns: [
             {
-              title: '全文提示',
+              title: '文字提示',
               routers: {
                 path: '/tooltippage',
+                query: {
+                  main: 2,
+                },
+              },
+            },
+            {
+              title: '全局提示',
+              routers: {
+                path: '/message',
                 query: {
                   main: 2,
                 },
@@ -73,10 +82,30 @@ module.exports = {
               },
             },
             {
+              title: 'input输入框',
+              icon: 'hotel',
+              routers: {
+                path: '/input',
+                query: {
+                  main: 3,
+                },
+              },
+            },
+            {
               title: '导航',
               icon: 'hotel',
               routers: {
                 name: 'menu',
+                query: {
+                  main: 3,
+                },
+              },
+            },
+            {
+              title: '按钮',
+              icon: 'hotel',
+              routers: {
+                path: '/button',
                 query: {
                   main: 3,
                 },
@@ -88,6 +117,26 @@ module.exports = {
           title: '功能组件',
           icon: 'hotel',
           columns: [
+            {
+              title: '拖拽',
+              icon: 'hotel',
+              routers: {
+                path: '/drag',
+                query: {
+                  main: 4,
+                },
+              },
+            },
+            {
+              title: '颜色选择器',
+              icon: 'hotel',
+              routers: {
+                path: '/color',
+                query: {
+                  main: 4,
+                },
+              },
+            },
             {
               title: '复制',
               icon: 'hotel',
@@ -103,6 +152,16 @@ module.exports = {
               icon: 'hotel',
               routers: {
                 path: 'upload',
+                query: {
+                  main: 4,
+                },
+              },
+            },
+            {
+              title: '弹出框',
+              icon: 'modal',
+              routers: {
+                path: '/modal',
                 query: {
                   main: 4,
                 },
@@ -131,7 +190,6 @@ module.exports = {
       }
     },
     columnMenu(menuShort, columnsStatus) {
-      console.log('column');
       if (menuShort) {
         this.menuClass = 'main-small-column';
       } else {
