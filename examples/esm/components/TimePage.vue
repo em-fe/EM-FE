@@ -1,10 +1,10 @@
 <template>
-  <div class="datepage">
+  <div class="time-page">
     <h3>基本示例</h3>
     <br>
     <br>
-    <p>当前日期： {{ demo1 }}</p>
-    <emfe-date className="diy" @ok="demo1ok" @cancel="demo1cancel" @close="demo1close"></emfe-date>
+    <p>当前时间： {{ demo1 }}</p>
+    <emfe-time className="diy" @ok="demo1ok" @cancel="demo1cancel" @close="demo1close"></emfe-time>
     <br>
     <br>
     <h3>固定宽度示例</h3>
@@ -12,7 +12,7 @@
     <br>
     <p>当前日期： {{ demo5 }}</p>
     <div style="width: 300px;">
-      <emfe-date @ok="demo5ok" @cancel="demo5cancel"></emfe-date>
+      <emfe-time @ok="demo5ok" @cancel="demo5cancel"></emfe-time>
     </div>
     <br>
     <br>
@@ -20,14 +20,14 @@
     <br>
     <br>
     <p>当前日期： {{ demo2 }}</p>
-    <emfe-date :confirm="false" @ok="demo2ok" @cancel="demo2cancel"></emfe-date>
+    <emfe-time :confirm="false" @choice="demo2choice" @cancel="demo2cancel"></emfe-time>
     <br>
     <br>
     <h3>直接显示示例</h3>
     <br>
     <br>
     <p>当前日期： {{ demo3 }}</p>
-    <emfe-date :open="true" :confirm="false" @ok="demo3ok" @cancel="demo3cancel"></emfe-date>
+    <emfe-time :open="true" :confirm="false" @choice="demo3choice"></emfe-time>
     <br>
     <br>
     <br>
@@ -37,7 +37,7 @@
     <br>
     <p>当前日期： {{ demo4 }}</p>
     <div style="width: 210px;">
-      <emfe-date :open="true" :confirm="false" @ok="demo4ok" @cancel="demo4cancel" :disabledDate="demo4opts"></emfe-date>
+      <emfe-time :open="true" :confirm="false" @choice="demo4choice" :disabledHours="[1, 7]" :disabledMinutes="[0, 22, 58]" :disabledSeconds="[3, 22, 30]"></emfe-time>
     </div>
     <br>
     <br>
@@ -61,12 +61,6 @@
       </thead>
       <tbody>
         <tr>
-          <td>format</td>
-          <td>中间连接的符号</td>
-          <td>String</td>
-          <td>/</td>
-        </tr>
-        <tr>
           <td>placeholder</td>
           <td>默认文案</td>
           <td>String</td>
@@ -85,10 +79,22 @@
           <td>false</td>
         </tr>
         <tr>
-          <td>disabledDate</td>
-          <td>设置不可选择的日期，参数为当前的日期，需要返回 Boolean 是否禁用这天</td>
-          <td>Function</td>
-          <td>-</td>
+          <td>disabledHours</td>
+          <td>设置不可选择的小时。组合禁止用户选择某个小时</td>
+          <td>Array</td>
+          <td>[]</td>
+        </tr>
+        <tr>
+          <td>disabledMinutes</td>
+          <td>设置不可选择的分钟。组合禁止用户选择某个分钟</td>
+          <td>Array</td>
+          <td>[]</td>
+        </tr>
+        <tr>
+          <td>disabledSeconds</td>
+          <td>设置不可选择的秒数。组合禁止用户选择某个秒数</td>
+          <td>Array</td>
+          <td>[]</td>
         </tr>
       </tbody>
     </table>
@@ -132,7 +138,7 @@
 </template>
 <script>
 export default {
-  name: 'EmfeDatePage',
+  name: 'time-page',
   data() {
     return {
       demo1: '',
@@ -140,9 +146,6 @@ export default {
       demo3: '',
       demo4: '',
       demo5: '',
-      demo4opts: (date) => {
-        return date && date.valueOf() < Date.now() - 86400000;
-      },
     };
   },
   methods: {
@@ -155,23 +158,17 @@ export default {
     demo1close(date) {
       this.demo1 = '关闭了';
     },
-    demo2ok(date) {
+    demo2choice(date) {
       this.demo2 = date;
     },
     demo2cancel(date) {
       this.demo2 = '';
     },
-    demo3ok(date) {
+    demo3choice(date) {
       this.demo3 = date;
     },
-    demo3cancel(date) {
-      this.demo3 = '';
-    },
-    demo4ok(date) {
+    demo4choice(date) {
       this.demo4 = date;
-    },
-    demo4cancel(date) {
-      this.demo4 = '';
     },
     demo5ok(date) {
       this.demo5 = date;
@@ -182,8 +179,3 @@ export default {
   },
 };
 </script>
-<style>
-.diy-date {
-  width: 90%;
-}
-</style>

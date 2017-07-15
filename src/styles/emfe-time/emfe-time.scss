@@ -1,0 +1,140 @@
+.#{$prefix}time {
+  font-size: 12px;
+  position: relative;
+
+  &-box {
+    @include clearfix();
+
+    width: 100%;
+    background: $nothing-color;
+
+    &-position {
+      @include border();
+      @include box-shadow(y);
+
+      position: absolute;
+      left: 0;
+      top: 40px;
+      z-index: 2;
+      border-radius: $radius-size;
+    }
+  }
+
+  &-main {
+    @include clearfix();
+
+    width: 100%;
+  } // end emfe-date-main
+
+  &-item {
+    float: left;
+    overflow: scroll;
+    height: 90px;
+    width: calc(100% / 3);
+
+    &:nth-of-type(2) {
+      @include border(left);
+      @include border(right);
+    }
+  }
+
+  &-list {
+    &-item {
+      height: 24px;
+      line-height: 24px;
+      padding-left: 8px;
+      cursor: pointer;
+      color: $menu-text-color;
+
+      &:hover {
+        background: $btn-hover-color;
+        color: $nothing-color;
+      }
+
+      &:active {
+        background: $btn-active-color;
+        color: $nothing-color;
+      }
+
+      &-on {
+        background: $btn-color;
+        color: $nothing-color;
+      }
+
+      &-disable {
+        color: $border-color;
+        cursor: not-allowed;
+
+        &:hover {
+          background: none;
+          color: $border-color;
+        }
+      }
+    }
+  }
+
+  &-icon {
+    position: absolute;
+    right: 8px;
+    top: 0;
+    line-height: 32px;
+    height: 32px;
+  }
+
+  &-btn {
+    @include border();
+
+    width: 100%;
+    height: 32px;
+    line-height: 32px;
+    cursor: pointer;
+    border-radius: $radius-size;
+    position: relative;
+
+    &:hover {
+      @include border(all, $btn-hover-color);
+    }
+
+    &:active {
+      @include border(all, $btn-active-color);
+    }
+
+    &-text {
+      padding: 0 8px;
+      text-align: left;
+      display: block;
+      color: $text-color;
+
+      &-choice {
+        color: $menu-text-color;
+      }
+    }
+  } // end emfe-time-btn
+
+  &-footer {
+    @include border(top);
+
+    display: flex;
+    justify-content: flex-end;
+    padding: 8px;
+    margin-top: 8px;
+  }
+
+  &-ok {
+    padding: 0 24px;
+    height: 32px;
+    line-height: 32px;
+    background: $btn-color;
+    color: $nothing-color;
+    border-radius: $radius-size;
+    cursor: pointer;
+
+    &:hover {
+      background: $btn-hover-color;
+    }
+
+    &:active {
+      background: $btn-active-color;
+    }
+  }
+}
