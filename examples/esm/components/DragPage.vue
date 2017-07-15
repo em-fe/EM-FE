@@ -4,7 +4,7 @@
     <br>
     <h3>基本示例</h3>
     <br>
-    <div class="drag1">
+    <div class="drag0">
       <emfe-drag className="no1"></emfe-drag>
     </div>
     <br>
@@ -26,13 +26,13 @@
     <h3>父级是拖拽范围，里面的一个子元素是拖拽元素示例</h3>
     <p>1. 基本用法</p>
     <br>
-    <emfe-drag className="parent" :dragEl="drag">
-      <div class="child-drag" ref="drag"></div>
+    <emfe-drag className="parent" :dragEl="drag1">
+      <div class="child-drag" ref="drag1"></div>
     </emfe-drag>
     <p>2. 鼠标在拖拽元素中间</p>
     <br>
-    <emfe-drag className="parent" :dragEl="drag" :initialValue="-25">
-      <div class="child-drag" ref="drag"></div>
+    <emfe-drag className="parent" :dragEl="drag2" :initialValue="-25">
+      <div class="child-drag" ref="drag2"></div>
     </emfe-drag>
     <h3>API</h3>
     <table>
@@ -124,13 +124,13 @@ export default {
   name: "DragPage",
   data() {
     return {
-      drag: [],
+      drag1: [],
+      drag2: [],
     };
   },
-  created() {
-    setTimeout(() => {
-      this.drag.push(this.$refs.drag);
-    });
+  mounted() {
+    this.drag1.push(this.$refs.drag1);
+    this.drag2.push(this.$refs.drag2);
   },
 };
 </script>
@@ -140,6 +140,13 @@ export default {
   height: 100px;
   border: 1px solid #dcdcdc;
   position: relative;
+}
+.drag0 {
+  width: 400px;
+  height: 100px;
+  border: 1px solid #dcdcdc;
+  position: relative;
+  z-index: 22;
 }
 .no1-drag {
   width: 50px;
