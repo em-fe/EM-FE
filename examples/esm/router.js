@@ -9,6 +9,21 @@ const router = new VueRouter({
       component: require('./components/grid.vue'),
     },
     {
+      path: '/datepage',
+      name: 'datepage',
+      component: require('./components/DatePage.vue'),
+    },
+    {
+      path: '/timepage',
+      name: 'timepage',
+      component: require('./components/TimePage.vue'),
+    },
+    {
+      path: '/datetimepage',
+      name: 'datetimepage',
+      component: require('./components/DatetimePage.vue'),
+    },
+    {
       path: '/drag',
       name: 'drag',
       component: require('./components/DragPage.vue'),
@@ -62,6 +77,11 @@ const router = new VueRouter({
       path: '/button',
       name: 'button',
       component: require('./components/ButtonPage.vue'),
+    },
+    {
+      path: '/message',
+      name: 'message',
+      component: require('./components/MessagePage.vue'),
     },
   ],
 });
