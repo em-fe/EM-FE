@@ -42,6 +42,9 @@ $title-color: #333;
 // 文字的颜色
 $text-color: #999;
 
+// 表格头部文字颜色
+$thead-text-color: #666;
+
 // 导航文字的颜色
 $menu-text-color: #454545;
 
@@ -77,3 +80,18 @@ $btn-hover-color: #50affa;
 
 // 按钮点击颜色
 $btn-active-color: #147dd9;
+
+// 表格头部tr颜色
+$thead-tr-color: #f9f9fb;
+
+// 表格主体tr隔行颜色
+$thead-tr-color: #fcfcfd;
+
+// 表格悬浮tr颜色
+$tr-hover-color: #f2f9ff;
+
+// 输入框禁止背景颜色
+$input-disable-color: #f3f3f3;
+
+// 输入框禁止文字颜色
+$input-disable-text-color: #ccc;
