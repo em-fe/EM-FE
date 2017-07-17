@@ -29,6 +29,11 @@ const router = new VueRouter({
       component: require('./components/Inputpage.vue'),
     },
     {
+      path: '/table',
+      name: 'table',
+      component: require('./components/TablePage.vue'),
+    },
+    {
       path: '/iconpage',
       name: 'iconpage',
       component: require('./components/IconPage.vue'),

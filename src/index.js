@@ -10,6 +10,7 @@ import EmfeColor from './components/emfe-color';
 import EmfeDrag from './components/emfe-drag';
 import EmfeInput from './components/emfe-input';
 import EmfeButton from './components/emfe-button';
+import Table from './components/emfe-table';
 
 const emfe = {
   EmfeCol: Grid.EmfeCol,
@@ -24,6 +25,9 @@ const emfe = {
   EmfeDrag,
   EmfeInput,
   EmfeButton,
+  EmfeTable: Table.EmfeTable,
+  EmfeTableHead: Table.EmfeTableHead,
+  EmfeTableBody: Table.EmfeTableBody,
 };
 
 //, opts = {}

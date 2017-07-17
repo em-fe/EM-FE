@@ -73,6 +73,16 @@ module.exports = {
               },
             },
             {
+              title: 'table',
+              icon: 'hotel',
+              routers: {
+                path: '/table',
+                query: {
+                  main: 3,
+                },
+              },
+            },
+            {
               title: 'input输入框',
               icon: 'hotel',
               routers: {
