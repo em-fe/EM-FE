@@ -1,5 +1,5 @@
 <template>
-  <div class="emfeTableBox">
+  <div class="emfe-table-box">
     <p>如果你希望第一列是checkbox，column数组第一个需要传type="selection",并同时在组件中传入checkbox组件</p>
     <br>
     <p>表格固定宽度</p>
@@ -223,7 +223,7 @@ export default {
 };
 </script>
 <style>
-  .emfeTableBox{
+  .emfe-table-box{
     width: 1200px;
     height: 1000px;
     background-color: #ddd;

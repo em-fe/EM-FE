@@ -18,8 +18,7 @@ export default {
       className: this.$parent.className,
       column: this.$parent.columns,
       data: this.$parent.data,
-      num: 0,
-      arr: [],
+      current: 0,
     };
   },
   props: {
@@ -45,8 +44,8 @@ export default {
       for (let o = 0; o < this.column.length; o++) {
         for (let i = 0; i < this.data.length; i++) {
           if (this.data[i][this.column[o].key].row) {
-            this.num++;
-            this.$parent.newObject[this.column[o].key] = this.num;
+            this.current++;
+            this.$parent.newObject[this.column[o].key] = this.current;
           }
         }
       }
