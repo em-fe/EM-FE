@@ -9,6 +9,11 @@ const router = new VueRouter({
       component: require('./components/grid.vue'),
     },
     {
+      path: '/linkpage',
+      name: 'linkpage',
+      component: require('./components/LinkPage.vue'),
+    },
+    {
       path: '/datepage',
       name: 'datepage',
       component: require('./components/DatePage.vue'),
