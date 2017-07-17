@@ -6,7 +6,7 @@
     height: 48px;
     line-height: 48px;
     text-align: center;
-    background-color: #fff;
+    background-color: $nothing-color;
     font-size: 18px;
     letter-spacing: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -61,14 +61,14 @@
         min-height: 48px;
         height: 48px;
         width: 100%;
-        background-color: #f9f9fb;
+        background-color: $thead-tr-color;
 
         &-th {
           box-sizing: border-box;
           padding: 0 5px;
           text-align: left;
           font-size: 14px;
-          color: #666;
+          color: $thead-text-color;
           letter-spacing: 0;
           line-height: 16px;
         }
@@ -78,14 +78,14 @@
     &-tr {
       min-height: 48px;
       height: 48px;
-      background-color: #fff;
+      background-color: $nothing-color;
 
       &:nth-child(2n) {
-        background-color: #fcfcfd;
+        background-color: $thead-tr-color;
       }
 
       &:hover {
-        background-color: #f2f9ff;
+        background-color: $tr-hover-color;
       }
 
       &-td {
@@ -93,7 +93,7 @@
         padding: 0 5px;
         text-align: left;
         font-size: 14px;
-        color: #333;
+        color: $title-color;
         letter-spacing: -0.3px;
         line-height: 16px;
       }
