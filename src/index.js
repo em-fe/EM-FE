@@ -17,6 +17,7 @@ import EmfeDatetime from './components/emfe-datetime/index';
 import EmfeMessage from './components/emfe-message/index';
 // 指令
 import emfeDocumentclick from './directives/emfe-documentclick';
+import Table from './components/emfe-table/index';
 
 const emfeCpt = {
   EmfeCol: Grid.EmfeCol,
@@ -31,6 +32,9 @@ const emfeCpt = {
   EmfeColor,
   EmfeInput,
   EmfeButton,
+  EmfeTable: Table.EmfeTable,
+  EmfeTableHead: Table.EmfeTableHead,
+  EmfeTableBody: Table.EmfeTableBody,
   EmfeDate,
   EmfeTime,
   EmfeDatetime,
