@@ -1,3 +1,4 @@
+import Vue from 'vue';
 import EmfeMessage from './EmfeMessage.vue';
 
 EmfeMessage.newInstance = (props = {}) => {

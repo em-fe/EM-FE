@@ -75,8 +75,8 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.vue'],
     alias: {
-      emui: '../../src/index',
-      'vue': 'vue/dist/vue.esm.js',
+      emfe: '../../src/index',
+      'Vue': 'vue/dist/vue.esm.js',
       '@': resolve('src')
     }
   },
