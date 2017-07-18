@@ -82,6 +82,16 @@ module.exports = {
               },
             },
             {
+              title: '超链',
+              icon: 'hotel',
+              routers: {
+                path: '/linkpage',
+                query: {
+                  main: 3,
+                },
+              },
+            },
+            {
               title: 'table',
               icon: 'hotel',
               routers: {
@@ -116,6 +126,16 @@ module.exports = {
               icon: 'hotel',
               routers: {
                 path: '/button',
+                query: {
+                  main: 3,
+                },
+              },
+            },
+            {
+              title: 'switch开关',
+              icon: 'hotel',
+              routers: {
+                path: '/switch',
                 query: {
                   main: 3,
                 },
