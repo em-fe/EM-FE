@@ -187,6 +187,26 @@ module.exports = {
                 },
               },
             },
+            {
+              title: '分页',
+              icon: 'hotel',
+              routers: {
+                path: 'pagination',
+                query: {
+                  main: 4,
+                },
+              },
+            },
+            {
+              title: '下拉框',
+              icon: 'hotel',
+              routers: {
+                path: 'selectpage',
+                query: {
+                  main: 4,
+                },
+              },
+            },
           ],
         },
       ],

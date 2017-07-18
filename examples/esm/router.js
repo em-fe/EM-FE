@@ -78,6 +78,16 @@ const router = new VueRouter({
       name: 'message',
       component: require('./components/MessagePage.vue'),
     },
+    {
+      path: '/pagination',
+      name: 'pagination',
+      component: require('./components/PaginationPage.vue'),
+    },
+    {
+      path: '/selectPage',
+      name: 'selectpage',
+      component: require('./components/SelectPage.vue'),
+    },
   ],
 });
 

@@ -13,6 +13,9 @@ import EmfeButton from './components/emfe-button';
 import EmfeDate from './components/emfe-date';
 import EmfeTime from './components/emfe-time';
 import EmfeDatetime from './components/emfe-datetime';
+import EmfePagination from './components/emfe-pagination';
+import EmfeSelect from './components/emfe-select';
+
 // 服务
 import EmfeMessage from './components/emfe-message';
 // 指令
@@ -34,6 +37,8 @@ const emfeCpt = {
   EmfeDate,
   EmfeTime,
   EmfeDatetime,
+  EmfePagination,
+  EmfeSelect,
 };
 
 const emfeDir = {
