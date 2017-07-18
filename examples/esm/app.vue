@@ -82,6 +82,16 @@ module.exports = {
               },
             },
             {
+              title: '超链',
+              icon: 'hotel',
+              routers: {
+                path: '/linkpage',
+                query: {
+                  main: 3,
+                },
+              },
+            },
+            {
               title: 'table',
               icon: 'hotel',
               routers: {

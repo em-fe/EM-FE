@@ -13,6 +13,7 @@ import EmfeButton from './components/emfe-button/index';
 import EmfeDate from './components/emfe-date/index';
 import EmfeTime from './components/emfe-time/index';
 import EmfeDatetime from './components/emfe-datetime/index';
+import EmfeLink from './components/emfe-link/index';
 import EmfeSwitch from './components/emfe-switch/index';
 // 服务
 import EmfeMessage from './components/emfe-message/index';
@@ -40,6 +41,7 @@ const emfeCpt = {
   EmfeDate,
   EmfeTime,
   EmfeDatetime,
+  EmfeLink,
 };
 
 const emfeDir = {
