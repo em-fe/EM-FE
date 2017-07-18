@@ -93,6 +93,11 @@ const router = new VueRouter({
       name: 'message',
       component: require('./components/MessagePage.vue'),
     },
+    {
+      path: '/drop',
+      name: 'drop',
+      component: require('./components/DropPage.vue'),
+    },
   ],
 });
 

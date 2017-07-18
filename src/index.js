@@ -20,6 +20,7 @@ import EmfeMessage from './components/emfe-message/index';
 // 指令
 import emfeDocumentclick from './directives/emfe-documentclick';
 import Table from './components/emfe-table/index';
+import EmfeDrop from './components/emfe-drop/index';
 
 const emfeCpt = {
   EmfeCol: Grid.EmfeCol,
@@ -41,6 +42,7 @@ const emfeCpt = {
   EmfeDate,
   EmfeTime,
   EmfeDatetime,
+  EmfeDrop,
   EmfeLink,
 };
 

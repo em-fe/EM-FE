@@ -217,6 +217,16 @@ module.exports = {
                 },
               },
             },
+            {
+              title: 'drop',
+              icon: 'hotel',
+              routers: {
+                path: 'drop',
+                query: {
+                  main: 4,
+                },
+              },
+            },
           ],
         },
       ],
