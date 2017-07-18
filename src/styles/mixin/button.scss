@@ -1,6 +1,6 @@
 // 只有边框按钮
-@mixin link-colors($normal, $hover, $active, $normalbor, $hoverbor, $activebor) {
-  background: #fff;
+@mixin button-colors($normal, $hover, $active, $normalbor, $hoverbor, $activebor) {
+  background: $nothing-color;
   color: $normal;
   border-color: $normalbor;
 
@@ -16,8 +16,8 @@
 }
 
 // 只有背景或者是背景和边框颜色一致的按钮
-@mixin link-backgrounds($normal, $hover, $active) {
-  color: #fff;
+@mixin button-backgrounds($normal, $hover, $active) {
+  color: $nothing-color;
   border-color: $normal;
   background-color: $normal;
 

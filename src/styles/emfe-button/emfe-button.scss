@@ -13,10 +13,10 @@
   transition: color 0.1s linear, background-color 0.1s linear, border 0.1s linear;
 
   &-default {
-    @include link-colors($title-color, $btn-hover-color, $btn-active-color, $border-color, $btn-hover-color, $btn-active-color);
+    @include button-colors($title-color, $btn-hover-color, $btn-active-color, $border-color, $btn-hover-color, $btn-active-color);
 
     &:disabled {
-      color: #fff;
+      color: $nothing-color;
       background: $border-color;
       border-color: $border-color;
       cursor: no-drop;
@@ -24,24 +24,10 @@
   }
 
   &-primary {
-    @include link-backgrounds($btn-color, $btn-hover-color, $btn-active-color);
+    @include button-backgrounds($btn-color, $btn-hover-color, $btn-active-color);
 
-    // &-primary {
-    //   color: #fff;
-    //   background: $btn-color;
-    //   border-color: $btn-color;
-
-    //   &:hover {
-    //     background: $btn-hover-color;
-    //     border-color: $btn-color;
-    //   }
-
-    //   &:active {
-    //     background: $btn-active-color;
-    //     border-color: $btn-active-color;
-    //   }
     &:disabled {
-      color: #fff;
+      color: $nothing-color;
       background: $border-color;
       border-color: $border-color;
       cursor: no-drop;

@@ -1,11 +1,6 @@
 <template>
   <div class="button-page">
     <h3>基本示例</h3>
-   <!--  <br>
-    <br>
-    <br>
-    <emfe-button>自定义</emfe-button>
-    <h3>自定义名字示例</h3> -->
     <br>
     <br>
     <br>
@@ -13,10 +8,10 @@
     <emfe-button className="default" :disabled="true">白底禁用</emfe-button>
     <pre>
       <code>
-          <span>&lt;</span><span>emfe-button</span> <span>className</span><span>=</span><span>"default"</span> <span>:disabled</span><span>=</span><span>"false"</span><span>&gt;</span>白底<span>&lt;/emfe-button&gt;</span>
+        <span>&lt;</span><span>emfe-button</span> <span>className</span><span>=</span><span>"default"</span> <span>:disabled</span><span>=</span><span>"false"</span><span>&gt;</span>白底<span>&lt;/emfe-button&gt;</span>
       </code>
       <code>
-          <span>&lt;</span><span>emfe-button</span> <span>className</span><span>=</span><span>"default"</span> <span>:disabled</span><span>=</span><span>"true"</span><span>&gt;</span>白底禁用<span>&lt;/emfe-button&gt;</span>
+        <span>&lt;</span><span>emfe-button</span> <span>className</span><span>=</span><span>"default"</span> <span>:disabled</span><span>=</span><span>"true"</span><span>&gt;</span>白底禁用<span>&lt;/emfe-button&gt;</span>
       </code>
     </pre>
     <br>
@@ -24,10 +19,10 @@
     <emfe-button className="primary" :disabled="true">蓝底禁用</emfe-button>
     <pre>
       <code>
-          <span>&lt;</span><span>emfe-button</span> <span>className</span><span>=</span><span>"primary"</span> <span>:disabled</span><span>=</span><span>"false"</span><span>&gt;</span>蓝底<span>&lt;/emfe-button&gt;</span>
+        <span>&lt;</span><span>emfe-button</span> <span>className</span><span>=</span><span>"primary"</span> <span>:disabled</span><span>=</span><span>"false"</span><span>&gt;</span>蓝底<span>&lt;/emfe-button&gt;</span>
       </code>
       <code>
-          <span>&lt;</span><span>emfe-button</span> <span>className</span><span>=</span><span>"primary"</span> <span>:disabled</span><span>=</span><span>"true"</span><span>&gt;</span>蓝底禁用<span>&lt;/emfe-button&gt;</span>
+        <span>&lt;</span><span>emfe-button</span> <span>className</span><span>=</span><span>"primary"</span> <span>:disabled</span><span>=</span><span>"true"</span><span>&gt;</span>蓝底禁用<span>&lt;/emfe-button&gt;</span>
       </code>
     </pre>
     <br>
@@ -35,10 +30,10 @@
     <emfe-button className="default" type="site" :disabled="true">带有图标禁用</emfe-button>
     <pre>
       <code>
-          <span>&lt;</span><span>emfe-button</span> <span>className</span><span>=</span><span>"default"</span> <span>type</span><span>=</span><span>"hint"</span><span>&gt;</span>带有图标<span>&lt;/emfe-button&gt;</span>
+        <span>&lt;</span><span>emfe-button</span> <span>className</span><span>=</span><span>"default"</span> <span>type</span><span>=</span><span>"hint"</span><span>&gt;</span>带有图标<span>&lt;/emfe-button&gt;</span>
       </code>
       <code>
-          <span>&lt;</span><span>emfe-button</span> <span>className</span><span>=</span><span>"default"</span> <span>type</span><span>=</span><span>"site"</span> <span>:disabled</span><span>=</span><span>"true"</span><span>&gt;</span>带有图标禁用<span>&lt;/emfe-button&gt;</span>
+        <span>&lt;</span><span>emfe-button</span> <span>className</span><span>=</span><span>"default"</span> <span>type</span><span>=</span><span>"site"</span> <span>:disabled</span><span>=</span><span>"true"</span><span>&gt;</span>带有图标禁用<span>&lt;/emfe-button&gt;</span>
       </code>
     </pre>
     <br>

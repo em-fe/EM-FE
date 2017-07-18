@@ -36,7 +36,6 @@ export default {
         {
           [`${prefixCls}-checked`]: !!this.currentValue,
           [`${prefixCls}-${this.size}`]: !!this.size,
-          // [`${prefixCls}-size`]: !!this.className,
         },
       ];
     },
@@ -55,10 +54,5 @@ export default {
       return this.disabled;
     },
   },
-  // watch: {
-  //   value(val) {
-  //     this.currentValue = val;
-  //   },
-  // },
 };
 </script>
