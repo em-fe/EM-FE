@@ -11,14 +11,17 @@
     </div>
   </div>
 </template>
-
 <script>
 export default {
-  name: 'select',
+  name: 'Select',
   props: {
     type: {
       type: String,
       default: '',
+    },
+    datas: {
+      type: Array,
+      required: true,
     },
   },
   data() {
@@ -30,37 +33,10 @@ export default {
   },
   methods: {
     inpcheck(e) {
-      this.initData();
+      this.checkList = this.datas;
       const c = e.target.className;
       this.flagCheck = c === 'inpcheck';
-    },
-    initData() {
-      const data1 = [
-        {
-          id: 8,
-          name: '888888',
-        },
-        {
-          id: 88,
-          name: '88888',
-        },
-      ];
-      const data2 = [
-        {
-          id: 6,
-          name: '666',
-        },
-        {
-          id: 66,
-          name: '6666666',
-        },
-      ];
-      if (this.type === 'checkbox') {
-        this.checkList = data1;
-      }
-      if (this.type === 'radio') {
-        this.checkList = data2;
-      }
+      this.$emit('add-save');
     },
     close() {
       this.checkList = [];

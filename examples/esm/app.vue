@@ -232,6 +232,7 @@ module.exports = {
               icon: 'hotel',
               routers: {
                 path: 'selectpage',
+              }
             },
             {
               title: 'drop',
