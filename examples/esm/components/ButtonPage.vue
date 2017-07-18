@@ -57,16 +57,16 @@
           <td>-</td>
         </tr>
         <tr>
-        	<td>type</td>
-        	<td>按钮需要添加图标时，type=“ 图标唯一的标识（如：hint） ”</td>
-        	<td>String</td>
-        	<td>默认没有</td>
+          <td>type</td>
+          <td>按钮需要添加图标时，type=“ 图标唯一的标识（如：hint） ”</td>
+          <td>String</td>
+          <td>默认没有</td>
         </tr>
         <tr>
-        	<td>disabled</td>
-        	<td>disabled为 ‘true’时按钮禁用，disabled为‘false’时按钮可用，</td>
-        	<td>Boolean</td>
-        	<td>默认是‘false’  可用</td>
+          <td>disabled</td>
+          <td>disabled为 ‘true’时按钮禁用，disabled为‘false’时按钮可用，</td>
+          <td>Boolean</td>
+          <td>默认是‘false’  可用</td>
         </tr>
       </tbody>
     </table>
