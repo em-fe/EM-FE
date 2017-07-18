@@ -53,10 +53,10 @@
           <td>-</td>
         </tr>
         <tr>
-        	<td>size</td>
-        	<td>定义size的值来改变开关的大小</td>
-        	<td>String</td>
-        	<td>默认没有</td>
+          <td>size</td>
+          <td>定义size的值来改变开关的大小</td>
+          <td>String</td>
+          <td>默认没有</td>
         </tr>
       </tbody>
     </table>
@@ -92,10 +92,10 @@ export default {
 };
 </script>
 <style>
-	.emfe-switch-checked.emfe-switch-small:after {
+  .emfe-switch-checked.emfe-switch-small:after {
      left: 21px;
-	}
-	pre {
+  }
+  pre {
     padding: 0;
     margin: 0 !important;
   }
