@@ -1,5 +1,5 @@
 <template>
-  <a class="emfe-link" :class="linkName" :href="emptyRouters ? 'javascript:;' : routers.url" v-if="hasUrl || emptyRouters">
+  <a class="emfe-link" :class="linkName" :href="emptyRouters ? 'javascript:;' : routers.url" v-if="hasUrl || emptyRouters" @click="click">
     <slot></slot>
   </a>
   <router-link class="emfe-link" :class="linkName" :tag="tag" :to="routers" v-else>
@@ -19,12 +19,6 @@ export default {
     routers: {
       type: Object,
       required: true,
-      // default() {
-      //   return {
-      //     query: this.$route.query,
-      //     params: this.$route.params,
-      //   };
-      // },
     },
     className: {
       type: String,
@@ -46,12 +40,9 @@ export default {
       return emptyJson;
     },
   },
-  mounted() {
-    console.log(this.$route, 9);
-  },
   methods: {
-    link() {
-      window.location.href = 'http://baidu.com';
+    click() {
+      this.$emit('click');
     },
   },
 };
