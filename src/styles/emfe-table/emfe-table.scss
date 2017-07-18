@@ -1,0 +1,102 @@
+.#{$prefix}box {
+  width: 100%;
+
+  &-nothing {
+    width: 100%;
+    height: 48px;
+    line-height: 48px;
+    text-align: center;
+    background-color: $nothing-color;
+    font-size: 18px;
+    letter-spacing: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  &-fixed {
+    &-table {
+      width: 100%;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+      &-head {
+        &-tr {
+          display: flex;
+          min-height: 48px;
+
+          &-th {
+            display: flex;
+            flex: 1;
+            align-items: center;
+            box-sizing: border-box;
+          }
+        }
+      }
+
+      &-body {
+        &-tr {
+          display: flex;
+          min-height: 48px;
+
+          &-td {
+            display: flex;
+            flex: 1;
+            align-items: center;
+            box-sizing: border-box;
+          }
+        }
+      }
+    }
+  }
+
+  &-overflow {
+    overflow-x: auto;
+  }
+
+  &-table {
+    border-collapse: collapse;
+
+    &-head {
+      width: 100%;
+
+      &-tr {
+        min-height: 48px;
+        height: 48px;
+        width: 100%;
+        background-color: $thead-tr-color;
+
+        &-th {
+          box-sizing: border-box;
+          padding: 0 5px;
+          text-align: left;
+          font-size: 14px;
+          color: $thead-text-color;
+          letter-spacing: 0;
+          line-height: 16px;
+        }
+      }
+    }
+
+    &-tr {
+      min-height: 48px;
+      height: 48px;
+      background-color: $nothing-color;
+
+      &:nth-child(2n) {
+        background-color: $thead-tr-color;
+      }
+
+      &:hover {
+        background-color: $tr-hover-color;
+      }
+
+      &-td {
+        box-sizing: border-box;
+        padding: 0 5px;
+        text-align: left;
+        font-size: 14px;
+        color: $title-color;
+        letter-spacing: -0.3px;
+        line-height: 16px;
+      }
+    }
+  }
+}

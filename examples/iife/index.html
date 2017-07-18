@@ -45,6 +45,7 @@
         <div class="blue">50%</div>
       </emfe-col>
     </emfe-row>
+    <button class="msg-demo" @click="demo1">info {{ infoClose }}</button>
   </div>
 </body>
   <!-- 先引入 Vue -->
@@ -55,8 +56,21 @@
     new Vue({
       el: '#app',
       data: function() {
-        return { visible: false }
-      }
+        return {
+          visible: false,
+          infoClose: ''
+        }
+      },
+      methods: {
+        demo1() {
+          this.$EmfeMessage.info({
+            content: '这是一个info提示',
+            close: () => {
+              this.infoClose = '提示打开过，关闭过';
+            },
+          });
+        },
+      },
     })
   </script>
 </html>

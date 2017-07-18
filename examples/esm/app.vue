@@ -32,9 +32,18 @@ module.exports = {
           icon: 'hotel',
           columns: [
             {
-              title: '全文提示',
+              title: '文字提示',
               routers: {
                 path: '/tooltippage',
+                query: {
+                  main: 2,
+                },
+              },
+            },
+            {
+              title: '全局提示',
+              routers: {
+                path: '/message',
                 query: {
                   main: 2,
                 },
@@ -67,6 +76,16 @@ module.exports = {
               icon: 'hotel',
               routers: {
                 path: '/grid',
+                query: {
+                  main: 3,
+                },
+              },
+            },
+            {
+              title: 'table',
+              icon: 'hotel',
+              routers: {
+                path: '/table',
                 query: {
                   main: 3,
                 },
@@ -118,6 +137,36 @@ module.exports = {
           title: '功能组件',
           icon: 'hotel',
           columns: [
+            {
+              title: '日期时间',
+              icon: 'hotel',
+              routers: {
+                path: 'datetimepage',
+                query: {
+                  main: 4,
+                },
+              },
+            },
+            {
+              title: '日期',
+              icon: 'hotel',
+              routers: {
+                path: 'datepage',
+                query: {
+                  main: 4,
+                },
+              },
+            },
+            {
+              title: '时间',
+              icon: 'hotel',
+              routers: {
+                path: 'timepage',
+                query: {
+                  main: 4,
+                },
+              },
+            },
             {
               title: '拖拽',
               icon: 'hotel',
