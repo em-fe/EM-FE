@@ -84,6 +84,11 @@ const router = new VueRouter({
       component: require('./components/ButtonPage.vue'),
     },
     {
+      path: '/switch',
+      name: 'switch',
+      component: require('./components/SwitchPage.vue'),
+    },
+    {
       path: '/message',
       name: 'message',
       component: require('./components/MessagePage.vue'),

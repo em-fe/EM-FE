@@ -131,6 +131,16 @@ module.exports = {
                 },
               },
             },
+            {
+              title: 'switch开关',
+              icon: 'hotel',
+              routers: {
+                path: '/switch',
+                query: {
+                  main: 3,
+                },
+              },
+            },
           ],
         },
         {

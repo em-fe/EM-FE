@@ -14,6 +14,7 @@ import EmfeDate from './components/emfe-date/index';
 import EmfeTime from './components/emfe-time/index';
 import EmfeDatetime from './components/emfe-datetime/index';
 import EmfeLink from './components/emfe-link/index';
+import EmfeSwitch from './components/emfe-switch/index';
 // 服务
 import EmfeMessage from './components/emfe-message/index';
 // 指令
@@ -33,6 +34,7 @@ const emfeCpt = {
   EmfeColor,
   EmfeInput,
   EmfeButton,
+  EmfeSwitch,
   EmfeTable: Table.EmfeTable,
   EmfeTableHead: Table.EmfeTableHead,
   EmfeTableBody: Table.EmfeTableBody,
