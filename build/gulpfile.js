@@ -15,9 +15,9 @@ gulp.task('compile', function () {
 });
 
 gulp.task('copyfont', function() {
-  return gulp.src('../src/styles/font/fonts/**')
+  return gulp.src('../src/styles/iconfont/fonts/**')
     .pipe(cssmin())
-    .pipe(gulp.dest('../dist/css/fonts'));
+    .pipe(gulp.dest('../dist/css/iconfont/fonts'));
 });
 
 gulp.task('build', ['compile', 'copyfont']);

@@ -1,7 +1,7 @@
 const vue = require('rollup-plugin-vue2');
 const buble = require('rollup-plugin-buble');
 const replace = require('rollup-plugin-replace');
-const stringTem = require('rollup-plugin-string');
+const commonjs = require('rollup-plugin-commonjs');
 const pkg = require('../package.json');
 
 const version = process.env.VERSION || pkg.version
@@ -91,11 +91,10 @@ function genConfig (opts) {
       }),
       vue(),
       buble(),
-      stringTem({
-        // Required to be specified
-        include: '**/*.html',
-        // Undefined by default
-        exclude: ['**/index.html']
+      commonjs({
+        include: [
+          'node_modules/vue',
+        ]
       }),
     ]
   }

@@ -9,6 +9,11 @@ const router = new VueRouter({
       component: require('./components/grid.vue'),
     },
     {
+      path: '/linkpage',
+      name: 'linkpage',
+      component: require('./components/LinkPage.vue'),
+    },
+    {
       path: '/datepage',
       name: 'datepage',
       component: require('./components/DatePage.vue'),
@@ -44,6 +49,11 @@ const router = new VueRouter({
       component: require('./components/Inputpage.vue'),
     },
     {
+      path: '/table',
+      name: 'table',
+      component: require('./components/TablePage.vue'),
+    },
+    {
       path: '/iconpage',
       name: 'iconpage',
       component: require('./components/IconPage.vue'),
@@ -74,6 +84,11 @@ const router = new VueRouter({
       component: require('./components/ButtonPage.vue'),
     },
     {
+      path: '/switch',
+      name: 'switch',
+      component: require('./components/SwitchPage.vue'),
+    },
+    {
       path: '/message',
       name: 'message',
       component: require('./components/MessagePage.vue'),
@@ -87,6 +102,11 @@ const router = new VueRouter({
       path: '/selectPage',
       name: 'selectpage',
       component: require('./components/SelectPage.vue'),
+    },
+    {
+      path: '/drop',
+      name: 'drop',
+      component: require('./components/DropPage.vue'),
     },
   ],
 });
