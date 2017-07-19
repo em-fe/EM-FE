@@ -18,11 +18,11 @@ import EmfeSwitch from './components/emfe-switch/index';
 import EmfeModal from './components/emfe-modal/index';
 import EmfeCheckout from './components/emfe-checkout/index';
 import EmfeDrop from './components/emfe-drop/index';
+import Table from './components/emfe-table/index';
 // 服务
 import EmfeMessage from './components/emfe-message/index';
 // 指令
 import emfeDocumentclick from './directives/emfe-documentclick';
-import Table from './components/emfe-table/index';
 
 const emfeCpt = {
   EmfeCol: Grid.EmfeCol,
