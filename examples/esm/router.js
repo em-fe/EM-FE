@@ -9,6 +9,26 @@ const router = new VueRouter({
       component: require('./components/grid.vue'),
     },
     {
+      path: '/linkpage',
+      name: 'linkpage',
+      component: require('./components/LinkPage.vue'),
+    },
+    {
+      path: '/datepage',
+      name: 'datepage',
+      component: require('./components/DatePage.vue'),
+    },
+    {
+      path: '/timepage',
+      name: 'timepage',
+      component: require('./components/TimePage.vue'),
+    },
+    {
+      path: '/datetimepage',
+      name: 'datetimepage',
+      component: require('./components/DatetimePage.vue'),
+    },
+    {
       path: '/drag',
       name: 'drag',
       component: require('./components/DragPage.vue'),
@@ -27,6 +47,11 @@ const router = new VueRouter({
       path: '/input',
       name: 'input',
       component: require('./components/Inputpage.vue'),
+    },
+    {
+      path: '/table',
+      name: 'table',
+      component: require('./components/TablePage.vue'),
     },
     {
       path: '/iconpage',
@@ -64,9 +89,19 @@ const router = new VueRouter({
       component: require('./components/ButtonPage.vue'),
     },
     {
+      path: '/switch',
+      name: 'switch',
+      component: require('./components/SwitchPage.vue'),
+    },
+    {
       path: '/message',
       name: 'message',
       component: require('./components/MessagePage.vue'),
+    },
+    {
+      path: '/checkout',
+      name: 'checkout',
+      component: require('./components/checkoutPage.vue'),
     },
   ],
 });

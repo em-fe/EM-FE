@@ -21,10 +21,13 @@ $menu-sm-width: 65px;
 // 圆角尺寸
 $radius-size: 4px;
 
+//遮罩层的颜色
+$mask-color: rgba(0, 0, 0, 0.3);
+
 // 阴影的颜色
 $shadow-color: rgba(0, 0, 0, 0.1);
 
-// 边框默认颜色
+// 默认颜色
 $nothing-color: #fff;
 
 // 边框默认颜色
@@ -40,7 +43,10 @@ $icon-color: #8d8d8d;
 $title-color: #333;
 
 // 文字的颜色
-$text-color: #666;
+$text-color: #999;
+
+// 表格头部文字颜色
+$thead-text-color: #666;
 
 // 导航文字的颜色
 $menu-text-color: #454545;
@@ -50,6 +56,9 @@ $background-color: #f4f4f4;
 
 // 选中的颜色
 $background-on-color: #f2f9ff;
+
+// 边框选中颜色
+$background-active-color: #1996f9;
 
 // 下拉题目的颜色
 $background-twobar-color: #f4f4f4;
@@ -74,3 +83,18 @@ $btn-hover-color: #50affa;
 
 // 按钮点击颜色
 $btn-active-color: #147dd9;
+
+// 表格头部tr颜色
+$thead-tr-color: #f9f9fb;
+
+// 表格主体tr隔行颜色
+$thead-tr-color: #fcfcfd;
+
+// 表格悬浮tr颜色
+$tr-hover-color: #f2f9ff;
+
+// 输入框禁止背景颜色
+$input-disable-color: #f3f3f3;
+
+// 输入框禁止文字颜色
+$input-disable-text-color: #ccc;

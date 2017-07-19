@@ -42,7 +42,6 @@
 <script>
 import { getElementTop, getElementLeft } from '../../../tools/assist';
 import Color from '../../../tools/color';
-import EmfeDrag from '../../emfe-drag';
 
 export default {
   name: 'EmfeColor',
@@ -229,9 +228,6 @@ export default {
     close() {
       this.colorStatus = false;
     },
-  },
-  component: {
-    EmfeDrag,
   },
   beforeDestroy() {
     document.removeEventListener('click', this.cancel);

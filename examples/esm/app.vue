@@ -82,6 +82,26 @@ module.exports = {
               },
             },
             {
+              title: '超链',
+              icon: 'hotel',
+              routers: {
+                path: '/linkpage',
+                query: {
+                  main: 3,
+                },
+              },
+            },
+            {
+              title: 'table',
+              icon: 'hotel',
+              routers: {
+                path: '/table',
+                query: {
+                  main: 3,
+                },
+              },
+            },
+            {
               title: 'input输入框',
               icon: 'hotel',
               routers: {
@@ -111,12 +131,52 @@ module.exports = {
                 },
               },
             },
+            {
+              title: 'switch开关',
+              icon: 'hotel',
+              routers: {
+                path: '/switch',
+                query: {
+                  main: 3,
+                },
+              },
+            },
           ],
         },
         {
           title: '功能组件',
           icon: 'hotel',
           columns: [
+            {
+              title: '日期时间',
+              icon: 'hotel',
+              routers: {
+                path: 'datetimepage',
+                query: {
+                  main: 4,
+                },
+              },
+            },
+            {
+              title: '日期',
+              icon: 'hotel',
+              routers: {
+                path: 'datepage',
+                query: {
+                  main: 4,
+                },
+              },
+            },
+            {
+              title: '时间',
+              icon: 'hotel',
+              routers: {
+                path: 'timepage',
+                query: {
+                  main: 4,
+                },
+              },
+            },
             {
               title: '拖拽',
               icon: 'hotel',
@@ -162,6 +222,16 @@ module.exports = {
               icon: 'modal',
               routers: {
                 path: '/modal',
+                query: {
+                  main: 4,
+                },
+              },
+            },
+            {
+              title: '多选',
+              icon: 'checkout',
+              routers: {
+                path: '/checkout',
                 query: {
                   main: 4,
                 },

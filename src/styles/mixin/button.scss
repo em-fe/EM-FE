@@ -1,0 +1,33 @@
+// 只有边框按钮
+@mixin button-colors($normal, $hover, $active, $normalbor, $hoverbor, $activebor) {
+  background: $nothing-color;
+  color: $normal;
+  border-color: $normalbor;
+
+  &:hover {
+    color: $hover;
+    border-color: $hoverbor;
+  }
+
+  &:active {
+    color: $active;
+    border-color: $activebor;
+  }
+}
+
+// 只有背景或者是背景和边框颜色一致的按钮
+@mixin button-backgrounds($normal, $hover, $active) {
+  color: $nothing-color;
+  border-color: $normal;
+  background-color: $normal;
+
+  &:hover {
+    border-color: $hover;
+    background-color: $hover;
+  }
+
+  &:active {
+    border-color: $active;
+    background-color: $active;
+  }
+}

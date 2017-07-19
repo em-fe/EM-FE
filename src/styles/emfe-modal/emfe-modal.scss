@@ -1,10 +1,13 @@
-.emfe-modal {
+.#{$prefix}modal {
   position: fixed;
   left: 0;
   top: 0;
   right: 0;
   bottom: 0;
   z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &-mask {
     position: fixed;
@@ -12,17 +15,14 @@
     top: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.3);
+    background: $mask-color;
     z-index: 505;
   }
 
   &-wrap {
-    width: 800px;
     height: auto;
-    background: rgba(255, 255, 255, 1);
+    background: $nothing-color;
     z-index: 1000;
-    margin: 0 auto;
-    margin-top: 320px;
     position: relative;
   }
 
@@ -32,43 +32,43 @@
     justify-content: flex-end;
 
     &-close {
-      width: 1.25rem;
-      height: 1.25rem;
-      color: #dcdcdc;
+      width: 20px;
+      height: 20px;
+      color: $border-color;
     }
   }
 
   &-header {
+    @include border(bottom);
+
     width: 100%;
-    height: 2.75rem;
-    border-bottom: 1px solid #f5f5f5;
+    padding: 10px;
 
     &-inner {
       text-align: center;
-      line-height: 2.75rem;
     }
   }
 
   &-main {
     width: 100%;
-    padding: 0.5rem;
-    box-sizing: border-box;
+    padding: 10px;
   }
 
   &-footer {
-    height: 2.75rem;
+    @include border(top);
+
+    height: 44px;
     width: 100%;
-    border-top: 1px solid #f5f5f5;
     display: flex;
+  }
 
-    div {
-      flex: 1;
-      text-align: center;
-      line-height: 2.75rem;
+  &-btn {
+    flex: 1;
+    text-align: center;
+    line-height: 44px;
 
-      &:first-child {
-        border-right: 1px solid #f5f5f5;
-      }
+    &:first-child {
+      @include border(right);
     }
   }
 }
