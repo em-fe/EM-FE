@@ -103,6 +103,11 @@ const router = new VueRouter({
       name: 'checkout',
       component: require('./components/checkoutPage.vue'),
     },
+    {
+      path: '/drop',
+      name: 'drop',
+      component: require('./components/DropPage.vue'),
+    },
   ],
 });
 

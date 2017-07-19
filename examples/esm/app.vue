@@ -232,6 +232,13 @@ module.exports = {
               icon: 'checkout',
               routers: {
                 path: '/checkout',
+              },
+            },
+            {
+              title: 'drop',
+              icon: 'hotel',
+              routers: {
+                path: 'drop',
                 query: {
                   main: 4,
                 },

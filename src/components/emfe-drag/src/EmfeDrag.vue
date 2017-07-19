@@ -52,6 +52,10 @@ export default {
       type: Number,
       default: 0,
     },
+    dragDiyStyle: {
+      type: String,
+      default: '',
+    },
   },
   computed: {
     dragName() {
@@ -69,6 +73,7 @@ export default {
     this.elHeight = this.$el.clientHeight;
     this.elCenter = (this.elWidth / 2) + this.borderSize;
     this.elCenter = this.limitPosition === 'center' ? this.elCenter : 0;
+    this.dragStyle = this.dragDiyStyle;
     setTimeout(() => {
       if (this.dragEl && this.dragEl.length > 0) {
         this.parent = this.dragEl[0].parentNode;
