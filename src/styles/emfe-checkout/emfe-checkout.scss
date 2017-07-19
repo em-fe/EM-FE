@@ -1,0 +1,28 @@
+.#{$prefix}checkout {
+  width: 100%;
+
+  &-box {
+    margin-top: 10px;
+    display: flex;
+
+    &-input {
+      width: 15px;
+      height: 15px;
+    }
+
+    &-span {
+      font-size: 14px;
+    }
+  }
+
+  &-slide {
+    width: 100%;
+    margin-left: 8px;
+
+    &-box {
+      height: auto;
+      background: #f8f8f8;
+      padding: 10px;
+    }
+  }
+}

@@ -218,6 +218,23 @@ module.exports = {
               },
             },
             {
+              title: '弹出框',
+              icon: 'modal',
+              routers: {
+                path: '/modal',
+                query: {
+                  main: 4,
+                },
+              },
+            },
+            {
+              title: '多选',
+              icon: 'checkout',
+              routers: {
+                path: '/checkout',
+              },
+            },
+            {
               title: 'drop',
               icon: 'hotel',
               routers: {
