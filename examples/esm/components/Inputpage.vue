@@ -20,6 +20,55 @@
     <emfe-input :iconOk="true" :errOk="true" type="qr" placeholder="请输入文字！">
     	<div slot="error">这是一个错误信息</div>
     </emfe-input>
+    <h3>API</h3>
+    <table style="width:100%;text-align:center" class="table">
+      <thead>
+        <tr>
+          <th width="25%">属性</th>
+          <th width="30%">说明</th>
+          <th width="20%">类型</th>
+          <th width="25%">默认值</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>placeholder</td>
+          <td>placeholder的值</td>
+          <td>String</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>disabled</td>
+          <td>disabled为 ‘true’时input输入框禁用，disabled为‘false’时input输入框可用</td>
+          <td>Boolead,String</td>
+          <td>默认为'fasle'</td>
+        </tr>
+        <tr>
+          <td>autofocus</td>
+          <td>autofocus为 ‘true’时input输入框自动获取输入框，</td>
+          <td>Boolead,String</td>
+          <td>默认为'fasle'</td>
+        </tr>
+        <tr>
+          <td>iconOk</td>
+          <td>iconOk为 ‘true’时input输入框前面带有icon图标</td>
+          <td>Boolead,String</td>
+          <td>默认为'fasle'</td>
+        </tr>
+        <tr>
+          <td>type</td>
+          <td>type 是icon图标的类型</td>
+          <td>String</td>
+          <td>默认为''</td>
+        </tr>
+        <tr>
+          <td>errOk</td>
+          <td>errOk 是判断输入是否正确，为'true'时，边框为红色，提示错误信息</td>
+          <td>Boolead,String</td>
+          <td>默认为'false'</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 <script>
