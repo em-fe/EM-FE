@@ -1,5 +1,5 @@
 {
-  "name": "EMFE",
+  "name": "em-fe",
   "version": "1.0.0",
   "description": "快速开发产品的UI库",
   "main": "dist/emfe.js",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/iq9891/vui-backend-boilerplate.git"
+    "url": "git+https://github.com/em-fe/EM-FE.git"
   },
   "keywords": [
     "VUE",
@@ -23,9 +23,9 @@
   "author": "李梦龙",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/iq9891/vui-backend-boilerplate/issues"
+    "url": "https://github.com/em-fe/EM-FE/issues"
   },
-  "homepage": "https://github.com/iq9891/vui-backend-boilerplate#readme",
+  "homepage": "https://github.com/em-fe/EM-FE#readme",
   "devDependencies": {
     "babel-core": "^6.25.0",
     "babel-eslint": "^7.2.3",
