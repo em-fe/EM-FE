@@ -11,19 +11,19 @@
   }
 
   &-success {
-    background: $color-success;
+    background: $auxiliary-color-success;
   }
 
   &-info {
-    background: $color-info;
+    background: $brand-color-default;
   }
 
   &-warning {
-    background: $color-warning;
+    background: $auxiliary-color-warning;
   }
 
   &-error {
-    background: $color-danger;
+    background: $auxiliary-color-danger;
   }
 
   &-box {
@@ -37,7 +37,7 @@
     line-height: 32px;
     padding: 0 32px;
     font-size: 12px;
-    color: $nothing-color;
+    color: $background-color-write;
     word-break: break-all;
   }
 }

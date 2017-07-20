@@ -38,10 +38,6 @@ export default {
         return [];
       },
     },
-    icon: {
-      type: String,
-      default: '',
-    },
   },
   computed: {
     className() {

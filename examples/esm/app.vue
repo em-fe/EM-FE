@@ -82,6 +82,16 @@ module.exports = {
               },
             },
             {
+              title: '超链',
+              icon: 'hotel',
+              routers: {
+                path: '/linkpage',
+                query: {
+                  main: 3,
+                },
+              },
+            },
+            {
               title: 'table',
               icon: 'hotel',
               routers: {
@@ -96,6 +106,16 @@ module.exports = {
               icon: 'hotel',
               routers: {
                 path: '/input',
+                query: {
+                  main: 3,
+                },
+              },
+            },
+            {
+              title: 'tag标签',
+              icon: 'hotel',
+              routers: {
+                path: '/tag',
                 query: {
                   main: 3,
                 },
@@ -222,6 +242,47 @@ module.exports = {
               icon: 'hotel',
               routers: {
                 path: 'upload',
+                query: {
+                  main: 4,
+                },
+              },
+            },
+            {
+              title: '分页',
+              icon: 'hotel',
+              routers: {
+                path: 'pagination',
+              },
+            },
+            {
+              title: '弹出框',
+              icon: 'modal',
+              routers: {
+                path: '/modal',
+                query: {
+                  main: 4,
+                },
+              },
+            },
+            {
+              title: '下拉框',
+              icon: 'hotel',
+              routers: {
+                path: 'selectpage',
+              }
+            },
+            {
+              title: '多选',
+              icon: 'checkout',
+              routers: {
+                path: '/checkout',
+              },
+            },
+            {
+              title: 'drop',
+              icon: 'hotel',
+              routers: {
+                path: 'drop',
                 query: {
                   main: 4,
                 },
