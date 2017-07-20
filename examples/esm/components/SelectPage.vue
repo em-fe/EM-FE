@@ -32,6 +32,14 @@
     <emfe-select :datas="data2" seleStu="newList" type="radio" v-on:addDataRadio="addDataRadio"></emfe-select>
     <!-- / -->
 
+    <div style="margin:90px 0 10px">
+      普通下拉框
+    </div>
+
+    <!--  -->
+    <emfe-select :datas="data3" type="default"></emfe-select>
+    <!-- / -->
+
   </div>
 </template>
 <script>
@@ -54,6 +62,14 @@ export default {
         },
         {
           name: '6666666',
+        },
+      ],
+      data3: [
+        {
+          name: 'default',
+        },
+        {
+          name: '一夜暴富',
         },
       ],
     };

@@ -43,10 +43,15 @@
     margin: 0;
     display: block;
     clear: both;
+    padding-left: 10px;
 
     &:hover {
       background: $background-on-color;
     }
+  }
+
+  &-delabel {
+    padding: 0 10px;
   }
 
   &-inpcheck {
@@ -65,7 +70,6 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space:  nowrap;
-    text-indent: 10px;
   }
 
   &-flag {
@@ -83,7 +87,7 @@
   }
 
   &-custab {
-    padding: 5px;
+    padding: 5px 10px;
     clear: both;
     line-height: 32px;
     position: relative;
@@ -94,10 +98,10 @@
       border-radius: $radius-size;
       border: 1px solid $border-color;
       position: relative;
-      width: 96%;
+      width: 100%;
       margin: 5px 0;
-      left: 2%;
-      right: 2%;
+      left: 0;
+      top: 0;
       z-index: 2;
 
       &::-webkit-input-placeholder {
