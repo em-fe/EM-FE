@@ -113,6 +113,11 @@ const router = new VueRouter({
       name: 'tag',
       component: require('./components/TagPage.vue'),
     },
+    {
+      path: '/panel',
+      name: 'panel',
+      component: require('./components/PanelPage.vue'),
+    },
   ],
 });
 

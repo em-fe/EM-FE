@@ -1,6 +1,6 @@
 <template>
   <div class="inputpage">
-  	<emfe-input placeholder="请输入文a字！" classAdd="add" v-model="value" @change="change">
+  	<emfe-input placeholder="请输入文a字！" className="add" v-model="value" @change="change">
     </emfe-input>
     <div>{{value}}</div>
     <br>
@@ -14,12 +14,16 @@
       <div slot="error">这是一个错误信息</div>
     </emfe-input>
     <br>
-    <emfe-input :iconOk="true" type="site" placeholder="请输入文字！">
+    <emfe-input :iconOk="true" iconType="site" placeholder="请输入文字！">
     </emfe-input>
     <br>
-    <emfe-input :iconOk="true" :errOk="true" type="qr" placeholder="请输入文字！">
+    <emfe-input :iconOk="true" :errOk="true" iconType="qr" placeholder="请输入文字！">
     	<div slot="error">这是一个错误信息</div>
     </emfe-input>
+    <br>
+    <emfe-input type="number" placeholder="请输入数字！" classAdd="add">
+    </emfe-input>
+    <br><br>
     <h3>API</h3>
     <table style="width:100%;text-align:center" class="table">
       <thead>
@@ -32,22 +36,28 @@
       </thead>
       <tbody>
         <tr>
+          <td>className</td>
+          <td>自定义的 class 名称。</td>
+          <td>String</td>
+          <td>默认为 ''</td>
+        </tr>
+        <tr>
           <td>placeholder</td>
           <td>placeholder的值</td>
           <td>String</td>
-          <td>-</td>
+          <td>默认为 ''</td>
+        </tr>
+        <tr>
+          <td>type</td>
+          <td>type是定义输入框类型</td>
+          <td>String</td>
+          <td>默认为 'text'</td>
         </tr>
         <tr>
           <td>disabled</td>
           <td>disabled为 ‘true’时input输入框禁用，disabled为‘false’时input输入框可用</td>
           <td>Boolead,String</td>
           <td>默认为'fasle'</td>
-        </tr>
-        <tr>
-          <td>classAdd</td>
-          <td>classAdd为自定义class</td>
-          <td>String</td>
-          <td>默认为''</td>
         </tr>
         <tr>
           <td>autofocus</td>
@@ -62,8 +72,8 @@
           <td>默认为'fasle'</td>
         </tr>
         <tr>
-          <td>type</td>
-          <td>type 是icon图标的类型</td>
+          <td>iconType</td>
+          <td>iconType 是icon图标的类型</td>
           <td>String</td>
           <td>默认为''</td>
         </tr>
@@ -72,6 +82,23 @@
           <td>errOk 是判断输入是否正确，为'true'时，边框为红色，提示错误信息</td>
           <td>Boolead,String</td>
           <td>默认为'false'</td>
+        </tr>
+      </tbody>
+    </table>
+    <br><br>
+    <table style="width:100%;text-align:center" class="table">
+      <thead>
+        <tr>
+          <th width="33%">事件名</th>
+          <th width="33%">说明</th>
+          <th width="33%">返回值</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>change</td>
+          <td>input变化触发</td>
+          <td>input的val值</td>
         </tr>
       </tbody>
     </table>
@@ -87,7 +114,7 @@ export default {
   },
   methods: {
     change(val) {
-      this.value = val;
+      console.log(val);
     },
   },
 };

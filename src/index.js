@@ -20,6 +20,7 @@ import EmfeCheckout from './components/emfe-checkout/index';
 import EmfeDrop from './components/emfe-drop/index';
 import Table from './components/emfe-table/index';
 import Tag from './components/emfe-tag/index';
+import EmfePanel from './components/emfe-panel/index';
 // 服务
 import EmfeMessage from './components/emfe-message/index';
 // 指令
@@ -51,6 +52,7 @@ const emfeCpt = {
   EmfeLink,
   EmfeTag: Tag.EmfeTag,
   EmfeTagParent: Tag.EmfeTagParent,
+  EmfePanel,
 };
 
 const emfeDir = {

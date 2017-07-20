@@ -92,6 +92,16 @@ module.exports = {
               },
             },
             {
+              title: '信息面板',
+              icon: 'hotel',
+              routers: {
+                path: '/panel',
+                query: {
+                  main: 3,
+                },
+              },
+            },
+            {
               title: 'table',
               icon: 'hotel',
               routers: {
