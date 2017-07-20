@@ -6,14 +6,21 @@
 
     <!--  -->
     <emfe-select :datas="data1" type="checkbox"></emfe-select>
+    API：包含两个配置项：<br>
+              自定义属性 :<br>
+              :datas="data1"<br>
+              type="checkbox"
     <!-- / -->
 
     <div style="margin:90px 0 10px">
       单选：
     </div>
-
     <!--  -->
     <emfe-select :datas="data2" type="radio"></emfe-select>
+    API：包含两个配置项：<br>
+              自定义属性 :<br>
+              :datas="data2"<br>
+              type="radio"
     <!-- / -->
 
     <div style="margin:90px 0 10px">
@@ -22,6 +29,12 @@
 
     <!--  -->
     <emfe-select :datas="data1" seleStu="newList" type="checkbox" v-on:addDataCheck="addDataCheck"></emfe-select>
+    API：包含3个配置项和一个方法：<br>
+              自定义属性 :<br>
+              :datas="data1"<br>
+              seleStu="newList"<br>
+              type="checkbox"<br>
+              一个方法是：addDataCheck （添加自定义数据使用）
     <!-- / -->
 
     <div style="margin:90px 0 10px">
@@ -30,6 +43,12 @@
 
     <!--  -->
     <emfe-select :datas="data2" seleStu="newList" type="radio" v-on:addDataRadio="addDataRadio"></emfe-select>
+    API：包含3个配置项和一个方法：<br>
+              自定义属性 :<br>
+              :datas="data2"<br>
+              seleStu="newList"<br>
+              type="radio"<br>
+              一个方法是：addDataRadio （添加自定义数据使用）
     <!-- / -->
 
     <div style="margin:90px 0 10px">
@@ -38,6 +57,10 @@
 
     <!--  -->
     <emfe-select :datas="data3" type="default"></emfe-select>
+    API：包含2个配置项：<br>
+              自定义属性 :<br>
+              :datas="data3"<br>
+              type="default"<br>
     <!-- / -->
 
   </div>

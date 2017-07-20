@@ -37,6 +37,10 @@
       </code>
     </pre>
     <br>
+    <emfe-button-group>
+      <emfe-button className="default" index="0">上下布局</emfe-button>
+      <emfe-button className="default" index="1">左右布局</emfe-button>
+    </emfe-button-group>
     <br>
     <br>
     <h3>API</h3>
@@ -75,6 +79,8 @@
 <script>
 export default {
   name: 'button-page',
+  methods: {
+  },
 };
 </script>
 <style>
@@ -82,4 +88,10 @@ export default {
     padding: 0;
     margin: 0;
   }
+  
+
+.table td {
+  border-top: 1px solid $border-color;
+  padding: 10px 0;
+}
 </style>
