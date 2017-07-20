@@ -3,7 +3,9 @@
     <div :class="className">
       <table v-if="columns.length" class="emfe-box-table" :class="classTable" :width="width">
         <slot name="head"></slot>
-        <slot name="body"></slot>
+        <tbody>
+          <slot name="body"></slot>
+        </tbody>
       </table>
       <div class="emfe-box-nothing" v-if="!columns.length">没有数据</div>
     </div>
