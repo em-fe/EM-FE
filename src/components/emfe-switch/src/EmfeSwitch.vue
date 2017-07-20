@@ -1,5 +1,5 @@
 <template>
-  <span :class="switchName" @click="toggle">
+  <span :class="switchName" :disabled="disabled" @click="toggle">
     <span :class="innerClass">
       <slot name="open" v-if="currentValue"></slot>
       <slot name="close" v-if="!currentValue"></slot>
@@ -19,9 +19,9 @@ export default {
       type: String,
       default: '',
     },
-    size: {
-      type: String,
-      default: '',
+    disabled: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {
@@ -34,13 +34,19 @@ export default {
       return [
         `${prefixCls}`,
         {
+          [`${prefixCls}-${this.className}`]: !!this.className,
           [`${prefixCls}-checked`]: !!this.currentValue,
-          [`${prefixCls}-${this.size}`]: !!this.size,
+          [`${prefixCls}-disabled`]: !!this.disabled,
         },
       ];
     },
     innerClass() {
-      return `${prefixCls}-inner`;
+      return [
+        `${prefixCls}-inner`,
+        {
+          [`${prefixCls}-${this.className}-inner`]: !!this.className,
+        },
+      ];
     },
   },
   methods: {
@@ -50,7 +56,7 @@ export default {
       }
       const checked = !this.currentValue;
       this.currentValue = checked;
-      console.log(checked);
+      // console.log(checked);
       return this.disabled;
     },
   },

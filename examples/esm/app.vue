@@ -112,6 +112,16 @@ module.exports = {
               },
             },
             {
+              title: 'Title标题',
+              icon: 'hotel',
+              routers: {
+                name: 'title',
+                query: {
+                  main: 3,
+                },
+              },
+            },
+            {
               title: '按钮',
               icon: 'hotel',
               routers: {
@@ -126,6 +136,16 @@ module.exports = {
               icon: 'hotel',
               routers: {
                 path: '/switch',
+                query: {
+                  main: 3,
+                },
+              },
+            },
+            {
+              title: 'radio单选框',
+              icon: 'hotel',
+              routers: {
+                path: 'radio',
                 query: {
                   main: 3,
                 },

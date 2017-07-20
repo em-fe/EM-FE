@@ -1,12 +1,10 @@
 <template>
   <div class="switch-page">
-    <emfe-switch>
-      <span slot="open">ON</span>
-      <span slot="close">OFF</span>
+    <emfe-switch className="aaa">
+      <span class="aaa" slot="open">ON</span>
+      <span class="aaa" slot="close">OFF</span>
     </emfe-switch>
     <br>
-    <emfe-switch size="small">
-    </emfe-switch>
   <pre>
     <code>
       <span>&lt;emfe-switch&gt;</span>
@@ -14,21 +12,17 @@
         <span>&lt;span</span> <span>slot</span><span>=</span><span>"open"</span><span>&gt;</span>OFF<span>&lt;/span&gt;</span>
       <span>&lt;/emfe-switch&gt;</span>
     </code>
-    <code>
-      <span>&lt;emfe-switch</span> <span>size</span><span>=</span><span>"small"</span><span>&gt;</span>
-      <span>&lt;/emfe-switch&gt;</span>
-    </code>
   </pre>
     <br>
-    <emfe-switch>
-      <span slot="open">开启</span>
-      <span slot="close">关闭</span>
+    <emfe-switch :disabled="true">
+      <span slot="open">ON</span>
+      <span slot="close">OFF</span>
     </emfe-switch>
   <pre>
     <code>
-      <span>&lt;emfe-switch&gt;</span>
-        <span>&lt;span</span> <span>slot</span><span>=</span><span>"open"</span><span>&gt;</span>开启<span>&lt;/span&gt;</span>
-        <span>&lt;span</span> <span>slot</span><span>=</span><span>"open"</span><span>&gt;</span>关闭<span>&lt;/span&gt;</span>
+      <span>&lt;emfe-switch</span> <span>:disabled</span><span>=</span><span>"true"</span><span>&gt;</span>
+        <span>&lt;span</span> <span>slot</span><span>=</span><span>"open"</span><span>&gt;</span>ON<span>&lt;/span&gt;</span>
+        <span>&lt;span</span> <span>slot</span><span>=</span><span>"open"</span><span>&gt;</span>OFF<span>&lt;/span&gt;</span>
       <span>&lt;/emfe-switch&gt;</span>
     </code>
   </pre>
@@ -53,10 +47,10 @@
           <td>-</td>
         </tr>
         <tr>
-          <td>size</td>
-          <td>定义size的值来改变开关的大小</td>
-          <td>String</td>
-          <td>默认没有</td>
+          <td>disabled</td>
+          <td>禁止”状态添加disabled</td>
+          <td>Boolean</td>
+          <td>-</td>
         </tr>
       </tbody>
     </table>
@@ -92,9 +86,6 @@ export default {
 };
 </script>
 <style>
-  .emfe-switch-checked.emfe-switch-small:after {
-     left: 21px;
-  }
   pre {
     padding: 0;
     margin: 0 !important;
