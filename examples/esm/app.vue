@@ -82,6 +82,26 @@ module.exports = {
               },
             },
             {
+              title: '头部',
+              icon: 'hotel',
+              routers: {
+                path: '/headerpage',
+                query: {
+                  main: 3,
+                },
+              },
+            },
+            {
+              title: '底部',
+              icon: 'hotel',
+              routers: {
+                path: '/footerpage',
+                query: {
+                  main: 3,
+                },
+              },
+            },
+            {
               title: '超链',
               icon: 'hotel',
               routers: {
