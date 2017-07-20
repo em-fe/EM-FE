@@ -33,9 +33,9 @@
     }
 
     &-link {
-      @include border(left, $nothing-color, 4px);
+      @include border(left, $background-color-write, 4px);
 
-      color: $menu-text-color;
+      color: $text-color-Three;
       height: 48px;
       line-height: 48px;
       width: 100%;
@@ -44,28 +44,28 @@
       align-items: center;
 
       &:hover {
-        background: $background-on-color;
-        color: $btn-hover-color;
+        background: $brand-color-select;
+        color: $brand-color-hover;
       }
 
       &:active {
-        background: $background-on-color;
-        color: $btn-active-color;
+        background: $brand-color-select;
+        color: $brand-color-click;
       }
 
       &-on {
-        @include border(left, $border-on-color, 4px);
+        @include border(left, $brand-color-default, 4px);
 
-        background: $background-on-color;
-        color: $btn-color;
+        background: $brand-color-select;
+        color: $brand-color-default;
       }
     }
 
     &-link.router-link-active {
-      @include border(left, $border-on-color, 4px);
+      @include border(left, $brand-color-default, 4px);
 
-      background: $background-on-color;
-      color: $btn-color;
+      background: $brand-color-select;
+      color: $brand-color-default;
     }
 
     &-icon {
@@ -89,7 +89,7 @@
       height: 66px;
       line-height: 66px;
       font-size: 14px;
-      color: $title-color;
+      color: $text-color-default;
       padding-left: 24px;
     }
 
@@ -110,7 +110,7 @@
       border-color: transparent;
       border-style: solid;
       border-width: 5px 5px 0;
-      border-top-color: $menu-text-color;
+      border-top-color: $text-color-Three;
       top: 20px;
       left: 13px;
       transition: transform 0.4s;
@@ -118,7 +118,7 @@
     }
 
     &-btn {
-      color: $title-color;
+      color: $text-color-default;
       height: 48px;
       line-height: 48px;
       width: 100%;
@@ -128,7 +128,7 @@
     }
 
     &-link {
-      color: $menu-text-color;
+      color: $text-color-Three;
       height: 48px;
       line-height: 48px;
       width: 100%;
@@ -136,23 +136,23 @@
       padding-left: 32px;
 
       &:hover {
-        background: $background-on-color;
-        color: $btn-color;
+        background: $brand-color-select;
+        color: $brand-color-default;
       }
 
       &:active {
-        background: $background-on-color;
-        color: $btn-active-color;
+        background: $brand-color-select;
+        color: $brand-color-click;
       }
     }
 
     &-link.router-link-active {
-      background: $background-on-color;
-      color: $btn-color;
+      background: $brand-color-select;
+      color: $brand-color-default;
 
       &:active {
-        background: $background-on-color;
-        color: $btn-active-color;
+        background: $brand-color-select;
+        color: $brand-color-click;
       }
     }
 
@@ -163,7 +163,7 @@
     }
 
     &-childlink {
-      color: $menu-text-color;
+      color: $text-color-Three;
       height: 48px;
       line-height: 48px;
       padding-left: 40px;
@@ -171,28 +171,28 @@
       display: block;
 
       &:hover {
-        background: $background-on-color;
-        color: $btn-hover-color;
+        background: $brand-color-select;
+        color: $brand-color-hover;
       }
 
       &:active {
-        background: $background-on-color;
-        color: $btn-active-color;
+        background: $brand-color-select;
+        color: $brand-color-click;
       }
     }
 
     &-childlink.router-link-active {
-      background: $background-on-color;
-      color: $btn-color;
+      background: $brand-color-select;
+      color: $brand-color-default;
 
       &:hover {
-        background: $background-on-color;
-        color: $btn-hover-color;
+        background: $brand-color-select;
+        color: $brand-color-hover;
       }
 
       &:active {
-        background: $background-on-color;
-        color: $btn-active-color;
+        background: $brand-color-select;
+        color: $brand-color-click;
       }
     }
   } // end emfe-menu-minor
