@@ -22,7 +22,6 @@
     </emfe-table>
     <br>
     <p>表格不固定宽度,需要传type="true"</p>
-    <p>同时，emitjump事件。</p>
     <emfe-table :columns="column" :data="data2" type="true">
       <emfe-table-head  slot="head" >
       iconBox
@@ -31,7 +30,52 @@
       iconBox
       </emfe-table-body>
     </emfe-table>
+    <br>
+    <h3>API</h3>
+    <table style="width:100%;text-align:center" class="table">
+      <thead>
+        <tr>
+          <th width="25%">属性</th>
+          <th width="30%">说明</th>
+          <th width="20%">类型</th>
+          <th width="25%">默认值</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>columns</td>
+          <td>表格thead数据</td>
+          <td>Array</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>columns下第一个对象下传type</td>
+          <td>type为 ‘selection’时表格首列为icon位置，并同时在组件中传入checkbox组件</td>
+          <td>String</td>
+          <td>默认为''</td>
+        </tr>
+        <tr>
+          <td>data</td>
+          <td>表格主体数据</td>
+          <td>Array</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>表格不固定宽度传type</td>
+          <td>type为 ‘true’时，表格不固定宽度，默认显示10列，超出10列出现滚动条</td>
+          <td>Boolean, String</td>
+          <td>false</td>
+        </tr>
+        <tr>
+          <td>当表格需要合并行时(rowspan)</td>
+          <td>需要type传 ‘true’，同时，data数据中row的value要传ture,row是确定那个td要合并，在该td下的td的text需要传""。</td>
+          <td>Boolean</td>
+          <td>false</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+
 </template>
 <script>
 export default {
@@ -225,7 +269,6 @@ export default {
 <style>
   .emfe-table-box{
     width: 1200px;
-    height: 1000px;
-    background-color: #ddd;
+    height: 1500px;
   }
 </style>

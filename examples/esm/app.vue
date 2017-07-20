@@ -222,6 +222,13 @@ module.exports = {
               icon: 'hotel',
               routers: {
                 path: 'pagination',
+              },
+            },
+            {
+              title: '弹出框',
+              icon: 'modal',
+              routers: {
+                path: '/modal',
                 query: {
                   main: 4,
                 },
@@ -233,6 +240,13 @@ module.exports = {
               routers: {
                 path: 'selectpage',
               }
+            },
+            {
+              title: '多选',
+              icon: 'checkout',
+              routers: {
+                path: '/checkout',
+              },
             },
             {
               title: 'drop',

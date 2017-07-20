@@ -69,6 +69,11 @@ const router = new VueRouter({
       component: require('./components/TransitionPage.vue'),
     },
     {
+      path: '/modal',
+      name: 'modal',
+      component: require('./components/modal.vue'),
+    },
+    {
       path: '/menu',
       name: 'menu',
       component: require('./components/MenuPage.vue'),
@@ -102,6 +107,11 @@ const router = new VueRouter({
       path: '/selectPage',
       name: 'selectpage',
       component: require('./components/SelectPage.vue'),
+    },
+    {
+      path: '/checkout',
+      name: 'checkout',
+      component: require('./components/checkoutPage.vue'),
     },
     {
       path: '/drop',

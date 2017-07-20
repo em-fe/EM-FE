@@ -17,12 +17,14 @@ import EmfeLink from './components/emfe-link/index';
 import EmfeSwitch from './components/emfe-switch/index';
 import EmfePagination from './components/emfe-pagination/index';
 import EmfeSelect from './components/emfe-select/index';
+import EmfeModal from './components/emfe-modal/index';
+import EmfeCheckout from './components/emfe-checkout/index';
+import EmfeDrop from './components/emfe-drop/index';
+import Table from './components/emfe-table/index';
 // 服务
 import EmfeMessage from './components/emfe-message/index';
 // 指令
 import emfeDocumentclick from './directives/emfe-documentclick';
-import Table from './components/emfe-table/index';
-import EmfeDrop from './components/emfe-drop/index';
 
 const emfeCpt = {
   EmfeCol: Grid.EmfeCol,
@@ -30,6 +32,7 @@ const emfeCpt = {
   EmfeIcon,
   EmfeTooltip,
   EmfeTransition,
+  EmfeModal,
   EmfeMenu,
   EmfeCopy,
   EmfeUpload,
@@ -46,6 +49,7 @@ const emfeCpt = {
   EmfeDatetime,
   EmfePagination,
   EmfeSelect,
+  EmfeCheckout,
   EmfeDrop,
   EmfeLink,
 };

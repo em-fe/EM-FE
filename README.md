@@ -1,6 +1,10 @@
 # EM-FE
 基于 VUE2 的 UI 库
 
+[![em-fe](https://img.shields.io/npm/v/em-fe.svg?style=flat-square)](https://www.npmjs.org/package/em-fe)
+[![NPM downloads](http://img.shields.io/npm/dm/em-fe.svg?style=flat-square)](https://npmjs.org/package/em-fe)
+[![NPM downloads](https://img.shields.io/npm/dt/em-fe.svg?style=flat-square)](https://npmjs.org/package/em-fe)
+
 ## 结构
 
 ``` bash
