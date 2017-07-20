@@ -7,18 +7,18 @@
   font-size: 14px;
 
   &-default {
-    background: #dfe3e6;
-    color: #333;
+    background: $switch-color-default;
+    color: $title-color;
     letter-spacing: 0;
 
     &:hover {
       cursor: pointer;
-      background: #e8ebed;
+      background: $switch-color-hover;
     }
 
     &-disable {
       background-color: #f5f5f5;
-      color: #d8d8d8;
+      color: $button-color-disable;
 
       &:hover {
         background-color: #f5f5f5;
@@ -27,29 +27,29 @@
     }
 
     &-active {
-      background-color: #607384;
-      color: #fff;
+      background-color: $switch-color-selected;
+      color: $nothing-color;
 
       &:hover {
-        background-color: #909da9;
+        background-color: $switch-color-hovered;
       }
     }
   }
 
   &-checket {
-    color: #1996f9;
-    background: #fff;
-    border: 1px solid #dcdcdc;
+    color: $border-on-color;
+    background: $nothing-color;
+    border: 1px solid $button-color-default;
 
     &:hover {
-      color: #50affa;
+      color: $btn-hover-color;
       cursor: pointer;
     }
 
     &-disable {
       background: #f5f5f5;
-      border: 1px solid #dcdcdc;
-      color: #d8d8d8;
+      border: 1px solid $button-color-default;
+      color: $button-color-disable;
 
       &:hover {
         cursor: no-drop;
@@ -57,34 +57,34 @@
     }
 
     &-active {
-      color: #ecb55d;
+      color: $text-color-checkout;
 
       &:hover {
-        color: #ecb55d;
+        color: $text-color-checkout;
       }
     }
   }
 
   &-screen {
     border: 1px solid transparent;
-    color: #333;
-    background-color: #ededed;
+    color: $title-color;
+    background-color: $screen-color-default;
 
     &:hover {
-      background-color: #f2f2f2;
+      background-color: $screen-color-hover;
       cursor: pointer;
     }
 
     &-blue {
       &-active {
         position: relative;
-        background: #f0f3fa;
-        border: 1px solid #1996f9;
-        color: #1996f9;
+        background: $screen-color-checked;
+        border: 1px solid $border-on-color;
+        color: $border-on-color;
 
         &:hover {
-          color: #50affa;
-          border: 1px solid #50affa;
+          color: $btn-hover-color;
+          border: 1px solid $btn-hover-color;
         }
 
         &::after {
@@ -109,7 +109,7 @@
           bottom: 0;
           width: 0;
           height: 0;
-          border-bottom: 15px solid #50affa;
+          border-bottom: 15px solid $btn-hover-color;
           border-left: 20px solid transparent;
         }
       }
@@ -118,14 +118,14 @@
     &-yellow {
       &-active {
         position: relative;
-        background: #fffcf7;
-        border: 1px solid #ecb55d;
-        color: #ecb55d;
+        background: $checkout-color-checked;
+        border: 1px solid $text-color-checkout;
+        color: $text-color-checkout;
 
         &:hover {
-          background: #fffcf7;
-          border: 1px solid #f1cb8d;
-          color: #f1cb8d;
+          background: $checkout-color-checked;
+          border: 1px solid $checkout-color-hovered;
+          color: $checkout-color-hovered;
         }
 
         &::after {
@@ -150,7 +150,7 @@
           bottom: 0;
           width: 0;
           height: 0;
-          border-bottom: 15px solid #ecb55d;
+          border-bottom: 15px solid $text-color-checkout;
           border-left: 20px solid transparent;
         }
       }
