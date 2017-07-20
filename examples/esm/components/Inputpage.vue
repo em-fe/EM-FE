@@ -1,6 +1,6 @@
 <template>
   <div class="inputpage">
-  	<emfe-input placeholder="请输入文a字！" v-model="value" @change="change">
+  	<emfe-input placeholder="请输入文a字！" classAdd="add" v-model="value" @change="change">
     </emfe-input>
     <div>{{value}}</div>
     <br>
@@ -42,6 +42,12 @@
           <td>disabled为 ‘true’时input输入框禁用，disabled为‘false’时input输入框可用</td>
           <td>Boolead,String</td>
           <td>默认为'fasle'</td>
+        </tr>
+        <tr>
+          <td>classAdd</td>
+          <td>classAdd为自定义class</td>
+          <td>String</td>
+          <td>默认为''</td>
         </tr>
         <tr>
           <td>autofocus</td>
