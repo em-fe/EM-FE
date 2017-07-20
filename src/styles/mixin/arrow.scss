@@ -22,10 +22,10 @@
 
 @mixin arrowColor($direction, $theme: dark) {
   @if $theme == light {
-    border-#{$direction}-color: $tooltip-light-color;
+    border-#{$direction}-color: $background-color-write;
   }
 
   @else {
-    border-#{$direction}-color: $tooltip-dark-color;
+    border-#{$direction}-color: $mask-color;
   }
 }
