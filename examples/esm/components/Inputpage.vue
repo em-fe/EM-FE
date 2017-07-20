@@ -1,6 +1,6 @@
 <template>
   <div class="inputpage">
-  	<emfe-input placeholder="请输入文a字！" v-model="value" @change="change">
+  	<emfe-input placeholder="请输入文a字！" classAdd="add" v-model="value" @change="change">
     </emfe-input>
     <div>{{value}}</div>
     <br>

@@ -7,6 +7,7 @@
       @include border(all);
 
       box-sizing: border-box;
+      width: 100%;
       height: 32px;
       background: $nothing-color;
       border-radius: 4px;
@@ -43,7 +44,6 @@
 
     &-icon {
       box-sizing: border-box;
-      width: 220px;
       height: 34px;
       background: $nothing-color;
       border-radius: 4px;

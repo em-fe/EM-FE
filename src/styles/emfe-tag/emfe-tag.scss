@@ -1,0 +1,159 @@
+.#{$prefix}tag {
+  display: inline-block;
+  box-sizing: border-box;
+  height: 32px;
+  line-height: 32px;
+  padding: 0 24px;
+  font-size: 14px;
+
+  &-default {
+    background: #dfe3e6;
+    color: #333;
+    letter-spacing: 0;
+
+    &:hover {
+      cursor: pointer;
+      background: #e8ebed;
+    }
+
+    &-disable {
+      background-color: #f5f5f5;
+      color: #d8d8d8;
+
+      &:hover {
+        background-color: #f5f5f5;
+        cursor: no-drop;
+      }
+    }
+
+    &-active {
+      background-color: #607384;
+      color: #fff;
+
+      &:hover {
+        background-color: #909da9;
+      }
+    }
+  }
+
+  &-checket {
+    color: #1996f9;
+    background: #fff;
+    border: 1px solid #dcdcdc;
+
+    &:hover {
+      color: #50affa;
+      cursor: pointer;
+    }
+
+    &-disable {
+      background: #f5f5f5;
+      border: 1px solid #dcdcdc;
+      color: #d8d8d8;
+
+      &:hover {
+        cursor: no-drop;
+      }
+    }
+
+    &-active {
+      color: #ecb55d;
+
+      &:hover {
+        color: #ecb55d;
+      }
+    }
+  }
+
+  &-screen {
+    border: 1px solid transparent;
+    color: #333;
+    background-color: #ededed;
+
+    &:hover {
+      background-color: #f2f2f2;
+      cursor: pointer;
+    }
+
+    &-blue {
+      &-active {
+        position: relative;
+        background: #f0f3fa;
+        border: 1px solid #1996f9;
+        color: #1996f9;
+
+        &:hover {
+          color: #50affa;
+          border: 1px solid #50affa;
+        }
+
+        &::after {
+          position: absolute;
+          display: block;
+          right: 0;
+          bottom: 0;
+          z-index: 99;
+          width: 10px;
+          height: 10px;
+          line-height: 10px;
+          text-align: center;
+          font-size: 12px;
+          content: '';
+          background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABPklEQVRYR+2V0VHDMBBEdyuADigBOiAl0AFQAbRCBYQOSAVQQtIBJUAFx2zm5JFN5Ehy5Hxgfcvzns53e8SZD8/MxyLwPytgZk8ALgG8zF4BM3sF8ODNv5lVYACXwzwCZqZy6+V30dj/AFg1r4DDPwDc/IGT26YCCfhOPUByK6FmAiPwFcnvUI0mArnwfQX88j2AHcnPqbuhBB4E1gAkoLMm+VgrUQoPAnr1bQStkqiBBwGNhyQuaiVq4d0UmFm1xBR4bwxrJPwbJVwcMprz3qiN9VRvDEsk/K4STjEbThH8YBDlSCTgG0+4LmRypulgEI1JJOBvJMOKzeF2d5JJmJB41/8dlL0afnQXJCTiF06CHxXQBZfQy68GtZ0MzxJwCXW6wuraJU4CzxaIJJ4BfJHU/jjJabKOS8wWgaUCv7GXprUjxZsQAAAAAElFTkSuQmCC) no-repeat;
+          background-size: 100% 100%;
+        }
+
+        & span {
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          width: 0;
+          height: 0;
+          border-bottom: 15px solid #50affa;
+          border-left: 20px solid transparent;
+        }
+      }
+    }
+
+    &-yellow {
+      &-active {
+        position: relative;
+        background: #fffcf7;
+        border: 1px solid #ecb55d;
+        color: #ecb55d;
+
+        &:hover {
+          background: #fffcf7;
+          border: 1px solid #f1cb8d;
+          color: #f1cb8d;
+        }
+
+        &::after {
+          position: absolute;
+          display: block;
+          right: -2px;
+          bottom: -2px;
+          z-index: 99;
+          width: 10px;
+          height: 10px;
+          line-height: 10px;
+          text-align: center;
+          font-size: 12px;
+          content: '';
+          background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABZklEQVRYR7WX7VHDMAxAnyaATWAD6AawCUwCm8AGLRuUTcoE5lScnkljW1Li/mwu954U68MCkFK6B96AZxE56X+jfimlW+ADeBWRo2T4HtAHR2A3SiLDlaUBa6A7FTgAD0XEQyRm8An3pQIauUrcjZKowL+BR8lnYJhEEy5yOguMkujBlXsR2FrCAr8S2ErCCl8UWCvhgVcFohJeeFPAKxGBdwWsElG4SaAnkat4aq9TVf81GcNc+VeGrQHU6Jj6mvZ2N9ycgU6zKr3NkU8vmTNgkHDD3RkozsP8m+uj0BR1ZaBy2stP4JYwCzRKTQXCo9wk0KrzHH54n+gKWJrMmqWmKWCBd6qjeyaqAh74GolFgQg8KnElsAYekVhaycKDpWwI1oM5X0o3gXsyUa7lm8KtEtPFZAjcJLFwNQtNtdYu0VhqzlczXSa0ld4AQ+CVTPyUVzOVeAeeLGtUL1rDZvUJvOj1/Bf7wUwe+vT2pQAAAABJRU5ErkJggg==) no-repeat;
+          background-size: 70% 70%;
+        }
+
+        & span {
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          width: 0;
+          height: 0;
+          border-bottom: 15px solid #ecb55d;
+          border-left: 20px solid transparent;
+        }
+      }
+    }
+  }
+}
