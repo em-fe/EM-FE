@@ -9,12 +9,16 @@ import EmfeUpload from './components/emfe-upload/index';
 import EmfeDrag from './components/emfe-drag/index';
 import EmfeColor from './components/emfe-color/index';
 import EmfeInput from './components/emfe-input/index';
-import EmfeButton from './components/emfe-button/index';
 import EmfeDate from './components/emfe-date/index';
 import EmfeTime from './components/emfe-time/index';
 import EmfeDatetime from './components/emfe-datetime/index';
 import EmfeLink from './components/emfe-link/index';
 import EmfeSwitch from './components/emfe-switch/index';
+import EmfeTitle from './components/emfe-title/index';
+import Radio from './components/emfe-radio/index';
+import Button from './components/emfe-button/index';
+import EmfePagination from './components/emfe-pagination/index';
+import EmfeSelect from './components/emfe-select/index';
 import EmfeModal from './components/emfe-modal/index';
 import EmfeCheckout from './components/emfe-checkout/index';
 import EmfeDrop from './components/emfe-drop/index';
@@ -39,14 +43,20 @@ const emfeCpt = {
   EmfeDrag,
   EmfeColor,
   EmfeInput,
-  EmfeButton,
+  EmfeButton: Button.EmfeButton,
+  EmfeButtonGroup: Button.EmfeButtonGroup,
   EmfeSwitch,
+  EmfeTitle,
+  EmfeRadio: Radio.EmfeRadio,
+  EmfeRadioGroup: Radio.EmfeRadioGroup,
   EmfeTable: Table.EmfeTable,
   EmfeTableHead: Table.EmfeTableHead,
   EmfeTableBody: Table.EmfeTableBody,
   EmfeDate,
   EmfeTime,
   EmfeDatetime,
+  EmfePagination,
+  EmfeSelect,
   EmfeCheckout,
   EmfeDrop,
   EmfeLink,

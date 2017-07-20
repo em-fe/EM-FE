@@ -142,6 +142,16 @@ module.exports = {
               },
             },
             {
+              title: 'Title标题',
+              icon: 'hotel',
+              routers: {
+                name: 'title',
+                query: {
+                  main: 3,
+                },
+              },
+            },
+            {
               title: '按钮',
               icon: 'hotel',
               routers: {
@@ -156,6 +166,16 @@ module.exports = {
               icon: 'hotel',
               routers: {
                 path: '/switch',
+                query: {
+                  main: 3,
+                },
+              },
+            },
+            {
+              title: 'radio单选框',
+              icon: 'hotel',
+              routers: {
+                path: 'radio',
                 query: {
                   main: 3,
                 },
@@ -238,6 +258,13 @@ module.exports = {
               },
             },
             {
+              title: '分页',
+              icon: 'hotel',
+              routers: {
+                path: 'pagination',
+              },
+            },
+            {
               title: '弹出框',
               icon: 'modal',
               routers: {
@@ -246,6 +273,13 @@ module.exports = {
                   main: 4,
                 },
               },
+            },
+            {
+              title: '下拉框',
+              icon: 'hotel',
+              routers: {
+                path: 'selectpage',
+              }
             },
             {
               title: '多选',

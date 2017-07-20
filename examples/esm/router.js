@@ -84,6 +84,11 @@ const router = new VueRouter({
       component: require('./components/CopyPage.vue'),
     },
     {
+      path: '/title',
+      name: 'title',
+      component: require('./components/TitlePage.vue'),
+    },
+    {
       path: '/button',
       name: 'button',
       component: require('./components/ButtonPage.vue'),
@@ -94,9 +99,24 @@ const router = new VueRouter({
       component: require('./components/SwitchPage.vue'),
     },
     {
+      path: '/radio',
+      name: 'radio',
+      component: require('./components/RadioPage.vue'),
+    },
+    {
       path: '/message',
       name: 'message',
       component: require('./components/MessagePage.vue'),
+    },
+    {
+      path: '/pagination',
+      name: 'pagination',
+      component: require('./components/PaginationPage.vue'),
+    },
+    {
+      path: '/selectPage',
+      name: 'selectpage',
+      component: require('./components/SelectPage.vue'),
     },
     {
       path: '/checkout',
