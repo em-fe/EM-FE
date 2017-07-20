@@ -2,13 +2,13 @@
   <!--<div class="page">分页</div>-->
    <div class="emfe-pagination">
     <ul>
-      <li :class="{disabled: curPage == 1}" @click="prevPage" v-if="pageCount > 1">上一页</li>
-      <li :class="{active: curPage == 1}" @click="page(1)">1</li>
-      <li class="ellipsis" v-show="curPage > 5 && pageCount > 10">...</li>
-      <li :class="{active: curPage == index+offset}" v-for="(item,index) in middlePages" @click="page(index+offset)">{{index+offset}}</li>
-      <li class="ellipsis" v-show="curPage < bigLimit && pageCount > 10">...</li>
-      <li :class="{active: curPage == pageCount}" @click="page(pageCount)" v-if="pageCount > 1">{{pageCount}}</li>
-      <li :class="{disabled: curPage == pageCount}" @click="nextPage" v-if="pageCount > 1">下一页</li>
+      <li class="emfe-pagination-item" :class="{disabled: curPage == 1}" @click="prevPage" v-if="pageCount > 1">上一页</li>
+      <li class="emfe-pagination-item" :class="{'emfe-pagination-item-on': curPage == 1}" @click="page(1)">1</li>
+      <li class="emfe-pagination-item" v-show="curPage > 5 && pageCount > 10">...</li>
+      <li class="emfe-pagination-item" :class="{'emfe-pagination-item-on': curPage == index+offset}" v-for="(item,index) in middlePages" @click="page(index+offset)">{{index+offset}}</li>
+      <li class="emfe-pagination-item" v-show="curPage < bigLimit && pageCount > 10">...</li>
+      <li class="emfe-pagination-item" :class="{'emfe-pagination-item-on': curPage == pageCount}" @click="page(pageCount)" v-if="pageCount > 1">{{pageCount}}</li>
+      <li class="emfe-pagination-item" :class="{disabled: curPage == pageCount}" @click="nextPage" v-if="pageCount > 1">下一页</li>
     </ul>
   </div>
 </template>

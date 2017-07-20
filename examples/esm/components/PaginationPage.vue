@@ -1,7 +1,7 @@
 <template>
-	<div class="page-demo">
-		<emfe-pagination :pageCount="pageCount" @togglePage="togglePage($event)"></emfe-pagination>
-	</div>
+  <div class="page-demo">
+    <emfe-pagination :pageCount="pageCount" @togglePage="togglePage($event)"></emfe-pagination>
+  </div>
 </template>
 
 <script>

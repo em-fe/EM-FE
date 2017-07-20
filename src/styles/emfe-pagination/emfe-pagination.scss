@@ -1,10 +1,11 @@
 .#{$prefix}pagination {
   clear: both;
 
-  & li {
+  &-item {
+    @include border();
+
     min-width: 30px;
     text-align: center;
-    border: 1px solid  $border-color;
     color: $text-color;
     padding: 0 5px;
     height: 30px;
@@ -13,16 +14,16 @@
     margin-left: 5px;
     cursor: pointer;
 
-    &li:nth-of-type(1) {
+    &:nth-of-type(1) {
       margin-left: 0;
     }
 
     &:hover {
-      border: 1px solid $btn-hover-color;
+      @include border(all, $btn-hover-color);
     }
 
-    &.active {
-      border: 1px solid $background-on-color;
+    &-on {
+      @include border(all, $background-on-color);
     }
   }
 }
