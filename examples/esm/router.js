@@ -99,6 +99,16 @@ const router = new VueRouter({
       component: require('./components/MessagePage.vue'),
     },
     {
+      path: '/pagination',
+      name: 'pagination',
+      component: require('./components/PaginationPage.vue'),
+    },
+    {
+      path: '/selectPage',
+      name: 'selectpage',
+      component: require('./components/SelectPage.vue'),
+    },
+    {
       path: '/checkout',
       name: 'checkout',
       component: require('./components/checkoutPage.vue'),

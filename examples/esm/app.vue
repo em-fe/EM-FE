@@ -228,6 +228,13 @@ module.exports = {
               },
             },
             {
+              title: '分页',
+              icon: 'hotel',
+              routers: {
+                path: 'pagination',
+              },
+            },
+            {
               title: '弹出框',
               icon: 'modal',
               routers: {
@@ -236,6 +243,13 @@ module.exports = {
                   main: 4,
                 },
               },
+            },
+            {
+              title: '下拉框',
+              icon: 'hotel',
+              routers: {
+                path: 'selectpage',
+              }
             },
             {
               title: '多选',

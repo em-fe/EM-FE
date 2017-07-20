@@ -15,6 +15,8 @@ import EmfeTime from './components/emfe-time/index';
 import EmfeDatetime from './components/emfe-datetime/index';
 import EmfeLink from './components/emfe-link/index';
 import EmfeSwitch from './components/emfe-switch/index';
+import EmfePagination from './components/emfe-pagination/index';
+import EmfeSelect from './components/emfe-select/index';
 import EmfeModal from './components/emfe-modal/index';
 import EmfeCheckout from './components/emfe-checkout/index';
 import EmfeDrop from './components/emfe-drop/index';
@@ -46,6 +48,8 @@ const emfeCpt = {
   EmfeDate,
   EmfeTime,
   EmfeDatetime,
+  EmfePagination,
+  EmfeSelect,
   EmfeCheckout,
   EmfeDrop,
   EmfeLink,
