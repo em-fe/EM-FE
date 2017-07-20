@@ -98,3 +98,92 @@ $input-disable-color: #f3f3f3;
 
 // 输入框禁止文字颜色
 $input-disable-text-color: #ccc;
+
+//---------------------------
+
+//品牌主色 默认 / 线框色 筛选标签 / 文字色 全局提示、标签、超链接文字 / 筛选标签色 选中边框 / 复选标签色 默认文字
+$brand-color-default: #1996f9;
+
+//品牌浅色 悬停 / 按钮边框色 悬停 / 筛选标签色 悬停边框 / 复选标签色 悬停
+$brand-color-hover: #50affa;
+
+//品牌重色 点击 / 按钮边框色 点击
+$brand-color-click: #147dd9;
+
+//品牌背景色 选中 / 背景色 全局提示/选择模板
+$brand-color-select: #f2f9ff;
+
+//辅助功能色 警告
+$auxiliary-color-warning: #fd883b;
+
+//辅助功能色 成功 / 文字色 收集中
+$auxiliary-color-success: #4cbd63;
+
+//辅助功能色 危险
+$auxiliary-color-danger: #ff4949;
+
+//按钮边框色 禁用
+$button-color-disable: #d8d8d8;
+
+//按钮边框色 默认 / 线框色 分割线、内容
+$button-color-default: #dcdcdc;
+
+//背景色 标题、列表字段
+$background-color-title: #f5f6fa;
+
+//背景色 勾选展开、搜索区
+$background-color-open: #f9f9fb;
+
+//背景色 主背景
+$background-color-main: #f4f4f4;
+
+//背景色 列表内容（单数行）/ 文字色 标签选中、填充色
+$background-color-write: #fff;
+
+//背景色 列表内容（偶数行）
+$background-color-even: #fefefe;
+
+//文字色 列表内容、标签、默认文字
+$text-color-default: #333;
+
+//文字色 一级、二级展开
+$text-color-Three: #454545;
+
+//文字色 三级展开
+$text-color-Three: #666;
+
+//文字色 列表字段、输入框默认、提示文字默认
+$text-color-prompt: #999;
+
+//文字色 复选标签 / 线框色 复选标签 / 复选标签色 选中文字
+$text-color-checkout: #ecb55d;
+
+//线框色 全局提示
+$border-color-prompt: #9dd1fe;
+
+//切换标签色 默认
+$switch-color-default: #dfe3e6;
+
+//切换标签色 选中
+$switch-color-selected: #607384;
+
+//切换标签色 悬停 
+$switch-color-hover: #e8ebed;
+
+//切换标签色 选中后悬停
+$switch-color-hovered: #909da9;
+
+//筛选标签色 默认
+$screen-color-default: #ededed;
+
+//筛选标签色 选中背景色 
+$screen-color-checked: #f0f3fa;
+
+//筛选标签色 悬停
+$screen-color-hover: #f2f2f2;
+
+//复选标签色 选中后悬停
+$checkout-color-hovered: #f1cb8d;
+
+//复选标签色 选中背景色
+$checkout-color-checked: #fffcf7;
