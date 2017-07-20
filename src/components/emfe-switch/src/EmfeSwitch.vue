@@ -56,8 +56,7 @@ export default {
       }
       const checked = !this.currentValue;
       this.currentValue = checked;
-      // console.log(checked);
-      return this.disabled;
+      this.$emit('toggle', checked);
     },
   },
 };
