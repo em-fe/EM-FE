@@ -1,6 +1,6 @@
 <template>
-  <button class="emfe-button" :class="buttonName" :disabled="disabled">
-   <emfe-icon v-if="type" :type="type" className="emfe-button-icon"></emfe-icon>
+  <button class="emfe-button" :disabled="disabled" @click="change" :class="buttonName">
+   <emfe-icon v-if="type" :type="type" class="emfe-button-icon"></emfe-icon>
     <span class="emfe-button-text" :class="textName">
       <slot></slot>
     </span>
@@ -10,6 +10,11 @@
 const prefixCls = 'emfe-button';
 export default {
   name: 'EmfeButton',
+  data() {
+    return {
+      status: false,
+    };
+  },
   props: {
     className: {
       type: String,
@@ -20,12 +25,16 @@ export default {
       default: '',
     },
     disabled: Boolean,
+    index: {
+      tyep: String,
+    },
   },
   computed: {
     buttonName() {
       return [
         {
           [`${prefixCls}-${this.className}`]: !!this.className,
+          [`${prefixCls}-button-on`]: !!this.status,
         },
       ];
     },
@@ -35,6 +44,13 @@ export default {
           [`${this.className}-button-text`]: !!this.className,
         },
       ];
+    },
+  },
+  methods: {
+    change() {
+      this.$parent.$children.forEach((element) => {
+        element.status = this.index === element.index;
+      });
     },
   },
 };
