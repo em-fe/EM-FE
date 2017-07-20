@@ -1,0 +1,41 @@
+.#{$prefix}panel {
+  background-color: #f5f6fa;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  &-box {
+    @include clearfix();
+
+    box-sizing: border-box;
+    padding: 0 16px;
+    margin-top: 24px;
+
+    &:first-child {
+      margin-top: 16px;
+    }
+
+    &-left {
+      float: left;
+      font-size: 14px;
+      color: #333;
+      letter-spacing: 0;
+    }
+
+    &-right {
+      float: right;
+      font-size: 14px;
+      color: #333;
+      letter-spacing: 0;
+    }
+
+    &-icon {
+      color: #1996f9;
+      margin-left: 16px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

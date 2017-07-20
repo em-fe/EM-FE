@@ -43,6 +43,12 @@
       </thead>
       <tbody>
         <tr>
+          <td>className</td>
+          <td>自定义class</td>
+          <td>String</td>
+          <td>默认为""</td>
+        </tr>
+        <tr>
           <td>columns</td>
           <td>表格thead数据</td>
           <td>Array</td>
@@ -71,6 +77,23 @@
           <td>需要type传 ‘true’，同时，data数据中row的value要传ture,row是确定那个td要合并，在该td下的td的text需要传""。</td>
           <td>Boolean</td>
           <td>false</td>
+        </tr>
+      </tbody>
+    </table>
+     <br><br>
+    <table style="width:100%;text-align:center" class="table">
+      <thead>
+        <tr>
+          <th width="33%">事件名</th>
+          <th width="33%">说明</th>
+          <th width="33%">返回值</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>jump事件</td>
+          <td>点击tr出发，返回值为tr的index</td>
+          <td>-</td>
         </tr>
       </tbody>
     </table>

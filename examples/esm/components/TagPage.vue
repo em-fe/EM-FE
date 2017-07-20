@@ -4,8 +4,8 @@
       <h3>切换标签</h3>
       <br>
       <emfe-tag-parent className="default">
-        <emfe-tag index="0">默认</emfe-tag>
-        <emfe-tag index="1" active=true>选中</emfe-tag>
+        <emfe-tag index="0" @tag="tag">默认</emfe-tag>
+        <emfe-tag index="1" active=true @tag="tag">选中</emfe-tag>
         <emfe-tag index="2" disable="true">禁止</emfe-tag>
       </emfe-tag-parent>
     </div>
@@ -93,10 +93,32 @@
         </tr>
       </tbody>
     </table>
+    <br><br>
+    <table style="width:100%;text-align:center" class="table">
+      <thead>
+        <tr>
+          <th width="33%">事件名</th>
+          <th width="33%">说明</th>
+          <th width="33%">返回值</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>tag</td>
+          <td>点击tag，返回当前tag的索引值</td>
+          <td>Number</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 <script>
 export default {
   name: 'tag-page',
+  methods:{
+    tag(index) {
+      console.log(index);
+    }
+  },
 };
 </script>

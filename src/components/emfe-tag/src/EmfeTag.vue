@@ -56,6 +56,7 @@ export default {
         return;
       }
       this.$parent.getIndex(this.index);
+      this.$emit('tag', this.index);
     },
   },
 };
