@@ -1,11 +1,9 @@
 <template>
   <div class="emfe-select" v-emfe-documentclick="close">
-    <input class="emfe-select-btn" type="text" :value="checkVals" readonly placeholder="" @click="inpcheck">
+    <input class="emfe-select-btn" type="text" :value="checkVals" readonly placeholder="请选择标签" @click="inpcheck">
     <div v-if="flagCheck" class="emfe-select-flag">
-      <div v-if="seleStu==='newList'">
-        <div class="emfe-select-custab">
-          <input type="text" class="emfe-select-custab-inp" v-model="newListVal"><span class="emfe-select-custab-btn" @click="newListBtn">确定</span>
-        </div>
+      <div class="emfe-select-custab">
+        <input type="text" placeholder="添加标签" class="emfe-select-custab-inp" v-model="newListVal"><span class="emfe-select-custab-btn" @click="newListBtn">保存</span>
       </div>
       <label v-for="item in checkList" class="emfe-select-label" v-if="type==='radio'">
         <span class="emfe-select-text">{{ item.name }}</span><input class="emfe-select-inpcheck" type="radio" v-model="checkVals" :value="item.name">
@@ -48,7 +46,8 @@ export default {
     },
     newListBtn() {
       const newdata = this.newListVal;
-      this.$emit('addData', newdata);
+      this.$emit('addDataCheck', newdata);
+      this.$emit('addDataRadio', newdata);
     },
     close() {
       this.checkList = [];

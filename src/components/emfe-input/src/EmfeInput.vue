@@ -1,5 +1,5 @@
 <template>
-  <div class="emfe-input">
+  <div :class="addClass">
     <div :class="[classList]" >
       <emfe-icon v-if="iconOk" :type="type" className="emfe-input-box-icon-el"></emfe-icon>
       <input type="text" v-bind="$props" :class={error:errOk} :value="currentValue" v-on:input="change" class="emfe-input-box-input">
@@ -22,7 +22,7 @@ export default {
       type: String,
       default: '',
     },
-    className: {
+    classAdd: {
       type: String,
       default: '',
     },
@@ -55,6 +55,14 @@ export default {
   computed: {
     classList() {
       return this.iconOk ? `${prefixCls}-icon` : `${prefixCls}`;
+    },
+    addClass() {
+      return [
+        {
+          'emfe-input': true,
+          [`${this.classAdd}-input`]: !!this.classAdd,
+        },
+      ];
     },
   },
   methods: {

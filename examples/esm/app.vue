@@ -112,6 +112,16 @@ module.exports = {
               },
             },
             {
+              title: 'tag标签',
+              icon: 'hotel',
+              routers: {
+                path: '/tag',
+                query: {
+                  main: 3,
+                },
+              },
+            },
+            {
               title: '导航',
               icon: 'hotel',
               routers: {

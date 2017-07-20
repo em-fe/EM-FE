@@ -2,6 +2,7 @@
   width: 100%;
   position: relative;
   background-color: $nothing-color;
+  border-radius: $radius-size;
 
   &::after {
     content: ' ';
@@ -27,6 +28,12 @@
     text-indent: 10px;
     padding: 0 30px 0 0;
     border: 1px solid $border-color;
+    border-radius: $radius-size;
+
+    &::-webkit-input-placeholder {
+      color: $text-color;
+      font-size: 14px;
+    }
   }
 
   &-label {
@@ -38,21 +45,23 @@
     clear: both;
 
     &:hover {
-      background: #fafafa;
+      background: $background-on-color;
     }
   }
 
   &-inpcheck {
     cursor: pointer;
-    margin: 10px 10px 0 0;
+    margin: 8px 10px 0 0;
     float: right;
+    height: 15px;
+    width: 15px;
   }
 
   &-text {
     height: 32px;
     line-height: 32px;
     display: inline-block;
-    max-width: 85%;
+    max-width: 88%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space:  nowrap;
@@ -65,28 +74,47 @@
     top: 32px;
     left: 0;
     background-color: $nothing-color;
-    border: 1px solid $border-color;
     z-index: 2;
     font-size: 12px;
     padding: 3px 0;
     border-top: none;
+    border-radius: $radius-size;
+    box-shadow: 0 5px 10px $shadow-color;
   }
 
   &-custab {
-    padding: 5px 10px;
+    padding: 5px;
     clear: both;
     line-height: 32px;
+    position: relative;
 
     &-inp {
       text-indent: 10px;
-      width: 85%;
       height: 32px;
+      border-radius: $radius-size;
+      border: 1px solid $border-color;
+      position: relative;
+      width: 96%;
+      margin: 5px 0;
+      left: 2%;
+      right: 2%;
+      z-index: 2;
+
+      &::-webkit-input-placeholder {
+        color: $text-color;
+        font-size: 14px;
+      }
     }
 
     &-btn {
       color: $background-active-color;
       float: right;
       cursor: pointer;
+      position: absolute;
+      top: 10px;
+      right: 7%;
+      z-index: 3;
+      font-size: 14px;
     }
   }
 }

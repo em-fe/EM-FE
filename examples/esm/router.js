@@ -118,6 +118,11 @@ const router = new VueRouter({
       name: 'drop',
       component: require('./components/DropPage.vue'),
     },
+    {
+      path: '/tag',
+      name: 'tag',
+      component: require('./components/TagPage.vue'),
+    },
   ],
 });
 

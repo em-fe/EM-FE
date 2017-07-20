@@ -1,23 +1,37 @@
 <template>
   <div class="page-select">
-    下拉框：<br>
-    多选：
-    <emfe-select :datas="data1" type="checkbox"></emfe-select>
+    <h2>下拉框：</h2>
+    <div style="margin-bottom:10px">
+    </style>多选：</div>
 
-    <div style="margin-top:120px">
+    <!--  -->
+    <emfe-select :datas="data1" type="checkbox"></emfe-select>
+    <!-- / -->
+
+    <div style="margin:90px 0 10px">
       单选：
     </div>
-    <emfe-select :datas="data2" type="radio"></emfe-select>
 
-    <div style="margin-top:120px">
+    <!--  -->
+    <emfe-select :datas="data2" type="radio"></emfe-select>
+    <!-- / -->
+
+    <div style="margin:90px 0 10px">
       带新建的多选
     </div>
-    <emfe-select :datas="data1" seleStu="newList" type="checkbox" v-on:addData="addDatas"></emfe-select>
 
-    <div style="margin-top:120px">
+    <!--  -->
+    <emfe-select :datas="data1" seleStu="newList" type="checkbox" v-on:addDataCheck="addDataCheck"></emfe-select>
+    <!-- / -->
+
+    <div style="margin:90px 0 10px">
       带新建的单选
     </div>
-    <emfe-select :datas="data2" seleStu="newList" type="radio" v-on:addData="addDatas"></emfe-select>
+
+    <!--  -->
+    <emfe-select :datas="data2" seleStu="newList" type="radio" v-on:addDataRadio="addDataRadio"></emfe-select>
+    <!-- / -->
+
   </div>
 </template>
 <script>
@@ -45,8 +59,11 @@ export default {
     };
   },
   methods: {
-    addDatas(nData) {
+    addDataCheck(nData) {
       this.data1.push({ name:nData });
+    },
+    addDataRadio(nData) {
+      this.data2.push({ name:nData });
     },
   },
 };
