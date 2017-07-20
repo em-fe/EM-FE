@@ -13,29 +13,29 @@
   transition: color 0.1s linear, background-color 0.1s linear, border 0.1s linear;
 
   &-default {
-    @include button-colors($title-color, $btn-hover-color, $btn-active-color, $border-color, $btn-hover-color, $btn-active-color);
+    @include button-colors($text-color-default, $brand-color-hover, $brand-color-click, $button-color-default, $brand-color-hover, $brand-color-click);
 
     &:disabled {
-      color: $nothing-color;
-      background: $border-color;
-      border-color: $border-color;
+      color: $background-color-write;
+      background: $button-color-default;
+      border-color: $button-color-default;
       cursor: no-drop;
     }
   }
 
   &-primary {
-    @include button-backgrounds($btn-color, $btn-hover-color, $btn-active-color);
+    @include button-backgrounds($brand-color-default, $brand-color-hover, $brand-color-click);
 
     &:disabled {
-      color: $nothing-color;
-      background: $border-color;
-      border-color: $border-color;
+      color: $background-color-write;
+      background: $button-color-default;
+      border-color: $button-color-default;
       cursor: no-drop;
     }
   }
 }
 
 .table td {
-  border-top: 1px solid $border-color;
+  border-top: 1px solid $button-color-default;
   padding: 10px 0;
 }
