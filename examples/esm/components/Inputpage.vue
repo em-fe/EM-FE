@@ -44,6 +44,12 @@
           <td>默认为'fasle'</td>
         </tr>
         <tr>
+          <td>classAdd</td>
+          <td>classAdd为自定义class</td>
+          <td>String</td>
+          <td>默认为''</td>
+        </tr>
+        <tr>
           <td>autofocus</td>
           <td>autofocus为 ‘true’时input输入框自动获取输入框，</td>
           <td>Boolead,String</td>
