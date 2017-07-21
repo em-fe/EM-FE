@@ -2589,7 +2589,7 @@ var Radio = {
 
 var prefixCls$6 = 'emfe-button';
 var EmfeButton = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('button',{staticClass:"emfe-button",class:_vm.buttonName,attrs:{"disabled":_vm.disabled},on:{"click":_vm.change}},[(_vm.type)?_c('emfe-icon',{staticClass:"emfe-button-icon",attrs:{"type":_vm.type}}):_vm._e(),_vm._v(" "),_c('span',{staticClass:"emfe-button-text",class:_vm.textName},[_vm._t("default")],2)],1)},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('button',{staticClass:"emfe-button",class:_vm.buttonName,attrs:{"disabled":_vm.disabled},on:{"click":function($event){$event.stopPropagation();_vm.change($event);}}},[(_vm.type)?_c('emfe-icon',{staticClass:"emfe-button-icon",attrs:{"type":_vm.type}}):_vm._e(),_vm._v(" "),_c('span',{staticClass:"emfe-button-text",class:_vm.textName},[_vm._t("default")],2)],1)},
 staticRenderFns: [],
   name: 'EmfeButton',
   data: function data() {
@@ -2633,11 +2633,13 @@ staticRenderFns: [],
     change: function change() {
       var this$1 = this;
 
+      var index = this.index ? this.index : 0;
       this.$parent.$children.forEach(function (element) {
         if (this$1.index) {
           element.status = this$1.index === element.index;
         }
       });
+      this.$emit('click', index);
     },
   },
 };
