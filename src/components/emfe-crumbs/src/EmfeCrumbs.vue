@@ -17,5 +17,6 @@
 <script>
 export default {
   name: 'crumbs',
-}
+};
+
 </script>

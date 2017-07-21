@@ -8,8 +8,6 @@
   &-left {
     float: left;
     margin-left: 24px;
-
-    & 
   }
 
   &-break {
@@ -20,10 +18,10 @@
   &-right {
     float: right;
 
-    & &-con{
+    & &-con {
       margin-left: 25px;
 
-      & .icon-page-icon{
+      & .icon-page-icon {
         color: $brand-color-default;
       }
     }

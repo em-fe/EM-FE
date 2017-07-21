@@ -1,7 +1,29 @@
 .#{$prefix}hottip {
-  color: #000;
+  color: $brand-color-default;
+  background: $brand-color-select;
+  border: 1px solid $brand-color-default;
+  padding: 12px 30px;
+  position: relative;
+  font-size: 12px;
+  word-break: break-all;
+  word-wrap: break-word;
+  line-height: 24px;
 
-  & .left {
-    color: #f00;
+  &-deg {
+    transform: rotate(180deg);
+  }
+
+  &-btn {
+    display: block;
+    position: absolute;
+    right: 14px;
+    top: 14px;
+    width: 16px;
+    height: 16px;
+
+    & .icon-page-icon {
+      font-size: 16px;
+      color: $brand-color-default;
+    }
   }
 }
