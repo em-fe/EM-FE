@@ -14,6 +14,16 @@ const router = new VueRouter({
       component: require('./components/LinkPage.vue'),
     },
     {
+      path: '/headerpage',
+      name: 'headerpage',
+      component: require('./components/HeaderPage.vue'),
+    },
+    {
+      path: '/footerpage',
+      name: 'footerpage',
+      component: require('./components/FooterPage.vue'),
+    },
+    {
       path: '/datepage',
       name: 'datepage',
       component: require('./components/DatePage.vue'),
@@ -84,6 +94,11 @@ const router = new VueRouter({
       component: require('./components/CopyPage.vue'),
     },
     {
+      path: '/title',
+      name: 'title',
+      component: require('./components/TitlePage.vue'),
+    },
+    {
       path: '/button',
       name: 'button',
       component: require('./components/ButtonPage.vue'),
@@ -94,9 +109,24 @@ const router = new VueRouter({
       component: require('./components/SwitchPage.vue'),
     },
     {
+      path: '/radio',
+      name: 'radio',
+      component: require('./components/RadioPage.vue'),
+    },
+    {
       path: '/message',
       name: 'message',
       component: require('./components/MessagePage.vue'),
+    },
+    {
+      path: '/pagination',
+      name: 'pagination',
+      component: require('./components/PaginationPage.vue'),
+    },
+    {
+      path: '/selectPage',
+      name: 'selectpage',
+      component: require('./components/SelectPage.vue'),
     },
     {
       path: '/checkout',
@@ -109,6 +139,7 @@ const router = new VueRouter({
       component: require('./components/DropPage.vue'),
     },
     {
+<<<<<<< HEAD
       path: '/textarea',
       name: 'textarea',
       component: require('./components/TextareaPage.vue'),
@@ -117,6 +148,16 @@ const router = new VueRouter({
       path: '/datapanel',
       name: 'datapanel',
       component: require('./components/DatapanelPage.vue'),
+=======
+      path: '/tag',
+      name: 'tag',
+      component: require('./components/TagPage.vue'),
+    },
+    {
+      path: '/panel',
+      name: 'panel',
+      component: require('./components/PanelPage.vue'),
+>>>>>>> up/dev
     },
   ],
 });

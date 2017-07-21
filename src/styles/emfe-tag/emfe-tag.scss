@@ -1,0 +1,160 @@
+.#{$prefix}tag {
+  display: inline-block;
+  box-sizing: border-box;
+  height: 32px;
+  line-height: 32px;
+  padding: 0 24px;
+  font-size: 14px;
+
+  &-default {
+    background: $switch-color-default;
+    color: $title-color;
+    letter-spacing: 0;
+
+    &:hover {
+      cursor: pointer;
+      background: $switch-color-hover;
+    }
+
+    &-disable {
+      background-color: #f5f5f5;
+      color: $button-color-disable;
+
+      &:hover {
+        background-color: #f5f5f5;
+        cursor: no-drop;
+      }
+    }
+
+    &-active {
+      background-color: $switch-color-selected;
+      color: $nothing-color;
+
+      &:hover {
+        background-color: $switch-color-hovered;
+      }
+    }
+  }
+
+  &-checket {
+    color: $border-on-color;
+    background: $nothing-color;
+    border: 1px solid $button-color-default;
+
+    &:hover {
+      color: $btn-hover-color;
+      cursor: pointer;
+    }
+
+    &-disable {
+      background: #f5f5f5;
+      border: 1px solid $button-color-default;
+      color: $button-color-disable;
+
+      &:hover {
+        cursor: no-drop;
+      }
+    }
+
+    &-active {
+      color: $text-color-checkout;
+
+      &:hover {
+        color: $text-color-checkout;
+        cursor: no-drop;
+      }
+    }
+  }
+
+  &-screen {
+    border: 1px solid transparent;
+    color: $title-color;
+    background-color: $screen-color-default;
+
+    &:hover {
+      background-color: $screen-color-hover;
+      cursor: pointer;
+    }
+
+    &-blue {
+      &-active {
+        position: relative;
+        background: $screen-color-checked;
+        border: 1px solid $border-on-color;
+        color: $border-on-color;
+
+        &:hover {
+          color: $btn-hover-color;
+          border: 1px solid $btn-hover-color;
+        }
+
+        &::after {
+          position: absolute;
+          display: block;
+          right: 0;
+          bottom: 0;
+          z-index: 99;
+          width: 10px;
+          height: 10px;
+          line-height: 10px;
+          text-align: center;
+          font-size: 12px;
+          content: '';
+          background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABPklEQVRYR+2V0VHDMBBEdyuADigBOiAl0AFQAbRCBYQOSAVQQtIBJUAFx2zm5JFN5Ehy5Hxgfcvzns53e8SZD8/MxyLwPytgZk8ALgG8zF4BM3sF8ODNv5lVYACXwzwCZqZy6+V30dj/AFg1r4DDPwDc/IGT26YCCfhOPUByK6FmAiPwFcnvUI0mArnwfQX88j2AHcnPqbuhBB4E1gAkoLMm+VgrUQoPAnr1bQStkqiBBwGNhyQuaiVq4d0UmFm1xBR4bwxrJPwbJVwcMprz3qiN9VRvDEsk/K4STjEbThH8YBDlSCTgG0+4LmRypulgEI1JJOBvJMOKzeF2d5JJmJB41/8dlL0afnQXJCTiF06CHxXQBZfQy68GtZ0MzxJwCXW6wuraJU4CzxaIJJ4BfJHU/jjJabKOS8wWgaUCv7GXprUjxZsQAAAAAElFTkSuQmCC) no-repeat;
+          background-size: 100% 100%;
+        }
+
+        & span {
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          width: 0;
+          height: 0;
+          border-bottom: 15px solid $btn-hover-color;
+          border-left: 20px solid transparent;
+        }
+      }
+    }
+
+    &-yellow {
+      &-active {
+        position: relative;
+        background: $checkout-color-checked;
+        border: 1px solid $text-color-checkout;
+        color: $text-color-checkout;
+
+        &:hover {
+          background: $checkout-color-checked;
+          border: 1px solid $checkout-color-hovered;
+          color: $checkout-color-hovered;
+        }
+
+        &::after {
+          position: absolute;
+          display: block;
+          right: -2px;
+          bottom: -2px;
+          z-index: 99;
+          width: 10px;
+          height: 10px;
+          line-height: 10px;
+          text-align: center;
+          font-size: 12px;
+          content: '';
+          background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABZklEQVRYR7WX7VHDMAxAnyaATWAD6AawCUwCm8AGLRuUTcoE5lScnkljW1Li/mwu954U68MCkFK6B96AZxE56X+jfimlW+ADeBWRo2T4HtAHR2A3SiLDlaUBa6A7FTgAD0XEQyRm8An3pQIauUrcjZKowL+BR8lnYJhEEy5yOguMkujBlXsR2FrCAr8S2ErCCl8UWCvhgVcFohJeeFPAKxGBdwWsElG4SaAnkat4aq9TVf81GcNc+VeGrQHU6Jj6mvZ2N9ycgU6zKr3NkU8vmTNgkHDD3RkozsP8m+uj0BR1ZaBy2stP4JYwCzRKTQXCo9wk0KrzHH54n+gKWJrMmqWmKWCBd6qjeyaqAh74GolFgQg8KnElsAYekVhaycKDpWwI1oM5X0o3gXsyUa7lm8KtEtPFZAjcJLFwNQtNtdYu0VhqzlczXSa0ld4AQ+CVTPyUVzOVeAeeLGtUL1rDZvUJvOj1/Bf7wUwe+vT2pQAAAABJRU5ErkJggg==) no-repeat;
+          background-size: 70% 70%;
+        }
+
+        & span {
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          width: 0;
+          height: 0;
+          border-bottom: 15px solid $text-color-checkout;
+          border-left: 20px solid transparent;
+        }
+      }
+    }
+  }
+}

@@ -82,10 +82,40 @@ module.exports = {
               },
             },
             {
+              title: '头部',
+              icon: 'hotel',
+              routers: {
+                path: '/headerpage',
+                query: {
+                  main: 3,
+                },
+              },
+            },
+            {
+              title: '底部',
+              icon: 'hotel',
+              routers: {
+                path: '/footerpage',
+                query: {
+                  main: 3,
+                },
+              },
+            },
+            {
               title: '超链',
               icon: 'hotel',
               routers: {
                 path: '/linkpage',
+                query: {
+                  main: 3,
+                },
+              },
+            },
+            {
+              title: '信息面板',
+              icon: 'hotel',
+              routers: {
+                path: '/panel',
                 query: {
                   main: 3,
                 },
@@ -112,10 +142,30 @@ module.exports = {
               },
             },
             {
+              title: 'tag标签',
+              icon: 'hotel',
+              routers: {
+                path: '/tag',
+                query: {
+                  main: 3,
+                },
+              },
+            },
+            {
               title: '导航',
               icon: 'hotel',
               routers: {
                 name: 'menu',
+                query: {
+                  main: 3,
+                },
+              },
+            },
+            {
+              title: 'Title标题',
+              icon: 'hotel',
+              routers: {
+                name: 'title',
                 query: {
                   main: 3,
                 },
@@ -142,6 +192,7 @@ module.exports = {
               },
             },
             {
+<<<<<<< HEAD
               title: '多行文本',
               icon: 'hotel',
               routers: {
@@ -156,6 +207,12 @@ module.exports = {
               icon: 'hotel',
               routers: {
                 path: '/datapanel',
+=======
+              title: 'radio单选框',
+              icon: 'hotel',
+              routers: {
+                path: 'radio',
+>>>>>>> up/dev
                 query: {
                   main: 3,
                 },
@@ -238,6 +295,13 @@ module.exports = {
               },
             },
             {
+              title: '分页',
+              icon: 'hotel',
+              routers: {
+                path: 'pagination',
+              },
+            },
+            {
               title: '弹出框',
               icon: 'modal',
               routers: {
@@ -246,6 +310,13 @@ module.exports = {
                   main: 4,
                 },
               },
+            },
+            {
+              title: '下拉框',
+              icon: 'hotel',
+              routers: {
+                path: 'selectpage',
+              }
             },
             {
               title: '多选',

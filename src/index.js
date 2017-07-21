@@ -4,23 +4,34 @@ import EmfeIcon from './components/emfe-icon/index';
 import EmfeTooltip from './components/emfe-tooltip/index';
 import EmfeTransition from './components/emfe-transition/index';
 import EmfeMenu from './components/emfe-menu/index';
+import EmfeHeader from './components/emfe-header/index';
+import EmfeFooter from './components/emfe-footer/index';
 import EmfeCopy from './components/emfe-copy/index';
 import EmfeUpload from './components/emfe-upload/index';
 import EmfeDrag from './components/emfe-drag/index';
 import EmfeColor from './components/emfe-color/index';
 import EmfeInput from './components/emfe-input/index';
-import EmfeButton from './components/emfe-button/index';
 import EmfeDate from './components/emfe-date/index';
 import EmfeTime from './components/emfe-time/index';
 import EmfeDatetime from './components/emfe-datetime/index';
 import EmfeLink from './components/emfe-link/index';
 import EmfeSwitch from './components/emfe-switch/index';
+import EmfeTitle from './components/emfe-title/index';
+import Radio from './components/emfe-radio/index';
+import Button from './components/emfe-button/index';
+import EmfePagination from './components/emfe-pagination/index';
+import EmfeSelect from './components/emfe-select/index';
 import EmfeModal from './components/emfe-modal/index';
 import EmfeCheckout from './components/emfe-checkout/index';
 import EmfeDrop from './components/emfe-drop/index';
 import Table from './components/emfe-table/index';
+<<<<<<< HEAD
 import EmfeTextarea from './components/emfe-textarea/index';
 import EmfeDatapanel from './components/emfe-datapanel/index';
+=======
+import Tag from './components/emfe-tag/index';
+import EmfePanel from './components/emfe-panel/index';
+>>>>>>> up/dev
 // 服务
 import EmfeMessage from './components/emfe-message/index';
 // 指令
@@ -34,24 +45,38 @@ const emfeCpt = {
   EmfeTransition,
   EmfeModal,
   EmfeMenu,
+  EmfeHeader,
+  EmfeFooter,
   EmfeCopy,
   EmfeUpload,
   EmfeDrag,
   EmfeColor,
   EmfeInput,
-  EmfeButton,
+  EmfeButton: Button.EmfeButton,
+  EmfeButtonGroup: Button.EmfeButtonGroup,
   EmfeSwitch,
+  EmfeTitle,
+  EmfeRadio: Radio.EmfeRadio,
+  EmfeRadioGroup: Radio.EmfeRadioGroup,
   EmfeTable: Table.EmfeTable,
   EmfeTableHead: Table.EmfeTableHead,
   EmfeTableBody: Table.EmfeTableBody,
   EmfeDate,
   EmfeTime,
   EmfeDatetime,
+  EmfePagination,
+  EmfeSelect,
   EmfeCheckout,
   EmfeDrop,
   EmfeLink,
+<<<<<<< HEAD
   EmfeTextarea,
   EmfeDatapanel,
+=======
+  EmfeTag: Tag.EmfeTag,
+  EmfeTagParent: Tag.EmfeTagParent,
+  EmfePanel,
+>>>>>>> up/dev
 };
 
 const emfeDir = {

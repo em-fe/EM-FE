@@ -1,8 +1,8 @@
 <template>
-  <div class="emfe-input">
+  <div class="emfe-input" :class="addClass">
     <div :class="[classList]" >
-      <emfe-icon v-if="iconOk" :type="type" className="emfe-input-box-icon-el"></emfe-icon>
-      <input type="text" v-bind="$props" :class={error:errOk} :value="currentValue" v-on:input="change" class="emfe-input-box-input">
+      <emfe-icon v-if="iconOk" :type="iconType" className="emfe-input-box-icon-el"></emfe-icon>
+      <input :type="type" v-bind="$props" :class={error:errOk} :value="currentValue" v-on:input="change" class="emfe-input-box-input">
     </div>
     <div class="emfe-input-box-text" v-if="errOk"><slot name="error"></slot></div>
   </div>
@@ -42,9 +42,13 @@ export default {
       type: [Boolean],
       default: false,
     },
+    iconType: {
+      type: String,
+      default: '',
+    },
     type: {
       type: String,
-      default: 'qr',
+      default: 'text',
     },
   },
   data() {
@@ -55,6 +59,13 @@ export default {
   computed: {
     classList() {
       return this.iconOk ? `${prefixCls}-icon` : `${prefixCls}`;
+    },
+    addClass() {
+      return [
+        {
+          [`${this.className}-input`]: !!this.className,
+        },
+      ];
     },
   },
   methods: {
