@@ -63,6 +63,8 @@
               type="default"<br>
     <!-- / -->
 
+    <h2>不可点击的数据添加上一条 disabled: 'disabled' 的字段，可点的字段不加</h2>
+
   </div>
 </template>
 <script>
@@ -73,7 +75,8 @@ export default {
       datas: '',
       data1: [
         {
-          name: 'wefajlrjgakdjsdklfgjk;djfkldjfgkljfjdhjklhsdfjgkshdkljaiursfajkds',
+          name: 'wefajlrjgakdjsdklfgjkdjfkldjfgkljfjdhjklhsdfjgkshdkljaiursfajkds',
+          disabled: 'disabled',
         },
         {
           name: '88888',
@@ -84,12 +87,18 @@ export default {
           name: '666',
         },
         {
-          name: '6666666',
+          name: 'sfafgdgsdf',
+          disabled: 'disabled',
+        },
+        {
+          name: 'ergdsf',
+          disabled: 'disabled',
         },
       ],
       data3: [
         {
           name: 'default',
+          disabled: 'disabled',
         },
         {
           name: '一夜暴富',

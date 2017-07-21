@@ -138,6 +138,16 @@ const router = new VueRouter({
       name: 'panel',
       component: require('./components/PanelPage.vue'),
     },
+    {
+      path: '/crumbs',
+      name: 'crumbspage',
+      component: require('./components/CrumbsPage.vue'),
+    },
+    {
+      path: '/hottip',
+      name: 'hottippage',
+      component: require('./components/HottipPage.vue'),
+    },
   ],
 });
 

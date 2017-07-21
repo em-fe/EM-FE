@@ -25,6 +25,8 @@ import EmfeDrop from './components/emfe-drop/index';
 import Table from './components/emfe-table/index';
 import Tag from './components/emfe-tag/index';
 import EmfePanel from './components/emfe-panel/index';
+import EmfeHottip from './components/emfe-hottip/index';
+import EmfeCrumbs from './components/emfe-crumbs/index';
 // 服务
 import EmfeMessage from './components/emfe-message/index';
 // 指令
@@ -63,6 +65,8 @@ const emfeCpt = {
   EmfeTag: Tag.EmfeTag,
   EmfeTagParent: Tag.EmfeTagParent,
   EmfePanel,
+  EmfeCrumbs,
+  EmfeHottip,
 };
 
 const emfeDir = {
