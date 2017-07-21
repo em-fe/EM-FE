@@ -1,10 +1,18 @@
 <template>
   <div>
     <button @click="show = true">我是弹出框，点我呀！</button>
-    <emfe-modal :show="show" :title="title" @close="close" @cancel="cancel" @ok="ok">
-        <div slot="modal-main">
-          我是内容内容内容内容内容
+    <!-- <emfe-modal :show="show" :title="deteleTitle" @close="close" @cancel="cancel" @ok="ok">
+        <div slot="modal-main" class="emfe-modal-main-title">
+          确认删除表单数据？
         </div>
+    </emfe-modal> -->
+    <emfe-modal :show="show" :title="copyTitle" :width="width" @close="close" @cancel="cancel" @ok="ok">
+      <div slot="modal-main" className="form">
+        <div class="emfe-modal-main-input">
+          <h6 class="emfe-modal-main-input-title">标题</h6>
+          <emfe-input placeholder="表单标题"></emfe-input>
+        </div>
+      </div>
     </emfe-modal>
     <br>
     <br>
@@ -78,7 +86,9 @@ export default {
   data() {
     return {
       show: false,
-      title: 'EM-FE项目组',
+      deteleTitle: '删除确认',
+      copyTitle: '复制表单',
+      width: 691,
     };
   },
   methods: {

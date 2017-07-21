@@ -19,6 +19,8 @@ import EmfeModal from './components/emfe-modal/index';
 import EmfeCheckout from './components/emfe-checkout/index';
 import EmfeDrop from './components/emfe-drop/index';
 import Table from './components/emfe-table/index';
+import EmfeTextarea from './components/emfe-textarea/index';
+import EmfeDatapanel from './components/emfe-datapanel/index';
 // 服务
 import EmfeMessage from './components/emfe-message/index';
 // 指令
@@ -48,6 +50,8 @@ const emfeCpt = {
   EmfeCheckout,
   EmfeDrop,
   EmfeLink,
+  EmfeTextarea,
+  EmfeDatapanel,
 };
 
 const emfeDir = {

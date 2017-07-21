@@ -1,0 +1,10 @@
+.#{$prefix}textarea {
+  width: 100%;
+
+  &-wrap {
+    width: 670px;
+    height: 128px;
+    padding: 8px;
+    line-height: 19px;
+  }
+}

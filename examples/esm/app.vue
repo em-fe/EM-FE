@@ -141,6 +141,26 @@ module.exports = {
                 },
               },
             },
+            {
+              title: '多行文本',
+              icon: 'hotel',
+              routers: {
+                path: '/textarea',
+                query: {
+                  main: 3,
+                },
+              },
+            },
+            {
+              title: '数据模板',
+              icon: 'hotel',
+              routers: {
+                path: '/datapanel',
+                query: {
+                  main: 3,
+                },
+              },
+            },
           ],
         },
         {
