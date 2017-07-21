@@ -1,18 +1,19 @@
 <template>
   <div>
-    <button @click="show = true">我是弹出框，点我呀！</button>
-    <!-- <emfe-modal :show="show" :title="deteleTitle" @close="close" @cancel="cancel" @ok="ok">
-        <div slot="modal-main" class="emfe-modal-main-title">
-          确认删除表单数据？
-        </div>
-    </emfe-modal> -->
-    <emfe-modal :show="show" :title="copyTitle" :width="width" @close="close" @cancel="cancel" @ok="ok">
+    <button @click="formBtn">我是表单弹出框，点我呀！</button>
+    <emfe-modal :show="formShow" :title="copyTitle" :width="width" @close="formClose" @cancel="formCancel" @ok="formOk">
       <div slot="modal-main" className="form">
         <div class="emfe-modal-main-input">
           <h6 class="emfe-modal-main-input-title">标题</h6>
           <emfe-input placeholder="表单标题"></emfe-input>
         </div>
       </div>
+    </emfe-modal>
+    <button @click="promptBtn">我是提示弹出框，点我呀！</button>
+    <emfe-modal :show="promptShow" :title="deteleTitle" @close="promptClose" @cancel="promptCancel" @ok="promptOk">
+        <div slot="modal-main" class="emfe-modal-main-prompt">
+          确认删除表单数据？
+        </div>
     </emfe-modal>
     <br>
     <br>
@@ -85,21 +86,37 @@ export default {
   name: "modalPage",
   data() {
     return {
-      show: false,
+      formShow: false,
+      promptShow: false,
       deteleTitle: '删除确认',
       copyTitle: '复制表单',
       width: 691,
     };
   },
   methods: {
-    close() {
-      this.show = false;
+    formBtn() {
+      this.formShow = true;
     },
-    cancel() {
-      this.show = false;
+    formClose() {
+      this.formShow = false;
     },
-    ok() {
-      this.show = false;
+    formCancel() {
+      this.formShow = false;
+    },
+    formOk() {
+      this.formShow = false;
+    },
+    promptBtn() {
+      this.promptShow = true;
+    },
+    promptClose() {
+      this.promptShow = false;
+    },
+    promptCancel() {
+      this.promptShow = false;
+    },
+    promptOk() {
+      this.promptShow = false;
     },
   },
 }
