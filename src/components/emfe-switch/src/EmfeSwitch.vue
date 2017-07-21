@@ -51,12 +51,11 @@ export default {
   },
   methods: {
     toggle() {
-      if (this.disabled) {
-        return false;
+      if (!this.disabled) {
+        const checked = !this.currentValue;
+        this.currentValue = checked;
+        this.$emit('toggle', checked);
       }
-      const checked = !this.currentValue;
-      this.currentValue = checked;
-      this.$emit('toggle', checked);
     },
   },
 };

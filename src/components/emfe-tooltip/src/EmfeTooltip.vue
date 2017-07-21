@@ -65,11 +65,11 @@ export default {
     },
     offset: {
       type: [Number, String],
-      default: 16,
+      default: 8,
     },
     delay: {
       type: [Number, String],
-      default: 0,
+      default: 100,
     },
     placement: {
       validator(value) {

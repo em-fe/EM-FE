@@ -1,0 +1,40 @@
+$header-height: 64px;
+
+.#{$prefix}header {
+  @include clearfix();
+  @include box-shadow(y);
+  @include border(bottom);
+
+  height: $header-height;
+  background: #fff;
+  position: relative;
+  z-index: 2;
+
+  &-eye {
+    padding: 12px 0 12px 32px;
+    float: left;
+    height: $header-height;
+  }
+
+  &-sidebar {
+    padding-left: 12px;
+    font-size: 16px;
+    color: $text-color;
+  }
+
+  &-info {
+    float: right;
+    padding: 0 32px;
+    font-size: 14px;
+    line-height: $header-height;
+    display: flex;
+  }
+
+  &-account {
+    padding-right: 24px;
+  }
+
+  &-signout {
+    padding-left: 12px;
+  }
+}

@@ -4,6 +4,8 @@ import EmfeIcon from './components/emfe-icon/index';
 import EmfeTooltip from './components/emfe-tooltip/index';
 import EmfeTransition from './components/emfe-transition/index';
 import EmfeMenu from './components/emfe-menu/index';
+import EmfeHeader from './components/emfe-header/index';
+import EmfeFooter from './components/emfe-footer/index';
 import EmfeCopy from './components/emfe-copy/index';
 import EmfeUpload from './components/emfe-upload/index';
 import EmfeDrag from './components/emfe-drag/index';
@@ -38,6 +40,8 @@ const emfeCpt = {
   EmfeTransition,
   EmfeModal,
   EmfeMenu,
+  EmfeHeader,
+  EmfeFooter,
   EmfeCopy,
   EmfeUpload,
   EmfeDrag,
