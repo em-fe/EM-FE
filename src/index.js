@@ -4,6 +4,8 @@ import EmfeIcon from './components/emfe-icon/index';
 import EmfeTooltip from './components/emfe-tooltip/index';
 import EmfeTransition from './components/emfe-transition/index';
 import EmfeMenu from './components/emfe-menu/index';
+import EmfeHeader from './components/emfe-header/index';
+import EmfeFooter from './components/emfe-footer/index';
 import EmfeCopy from './components/emfe-copy/index';
 import EmfeUpload from './components/emfe-upload/index';
 import EmfeDrag from './components/emfe-drag/index';
@@ -23,6 +25,8 @@ import EmfeModal from './components/emfe-modal/index';
 import EmfeCheckout from './components/emfe-checkout/index';
 import EmfeDrop from './components/emfe-drop/index';
 import Table from './components/emfe-table/index';
+import EmfeTextarea from './components/emfe-textarea/index';
+import EmfeDatapanel from './components/emfe-datapanel/index';
 import Tag from './components/emfe-tag/index';
 import EmfePanel from './components/emfe-panel/index';
 import EmfeHottip from './components/emfe-hottip/index';
@@ -40,6 +44,8 @@ const emfeCpt = {
   EmfeTransition,
   EmfeModal,
   EmfeMenu,
+  EmfeHeader,
+  EmfeFooter,
   EmfeCopy,
   EmfeUpload,
   EmfeDrag,
@@ -62,6 +68,8 @@ const emfeCpt = {
   EmfeCheckout,
   EmfeDrop,
   EmfeLink,
+  EmfeTextarea,
+  EmfeDatapanel,
   EmfeTag: Tag.EmfeTag,
   EmfeTagParent: Tag.EmfeTagParent,
   EmfePanel,

@@ -82,6 +82,26 @@ module.exports = {
               },
             },
             {
+              title: '头部',
+              icon: 'hotel',
+              routers: {
+                path: '/headerpage',
+                query: {
+                  main: 3,
+                },
+              },
+            },
+            {
+              title: '底部',
+              icon: 'hotel',
+              routers: {
+                path: '/footerpage',
+                query: {
+                  main: 3,
+                },
+              },
+            },
+            {
               title: '超链',
               icon: 'hotel',
               routers: {
@@ -166,6 +186,26 @@ module.exports = {
               icon: 'hotel',
               routers: {
                 path: '/switch',
+                query: {
+                  main: 3,
+                },
+              },
+            },
+            {
+              title: '多行文本',
+              icon: 'hotel',
+              routers: {
+                path: '/textarea',
+                query: {
+                  main: 3,
+                },
+              },
+            },
+            {
+              title: '数据模板',
+              icon: 'hotel',
+              routers: {
+                path: '/datapanel',
                 query: {
                   main: 3,
                 },

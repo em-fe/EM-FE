@@ -1,7 +1,7 @@
 <template>
   <div class="emfe-box" >
     <div :class="className">
-      <table v-if="columns.length" class="emfe-box-table" :class="classTable" :width="width">
+      <table v-if="columns.length" class="emfe-box-table" :class="[classTable, classAdd]" :width="width">
         <slot name="head"></slot>
         <tbody>
           <slot name="body"></slot>
@@ -40,10 +40,17 @@ export default {
         return [];
       },
     },
+    classAddName: {
+      type: String,
+      default: '',
+    },
   },
   computed: {
     className() {
       return this.type && this.columns.length > 0 ? `${prefixCls}-overflow` : `${prefixCls}-fixed`;
+    },
+    classAdd() {
+      return this.classAddName ? `${this.classAddName}-table` : '';
     },
     classTable() {
       return this.type && this.columns.length > 0 ? `${prefixCls}-overflow-table` : `${prefixCls}-fixed-table`;

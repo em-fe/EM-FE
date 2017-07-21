@@ -1,15 +1,12 @@
 <template>
-  <div class="emfe-title" :class="titleName">
-    <div class="emfe-title-panel">
-      <slot></slot>
-    </div>
+  <div class="emfe-textarea">
+    <textarea class="emfe-textarea-wrap" :class="textereaName"></textarea>
   </div>
 </template>
 <script>
-const prefixCls = 'emfe-title';
-
+const prefixCls = 'emfe-textarea';
 export default {
-  name: 'EmfeTitle',
+  name: 'EmfeTextarea',
   props: {
     className: {
       type: String,
@@ -17,7 +14,7 @@ export default {
     },
   },
   computed: {
-    titleName() {
+    textereaName() {
       return [
         {
           [`${prefixCls}-${this.className}`]: !!this.className,

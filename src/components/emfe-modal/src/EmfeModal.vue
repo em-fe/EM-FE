@@ -2,23 +2,22 @@
   <div class="emfe-modal" v-if="show">
     <div class="emfe-modal-mask"></div>
     <div class="emfe-modal-wrap" :style="{width: `${width}px`}">
-      <div class="emfe-modal-icon">
-        <div class="emfe-modal-icon-close" @click="closeModal">X</div>
-      </div>
       <div class="emfe-modal-header">
         <div class="emfe-modal-header-inner">{{ title }}</div>
+        <div class="emfe-modal-header-close" @click="closeModal">＋</div>
       </div>
       <div class="emfe-modal-main">
-        <slot name="modal-main"></slot>
+        <slot name="modal-main" :class="mainName"></slot>
       </div>
       <div class="emfe-modal-footer">
-        <div class="emfe-modal-btn" @click="cancel">取消</div>
-        <div class="emfe-modal-btn" @click="ok">确定</div>
+        <div class="emfe-modal-btn emfe-modal-btn-cancel" @click="cancel">取消</div>
+        <div class="emfe-modal-btn emfe-modal-btn-ok" @click="ok">确定</div>
       </div>
     </div>
   </div>
 </template>
 <script>
+const prefixCls = 'emfe-modal';
 export default {
   name: 'EmfeModal',
   props: {
@@ -28,9 +27,22 @@ export default {
     },
     width: {
       type: Number,
-      default: 800,
+      default: 440,
     },
     title: String,
+    className: {
+      type: String,
+      default: '',
+    },
+  },
+  computed: {
+    mainName() {
+      return [
+        {
+          [`${prefixCls}-main-${this.className}`]: !!this.className,
+        },
+      ];
+    },
   },
   methods: {
     cancel() {

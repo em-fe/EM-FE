@@ -1,28 +1,51 @@
 .#{$prefix}checkout {
-  width: 100%;
+  overflow: hidden;
 
   &-box {
-    margin-top: 10px;
     display: flex;
+    align-items: center;
+    overflow: hidden;
 
     &-input {
-      width: 15px;
-      height: 15px;
+      width: 16px;
+      height: 16px;
+      display: block;
+      margin: 0;
     }
 
     &-span {
+      flex: 1;
       font-size: 14px;
+      color: $text-color-default;
+      display: block;
+      line-height: 16px;
+      margin-left: 8px;
     }
+  }
+
+  &-inline {
+    float: left;
+    margin-right: 15px;
   }
 
   &-slide {
     width: 100%;
     margin-left: 8px;
+    overflow: hidden;
 
-    &-box {
+    &-wrap {
+      width: 100%;
       height: auto;
-      background: #f8f8f8;
-      padding: 10px;
+      padding-top: 12px;
+
+      @include border(left, $button-color-default, 1px, dashed);
+
+      &-open {
+        height: auto;
+        padding: 16px;
+        background: $background-color-open;
+        overflow: hidden;
+      }
     }
   }
 }

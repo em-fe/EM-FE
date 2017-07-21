@@ -28,13 +28,19 @@ export default {
     index: {
       tyep: String,
     },
+    statu: {
+      tyep: Boolean,
+    },
+  },
+  created() {
+    this.status = this.statu;
   },
   computed: {
     buttonName() {
       return [
         {
           [`${prefixCls}-${this.className}`]: !!this.className,
-          [`${prefixCls}-button-on`]: !!this.status,
+          [`${prefixCls}-on`]: !!this.status,
         },
       ];
     },
@@ -49,7 +55,9 @@ export default {
   methods: {
     change() {
       this.$parent.$children.forEach((element) => {
-        element.status = this.index === element.index;
+        if (this.index) {
+          element.status = this.index === element.index;
+        }
       });
     },
   },

@@ -17,11 +17,11 @@
     }
 
     &-disable {
-      background-color: #f5f5f5;
-      color: $button-color-disable;
+      background-color: $background-color-disable;
+      color: $background-color-disable;
 
       &:hover {
-        background-color: #f5f5f5;
+        background-color: $background-color-disable;
         cursor: no-drop;
       }
     }
@@ -47,9 +47,9 @@
     }
 
     &-disable {
-      background: #f5f5f5;
+      background: $background-color-disable;
       border: 1px solid $button-color-default;
-      color: $button-color-disable;
+      color: $background-color-disable;
 
       &:hover {
         cursor: no-drop;

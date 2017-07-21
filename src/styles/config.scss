@@ -12,8 +12,6 @@ $ionicons-font-path: './iconfont/fonts';
 $ionicons-font-family: 'Ionicons';
 $ionicons-version: 'vjtjwq';
 // tooltip 颜色
-$tooltip-dark-color: rgba(70, 76, 91, 0.9);
-$tooltip-light-color: rgba(25, 166, 0, 0.9);
 $tooltip-arrow-size: 5px;
 // 一级菜单宽度，大屏小屏
 $menu-md-width: 155px;
@@ -59,9 +57,6 @@ $background-on-color: #f2f9ff;
 
 // 边框选中颜色
 $background-active-color: #1996f9;
-
-// 下拉题目的颜色
-$background-twobar-color: #f4f4f4;
 
 // 成功颜色
 $color-success: #82c500;
@@ -122,9 +117,6 @@ $auxiliary-color-success: #4cbd63;
 //辅助功能色 危险
 $auxiliary-color-danger: #ff4949;
 
-//按钮边框色 禁用
-$button-color-disable: #d8d8d8;
-
 //按钮边框色 默认 / 线框色 分割线、内容
 $button-color-default: #dcdcdc;
 
@@ -136,6 +128,9 @@ $background-color-open: #f9f9fb;
 
 //背景色 主背景
 $background-color-main: #f4f4f4;
+
+//背景色 禁用
+$background-color-disable: #f5f5f5;
 
 //背景色 列表内容（单数行）/ 文字色 标签选中、填充色
 $background-color-write: #fff;
@@ -152,6 +147,9 @@ $text-color-Three: #454545;
 //文字色 三级展开
 $text-color-Three: #666;
 
+//文字色 禁用
+$text-color-disable: #d8d8d8;
+
 //文字色 列表字段、输入框默认、提示文字默认
 $text-color-prompt: #999;
 
@@ -167,7 +165,7 @@ $switch-color-default: #dfe3e6;
 //切换标签色 选中
 $switch-color-selected: #607384;
 
-//切换标签色 悬停 
+//切换标签色 悬停
 $switch-color-hover: #e8ebed;
 
 //切换标签色 选中后悬停
@@ -176,7 +174,7 @@ $switch-color-hovered: #909da9;
 //筛选标签色 默认
 $screen-color-default: #ededed;
 
-//筛选标签色 选中背景色 
+//筛选标签色 选中背景色
 $screen-color-checked: #f0f3fa;
 
 //筛选标签色 悬停

@@ -14,6 +14,16 @@ const router = new VueRouter({
       component: require('./components/LinkPage.vue'),
     },
     {
+      path: '/headerpage',
+      name: 'headerpage',
+      component: require('./components/HeaderPage.vue'),
+    },
+    {
+      path: '/footerpage',
+      name: 'footerpage',
+      component: require('./components/FooterPage.vue'),
+    },
+    {
       path: '/datepage',
       name: 'datepage',
       component: require('./components/DatePage.vue'),
@@ -127,6 +137,16 @@ const router = new VueRouter({
       path: '/drop',
       name: 'drop',
       component: require('./components/DropPage.vue'),
+    },
+    {
+      path: '/textarea',
+      name: 'textarea',
+      component: require('./components/TextareaPage.vue'),
+    },
+    {
+      path: '/datapanel',
+      name: 'datapanel',
+      component: require('./components/DatapanelPage.vue'),
     },
     {
       path: '/tag',

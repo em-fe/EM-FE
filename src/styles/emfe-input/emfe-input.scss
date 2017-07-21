@@ -72,6 +72,6 @@
   }
 
   & .error {
-    @include border(all,#ff4949);
+    @include border(all,$color-danger);
   }
 }
