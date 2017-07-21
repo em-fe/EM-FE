@@ -391,12 +391,6 @@ module.exports = {
 };
 </script>
 <style lang="scss">
-.main-menu {
-  position: fixed;
-  top: 88px;
-  left: 0;
-  height: 100%;
-}
 .warp {
   border: 1px solid #dcdcdc;
   height: 2000px;

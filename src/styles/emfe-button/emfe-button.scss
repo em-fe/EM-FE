@@ -15,8 +15,9 @@
     @include button-colors($text-color-default, $brand-color-hover, $brand-color-click, $button-color-default, $brand-color-hover, $brand-color-click);
 
     &:disabled {
-      background: #f5f5f5;
-      border-color: #f5f5f5;
+      color: $background-color-disable;
+      background: $background-color-disable;
+      border-color: $background-color-disable;
       cursor: no-drop;
     }
   }
@@ -25,8 +26,9 @@
     @include button-backgrounds($brand-color-default, $brand-color-hover, $brand-color-click);
 
     &:disabled {
-      background: #f5f5f5;
-      border-color: #f5f5f5;
+      color: $background-color-disable;
+      background: $background-color-disable;
+      border-color: $background-color-disable;
       cursor: no-drop;
     }
   }
