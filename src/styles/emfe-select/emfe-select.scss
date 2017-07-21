@@ -42,12 +42,13 @@
   }
 
   &-label {
+    @include clearfix();
+
     height: 32px;
     cursor: pointer;
     line-height: 32px;
     margin: 0;
     display: block;
-    clear: both;
     padding-left: 10px;
 
     &:hover {
@@ -84,8 +85,9 @@
   }
 
   &-custab {
+    @include clearfix();
+
     padding: 5px 10px;
-    clear: both;
     line-height: 32px;
     position: relative;
 
