@@ -16,6 +16,7 @@ export default {
   data() {
     return {
       className: this.$parent.className,
+      classAdd: this.$parent.classAdd,
       column: this.$parent.columns,
       data: this.$parent.data,
       current: 0,
@@ -35,10 +36,20 @@ export default {
   },
   computed: {
     classTr() {
-      return `${this.className}-table-body-tr`;
+      return [
+        `${this.className}-table-body-tr`,
+        {
+          [`${this.$parent.classAdd}-tbody-tr`]: !!this.classAdd,
+        },
+      ];
     },
     classTd() {
-      return `${this.className}-table-body-tr-td`;
+      return [
+        `${this.className}-table-body-tr-td`,
+        {
+          [`${this.$parent.classAdd}-tbody-tr-td`]: !!this.classAdd,
+        },
+      ];
     },
     rowSpan() {
       for (let o = 0; o < this.column.length; o++) {
