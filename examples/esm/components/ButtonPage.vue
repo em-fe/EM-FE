@@ -4,8 +4,8 @@
     <br>
     <br>
     <br>
-    <emfe-button className="default" :disabled="false">白底</emfe-button>
-    <emfe-button className="default" :disabled="true">白底禁用</emfe-button>
+    <emfe-button class="emfe-button-default" :disabled="false">白底</emfe-button>
+    <emfe-button class="emfe-button-default" :disabled="true">白底禁用</emfe-button>
     <pre>
       <code>
         <span>&lt;</span><span>emfe-button</span> <span>className</span><span>=</span><span>"default"</span> <span>:disabled</span><span>=</span><span>"false"</span><span>&gt;</span>白底<span>&lt;/emfe-button&gt;</span>
@@ -15,8 +15,8 @@
       </code>
     </pre>
     <br>
-    <emfe-button className="primary" :disabled="false">蓝底</emfe-button>
-    <emfe-button className="primary" :disabled="true">蓝底禁用</emfe-button>
+    <emfe-button class="emfe-button-primary" :disabled="false">蓝底</emfe-button>
+    <emfe-button class="emfe-button-primary" :disabled="true">蓝底禁用</emfe-button>
     <pre>
       <code>
         <span>&lt;</span><span>emfe-button</span> <span>className</span><span>=</span><span>"primary"</span> <span>:disabled</span><span>=</span><span>"false"</span><span>&gt;</span>蓝底<span>&lt;/emfe-button&gt;</span>
@@ -26,8 +26,8 @@
       </code>
     </pre>
     <br>
-    <emfe-button className="default" type="hint">带有图标</emfe-button>
-    <emfe-button className="default" type="site" :disabled="true">带有图标禁用</emfe-button>
+    <emfe-button class="emfe-button-default" type="hint">带有图标</emfe-button>
+    <emfe-button class="emfe-button-default" type="site" :disabled="true">带有图标禁用</emfe-button>
     <pre>
       <code>
         <span>&lt;</span><span>emfe-button</span> <span>className</span><span>=</span><span>"default"</span> <span>type</span><span>=</span><span>"hint"</span><span>&gt;</span>带有图标<span>&lt;/emfe-button&gt;</span>
@@ -38,9 +38,40 @@
     </pre>
     <br>
     <emfe-button-group>
-      <emfe-button className="default" index="0">上下布局</emfe-button>
-      <emfe-button className="default" index="1">左右布局</emfe-button>
+      <emfe-button index="0" statu='true'>上下布局</emfe-button>
+      <emfe-button index="1">左右布局</emfe-button>
     </emfe-button-group>
+    <pre>
+      <code>
+        <span>&lt;emfe-button-group&gt;</span>
+          <span>&lt;</span><span>emfe-button</span> <span>index</span><span>=</span><span>"0"</span> <span>statu</span><span>=</span><span>"true"</span><span>&gt;</span>上下布局<span>&lt;/emfe-button&gt;</span>
+          <span>&lt;</span><span>emfe-button</span> <span>index</span><span>=</span><span>"1"</span><span>&gt;</span>左右布局<span>&lt;/emfe-button&gt;</span>
+        <span>&lt;emfe-button-group&gt;</span>
+      </code>
+    </pre>
+    <br>
+    <emfe-button-group>
+      <emfe-button class="emfe-button-w32" index="0" statu='true'>10</emfe-button>
+      <emfe-button class="emfe-button-w32" index="1">20</emfe-button>
+      <emfe-button class="emfe-button-w32" index="2">30</emfe-button>
+      <emfe-button class="emfe-button-w32" index="3">40</emfe-button>
+      <emfe-button class="emfe-button-w32" index="4">50</emfe-button>
+      <emfe-button class="emfe-button-w32" index="5">60</emfe-button>
+      <emfe-button class="emfe-button-w32" index="6">70</emfe-button>
+      <emfe-button class="emfe-button-w32" index="7">80</emfe-button>
+      <emfe-button class="emfe-button-w32" index="8">90</emfe-button>
+      <emfe-button class="emfe-button-w32" index="9">100</emfe-button>
+    </emfe-button-group>
+    <pre>
+      <code>
+        <span>&lt;emfe-button-group&gt;</span>
+          <span>&lt;</span><span>emfe-button</span> <span>index</span><span>=</span><span>"0"</span> <span>statu</span><span>=</span><span>"true"</span><span>&gt;</span>10<span>&lt;/emfe-button&gt;</span>
+          <span>&lt;</span><span>emfe-button</span> <span>index</span><span>=</span><span>"1"</span><span>&gt;</span>20<span>&lt;/emfe-button&gt;</span>
+          <span>...</span>
+          <span>&lt;</span><span>emfe-button</span> <span>index</span><span>=</span><span>"9"</span><span>&gt;</span>100<span>&lt;/emfe-button&gt;</span>
+        <span>&lt;emfe-button-group&gt;</span>
+      </code>
+    </pre>
     <br>
     <br>
     <h3>API</h3>
@@ -72,6 +103,18 @@
           <td>Boolean</td>
           <td>默认是‘false’  可用</td>
         </tr>
+        <tr>
+          <td>statu</td>
+          <td>再组合按钮中，有当前选中按钮需要添加  statu=“true”</td>
+          <td>Boolean</td>
+          <td>默认没有选中按钮</td>
+        </tr>
+        <tr>
+          <td>index</td>
+          <td>再组合按钮中，必须添加</td>
+          <td>String</td>
+          <td>-</td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -91,7 +134,7 @@ export default {
   
 
 .table td {
-  border-top: 1px solid $border-color;
+  border-top: 1px solid #dcdcdc;
   padding: 10px 0;
 }
 </style>
