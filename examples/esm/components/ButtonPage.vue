@@ -4,7 +4,8 @@
     <br>
     <br>
     <br>
-    <emfe-button class="emfe-button-default" :disabled="false">白底</emfe-button>
+    <p>选择的是 {{ defaultStatus }}</p>
+    <emfe-button class="emfe-button-default" :disabled="false" @click="defaultClick">白底</emfe-button>
     <emfe-button class="emfe-button-default" :disabled="true">白底禁用</emfe-button>
     <pre>
       <code>
@@ -117,12 +118,37 @@
         </tr>
       </tbody>
     </table>
+    <h3>注册的方法</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>事件名</th>
+          <th>说明</th>
+          <th>返回值</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>click</td>
+          <td>点击触发。并且是阻止冒泡。</td>
+          <td>-</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 <script>
 export default {
   name: 'button-page',
+  data() {
+    return {
+      defaultStatus: false,
+    };
+  },
   methods: {
+    defaultClick() {
+      this.defaultStatus = !this.defaultStatus;
+    },
   },
 };
 </script>
@@ -131,10 +157,9 @@ export default {
     padding: 0;
     margin: 0;
   }
-  
 
-.table td {
-  border-top: 1px solid #dcdcdc;
-  padding: 10px 0;
-}
+  .table td {
+    border-top: 1px solid #dcdcdc;
+    padding: 10px 0;
+  }
 </style>
