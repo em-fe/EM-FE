@@ -15,7 +15,7 @@
     @include button-colors($text-color-default, $brand-color-hover, $brand-color-click, $button-color-default, $brand-color-hover, $brand-color-click);
 
     &:disabled {
-      color: $button-color-disable;
+      color: $background-color-disable;
       background: #f5f5f5;
       border-color: #f5f5f5;
       cursor: no-drop;
@@ -26,7 +26,7 @@
     @include button-backgrounds($brand-color-default, $brand-color-hover, $brand-color-click);
 
     &:disabled {
-      color: $button-color-disable;
+      color: $background-color-disable;
       background: #f5f5f5;
       border-color: #f5f5f5;
       cursor: no-drop;

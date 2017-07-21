@@ -1,25 +1,37 @@
+$header-height: 48px;
+$menu-top: 66px;
+
 .#{$prefix}menu {
   @include clearfix();
 
+  position: fixed;
+  top: $menu-top;
+  left: 0;
+  height: 100%;
   font-size: 14px;
 
   &-main {
     @include box-shadow();
 
     width: $menu-md-width;
-    height: 100%;
+    height: calc(100% - 66px);
     float: left;
     position: relative;
     z-index: 2;
+    overflow: scroll;
 
     &-header {
       @include border(bottom);
 
       width: 100%;
-      height: 48px;
-      line-height: 48px;
+      height: $header-height;
+      line-height: $header-height;
       padding: 0 20px;
       cursor: pointer;
+    }
+
+    &-list {
+      height: calc(100% - $header-height);
     }
 
     &-item {
@@ -77,10 +89,11 @@
     @include border(right);
 
     width: 120px;
-    height: 100%;
+    height: calc(100% - 66px);
     float: left;
     position: relative;
     z-index: 1;
+    overflow: scroll;
 
     &-header {
       @include border(bottom);

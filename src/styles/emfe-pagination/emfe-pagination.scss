@@ -1,5 +1,5 @@
 .#{$prefix}pagination {
-  clear: both;
+  @include clearfix();
 
   &-item {
     @include border();
