@@ -21,54 +21,88 @@
 
   &-wrap {
     height: auto;
-    background: $nothing-color;
+    background: $background-color-write;
     z-index: 1000;
-    position: relative;
-  }
 
-  &-icon {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-
-    &-close {
-      width: 20px;
-      height: 20px;
-      color: $border-color;
-    }
+    @include box-shadow(y);
   }
 
   &-header {
     @include border(bottom);
 
-    width: 100%;
-    padding: 10px;
+    height: 48px;
+    background: $background-color-title;
+    position: relative;
 
     &-inner {
       text-align: center;
+      color: $text-color-default;
+      line-height: 48px;
+    }
+
+    &-close {
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      color: $icon-color;
+      font-size: 28px;
+      text-align: center;
+      line-height: 20px;
+      transform: rotate(45deg);
     }
   }
 
   &-main {
     width: 100%;
-    padding: 10px;
+    padding: 16px 40px 40px;
+    color: $text-color-default;
+
+    &-prompt {
+      text-align: center;
+    }
+
+    &-input {
+      display: flex;
+      align-items: center;
+
+      &-title {
+        font-size: 16px;
+        margin-right: 16px;
+      }
+    }
   }
 
   &-footer {
-    @include border(top);
-
-    height: 44px;
+    height: 32px;
     width: 100%;
+    margin-bottom: 40px;
     display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   &-btn {
-    flex: 1;
+    width: 76px;
     text-align: center;
-    line-height: 44px;
+    line-height: 32px;
+    font-size: 14px;
+    border-radius: 4px;
 
     &:first-child {
-      @include border(right);
+      margin-right: 16px;
+    }
+
+    &-ok {
+      background: $brand-color-default;
+      color: $background-color-write;
+    }
+
+    &-cancel {
+      @include border();
+
+      color: $text-color-default;
     }
   }
 }

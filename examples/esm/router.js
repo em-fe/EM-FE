@@ -139,6 +139,16 @@ const router = new VueRouter({
       component: require('./components/DropPage.vue'),
     },
     {
+      path: '/textarea',
+      name: 'textarea',
+      component: require('./components/TextareaPage.vue'),
+    },
+    {
+      path: '/datapanel',
+      name: 'datapanel',
+      component: require('./components/DatapanelPage.vue'),
+    },
+    {
       path: '/tag',
       name: 'tag',
       component: require('./components/TagPage.vue'),

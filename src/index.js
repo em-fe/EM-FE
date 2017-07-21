@@ -25,6 +25,8 @@ import EmfeModal from './components/emfe-modal/index';
 import EmfeCheckout from './components/emfe-checkout/index';
 import EmfeDrop from './components/emfe-drop/index';
 import Table from './components/emfe-table/index';
+import EmfeTextarea from './components/emfe-textarea/index';
+import EmfeDatapanel from './components/emfe-datapanel/index';
 import Tag from './components/emfe-tag/index';
 import EmfePanel from './components/emfe-panel/index';
 // 服务
@@ -64,6 +66,8 @@ const emfeCpt = {
   EmfeCheckout,
   EmfeDrop,
   EmfeLink,
+  EmfeTextarea,
+  EmfeDatapanel,
   EmfeTag: Tag.EmfeTag,
   EmfeTagParent: Tag.EmfeTagParent,
   EmfePanel,

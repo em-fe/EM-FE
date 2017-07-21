@@ -1,41 +1,24 @@
-<template>
+ <template>
   <div>
     <h4>填写设置</h4>
-    <emfe-checkout>
-      <span slot="text">这是一个必填项</span>
+    <emfe-checkout title="这是一个必填项">
     </emfe-checkout>
-    <emfe-checkout :slideShow="slideShow">
-      <span slot="text">限定可选日期范围</span>
-      <div slot="slide" class="emfe-checkout-slide-box">
-        可选范围包含设定日期，留空表示不设限
-        可选范围包含设定日期，留空表示不设限
-        可选范围包含设定日期，留空表示不设限
+    <emfe-checkout :slideShow="slideShow" title="限定可选日期范围">
+      <div slot="slide">
+        <emfe-checkout title="周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一"></emfe-checkout>
+        <emfe-checkout title="周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一"></emfe-checkout>
+        <emfe-checkout title="周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一"></emfe-checkout>
       </div>
     </emfe-checkout>
-    <emfe-checkout :slideShow="slideShow">
-      <span slot="text">限定一周内可选日期</span>
-      <div slot="slide" class="emfe-checkout-slide-box">
-        <emfe-checkout>
-          <span slot="text">周一</span>
-        </emfe-checkout>
-        <emfe-checkout>
-          <span slot="text">周二</span>
-        </emfe-checkout>
-        <emfe-checkout>
-          <span slot="text">周三</span>
-        </emfe-checkout>
-        <emfe-checkout>
-          <span slot="text">周四</span>
-        </emfe-checkout>
-        <emfe-checkout>
-          <span slot="text">周五</span>
-        </emfe-checkout>
-        <emfe-checkout>
-          <span slot="text">周六</span>
-        </emfe-checkout>
-        <emfe-checkout>
-          <span slot="text">周日</span>
-        </emfe-checkout>
+    <emfe-checkout :slideShow="slideShow" title="限定一周内可选日期">
+      <div slot="slide">
+        <emfe-checkout title="周一" inline="true"></emfe-checkout>
+        <emfe-checkout title="周二" inline="true"></emfe-checkout>
+        <emfe-checkout title="周三" inline="true"></emfe-checkout>
+        <emfe-checkout title="周四" inline="true"></emfe-checkout>
+        <emfe-checkout title="周五" inline="true"></emfe-checkout>
+        <emfe-checkout title="周六" inline="true"></emfe-checkout>
+        <emfe-checkout title="周日" inline="true"></emfe-checkout>
       </div>
     </emfe-checkout>
     <br>
@@ -56,6 +39,24 @@
         <tr>
           <td>slideShow</td>
           <td>选中后是否有展示内容</td>
+          <td>boolean</td>
+          <td>false</td>
+        </tr>
+        <tr>
+          <td>disable</td>
+          <td>是否禁用此多选框</td>
+          <td>boolean</td>
+          <td>false</td>
+        </tr>
+        <tr>
+          <td>title</td>
+          <td>多选框的描述标题</td>
+          <td>String</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>inline</td>
+          <td>复选框是否一行显示</td>
           <td>boolean</td>
           <td>false</td>
         </tr>
