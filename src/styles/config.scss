@@ -58,9 +58,6 @@ $background-on-color: #f2f9ff;
 // 边框选中颜色
 $background-active-color: #1996f9;
 
-// 下拉题目的颜色
-$background-twobar-color: #f4f4f4;
-
 // 成功颜色
 $color-success: #82c500;
 
@@ -120,9 +117,6 @@ $auxiliary-color-success: #4cbd63;
 //辅助功能色 危险
 $auxiliary-color-danger: #ff4949;
 
-//按钮边框色 禁用
-$button-color-disable: #d8d8d8;
-
 //按钮边框色 默认 / 线框色 分割线、内容
 $button-color-default: #dcdcdc;
 
@@ -134,6 +128,9 @@ $background-color-open: #f9f9fb;
 
 //背景色 主背景
 $background-color-main: #f4f4f4;
+
+//背景色 禁用
+$background-color-disable: #f5f5f5;
 
 //背景色 列表内容（单数行）/ 文字色 标签选中、填充色
 $background-color-write: #fff;
@@ -149,6 +146,9 @@ $text-color-Three: #454545;
 
 //文字色 三级展开
 $text-color-Three: #666;
+
+//文字色 禁用
+$text-color-disable: #d8d8d8;
 
 //文字色 列表字段、输入框默认、提示文字默认
 $text-color-prompt: #999;
