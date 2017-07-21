@@ -16,8 +16,8 @@
 
     &:disabled {
       color: $background-color-disable;
-      background: #f5f5f5;
-      border-color: #f5f5f5;
+      background: $background-color-disable;
+      border-color: $background-color-disable;
       cursor: no-drop;
     }
   }
@@ -27,8 +27,8 @@
 
     &:disabled {
       color: $background-color-disable;
-      background: #f5f5f5;
-      border-color: #f5f5f5;
+      background: $background-color-disable;
+      border-color: $background-color-disable;
       cursor: no-drop;
     }
   }
