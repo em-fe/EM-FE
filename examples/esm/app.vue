@@ -192,7 +192,6 @@ module.exports = {
               },
             },
             {
-<<<<<<< HEAD
               title: '多行文本',
               icon: 'hotel',
               routers: {
@@ -207,12 +206,16 @@ module.exports = {
               icon: 'hotel',
               routers: {
                 path: '/datapanel',
-=======
+                query: {
+                  main: 3,
+                },
+              },
+            },
+            {
               title: 'radio单选框',
               icon: 'hotel',
               routers: {
                 path: 'radio',
->>>>>>> up/dev
                 query: {
                   main: 3,
                 },

@@ -25,13 +25,10 @@ import EmfeModal from './components/emfe-modal/index';
 import EmfeCheckout from './components/emfe-checkout/index';
 import EmfeDrop from './components/emfe-drop/index';
 import Table from './components/emfe-table/index';
-<<<<<<< HEAD
 import EmfeTextarea from './components/emfe-textarea/index';
 import EmfeDatapanel from './components/emfe-datapanel/index';
-=======
 import Tag from './components/emfe-tag/index';
 import EmfePanel from './components/emfe-panel/index';
->>>>>>> up/dev
 // 服务
 import EmfeMessage from './components/emfe-message/index';
 // 指令
@@ -69,14 +66,11 @@ const emfeCpt = {
   EmfeCheckout,
   EmfeDrop,
   EmfeLink,
-<<<<<<< HEAD
   EmfeTextarea,
   EmfeDatapanel,
-=======
   EmfeTag: Tag.EmfeTag,
   EmfeTagParent: Tag.EmfeTagParent,
   EmfePanel,
->>>>>>> up/dev
 };
 
 const emfeDir = {

@@ -139,7 +139,6 @@ const router = new VueRouter({
       component: require('./components/DropPage.vue'),
     },
     {
-<<<<<<< HEAD
       path: '/textarea',
       name: 'textarea',
       component: require('./components/TextareaPage.vue'),
@@ -148,7 +147,8 @@ const router = new VueRouter({
       path: '/datapanel',
       name: 'datapanel',
       component: require('./components/DatapanelPage.vue'),
-=======
+    },
+    {
       path: '/tag',
       name: 'tag',
       component: require('./components/TagPage.vue'),
@@ -157,7 +157,6 @@ const router = new VueRouter({
       path: '/panel',
       name: 'panel',
       component: require('./components/PanelPage.vue'),
->>>>>>> up/dev
     },
   ],
 });
