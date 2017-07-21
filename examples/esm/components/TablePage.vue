@@ -3,7 +3,7 @@
     <p>如果你希望第一列是checkbox，column数组第一个需要传type="selection",并同时在组件中传入checkbox组件</p>
     <br>
     <p>表格固定宽度</p>
-    <emfe-table :columns="column" :data="data2">
+    <emfe-table classAddName="add" :columns="column" :data="data2">
       <emfe-table-head slot="head" >
       sss
       </emfe-table-head>
@@ -43,8 +43,8 @@
       </thead>
       <tbody>
         <tr>
-          <td>className</td>
-          <td>自定义class</td>
+          <td>classAddName</td>
+          <td>自定义class,例如传入'aa',table的class会添加class, aa-table,表头aa-table-thead，tr添加class为aa-table-thead-tr,th为aa-table-thead-tr-th,tbody没有添加class,tbody下的tr添加class为aa-table-tbody-tr,td为aa-table-tbody-tr-td</td>
           <td>String</td>
           <td>默认为""</td>
         </tr>

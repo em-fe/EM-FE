@@ -18,17 +18,33 @@ export default {
   data() {
     return {
       className: this.$parent.className,
+      classAdd: this.$parent.classAdd,
     };
   },
   computed: {
     classHead() {
-      return `${this.className}-table-head`;
+      return [
+        `${this.className}-table-head`,
+        {
+          [`${this.$parent.classAdd}-thead`]: !!this.classAdd,
+        },
+      ];
     },
     classTr() {
-      return `${this.className}-table-head-tr`;
+      return [
+        `${this.className}-table-head-tr`,
+        {
+          [`${this.$parent.classAdd}-thead-tr`]: !!this.classAdd,
+        },
+      ];
     },
     classTh() {
-      return `${this.className}-table-head-tr-th`;
+      return [
+        `${this.className}-table-head-tr-th`,
+        {
+          [`${this.$parent.classAdd}-thead-tr-th`]: !!this.classAdd,
+        },
+      ];
     },
   },
 };

@@ -1,5 +1,5 @@
 .#{$prefix}panel {
-  background-color: #f5f6fa;
+  background-color: $background-color-title;
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -18,19 +18,19 @@
     &-left {
       float: left;
       font-size: 14px;
-      color: #333;
+      color: $text-color-default;
       letter-spacing: 0;
     }
 
     &-right {
       float: right;
       font-size: 14px;
-      color: #333;
+      color: $text-color-default;
       letter-spacing: 0;
     }
 
     &-icon {
-      color: #1996f9;
+      color: $border-on-color;
       margin-left: 16px;
 
       &:hover {
