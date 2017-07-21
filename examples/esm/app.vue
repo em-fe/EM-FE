@@ -221,6 +221,16 @@ module.exports = {
                 },
               },
             },
+            {
+              title: '面包屑',
+              icon: 'hotel',
+              routers: {
+                path: 'crumbs',
+                query: {
+                  main: 3,
+                },
+              },
+            },
           ],
         },
         {
@@ -333,6 +343,16 @@ module.exports = {
               icon: 'hotel',
               routers: {
                 path: 'drop',
+                query: {
+                  main: 4,
+                },
+              },
+            },
+            {
+              title: '特别提示',
+              icon: 'hotel',
+              routers: {
+                path: 'hottip',
                 query: {
                   main: 4,
                 },

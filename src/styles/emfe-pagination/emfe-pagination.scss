@@ -4,18 +4,24 @@
   &-item {
     @include border();
 
-    min-width: 30px;
+    min-width: 36px;
     text-align: center;
-    color: $text-color;
+    color: $text-color-default;
     padding: 0 5px;
-    height: 30px;
-    line-height: 30px;
+    height: 36px;
+    line-height: 36px;
     float: left;
     margin-left: 5px;
     cursor: pointer;
+    font-size: 12px;
 
     &:nth-of-type(1) {
       margin-left: 0;
+      padding: 0 12px;
+    }
+
+    &:last-child {
+      padding: 0 12px;
     }
 
     &:hover {
@@ -23,7 +29,17 @@
     }
 
     &-on {
-      @include border(all, $background-on-color);
+      background-color: $background-active-color;
+      color: $background-color-write;
+      border: none;
     }
+
+    &-on:hover {
+      border: none;
+    }
+  }
+
+  & .disabled {
+    display: none;
   }
 }
