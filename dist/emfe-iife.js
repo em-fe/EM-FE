@@ -1,5 +1,5 @@
 /*!
- * EMFE.js v1.0.1
+ * EMFE.js v1.0.2
  * (c) 2014-2017 李梦龙
  * Released under the MIT License.
  */
@@ -706,20 +706,20 @@ var O = {
   },
 };
 
-var columnsLast = 0; // 记录上一个点击的二级手风琴的索引
-var columnStatus = false; // 记录二级是否打开
+var childrenLast = -1; // 记录上一个点击的二级手风琴的索引
+var childrentatus = false; // 记录二级是否打开
 var screenMd = ''; // 屏幕是否大于992
 
 var EmfeMenu$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"menu",staticClass:"emfe-menu",class:_vm.menuName},[_c('div',{staticClass:"emfe-menu-main"},[_c('button',{staticClass:"emfe-menu-main-header",on:{"click":_vm.menuToShort}},[_c('emfe-icon',{staticClass:"emfe-menu-main-sidebar",attrs:{"type":"sidebar"}})],1),_vm._v(" "),_c('ul',{staticClass:"emfe-menu-main-list"},_vm._l((_vm.datas),function(data,dataIndex){return _c('li',{staticClass:"emfe-menu-main-item"},[(data.routers)?_c('a',{staticClass:"emfe-menu-main-link",class:{'emfe-menu-main-link-on': _vm.mainIndex === dataIndex},attrs:{"href":"javascript:;"},on:{"click":function($event){_vm.toColumns(data, dataIndex);}}},[_c('emfe-tooltip',{attrs:{"placement":"right","disable":!_vm.menuShort}},[_c('emfe-icon',{staticClass:"emfe-menu-main-icon",attrs:{"type":data.icon},slot:"render"}),_vm._v(" "),_c('span',{slot:"tip"},[_vm._v(_vm._s(data.title))])],1),_vm._v(" "),_c('span',{staticClass:"emfe-menu-main-text"},[_vm._v(_vm._s(data.title))])],1):_c('a',{staticClass:"emfe-menu-main-link",class:{'emfe-menu-main-link-on': _vm.mainIndex === dataIndex},attrs:{"href":"javascript:;"},on:{"click":function($event){_vm.toColumns(data, dataIndex);}}},[_c('emfe-tooltip',{attrs:{"placement":"right","disable":!_vm.menuShort}},[_c('emfe-icon',{staticClass:"emfe-menu-main-icon",attrs:{"type":data.icon},slot:"render"}),_vm._v(" "),_c('span',{slot:"tip"},[_vm._v(_vm._s(data.title))])],1),_vm._v(" "),_c('span',{staticClass:"emfe-menu-main-text"},[_vm._v(_vm._s(data.title))])],1)])}))]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.columnsDatas.length),expression:"columnsDatas.length"}],staticClass:"emfe-menu-minor"},[_c('h3',{staticClass:"emfe-menu-minor-header"},[_vm._v(_vm._s(_vm.columnsTitle))]),_vm._v(" "),_c('ul',{staticClass:"emfe-menu-minor-list"},[_vm._l((_vm.columnsDatas),function(columnsData,columnsDataIndex){return [(!columnsData.childs)?_c('li',{staticClass:"emfe-menu-minor-item"},[_c('router-link',{staticClass:"emfe-menu-minor-link",attrs:{"to":columnsData.routers}},[_vm._v(_vm._s(columnsData.title))])],1):_c('li',{staticClass:"emfe-menu-minor-item",class:{'emfe-menu-minor-item-on': _vm.columnsIndex == columnsDataIndex}},[_c('span',{staticClass:"emfe-menu-minor-btn",attrs:{"href":"javascript:;"},on:{"click":function($event){_vm.toogleChild(columnsDataIndex);}}},[_vm._v(_vm._s(columnsData.title))]),_vm._v(" "),_c('i',{staticClass:"emfe-menu-minor-arrow"}),_vm._v(" "),_c('emfe-transition',{attrs:{"name":"gradual"}},[_c('ul',{directives:[{name:"show",rawName:"v-show",value:(_vm.columnsIndex == columnsDataIndex),expression:"columnsIndex == columnsDataIndex"}],staticClass:"emfe-menu-minor-childlist"},_vm._l((columnsData.childs),function(child){return _c('li',{staticClass:"emfe-menu-minor-childitem"},[_c('router-link',{staticClass:"emfe-menu-minor-childlink",attrs:{"to":child.routers}},[_vm._v(_vm._s(child.title))])],1)}))])],1)]})],2)])])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"menu",staticClass:"emfe-menu",class:_vm.menuName},[_c('div',{staticClass:"emfe-menu-main"},[_c('button',{staticClass:"emfe-menu-main-header",on:{"click":_vm.menuToShort}},[_c('emfe-icon',{staticClass:"emfe-menu-main-sidebar",attrs:{"type":"sidebar"}})],1),_vm._v(" "),_c('ul',{staticClass:"emfe-menu-main-list"},_vm._l((_vm.datas),function(data,dataIndex){return _c('li',{staticClass:"emfe-menu-main-item"},[(data.routers)?_c('a',{staticClass:"emfe-menu-main-link",class:{'emfe-menu-main-link-on': _vm.mainIndex === dataIndex},attrs:{"href":"javascript:;"},on:{"click":function($event){_vm.tochildren(data, dataIndex);}}},[_c('emfe-tooltip',{attrs:{"placement":"right","disable":!_vm.menuShort}},[_c('emfe-icon',{staticClass:"emfe-menu-main-icon",attrs:{"type":data.icon},slot:"render"}),_vm._v(" "),_c('span',{slot:"tip"},[_vm._v(_vm._s(data.title))])],1),_vm._v(" "),_c('span',{staticClass:"emfe-menu-main-text"},[_vm._v(_vm._s(data.title))])],1):_c('a',{staticClass:"emfe-menu-main-link",class:{'emfe-menu-main-link-on': _vm.mainIndex === dataIndex},attrs:{"href":"javascript:;"},on:{"click":function($event){_vm.tochildren(data, dataIndex);}}},[_c('emfe-tooltip',{attrs:{"placement":"right","disable":!_vm.menuShort}},[_c('emfe-icon',{staticClass:"emfe-menu-main-icon",attrs:{"type":data.icon},slot:"render"}),_vm._v(" "),_c('span',{slot:"tip"},[_vm._v(_vm._s(data.title))])],1),_vm._v(" "),_c('span',{staticClass:"emfe-menu-main-text"},[_vm._v(_vm._s(data.title))])],1)])}))]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.childrenDatas.length),expression:"childrenDatas.length"}],staticClass:"emfe-menu-minor"},[_c('h3',{staticClass:"emfe-menu-minor-header"},[_vm._v(_vm._s(_vm.childrenTitle))]),_vm._v(" "),_c('ul',{staticClass:"emfe-menu-minor-list"},[_vm._l((_vm.childrenDatas),function(childrenData,childrenDataIndex){return [(!childrenData.children)?_c('li',{staticClass:"emfe-menu-minor-item"},[_c('router-link',{staticClass:"emfe-menu-minor-link",attrs:{"to":childrenData.routers}},[_vm._v(_vm._s(childrenData.title))])],1):_c('li',{staticClass:"emfe-menu-minor-item",class:{'emfe-menu-minor-item-on': _vm.childrenIndex == childrenDataIndex}},[_c('span',{staticClass:"emfe-menu-minor-btn",attrs:{"href":"javascript:;"},on:{"click":function($event){_vm.toogleChild(childrenDataIndex);}}},[_vm._v(_vm._s(childrenData.title))]),_vm._v(" "),_c('i',{staticClass:"emfe-menu-minor-arrow"}),_vm._v(" "),_c('emfe-transition',{attrs:{"name":"gradual"}},[_c('ul',{directives:[{name:"show",rawName:"v-show",value:(_vm.childrenIndex == childrenDataIndex),expression:"childrenIndex == childrenDataIndex"}],staticClass:"emfe-menu-minor-childlist"},_vm._l((childrenData.children),function(child){return _c('li',{staticClass:"emfe-menu-minor-childitem"},[_c('router-link',{staticClass:"emfe-menu-minor-childlink",attrs:{"to":child.routers}},[_vm._v(_vm._s(child.title))])],1)}))])],1)]})],2)])])},
 staticRenderFns: [],
   name: 'EmfeMenu',
   data: function data() {
     return {
-      columnsDatas: [],
-      columnsIndex: 0,
+      childrenDatas: [],
+      childrenIndex: -1,
       mainIndex: -1,
-      columnsTitle: '',
+      childrenTitle: '',
       menuShort: false,
     };
   },
@@ -742,20 +742,6 @@ staticRenderFns: [],
   created: function created() {
     var this$1 = this;
 
-    // 如果在有二级，有子级的时候刷新，获取页面参数
-    var ref = this.$route.query;
-    var column = ref.column;
-    var main = ref.main;
-    if (column) {
-      this.columnsIndex = column - 0;
-      columnStatus = true;
-    }
-    if (main) {
-      this.mainIndex = main - 0;
-      // 启动
-      this.toColumns(this.datas[this.mainIndex], this.mainIndex);
-    }
-
     var resizeHandle = function () {
       var screenMdResize = srceen.screenMd();
       if (screenMd !== screenMdResize) {
@@ -765,23 +751,61 @@ staticRenderFns: [],
     };
 
     resizeHandle();
+    // 刷新的时候，检测导航选中
+    this.testUrl();
 
     window.addEventListener('resize', resizeHandle);
   },
   methods: {
-    toogleChild: function toogleChild(itemIndex) {
-      var eqLast = itemIndex === columnsLast;
-      this.columnsIndex = eqLast ? 0 : itemIndex;
-      columnsLast = eqLast ? 0 : itemIndex;
+    testUrl: function testUrl() {
+      var this$1 = this;
+
+      var ref = this.$route;
+      var fullPath = ref.fullPath;
+      var name = ref.name;
+      var item = {};
+      var itemIndex = -1;
+
+      this.datas.forEach(function (data, dataNum) {
+        // 如果一级导航有子节点
+        if (O.hOwnProperty(data, 'children')) {
+          data.children.forEach(function (dataChild, dataChildIndex) {
+            // 如果二级导航有子节点
+            if (O.hOwnProperty(dataChild, 'children')) {
+              dataChild.children.forEach(function (dataGrandson) {
+                if (fullPath === dataGrandson.routers.path || name === dataGrandson.routers.name) {
+                  // 打开二级导航的折叠
+                  this$1.toogleChild(dataChildIndex);
+                  item = data;
+                  itemIndex = dataNum;
+                }
+              });
+            } else if (fullPath === dataChild.routers.path || name === dataChild.routers.name) {
+              item = data;
+              itemIndex = dataNum;
+            }
+          });
+        } else if (O.hOwnProperty(data, 'routers') && (fullPath === data.routers.path || name === data.routers.name)) {
+          this$1.mainIndex = dataNum;
+        }
+      });
+      if (itemIndex > -1) {
+        this.menuMainClick(item, itemIndex);
+      }
     },
-    toColumns: function toColumns(item, itemIndex) {
+    toogleChild: function toogleChild(itemIndex) {
+      var eqLast = itemIndex === childrenLast;
+      this.childrenIndex = eqLast ? -1 : itemIndex;
+      childrenLast = eqLast ? -1 : itemIndex;
+    },
+    tochildren: function tochildren(item, itemIndex) {
       if (O.hOwnProperty(item, 'routers') || O.hOwnProperty(item, 'url')) {
         this.mainIndex = itemIndex;
-        this.columnsDatas = [];
-        this.columnsIndex = 0;
-        columnsLast = 0;
-        columnStatus = false;
-        this.$emit('short', this.menuShort, columnStatus);
+        this.childrenDatas = [];
+        this.childrenIndex = -1;
+        childrenLast = 0;
+        childrentatus = false;
+        this.$emit('short', this.menuShort, childrentatus);
       }
 
       if (O.hOwnProperty(item, 'routers')) {
@@ -792,13 +816,16 @@ staticRenderFns: [],
         window.open(item.url);
       }
 
-      if (O.hOwnProperty(item, 'columns')) {
-        this.columnsDatas = item.columns;
-        this.columnsTitle = item.title;
-        this.mainIndex = itemIndex;
-        columnStatus = true;
-        this.$emit('column', this.menuShort, columnStatus);
+      if (O.hOwnProperty(item, 'children')) {
+        this.menuMainClick(item, itemIndex);
       }
+    },
+    menuMainClick: function menuMainClick(item, itemIndex) {
+      this.childrenDatas = item.children;
+      this.childrenTitle = item.title;
+      this.mainIndex = itemIndex;
+      childrentatus = true;
+      this.$emit('column', this.menuShort, childrentatus);
     },
     menuToShort: function menuToShort(type) {
       if (type === 'resize') {
@@ -806,7 +833,7 @@ staticRenderFns: [],
       } else {
         this.menuShort = !this.menuShort;
       }
-      this.$emit('short', this.menuShort, columnStatus);
+      this.$emit('short', this.menuShort, childrentatus);
     },
   },
 };
@@ -2725,7 +2752,7 @@ EmfePagination$1.install = function (Vue$$1) {
 };
 
 var EmfeSelect$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"emfe-documentclick",rawName:"v-emfe-documentclick",value:(_vm.close),expression:"close"}],staticClass:"emfe-select"},[_c('input',{staticClass:"emfe-input-box-input",attrs:{"type":"text","readonly":"","placeholder":"请选择标签"},domProps:{"value":_vm.checkVals},on:{"click":_vm.inpcheck}}),_vm._v(" "),(_vm.flagCheck)?_c('div',{staticClass:"emfe-select-flag"},[(_vm.seleStu==='newList')?_c('div',{staticClass:"emfe-select-custab"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.newListVal),expression:"newListVal"}],staticClass:"emfe-input-box-input",attrs:{"type":"text","placeholder":"添加标签"},domProps:{"value":(_vm.newListVal)},on:{"input":function($event){if($event.target.composing){ return; }_vm.newListVal=$event.target.value;}}}),_c('span',{staticClass:"emfe-select-custab-btn",on:{"click":_vm.newListBtn}},[_vm._v("保存")])]):_vm._e(),_vm._v(" "),_vm._l((_vm.checkList),function(item){return (_vm.type==='radio')?_c('label',{staticClass:"emfe-select-label"},[_c('span',{staticClass:"emfe-select-text"},[_vm._v(_vm._s(item.name))]),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.checkVals),expression:"checkVals"}],staticClass:"emfe-checkout-box-input",attrs:{"disabled":item.disabled,"type":"radio"},domProps:{"value":item.name,"checked":_vm._q(_vm.checkVals,item.name)},on:{"__c":function($event){_vm.checkVals=item.name;}}})]):_vm._e()}),_vm._v(" "),_vm._l((_vm.checkList),function(item){return (_vm.type==='checkbox')?_c('label',{staticClass:"emfe-select-label"},[_c('span',{staticClass:"emfe-select-text"},[_vm._v(_vm._s(item.name))]),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.checkVals),expression:"checkVals"}],staticClass:"emfe-checkout-box-input",attrs:{"disabled":item.disabled,"type":"checkbox"},domProps:{"value":item.name,"checked":Array.isArray(_vm.checkVals)?_vm._i(_vm.checkVals,item.name)>-1:(_vm.checkVals)},on:{"__c":function($event){var $$a=_vm.checkVals,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=item.name,$$i=_vm._i($$a,$$v);if($$c){$$i<0&&(_vm.checkVals=$$a.concat($$v));}else{$$i>-1&&(_vm.checkVals=$$a.slice(0,$$i).concat($$a.slice($$i+1)));}}else{_vm.checkVals=$$c;}}}})]):_vm._e()}),_vm._v(" "),_vm._l((_vm.checkList),function(item){return (_vm.type==='default')?_c('label',{staticClass:"emfe-select-label emfe-select-delabel",attrs:{"disabled":item.disabled},on:{"click":_vm.spanTxt}},[_vm._v(_vm._s(item.name))]):_vm._e()})],2):_vm._e()])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"emfe-documentclick",rawName:"v-emfe-documentclick",value:(_vm.close),expression:"close"}],staticClass:"emfe-select"},[_c('input',{staticClass:"emfe-input-box-input",attrs:{"type":"text","readonly":"","placeholder":_vm.selectText},domProps:{"value":_vm.checkVals},on:{"click":_vm.inpcheck}}),_vm._v(" "),(_vm.flagCheck)?_c('div',{staticClass:"emfe-select-flag"},[(_vm.seleStu==='newList')?_c('div',{staticClass:"emfe-select-custab"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.newListVal),expression:"newListVal"}],staticClass:"emfe-input-box-input",attrs:{"type":"text","placeholder":_vm.addText},domProps:{"value":(_vm.newListVal)},on:{"input":function($event){if($event.target.composing){ return; }_vm.newListVal=$event.target.value;}}}),_c('span',{staticClass:"emfe-select-custab-btn",on:{"click":_vm.newListBtn}},[_vm._v("保存")])]):_vm._e(),_vm._v(" "),_vm._l((_vm.checkList),function(item){return (_vm.type==='radio')?_c('label',{staticClass:"emfe-select-label"},[_c('span',{staticClass:"emfe-select-text"},[_vm._v(_vm._s(item.name))]),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.checkVals),expression:"checkVals"}],staticClass:"emfe-checkout-box-input",attrs:{"disabled":item.disabled,"type":"radio"},domProps:{"value":item.name,"checked":_vm._q(_vm.checkVals,item.name)},on:{"__c":function($event){_vm.checkVals=item.name;}}})]):_vm._e()}),_vm._v(" "),_vm._l((_vm.checkList),function(item){return (_vm.type==='checkbox')?_c('label',{staticClass:"emfe-select-label"},[_c('span',{staticClass:"emfe-select-text"},[_vm._v(_vm._s(item.name))]),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.checkVals),expression:"checkVals"}],staticClass:"emfe-checkout-box-input",attrs:{"disabled":item.disabled,"type":"checkbox"},domProps:{"value":item.name,"checked":Array.isArray(_vm.checkVals)?_vm._i(_vm.checkVals,item.name)>-1:(_vm.checkVals)},on:{"__c":function($event){var $$a=_vm.checkVals,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=item.name,$$i=_vm._i($$a,$$v);if($$c){$$i<0&&(_vm.checkVals=$$a.concat($$v));}else{$$i>-1&&(_vm.checkVals=$$a.slice(0,$$i).concat($$a.slice($$i+1)));}}else{_vm.checkVals=$$c;}}}})]):_vm._e()}),_vm._v(" "),_vm._l((_vm.checkList),function(item){return (_vm.type==='default')?_c('label',{staticClass:"emfe-select-label emfe-select-delabel",attrs:{"disabled":item.disabled},on:{"click":_vm.spanTxt}},[_vm._v(_vm._s(item.name))]):_vm._e()})],2):_vm._e()])},
 staticRenderFns: [],
   name: 'Select',
   props: {
@@ -2740,6 +2767,14 @@ staticRenderFns: [],
     datas: {
       type: Array,
       required: true,
+    },
+    selectText: {
+      type: String,
+      default: '请选择标签',
+    },
+    addText: {
+      type: String,
+      default: '添加标签',
     },
   },
   data: function data() {
