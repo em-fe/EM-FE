@@ -174,7 +174,7 @@ const router = new VueRouter({
         {
           path: '/functions/selectPage',
           name: 'selectpage',
-          component: require('./components/styles/SelectPage.vue'),
+          component: require('./components/functions/SelectPage.vue'),
         },
         {
           path: '/functions/drop',
