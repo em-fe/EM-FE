@@ -20,9 +20,9 @@ export default {
     drag(e, left, top) {
       this.$el.style.zIndex = 99;
       this.disY = e.clientX - this.$el.offsetLeft;
-      console.log(this.disY);
-      console.log(left);
-      console.log(top);
+      // console.log(this.disY);
+      // console.log(left);
+      // console.log(top);
     },
   },
 };

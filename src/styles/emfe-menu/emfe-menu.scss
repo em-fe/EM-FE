@@ -1,5 +1,5 @@
 $header-height: 48px;
-$menu-top: 66px;
+$menu-top: 64px;
 
 .#{$prefix}menu {
   @include clearfix();
@@ -9,16 +9,18 @@ $menu-top: 66px;
   left: 0;
   height: 100%;
   font-size: 14px;
+  z-index: 2;
 
   &-main {
     @include box-shadow();
 
     width: $menu-md-width;
-    height: calc(100% - 66px);
+    height: calc(100% - 64px);
     float: left;
     position: relative;
     z-index: 2;
     overflow: scroll;
+    background: $background-color-write;
 
     &-header {
       @include border(bottom);
@@ -89,7 +91,7 @@ $menu-top: 66px;
     @include border(right);
 
     width: 120px;
-    height: calc(100% - 66px);
+    height: calc(100% - 64px);
     float: left;
     position: relative;
     z-index: 1;
@@ -99,8 +101,8 @@ $menu-top: 66px;
       @include border(bottom);
 
       width: 100%;
-      height: 66px;
-      line-height: 66px;
+      height: $menu-top;
+      line-height: $menu-top;
       font-size: 14px;
       color: $text-color-default;
       padding-left: 24px;

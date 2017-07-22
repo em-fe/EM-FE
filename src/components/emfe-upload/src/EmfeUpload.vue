@@ -164,7 +164,7 @@ export default {
       }
 
       const postFiles = Array.prototype.slice.call(files);
-      console.log(postFiles);
+      // console.log(postFiles);
       postFiles.forEach((file) => {
         this.postHandle(file);
       });
