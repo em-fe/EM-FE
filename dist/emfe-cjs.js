@@ -1,5 +1,5 @@
 /*!
- * EMFE.js v1.0.2
+ * EMFE.js v1.0.3
  * (c) 2014-2017 李梦龙
  * Released under the MIT License.
  */
@@ -1183,7 +1183,7 @@ staticRenderFns: [],
       }
 
       var postFiles = Array.prototype.slice.call(files);
-      console.log(postFiles);
+      // console.log(postFiles);
       postFiles.forEach(function (file) {
         this$1.postHandle(file);
       });
@@ -2940,9 +2940,9 @@ staticRenderFns: [],
     drag: function drag(e, left, top) {
       this.$el.style.zIndex = 99;
       this.disY = e.clientX - this.$el.offsetLeft;
-      console.log(this.disY);
-      console.log(left);
-      console.log(top);
+      // console.log(this.disY);
+      // console.log(left);
+      // console.log(top);
     },
   },
 };
