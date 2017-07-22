@@ -18,7 +18,7 @@
 
     &-disable {
       background-color: $background-color-disable;
-      color: $background-color-disable;
+      color: $text-color-disable;
 
       &:hover {
         background-color: $background-color-disable;
@@ -49,7 +49,7 @@
     &-disable {
       background: $background-color-disable;
       border: 1px solid $button-color-default;
-      color: $background-color-disable;
+      color: $text-color-disable;
 
       &:hover {
         cursor: no-drop;
