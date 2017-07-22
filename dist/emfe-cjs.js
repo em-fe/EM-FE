@@ -1,5 +1,5 @@
 /*!
- * EMFE.js v1.0.2
+ * EMFE.js v1.0.3
  * (c) 2014-2017 李梦龙
  * Released under the MIT License.
  */
@@ -730,6 +730,10 @@ staticRenderFns: [],
       default: '',
     },
     datas: Array,
+    fullpath: {
+      type: String,
+      default: '',
+    },
   },
   computed: {
     menuName: function menuName() {
@@ -753,7 +757,7 @@ staticRenderFns: [],
 
     resizeHandle();
     // 刷新的时候，检测导航选中
-    this.testUrl();
+    // this.testUrl();
 
     window.addEventListener('resize', resizeHandle);
   },
@@ -767,26 +771,31 @@ staticRenderFns: [],
       var item = {};
       var itemIndex = -1;
 
+      var newFullPath = this.fullpath ? this.fullpath : fullPath;
+
       this.datas.forEach(function (data, dataNum) {
+        if (O.hOwnProperty(data, 'routers')) {
+        }
         // 如果一级导航有子节点
         if (O.hOwnProperty(data, 'children')) {
           data.children.forEach(function (dataChild, dataChildIndex) {
             // 如果二级导航有子节点
             if (O.hOwnProperty(dataChild, 'children')) {
               dataChild.children.forEach(function (dataGrandson) {
-                if (fullPath === dataGrandson.routers.path || name === dataGrandson.routers.name) {
+                if (newFullPath.indexOf(dataGrandson.routers.path) > -1 || name === dataGrandson.routers.name) {
                   // 打开二级导航的折叠
                   this$1.toogleChild(dataChildIndex);
                   item = data;
                   itemIndex = dataNum;
                 }
               });
-            } else if (fullPath === dataChild.routers.path || name === dataChild.routers.name) {
+            } else if (newFullPath.indexOf(dataChild.routers.path) > -1 || name === dataChild.routers.name) {
               item = data;
               itemIndex = dataNum;
             }
           });
-        } else if (O.hOwnProperty(data, 'routers') && (fullPath === data.routers.path || name === data.routers.name)) {
+        }
+        else if (O.hOwnProperty(data, 'routers') && (newFullPath.indexOf(data.routers.path) > -1 || name === data.routers.name)) {
           this$1.mainIndex = dataNum;
         }
       });
@@ -835,6 +844,13 @@ staticRenderFns: [],
         this.menuShort = !this.menuShort;
       }
       this.$emit('short', this.menuShort, childrentatus);
+    },
+  },
+  watch: {
+    fullpath: function fullpath(val, oldVal) {
+      if (val !== oldVal) {
+        this.testUrl();
+      }
     },
   },
 };
@@ -1167,7 +1183,7 @@ staticRenderFns: [],
       }
 
       var postFiles = Array.prototype.slice.call(files);
-      console.log(postFiles);
+      // console.log(postFiles);
       postFiles.forEach(function (file) {
         this$1.postHandle(file);
       });
@@ -2924,9 +2940,9 @@ staticRenderFns: [],
     drag: function drag(e, left, top) {
       this.$el.style.zIndex = 99;
       this.disY = e.clientX - this.$el.offsetLeft;
-      console.log(this.disY);
-      console.log(left);
-      console.log(top);
+      // console.log(this.disY);
+      // console.log(left);
+      // console.log(top);
     },
   },
 };
