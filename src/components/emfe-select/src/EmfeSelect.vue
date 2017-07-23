@@ -11,7 +11,7 @@
       <label v-for="item in checkList" class="emfe-select-label" v-if="type==='checkbox'">
         <span class="emfe-select-text">{{ item.name }}</span><input class="emfe-checkout-box-input" :disabled="item.disabled" type="checkbox" v-model="checkVals" :value="item.name">
       </label>
-      <label v-for="item in checkList" class="emfe-select-label emfe-select-delabel" v-on:click="spanTxt" :disabled="item.disabled" v-if="type==='default'">{{ item.name }}</label>
+      <label v-for="item in checkList" class="emfe-select-label emfe-select-delabel" @click="spanTxt(item)" :disabled="item.disabled" v-if="type==='default'"><span :class="{'disabled': item.disabled}">{{ item.name }}</span></label>
     </div>
   </div>
 </template>
@@ -50,8 +50,10 @@ export default {
       this.$emit('addDataCheck', newdata);
       this.$emit('addDataRadio', newdata);
     },
-    spanTxt(e) {
-      this.checkVals = e.target.innerHTML;
+    spanTxt(item) {
+      if (item.disabled !== 'disabled') {
+        this.checkVals = item.name;
+      }
     },
     close() {
       this.checkList = [];
