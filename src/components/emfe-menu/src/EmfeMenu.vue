@@ -110,28 +110,30 @@ export default {
       const newFullPath = this.fullpath ? this.fullpath : fullPath;
 
       this.datas.forEach((data, dataNum) => {
-        if (O.hOwnProperty(data, 'routers')) {
-        }
+        // if (O.hOwnProperty(data, 'routers')) {
+        // }
+        const newDataFullPath = newFullPath.indexOf(data.routers.path) > -1;
         // 如果一级导航有子节点
         if (O.hOwnProperty(data, 'children')) {
           data.children.forEach((dataChild, dataChildIndex) => {
+            const inChildFullPath = newFullPath.indexOf(dataChild.routers.path) > -1;
             // 如果二级导航有子节点
             if (O.hOwnProperty(dataChild, 'children')) {
               dataChild.children.forEach((dataGrandson) => {
-                if (newFullPath.indexOf(dataGrandson.routers.path) > -1 || name === dataGrandson.routers.name) {
+                const inGrandsonFullPath = newFullPath.indexOf(dataGrandson.routers.path) > -1;
+                if (inGrandsonFullPath || name === dataGrandson.routers.name) {
                   // 打开二级导航的折叠
                   this.toogleChild(dataChildIndex);
                   item = data;
                   itemIndex = dataNum;
                 }
               });
-            } else if (newFullPath.indexOf(dataChild.routers.path) > -1 || name === dataChild.routers.name) {
+            } else if (inChildFullPath || name === dataChild.routers.name) {
               item = data;
               itemIndex = dataNum;
             }
           });
-        }
-        else if (O.hOwnProperty(data, 'routers') && (newFullPath.indexOf(data.routers.path) > -1 || name === data.routers.name)) {
+        } else if (O.hOwnProperty(data, 'routers') && (newDataFullPath || name === data.routers.name)) {
           this.mainIndex = dataNum;
         }
       });
