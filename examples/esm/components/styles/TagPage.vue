@@ -39,7 +39,7 @@
       </emfe-tag-parent>
       <br>
       <emfe-tag-parent className="screen" :data="dataList">
-        <emfe-tag v-for="(item, index) in dataList" :index="index" active="true" skin="yellow">{{item}}</emfe-tag>
+        <emfe-tag v-for="(item, index) in dataList" :key="index" :index="index" active="true" skin="yellow">{{item}}</emfe-tag>
       </emfe-tag-parent>
     </div>
     <br><br>

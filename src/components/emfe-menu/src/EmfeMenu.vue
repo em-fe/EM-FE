@@ -6,14 +6,14 @@
       </button>
       <ul class="emfe-menu-main-list">
         <li class="emfe-menu-main-item" v-for="(data, dataIndex) in datas">
-          <a href="javascript:;" class="emfe-menu-main-link" :class="{'emfe-menu-main-link-on': mainIndex === dataIndex}" @click="tochildren(data, dataIndex)" v-if="data.routers">
+          <a href="javascript:;" class="emfe-menu-main-link" :class="{'emfe-menu-main-link-on': mainIndex === dataIndex}" @click="tochildren(data)" v-if="data.routers">
             <emfe-tooltip placement="right" :disable="!menuShort">
               <emfe-icon class="emfe-menu-main-icon" :type="data.icon"  slot="render"></emfe-icon>
               <span slot="tip">{{ data.title }}</span>
             </emfe-tooltip>
             <span class="emfe-menu-main-text">{{ data.title }}</span>
           </a>
-          <a href="javascript:;" class="emfe-menu-main-link" :class="{'emfe-menu-main-link-on': mainIndex === dataIndex}" @click="tochildren(data, dataIndex)" v-else>
+          <a href="javascript:;" class="emfe-menu-main-link" :class="{'emfe-menu-main-link-on': mainIndex === dataIndex}" @click="tochildren(data)" v-else>
             <emfe-tooltip placement="right" :disable="!menuShort">
               <emfe-icon class="emfe-menu-main-icon" :type="data.icon"  slot="render"></emfe-icon>
               <span slot="tip">{{ data.title }}</span>
@@ -135,7 +135,7 @@ export default {
       });
       if (itemIndex > -1) {
         this.mainIndex = itemIndex;
-        this.menuMainClick(item, itemIndex);
+        this.menuMainClick(item);
       }
     },
     toogleChild(itemIndex) {
@@ -143,7 +143,7 @@ export default {
       this.childrenIndex = eqLast ? -1 : itemIndex;
       childrenLast = eqLast ? -1 : itemIndex;
     },
-    tochildren(item, itemIndex) {
+    tochildren(item) {
       if (O.hOwnProperty(item, 'routers') || O.hOwnProperty(item, 'url')) {
         this.childrenIndex = -1;
         childrenLast = -1;
@@ -161,10 +161,10 @@ export default {
       if (O.hOwnProperty(item, 'children')) {
         // this.menuMainClick(item, itemIndex);
         // 默认跳转
-        this.tochildren(item.children[0], 0);
+        this.tochildren(item.children[0]);
       }
     },
-    menuMainClick(item, itemIndex) {
+    menuMainClick(item) {
       this.childrenDatas = item.children;
       this.childrenTitle = item.title;
       this.childrentatus = true;

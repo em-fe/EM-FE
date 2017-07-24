@@ -54,10 +54,9 @@ export default {
       const newFullPath = this.fullpath ? this.fullpath : fullPath;
 
       this.datas.forEach((data, dataNum) => {
-        const newDataFullPath = O.hOwnProperty(data, 'routers') && O.hOwnProperty(data.routers, 'path') && newFullPath.indexOf(data.routers.path) > -1;
         // 如果一级导航有子节点
         if (O.hOwnProperty(data, 'children')) {
-          data.children.forEach((dataChild, dataChildIndex) => {
+          data.children.forEach((dataChild) => {
             const inChildFullPath = O.hOwnProperty(dataChild, 'routers') && O.hOwnProperty(dataChild.routers, 'path') && newFullPath.indexOf(dataChild.routers.path) > -1;
             if (inChildFullPath || name === dataChild.routers.name) {
               // 打开二级导航的折叠
