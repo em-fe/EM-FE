@@ -290,6 +290,33 @@ module.exports = {
                 path: '/functions/selectpage',
               }
             },
+            {
+              title: '多选',
+              icon: 'checkout',
+              routers: {
+                path: '/functions/checkout',
+              },
+            },
+            {
+              title: 'drop',
+              icon: 'hotel',
+              routers: {
+                path: '/functions/drop',
+                query: {
+                  main: 4,
+                },
+              },
+            },
+            {
+              title: '滑动',
+              icon: 'hotel',
+              routers: {
+                path: '/functions/slide',
+                query: {
+                  main: 4,
+                },
+              },
+            },
           ],
         },
       ],
