@@ -165,6 +165,8 @@ export default {
       }
 
       if (O.hOwnProperty(item, 'children')) {
+        // 默认跳转
+        this.tochildren(item.children[0], 0);
         this.menuMainClick(item, itemIndex);
       }
     },
