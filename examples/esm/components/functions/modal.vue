@@ -1,7 +1,7 @@
 <template>
   <div>
     <button @click="formBtn">我是表单弹出框，点我呀！</button>
-    <emfe-modal :show="formShow" :title="copyTitle" :width="width" @close="formClose" @cancel="formCancel" @ok="formOk">
+    <emfe-modal :show="formShow" :title="copyTitle" :width="width" @close="formClose" @cancel="formCancel" @ok="formOk" cancelText="取消" okText='保存'>
       <div slot="modal-main" className="form">
         <div class="emfe-modal-main-input">
           <h6 class="emfe-modal-main-input-title">标题</h6>
