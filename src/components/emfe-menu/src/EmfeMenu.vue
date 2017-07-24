@@ -6,14 +6,14 @@
       </button>
       <ul class="emfe-menu-main-list">
         <li class="emfe-menu-main-item" v-for="(data, dataIndex) in datas">
-          <a href="javascript:;" class="emfe-menu-main-link" :class="{'emfe-menu-main-link-on': mainIndex === dataIndex}" @click="toColumns(data, dataIndex)" v-if="data.routers">
+          <a href="javascript:;" class="emfe-menu-main-link" :class="{'emfe-menu-main-link-on': mainIndex === dataIndex}" @click="tochildren(data, dataIndex)" v-if="data.routers">
             <emfe-tooltip placement="right" :disable="!menuShort">
               <emfe-icon class="emfe-menu-main-icon" :type="data.icon"  slot="render"></emfe-icon>
               <span slot="tip">{{ data.title }}</span>
             </emfe-tooltip>
             <span class="emfe-menu-main-text">{{ data.title }}</span>
           </a>
-          <a href="javascript:;" class="emfe-menu-main-link" :class="{'emfe-menu-main-link-on': mainIndex === dataIndex}" @click="toColumns(data, dataIndex)" v-else>
+          <a href="javascript:;" class="emfe-menu-main-link" :class="{'emfe-menu-main-link-on': mainIndex === dataIndex}" @click="tochildren(data, dataIndex)" v-else>
             <emfe-tooltip placement="right" :disable="!menuShort">
               <emfe-icon class="emfe-menu-main-icon" :type="data.icon"  slot="render"></emfe-icon>
               <span slot="tip">{{ data.title }}</span>
@@ -23,19 +23,19 @@
         </li>
       </ul>
     </div>
-    <div class="emfe-menu-minor" v-show="columnsDatas.length">
-      <h3 class="emfe-menu-minor-header">{{ columnsTitle }}</h3>
+    <div class="emfe-menu-minor" v-show="childrenDatas.length">
+      <h3 class="emfe-menu-minor-header">{{ childrenTitle }}</h3>
       <ul class="emfe-menu-minor-list">
-        <template v-for="(columnsData, columnsDataIndex) in columnsDatas">
-          <li class="emfe-menu-minor-item" v-if="!columnsData.childs">
-            <router-link :to="columnsData.routers" class="emfe-menu-minor-link">{{ columnsData.title }}</router-link>
+        <template v-for="(childrenData, childrenDataIndex) in childrenDatas">
+          <li class="emfe-menu-minor-item" v-if="!childrenData.children">
+            <router-link :to="childrenData.routers" class="emfe-menu-minor-link">{{ childrenData.title }}</router-link>
           </li>
-          <li class="emfe-menu-minor-item" :class="{'emfe-menu-minor-item-on': columnsIndex == columnsDataIndex}" v-else>
-            <span href="javascript:;" class="emfe-menu-minor-btn" @click="toogleChild(columnsDataIndex)" >{{ columnsData.title }}</span>
+          <li class="emfe-menu-minor-item" :class="{'emfe-menu-minor-item-on': childrenIndex == childrenDataIndex}" v-else>
+            <span href="javascript:;" class="emfe-menu-minor-btn" @click="toogleChild(childrenDataIndex)" >{{ childrenData.title }}</span>
             <i class="emfe-menu-minor-arrow"></i>
             <emfe-transition name="gradual">
-              <ul class="emfe-menu-minor-childlist" v-show="columnsIndex == columnsDataIndex">
-                <li class="emfe-menu-minor-childitem" v-for="child in columnsData.childs">
+              <ul class="emfe-menu-minor-childlist" v-show="childrenIndex == childrenDataIndex">
+                <li class="emfe-menu-minor-childitem" v-for="child in childrenData.children">
                   <router-link :to="child.routers" class="emfe-menu-minor-childlink">{{ child.title }}</router-link>
                 </li>
               </ul>
@@ -50,18 +50,18 @@
 import srceen from '../../../tools/screen';
 import O from '../../../tools/o';
 
-let columnsLast = 0; // 记录上一个点击的二级手风琴的索引
-let columnStatus = false; // 记录二级是否打开
+let childrenLast = -1; // 记录上一个点击的二级手风琴的索引
+let childrentatus = false; // 记录二级是否打开
 let screenMd = ''; // 屏幕是否大于992
 
 export default {
   name: 'EmfeMenu',
   data() {
     return {
-      columnsDatas: [],
-      columnsIndex: 0,
+      childrenDatas: [],
+      childrenIndex: -1,
       mainIndex: -1,
-      columnsTitle: '',
+      childrenTitle: '',
       menuShort: false,
     };
   },
@@ -71,6 +71,10 @@ export default {
       default: '',
     },
     datas: Array,
+    fullpath: {
+      type: String,
+      default: '',
+    },
   },
   computed: {
     menuName() {
@@ -83,18 +87,6 @@ export default {
     },
   },
   created() {
-    // 如果在有二级，有子级的时候刷新，获取页面参数
-    const { column, main } = this.$route.query;
-    if (column) {
-      this.columnsIndex = column - 0;
-      columnStatus = true;
-    }
-    if (main) {
-      this.mainIndex = main - 0;
-      // 启动
-      this.toColumns(this.datas[this.mainIndex], this.mainIndex);
-    }
-
     const resizeHandle = () => {
       const screenMdResize = srceen.screenMd();
       if (screenMd !== screenMdResize) {
@@ -104,23 +96,64 @@ export default {
     };
 
     resizeHandle();
+    // 刷新的时候，检测导航选中
+    // this.testUrl();
 
     window.addEventListener('resize', resizeHandle);
   },
   methods: {
-    toogleChild(itemIndex) {
-      const eqLast = itemIndex === columnsLast;
-      this.columnsIndex = eqLast ? 0 : itemIndex;
-      columnsLast = eqLast ? 0 : itemIndex;
+    testUrl() {
+      const { fullPath, name } = this.$route;
+      let item = {};
+      let itemIndex = -1;
+
+      const newFullPath = this.fullpath ? this.fullpath : fullPath;
+
+      this.datas.forEach((data, dataNum) => {
+        // if (O.hOwnProperty(data, 'routers')) {
+        // }
+        const newDataFullPath = newFullPath.indexOf(data.routers.path) > -1;
+        // 如果一级导航有子节点
+        if (O.hOwnProperty(data, 'children')) {
+          data.children.forEach((dataChild, dataChildIndex) => {
+            const inChildFullPath = newFullPath.indexOf(dataChild.routers.path) > -1;
+            // 如果二级导航有子节点
+            if (O.hOwnProperty(dataChild, 'children')) {
+              dataChild.children.forEach((dataGrandson) => {
+                const inGrandsonFullPath = newFullPath.indexOf(dataGrandson.routers.path) > -1;
+                if (inGrandsonFullPath || name === dataGrandson.routers.name) {
+                  // 打开二级导航的折叠
+                  this.toogleChild(dataChildIndex);
+                  item = data;
+                  itemIndex = dataNum;
+                }
+              });
+            } else if (inChildFullPath || name === dataChild.routers.name) {
+              item = data;
+              itemIndex = dataNum;
+            }
+          });
+        } else if (O.hOwnProperty(data, 'routers') && (newDataFullPath || name === data.routers.name)) {
+          this.mainIndex = dataNum;
+        }
+      });
+      if (itemIndex > -1) {
+        this.menuMainClick(item, itemIndex);
+      }
     },
-    toColumns(item, itemIndex) {
+    toogleChild(itemIndex) {
+      const eqLast = itemIndex === childrenLast;
+      this.childrenIndex = eqLast ? -1 : itemIndex;
+      childrenLast = eqLast ? -1 : itemIndex;
+    },
+    tochildren(item, itemIndex) {
       if (O.hOwnProperty(item, 'routers') || O.hOwnProperty(item, 'url')) {
         this.mainIndex = itemIndex;
-        this.columnsDatas = [];
-        this.columnsIndex = 0;
-        columnsLast = 0;
-        columnStatus = false;
-        this.$emit('short', this.menuShort, columnStatus);
+        this.childrenDatas = [];
+        this.childrenIndex = -1;
+        childrenLast = 0;
+        childrentatus = false;
+        this.$emit('short', this.menuShort, childrentatus);
       }
 
       if (O.hOwnProperty(item, 'routers')) {
@@ -131,13 +164,16 @@ export default {
         window.open(item.url);
       }
 
-      if (O.hOwnProperty(item, 'columns')) {
-        this.columnsDatas = item.columns;
-        this.columnsTitle = item.title;
-        this.mainIndex = itemIndex;
-        columnStatus = true;
-        this.$emit('column', this.menuShort, columnStatus);
+      if (O.hOwnProperty(item, 'children')) {
+        this.menuMainClick(item, itemIndex);
       }
+    },
+    menuMainClick(item, itemIndex) {
+      this.childrenDatas = item.children;
+      this.childrenTitle = item.title;
+      this.mainIndex = itemIndex;
+      childrentatus = true;
+      this.$emit('column', this.menuShort, childrentatus);
     },
     menuToShort(type) {
       if (type === 'resize') {
@@ -145,7 +181,14 @@ export default {
       } else {
         this.menuShort = !this.menuShort;
       }
-      this.$emit('short', this.menuShort, columnStatus);
+      this.$emit('short', this.menuShort, childrentatus);
+    },
+  },
+  watch: {
+    fullpath(val, oldVal) {
+      if (val !== oldVal) {
+        this.testUrl();
+      }
     },
   },
 };

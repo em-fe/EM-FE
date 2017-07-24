@@ -22,45 +22,32 @@ module.exports = {
           icon: 'hotel',
           routers: {
             path: '/transition',
-            query: {
-              main: 0,
-            },
           },
         },
         {
           title: '提示组件',
           icon: 'hotel',
-          columns: [
+          children: [
             {
               title: '文字提示',
               routers: {
-                path: '/tooltippage',
-                query: {
-                  main: 2,
-                },
+                path: '/tips/tooltippage',
               },
             },
             {
               title: '全局提示',
               routers: {
-                path: '/message',
-                query: {
-                  main: 2,
-                },
+                path: '/tips/message',
               },
             },
             {
               title: '图标',
               icon: 'hotel',
-              childs: [
+              children: [
                 {
                   title: '字体图标',
                   routers: {
-                    path: '/iconpage',
-                    query: {
-                      column: 1,
-                      main: 2,
-                    },
+                    path: '/tips/iconpage',
                   },
                 },
               ],
@@ -70,95 +57,128 @@ module.exports = {
         {
           title: '排版',
           icon: 'hotel',
-          columns: [
+          children: [
             {
-              title: '栅格',
+              title: '表单',
               icon: 'hotel',
-              routers: {
-                path: '/grid',
-                query: {
-                  main: 3,
+              children: [
+                {
+                  title: '多选',
+                  icon: 'checkout',
+                  routers: {
+                    path: '/styles/checkout',
+                  },
                 },
-              },
+                {
+                  title: 'input输入框',
+                  icon: 'hotel',
+                  routers: {
+                    path: '/styles/input',
+                  },
+                },
+                {
+                  title: '按钮',
+                  icon: 'hotel',
+                  routers: {
+                    path: '/styles/button',
+                  },
+                },
+                {
+                  title: '多行文本',
+                  icon: 'hotel',
+                  routers: {
+                    path: '/styles/textarea',
+                  },
+                },
+                {
+                  title: 'radio单选框',
+                  icon: 'hotel',
+                  routers: {
+                    path: '/styles/radio',
+                  },
+                },
+              ],
             },
             {
-              title: '头部',
+              title: '全局公共',
               icon: 'hotel',
-              routers: {
-                path: '/headerpage',
-                query: {
-                  main: 3,
+              children: [
+                {
+                  title: '栅格',
+                  icon: 'hotel',
+                  routers: {
+                    path: '/styles/grid',
+                  },
                 },
-              },
+                {
+                  title: '头部',
+                  icon: 'hotel',
+                  routers: {
+                    path: '/styles/headerpage',
+                  },
+                },
+                {
+                  title: '底部',
+                  icon: 'hotel',
+                  routers: {
+                    path: '/styles/footerpage',
+                  },
+                },
+                {
+                  title: '导航',
+                  icon: 'hotel',
+                  routers: {
+                    name: 'menu',
+                  },
+                },
+              ],
             },
             {
-              title: '底部',
+              title: '面板',
+              icon: 'hotel',
+              children: [
+                {
+                  title: '信息面板',
+                  icon: 'hotel',
+                  routers: {
+                    path: '/styles/panel',
+                  },
+                },
+                {
+                  title: '数据面板',
+                  icon: 'hotel',
+                  routers: {
+                    path: '/styles/datapanel',
+                  },
+                },
+              ],
+            },
+            {
+              title: '分页',
               icon: 'hotel',
               routers: {
-                path: '/footerpage',
-                query: {
-                  main: 3,
-                },
+                path: '/styles/pagination',
               },
             },
             {
               title: '超链',
               icon: 'hotel',
               routers: {
-                path: '/linkpage',
-                query: {
-                  main: 3,
-                },
-              },
-            },
-            {
-              title: '信息面板',
-              icon: 'hotel',
-              routers: {
-                path: '/panel',
-                query: {
-                  main: 3,
-                },
+                path: '/styles/linkpage',
               },
             },
             {
               title: 'table',
               icon: 'hotel',
               routers: {
-                path: '/table',
-                query: {
-                  main: 3,
-                },
-              },
-            },
-            {
-              title: 'input输入框',
-              icon: 'hotel',
-              routers: {
-                path: '/input',
-                query: {
-                  main: 3,
-                },
+                path: '/styles/table',
               },
             },
             {
               title: 'tag标签',
               icon: 'hotel',
               routers: {
-                path: '/tag',
-                query: {
-                  main: 3,
-                },
-              },
-            },
-            {
-              title: '导航',
-              icon: 'hotel',
-              routers: {
-                name: 'menu',
-                query: {
-                  main: 3,
-                },
+                path: '/styles/tag',
               },
             },
             {
@@ -166,69 +186,20 @@ module.exports = {
               icon: 'hotel',
               routers: {
                 name: 'title',
-                query: {
-                  main: 3,
-                },
-              },
-            },
-            {
-              title: '按钮',
-              icon: 'hotel',
-              routers: {
-                path: '/button',
-                query: {
-                  main: 3,
-                },
               },
             },
             {
               title: 'switch开关',
               icon: 'hotel',
               routers: {
-                path: '/switch',
-                query: {
-                  main: 3,
-                },
-              },
-            },
-            {
-              title: '多行文本',
-              icon: 'hotel',
-              routers: {
-                path: '/textarea',
-                query: {
-                  main: 3,
-                },
-              },
-            },
-            {
-              title: '数据模板',
-              icon: 'hotel',
-              routers: {
-                path: '/datapanel',
-                query: {
-                  main: 3,
-                },
-              },
-            },
-            {
-              title: 'radio单选框',
-              icon: 'hotel',
-              routers: {
-                path: 'radio',
-                query: {
-                  main: 3,
-                },
+                path: '/styles/switch',
               },
             },
             {
               title: '面包屑',
               icon: 'hotel',
               routers: {
-                path: 'crumbs',
-                query: {
-                  main: 3,
-                },
+                path: '/styles/crumbs',
               },
             },
           ],
@@ -236,123 +207,111 @@ module.exports = {
         {
           title: '功能组件',
           icon: 'hotel',
-          columns: [
+          children: [
             {
-              title: '日期时间',
+              title: '时间日期',
               icon: 'hotel',
-              routers: {
-                path: 'datetimepage',
-                query: {
-                  main: 4,
+              children: [
+                {
+                  title: '日期时间',
+                  icon: 'hotel',
+                  routers: {
+                    path: '/functions/datetimepage',
+                  },
                 },
-              },
+                {
+                  title: '日期',
+                  icon: 'hotel',
+                  routers: {
+                    path: '/functions/datepage',
+                  },
+                },
+                {
+                  title: '时间',
+                  icon: 'hotel',
+                  routers: {
+                    path: '/functions/timepage',
+                  },
+                },
+              ],
             },
             {
-              title: '日期',
+              title: '拖拽相关',
               icon: 'hotel',
-              routers: {
-                path: 'datepage',
-                query: {
-                  main: 4,
+              children: [
+                {
+                  title: '拖拽',
+                  icon: 'hotel',
+                  routers: {
+                    path: '/functions/drag',
+                  },
                 },
-              },
-            },
-            {
-              title: '时间',
-              icon: 'hotel',
-              routers: {
-                path: 'timepage',
-                query: {
-                  main: 4,
+                {
+                  title: '换位置',
+                  icon: 'hotel',
+                  routers: {
+                    path: '/functions/drop',
+                  },
                 },
-              },
-            },
-            {
-              title: '拖拽',
-              icon: 'hotel',
-              routers: {
-                path: '/drag',
-                query: {
-                  main: 4,
-                },
-              },
+              ],
             },
             {
               title: '颜色选择器',
               icon: 'hotel',
               routers: {
-                path: '/color',
-                query: {
-                  main: 4,
-                },
+                path: '/functions/color',
               },
             },
             {
               title: '复制',
               icon: 'hotel',
               routers: {
-                path: '/copy',
-                query: {
-                  main: 4,
-                },
+                path: '/functions/copy',
               },
             },
             {
               title: '上传',
               icon: 'hotel',
               routers: {
-                path: 'upload',
-                query: {
-                  main: 4,
-                },
-              },
-            },
-            {
-              title: '分页',
-              icon: 'hotel',
-              routers: {
-                path: 'pagination',
+                path: '/functions/upload',
               },
             },
             {
               title: '弹出框',
-              icon: 'modal',
+              icon: 'hotel',
               routers: {
-                path: '/modal',
-                query: {
-                  main: 4,
-                },
+                path: '/functions/modal',
               },
             },
             {
               title: '下拉框',
               icon: 'hotel',
               routers: {
-                path: 'selectpage',
+                path: '/functions/selectpage',
               }
             },
             {
               title: '多选',
               icon: 'checkout',
               routers: {
-                path: '/checkout',
+                path: '/functions/checkout',
               },
             },
             {
               title: 'drop',
               icon: 'hotel',
               routers: {
-                path: 'drop',
+                path: '/functions/drop',
                 query: {
                   main: 4,
                 },
               },
             },
             {
-              title: '特别提示',
+              title: '滑动',
               icon: 'hotel',
               routers: {
-                path: 'hottip',
+                path: '/functions/slide',
                 query: {
                   main: 4,
                 },
@@ -365,22 +324,22 @@ module.exports = {
     }
   },
   methods: {
-    shortMenu(menuShort, columnsStatus) {
+    shortMenu(menuShort, childrenStatus) {
       if (menuShort) {
-        if (columnsStatus) {
+        if (childrenStatus) {
           this.menuClass = 'main-small-column';
         } else {
           this.menuClass = 'main-small';
         }
       } else {
-        if (columnsStatus) {
+        if (childrenStatus) {
           this.menuClass = 'main-full-column';
         } else {
           this.menuClass = 'main-full';
         }
       }
     },
-    columnMenu(menuShort, columnsStatus) {
+    columnMenu(menuShort, childrenStatus) {
       if (menuShort) {
         this.menuClass = 'main-small-column';
       } else {

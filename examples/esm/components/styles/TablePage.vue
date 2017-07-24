@@ -1,14 +1,31 @@
 <template>
   <div class="emfe-table-box">
     <p>如果你希望第一列是checkbox，column数组第一个需要传type="selection",并同时在组件中传入checkbox组件</p>
+    <emfe-table :columns="column2" :data="data" type="true">
+      <emfe-table-head  slot="head" >
+      </emfe-table-head>
+      <emfe-table-body slot="body"  v-for="(dataList,index) in data" :ind="index" key="index" :dataList="dataList">
+         <emfe-checkout color="#1996F9" :title="dataList.name.text">
+        </emfe-checkout>
+      </emfe-table-body>
+    </emfe-table>
+    <br><br>
+    <emfe-table :columns="column2" :data="data0" type="true">
+      <emfe-table-head  slot="head" >
+      </emfe-table-head>
+      <emfe-table-body slot="body"  v-for="(dataList,index) in data0" :ind="index" key="index" :dataList="dataList">
+       <emfe-checkout color="#1996F9" :title="dataList.name.text">
+        </emfe-checkout>
+      </emfe-table-body>
+    </emfe-table>
     <br>
     <p>表格固定宽度</p>
     <emfe-table classAddName="add" :columns="column" :data="data2">
       <emfe-table-head slot="head" >
-      sss
       </emfe-table-head>
       <emfe-table-body slot="body" v-for="(dataList,index) in data2" :ind="index" key="index" :dataList="dataList">
-      sss
+        <emfe-checkout color="#1996F9" :title="dataList.name.text">
+        </emfe-checkout>
       </emfe-table-body>
     </emfe-table>
     <br>
@@ -22,12 +39,10 @@
     </emfe-table>
     <br>
     <p>表格不固定宽度,需要传type="true"</p>
-    <emfe-table :columns="column" :data="data2" type="true">
+    <emfe-table :columns="column2" :data="data2" type="true">
       <emfe-table-head  slot="head" >
-      iconBox
       </emfe-table-head>
       <emfe-table-body slot="body"  v-for="(dataList,index) in data2" key="index" :ind="index" :dataList="dataList" @jump="Jump">
-      iconBox
       </emfe-table-body>
     </emfe-table>
     <br>
@@ -55,8 +70,8 @@
           <td>-</td>
         </tr>
         <tr>
-          <td>columns下第一个对象下传type</td>
-          <td>type为 ‘selection’时表格首列为icon位置，并同时在组件中传入checkbox组件</td>
+          <td>slot</td>
+          <td>slot為true时，表示当前td为slot插入数据</td>
           <td>String</td>
           <td>默认为''</td>
         </tr>
@@ -107,7 +122,6 @@ export default {
     return {
       column:[
         {
-          type: 'selection',
           title: 'icon',
           key: 'name',
         },
@@ -198,10 +212,10 @@ export default {
           key: 'address9',
         },
       ],
-      data: [
+      data0: [
         {
           name: {text:'王小明', row:false},
-          age: {text:'北京市朝阳区芍药居1', row:false},
+          age: {slot: true, row:false,hebing:false},
           address: {text:'北京市朝阳区芍药居2', row:false},
           address2: {text:'北京市朝阳区芍药居2', row:true},
           address3: {text:'北京市朝阳区芍药居4', row:false},
@@ -212,16 +226,18 @@ export default {
           address8: {text:'北京市朝阳区芍药居7', row:false},
           address9: {text:'北京市朝阳区芍药居7', row:false},
         },
+      ],
+      data: [
         {
           name: {text:'王小明', row:false},
           age: {text:'北京市朝阳区芍药居1', row:false},
           address: {text:'北京市朝阳区芍药居2', row:false},
-          address2: {text:'', row:true},
+          address2: {text:'北京市朝阳区芍药居2', row:true},
           address3: {text:'北京市朝阳区芍药居4', row:false},
-          address4: {text:'北京市朝阳区芍药居5', row:false},
+          address4: {slot: true, row:false,hebing:false},
           address5: {text:'北京市朝阳区芍药居6', row:false},
           address6: {text:'北京市朝阳区芍药居7', row:false},
-          address7: {text:'', row:true},
+          address7: {text:'北京市朝阳区芍药居7', row:true},
           address8: {text:'北京市朝阳区芍药居7', row:false},
           address9: {text:'北京市朝阳区芍药居7', row:false},
         },
@@ -229,12 +245,12 @@ export default {
           name: {text:'王小明', row:false},
           age: {text:'北京市朝阳区芍药居1', row:false},
           address: {text:'北京市朝阳区芍药居2', row:false},
-          address2: {text:'', row:true},
+          address2: {text:'', row:true,hebing:true},
           address3: {text:'北京市朝阳区芍药居4', row:false},
           address4: {text:'北京市朝阳区芍药居5', row:false},
           address5: {text:'北京市朝阳区芍药居6', row:false},
           address6: {text:'北京市朝阳区芍药居7', row:false},
-          address7: {text:'北京市朝阳区芍药居7', row:false},
+          address7: {text:'', row:true,hebing:true},
           address8: {text:'北京市朝阳区芍药居7', row:false},
           address9: {text:'北京市朝阳区芍药居7', row:false},
         },
@@ -291,7 +307,7 @@ export default {
 </script>
 <style>
   .emfe-table-box{
-    width: 1200px;
+    width: 1500px;
     height: 1500px;
   }
 </style>

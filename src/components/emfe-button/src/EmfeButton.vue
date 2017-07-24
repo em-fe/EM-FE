@@ -1,5 +1,5 @@
 <template>
-  <button class="emfe-button" :disabled="disabled" @click="change" :class="buttonName">
+  <button class="emfe-button" :disabled="disabled" @click.stop="change" :class="buttonName">
    <emfe-icon v-if="type" :type="type" class="emfe-button-icon"></emfe-icon>
     <span class="emfe-button-text" :class="textName">
       <slot></slot>
@@ -54,11 +54,13 @@ export default {
   },
   methods: {
     change() {
+      const index = this.index ? this.index : 0;
       this.$parent.$children.forEach((element) => {
         if (this.index) {
           element.status = this.index === element.index;
         }
       });
+      this.$emit('click', index);
     },
   },
 };

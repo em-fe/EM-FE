@@ -5,7 +5,7 @@
     </style>多选：</div>
 
     <!--  -->
-    <emfe-select :datas="data1" type="checkbox" v-on:getData="getdatas"></emfe-select>
+    <emfe-select :datas="data1" @checkselect="checkselect" type="checkbox"></emfe-select>
     API：包含两个配置项：<br>
               自定义属性 :<br>
               :datas="data1"<br>
@@ -76,7 +76,6 @@ export default {
       data1: [
         {
           name: 'wefajlrjgakdjsdklfgjkdjfkldjfgkljfjdhjklhsdfjgkshdkljaiursfajkds',
-          disabled: 'disabled',
         },
         {
           name: '88888',
@@ -124,6 +123,9 @@ export default {
     },
     getDef(v) {
       console.log(v);
+    },
+    checkselect(val) {
+      console.log(val);
     },
   },
 };

@@ -13,7 +13,7 @@
       <tbody>
         <tr>
           <td>datas</td>
-          <td>导航数据。如果需要有二级展开则在里面加入columns属性，如果需要路由跳转加入routers属性。如果需要外跳到某网站，加入url属性。详情请参考本example的导航数据。</td>
+          <td>导航数据。导航路由配置只支持： name 和 path 跳转。如果需要外跳到某网站，加入url属性。详情请参考本example的导航数据。</td>
           <td>Array</td>
           <td>-</td>
         </tr>

@@ -5,6 +5,7 @@
   line-height: 32px;
   padding: 0 24px;
   font-size: 14px;
+  margin-right: 8px;
 
   &-default {
     background: $switch-color-default;
@@ -18,7 +19,7 @@
 
     &-disable {
       background-color: $background-color-disable;
-      color: $background-color-disable;
+      color: $text-color-disable;
 
       &:hover {
         background-color: $background-color-disable;
@@ -49,7 +50,7 @@
     &-disable {
       background: $background-color-disable;
       border: 1px solid $button-color-default;
-      color: $background-color-disable;
+      color: $text-color-disable;
 
       &:hover {
         cursor: no-drop;
