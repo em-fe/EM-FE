@@ -49,6 +49,18 @@
           <td>String</td>
           <td>-</td>
         </tr>
+        <tr>
+          <td>cancelText</td>
+          <td>弹出框 取消内容</td>
+          <td>String</td>
+          <td>默认取消</td>
+        </tr>
+        <tr>
+          <td>okText</td>
+          <td>弹出框 确定内容</td>
+          <td>String</td>
+          <td>默认确定</td>
+        </tr>
       </tbody>
     </table>
     <br>
