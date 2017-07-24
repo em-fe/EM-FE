@@ -1,4 +1,5 @@
 // 组件
+import EmfeBar from './components/emfe-bar/index';
 import Grid from './components/emfe-grid/index';
 import EmfeIcon from './components/emfe-icon/index';
 import EmfeTooltip from './components/emfe-tooltip/index';
@@ -39,6 +40,7 @@ import emfeDocumentclick from './directives/emfe-documentclick';
 const emfeCpt = {
   EmfeCol: Grid.EmfeCol,
   EmfeRow: Grid.EmfeRow,
+  EmfeBar,
   EmfeIcon,
   EmfeTooltip,
   EmfeTransition,

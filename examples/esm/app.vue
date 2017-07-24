@@ -131,6 +131,13 @@ module.exports = {
                     name: 'menu',
                   },
                 },
+                {
+                  title: '二级导航',
+                  icon: 'hotel',
+                  routers: {
+                    name: 'bar',
+                  },
+                },
               ],
             },
             {

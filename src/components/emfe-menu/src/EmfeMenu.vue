@@ -23,7 +23,7 @@
         </li>
       </ul>
     </div>
-    <div class="emfe-menu-minor" v-show="childrenDatas.length">
+    <div class="emfe-menu-minor" v-show="childrentatus">
       <h3 class="emfe-menu-minor-header">{{ childrenTitle }}</h3>
       <ul class="emfe-menu-minor-list">
         <template v-for="(childrenData, childrenDataIndex) in childrenDatas">
@@ -51,7 +51,6 @@ import srceen from '../../../tools/screen';
 import O from '../../../tools/o';
 
 let childrenLast = -1; // 记录上一个点击的二级手风琴的索引
-let childrentatus = false; // 记录二级是否打开
 let screenMd = ''; // 屏幕是否大于992
 
 export default {
@@ -63,6 +62,7 @@ export default {
       mainIndex: -1,
       childrenTitle: '',
       menuShort: false,
+      childrentatus: false, // 记录二级是否打开
     };
   },
   props: {
@@ -96,8 +96,6 @@ export default {
     };
 
     resizeHandle();
-    // 刷新的时候，检测导航选中
-    // this.testUrl();
 
     window.addEventListener('resize', resizeHandle);
   },
@@ -110,17 +108,15 @@ export default {
       const newFullPath = this.fullpath ? this.fullpath : fullPath;
 
       this.datas.forEach((data, dataNum) => {
-        // if (O.hOwnProperty(data, 'routers')) {
-        // }
-        const newDataFullPath = newFullPath.indexOf(data.routers.path) > -1;
+        const newDataFullPath = O.hOwnProperty(data, 'routers') && O.hOwnProperty(data.routers, 'path') && newFullPath.indexOf(data.routers.path) > -1;
         // 如果一级导航有子节点
         if (O.hOwnProperty(data, 'children')) {
           data.children.forEach((dataChild, dataChildIndex) => {
-            const inChildFullPath = newFullPath.indexOf(dataChild.routers.path) > -1;
+            const inChildFullPath = O.hOwnProperty(dataChild, 'routers') && O.hOwnProperty(dataChild.routers, 'path') && newFullPath.indexOf(dataChild.routers.path) > -1;
             // 如果二级导航有子节点
             if (O.hOwnProperty(dataChild, 'children')) {
               dataChild.children.forEach((dataGrandson) => {
-                const inGrandsonFullPath = newFullPath.indexOf(dataGrandson.routers.path) > -1;
+                const inGrandsonFullPath = O.hOwnProperty(dataGrandson, 'routers') && O.hOwnProperty(dataGrandson.routers, 'path') && newFullPath.indexOf(dataGrandson.routers.path) > -1;
                 if (inGrandsonFullPath || name === dataGrandson.routers.name) {
                   // 打开二级导航的折叠
                   this.toogleChild(dataChildIndex);
@@ -138,6 +134,7 @@ export default {
         }
       });
       if (itemIndex > -1) {
+        this.mainIndex = itemIndex;
         this.menuMainClick(item, itemIndex);
       }
     },
@@ -148,12 +145,9 @@ export default {
     },
     tochildren(item, itemIndex) {
       if (O.hOwnProperty(item, 'routers') || O.hOwnProperty(item, 'url')) {
-        this.mainIndex = itemIndex;
-        this.childrenDatas = [];
         this.childrenIndex = -1;
-        childrenLast = 0;
-        childrentatus = false;
-        this.$emit('short', this.menuShort, childrentatus);
+        childrenLast = -1;
+        this.$emit('short', this.menuShort, this.childrentatus);
       }
 
       if (O.hOwnProperty(item, 'routers')) {
@@ -165,17 +159,16 @@ export default {
       }
 
       if (O.hOwnProperty(item, 'children')) {
+        // this.menuMainClick(item, itemIndex);
         // 默认跳转
         this.tochildren(item.children[0], 0);
-        this.menuMainClick(item, itemIndex);
       }
     },
     menuMainClick(item, itemIndex) {
       this.childrenDatas = item.children;
       this.childrenTitle = item.title;
-      this.mainIndex = itemIndex;
-      childrentatus = true;
-      this.$emit('column', this.menuShort, childrentatus);
+      this.childrentatus = true;
+      this.$emit('column', this.menuShort, this.childrentatus);
     },
     menuToShort(type) {
       if (type === 'resize') {
@@ -183,7 +176,7 @@ export default {
       } else {
         this.menuShort = !this.menuShort;
       }
-      this.$emit('short', this.menuShort, childrentatus);
+      this.$emit('short', this.menuShort, this.childrentatus);
     },
   },
   watch: {

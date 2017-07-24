@@ -1,11 +1,94 @@
 /*!
- * EMFE.js v1.0.3
+ * EMFE.js v1.0.4
  * (c) 2014-2017 李梦龙
  * Released under the MIT License.
  */
 define(['vue'], function (Vue) { 'use strict';
 
 Vue = Vue && 'default' in Vue ? Vue['default'] : Vue;
+
+var O = {
+  hOwnProperty: function hOwnProperty(item, attr) {
+    return Object.prototype.hasOwnProperty.call(item, attr);
+  },
+};
+
+var childrenLast = -1; // 记录上一个点击的二级手风琴的索引
+
+var EmfeBar$1 = {
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-bar"},[_c('h3',{staticClass:"emfe-bar-header"},[_vm._v(_vm._s(_vm.title))]),_vm._v(" "),_c('ul',{staticClass:"emfe-bar-list"},[_vm._l((_vm.datas),function(childrenData,childrenDataIndex){return [(!childrenData.children)?_c('li',{staticClass:"emfe-bar-item"},[_c('router-link',{staticClass:"emfe-bar-link",attrs:{"to":childrenData.routers}},[_vm._v(_vm._s(childrenData.title))])],1):_c('li',{staticClass:"emfe-bar-item",class:{'emfe-bar-item-on': _vm.childrenIndex == childrenDataIndex}},[_c('span',{staticClass:"emfe-bar-btn",attrs:{"href":"javascript:;"},on:{"click":function($event){_vm.toogleChild(childrenDataIndex);}}},[_vm._v(_vm._s(childrenData.title))]),_vm._v(" "),_c('i',{staticClass:"emfe-bar-arrow"}),_vm._v(" "),_c('emfe-transition',{attrs:{"name":"gradual"}},[_c('ul',{directives:[{name:"show",rawName:"v-show",value:(_vm.childrenIndex == childrenDataIndex),expression:"childrenIndex == childrenDataIndex"}],staticClass:"emfe-bar-childlist"},_vm._l((childrenData.children),function(child){return _c('li',{staticClass:"emfe-bar-childitem"},[_c('router-link',{staticClass:"emfe-bar-childlink",attrs:{"to":child.routers}},[_vm._v(_vm._s(child.title))])],1)}))])],1)]})],2)])},
+staticRenderFns: [],
+  name: 'EmfeBar',
+  data: function data() {
+    return {
+      childrenIndex: -1,
+    };
+  },
+  props: {
+    datas: {
+      type: Array,
+      required: true,
+    },
+    title: {
+      type: String,
+      required: true,
+    },
+    fullpath: {
+      type: String,
+      required: true,
+    },
+  },
+  methods: {
+    testUrl: function testUrl() {
+      var this$1 = this;
+
+      var ref = this.$route;
+      var fullPath = ref.fullPath;
+      var name = ref.name;
+
+      var newFullPath = this.fullpath ? this.fullpath : fullPath;
+
+      this.datas.forEach(function (data, dataNum) {
+        var newDataFullPath = O.hOwnProperty(data, 'routers') && O.hOwnProperty(data.routers, 'path') && newFullPath.indexOf(data.routers.path) > -1;
+        // 如果一级导航有子节点
+        if (O.hOwnProperty(data, 'children')) {
+          data.children.forEach(function (dataChild, dataChildIndex) {
+            var inChildFullPath = O.hOwnProperty(dataChild, 'routers') && O.hOwnProperty(dataChild.routers, 'path') && newFullPath.indexOf(dataChild.routers.path) > -1;
+            if (inChildFullPath || name === dataChild.routers.name) {
+              // 打开二级导航的折叠
+              this$1.toogleChild(dataNum);
+            }
+          });
+        }
+      });
+    },
+    toogleChild: function toogleChild(itemIndex) {
+      var eqLast = itemIndex === childrenLast;
+      this.childrenIndex = eqLast ? -1 : itemIndex;
+      childrenLast = eqLast ? -1 : itemIndex;
+    },
+    tochildren: function tochildren(item) {
+      if (O.hOwnProperty(item, 'routers')) {
+        this.$router.push(item.routers);
+      }
+
+      if (O.hOwnProperty(item, 'url')) {
+        window.open(item.url);
+      }
+    },
+  },
+  watch: {
+    fullpath: function fullpath(val, oldVal) {
+      if (val !== oldVal) {
+        this.testUrl();
+      }
+    },
+  },
+};
+
+EmfeBar$1.install = function (Vue$$1) {
+  Vue$$1.component(EmfeBar$1.name, EmfeBar$1);
+};
 
 var _ = {
   has: function has(value, valueList) {
@@ -699,18 +782,11 @@ var srceen = {
   },
 };
 
-var O = {
-  hOwnProperty: function hOwnProperty(item, attr) {
-    return Object.prototype.hasOwnProperty.call(item, attr);
-  },
-};
-
-var childrenLast = -1; // 记录上一个点击的二级手风琴的索引
-var childrentatus = false; // 记录二级是否打开
+var childrenLast$1 = -1; // 记录上一个点击的二级手风琴的索引
 var screenMd = ''; // 屏幕是否大于992
 
 var EmfeMenu$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"menu",staticClass:"emfe-menu",class:_vm.menuName},[_c('div',{staticClass:"emfe-menu-main"},[_c('button',{staticClass:"emfe-menu-main-header",on:{"click":_vm.menuToShort}},[_c('emfe-icon',{staticClass:"emfe-menu-main-sidebar",attrs:{"type":"sidebar"}})],1),_vm._v(" "),_c('ul',{staticClass:"emfe-menu-main-list"},_vm._l((_vm.datas),function(data,dataIndex){return _c('li',{staticClass:"emfe-menu-main-item"},[(data.routers)?_c('a',{staticClass:"emfe-menu-main-link",class:{'emfe-menu-main-link-on': _vm.mainIndex === dataIndex},attrs:{"href":"javascript:;"},on:{"click":function($event){_vm.tochildren(data, dataIndex);}}},[_c('emfe-tooltip',{attrs:{"placement":"right","disable":!_vm.menuShort}},[_c('emfe-icon',{staticClass:"emfe-menu-main-icon",attrs:{"type":data.icon},slot:"render"}),_vm._v(" "),_c('span',{slot:"tip"},[_vm._v(_vm._s(data.title))])],1),_vm._v(" "),_c('span',{staticClass:"emfe-menu-main-text"},[_vm._v(_vm._s(data.title))])],1):_c('a',{staticClass:"emfe-menu-main-link",class:{'emfe-menu-main-link-on': _vm.mainIndex === dataIndex},attrs:{"href":"javascript:;"},on:{"click":function($event){_vm.tochildren(data, dataIndex);}}},[_c('emfe-tooltip',{attrs:{"placement":"right","disable":!_vm.menuShort}},[_c('emfe-icon',{staticClass:"emfe-menu-main-icon",attrs:{"type":data.icon},slot:"render"}),_vm._v(" "),_c('span',{slot:"tip"},[_vm._v(_vm._s(data.title))])],1),_vm._v(" "),_c('span',{staticClass:"emfe-menu-main-text"},[_vm._v(_vm._s(data.title))])],1)])}))]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.childrenDatas.length),expression:"childrenDatas.length"}],staticClass:"emfe-menu-minor"},[_c('h3',{staticClass:"emfe-menu-minor-header"},[_vm._v(_vm._s(_vm.childrenTitle))]),_vm._v(" "),_c('ul',{staticClass:"emfe-menu-minor-list"},[_vm._l((_vm.childrenDatas),function(childrenData,childrenDataIndex){return [(!childrenData.children)?_c('li',{staticClass:"emfe-menu-minor-item"},[_c('router-link',{staticClass:"emfe-menu-minor-link",attrs:{"to":childrenData.routers}},[_vm._v(_vm._s(childrenData.title))])],1):_c('li',{staticClass:"emfe-menu-minor-item",class:{'emfe-menu-minor-item-on': _vm.childrenIndex == childrenDataIndex}},[_c('span',{staticClass:"emfe-menu-minor-btn",attrs:{"href":"javascript:;"},on:{"click":function($event){_vm.toogleChild(childrenDataIndex);}}},[_vm._v(_vm._s(childrenData.title))]),_vm._v(" "),_c('i',{staticClass:"emfe-menu-minor-arrow"}),_vm._v(" "),_c('emfe-transition',{attrs:{"name":"gradual"}},[_c('ul',{directives:[{name:"show",rawName:"v-show",value:(_vm.childrenIndex == childrenDataIndex),expression:"childrenIndex == childrenDataIndex"}],staticClass:"emfe-menu-minor-childlist"},_vm._l((childrenData.children),function(child){return _c('li',{staticClass:"emfe-menu-minor-childitem"},[_c('router-link',{staticClass:"emfe-menu-minor-childlink",attrs:{"to":child.routers}},[_vm._v(_vm._s(child.title))])],1)}))])],1)]})],2)])])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"menu",staticClass:"emfe-menu",class:_vm.menuName},[_c('div',{staticClass:"emfe-menu-main"},[_c('button',{staticClass:"emfe-menu-main-header",on:{"click":_vm.menuToShort}},[_c('emfe-icon',{staticClass:"emfe-menu-main-sidebar",attrs:{"type":"sidebar"}})],1),_vm._v(" "),_c('ul',{staticClass:"emfe-menu-main-list"},_vm._l((_vm.datas),function(data,dataIndex){return _c('li',{staticClass:"emfe-menu-main-item"},[(data.routers)?_c('a',{staticClass:"emfe-menu-main-link",class:{'emfe-menu-main-link-on': _vm.mainIndex === dataIndex},attrs:{"href":"javascript:;"},on:{"click":function($event){_vm.tochildren(data, dataIndex);}}},[_c('emfe-tooltip',{attrs:{"placement":"right","disable":!_vm.menuShort}},[_c('emfe-icon',{staticClass:"emfe-menu-main-icon",attrs:{"type":data.icon},slot:"render"}),_vm._v(" "),_c('span',{slot:"tip"},[_vm._v(_vm._s(data.title))])],1),_vm._v(" "),_c('span',{staticClass:"emfe-menu-main-text"},[_vm._v(_vm._s(data.title))])],1):_c('a',{staticClass:"emfe-menu-main-link",class:{'emfe-menu-main-link-on': _vm.mainIndex === dataIndex},attrs:{"href":"javascript:;"},on:{"click":function($event){_vm.tochildren(data, dataIndex);}}},[_c('emfe-tooltip',{attrs:{"placement":"right","disable":!_vm.menuShort}},[_c('emfe-icon',{staticClass:"emfe-menu-main-icon",attrs:{"type":data.icon},slot:"render"}),_vm._v(" "),_c('span',{slot:"tip"},[_vm._v(_vm._s(data.title))])],1),_vm._v(" "),_c('span',{staticClass:"emfe-menu-main-text"},[_vm._v(_vm._s(data.title))])],1)])}))]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.childrentatus),expression:"childrentatus"}],staticClass:"emfe-menu-minor"},[_c('h3',{staticClass:"emfe-menu-minor-header"},[_vm._v(_vm._s(_vm.childrenTitle))]),_vm._v(" "),_c('ul',{staticClass:"emfe-menu-minor-list"},[_vm._l((_vm.childrenDatas),function(childrenData,childrenDataIndex){return [(!childrenData.children)?_c('li',{staticClass:"emfe-menu-minor-item"},[_c('router-link',{staticClass:"emfe-menu-minor-link",attrs:{"to":childrenData.routers}},[_vm._v(_vm._s(childrenData.title))])],1):_c('li',{staticClass:"emfe-menu-minor-item",class:{'emfe-menu-minor-item-on': _vm.childrenIndex == childrenDataIndex}},[_c('span',{staticClass:"emfe-menu-minor-btn",attrs:{"href":"javascript:;"},on:{"click":function($event){_vm.toogleChild(childrenDataIndex);}}},[_vm._v(_vm._s(childrenData.title))]),_vm._v(" "),_c('i',{staticClass:"emfe-menu-minor-arrow"}),_vm._v(" "),_c('emfe-transition',{attrs:{"name":"gradual"}},[_c('ul',{directives:[{name:"show",rawName:"v-show",value:(_vm.childrenIndex == childrenDataIndex),expression:"childrenIndex == childrenDataIndex"}],staticClass:"emfe-menu-minor-childlist"},_vm._l((childrenData.children),function(child){return _c('li',{staticClass:"emfe-menu-minor-childitem"},[_c('router-link',{staticClass:"emfe-menu-minor-childlink",attrs:{"to":child.routers}},[_vm._v(_vm._s(child.title))])],1)}))])],1)]})],2)])])},
 staticRenderFns: [],
   name: 'EmfeMenu',
   data: function data() {
@@ -720,6 +796,7 @@ staticRenderFns: [],
       mainIndex: -1,
       childrenTitle: '',
       menuShort: false,
+      childrentatus: false, // 记录二级是否打开
     };
   },
   props: {
@@ -754,8 +831,6 @@ staticRenderFns: [],
     };
 
     resizeHandle();
-    // 刷新的时候，检测导航选中
-    // this.testUrl();
 
     window.addEventListener('resize', resizeHandle);
   },
@@ -772,48 +847,46 @@ staticRenderFns: [],
       var newFullPath = this.fullpath ? this.fullpath : fullPath;
 
       this.datas.forEach(function (data, dataNum) {
-        if (O.hOwnProperty(data, 'routers')) {
-        }
+        var newDataFullPath = O.hOwnProperty(data, 'routers') && O.hOwnProperty(data.routers, 'path') && newFullPath.indexOf(data.routers.path) > -1;
         // 如果一级导航有子节点
         if (O.hOwnProperty(data, 'children')) {
           data.children.forEach(function (dataChild, dataChildIndex) {
+            var inChildFullPath = O.hOwnProperty(dataChild, 'routers') && O.hOwnProperty(dataChild.routers, 'path') && newFullPath.indexOf(dataChild.routers.path) > -1;
             // 如果二级导航有子节点
             if (O.hOwnProperty(dataChild, 'children')) {
               dataChild.children.forEach(function (dataGrandson) {
-                if (newFullPath.indexOf(dataGrandson.routers.path) > -1 || name === dataGrandson.routers.name) {
+                var inGrandsonFullPath = O.hOwnProperty(dataGrandson, 'routers') && O.hOwnProperty(dataGrandson.routers, 'path') && newFullPath.indexOf(dataGrandson.routers.path) > -1;
+                if (inGrandsonFullPath || name === dataGrandson.routers.name) {
                   // 打开二级导航的折叠
                   this$1.toogleChild(dataChildIndex);
                   item = data;
                   itemIndex = dataNum;
                 }
               });
-            } else if (newFullPath.indexOf(dataChild.routers.path) > -1 || name === dataChild.routers.name) {
+            } else if (inChildFullPath || name === dataChild.routers.name) {
               item = data;
               itemIndex = dataNum;
             }
           });
-        }
-        else if (O.hOwnProperty(data, 'routers') && (newFullPath.indexOf(data.routers.path) > -1 || name === data.routers.name)) {
+        } else if (O.hOwnProperty(data, 'routers') && (newDataFullPath || name === data.routers.name)) {
           this$1.mainIndex = dataNum;
         }
       });
       if (itemIndex > -1) {
+        this.mainIndex = itemIndex;
         this.menuMainClick(item, itemIndex);
       }
     },
     toogleChild: function toogleChild(itemIndex) {
-      var eqLast = itemIndex === childrenLast;
+      var eqLast = itemIndex === childrenLast$1;
       this.childrenIndex = eqLast ? -1 : itemIndex;
-      childrenLast = eqLast ? -1 : itemIndex;
+      childrenLast$1 = eqLast ? -1 : itemIndex;
     },
     tochildren: function tochildren(item, itemIndex) {
       if (O.hOwnProperty(item, 'routers') || O.hOwnProperty(item, 'url')) {
-        this.mainIndex = itemIndex;
-        this.childrenDatas = [];
         this.childrenIndex = -1;
-        childrenLast = 0;
-        childrentatus = false;
-        this.$emit('short', this.menuShort, childrentatus);
+        childrenLast$1 = -1;
+        this.$emit('short', this.menuShort, this.childrentatus);
       }
 
       if (O.hOwnProperty(item, 'routers')) {
@@ -825,15 +898,16 @@ staticRenderFns: [],
       }
 
       if (O.hOwnProperty(item, 'children')) {
-        this.menuMainClick(item, itemIndex);
+        // this.menuMainClick(item, itemIndex);
+        // 默认跳转
+        this.tochildren(item.children[0], 0);
       }
     },
     menuMainClick: function menuMainClick(item, itemIndex) {
       this.childrenDatas = item.children;
       this.childrenTitle = item.title;
-      this.mainIndex = itemIndex;
-      childrentatus = true;
-      this.$emit('column', this.menuShort, childrentatus);
+      this.childrentatus = true;
+      this.$emit('column', this.menuShort, this.childrentatus);
     },
     menuToShort: function menuToShort(type) {
       if (type === 'resize') {
@@ -841,7 +915,7 @@ staticRenderFns: [],
       } else {
         this.menuShort = !this.menuShort;
       }
-      this.$emit('short', this.menuShort, childrentatus);
+      this.$emit('short', this.menuShort, this.childrentatus);
     },
   },
   watch: {
@@ -2940,7 +3014,7 @@ staticRenderFns: [],
       this.disY = e.clientX - this.$el.offsetLeft;
       // console.log(this.disY);
       // console.log(left);
-      // console.log(top);
+      console.log(top);
     },
   },
 };
@@ -3522,6 +3596,7 @@ var emfeDocumentclick = {
 var emfeCpt = {
   EmfeCol: Grid.EmfeCol,
   EmfeRow: Grid.EmfeRow,
+  EmfeBar: EmfeBar$1,
   EmfeIcon: EmfeIcon$1,
   EmfeTooltip: EmfeTooltip$1,
   EmfeTransition: EmfeTransition,
