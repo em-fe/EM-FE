@@ -34,11 +34,6 @@ const builds = {
     dest: 'dist/emfe-cjs.js',
     format: 'cjs',
   },
-  'es': {
-    entry: 'src/index.js',
-    dest: 'dist/emfe-esm.js',
-    format: 'es',
-  },
   'umd': {
     entry: 'src/index.js',
     dest: 'dist/emfe-umd.js',
@@ -59,11 +54,6 @@ const builds = {
     entry: 'src/index.js',
     dest: 'dist/emfe-cjs.min.js',
     format: 'cjs',
-  },
-  'es.min': {
-    entry: 'src/index.js',
-    dest: 'dist/emfe-esm.min.js',
-    format: 'es',
   },
   'umd.min': {
     entry: 'src/index.js',

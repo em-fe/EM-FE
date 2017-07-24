@@ -30,6 +30,8 @@ import EmfeDatapanel from './components/emfe-datapanel/index';
 import Tag from './components/emfe-tag/index';
 import EmfePanel from './components/emfe-panel/index';
 import EmfeSlide from './components/emfe-slide/index';
+import EmfeHottip from './components/emfe-hottip/index';
+import EmfeCrumb from './components/emfe-crumb/index';
 // 服务
 import EmfeMessage from './components/emfe-message/index';
 // 指令
@@ -73,6 +75,8 @@ const emfeCpt = {
   EmfeTagParent: Tag.EmfeTagParent,
   EmfePanel,
   EmfeSlide,
+  EmfeCrumb,
+  EmfeHottip,
 };
 
 const emfeDir = {

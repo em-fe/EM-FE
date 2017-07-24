@@ -1,5 +1,5 @@
 <template>
-  <button class="emfe-button" :disabled="disabled" @click="change" :class="buttonName">
+  <button class="emfe-button" :disabled="disabled" @click.stop="change" :class="buttonName">
    <emfe-icon v-if="type" :type="type" class="emfe-button-icon"></emfe-icon>
     <span class="emfe-button-text" :class="textName">
       <slot></slot>
@@ -28,13 +28,19 @@ export default {
     index: {
       tyep: String,
     },
+    statu: {
+      tyep: Boolean,
+    },
+  },
+  created() {
+    this.status = this.statu;
   },
   computed: {
     buttonName() {
       return [
         {
           [`${prefixCls}-${this.className}`]: !!this.className,
-          [`${prefixCls}-button-on`]: !!this.status,
+          [`${prefixCls}-on`]: !!this.status,
         },
       ];
     },
@@ -48,9 +54,13 @@ export default {
   },
   methods: {
     change() {
+      const index = this.index ? this.index : 0;
       this.$parent.$children.forEach((element) => {
-        element.status = this.index === element.index;
+        if (this.index) {
+          element.status = this.index === element.index;
+        }
       });
+      this.$emit('click', index);
     },
   },
 };

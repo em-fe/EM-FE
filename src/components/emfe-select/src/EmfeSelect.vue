@@ -1,17 +1,17 @@
 <template>
   <div class="emfe-select" v-emfe-documentclick="close">
-    <input class="emfe-input-box-input" type="text" :value="checkVals" readonly placeholder="请选择标签" @click="inpcheck">
+    <input class="emfe-input-box-input" type="text" :value="checkVals" readonly :placeholder="selectText" @click="inpcheck">
     <div v-if="flagCheck" class="emfe-select-flag">
       <div class="emfe-select-custab" v-if="seleStu==='newList'">
-        <input type="text" placeholder="添加标签" class="emfe-input-box-input" v-model="newListVal"><span class="emfe-select-custab-btn" @click="newListBtn">保存</span>
+        <input type="text" :placeholder="addText" class="emfe-input-box-input" v-model="newListVal"><span class="emfe-select-custab-btn" @click="newListBtn">保存</span>
       </div>
       <label v-for="item in checkList" class="emfe-select-label" v-if="type==='radio'">
-        <span class="emfe-select-text">{{ item.name }}</span><input class="emfe-checkout-box-input" type="radio" v-model="checkVals" :value="item.name">
+        <span class="emfe-select-text">{{ item.name }}</span><input class="emfe-checkout-box-input" :disabled="item.disabled" type="radio" v-model="checkVals" :value="item.name">
       </label>
       <label v-for="item in checkList" class="emfe-select-label" v-if="type==='checkbox'">
-        <span class="emfe-select-text">{{ item.name }}</span><input class="emfe-checkout-box-input" type="checkbox" v-model="checkVals" :value="item.name">
+        <span class="emfe-select-text">{{ item.name }}</span><input class="emfe-checkout-box-input" :disabled="item.disabled" type="checkbox" v-model="checkVals" :value="item.name">
       </label>
-      <label v-for="item in checkList" class="emfe-select-label emfe-select-delabel"  v-on:click="spanTxt" v-if="type==='default'">{{ item.name }}</label>
+      <label v-for="item in checkList" class="emfe-select-label emfe-select-delabel" v-on:click="spanTxt" :disabled="item.disabled" v-if="type==='default'">{{ item.name }}</label>
     </div>
   </div>
 </template>
@@ -30,6 +30,14 @@ export default {
     datas: {
       type: Array,
       required: true,
+    },
+    selectText: {
+      type: String,
+      default: '请选择标签',
+    },
+    addText: {
+      type: String,
+      default: '添加标签',
     },
   },
   data() {
