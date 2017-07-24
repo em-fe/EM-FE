@@ -338,6 +338,16 @@ module.exports = {
                 },
               },
             },
+            {
+              title: '滑动',
+              icon: 'hotel',
+              routers: {
+                path: 'slide',
+                query: {
+                  main: 4,
+                },
+              },
+            },
           ],
         },
       ],

@@ -29,6 +29,7 @@ import EmfeTextarea from './components/emfe-textarea/index';
 import EmfeDatapanel from './components/emfe-datapanel/index';
 import Tag from './components/emfe-tag/index';
 import EmfePanel from './components/emfe-panel/index';
+import EmfeSlide from './components/emfe-slide/index';
 // 服务
 import EmfeMessage from './components/emfe-message/index';
 // 指令
@@ -71,6 +72,7 @@ const emfeCpt = {
   EmfeTag: Tag.EmfeTag,
   EmfeTagParent: Tag.EmfeTagParent,
   EmfePanel,
+  EmfeSlide,
 };
 
 const emfeDir = {

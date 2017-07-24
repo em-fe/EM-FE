@@ -158,6 +158,11 @@ const router = new VueRouter({
       name: 'panel',
       component: require('./components/PanelPage.vue'),
     },
+    {
+      path: '/slide',
+      name: 'slide',
+      component: require('./components/SlidePage.vue'),
+    },
   ],
 });
 
