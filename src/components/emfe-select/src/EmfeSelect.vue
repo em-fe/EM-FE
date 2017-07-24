@@ -6,10 +6,10 @@
         <input type="text" placeholder="添加标签" class="emfe-input-box-input" v-model="newListVal"><span class="emfe-select-custab-btn" @click="newListBtn">保存</span>
       </div>
       <label v-for="item in checkList" class="emfe-select-label" v-if="type==='radio'">
-        <span class="emfe-select-text">{{ item.name }}</span><input class="emfe-checkout-box-input" :disabled="item.disabled" type="radio" v-model="checkVals" :value="item.name">
+        <span class="emfe-select-text">{{ item.name }}</span><input class="emfe-checkout-box-input" :disabled="item.disabled" type="radio" v-model="checkVals" :value="item.name" @change="getAllVal">
       </label>
       <label v-for="item in checkList" class="emfe-select-label" v-if="type==='checkbox'">
-        <span class="emfe-select-text">{{ item.name }}</span><input class="emfe-checkout-box-input" :disabled="item.disabled" type="checkbox" v-model="checkVals" :value="item.name">
+        <span class="emfe-select-text">{{ item.name }}</span><input class="emfe-checkout-box-input" :disabled="item.disabled" type="checkbox" v-model="checkVals" :value="item.name" @change="getAllVal">
       </label>
       <label v-for="item in checkList" class="emfe-select-label emfe-select-delabel" @click="spanTxt(item)" :disabled="item.disabled" v-if="type==='default'"><span :class="{'disabled': item.disabled}">{{ item.name }}</span></label>
     </div>
@@ -53,7 +53,14 @@ export default {
     spanTxt(item) {
       if (item.disabled !== 'disabled') {
         this.checkVals = item.name;
+        const vals = this.checkVals;
+        alert(vals);
+        this.$emit('getVal', vals);
       }
+    },
+    getAllVal() {
+      const vals = this.checkVals;
+      this.$emit('allVal', vals);
     },
     close() {
       this.checkList = [];

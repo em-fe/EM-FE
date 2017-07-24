@@ -76,10 +76,15 @@ export default {
       data1: [
         {
           name: 'wefajlrjgakdjsdklfgjkdjfkldjfgkljfjdhjklhsdfjgkshdkljaiursfajkds',
-          disabled: 'disabled',
         },
         {
           name: '88888',
+        },
+         {
+          name: '3454636',
+        },
+         {
+          name: '666',
         },
       ],
       data2: [
@@ -88,17 +93,14 @@ export default {
         },
         {
           name: 'sfafgdgsdf',
-          disabled: 'disabled',
         },
         {
           name: 'ergdsf',
-          disabled: 'disabled',
         },
       ],
       data3: [
         {
           name: 'default',
-          disabled: 'disabled',
         },
         {
           name: '一夜暴富',
