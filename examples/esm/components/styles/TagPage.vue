@@ -38,9 +38,8 @@
         <emfe-tag index="1"  skin="blue">选中</emfe-tag>
       </emfe-tag-parent>
       <br>
-      <emfe-tag-parent className="screen">
-        <emfe-tag index="0" skin="yellow">默认</emfe-tag>
-        <emfe-tag index="1" skin="yellow">选中</emfe-tag>
+      <emfe-tag-parent className="screen" :data="dataList">
+        <emfe-tag v-for="(item, index) in dataList" :key="index" :index="index" active="true" skin="yellow">{{item}}</emfe-tag>
       </emfe-tag-parent>
     </div>
     <br><br>
@@ -115,6 +114,11 @@
 <script>
 export default {
   name: 'tag-page',
+  data() {
+    return {
+      dataList: ['默认', '选中'],
+    };
+  },
   methods:{
     tag(index) {
       console.log(index);

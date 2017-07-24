@@ -22,7 +22,7 @@ export default {
       this.disY = e.clientX - this.$el.offsetLeft;
       // console.log(this.disY);
       // console.log(left);
-      // console.log(top);
+      console.log(top);
     },
   },
 };

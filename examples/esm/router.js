@@ -55,6 +55,11 @@ const router = new VueRouter({
           component: require('./components/styles/MenuPage.vue'),
         },
         {
+          path: '/styles/bar',
+          name: 'bar',
+          component: require('./components/styles/BarPage.vue'),
+        },
+        {
           path: '/styles/title',
           name: 'title',
           component: require('./components/styles/TitlePage.vue'),
@@ -181,13 +186,13 @@ const router = new VueRouter({
           name: 'drop',
           component: require('./components/functions/DropPage.vue'),
         },
+        {
+          path: '/functions/slide',
+          name: 'slide',
+          component: require('./components/functions/SlidePage.vue'),
+        },
       ],
       component: require('./components/functions/Index.vue'),
-    },
-    {
-      path: '/transition',
-      name: 'transition',
-      component: require('./components/TransitionPage.vue'),
     },
   ],
 });

@@ -1,7 +1,7 @@
 <template>
   <div :class="menuClass">
     <h1>活动时 EMFE 测试页面</h1>
-    <emfe-menu className="main" :datas="menus" @short="shortMenu" @column="columnMenu"></emfe-menu>
+    <emfe-menu className="main" :datas="menus" @short="shortMenu" @column="columnMenu" :fullpath="fullpath"></emfe-menu>
     <div class="warp">
       <router-view></router-view>
     </div>
@@ -129,6 +129,13 @@ module.exports = {
                   icon: 'hotel',
                   routers: {
                     name: 'menu',
+                  },
+                },
+                {
+                  title: '二级导航',
+                  icon: 'hotel',
+                  routers: {
+                    name: 'bar',
                   },
                 },
               ],
@@ -290,10 +297,38 @@ module.exports = {
                 path: '/functions/selectpage',
               }
             },
+            {
+              title: '多选',
+              icon: 'checkout',
+              routers: {
+                path: '/functions/checkout',
+              },
+            },
+            {
+              title: 'drop',
+              icon: 'hotel',
+              routers: {
+                path: '/functions/drop',
+                query: {
+                  main: 4,
+                },
+              },
+            },
+            {
+              title: '滑动',
+              icon: 'hotel',
+              routers: {
+                path: '/functions/slide',
+                query: {
+                  main: 4,
+                },
+              },
+            },
           ],
         },
       ],
       menuClass: 'main-full',
+      fullpath: localStorage.path,
     }
   },
   methods: {
@@ -318,6 +353,13 @@ module.exports = {
       } else {
         this.menuClass = 'main-full-column';
       }
+    },
+  },
+  watch: {
+    $route(val) {
+      this.fullpath = val.path;
+      console.log(11);
+      localStorage.path = val.path;
     },
   },
 };

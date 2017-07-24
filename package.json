@@ -1,6 +1,6 @@
 {
   "name": "em-fe",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "快速开发产品的UI库",
   "main": "dist/emfe.js",
   "files": [
@@ -68,6 +68,7 @@
     "vue": "^2.3.4",
     "vue-loader": "^12.2.1",
     "vue-router": "^2.6.0",
+    "vuex": "^2.3.1",
     "webpack": "^3.0.0",
     "webpack-dev-server": "^2.5.0"
   }
