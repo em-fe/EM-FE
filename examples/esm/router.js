@@ -181,13 +181,13 @@ const router = new VueRouter({
           name: 'drop',
           component: require('./components/functions/DropPage.vue'),
         },
+        {
+          path: '/functions/slide',
+          name: 'slide',
+          component: require('./components/functions/SlidePage.vue'),
+        },
       ],
       component: require('./components/functions/Index.vue'),
-    },
-    {
-      path: '/transition',
-      name: 'transition',
-      component: require('./components/TransitionPage.vue'),
     },
   ],
 });
