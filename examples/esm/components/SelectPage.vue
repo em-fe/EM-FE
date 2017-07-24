@@ -5,7 +5,7 @@
     </style>多选：</div>
 
     <!--  -->
-    <emfe-select :datas="data1" type="checkbox"></emfe-select>
+    <emfe-select :datas="data1" type="checkbox" v-on:getData="getdatas"></emfe-select>
     API：包含两个配置项：<br>
               自定义属性 :<br>
               :datas="data1"<br>
@@ -16,7 +16,7 @@
       单选：
     </div>
     <!--  -->
-    <emfe-select :datas="data2" type="radio"></emfe-select>
+    <emfe-select :datas="data2" type="radio" v-on:getData="getdatas"></emfe-select>
     API：包含两个配置项：<br>
               自定义属性 :<br>
               :datas="data2"<br>
@@ -56,7 +56,7 @@
     </div>
 
     <!--  -->
-    <emfe-select :datas="data3" type="default"></emfe-select>
+    <emfe-select :datas="data3" type="default" v-on:getdef="getDef"></emfe-select>
     API：包含2个配置项：<br>
               自定义属性 :<br>
               :datas="data3"<br>
@@ -76,15 +76,16 @@ export default {
       data1: [
         {
           name: 'wefajlrjgakdjsdklfgjkdjfkldjfgkljfjdhjklhsdfjgkshdkljaiursfajkds',
+          disabled: 'disabled',
         },
         {
           name: '88888',
         },
-         {
-          name: '3454636',
+        {
+          name: '88',
         },
-         {
-          name: '666',
+        {
+          name: '888',
         },
       ],
       data2: [
@@ -101,6 +102,7 @@ export default {
       data3: [
         {
           name: 'default',
+          disabled: 'disabled',
         },
         {
           name: '一夜暴富',
@@ -111,9 +113,17 @@ export default {
   methods: {
     addDataCheck(nData) {
       this.data1.push({ name:nData });
+      console.log(nData);
     },
     addDataRadio(nData) {
       this.data2.push({ name:nData });
+      console.log(nData);
+    },
+    getdatas(v) {
+      console.log(v);
+    },
+    getDef(v) {
+      console.log(v);
     },
   },
 };
