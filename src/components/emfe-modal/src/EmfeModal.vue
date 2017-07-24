@@ -34,6 +34,14 @@ export default {
       type: String,
       default: '',
     },
+    cancelText: {
+      type: String,
+      default: '取消',
+    },
+    okText: {
+      type: String,
+      default: '确定',
+    },
   },
   computed: {
     mainName() {

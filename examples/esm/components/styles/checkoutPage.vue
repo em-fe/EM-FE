@@ -3,6 +3,8 @@
     <h4>填写设置</h4>
     <emfe-checkout title="这是一个必填项">
     </emfe-checkout>
+    <emfe-checkout color="#1996F9" title="这是一个带颜色的标题">
+    </emfe-checkout>
     <emfe-checkout :slideShow="slideShow" title="限定可选日期范围">
       <div slot="slide">
         <emfe-checkout title="周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一"></emfe-checkout>

@@ -1,6 +1,6 @@
 <template>
   <div class='emfe-tag' :class="classList" @click="activeClass">
-    <emfe-icon v-if="!!type" :type="type" className="icon-page"></emfe-icon>
+    <emfe-icon v-if="type" :type="type" className="icon-page"></emfe-icon>
     <slot></slot>
     <span v-if="!!skin"></span>
   </div>
@@ -27,7 +27,7 @@ export default {
       default: false,
     },
     index: {
-      type: String,
+      type: [String, Number],
       required: true,
     },
   },
