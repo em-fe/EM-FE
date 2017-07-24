@@ -4,7 +4,7 @@
       <td class="emfe-box-table-tr-td" :class="classTd"><div><slot></slot></div></td>
     </template>
     <template>
-      <td class="emfe-box-table-tr-td" :class="classTd" :rowspan="dataList[list.key].row ? rowSpan[list.key]:0"  v-for="(list , index) in column" v-if='!dataList[list.key].text==""'>
+      <td class="emfe-box-table-tr-td" :class="classTd" :rowspan="dataList[list.key].row ? rowSpan[list.key]:0"  v-for="(list , index) in dataSlice" v-if="dataList[list.key].text">
         <div>{{dataList[list.key].text}}</div>
       </td>
     </template>
@@ -20,6 +20,7 @@ export default {
       column: this.$parent.columns,
       data: this.$parent.data,
       current: 0,
+      columnCopy: [],
     };
   },
   props: {
@@ -35,6 +36,12 @@ export default {
     },
   },
   computed: {
+    dataSlice() {
+      if (this.$parent.columns[0].type === 'selection') {
+        return this.column.slice(1, this.column.length);
+      }
+      return this.column;
+    },
     classTr() {
       return [
         `${this.className}-table-body-tr`,

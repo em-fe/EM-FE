@@ -61,12 +61,12 @@
         min-height: 48px;
         height: 48px;
         width: 100%;
-        background-color: $thead-tr-color;
+        background-color: $background-color-title;
         border: 1px solid $border-color;
 
         &-th {
           box-sizing: border-box;
-          padding: 0 5px;
+          padding: 0 12px;
           text-align: left;
           font-size: 14px;
           color: $thead-text-color;
@@ -83,7 +83,7 @@
       border: 1px solid $border-color;
 
       &:nth-child(2n) {
-        background-color: $thead-tr-color;
+        background-color: $background-color-even;
       }
 
       &:hover {
@@ -92,7 +92,7 @@
 
       &-td {
         box-sizing: border-box;
-        padding: 0 5px;
+        padding: 0 12px;
         text-align: left;
         font-size: 14px;
         color: $title-color;

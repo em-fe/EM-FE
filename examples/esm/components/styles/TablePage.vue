@@ -5,10 +5,10 @@
     <p>表格固定宽度</p>
     <emfe-table classAddName="add" :columns="column" :data="data2">
       <emfe-table-head slot="head" >
-      sss
       </emfe-table-head>
       <emfe-table-body slot="body" v-for="(dataList,index) in data2" :ind="index" key="index" :dataList="dataList">
-      sss
+        <emfe-checkout color="#1996F9" :title="dataList.name.text">
+        </emfe-checkout>
       </emfe-table-body>
     </emfe-table>
     <br>
@@ -22,12 +22,10 @@
     </emfe-table>
     <br>
     <p>表格不固定宽度,需要传type="true"</p>
-    <emfe-table :columns="column" :data="data2" type="true">
+    <emfe-table :columns="column2" :data="data2" type="true">
       <emfe-table-head  slot="head" >
-      iconBox
       </emfe-table-head>
       <emfe-table-body slot="body"  v-for="(dataList,index) in data2" key="index" :ind="index" :dataList="dataList" @jump="Jump">
-      iconBox
       </emfe-table-body>
     </emfe-table>
     <br>
@@ -291,7 +289,7 @@ export default {
 </script>
 <style>
   .emfe-table-box{
-    width: 1200px;
+    width: 1500px;
     height: 1500px;
   }
 </style>
