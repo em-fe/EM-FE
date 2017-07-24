@@ -1,7 +1,7 @@
 <template>
   <div>
     <button @click="formBtn">我是表单弹出框，点我呀！</button>
-    <emfe-modal :show="formShow" :title="copyTitle" :width="width" @close="formClose" @cancel="formCancel" @ok="formOk">
+    <emfe-modal :show="formShow" :title="copyTitle" :width="width" @close="formClose" @cancel="formCancel" @ok="formOk" cancelText="取消" okText='保存'>
       <div slot="modal-main" className="form">
         <div class="emfe-modal-main-input">
           <h6 class="emfe-modal-main-input-title">标题</h6>
@@ -48,6 +48,18 @@
           <td>标题内容文字</td>
           <td>String</td>
           <td>-</td>
+        </tr>
+        <tr>
+          <td>cancelText</td>
+          <td>弹出框 取消内容</td>
+          <td>String</td>
+          <td>默认取消</td>
+        </tr>
+        <tr>
+          <td>okText</td>
+          <td>弹出框 确定内容</td>
+          <td>String</td>
+          <td>默认确定</td>
         </tr>
       </tbody>
     </table>

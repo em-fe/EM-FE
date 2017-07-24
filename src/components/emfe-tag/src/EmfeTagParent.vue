@@ -11,11 +11,20 @@ export default {
       type: String,
       required: true,
     },
+    data: {
+      type: Array,
+      default() {
+        return [];
+      },
+    },
   },
   data() {
     return {
       childrens: [],
     };
+  },
+  mounted() {
+    console.log(this.data);
   },
   methods: {
     getIndex(index) {
@@ -26,7 +35,7 @@ export default {
       } else if (this.className === 'checket') {
         this.$children[index].activeOk = true;
       } else if (this.className === 'screen') {
-        this.$children[index].activeOk = !this.$children[index].activeOk;
+        this.data.splice(index, 1);
       }
     },
   },

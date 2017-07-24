@@ -1,11 +1,9 @@
  <template>
   <tr @click="jump(ind)" class="emfe-box-table-tr" :class="classTr">
-    <template v-if="this.$parent.columns[0].type == 'selection'">
-      <td class="emfe-box-table-tr-td" :class="classTd"><div><slot></slot></div></td>
-    </template>
     <template>
-      <td class="emfe-box-table-tr-td" :class="classTd" :rowspan="dataList[list.key].row ? rowSpan[list.key]:0"  v-for="(list , index) in dataSlice" v-if="dataList[list.key].text">
-        <div>{{dataList[list.key].text}}</div>
+      <td class="emfe-box-table-tr-td" :class="classTd" :rowspan="dataList[list.key].row ? rowSpan[list.key]:0"  v-for="(list , index) in dataSlice" v-if="!dataList[list.key].hebing">
+        <slot v-if="dataList[list.key].slot"></slot>
+        <div v-if="dataList[list.key].text">{{dataList[list.key].text}}</div>
       </td>
     </template>
   </tr>

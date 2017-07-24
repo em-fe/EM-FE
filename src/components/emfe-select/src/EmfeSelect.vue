@@ -1,6 +1,6 @@
 <template>
   <div class="emfe-select" v-emfe-documentclick="close">
-    <input class="emfe-input-box-input" type="text" :value="checkVals" readonly :placeholder="selectText" @click="inpcheck">
+    <input class="emfe-input-box-input" type="text" :value="checkVals" readonly :placeholder="selectText" @click="inpcheck" @change="cc">
     <div v-if="flagCheck" class="emfe-select-flag">
       <div class="emfe-select-custab" v-if="seleStu==='newList'">
         <input type="text" :placeholder="addText" class="emfe-input-box-input" v-model="newListVal"><span class="emfe-select-custab-btn" @click="newListBtn">保存</span>
@@ -33,7 +33,7 @@ export default {
     },
     selectText: {
       type: String,
-      default: '请选择标签',
+      default: '',
     },
     addText: {
       type: String,
@@ -60,10 +60,14 @@ export default {
     },
     spanTxt(e) {
       this.checkVals = e.target.innerHTML;
+      this.$emit('checkselect', this.checkVals);
     },
     close() {
       this.checkList = [];
       this.flagCheck = false;
+    },
+    cc() {
+      console.log(1);
     },
   },
 };
