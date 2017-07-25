@@ -2842,7 +2842,7 @@ EmfePagination$1.install = function (Vue$$1) {
 };
 
 var EmfeSelect$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"emfe-documentclick",rawName:"v-emfe-documentclick",value:(_vm.close),expression:"close"}],staticClass:"emfe-select"},[_c('input',{staticClass:"emfe-input-box-input",attrs:{"type":"text","readonly":"","placeholder":_vm.selectText},domProps:{"value":_vm.checkVals},on:{"click":_vm.inpcheck,"change":_vm.cc}}),_vm._v(" "),(_vm.flagCheck)?_c('div',{staticClass:"emfe-select-flag"},[(_vm.seleStu==='newList')?_c('div',{staticClass:"emfe-select-custab"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.newListVal),expression:"newListVal"}],staticClass:"emfe-input-box-input",attrs:{"type":"text","placeholder":_vm.addText},domProps:{"value":(_vm.newListVal)},on:{"input":function($event){if($event.target.composing){ return; }_vm.newListVal=$event.target.value;}}}),_c('span',{staticClass:"emfe-select-custab-btn",on:{"click":_vm.newListBtn}},[_vm._v("保存")])]):_vm._e(),_vm._v(" "),_vm._l((_vm.checkList),function(item){return (_vm.type==='radio')?_c('label',{staticClass:"emfe-select-label"},[_c('span',{staticClass:"emfe-select-text"},[_vm._v(_vm._s(item.name))]),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.checkVals),expression:"checkVals"}],staticClass:"emfe-checkout-box-input",attrs:{"disabled":item.disabled,"type":"radio"},domProps:{"value":item.name,"checked":_vm._q(_vm.checkVals,item.name)},on:{"__c":function($event){_vm.checkVals=item.name;}}})]):_vm._e()}),_vm._v(" "),_vm._l((_vm.checkList),function(item){return (_vm.type==='checkbox')?_c('label',{staticClass:"emfe-select-label"},[_c('span',{staticClass:"emfe-select-text"},[_vm._v(_vm._s(item.name))]),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.checkVals),expression:"checkVals"}],staticClass:"emfe-checkout-box-input",attrs:{"disabled":item.disabled,"type":"checkbox"},domProps:{"value":item.name,"checked":Array.isArray(_vm.checkVals)?_vm._i(_vm.checkVals,item.name)>-1:(_vm.checkVals)},on:{"__c":function($event){var $$a=_vm.checkVals,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=item.name,$$i=_vm._i($$a,$$v);if($$c){$$i<0&&(_vm.checkVals=$$a.concat($$v));}else{$$i>-1&&(_vm.checkVals=$$a.slice(0,$$i).concat($$a.slice($$i+1)));}}else{_vm.checkVals=$$c;}}}})]):_vm._e()}),_vm._v(" "),_vm._l((_vm.checkList),function(item){return (_vm.type==='default')?_c('label',{staticClass:"emfe-select-label emfe-select-delabel",attrs:{"disabled":item.disabled},on:{"click":_vm.spanTxt}},[_vm._v(_vm._s(item.name))]):_vm._e()})],2):_vm._e()])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"emfe-documentclick",rawName:"v-emfe-documentclick",value:(_vm.close),expression:"close"}],staticClass:"emfe-select"},[_c('input',{staticClass:"emfe-input-box-input",attrs:{"type":"text","readonly":"","placeholder":_vm.selectText},domProps:{"value":_vm.checkVals},on:{"click":_vm.inpcheck,"change":_vm.cc}}),_vm._v(" "),(_vm.flagCheck)?_c('div',{staticClass:"emfe-select-flag"},[(_vm.seleStu==='newList')?_c('div',{staticClass:"emfe-select-custab"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.newListVal),expression:"newListVal"}],staticClass:"emfe-input-box-input",attrs:{"type":"text","placeholder":_vm.addText},domProps:{"value":(_vm.newListVal)},on:{"input":function($event){if($event.target.composing){ return; }_vm.newListVal=$event.target.value;}}}),_c('span',{staticClass:"emfe-select-custab-btn",on:{"click":_vm.newListBtn}},[_vm._v("保存")])]):_vm._e(),_vm._v(" "),_vm._l((_vm.checkList),function(item){return (_vm.type==='radio')?_c('label',{staticClass:"emfe-select-label"},[_c('span',{staticClass:"emfe-select-text"},[_vm._v(_vm._s(item.name))]),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.checkVals),expression:"checkVals"}],staticClass:"emfe-checkout-box-input",attrs:{"disabled":item.disabled,"type":"radio"},domProps:{"value":item.name,"checked":_vm._q(_vm.checkVals,item.name)},on:{"change":_vm.getdata,"__c":function($event){_vm.checkVals=item.name;}}})]):_vm._e()}),_vm._v(" "),_vm._l((_vm.checkList),function(item){return (_vm.type==='checkbox')?_c('label',{staticClass:"emfe-select-label"},[_c('span',{staticClass:"emfe-select-text"},[_vm._v(_vm._s(item.name))]),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.checkVals),expression:"checkVals"}],staticClass:"emfe-checkout-box-input",attrs:{"disabled":item.disabled,"type":"checkbox"},domProps:{"value":item.name,"checked":Array.isArray(_vm.checkVals)?_vm._i(_vm.checkVals,item.name)>-1:(_vm.checkVals)},on:{"change":_vm.getdata,"__c":function($event){var $$a=_vm.checkVals,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=item.name,$$i=_vm._i($$a,$$v);if($$c){$$i<0&&(_vm.checkVals=$$a.concat($$v));}else{$$i>-1&&(_vm.checkVals=$$a.slice(0,$$i).concat($$a.slice($$i+1)));}}else{_vm.checkVals=$$c;}}}})]):_vm._e()}),_vm._v(" "),_vm._l((_vm.checkList),function(item){return (_vm.type==='default')?_c('label',{staticClass:"emfe-select-label emfe-select-delabel",attrs:{"disabled":item.disabled},on:{"click":function($event){_vm.spanTxt(item);}}},[_c('span',{class:{'disabled': item.disabled}},[_vm._v(_vm._s(item.name))])]):_vm._e()})],2):_vm._e()])},
 staticRenderFns: [],
   name: 'Select',
   props: {
@@ -2885,16 +2885,21 @@ staticRenderFns: [],
       this.$emit('addDataCheck', newdata);
       this.$emit('addDataRadio', newdata);
     },
-    spanTxt: function spanTxt(e) {
-      this.checkVals = e.target.innerHTML;
-      this.$emit('checkselect', this.checkVals);
+    spanTxt: function spanTxt(item) {
+      if (item.disabled !== 'disabled') {
+        this.checkVals = item.name;
+        // console.log(this.checkVals);
+        this.$emit('getdef', this.checkVals);
+      }
     },
     close: function close() {
       this.checkList = [];
       this.flagCheck = false;
     },
-    cc: function cc() {
-      console.log(1);
+    getdata: function getdata() {
+      var va = this.checkVals;
+      // console.log(va);
+      this.$emit('getData', va);
     },
   },
 };
@@ -3126,7 +3131,7 @@ staticRenderFns: [],
 };
 
 var EmfeTableBody = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('tr',{staticClass:"emfe-box-table-tr",class:_vm.classTr,on:{"click":function($event){_vm.jump(_vm.ind);}}},[_vm._l((_vm.dataSlice),function(list,index){return (!_vm.dataList[list.key].hebing)?_c('td',{staticClass:"emfe-box-table-tr-td",class:_vm.classTd,attrs:{"rowspan":_vm.dataList[list.key].row ? _vm.rowSpan[list.key]:0}},[(_vm.dataList[list.key].slot)?_vm._t("default"):_vm._e(),_vm._v(" "),(_vm.dataList[list.key].text)?_c('div',[_vm._v(_vm._s(_vm.dataList[list.key].text))]):_vm._e()],2):_vm._e()})],2)},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('tr',{staticClass:"emfe-box-table-tr",class:_vm.classTr,on:{"click":function($event){_vm.jump(_vm.ind);}}},[_vm._l((_vm.dataSlice),function(list,index){return (!_vm.dataList[list.key].hebing)?_c('td',{staticClass:"emfe-box-table-tr-td",class:_vm.classTd,attrs:{"rowspan":_vm.dataList[list.key].row ? _vm.rowSpan[list.key]:0}},[(_vm.dataList[list.key].slot==='a')?_vm._t("a"):_vm._e(),_vm._v(" "),(_vm.dataList[list.key].slot==='b')?_vm._t("b"):_vm._e(),_vm._v(" "),(_vm.dataList[list.key].slot==='c')?_vm._t("c"):_vm._e(),_vm._v(" "),(_vm.dataList[list.key].slot==='d')?_vm._t("d"):_vm._e(),_vm._v(" "),(_vm.dataList[list.key].slot==='e')?_vm._t("e"):_vm._e(),_vm._v(" "),(_vm.dataList[list.key].slot==='f')?_vm._t("f"):_vm._e(),_vm._v(" "),(_vm.dataList[list.key].slot==='g')?_vm._t("g"):_vm._e(),_vm._v(" "),(_vm.dataList[list.key].slot==='h')?_vm._t("h"):_vm._e(),_vm._v(" "),(_vm.dataList[list.key].slot==='i')?_vm._t("i"):_c('div',[_vm._v(_vm._s(_vm.dataList[list.key].text))])],2):_vm._e()})],2)},
 staticRenderFns: [],
   name: 'EmfeTableBody',
   data: function data() {

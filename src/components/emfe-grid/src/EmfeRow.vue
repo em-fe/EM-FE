@@ -44,7 +44,7 @@ export default {
           [`${prefixCls}-${this.type}`]: !!this.type,
           [`${prefixCls}-${this.align}`]: !!this.type && !!this.align,
           [`${prefixCls}-${this.justify}`]: !!this.type && !!this.justify,
-          [`${this.className}`]: !!this.className,
+          [`${this.className}-row`]: !!this.className,
         },
       ];
     },

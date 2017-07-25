@@ -1,5 +1,5 @@
 <template>
-  <div class="emfe-bar">
+  <div class="emfe-bar" :class="barName">
     <h3 class="emfe-bar-header">{{ title }}</h3>
     <ul class="emfe-bar-list">
       <template v-for="(childrenData, childrenDataIndex) in datas">
@@ -45,6 +45,12 @@ export default {
     fullpath: {
       type: String,
       required: true,
+    },
+    className: String,
+  },
+  computed: {
+    barName() {
+      return this.className ? `${this.className}-bar` : '';
     },
   },
   methods: {

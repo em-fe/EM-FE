@@ -2,8 +2,8 @@
   <div class="grid">
     <h2>EMFE 栅格系统</h2>
     <h3>概述 - 24栅格系统</h3>
-    <emfe-row :gutter="12" :basin="12" type="flex" v-for="(text, m) in texts" :key="m" justify="center" align="middle" class-name="row-grid">
-      <emfe-col :span="24 / text.length" v-for="(t, n) in text" :key="n">
+    <emfe-row :gutter="12" :basin="12" type="flex" v-for="(text, m) in texts" :key="m" justify="center" align="middle" class-name="row1">
+      <emfe-col className="col1" :span="24 / text.length" v-for="(t, n) in text" :key="n">
         <div class="blue">{{t}}</div>
       </emfe-col>
     </emfe-row>
@@ -20,7 +20,7 @@
     1. 基本用法
     <emfe-row type="flex">
       <emfe-col :span="12">
-        <emfe-row className="row-gray">
+        <emfe-row className="row2">
           <emfe-col span="12">
             <div>col-12</div>
           </emfe-col>
@@ -28,7 +28,7 @@
             <div class="blue">col-12</div>
           </emfe-col>
         </emfe-row>
-        <emfe-row className="row-gray">
+        <emfe-row className="row2">
           <emfe-col span="8">
             <div class="blue">col-8</div>
           </emfe-col>
@@ -39,7 +39,7 @@
             <div class="blue">col-8</div>
           </emfe-col>
         </emfe-row>
-        <emfe-row className="row-gray">
+        <emfe-row className="row2">
           <emfe-col span="6">
             <div class="blue">col-6</div>
           </emfe-col>
@@ -57,7 +57,7 @@
       <emfe-col :span="12">
         <pre>
           <code>
-&lt;emfe-row className="row-gray"&gt;
+&lt;emfe-row className="row2"&gt;
   &lt;emfe-col span="12"&gt;
     &lt;div&gt;col-12&lt;/div&gt;
   &lt;/emfe-col&gt;
@@ -65,7 +65,7 @@
     &lt;div class="blue"&gt;col-12&lt;/div&gt;
   &lt;/emfe-col&gt;
 &lt;/emfe-row&gt;
-&lt;emfe-row className="row-gray"&gt;
+&lt;emfe-row className="row2"&gt;
   &lt;emfe-col span="8"&gt;
     &lt;div class="blue"&gt;col-8&lt;/div&gt;
   &lt;/emfe-col&gt;
@@ -76,7 +76,7 @@
     &lt;div class="blue"&gt;col-8&lt;/div&gt;
   &lt;/emfe-col&gt;
 &lt;/emfe-row&gt;
-&lt;emfe-row className="row-gray"&gt;
+&lt;emfe-row className="row2"&gt;
   &lt;emfe-col span="6"&gt;
     &lt;div class="blue"&gt;col-6&lt;/div&gt;
   &lt;/emfe-col&gt;
@@ -97,7 +97,7 @@
     2. 间隔用法
     <emfe-row type="flex">
       <emfe-col :span="12">
-        <emfe-row :gutter="16" className="row-gray">
+        <emfe-row :gutter="16" className="row2">
           <emfe-col span="6">
             <div class="yellow">col-6</div>
           </emfe-col>
@@ -115,7 +115,7 @@
       <emfe-col :span="12">
         <pre>
           <code>
-&lt;emfe-row :gutter="16" className="row-gray"&gt;
+&lt;emfe-row :gutter="16" className="row2"&gt;
   &lt;emfe-col span="6"&gt;
     &lt;div class="yellow"&gt;col-6&lt;/div&gt;
   &lt;/emfe-col&gt;
@@ -136,7 +136,7 @@
     3. 栅格顺序
     <emfe-row type="flex">
       <emfe-col :span="12">
-        <emfe-row class="row-gray" type="flex">
+        <emfe-row class="row2" type="flex">
           <emfe-col span="6" order="4">
             <div class="yellow">1 | order-4</div>
           </emfe-col>
@@ -154,7 +154,7 @@
       <emfe-col :span="12">
         <pre>
           <code>
-&lt;emfe-row class="row-gray" type="flex"&gt;
+&lt;emfe-row class="row2" type="flex"&gt;
   &lt;emfe-col span="6" order="4"&gt;
     &lt;div class="yellow"&gt;1 | order-4&lt;/div&gt;
   &lt;/emfe-col&gt;
@@ -175,7 +175,7 @@
     4. 栅格排序
     <emfe-row type="flex">
       <emfe-col :span="12">
-        <emfe-row className="row-gray">
+        <emfe-row className="row2">
           <emfe-col span="18" pull="6">
             <div class="yellow">col-18 | pull-6</div>
           </emfe-col>
@@ -187,7 +187,7 @@
       <emfe-col :span="12">
         <pre>
           <code>
-&lt;emfe-row className="row-gray"&gt;
+&lt;emfe-row className="row2"&gt;
   &lt;emfe-col span="18" pull="6"&gt;
     &lt;div class="yellow"&gt;col-18 | pull-6&lt;/div&gt;
   &lt;/emfe-col&gt;
@@ -202,7 +202,7 @@
     5. 栅格偏移
     <emfe-row type="flex">
       <emfe-col :span="12">
-        <emfe-row className="row-gray">
+        <emfe-row className="row2">
           <emfe-col span="8">
             <div class="yellow">col-8</div>
           </emfe-col>
@@ -211,7 +211,7 @@
           </emfe-col>
         </emfe-row>
         <br>
-        <emfe-row className="row-gray">
+        <emfe-row className="row2">
           <emfe-col span="6" offset="8">
             <div class="yellow">col-6 | offset-8</div>
           </emfe-col>
@@ -223,7 +223,7 @@
       <emfe-col :span="12">
         <pre>
           <code>
-&lt;emfe-row className="row-gray"&gt;
+&lt;emfe-row className="row2"&gt;
   &lt;emfe-col span="8"&gt;
     &lt;div class="yellow"&gt;col-8&lt;/div&gt;
   &lt;/emfe-col&gt;
@@ -232,7 +232,7 @@
   &lt;/emfe-col&gt;
 &lt;/emfe-row&gt;
 &lt;br&gt;
-&lt;emfe-row className="row-gray"&gt;
+&lt;emfe-row className="row2"&gt;
   &lt;emfe-col span="6" offset="8"&gt;
     &lt;div class="yellow"&gt;col-6 | offset-8&lt;/div&gt;
   &lt;/emfe-col&gt;
@@ -249,7 +249,7 @@
     a. 子元素向左排列
     <emfe-row type="flex">
       <emfe-col :span="12">
-        <emfe-row className="row-gray" type="flex" justify="start" align="top">
+        <emfe-row className="row2" type="flex" justify="start" align="top">
           <emfe-col span="4">
             <p class="yellow">col-4</p>
           </emfe-col>
@@ -267,7 +267,7 @@
       <emfe-col :span="12">
         <pre>
           <code>
-&lt;emfe-row className="row-gray" type="flex" justify="start" align="top"&gt;
+&lt;emfe-row className="row2" type="flex" justify="start" align="top"&gt;
   &lt;emfe-col span="4"&gt;
     &lt;p class="yellow"&gt;col-4&lt;/p&gt;
   &lt;/emfe-col&gt;
@@ -290,7 +290,7 @@
     a. 顶部对齐
     <emfe-row type="flex">
       <emfe-col :span="12">
-        <emfe-row className="row-grid" type="flex" justify="center" align="top">
+        <emfe-row className="row1" type="flex" justify="center" align="top">
           <emfe-col span="4">
             <p class="yellow" style="height: 80px">col-4</p>
           </emfe-col>
@@ -308,7 +308,7 @@
       <emfe-col :span="12">
         <pre>
           <code>
-&lt;emfe-row className="row-grid" type="flex" justify="center" align="top"&gt;
+&lt;emfe-row className="row1" type="flex" justify="center" align="top"&gt;
   &lt;emfe-col span="4"&gt;
     &lt;p class="yellow" style="height: 80px"&gt;col-4&lt;/p&gt;
   &lt;/emfe-col&gt;
@@ -329,7 +329,7 @@
     b. 底部对齐
     <emfe-row type="flex">
       <emfe-col :span="12">
-        <emfe-row className="row-grid" type="flex" justify="center" align="bottom">
+        <emfe-row className="row1" type="flex" justify="center" align="bottom">
           <emfe-col span="4">
             <p class="yellow" style="height: 80px">col-4</p>
           </emfe-col>
@@ -347,7 +347,7 @@
       <emfe-col :span="12">
         <pre>
           <code>
-&lt;emfe-row className="row-grid" type="flex" justify="center" align="top"&gt;
+&lt;emfe-row className="row1" type="flex" justify="center" align="top"&gt;
   &lt;emfe-col span="4"&gt;
     &lt;p class="yellow" style="height: 80px"&gt;col-4&lt;/p&gt;
   &lt;/emfe-col&gt;
@@ -368,7 +368,7 @@
     c. 居中对齐
     <emfe-row type="flex">
       <emfe-col :span="12">
-        <emfe-row className="row-grid" type="flex" justify="center" align="middle">
+        <emfe-row className="row1" type="flex" justify="center" align="middle">
           <emfe-col span="4">
             <p class="yellow" style="height: 80px">col-4</p>
           </emfe-col>
@@ -386,7 +386,7 @@
       <emfe-col :span="12">
         <pre>
           <code>
-&lt;emfe-row className="row-grid" type="flex" justify="center" align="top"&gt;
+&lt;emfe-row className="row1" type="flex" justify="center" align="top"&gt;
   &lt;emfe-col span="4"&gt;
     &lt;p class="yellow" style="height: 80px"&gt;col-4&lt;/p&gt;
   &lt;/emfe-col&gt;
@@ -407,7 +407,7 @@
     8. 栅格响应式
     <emfe-row type="flex">
       <emfe-col :span="12">
-        <emfe-row className="row-grid">
+        <emfe-row className="row1">
           <emfe-col :xs="{ span: 5, offset: 1 }" :lg="{ span: 6, offset: 2 }">
             <div class="yellow">emfe-col</div>
           </emfe-col>
@@ -422,7 +422,7 @@
       <emfe-col :span="12">
         <pre>
           <code>
-&lt;emfe-row className="row-grid"&gt;
+&lt;emfe-row className="row1"&gt;
   &lt;emfe-col :xs="{ span: 5, offset: 1 }" :lg="{ span: 6, offset: 2 }"&gt;
     &lt;div class="yellow"&gt;emfe-col&lt;/div&gt;
   &lt;/emfe-col&gt;
@@ -440,7 +440,7 @@
     10. 栅格其他属性
     <emfe-row type="flex">
       <emfe-col :span="12">
-        <emfe-row className="row-grid">
+        <emfe-row className="row1">
           <emfe-col :xs="{ span: 5, offset: 1 }" :lg="{ span: 6, offset: 2 }">
             <div class="yellow">emfe-col</div>
           </emfe-col>
@@ -455,7 +455,7 @@
       <emfe-col :span="12">
         <pre>
           <code>
-&lt;emfe-row className="row-grid"&gt;
+&lt;emfe-row className="row1"&gt;
   &lt;emfe-col :xs="{ span: 5, offset: 1 }" :lg="{ span: 6, offset: 2 }"&gt;
     &lt;div class="yellow"&gt;emfe-col&lt;/div&gt;
   &lt;/emfe-col&gt;
@@ -619,12 +619,12 @@ export default {
 };
 </script>
 <style lang="scss">
-.row-grid {
+.row1 {
   background-image: linear-gradient(90deg,
   #f5f5f5 4.16666667%,
   transparent 0,transparent 8.33333333%,#f5f5f5 0,#f5f5f5 12.5%,transparent 0,transparent 16.66666667%,#f5f5f5 0,#f5f5f5 20.83333333%,transparent 0,transparent 25%,#f5f5f5 0,#f5f5f5 29.16666667%,transparent 0,transparent 33.33333333%,#f5f5f5 0,#f5f5f5 37.5%,transparent 0,transparent 41.66666667%,#f5f5f5 0,#f5f5f5 45.83333333%,transparent 0,transparent 50%,#f5f5f5 0,#f5f5f5 54.16666667%,transparent 0,transparent 58.33333333%,#f5f5f5 0,#f5f5f5 62.5%,transparent 0,transparent 66.66666667%,#f5f5f5 0,#f5f5f5 70.83333333%,transparent 0,transparent 75%,#f5f5f5 0,#f5f5f5 79.16666667%,transparent 0,transparent 83.33333333%,#f5f5f5 0,#f5f5f5 87.5%,transparent 0,transparent 91.66666667%,#f5f5f5 0,#f5f5f5 95.83333333%,transparent 0);
 }
-.row-gray {
+.row2 {
   background: #eee;
   padding: 20px;
 }
