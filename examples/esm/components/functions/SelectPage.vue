@@ -5,7 +5,7 @@
     </style>多选：</div>
 
     <!--  -->
-    <emfe-select :datas="data1" type="checkbox" @ccc="getData" selectText="提示文字"></emfe-select>
+    <emfe-select :datas="data1" type="checkbox" @getAllData="getData" selectText="提示文字"></emfe-select>
     API：自定义属性 :<br>
               :datas="data1"<br>
               type="checkbox"<br>
@@ -16,7 +16,7 @@
       单选：
     </div>
     <!--  -->
-    <emfe-select :datas="data2" type="radio" @ccc="getData" selectText=""></emfe-select>
+    <emfe-select :datas="data2" type="radio" @getAllData="getData" selectText=""></emfe-select>
     API：包含两个配置项：<br>
               自定义属性 :<br>
               :datas="data2"<br>
@@ -28,7 +28,7 @@
     </div>
 
     <!--  -->
-    <emfe-select :datas="data1" seleStu="newList" type="checkbox" @addDataCheck="addDataCheck" @ccc="getData" selectText="提示文字"></emfe-select>
+    <emfe-select :datas="data1" seleStu="newList" type="checkbox" @addDataCheck="addDataCheck" @getAllData="getData" selectText="提示文字"></emfe-select>
     API：包含3个配置项和一个方法：<br>
               自定义属性 :<br>
               :datas="data1"<br>
@@ -42,7 +42,7 @@
     </div>
 
     <!--  -->
-    <emfe-select :datas="data2" seleStu="newList" type="radio" @addDataRadio="addDataRadio" @ccc="getData" selectText="提示文字"></emfe-select>
+    <emfe-select :datas="data2" seleStu="newList" type="radio" @addDataRadio="addDataRadio" @getAllData="getData" selectText="提示文字"></emfe-select>
     API：包含3个配置项和一个方法：<br>
               自定义属性 :<br>
               :datas="data2"<br>
@@ -122,7 +122,7 @@ export default {
     getData(allData) {
       console.log('选择的数据为：' + allData);
     },
-     ccc(allData) {
+     getAllData(allData) {
       console.log('选择的数据为：' + allData);
     },
   },

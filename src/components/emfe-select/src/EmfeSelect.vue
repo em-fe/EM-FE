@@ -76,7 +76,7 @@ export default {
     getdata() {
       const va = this.checkVals;
       // console.log(va);
-      this.$emit('ccc', va);
+      this.$emit('getAllData', va);
     },
   },
 };
