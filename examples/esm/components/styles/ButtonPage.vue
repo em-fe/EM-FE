@@ -5,25 +5,25 @@
     <br>
     <br>
     <p>选择的是 {{ defaultStatus }}</p>
-    <emfe-button class="emfe-button-default" :disabled="false" @click="defaultClick">白底</emfe-button>
+    <emfe-button class="emfe-button-default" className="ddd" :disabled="false" @click="defaultClick">白底</emfe-button>
     <emfe-button class="emfe-button-default" :disabled="true">白底禁用</emfe-button>
     <pre>
       <code>
-        <span>&lt;</span><span>emfe-button</span> <span>className</span><span>=</span><span>"default"</span> <span>:disabled</span><span>=</span><span>"false"</span><span>&gt;</span>白底<span>&lt;/emfe-button&gt;</span>
+        <span>&lt;</span><span>emfe-button</span> <span>class</span><span>=</span><span>"emfe-button-default"</span> <span>className</span><span>=</span><span>"ddd"</span> <span>:disabled</span><span>=</span><span>"false"</span><span>&gt;</span>白底<span>&lt;/emfe-button&gt;</span>
       </code>
       <code>
-        <span>&lt;</span><span>emfe-button</span> <span>className</span><span>=</span><span>"default"</span> <span>:disabled</span><span>=</span><span>"true"</span><span>&gt;</span>白底禁用<span>&lt;/emfe-button&gt;</span>
+        <span>&lt;</span><span>emfe-button</span> <span>class</span><span>=</span><span>"emfe-button-default"</span> <span>:disabled</span><span>=</span><span>"true"</span><span>&gt;</span>白底禁用<span>&lt;/emfe-button&gt;</span>
       </code>
     </pre>
     <br>
-    <emfe-button class="emfe-button-primary" :disabled="false">蓝底</emfe-button>
+    <emfe-button class="emfe-button-primary" className="ddd" :disabled="false">蓝底</emfe-button>
     <emfe-button class="emfe-button-primary" :disabled="true">蓝底禁用</emfe-button>
     <pre>
       <code>
-        <span>&lt;</span><span>emfe-button</span> <span>className</span><span>=</span><span>"primary"</span> <span>:disabled</span><span>=</span><span>"false"</span><span>&gt;</span>蓝底<span>&lt;/emfe-button&gt;</span>
+        <span>&lt;</span><span>emfe-button</span> <span>class</span><span>=</span><span>"emfe-button-primary"</span> <span>className</span><span>=</span><span>"ddd"</span> <span>:disabled</span><span>=</span><span>"false"</span><span>&gt;</span>蓝底<span>&lt;/emfe-button&gt;</span>
       </code>
       <code>
-        <span>&lt;</span><span>emfe-button</span> <span>className</span><span>=</span><span>"primary"</span> <span>:disabled</span><span>=</span><span>"true"</span><span>&gt;</span>蓝底禁用<span>&lt;/emfe-button&gt;</span>
+        <span>&lt;</span><span>emfe-button</span> <span>class</span><span>=</span><span>"emfe-button-primary"</span> <span>:disabled</span><span>=</span><span>"true"</span><span>&gt;</span>蓝底禁用<span>&lt;/emfe-button&gt;</span>
       </code>
     </pre>
     <br>
@@ -31,10 +31,10 @@
     <emfe-button class="emfe-button-default" type="site" :disabled="true">带有图标禁用</emfe-button>
     <pre>
       <code>
-        <span>&lt;</span><span>emfe-button</span> <span>className</span><span>=</span><span>"default"</span> <span>type</span><span>=</span><span>"hint"</span><span>&gt;</span>带有图标<span>&lt;/emfe-button&gt;</span>
+        <span>&lt;</span><span>emfe-button</span> <span>class</span><span>=</span><span>"emfe-button-default"</span> <span>className</span><span>=</span><span>"ddd"</span> <span>type</span><span>=</span><span>"hint"</span><span>&gt;</span>带有图标<span>&lt;/emfe-button&gt;</span>
       </code>
       <code>
-        <span>&lt;</span><span>emfe-button</span> <span>className</span><span>=</span><span>"default"</span> <span>type</span><span>=</span><span>"site"</span> <span>:disabled</span><span>=</span><span>"true"</span><span>&gt;</span>带有图标禁用<span>&lt;/emfe-button&gt;</span>
+        <span>&lt;</span><span>emfe-button</span> <span>class</span><span>=</span><span>"emfe-button-default"</span> <span>type</span><span>=</span><span>"site"</span> <span>:disabled</span><span>=</span><span>"true"</span><span>&gt;</span>带有图标禁用<span>&lt;/emfe-button&gt;</span>
       </code>
     </pre>
     <br>
@@ -66,10 +66,10 @@
     <pre>
       <code>
         <span>&lt;emfe-button-group&gt;</span>
-          <span>&lt;</span><span>emfe-button</span> <span>index</span><span>=</span><span>"0"</span> <span>statu</span><span>=</span><span>"true"</span><span>&gt;</span>10<span>&lt;/emfe-button&gt;</span>
-          <span>&lt;</span><span>emfe-button</span> <span>index</span><span>=</span><span>"1"</span><span>&gt;</span>20<span>&lt;/emfe-button&gt;</span>
+          <span>&lt;</span><span>emfe-button</span> <span>class</span><span>=</span><span>"emfe-button-w32"</span> <span>index</span><span>=</span><span>"0"</span> <span>statu</span><span>=</span><span>"true"</span><span>&gt;</span>10<span>&lt;/emfe-button&gt;</span>
+          <span>&lt;</span><span>emfe-button</span> <span>class</span><span>=</span><span>"emfe-button-w32"</span> <span>index</span><span>=</span><span>"1"</span><span>&gt;</span>20<span>&lt;/emfe-button&gt;</span>
           <span>...</span>
-          <span>&lt;</span><span>emfe-button</span> <span>index</span><span>=</span><span>"9"</span><span>&gt;</span>100<span>&lt;/emfe-button&gt;</span>
+          <span>&lt;</span><span>emfe-button</span> <span>class</span><span>=</span><span>"emfe-button-w32"</span> <span>index</span><span>=</span><span>"9"</span><span>&gt;</span>100<span>&lt;/emfe-button&gt;</span>
         <span>&lt;emfe-button-group&gt;</span>
       </code>
     </pre>
