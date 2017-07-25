@@ -1,7 +1,7 @@
 <template>
   <div class="emfe-table-box">
     <p>如果你希望传入多个slot，需要把数据里的slot设置为a-i，插入的slot对应a-i</p>
-    <emfe-table :columns="columnSlot" :data="dataSlot" type="true">
+    <emfe-table :columns="columnSlot" classAddName="add" :data="dataSlot" type="true">
       <emfe-table-head  slot="head" >
       </emfe-table-head>
       <emfe-table-body slot="body"  v-for="(dataList,index) in dataSlot" :ind="index" key="index" :dataList="dataList">
