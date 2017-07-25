@@ -1,6 +1,6 @@
 <template>
   <div>
-    <emfe-slide percent="50" maxPercent="100" slideWidth="476" slideLeft="小" slideRight="大"></emfe-slide>
+    <emfe-edit></emfe-edit>
     <br>
     <br>
     <br>
@@ -22,39 +22,9 @@
           <td>String</td>
           <td>-</td>
         </tr>
-        <tr>
-          <td>percent</td>
-          <td>进度条进度的value值</td>
-          <td>String</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>maxPercent</td>
-          <td>进度条最大值</td>
-          <td>String</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>width</td>
-          <td>进度条的宽度</td>
-          <td>String</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>slideLeft</td>
-          <td>进度条的左边描述</td>
-          <td>String</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>slideRight</td>
-          <td>进度条的右边描述</td>
-          <td>String</td>
-          <td>-</td>
-        </tr>
       </tbody>
     </table>
-    <h3>注册的方法</h3>
+    <!-- <h3>注册的方法</h3>
     <table style="width: 100%;text-align: center;">
       <thead>
         <tr>
@@ -70,7 +40,7 @@
           <td>-</td>
         </tr>
       </tbody>
-    </table>
+    </table> -->
   </div>
 </template>
 <script>

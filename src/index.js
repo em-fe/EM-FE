@@ -32,10 +32,12 @@ import EmfePanel from './components/emfe-panel/index';
 import EmfeSlide from './components/emfe-slide/index';
 import EmfeHottip from './components/emfe-hottip/index';
 import EmfeCrumb from './components/emfe-crumb/index';
+import EmfeEdit from './components/emfe-edit/index';
 // 服务
 import EmfeMessage from './components/emfe-message/index';
 // 指令
 import emfeDocumentclick from './directives/emfe-documentclick';
+import emfeDocumentfocus from './directives/emfe-documentfocus';
 
 const emfeCpt = {
   EmfeCol: Grid.EmfeCol,
@@ -77,10 +79,12 @@ const emfeCpt = {
   EmfeSlide,
   EmfeCrumb,
   EmfeHottip,
+  EmfeEdit,
 };
 
 const emfeDir = {
   emfeDocumentclick,
+  emfeDocumentfocus,
 };
 
 //, opts = {}

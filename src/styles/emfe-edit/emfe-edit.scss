@@ -1,0 +1,94 @@
+.#{$prefix}edit {
+  width: 100%;
+
+  &-wrap {
+    width: 522px;
+    height: auto;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+
+    @include border();
+  }
+
+  &-input {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    color: $text-color-prompt;
+  }
+
+  &-left {
+    flex: 1;
+    height: 100%;
+
+    &-one {
+      line-height: 32px;
+      letter-spacing: 0.95px;
+      font-size: 14px;
+
+      &-open {
+        width: 256px;
+        border-radius: 4px;
+        margin: 8px 0 8px 8px;
+      }
+
+      &-input {
+        border: 0;
+        color: $icon-color-default;
+      }
+    }
+
+    &-two {
+      width: 240px;
+      height: 32px;
+      color: $text-color-prompt;
+      line-height: 32px;
+      letter-spacing: 0.95px;
+      font-size: 14px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+      margin-left: 16px;
+      padding-left: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      @include border();
+
+      &-text {
+        flex: 1;
+      }
+
+      &-btn {
+        width: 32px;
+        line-height: 32px;
+        text-align: center;
+        color: $icon-color-default;
+
+        @include border(left);
+      }
+    }
+  }
+
+  &-right {
+    width: 48px;
+    display: flex;
+    justify-content: flex-end;
+
+    &-btn {
+      width: 16px;
+      height: 16px;
+      border-radius: 100%;
+      display: block;
+      margin-right: 8px;
+      text-align: center;
+      line-height: 14px;
+      color: $icon-color-default;
+
+      @include border(all, $icon-color-default);
+    }
+  }
+}

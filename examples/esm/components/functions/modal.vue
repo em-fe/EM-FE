@@ -1,7 +1,7 @@
 <template>
   <div>
     <button @click="formBtn">我是表单弹出框，点我呀！</button>
-    <emfe-modal :show="formShow" :title="copyTitle" :width="width" @close="formClose" @cancel="formCancel" @ok="formOk">
+    <emfe-modal :show="formShow" :title="copyTitle" :width="width" @close="formClose" @cancel="formCancel" @ok="formOk" btnRight="保存">
       <div slot="modal-main" className="form">
         <div class="emfe-modal-main-input">
           <h6 class="emfe-modal-main-input-title">标题</h6>
@@ -31,6 +31,12 @@
         </tr>
       </thead>
       <tbody>
+        <tr>
+          <td>className</td>
+          <td>需要修改的样式</td>
+          <td>String</td>
+          <td>-</td>
+        </tr>
         <tr>
           <td>show</td>
           <td>控制遮罩层显示隐藏</td>

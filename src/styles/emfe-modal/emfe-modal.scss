@@ -30,14 +30,16 @@
   &-header {
     @include border(bottom);
 
-    height: 48px;
+    height: 40px;
     background: $background-color-title;
     position: relative;
+    font-size: 14px;
 
     &-inner {
       text-align: center;
       color: $text-color-default;
-      line-height: 48px;
+      line-height: 40px;
+      font-size: 14px;
     }
 
     &-close {
@@ -45,7 +47,7 @@
       height: 20px;
       position: absolute;
       right: 10px;
-      top: 10px;
+      top: 6px;
       color: $icon-color;
       font-size: 28px;
       text-align: center;
@@ -58,17 +60,20 @@
     width: 100%;
     padding: 16px 40px 40px;
     color: $text-color-default;
+    font-size: 14px;
 
     &-prompt {
       text-align: center;
+      margin-top: 24px;
     }
 
     &-input {
       display: flex;
       align-items: center;
+      font-size: 14px;
 
       &-title {
-        font-size: 16px;
+        font-size: 14px;
         margin-right: 16px;
       }
     }
