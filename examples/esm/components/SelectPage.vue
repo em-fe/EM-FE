@@ -5,18 +5,18 @@
     </style>多选：</div>
 
     <!--  -->
-    <emfe-select :datas="data1" type="checkbox" @ccc="getData" selectText="提示文字"></emfe-select>
-    API：自定义属性 :<br>
+    <emfe-select :datas="data1" type="checkbox" v-on:bb="bb"></emfe-select>
+    API：包含两个配置项：<br>
+              自定义属性 :<br>
               :datas="data1"<br>
-              type="checkbox"<br>
-
+              type="checkbox"
     <!-- / -->
 
     <div style="margin:90px 0 10px">
       单选：
     </div>
     <!--  -->
-    <emfe-select :datas="data2" type="radio" @ccc="getData" selectText=""></emfe-select>
+    <emfe-select :datas="data2" type="radio" v-on:bb="bb"></emfe-select>
     API：包含两个配置项：<br>
               自定义属性 :<br>
               :datas="data2"<br>
@@ -28,7 +28,7 @@
     </div>
 
     <!--  -->
-    <emfe-select :datas="data1" seleStu="newList" type="checkbox" @addDataCheck="addDataCheck" @ccc="getData" selectText="提示文字"></emfe-select>
+    <emfe-select :datas="data1" seleStu="newList" type="checkbox" v-on:addDataCheck="addDataCheck"></emfe-select>
     API：包含3个配置项和一个方法：<br>
               自定义属性 :<br>
               :datas="data1"<br>
@@ -42,7 +42,7 @@
     </div>
 
     <!--  -->
-    <emfe-select :datas="data2" seleStu="newList" type="radio" @addDataRadio="addDataRadio" @ccc="getData" selectText="提示文字"></emfe-select>
+    <emfe-select :datas="data2" seleStu="newList" type="radio" v-on:addDataRadio="addDataRadio" ></emfe-select>
     API：包含3个配置项和一个方法：<br>
               自定义属性 :<br>
               :datas="data2"<br>
@@ -56,27 +56,28 @@
     </div>
 
     <!--  -->
-    <emfe-select :datas="data3" type="default"  @getDefData="getData"></emfe-select>
+    <emfe-select :datas="data3" type="default" v-on:bb="bb"></emfe-select>
     API：包含2个配置项：<br>
               自定义属性 :<br>
               :datas="data3"<br>
               type="default"<br>
     <!-- / -->
 
-    <h2 style="margin-top:50px">1.不可点击的数据添加上一条 disabled: 'disabled' 的字段，可点的字段不加；</h2>
-    <h2>2.selectText配置项里写提示文字 不填写即默认的‘选择标签’</h2>
+    <h2>不可点击的数据添加上一条 disabled: 'disabled' 的字段，可点的字段不加</h2>
 
   </div>
 </template>
 <script>
 export default {
   name: 'pageSelect',
+  props(['aa']),
   data() {
     return {
       datas: '',
       data1: [
         {
           name: 'wefajlrjgakdjsdklfgjkdjfkldjfgkljfjdhjklhsdfjgkshdkljaiursfajkds',
+          disabled: 'disabled',
         },
         {
           name: '88888',
@@ -113,18 +114,19 @@ export default {
   methods: {
     addDataCheck(nData) {
       this.data1.push({ name:nData });
-      console.log('添加：' + nData);
+      console.log(nData);
     },
     addDataRadio(nData) {
       this.data2.push({ name:nData });
-      console.log('添加：' + nData);
+     // console.log(nData);
     },
-    getData(allData) {
-      console.log('选择的数据为：' + allData);
+    bb(aa) {
+      alert(aa);
     },
-     ccc(allData) {
-      console.log('选择的数据为：' + allData);
-    },
+    // bb(v) {
+    //   alert(v);
+    //  // console.log('123');
+    // },
   },
 };
 </script>

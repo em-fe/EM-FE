@@ -1,6 +1,6 @@
 <template>
   <div class="emfe-select" v-emfe-documentclick="close">
-    <input class="emfe-input-box-input" type="text" :value="checkVals" readonly :placeholder="selectText" @click="inpcheck" @change="cc">
+    <input class="emfe-input-box-input" type="text" :value="checkVals" readonly :placeholder="selectText" @click="inpcheck">
     <div v-if="flagCheck" class="emfe-select-flag">
       <div class="emfe-select-custab" v-if="seleStu==='newList'">
         <input type="text" :placeholder="addText" class="emfe-input-box-input" v-model="newListVal"><span class="emfe-select-custab-btn" @click="newListBtn">保存</span>
@@ -39,6 +39,10 @@ export default {
       type: String,
       default: '添加标签',
     },
+    selectText: {
+      type: String,
+      default: '选择标签',
+    },
   },
   data() {
     return {
@@ -62,7 +66,7 @@ export default {
       if (item.disabled !== 'disabled') {
         this.checkVals = item.name;
         // console.log(this.checkVals);
-        this.$emit('getdef', this.checkVals);
+        this.$emit('getDefData', this.checkVals);
       }
     },
     close() {
@@ -72,7 +76,7 @@ export default {
     getdata() {
       const va = this.checkVals;
       // console.log(va);
-      this.$emit('getData', va);
+      this.$emit('ccc', va);
     },
   },
 };
