@@ -6,7 +6,7 @@
   </div>
 </template>
 <script>
-const prefixCls = 'emfe-title';
+const prefixCls = 'title';
 
 export default {
   name: 'EmfeTitle',
@@ -20,7 +20,7 @@ export default {
     titleName() {
       return [
         {
-          [`${prefixCls}-${this.className}`]: !!this.className,
+          [`${this.className}-${prefixCls}`]: !!this.className,
         },
       ];
     },
