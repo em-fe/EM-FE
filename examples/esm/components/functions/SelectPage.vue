@@ -16,7 +16,7 @@
       单选：
     </div>
     <!--  -->
-    <emfe-select :datas="data2" type="radio"></emfe-select>
+    <emfe-select :datas="data2" type="radio" v-on:getData="getdatas"></emfe-select>
     API：包含两个配置项：<br>
               自定义属性 :<br>
               :datas="data2"<br>
@@ -56,7 +56,7 @@
     </div>
 
     <!--  -->
-    <emfe-select :datas="data3" type="default"></emfe-select>
+    <emfe-select :datas="data3" type="default" v-on:getdef="getDef"></emfe-select>
     API：包含2个配置项：<br>
               自定义属性 :<br>
               :datas="data3"<br>
@@ -80,6 +80,12 @@ export default {
         {
           name: '88888',
         },
+        {
+          name: '88',
+        },
+        {
+          name: '888',
+        },
       ],
       data2: [
         {
@@ -87,11 +93,9 @@ export default {
         },
         {
           name: 'sfafgdgsdf',
-          disabled: 'disabled',
         },
         {
           name: 'ergdsf',
-          disabled: 'disabled',
         },
       ],
       data3: [
@@ -108,9 +112,17 @@ export default {
   methods: {
     addDataCheck(nData) {
       this.data1.push({ name:nData });
+      console.log(nData);
     },
     addDataRadio(nData) {
       this.data2.push({ name:nData });
+      console.log(nData);
+    },
+    getdatas(v) {
+      console.log(v);
+    },
+    getDef(v) {
+      console.log(v);
     },
     checkselect(val) {
       console.log(val);

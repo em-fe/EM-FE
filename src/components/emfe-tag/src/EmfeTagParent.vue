@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="classNames">
     <slot></slot>
   </div>
 </template>
@@ -10,6 +10,10 @@ export default {
     className: {
       type: String,
       required: true,
+    },
+    addClass: {
+      type: String,
+      default: '',
     },
     data: {
       type: Array,
@@ -22,6 +26,15 @@ export default {
     return {
       childrens: [],
     };
+  },
+  computed: {
+    classNames() {
+      return [
+        {
+          [`${this.addClass}`]: !!this.addClass,
+        },
+      ];
+    },
   },
   mounted() {
     console.log(this.data);

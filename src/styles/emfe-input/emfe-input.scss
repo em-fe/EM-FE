@@ -1,7 +1,7 @@
 .#{$prefix}input {
   &-box {
     display: flex;
-    height: 34px;
+    height: 32px;
 
     &-input {
       @include border(all);
