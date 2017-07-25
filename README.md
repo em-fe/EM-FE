@@ -1,7 +1,6 @@
 # EM-FE
 基于 VUE2 的 UI 库
 
-[![npm](https://img.shields.io/npm/v/em-fe.svg)](http://packagequality.com/#?package=em-fe)
 [![em-fe](https://img.shields.io/npm/v/em-fe.svg?style=flat-square)](https://www.npmjs.org/package/em-fe)
 [![NPM downloads](http://img.shields.io/npm/dm/em-fe.svg?style=flat-square)](https://npmjs.org/package/em-fe)
 [![Package Quality](http://npm.packagequality.com/shield/em-fe.svg)](http://packagequality.com/#?package=em-fe)
