@@ -1,5 +1,5 @@
 /*!
- * EMFE.js v1.0.4
+ * EMFE.js v1.0.5
  * (c) 2014-2017 李梦龙
  * Released under the MIT License.
  */
@@ -18,7 +18,7 @@ var O = {
 var childrenLast = -1; // 记录上一个点击的二级手风琴的索引
 
 var EmfeBar$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-bar"},[_c('h3',{staticClass:"emfe-bar-header"},[_vm._v(_vm._s(_vm.title))]),_vm._v(" "),_c('ul',{staticClass:"emfe-bar-list"},[_vm._l((_vm.datas),function(childrenData,childrenDataIndex){return [(!childrenData.children)?_c('li',{staticClass:"emfe-bar-item"},[_c('router-link',{staticClass:"emfe-bar-link",attrs:{"to":childrenData.routers}},[_vm._v(_vm._s(childrenData.title))])],1):_c('li',{staticClass:"emfe-bar-item",class:{'emfe-bar-item-on': _vm.childrenIndex == childrenDataIndex}},[_c('span',{staticClass:"emfe-bar-btn",attrs:{"href":"javascript:;"},on:{"click":function($event){_vm.toogleChild(childrenDataIndex);}}},[_vm._v(_vm._s(childrenData.title))]),_vm._v(" "),_c('i',{staticClass:"emfe-bar-arrow"}),_vm._v(" "),_c('emfe-transition',{attrs:{"name":"gradual"}},[_c('ul',{directives:[{name:"show",rawName:"v-show",value:(_vm.childrenIndex == childrenDataIndex),expression:"childrenIndex == childrenDataIndex"}],staticClass:"emfe-bar-childlist"},_vm._l((childrenData.children),function(child){return _c('li',{staticClass:"emfe-bar-childitem"},[_c('router-link',{staticClass:"emfe-bar-childlink",attrs:{"to":child.routers}},[_vm._v(_vm._s(child.title))])],1)}))])],1)]})],2)])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-bar",class:_vm.barName},[_c('h3',{staticClass:"emfe-bar-header"},[_vm._v(_vm._s(_vm.title))]),_vm._v(" "),_c('ul',{staticClass:"emfe-bar-list"},[_vm._l((_vm.datas),function(childrenData,childrenDataIndex){return [(!childrenData.children)?_c('li',{staticClass:"emfe-bar-item"},[_c('router-link',{staticClass:"emfe-bar-link",attrs:{"to":childrenData.routers}},[_vm._v(_vm._s(childrenData.title))])],1):_c('li',{staticClass:"emfe-bar-item",class:{'emfe-bar-item-on': _vm.childrenIndex == childrenDataIndex}},[_c('span',{staticClass:"emfe-bar-btn",attrs:{"href":"javascript:;"},on:{"click":function($event){_vm.toogleChild(childrenDataIndex);}}},[_vm._v(_vm._s(childrenData.title))]),_vm._v(" "),_c('i',{staticClass:"emfe-bar-arrow"}),_vm._v(" "),_c('emfe-transition',{attrs:{"name":"gradual"}},[_c('ul',{directives:[{name:"show",rawName:"v-show",value:(_vm.childrenIndex == childrenDataIndex),expression:"childrenIndex == childrenDataIndex"}],staticClass:"emfe-bar-childlist"},_vm._l((childrenData.children),function(child){return _c('li',{staticClass:"emfe-bar-childitem"},[_c('router-link',{staticClass:"emfe-bar-childlink",attrs:{"to":child.routers}},[_vm._v(_vm._s(child.title))])],1)}))])],1)]})],2)])},
 staticRenderFns: [],
   name: 'EmfeBar',
   data: function data() {
@@ -38,6 +38,12 @@ staticRenderFns: [],
     fullpath: {
       type: String,
       required: true,
+    },
+    className: String,
+  },
+  computed: {
+    barName: function barName() {
+      return this.className ? ((this.className) + "-bar") : '';
     },
   },
   methods: {
@@ -132,7 +138,7 @@ staticRenderFns: [],
   computed: {
     classList: function classList() {
       return [
-        ( obj = {}, obj[("" + prefixCls)] = !this.type, obj[(prefixCls + "-" + (this.type))] = !!this.type, obj[(prefixCls + "-" + (this.align))] = !!this.type && !!this.align, obj[(prefixCls + "-" + (this.justify))] = !!this.type && !!this.justify, obj[("" + (this.className))] = !!this.className, obj ) ];
+        ( obj = {}, obj[("" + prefixCls)] = !this.type, obj[(prefixCls + "-" + (this.type))] = !!this.type, obj[(prefixCls + "-" + (this.align))] = !!this.type && !!this.align, obj[(prefixCls + "-" + (this.justify))] = !!this.type && !!this.justify, obj[((this.className) + "-row")] = !!this.className, obj ) ];
       var obj;
     },
     rowStyle: function rowStyle() {
@@ -240,7 +246,7 @@ var EmfeCol = {
       }
     });
 
-    classList.push(this.className);
+    classList.push(((this.className) + "-col"));
 
     return h(this.tag, {
       class: [prefixCls$1, classList],
@@ -1905,9 +1911,10 @@ EmfeColor$1.install = function (Vue$$1) {
 };
 
 var prefixCls$3 = 'emfe-input-box';
+var error = 'error';
 
 var EmfeInput$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-input",class:_vm.addClass},[_c('div',{class:[_vm.classList]},[(_vm.iconOk)?_c('emfe-icon',{attrs:{"type":_vm.iconType,"className":"emfe-input-box-icon-el"}}):_vm._e(),_vm._v(" "),_c('input',_vm._b({staticClass:"emfe-input-box-input",class:{error:_vm.errOk},attrs:{"type":_vm.type},domProps:{"value":_vm.currentValue},on:{"input":_vm.change}},'input',_vm.$props))],1),_vm._v(" "),(_vm.errOk)?_c('div',{staticClass:"emfe-input-box-text"},[_vm._t("error")],2):_vm._e()])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-input",class:_vm.addClass},[_c('div',{class:[_vm.classList]},[(_vm.iconOk)?_c('emfe-icon',{attrs:{"type":_vm.iconType,"className":"emfe-input-box-icon-el"}}):_vm._e(),_vm._v(" "),_c('input',_vm._b({staticClass:"emfe-input-box-input",class:_vm.addInput,attrs:{"type":_vm.type},domProps:{"value":_vm.currentValue},on:{"input":_vm.change}},'input',_vm.$props))],1),_vm._v(" "),(_vm.errOk)?_c('div',{staticClass:"emfe-input-box-text",class:_vm.addErrorText},[_vm._t("error")],2):_vm._e()])},
 staticRenderFns: [],
   name: 'input',
   props: {
@@ -1955,11 +1962,23 @@ staticRenderFns: [],
   },
   computed: {
     classList: function classList() {
-      return this.iconOk ? (prefixCls$3 + "-icon") : ("" + prefixCls$3);
+      return [
+        ( obj = {}, obj[(prefixCls$3 + "-icon")] = this.iconOk, obj[("" + prefixCls$3)] = !this.iconOk, obj[((this.className) + "-input-box")] = !!this.className, obj ) ];
+      var obj;
     },
     addClass: function addClass() {
       return [
         ( obj = {}, obj[((this.className) + "-input")] = !!this.className, obj ) ];
+      var obj;
+    },
+    addInput: function addInput() {
+      return [
+        ( obj = {}, obj[("" + error)] = this.errOk, obj[((this.className) + "-input-box-input")] = !!this.className, obj ) ];
+      var obj;
+    },
+    addErrorText: function addErrorText() {
+      return [
+        ( obj = {}, obj[((this.className) + "-input-box-text")] = !!this.className, obj ) ];
       var obj;
     },
   },
@@ -2575,9 +2594,9 @@ EmfeLink$1.install = function (Vue$$1) {
   Vue$$1.component(EmfeLink$1.name, EmfeLink$1);
 };
 
-var prefixCls$4 = 'emfe-switch';
+var prefixCls$4 = 'switch';
 var EmfeSwitch$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{class:_vm.switchName,attrs:{"disabled":_vm.disabled},on:{"click":_vm.toggle}},[_c('span',{class:_vm.innerClass},[(_vm.currentValue)?_vm._t("open"):_vm._e(),_vm._v(" "),(!_vm.currentValue)?_vm._t("close"):_vm._e()],2)])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{class:_vm.switchName,attrs:{"disabled":_vm.disabled},on:{"click":_vm.toggle}},[_c('span',{staticClass:"emfe-switch-inner",class:_vm.innerClass},[(_vm.currentValue)?_vm._t("open"):_vm._e(),_vm._v(" "),(!_vm.currentValue)?_vm._t("close"):_vm._e()],2)])},
 staticRenderFns: [],
   name: 'EmfeSwitch',
   props: {
@@ -2602,14 +2621,14 @@ staticRenderFns: [],
   computed: {
     switchName: function switchName() {
       return [
-        ("" + prefixCls$4),
-        ( obj = {}, obj[(prefixCls$4 + "-" + (this.className))] = !!this.className, obj[(prefixCls$4 + "-checked")] = !!this.currentValue, obj[(prefixCls$4 + "-disabled")] = !!this.disabled, obj ) ];
+        ("emfe-" + prefixCls$4),
+        ( obj = {}, obj[((this.className) + "-" + prefixCls$4)] = !!this.className, obj[(prefixCls$4 + "-checked")] = !!this.currentValue, obj[(prefixCls$4 + "-disabled")] = !!this.disabled, obj ) ];
       var obj;
     },
     innerClass: function innerClass() {
       return [
-        (prefixCls$4 + "-inner"),
-        ( obj = {}, obj[(prefixCls$4 + "-" + (this.className) + "-inner")] = !!this.className, obj ) ];
+        // `${prefixCls}-inner`,
+        ( obj = {}, obj[((this.className) + "-" + prefixCls$4 + "-inner")] = !!this.className, obj ) ];
       var obj;
     },
   },
@@ -2628,7 +2647,7 @@ EmfeSwitch$1.install = function (Vue$$1) {
   Vue$$1.component(EmfeSwitch$1.name, EmfeSwitch$1);
 };
 
-var prefixCls$5 = 'emfe-title';
+var prefixCls$5 = 'title';
 
 var EmfeTitle$1 = {
 render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-title",class:_vm.titleName},[_c('div',{staticClass:"emfe-title-panel"},[_vm._t("default")],2)])},
@@ -2643,7 +2662,7 @@ staticRenderFns: [],
   computed: {
     titleName: function titleName() {
       return [
-        ( obj = {}, obj[(prefixCls$5 + "-" + (this.className))] = !!this.className, obj ) ];
+        ( obj = {}, obj[((this.className) + "-" + prefixCls$5)] = !!this.className, obj ) ];
       var obj;
     },
   },
@@ -2705,7 +2724,7 @@ var Radio = {
   EmfeRadioGroup: EmfeRadioGroup,
 };
 
-var prefixCls$6 = 'emfe-button';
+var prefixCls$6 = 'button';
 var EmfeButton = {
 render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('button',{staticClass:"emfe-button",class:_vm.buttonName,attrs:{"disabled":_vm.disabled},on:{"click":function($event){$event.stopPropagation();_vm.change($event);}}},[(_vm.type)?_c('emfe-icon',{staticClass:"emfe-button-icon",attrs:{"type":_vm.type}}):_vm._e(),_vm._v(" "),_c('span',{staticClass:"emfe-button-text",class:_vm.textName},[_vm._t("default")],2)],1)},
 staticRenderFns: [],
@@ -2738,7 +2757,7 @@ staticRenderFns: [],
   computed: {
     buttonName: function buttonName() {
       return [
-        ( obj = {}, obj[(prefixCls$6 + "-" + (this.className))] = !!this.className, obj[(prefixCls$6 + "-on")] = !!this.status, obj ) ];
+        ( obj = {}, obj[((this.className) + "-" + prefixCls$6)] = !!this.className, obj[(prefixCls$6 + "-on")] = !!this.status, obj ) ];
       var obj;
     },
     textName: function textName() {
@@ -2842,7 +2861,7 @@ EmfePagination$1.install = function (Vue$$1) {
 };
 
 var EmfeSelect$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"emfe-documentclick",rawName:"v-emfe-documentclick",value:(_vm.close),expression:"close"}],staticClass:"emfe-select"},[_c('input',{staticClass:"emfe-input-box-input",attrs:{"type":"text","readonly":"","placeholder":_vm.selectText},domProps:{"value":_vm.checkVals},on:{"click":_vm.inpcheck,"change":_vm.cc}}),_vm._v(" "),(_vm.flagCheck)?_c('div',{staticClass:"emfe-select-flag"},[(_vm.seleStu==='newList')?_c('div',{staticClass:"emfe-select-custab"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.newListVal),expression:"newListVal"}],staticClass:"emfe-input-box-input",attrs:{"type":"text","placeholder":_vm.addText},domProps:{"value":(_vm.newListVal)},on:{"input":function($event){if($event.target.composing){ return; }_vm.newListVal=$event.target.value;}}}),_c('span',{staticClass:"emfe-select-custab-btn",on:{"click":_vm.newListBtn}},[_vm._v("保存")])]):_vm._e(),_vm._v(" "),_vm._l((_vm.checkList),function(item){return (_vm.type==='radio')?_c('label',{staticClass:"emfe-select-label"},[_c('span',{staticClass:"emfe-select-text"},[_vm._v(_vm._s(item.name))]),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.checkVals),expression:"checkVals"}],staticClass:"emfe-checkout-box-input",attrs:{"disabled":item.disabled,"type":"radio"},domProps:{"value":item.name,"checked":_vm._q(_vm.checkVals,item.name)},on:{"change":_vm.getdata,"__c":function($event){_vm.checkVals=item.name;}}})]):_vm._e()}),_vm._v(" "),_vm._l((_vm.checkList),function(item){return (_vm.type==='checkbox')?_c('label',{staticClass:"emfe-select-label"},[_c('span',{staticClass:"emfe-select-text"},[_vm._v(_vm._s(item.name))]),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.checkVals),expression:"checkVals"}],staticClass:"emfe-checkout-box-input",attrs:{"disabled":item.disabled,"type":"checkbox"},domProps:{"value":item.name,"checked":Array.isArray(_vm.checkVals)?_vm._i(_vm.checkVals,item.name)>-1:(_vm.checkVals)},on:{"change":_vm.getdata,"__c":function($event){var $$a=_vm.checkVals,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=item.name,$$i=_vm._i($$a,$$v);if($$c){$$i<0&&(_vm.checkVals=$$a.concat($$v));}else{$$i>-1&&(_vm.checkVals=$$a.slice(0,$$i).concat($$a.slice($$i+1)));}}else{_vm.checkVals=$$c;}}}})]):_vm._e()}),_vm._v(" "),_vm._l((_vm.checkList),function(item){return (_vm.type==='default')?_c('label',{staticClass:"emfe-select-label emfe-select-delabel",attrs:{"disabled":item.disabled},on:{"click":function($event){_vm.spanTxt(item);}}},[_c('span',{class:{'disabled': item.disabled}},[_vm._v(_vm._s(item.name))])]):_vm._e()})],2):_vm._e()])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"emfe-documentclick",rawName:"v-emfe-documentclick",value:(_vm.close),expression:"close"}],staticClass:"emfe-select"},[_c('input',{staticClass:"emfe-input-box-input",attrs:{"type":"text","readonly":"","placeholder":_vm.selectText},domProps:{"value":_vm.checkVals},on:{"click":_vm.inpcheck}}),_vm._v(" "),(_vm.flagCheck)?_c('div',{staticClass:"emfe-select-flag"},[(_vm.seleStu==='newList')?_c('div',{staticClass:"emfe-select-custab"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.newListVal),expression:"newListVal"}],staticClass:"emfe-input-box-input",attrs:{"type":"text","placeholder":_vm.addText},domProps:{"value":(_vm.newListVal)},on:{"input":function($event){if($event.target.composing){ return; }_vm.newListVal=$event.target.value;}}}),_c('span',{staticClass:"emfe-select-custab-btn",on:{"click":_vm.newListBtn}},[_vm._v("保存")])]):_vm._e(),_vm._v(" "),_vm._l((_vm.checkList),function(item){return (_vm.type==='radio')?_c('label',{staticClass:"emfe-select-label"},[_c('span',{staticClass:"emfe-select-text"},[_vm._v(_vm._s(item.name))]),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.checkVals),expression:"checkVals"}],staticClass:"emfe-checkout-box-input",attrs:{"disabled":item.disabled,"type":"radio"},domProps:{"value":item.name,"checked":_vm._q(_vm.checkVals,item.name)},on:{"change":_vm.getdata,"__c":function($event){_vm.checkVals=item.name;}}})]):_vm._e()}),_vm._v(" "),_vm._l((_vm.checkList),function(item){return (_vm.type==='checkbox')?_c('label',{staticClass:"emfe-select-label"},[_c('span',{staticClass:"emfe-select-text"},[_vm._v(_vm._s(item.name))]),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.checkVals),expression:"checkVals"}],staticClass:"emfe-checkout-box-input",attrs:{"disabled":item.disabled,"type":"checkbox"},domProps:{"value":item.name,"checked":Array.isArray(_vm.checkVals)?_vm._i(_vm.checkVals,item.name)>-1:(_vm.checkVals)},on:{"change":_vm.getdata,"__c":function($event){var $$a=_vm.checkVals,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=item.name,$$i=_vm._i($$a,$$v);if($$c){$$i<0&&(_vm.checkVals=$$a.concat($$v));}else{$$i>-1&&(_vm.checkVals=$$a.slice(0,$$i).concat($$a.slice($$i+1)));}}else{_vm.checkVals=$$c;}}}})]):_vm._e()}),_vm._v(" "),_vm._l((_vm.checkList),function(item){return (_vm.type==='default')?_c('label',{staticClass:"emfe-select-label emfe-select-delabel",attrs:{"disabled":item.disabled},on:{"click":function($event){_vm.spanTxt(item);}}},[_c('span',{class:{'disabled': item.disabled}},[_vm._v(_vm._s(item.name))])]):_vm._e()})],2):_vm._e()])},
 staticRenderFns: [],
   name: 'Select',
   props: {
@@ -2865,6 +2884,10 @@ staticRenderFns: [],
     addText: {
       type: String,
       default: '添加标签',
+    },
+    selectText: {
+      type: String,
+      default: '选择标签',
     },
   },
   data: function data() {
@@ -2889,7 +2912,7 @@ staticRenderFns: [],
       if (item.disabled !== 'disabled') {
         this.checkVals = item.name;
         // console.log(this.checkVals);
-        this.$emit('getdef', this.checkVals);
+        this.$emit('getDefData', this.checkVals);
       }
     },
     close: function close() {
@@ -2899,7 +2922,7 @@ staticRenderFns: [],
     getdata: function getdata() {
       var va = this.checkVals;
       // console.log(va);
-      this.$emit('getData', va);
+      this.$emit('getAllData', va);
     },
   },
 };
@@ -3131,7 +3154,7 @@ staticRenderFns: [],
 };
 
 var EmfeTableBody = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('tr',{staticClass:"emfe-box-table-tr",class:_vm.classTr,on:{"click":function($event){_vm.jump(_vm.ind);}}},[_vm._l((_vm.dataSlice),function(list,index){return (!_vm.dataList[list.key].hebing)?_c('td',{staticClass:"emfe-box-table-tr-td",class:_vm.classTd,attrs:{"rowspan":_vm.dataList[list.key].row ? _vm.rowSpan[list.key]:0}},[(_vm.dataList[list.key].slot==='a')?_vm._t("a"):_vm._e(),_vm._v(" "),(_vm.dataList[list.key].slot==='b')?_vm._t("b"):_vm._e(),_vm._v(" "),(_vm.dataList[list.key].slot==='c')?_vm._t("c"):_vm._e(),_vm._v(" "),(_vm.dataList[list.key].slot==='d')?_vm._t("d"):_vm._e(),_vm._v(" "),(_vm.dataList[list.key].slot==='e')?_vm._t("e"):_vm._e(),_vm._v(" "),(_vm.dataList[list.key].slot==='f')?_vm._t("f"):_vm._e(),_vm._v(" "),(_vm.dataList[list.key].slot==='g')?_vm._t("g"):_vm._e(),_vm._v(" "),(_vm.dataList[list.key].slot==='h')?_vm._t("h"):_vm._e(),_vm._v(" "),(_vm.dataList[list.key].slot==='i')?_vm._t("i"):_c('div',[_vm._v(_vm._s(_vm.dataList[list.key].text))])],2):_vm._e()})],2)},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('tr',{staticClass:"emfe-box-table-tr",class:_vm.classTr,on:{"click":function($event){_vm.jump(_vm.ind);}}},[_vm._l((_vm.dataSlice),function(list,index){return (!_vm.dataList[list.key].hebing)?_c('td',{staticClass:"emfe-box-table-tr-td",class:_vm.classTd,attrs:{"rowspan":_vm.dataList[list.key].row ? _vm.rowSpan[list.key]:0}},[(_vm.dataList[list.key].slot==='a')?_vm._t("a"):_vm._e(),_vm._v(" "),(_vm.dataList[list.key].slot==='b')?_vm._t("b"):_vm._e(),_vm._v(" "),(_vm.dataList[list.key].slot==='c')?_vm._t("c"):_vm._e(),_vm._v(" "),(_vm.dataList[list.key].slot==='d')?_vm._t("d"):_vm._e(),_vm._v(" "),(_vm.dataList[list.key].slot==='e')?_vm._t("e"):_vm._e(),_vm._v(" "),(_vm.dataList[list.key].slot==='f')?_vm._t("f"):_vm._e(),_vm._v(" "),(_vm.dataList[list.key].slot==='g')?_vm._t("g"):_vm._e(),_vm._v(" "),(_vm.dataList[list.key].slot==='h')?_vm._t("h"):_vm._e(),_vm._v(" "),(_vm.dataList[list.key].slot==='i')?_vm._t("i"):_vm._e(),_vm._v(" "),(!_vm.dataList[list.key].slot)?_c('div',[_vm._v(_vm._s(_vm.dataList[list.key].text))]):_vm._e()],2):_vm._e()})],2)},
 staticRenderFns: [],
   name: 'EmfeTableBody',
   data: function data() {
@@ -3307,12 +3330,13 @@ staticRenderFns: [],
     return {
       activeOk: this.active,
       className: this.$parent.className,
+      addName: this.$parent.addClass,
     };
   },
   computed: {
     classList: function classList() {
       return [
-        ( obj = {}, obj[(prefixCls$12 + "-" + (this.className) + "-disable")] = this.disable, obj[(prefixCls$12 + "-" + (this.className))] = !this.disable, obj[(prefixCls$12 + "-" + (this.className) + "-active")] = this.activeOk && !this.skin, obj[(prefixCls$12 + "-" + (this.className) + "-" + (this.skin))] = !!this.skin, obj[(prefixCls$12 + "-" + (this.className) + "-" + (this.skin) + "-active")] = this.activeOk && !!this.skin, obj ) ];
+        ( obj = {}, obj[(prefixCls$12 + "-" + (this.className) + "-disable")] = this.disable, obj[(prefixCls$12 + "-" + (this.className))] = !this.disable, obj[(prefixCls$12 + "-" + (this.className) + "-active")] = this.activeOk && !this.skin, obj[(prefixCls$12 + "-" + (this.className) + "-" + (this.skin))] = !!this.skin, obj[(prefixCls$12 + "-" + (this.className) + "-" + (this.skin) + "-active")] = this.activeOk && !!this.skin, obj[((this.addName) + "-tag")] = !!this.addName, obj ) ];
       var obj;
     },
   },
@@ -3328,13 +3352,17 @@ staticRenderFns: [],
 };
 
 var EmfeTagParent = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_vm._t("default")],2)},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{class:_vm.classNames},[_vm._t("default")],2)},
 staticRenderFns: [],
   name: 'EmfeTagParent',
   props: {
     className: {
       type: String,
       required: true,
+    },
+    addClass: {
+      type: String,
+      default: '',
     },
     data: {
       type: Array,
@@ -3347,6 +3375,13 @@ staticRenderFns: [],
     return {
       childrens: [],
     };
+  },
+  computed: {
+    classNames: function classNames() {
+      return [
+        ( obj = {}, obj[("" + (this.addClass))] = !!this.addClass, obj ) ];
+      var obj;
+    },
   },
   mounted: function mounted() {
     console.log(this.data);
