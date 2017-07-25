@@ -35,6 +35,7 @@ export default {
     return {
       activeOk: this.active,
       className: this.$parent.className,
+      addName: this.$parent.addClass,
     };
   },
   computed: {
@@ -46,6 +47,7 @@ export default {
           [`${prefixCls}-${this.className}-active`]: this.activeOk && !this.skin,
           [`${prefixCls}-${this.className}-${this.skin}`]: !!this.skin,
           [`${prefixCls}-${this.className}-${this.skin}-active`]: this.activeOk && !!this.skin,
+          [`${this.addName}-tag`]: !!this.addName,
         },
       ];
     },
