@@ -253,13 +253,13 @@ module.exports = {
                     path: '/functions/drag',
                   },
                 },
-                {
-                  title: '换位置',
-                  icon: 'hotel',
-                  routers: {
-                    path: '/functions/drop',
-                  },
-                },
+                // {
+                //   title: '换位置',
+                //   icon: 'hotel',
+                //   routers: {
+                //     path: '/functions/drop',
+                //   },
+                // },
               ],
             },
             {
@@ -296,13 +296,6 @@ module.exports = {
               routers: {
                 path: '/functions/selectpage',
               }
-            },
-            {
-              title: '多选',
-              icon: 'checkout',
-              routers: {
-                path: '/functions/checkout',
-              },
             },
             {
               title: 'drop',
