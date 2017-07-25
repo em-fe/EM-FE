@@ -7,7 +7,7 @@
   </button>
 </template>
 <script>
-const prefixCls = 'emfe-button';
+const prefixCls = 'button';
 export default {
   name: 'EmfeButton',
   data() {
@@ -39,7 +39,7 @@ export default {
     buttonName() {
       return [
         {
-          [`${prefixCls}-${this.className}`]: !!this.className,
+          [`${this.className}-${prefixCls}`]: !!this.className,
           [`${prefixCls}-on`]: !!this.status,
         },
       ];

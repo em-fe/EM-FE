@@ -1,13 +1,13 @@
 <template>
   <span :class="switchName" :disabled="disabled" @click="toggle">
-    <span :class="innerClass">
+    <span :class="innerClass" class="emfe-switch-inner">
       <slot name="open" v-if="currentValue"></slot>
       <slot name="close" v-if="!currentValue"></slot>
     </span>
   </span>
 </template>
 <script>
-const prefixCls = 'emfe-switch';
+const prefixCls = 'switch';
 export default {
   name: 'EmfeSwitch',
   props: {
@@ -32,9 +32,9 @@ export default {
   computed: {
     switchName() {
       return [
-        `${prefixCls}`,
+        `emfe-${prefixCls}`,
         {
-          [`${prefixCls}-${this.className}`]: !!this.className,
+          [`${this.className}-${prefixCls}`]: !!this.className,
           [`${prefixCls}-checked`]: !!this.currentValue,
           [`${prefixCls}-disabled`]: !!this.disabled,
         },
@@ -42,9 +42,9 @@ export default {
     },
     innerClass() {
       return [
-        `${prefixCls}-inner`,
+        // `${prefixCls}-inner`,
         {
-          [`${prefixCls}-${this.className}-inner`]: !!this.className,
+          [`${this.className}-${prefixCls}-inner`]: !!this.className,
         },
       ];
     },
