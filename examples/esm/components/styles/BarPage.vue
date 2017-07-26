@@ -43,6 +43,18 @@
           <td>String</td>
           <td>-</td>
         </tr>
+        <tr>
+          <td>disabled</td>
+          <td>是否禁用</td>
+          <td>Boolean</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>disableRex</td>
+          <td>禁用的筛选条件，只根据path筛选</td>
+          <td>String</td>
+          <td>-</td>
+        </tr>
       </tbody>
     </table>
   </div>
