@@ -14,10 +14,6 @@ export default {
       type: [String, Boolean],
       default: false,
     },
-    skin: {
-      type: String,
-      default: '',
-    },
     type: {
       type: String,
       default: '',
@@ -36,6 +32,7 @@ export default {
       activeOk: this.active,
       className: this.$parent.className,
       addName: this.$parent.addClass,
+      skin: this.$parent.skin,
     };
   },
   computed: {

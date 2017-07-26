@@ -1,6 +1,8 @@
  <template>
   <div>
     <h4>填写设置</h4>
+    <emfe-checkout title="这是一个默认选中项" state="true" @checked="checked">
+    </emfe-checkout>
     <emfe-checkout title="这是一个必填项" @checked="checked">
     </emfe-checkout>
     <emfe-checkout color="#1996F9" title="这是一个带颜色的标题">

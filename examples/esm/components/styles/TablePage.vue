@@ -239,7 +239,7 @@ export default {
           address: {text:'北京市朝阳区芍药居2', row:false},
           address2: {text:'北京市朝阳区芍药居3', row:false},
           address3: {text:'北京市朝阳区芍药居4', row:false},
-          address4: {slot: 'c',text:'北京市朝阳区芍药居4', row:false},
+          address4: {slot: 'a',text:'北京市朝阳区芍药居4', row:false},
           address5: {slot: 'd', row:false},
           address6: {text:'北京市朝阳区芍药居7', row:false},
           address7: {text:'北京市朝阳区芍药居7', row:false},
