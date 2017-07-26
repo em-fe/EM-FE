@@ -65,6 +65,7 @@ export default {
   methods: {
     alocked() {
       this.state = this.state === true;
+      this.$emit('checked', this.state, this.title);
     },
   },
 };

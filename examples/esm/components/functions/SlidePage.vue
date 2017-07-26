@@ -75,6 +75,6 @@
 </template>
 <script>
 export default {
-  name: 'textareaPage',
+  name: 'editPage',
 }
 </script>

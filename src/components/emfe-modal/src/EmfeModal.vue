@@ -10,8 +10,8 @@
         <slot name="modal-main" :class="mainName"></slot>
       </div>
       <div class="emfe-modal-footer">
-        <div class="emfe-modal-btn emfe-modal-btn-cancel" @click="cancel">取消</div>
-        <div class="emfe-modal-btn emfe-modal-btn-ok" @click="ok">确定</div>
+        <div class="emfe-modal-btn emfe-modal-btn-cancel" @click="cancel">{{cancelText}}</div>
+        <div class="emfe-modal-btn emfe-modal-btn-ok" @click="ok">{{okText}}</div>
       </div>
     </div>
   </div>

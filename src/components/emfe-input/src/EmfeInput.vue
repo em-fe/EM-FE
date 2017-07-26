@@ -98,6 +98,13 @@ export default {
       this.$emit('change', this.currentValue);
     },
   },
+  watch: {
+    value(val, oldVal) {
+      if (val !== oldVal) {
+        this.currentValue = val;
+      }
+    },
+  },
 };
 </script>
 
