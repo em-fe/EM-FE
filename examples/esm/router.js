@@ -129,6 +129,11 @@ const router = new VueRouter({
           name: 'datapanel',
           component: require('./components/styles/DatapanelPage.vue'),
         },
+        {
+          path: '/styles/edit',
+          name: 'edit',
+          component: require('./components/styles/EditPage.vue'),
+        },
       ],
       component: require('./components/styles/Index.vue'),
     },

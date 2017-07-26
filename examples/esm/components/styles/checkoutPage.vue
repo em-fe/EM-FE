@@ -1,18 +1,16 @@
  <template>
   <div>
     <h4>填写设置</h4>
-    <emfe-checkout title="这是一个必填项">
+    <emfe-checkout className="diy" title="双向数据绑定，默认选中项" v-model="initChecked">
     </emfe-checkout>
-    <emfe-checkout color="#1996F9" title="这是一个带颜色的标题">
+    {{ initChecked }}
+    <emfe-checkout className="diy" :title="title" @checked="checked">
     </emfe-checkout>
-    <emfe-checkout :slideShow="slideShow" title="限定可选日期范围">
-      <div slot="slide">
-        <emfe-checkout title="周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一"></emfe-checkout>
-        <emfe-checkout title="周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一"></emfe-checkout>
-        <emfe-checkout title="周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一周一"></emfe-checkout>
-      </div>
+    <emfe-checkout className="div" title="这是一个带颜色的标题">
     </emfe-checkout>
-    <emfe-checkout :slideShow="slideShow" title="限定一周内可选日期">
+    <emfe-checkout className="diy" :disable="true" title="禁用">
+    </emfe-checkout>
+    <emfe-checkout className="diy" :slideShow="slideShow" title="限定一周内可选日期">
       <div slot="slide">
         <emfe-checkout title="周一" inline="true"></emfe-checkout>
         <emfe-checkout title="周二" inline="true"></emfe-checkout>
@@ -24,6 +22,14 @@
       </div>
     </emfe-checkout>
     <br>
+    <br>
+    <br>
+    全选 {{ allChecked }}
+    <br>
+    <div>
+      <emfe-checkout className="diy" title="全选" inline="true" v-model="allChecked"  @checked="noChecked()"></emfe-checkout>
+      <emfe-checkout className="diy" :title="item.title" inline="true" v-for="item in allDatas" :key="item" v-model="item.checked"></emfe-checkout>
+    </div>
     <br>
     <br>
     <br>
@@ -39,8 +45,14 @@
       </thead>
       <tbody>
         <tr>
+          <td>className(class-name)</td>
+          <td>自定义的 class 名称。</td>
+          <td>String</td>
+          <td>-</td>
+        </tr>
+        <tr>
           <td>slideShow</td>
-          <td>选中后是否有展示内容</td>
+          <td>选中后是否有展示自定义内容</td>
           <td>boolean</td>
           <td>false</td>
         </tr>
@@ -59,8 +71,31 @@
         <tr>
           <td>inline</td>
           <td>复选框是否一行显示</td>
-          <td>boolean</td>
+          <td>Boolean</td>
           <td>false</td>
+        </tr>
+        <tr>
+          <td>v-model</td>
+          <td>双向数据绑定</td>
+          <td>Boolean</td>
+          <td>-</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3>注册的方法</h3>
+    <table style="width: 100%;text-align: center;">
+      <thead>
+        <tr>
+          <th>事件名</th>
+          <th>说明</th>
+          <th>返回值</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>checked</td>
+          <td>点击多选框触发</td>
+          <td>返回选中状态 | 选中的title</td>
         </tr>
       </tbody>
     </table>
@@ -73,7 +108,45 @@ export default {
   data() {
     return {
       slideShow: true,
+      title: '没选',
+      initChecked: true,
+      allDatas: [
+        {
+          checked: false,
+          title: '曼联',
+        },
+        {
+          checked: false,
+          title: '阿森纳',
+        },
+        {
+          checked: false,
+          title: '切尔西',
+        },
+      ],
     }
+  },
+  computed: {
+    allChecked() {
+      return this.allDatas.every((data) => data.checked);
+    },
+  },
+  methods: {
+    checked(state, title) {
+      this.title = state ? '选了' : '没选';
+    },
+    noChecked() {
+      this.allDatas.forEach((data) => data.checked = !data.checked);
+    },
   },
 }
 </script>
+<style>
+.div-text {
+  color: #1996F9;
+  margin: 8px 0;
+}
+.diy-text {
+  margin: 8px 0;
+}
+</style>
