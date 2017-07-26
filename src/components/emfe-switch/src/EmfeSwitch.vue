@@ -23,6 +23,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    value: {
+      type: String,
+      default: '',
+    },
   },
   data() {
     return {
@@ -42,7 +46,6 @@ export default {
     },
     innerClass() {
       return [
-        // `${prefixCls}-inner`,
         {
           [`${this.className}-${prefixCls}-inner`]: !!this.className,
         },

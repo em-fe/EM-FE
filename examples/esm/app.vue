@@ -216,6 +216,13 @@ module.exports = {
                 path: '/styles/crumbs',
               },
             },
+            {
+              title: '二级类目',
+              icon: 'hotel',
+              routers: {
+                path: '/styles/edit',
+              },
+            },
           ],
         },
         {
