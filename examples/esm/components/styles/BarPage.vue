@@ -1,6 +1,13 @@
 <template>
   <div class="barpage">
-    <emfe-bar :datas="bars" :title="title" className="page"></emfe-bar>
+    <emfe-bar :datas="bars" :title="title" className="page" fullpath="/"></emfe-bar>
+    <br>
+    <br>
+    <br>
+    <emfe-bar :datas="bars" :title="title" className="page" fullpath="/" :disabled="true"></emfe-bar>
+    <br>
+    <br>
+    <br>
     <h3>API</h3>
     <table>
       <thead>
@@ -50,20 +57,9 @@ export default {
         {
           title: '提示组件',
           icon: 'hotel',
-          children: [
-            {
-              title: '文字提示',
-              routers: {
-                path: '/tips/tooltippage',
-              },
-            },
-            {
-              title: '全局提示',
-              routers: {
-                path: '/tips/message',
-              },
-            },
-          ],
+          routers: {
+            path: '/tips/message',
+          },
         },
         {
           title: '提示组件',
