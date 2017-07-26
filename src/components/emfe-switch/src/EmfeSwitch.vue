@@ -28,11 +28,6 @@ export default {
       default: '',
     },
   },
-  // data() {
-  //   return {
-  //     status: this.currentValue,
-  //   };
-  // },
   data() {
     return {
       currentValue: this.value,
@@ -51,7 +46,6 @@ export default {
     },
     innerClass() {
       return [
-        // `${prefixCls}-inner`,
         {
           [`${this.className}-${prefixCls}-inner`]: !!this.className,
         },
@@ -64,7 +58,6 @@ export default {
         const checked = !this.currentValue;
         this.currentValue = checked;
         this.$emit('toggle', checked);
-        console.log(this.currentValue);
       }
     },
   },
