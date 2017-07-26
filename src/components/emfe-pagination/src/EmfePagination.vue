@@ -1,5 +1,4 @@
 <template>
-  <!--<div class="page">分页</div>-->
    <div class="emfe-pagination">
     <ul>
       <li class="emfe-pagination-item" :class="{disabled: curPage == 1}" @click="prevPage" v-if="pageCount > 1">上一页</li>

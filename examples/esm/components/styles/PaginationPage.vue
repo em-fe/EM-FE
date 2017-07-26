@@ -1,6 +1,9 @@
 <template>
   <div class="page-demo">
     <emfe-pagination :pageCount="pageCount" @togglePage="togglePage($event)"></emfe-pagination>
+    <h2 style="margin-top:50px">API:</h2>
+    data里配置项：pageCount - 默认有多少页<br>
+    togglePage 里参数是有当前是第几页<br>
   </div>
 </template>
 
@@ -9,7 +12,7 @@ export default {
   name:  'pageDemo',
   data()  {
     return{
-      pageCount: 12
+      pageCount: 12,
     }
   },
   methods:  {

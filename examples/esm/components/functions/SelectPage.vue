@@ -28,7 +28,7 @@
     </div>
 
     <!--  -->
-    <emfe-select :datas="data1" seleStu="newList" type="checkbox" @addDataCheck="addDataCheck" @getAllData="getData" selectText="提示文字"></emfe-select>
+    <emfe-select :datas="data1" seleStu="newList" type="checkbox" checked="false" @addDataCheck="addDataCheck" @getAllData="getData" selectText="提示文字"></emfe-select>
     API：包含3个配置项和一个方法：<br>
               自定义属性 :<br>
               :datas="data1"<br>
@@ -42,7 +42,7 @@
     </div>
 
     <!--  -->
-    <emfe-select :datas="data2" seleStu="newList" type="radio" @addDataRadio="addDataRadio" @getAllData="getData" selectText="提示文字"></emfe-select>
+    <emfe-select :datas="data2" seleStu="newList" type="radio" checked="true" @addDataRadio="addDataRadio" @getAllData="getData" selectText="提示文字"></emfe-select>
     API：包含3个配置项和一个方法：<br>
               自定义属性 :<br>
               :datas="data2"<br>
