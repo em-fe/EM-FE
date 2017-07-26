@@ -14,6 +14,19 @@
     </code>
   </pre>
     <br>
+    <emfe-switch className="aaa" value='true'>
+      <span class="aaa" slot="open">ON</span>
+      <span class="aaa" slot="close">OFF</span>
+    </emfe-switch>
+    <pre>
+    <code>
+      <span>&lt;emfe-switch</span> <span>value</span><span>=</span><span>'true'</span><span>&gt;</span>
+        <span>&lt;span</span> <span>slot</span><span>=</span><span>"open"</span><span>&gt;</span>ON<span>&lt;/span&gt;</span>
+        <span>&lt;span</span> <span>slot</span><span>=</span><span>"open"</span><span>&gt;</span>OFF<span>&lt;/span&gt;</span>
+      <span>&lt;/emfe-switch&gt;</span>
+    </code>
+  </pre>
+    <br>
     <emfe-switch :disabled="true">
       <span slot="open">ON</span>
       <span slot="close">OFF</span>
@@ -50,6 +63,12 @@
           <td>disabled</td>
           <td>禁止”状态添加disabled</td>
           <td>Boolean</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>value</td>
+          <td>初始状态为开启时，添加value="true"</td>
+          <td>String</td>
           <td>-</td>
         </tr>
       </tbody>
