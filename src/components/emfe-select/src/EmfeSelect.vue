@@ -31,10 +31,6 @@ export default {
       type: Array,
       required: true,
     },
-    selectText: {
-      type: String,
-      default: '',
-    },
     addText: {
       type: String,
       default: '添加标签',
@@ -61,6 +57,11 @@ export default {
       const newdata = this.newListVal;
       this.$emit('addDataCheck', newdata);
       this.$emit('addDataRadio', newdata);
+      this.checkVals.push(newdata);
+      this.newListVal = '';
+      const va = this.checkVals;
+      this.$emit('getAllData', va);
+      // console.log(va);
     },
     spanTxt(item) {
       if (item.disabled !== 'disabled') {
@@ -77,6 +78,7 @@ export default {
       const va = this.checkVals;
       // console.log(va);
       this.$emit('getAllData', va);
+      console.log(va.length);
     },
   },
 };
