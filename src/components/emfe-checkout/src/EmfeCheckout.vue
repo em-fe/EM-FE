@@ -1,7 +1,7 @@
 <template>
   <div class="emfe-checkout" :class="{'emfe-checkout-inline': inline}">
     <div class="emfe-checkout-box">
-      <input type="checkbox" class="emfe-checkout-box-input" v-model="state" @change="alocked" :disabled="disable">
+      <input type="checkbox" class="emfe-checkout-box-input" v-model="states" @change="alocked" :disabled="disable">
       <span class="emfe-checkout-box-span" :style="titleColor" :color="color">{{title}}</span>
     </div>
     <div class="emfe-checkout-slide" v-if="slideShow">
@@ -21,7 +21,7 @@ export default {
   name: 'EmfeCheckout',
   data() {
     return {
-      state: false,
+      states: this.state,
     };
   },
   props: {
@@ -49,6 +49,10 @@ export default {
       type: String,
       default: '',
     },
+    state: {
+      type: [String, Boolean],
+      default: false,
+    },
   },
   computed: {
     slideName() {
@@ -64,8 +68,8 @@ export default {
   },
   methods: {
     alocked() {
-      this.state = this.state === true;
-      this.$emit('checked', this.state, this.title);
+      this.states = this.states === true;
+      this.$emit('checked', this.states, this.title);
     },
   },
 };
