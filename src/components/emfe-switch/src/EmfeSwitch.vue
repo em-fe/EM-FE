@@ -23,7 +23,16 @@ export default {
       type: Boolean,
       default: false,
     },
+    value: {
+      type: String,
+      default: '',
+    },
   },
+  // data() {
+  //   return {
+  //     status: this.currentValue,
+  //   };
+  // },
   data() {
     return {
       currentValue: this.value,
@@ -55,6 +64,7 @@ export default {
         const checked = !this.currentValue;
         this.currentValue = checked;
         this.$emit('toggle', checked);
+        console.log(this.currentValue);
       }
     },
   },
