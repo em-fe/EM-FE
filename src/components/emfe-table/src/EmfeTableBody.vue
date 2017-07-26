@@ -1,11 +1,17 @@
  <template>
   <tr @click="jump(ind)" class="emfe-box-table-tr" :class="classTr">
-    <template v-if="this.$parent.columns[0].type == 'selection'">
-      <td class="emfe-box-table-tr-td" :class="classTd"><div><slot></slot></div></td>
-    </template>
     <template>
-      <td class="emfe-box-table-tr-td" :class="classTd" :rowspan="dataList[list.key].row ? rowSpan[list.key]:0"  v-for="(list , index) in column" v-if='!dataList[list.key].text==""'>
-        <div>{{dataList[list.key].text}}</div>
+      <td class="emfe-box-table-tr-td" :class="classTd" :rowspan="dataList[list.key].row ? rowSpan[list.key]:0"  v-for="(list , index) in dataSlice" v-if="!dataList[list.key].hebing">
+        <slot name="a" v-if="dataList[list.key].slot==='a'"></slot>
+        <slot name="b" v-if="dataList[list.key].slot==='b'"></slot>
+        <slot name="c" v-if="dataList[list.key].slot==='c'"></slot>
+        <slot name="d" v-if="dataList[list.key].slot==='d'"></slot>
+        <slot name="e" v-if="dataList[list.key].slot==='e'"></slot>
+        <slot name="f" v-if="dataList[list.key].slot==='f'"></slot>
+        <slot name="g" v-if="dataList[list.key].slot==='g'"></slot>
+        <slot name="h" v-if="dataList[list.key].slot==='h'"></slot>
+        <slot name="i" v-if="dataList[list.key].slot==='i'"></slot>
+        <div v-if="!dataList[list.key].slot">{{dataList[list.key].text}}</div>
       </td>
     </template>
   </tr>
@@ -20,6 +26,7 @@ export default {
       column: this.$parent.columns,
       data: this.$parent.data,
       current: 0,
+      columnCopy: [],
     };
   },
   props: {
@@ -35,6 +42,12 @@ export default {
     },
   },
   computed: {
+    dataSlice() {
+      if (this.$parent.columns[0].type === 'selection') {
+        return this.column.slice(1, this.column.length);
+      }
+      return this.column;
+    },
     classTr() {
       return [
         `${this.className}-table-body-tr`,

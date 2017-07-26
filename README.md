@@ -3,6 +3,7 @@
 
 [![em-fe](https://img.shields.io/npm/v/em-fe.svg?style=flat-square)](https://www.npmjs.org/package/em-fe)
 [![NPM downloads](http://img.shields.io/npm/dm/em-fe.svg?style=flat-square)](https://npmjs.org/package/em-fe)
+[![Package Quality](http://npm.packagequality.com/shield/em-fe.svg)](http://packagequality.com/#?package=em-fe)
 [![NPM downloads](https://img.shields.io/npm/dt/em-fe.svg?style=flat-square)](https://npmjs.org/package/em-fe)
 
 ## 结构

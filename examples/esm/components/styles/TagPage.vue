@@ -3,7 +3,7 @@
     <div>
       <h3>切换标签</h3>
       <br>
-      <emfe-tag-parent className="default">
+      <emfe-tag-parent addClass="add" className="default">
         <emfe-tag index="0" @tag="tag">默认</emfe-tag>
         <emfe-tag index="1" active=true @tag="tag">选中</emfe-tag>
         <emfe-tag index="2" disable="true">禁止</emfe-tag>
@@ -38,9 +38,8 @@
         <emfe-tag index="1"  skin="blue">选中</emfe-tag>
       </emfe-tag-parent>
       <br>
-      <emfe-tag-parent className="screen">
-        <emfe-tag index="0" skin="yellow">默认</emfe-tag>
-        <emfe-tag index="1" skin="yellow">选中</emfe-tag>
+      <emfe-tag-parent className="screen" :data="dataList">
+        <emfe-tag v-for="(item, index) in dataList" :key="index" :index="index" active="true" skin="yellow">{{item}}</emfe-tag>
       </emfe-tag-parent>
     </div>
     <br><br>
@@ -60,6 +59,12 @@
           <td>选择皮肤</td>
           <td>String</td>
           <td>必填，值为'default','checket','screen'</td>
+        </tr>
+        <tr>
+          <td>addClass</td>
+          <td>自定义的 class 名称。</td>
+          <td>String</td>
+          <td>默认为""</td>
         </tr>
         <tr>
           <td>disabled</td>
@@ -115,6 +120,11 @@
 <script>
 export default {
   name: 'tag-page',
+  data() {
+    return {
+      dataList: ['默认', '选中'],
+    };
+  },
   methods:{
     tag(index) {
       console.log(index);

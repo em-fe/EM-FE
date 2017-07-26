@@ -55,6 +55,11 @@ const router = new VueRouter({
           component: require('./components/styles/MenuPage.vue'),
         },
         {
+          path: '/styles/bar',
+          name: 'bar',
+          component: require('./components/styles/BarPage.vue'),
+        },
+        {
           path: '/styles/title',
           name: 'title',
           component: require('./components/styles/TitlePage.vue'),

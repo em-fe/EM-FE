@@ -2,14 +2,15 @@
   <div class="emfe-input" :class="addClass">
     <div :class="[classList]" >
       <emfe-icon v-if="iconOk" :type="iconType" className="emfe-input-box-icon-el"></emfe-icon>
-      <input :type="type" v-bind="$props" :class={error:errOk} :value="currentValue" v-on:input="change" class="emfe-input-box-input">
+      <input :type="type" v-bind="$props" :class='addInput' :value="currentValue" v-on:input="change" class="emfe-input-box-input">
     </div>
-    <div class="emfe-input-box-text" v-if="errOk"><slot name="error"></slot></div>
+    <div class="emfe-input-box-text" :class="addErrorText" v-if="errOk"><slot name="error"></slot></div>
   </div>
 </template>
 <script>
 
 const prefixCls = 'emfe-input-box';
+const error = 'error';
 
 export default {
   name: 'input',
@@ -58,12 +59,33 @@ export default {
   },
   computed: {
     classList() {
-      return this.iconOk ? `${prefixCls}-icon` : `${prefixCls}`;
+      return [
+        {
+          [`${prefixCls}-icon`]: this.iconOk,
+          [`${prefixCls}`]: !this.iconOk,
+          [`${this.className}-input-box`]: !!this.className,
+        },
+      ];
     },
     addClass() {
       return [
         {
           [`${this.className}-input`]: !!this.className,
+        },
+      ];
+    },
+    addInput() {
+      return [
+        {
+          [`${error}`]: this.errOk,
+          [`${this.className}-input-box-input`]: !!this.className,
+        },
+      ];
+    },
+    addErrorText() {
+      return [
+        {
+          [`${this.className}-input-box-text`]: !!this.className,
         },
       ];
     },
@@ -74,6 +96,13 @@ export default {
       if (val === this.currentValue) return;
       this.currentValue = val;
       this.$emit('change', this.currentValue);
+    },
+  },
+  watch: {
+    value(val, oldVal) {
+      if (val !== oldVal) {
+        this.currentValue = val;
+      }
     },
   },
 };

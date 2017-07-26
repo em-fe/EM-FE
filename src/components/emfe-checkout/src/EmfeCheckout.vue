@@ -2,7 +2,7 @@
   <div class="emfe-checkout" :class="{'emfe-checkout-inline': inline}">
     <div class="emfe-checkout-box">
       <input type="checkbox" class="emfe-checkout-box-input" v-model="state" @change="alocked" :disabled="disable">
-      <span class="emfe-checkout-box-span">{{title}}</span>
+      <span class="emfe-checkout-box-span" :style="titleColor" :color="color">{{title}}</span>
     </div>
     <div class="emfe-checkout-slide" v-if="slideShow">
       <transition name="fade">
@@ -41,6 +41,10 @@ export default {
       type: String,
       default: '',
     },
+    color: {
+      type: String,
+      default: '',
+    },
     inline: {
       type: String,
       default: '',
@@ -54,10 +58,14 @@ export default {
         },
       ];
     },
+    titleColor() {
+      return this.color ? `color : ${this.color}` : '';
+    },
   },
   methods: {
     alocked() {
       this.state = this.state === true;
+      this.$emit('checked', this.state, this.title);
     },
   },
 };

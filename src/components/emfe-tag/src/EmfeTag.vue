@@ -1,6 +1,6 @@
 <template>
   <div class='emfe-tag' :class="classList" @click="activeClass">
-    <emfe-icon v-if="!!type" :type="type" className="icon-page"></emfe-icon>
+    <emfe-icon v-if="type" :type="type" className="icon-page"></emfe-icon>
     <slot></slot>
     <span v-if="!!skin"></span>
   </div>
@@ -27,7 +27,7 @@ export default {
       default: false,
     },
     index: {
-      type: String,
+      type: [String, Number],
       required: true,
     },
   },
@@ -35,6 +35,7 @@ export default {
     return {
       activeOk: this.active,
       className: this.$parent.className,
+      addName: this.$parent.addClass,
     };
   },
   computed: {
@@ -46,6 +47,7 @@ export default {
           [`${prefixCls}-${this.className}-active`]: this.activeOk && !this.skin,
           [`${prefixCls}-${this.className}-${this.skin}`]: !!this.skin,
           [`${prefixCls}-${this.className}-${this.skin}-active`]: this.activeOk && !!this.skin,
+          [`${this.addName}-tag`]: !!this.addName,
         },
       ];
     },

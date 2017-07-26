@@ -10,8 +10,8 @@
         <slot name="modal-main" :class="mainName"></slot>
       </div>
       <div class="emfe-modal-footer">
-        <div class="emfe-modal-btn emfe-modal-btn-cancel" @click="cancel">{{btnLeft}}</div>
-        <div class="emfe-modal-btn emfe-modal-btn-ok" @click="ok">{{btnRight}}</div>
+        <div class="emfe-modal-btn emfe-modal-btn-cancel" @click="cancel">{{cancelText}}</div>
+        <div class="emfe-modal-btn emfe-modal-btn-ok" @click="ok">{{okText}}</div>
       </div>
     </div>
   </div>
@@ -34,13 +34,13 @@ export default {
       type: String,
       default: '',
     },
-    btnRight: {
-      type: String,
-      default: '确定',
-    },
-    btnLeft: {
+    cancelText: {
       type: String,
       default: '取消',
+    },
+    okText: {
+      type: String,
+      default: '确定',
     },
   },
   computed: {

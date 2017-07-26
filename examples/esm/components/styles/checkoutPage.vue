@@ -1,7 +1,9 @@
  <template>
   <div>
     <h4>填写设置</h4>
-    <emfe-checkout title="这是一个必填项">
+    <emfe-checkout title="这是一个必填项" @checked="checked">
+    </emfe-checkout>
+    <emfe-checkout color="#1996F9" title="这是一个带颜色的标题">
     </emfe-checkout>
     <emfe-checkout :slideShow="slideShow" title="限定可选日期范围">
       <div slot="slide">
@@ -62,6 +64,23 @@
         </tr>
       </tbody>
     </table>
+    <h3>注册的方法</h3>
+    <table style="width: 100%;text-align: center;">
+      <thead>
+        <tr>
+          <th>事件名</th>
+          <th>说明</th>
+          <th>返回值</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>checked</td>
+          <td>返回选中状态和选中的title</td>
+          <td>-</td>
+        </tr>
+      </tbody>
+    </table>
     <br>
   </div>
 </template>
@@ -72,6 +91,11 @@ export default {
     return {
       slideShow: true,
     }
+  },
+  methods: {
+    checked(state, title) {
+      console.log(state, title);
+    },
   },
 }
 </script>
