@@ -59,7 +59,7 @@ $bar-top: 64px;
 
     &-disabled {
       color: $text-color-disable;
-      pointer-events:none;
+      pointer-events: none;
       cursor: not-allowed;
     }
   }
@@ -84,7 +84,7 @@ $bar-top: 64px;
 
     &-disabled {
       color: $text-color-disable;
-      pointer-events:none;
+      pointer-events: none;
       cursor: not-allowed;
 
       &:hover {
@@ -135,7 +135,7 @@ $bar-top: 64px;
 
     &-disabled {
       color: $text-color-disable;
-      pointer-events:none;
+      pointer-events: none;
       cursor: not-allowed;
 
       &:hover {

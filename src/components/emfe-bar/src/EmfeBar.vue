@@ -99,7 +99,7 @@ export default {
       }
     },
     $route(val, oldVal) {
-      if(val.name !== oldVal.name) {
+      if (val.name !== oldVal.name) {
         this.isDisabled = val.path.indexOf(this.disableRex) > -1;
       }
     },
