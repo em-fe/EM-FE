@@ -35,9 +35,6 @@ export default {
       skin: this.$parent.skin,
     };
   },
-  created() {
-    console.log(this.active);
-  },
   computed: {
     classList() {
       return [
@@ -63,7 +60,6 @@ export default {
   },
   watch: {
     active(val, oldVal) {
-      console.log(val, oldVal);
       if (val !== oldVal) {
         this.activeOk = this.active;
       }
