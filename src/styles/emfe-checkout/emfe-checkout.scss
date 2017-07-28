@@ -5,26 +5,52 @@
     display: flex;
     align-items: center;
     overflow: hidden;
+    position: relative;
+  }
 
-    &-input {
-      width: 16px;
-      height: 16px;
-      display: block;
-      margin: 0;
+  &-inner {
+    width: 16px;
+    height: 16px;
+    border-radius: $radius-size;
+    background: $brand-color-default;
+
+    &-checked {
+      @include border(all, $border-on-color);
+
+      background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAICAYAAADA+m62AAAAAXNSR0IArs4c6QAAAIRJREFUGBl9kE0KgzAUhCOCqBF6BRc9Rg/jHbxkqejOCnqObrowfiMJCv48+JK8N5MJxJibcs4l8IVHfOVDTNFGeEIJxjDM1oNf6HNo4Od3K1MFKt1UL9MHNpMXaoYzvGFvaumtf2RNiBgM8IcJlNTBZgpuhi9QKVlJRdAOO2IPqtOfWADjgJGjYN/vtgAAAABJRU5ErkJggg==) $background-active-color no-repeat center center;
     }
 
-    &-span {
-      flex: 1;
-      font-size: 14px;
-      color: $text-color-default;
-      display: block;
-      line-height: 16px;
-      margin-left: 8px;
+    &-disable {
+      @include border(all, $border-color);
+
+      background: $background-color-disable;
     }
   }
 
+  &-status {
+    width: 16px;
+    height: 16px;
+    display: block;
+    margin: 0;
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    opacity: 0;
+    filter: alpha(opacity=0);
+  }
+
+  &-text {
+    flex: 1;
+    font-size: 14px;
+    color: $text-color-default;
+    display: block;
+    line-height: 16px;
+    margin-left: 8px;
+  }
+
   &-inline {
-    float: left;
+    // float: left; //还得请浮动
+    display: inline-block;
     margin-right: 15px;
   }
 
@@ -36,15 +62,22 @@
     &-wrap {
       width: 100%;
       height: auto;
-      padding-top: 12px;
+      margin-top: 12px;
+      padding: 16px;
+      position: relative;
+      background: $background-color-open;
 
       @include border(left, $button-color-default, 1px, dashed);
 
-      &-open {
-        height: auto;
-        padding: 16px;
-        background: $background-color-open;
-        overflow: hidden;
+      &::before {
+        @include border(left, $button-color-default, 1px, dashed);
+
+        content: '';
+        position: absolute;
+        left: -1px;
+        top: -13px;
+        height: 12px;
+        width: 1px;
       }
     }
   }

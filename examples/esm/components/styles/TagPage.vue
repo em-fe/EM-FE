@@ -33,13 +33,13 @@
     <div>
       <h3>筛选标签</h3>
       <br>
-      <emfe-tag-parent className="screen">
-        <emfe-tag index="0" skin="blue">默认</emfe-tag>
-        <emfe-tag index="1"  skin="blue">选中</emfe-tag>
+      <emfe-tag-parent className="screen" skin="blue">
+        <emfe-tag index="0">默认</emfe-tag>
+        <emfe-tag index="1">选中</emfe-tag>
       </emfe-tag-parent>
       <br>
-      <emfe-tag-parent className="screen" :data="dataList">
-        <emfe-tag v-for="(item, index) in dataList" :key="index" :index="index" active="true" skin="yellow">{{item}}</emfe-tag>
+      <emfe-tag-parent  addClass="add" className="screen" skin="yellow" :data="dataList">
+        <emfe-tag v-for="(item, index) in dataList" :key="index" :index="index" active="true" >{{item}}</emfe-tag>
       </emfe-tag-parent>
     </div>
     <br><br>
