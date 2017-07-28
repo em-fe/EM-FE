@@ -40,7 +40,7 @@ export default {
     checkVals: {
       type: Object,
       default: '',
-    }
+    },
   },
   data() {
     return {
