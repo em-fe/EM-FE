@@ -52,6 +52,13 @@ module.exports = {
                 },
               ],
             },
+            {
+              title: '展开收起',
+              icon: 'hotel',
+              routers: {
+                path: '/tips/hottip',
+              },
+            },
           ],
         },
         {

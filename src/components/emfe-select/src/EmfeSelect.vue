@@ -5,11 +5,9 @@
       <div class="emfe-select-custab" v-if="seleStu==='newList'">
         <input type="text" :placeholder="addText" class="emfe-input-box-input" v-model="newListVal"><span class="emfe-select-custab-btn" @click="newListBtn">保存</span>
       </div>
-      <label v-for="item in checkList" class="emfe-select-label" v-if="type==='radio'">
-        <span class="emfe-select-text">{{ item.name }}</span><input class="emfe-checkout-box-input" :disabled="item.disabled" type="radio" v-model="checkVals" :value="item.name" @change="getdata">
-      </label>
-      <label v-for="item in checkList" class="emfe-select-label" v-if="type==='checkbox'">
-        <span class="emfe-select-text">{{ item.name }}</span><input class="emfe-checkout-box-input" :disabled="item.disabled" type="checkbox" v-model="checkVals" :value="item.name" @change="getdata">
+      <label v-for="item in checkList" class="emfe-select-label" v-if="type==='checkbox'" :key="item.id">
+        <span class="emfe-select-text">{{ item.name }}</span>
+        <input class="emfe-checkout-box-input" :disabled="item.disabled" type="checkbox" v-model="checkVals" :value="item.name" :key="item.id" @change="getdata">
       </label>
       <label v-for="item in checkList" class="emfe-select-label emfe-select-delabel" @click="spanTxt(item)" :disabled="item.disabled" v-if="type==='default'"><span :class="{'disabled': item.disabled}">{{ item.name }}</span></label>
     </div>
@@ -31,10 +29,6 @@ export default {
       type: Array,
       required: true,
     },
-    selectText: {
-      type: String,
-      default: '',
-    },
     addText: {
       type: String,
       default: '添加标签',
@@ -43,12 +37,16 @@ export default {
       type: String,
       default: '选择标签',
     },
+    checkVals: {
+      type: Object,
+      default: '',
+    }
   },
   data() {
     return {
       checkList: [],
-      checkVals: [],
       flagCheck: false,
+      checkVals: [],
       newListVal: '',
     };
   },
@@ -61,6 +59,11 @@ export default {
       const newdata = this.newListVal;
       this.$emit('addDataCheck', newdata);
       this.$emit('addDataRadio', newdata);
+      this.checkVals.push(newdata);
+      this.newListVal = '';
+      const va = this.checkVals;
+      this.$emit('getAllData', va);
+      // console.log(va);
     },
     spanTxt(item) {
       if (item.disabled !== 'disabled') {

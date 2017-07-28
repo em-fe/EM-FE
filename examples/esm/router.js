@@ -23,7 +23,7 @@ const router = new VueRouter({
           component: require('./components/tips/IconPage.vue'),
         },
         {
-          path: '/tips/hottip',
+          path: 'hottip',
           name: 'hottippage',
           component: require('./components/tips/HottipPage.vue'),
         },
