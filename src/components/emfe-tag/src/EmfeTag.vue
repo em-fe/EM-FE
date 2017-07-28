@@ -58,5 +58,12 @@ export default {
       this.$emit('tag', this.index);
     },
   },
+  watch: {
+    active(val, oldVal) {
+      if (val !== oldVal) {
+        this.activeOk = this.active;
+      }
+    },
+  },
 };
 </script>

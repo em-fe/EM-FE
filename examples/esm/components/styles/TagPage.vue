@@ -24,10 +24,11 @@
       <h3>复选标签带icon</h3>
       <br>
       <emfe-tag-parent className="checket">
-        <emfe-tag index="0" type="hint">默认</emfe-tag>
+        <emfe-tag index="0" :active="active" type="hint">默认</emfe-tag>
         <emfe-tag index="1" type="hint">选中</emfe-tag>
         <emfe-tag index="2" type="hint" disable="true"></emfe-icon>禁止</emfe-tag>
       </emfe-tag-parent>
+      <div @click="click">不选中 {{ active }}</div>
     </div>
     <br>
     <div>
@@ -123,12 +124,16 @@ export default {
   data() {
     return {
       dataList: ['默认', '选中'],
+      active: true,
     };
   },
   methods:{
     tag(index) {
       console.log(index);
-    }
+    },
+    click() {
+      this.active = !this.active;
+    },
   },
 };
 </script>

@@ -35,7 +35,7 @@
           <td>data</td>
           <td>数据 cont为内容，switchOk为是否有switch开关</td>
           <td>Object</td>
-          <td>默认{}</td>
+          <td>默认[]</td>
         </tr>
         <tr>
           <td>type</td>
@@ -80,18 +80,18 @@ export default {
   name: "panelpage",
   data() {
     return {
-      dataList:{
-        '累计消费次数': {cont: '24次', switchOk:false},
-        '累计消费金额': {cont: '￥20300.00', switchOk:false},
-        '平均消费1': {cont: '￥210.00', switchOk:false},
-      },
-      dataList2:{
-        '累计消费次数': {cont: '24次', switchOk:false},
-        '累计消费金额': {cont: '￥20300.00', switchOk:false},
-        '平均消费1': {cont: '￥210.00', switchOk:false},
-        '累计消费次数1': {cont: '￥210.00', switchOk:false},
-        '累计消费金额1': {cont: '￥210.00', switchOk:true},
-      },
+      dataList:[
+        {text: '累计消费次数', cont: '24次', switchOk:false},
+        {text: '累计消费金额', cont: '￥20300.00', switchOk:false},
+        {text: '平均消费1', cont: '￥210.00', switchOk:false},
+      ],
+      dataList2:[
+        {text: '累计消费次数', cont: '24次', switchOk:false},
+        {text: '累计消费金额', cont: '￥20300.00', switchOk:false},
+        {text: '平均消费1', cont: '￥210.00', switchOk:false},
+        {text: '累计消费次数2', cont: '￥210.00', switchOk:false},
+        {text: '累计消费金额1', cont: '￥210.00', switchOk:true},
+      ],
     };
   },
   methods: {

@@ -103,6 +103,11 @@ export default {
         this.isDisabled = val.path.indexOf(this.disableRex) > -1;
       }
     },
+    disabled(val, oldVal) {
+      if (val !== oldVal) {
+        this.isDisabled = this.disabled;
+      }
+    },
   },
 };
 </script>

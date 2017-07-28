@@ -46,7 +46,7 @@
     "eslint-plugin-html": "^3.0.0",
     "eslint-plugin-import": "^2.6.0",
     "file-loader": "^0.11.2",
-    "flow-bin": "^0.48.0",
+    "flow-bin": "^0.47.0",
     "friendly-errors-webpack-plugin": "^1.6.1",
     "gulp": "^3.9.1",
     "gulp-cssmin": "^0.2.0",
