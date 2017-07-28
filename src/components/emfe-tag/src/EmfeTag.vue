@@ -35,6 +35,9 @@ export default {
       skin: this.$parent.skin,
     };
   },
+  created() {
+    console.log(this.active);
+  },
   computed: {
     classList() {
       return [
@@ -56,6 +59,14 @@ export default {
       }
       this.$parent.getIndex(this.index);
       this.$emit('tag', this.index);
+    },
+  },
+  watch: {
+    active(val, oldVal) {
+      console.log(val, oldVal);
+      if (val !== oldVal) {
+        this.activeOk = this.active;
+      }
     },
   },
 };
