@@ -48,6 +48,9 @@ staticRenderFns: [],
       return this.className ? ((this.className) + "-bar") : '';
     },
   },
+  mounted: function mounted() {
+    this.testUrl();
+  },
   methods: {
     testUrl: function testUrl() {
       var this$1 = this;
@@ -90,16 +93,19 @@ staticRenderFns: [],
   },
   watch: {
     fullpath: function fullpath(val, oldVal) {
+      console.log(3, val, oldVal);
       if (val !== oldVal) {
         this.testUrl();
       }
     },
     $route: function $route(val, oldVal) {
+      console.log(1, val, oldVal);
       if (val.name !== oldVal.name) {
         this.isDisabled = val.path.indexOf(this.disableRex) > -1;
       }
     },
     disabled: function disabled(val, oldVal) {
+      console.log(2, val, oldVal);
       if (val !== oldVal) {
         this.isDisabled = this.disabled;
       }
