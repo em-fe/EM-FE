@@ -92,19 +92,16 @@ staticRenderFns: [],
   },
   watch: {
     fullpath: function fullpath(val, oldVal) {
-      console.log(3, val, oldVal);
       if (val !== oldVal) {
         this.testUrl();
       }
     },
     $route: function $route(val, oldVal) {
-      console.log(1, val, oldVal);
       if (val.name !== oldVal.name) {
         this.isDisabled = val.path.indexOf(this.disableRex) > -1;
       }
     },
     disabled: function disabled(val, oldVal) {
-      console.log(2, val, oldVal);
       if (val !== oldVal) {
         this.isDisabled = this.disabled;
       }
@@ -2022,6 +2019,100 @@ EmfeInput$1.install = function (Vue$$1) {
   Vue$$1.component(EmfeInput$1.name, EmfeInput$1);
 };
 
+var EmfeNumber$1 = {
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-number"},[_c('button',{staticClass:"emfe-number-reduce",class:{'emfe-number-reduce-disable': _vm.reducedisable},on:{"click":_vm.reduce}}),_vm._v(" "),_c('div',{staticClass:"emfe-number-num"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.num),expression:"num"}],staticClass:"emfe-number-val",class:{'emfe-number-val-nounit': !_vm.unit},attrs:{"type":"tel","maxlength":_vm.max.length,"disabled":_vm.disabled},domProps:{"value":(_vm.num)},on:{"input":[function($event){if($event.target.composing){ return; }_vm.num=$event.target.value;},_vm.input],"focus":_vm.focus}}),_vm._v(" "),(_vm.unit)?_c('i',{staticClass:"emfe-number-unit"},[_vm._v(_vm._s(_vm.unit))]):_vm._e()]),_vm._v(" "),_c('button',{staticClass:"emfe-number-plus",class:{'emfe-number-plus-disable': _vm.plusdisable},on:{"click":_vm.plus}})])},
+staticRenderFns: [],
+  name: 'EmfeNumber',
+  data: function data() {
+    return {
+      num: this.value,
+    };
+  },
+  props: {
+    value: {
+      type: Number,
+      default: 0,
+    },
+    unit: {
+      type: String,
+      default: '',
+    },
+    max: {
+      type: Number,
+      default: Infinity,
+    },
+    min: {
+      type: Number,
+      default: -Infinity,
+    },
+    step: {
+      type: Number,
+      default: 5,
+    },
+    disabled: {
+      type: Boolean,
+      default: true,
+    },
+  },
+  computed: {
+    plusdisable: function plusdisable() {
+      return this.max - this.num < this.step;
+    },
+    reducedisable: function reducedisable() {
+      return this.num - this.min < this.step;
+    },
+  },
+  methods: {
+    toFix: function toFix() {
+      var step = this.step.toString();
+      var stepList = step.split('.');
+      var fixNum = 0;
+      if (stepList.length > 1) {
+        fixNum = stepList[1].length;
+      }
+      return fixNum;
+    },
+    plus: function plus() {
+      var fixNum = this.toFix();
+      if (!this.plusdisable) {
+        var oldNum = this.num;
+        this.num += this.step;
+        this.num = this.num.toFixed(fixNum) - 0;
+        this.$emit('change', this.num, oldNum);
+        this.$emit('input', this.num);
+      }
+    },
+    reduce: function reduce() {
+      var fixNum = this.toFix();
+      if (!this.reducedisable) {
+        var oldNum = this.num;
+        this.num -= this.step;
+        this.num = this.num.toFixed(fixNum) - 0;
+        this.$emit('change', this.num, oldNum);
+        this.$emit('input', this.num);
+      }
+    },
+    input: function input(ev) {
+      var ref = ev.target;
+      var value = ref.value;
+      if (value > this.max) {
+        this.num = this.max;
+      }
+      if (value < this.min) {
+        this.num = this.min;
+      }
+      this.$emit('input', this.num - 0);
+    },
+    focus: function focus(ev) {
+      ev.target.select();
+    },
+  },
+};
+
+EmfeNumber$1.install = function (Vue$$1) {
+  Vue$$1.component(EmfeNumber$1.name, EmfeNumber$1);
+};
+
 var getDayCountOfMonth = function (year, month) {
   if (month === 3 || month === 5 || month === 8 || month === 10) {
     return 30;
@@ -2890,7 +2981,7 @@ EmfePagination$1.install = function (Vue$$1) {
 };
 
 var EmfeSelect$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"emfe-documentclick",rawName:"v-emfe-documentclick",value:(_vm.close),expression:"close"}],staticClass:"emfe-select"},[_c('input',{staticClass:"emfe-input-box-input",attrs:{"type":"text","readonly":"","placeholder":_vm.selectText},domProps:{"value":_vm.checkVals},on:{"click":_vm.inpcheck}}),_vm._v(" "),(_vm.flagCheck)?_c('div',{staticClass:"emfe-select-flag"},[(_vm.seleStu==='newList')?_c('div',{staticClass:"emfe-select-custab"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.newListVal),expression:"newListVal"}],staticClass:"emfe-input-box-input",attrs:{"type":"text","placeholder":_vm.addText},domProps:{"value":(_vm.newListVal)},on:{"input":function($event){if($event.target.composing){ return; }_vm.newListVal=$event.target.value;}}}),_c('span',{staticClass:"emfe-select-custab-btn",on:{"click":_vm.newListBtn}},[_vm._v("保存")])]):_vm._e(),_vm._v(" "),_vm._l((_vm.checkList),function(item){return (_vm.type==='checkbox')?_c('label',{key:item.id,staticClass:"emfe-select-label"},[_c('span',{staticClass:"emfe-select-text"},[_vm._v(_vm._s(item.name))]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.checkVals),expression:"checkVals"}],key:item.id,staticClass:"emfe-checkout-box-input",attrs:{"disabled":item.disabled,"type":"checkbox"},domProps:{"value":item.name,"checked":Array.isArray(_vm.checkVals)?_vm._i(_vm.checkVals,item.name)>-1:(_vm.checkVals)},on:{"change":_vm.getdata,"__c":function($event){var $$a=_vm.checkVals,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=item.name,$$i=_vm._i($$a,$$v);if($$c){$$i<0&&(_vm.checkVals=$$a.concat($$v));}else{$$i>-1&&(_vm.checkVals=$$a.slice(0,$$i).concat($$a.slice($$i+1)));}}else{_vm.checkVals=$$c;}}}})]):_vm._e()}),_vm._v(" "),_vm._l((_vm.checkList),function(item){return (_vm.type==='default')?_c('label',{staticClass:"emfe-select-label emfe-select-delabel",attrs:{"disabled":item.disabled},on:{"click":function($event){_vm.spanTxt(item);}}},[_c('span',{class:{'disabled': item.disabled}},[_vm._v(_vm._s(item.name))])]):_vm._e()})],2):_vm._e()])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"emfe-documentclick",rawName:"v-emfe-documentclick",value:(_vm.close),expression:"close"}],staticClass:"emfe-select"},[_c('input',{staticClass:"emfe-input-box-input",attrs:{"type":"text","readonly":"","placeholder":_vm.selectText},domProps:{"value":_vm.checkVal},on:{"click":_vm.inpcheck}}),_vm._v(" "),(_vm.flagCheck)?_c('div',{staticClass:"emfe-select-flag"},[(_vm.seleStu==='newList')?_c('div',{staticClass:"emfe-select-custab"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.newListVal),expression:"newListVal"}],staticClass:"emfe-input-box-input",attrs:{"type":"text","placeholder":_vm.addText},domProps:{"value":(_vm.newListVal)},on:{"input":function($event){if($event.target.composing){ return; }_vm.newListVal=$event.target.value;}}}),_c('span',{staticClass:"emfe-select-custab-btn",on:{"click":_vm.newListBtn}},[_vm._v("保存")])]):_vm._e(),_vm._v(" "),_vm._l((_vm.checkList),function(item){return (_vm.type==='checkbox')?_c('label',{key:item.id,staticClass:"emfe-select-label"},[_c('span',{staticClass:"emfe-select-text"},[_vm._v(_vm._s(item.name))]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.checkVal),expression:"checkVal"}],key:item.id,staticClass:"emfe-checkout-box-input",attrs:{"disabled":item.disabled,"type":"checkbox"},domProps:{"value":item.name,"checked":Array.isArray(_vm.checkVal)?_vm._i(_vm.checkVal,item.name)>-1:(_vm.checkVal)},on:{"change":_vm.getdata,"__c":function($event){var $$a=_vm.checkVal,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=item.name,$$i=_vm._i($$a,$$v);if($$c){$$i<0&&(_vm.checkVal=$$a.concat($$v));}else{$$i>-1&&(_vm.checkVal=$$a.slice(0,$$i).concat($$a.slice($$i+1)));}}else{_vm.checkVal=$$c;}}}})]):_vm._e()}),_vm._v(" "),_vm._l((_vm.checkList),function(item){return (_vm.type==='default')?_c('label',{staticClass:"emfe-select-label emfe-select-delabel",attrs:{"disabled":item.disabled},on:{"click":function($event){_vm.spanTxt(item);}}},[_c('span',{class:{'disabled': item.disabled}},[_vm._v(_vm._s(item.name))])]):_vm._e()})],2):_vm._e()])},
 staticRenderFns: [],
   name: 'Select',
   props: {
@@ -2915,15 +3006,17 @@ staticRenderFns: [],
       default: '选择标签',
     },
     checkVals: {
-      type: Object,
-      default: '',
+      type: Array,
+      default: function default$1() {
+        return [];
+      },
     },
   },
   data: function data() {
     return {
       checkList: [],
       flagCheck: false,
-      checkVals: [],
+      checkVal: this.checkVals,
       newListVal: '',
     };
   },
@@ -2936,17 +3029,17 @@ staticRenderFns: [],
       var newdata = this.newListVal;
       this.$emit('addDataCheck', newdata);
       this.$emit('addDataRadio', newdata);
-      this.checkVals.push(newdata);
+      // this.checkVal.push(newdata);
       this.newListVal = '';
-      var va = this.checkVals;
-      this.$emit('getAllData', va);
+      // const va = this.checkVal;
+      // this.$emit('getAllData', va);
       // console.log(va);
     },
     spanTxt: function spanTxt(item) {
       if (item.disabled !== 'disabled') {
-        this.checkVals = item.name;
+        this.checkVal = item.name;
         // console.log(this.checkVals);
-        this.$emit('getDefData', this.checkVals);
+        this.$emit('getDefData', this.checkVal);
       }
     },
     close: function close() {
@@ -2954,7 +3047,7 @@ staticRenderFns: [],
       this.flagCheck = false;
     },
     getdata: function getdata() {
-      var va = this.checkVals;
+      var va = this.checkVal;
       // console.log(va);
       this.$emit('getAllData', va);
     },
@@ -3131,7 +3224,7 @@ EmfeDrop$1.install = function (Vue$$1) {
 var prefixCls$8 = 'emfe-box';
 
 var EmfeTable = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-box"},[_c('div',{class:_vm.className},[(_vm.columns.length)?_c('table',{staticClass:"emfe-box-table",class:[_vm.classTable, _vm.classAdd],attrs:{"width":_vm.width}},[_vm._t("head"),_vm._v(" "),_c('tbody',[_vm._t("body")],2)],2):_vm._e(),_vm._v(" "),(!_vm.columns.length)?_c('div',{staticClass:"emfe-box-nothing"},[_vm._v("没有数据")]):_vm._e()])])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-box"},[_c('div',{class:_vm.className},[(_vm.columns.length)?_c('table',{staticClass:"emfe-box-table",class:[_vm.classTable, _vm.classAdd],attrs:{"width":_vm.width}},[_vm._t("head"),_vm._v(" "),_c('tbody',[_vm._t("body")],2)],2):_vm._e(),_vm._v(" "),(!_vm.data.length)?_c('div',{staticClass:"emfe-box-nothing"},[_vm._v("没有数据")]):_vm._e()])])},
 staticRenderFns: [],
   name: 'EmfeTable',
   data: function data() {
@@ -3905,6 +3998,7 @@ var emfeCpt = {
   EmfeDrag: EmfeDrag$1,
   EmfeColor: EmfeColor$1,
   EmfeInput: EmfeInput$1,
+  EmfeNumber: EmfeNumber$1,
   EmfeButton: Button.EmfeButton,
   EmfeButtonGroup: Button.EmfeButtonGroup,
   EmfeSwitch: EmfeSwitch$1,
