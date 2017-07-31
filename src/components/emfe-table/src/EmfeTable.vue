@@ -7,7 +7,7 @@
           <slot name="body"></slot>
         </tbody>
       </table>
-      <div class="emfe-box-nothing" v-if="!columns.length">没有数据</div>
+      <div class="emfe-box-nothing" v-if="!data.length">没有数据</div>
     </div>
   </div>
 </template>
