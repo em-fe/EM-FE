@@ -1916,7 +1916,7 @@ var prefixCls$3 = 'emfe-input-box';
 var error = 'error';
 
 var EmfeInput$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-input",class:_vm.addClass},[_c('div',{class:[_vm.classList]},[(_vm.iconOk)?_c('emfe-icon',{attrs:{"type":_vm.iconType,"className":"emfe-input-box-icon-el"}}):_vm._e(),_vm._v(" "),_c('input',_vm._b({staticClass:"emfe-input-box-input",class:_vm.addInput,attrs:{"type":_vm.type},domProps:{"value":_vm.currentValue},on:{"input":_vm.change}},'input',_vm.$props))],1),_vm._v(" "),(_vm.errOk)?_c('div',{staticClass:"emfe-input-box-text",class:_vm.addErrorText},[_vm._t("error")],2):_vm._e()])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-input",class:_vm.addClass},[_c('div',{class:[_vm.classList]},[(_vm.iconOk)?_c('emfe-icon',{attrs:{"type":_vm.iconType,"className":"emfe-input-box-icon-el"}}):_vm._e(),_vm._v(" "),_c('input',_vm._b({staticClass:"emfe-input-box-input",class:_vm.addInput,attrs:{"type":_vm.type},domProps:{"value":_vm.currentValue},on:{"input":_vm.change}},'input',_vm.$props,false))],1),_vm._v(" "),(_vm.errOk)?_c('div',{staticClass:"emfe-input-box-text",class:_vm.addErrorText},[_vm._t("error")],2):_vm._e()])},
 staticRenderFns: [],
   name: 'input',
   props: {
@@ -1990,6 +1990,13 @@ staticRenderFns: [],
       if (val === this.currentValue) { return; }
       this.currentValue = val;
       this.$emit('change', this.currentValue);
+    },
+  },
+  watch: {
+    value: function value(val, oldVal) {
+      if (val !== oldVal) {
+        this.currentValue = val;
+      }
     },
   },
 };
@@ -2935,7 +2942,7 @@ EmfeSelect$1.install = function (Vue$$1) {
 
 var prefixCls$7 = 'emfe-modal';
 var EmfeModal$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.show)?_c('div',{staticClass:"emfe-modal"},[_c('div',{staticClass:"emfe-modal-mask"}),_vm._v(" "),_c('div',{staticClass:"emfe-modal-wrap",style:({width: (_vm.width + "px")})},[_c('div',{staticClass:"emfe-modal-header"},[_c('div',{staticClass:"emfe-modal-header-inner"},[_vm._v(_vm._s(_vm.title))]),_vm._v(" "),_c('div',{staticClass:"emfe-modal-header-close",on:{"click":_vm.closeModal}},[_vm._v("＋")])]),_vm._v(" "),_c('div',{staticClass:"emfe-modal-main"},[_vm._t("modal-main")],2),_vm._v(" "),_c('div',{staticClass:"emfe-modal-footer"},[_c('div',{staticClass:"emfe-modal-btn emfe-modal-btn-cancel",on:{"click":_vm.cancel}},[_vm._v("取消")]),_vm._v(" "),_c('div',{staticClass:"emfe-modal-btn emfe-modal-btn-ok",on:{"click":_vm.ok}},[_vm._v("确定")])])])]):_vm._e()},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.show)?_c('div',{staticClass:"emfe-modal"},[_c('div',{staticClass:"emfe-modal-mask"}),_vm._v(" "),_c('div',{staticClass:"emfe-modal-wrap",style:({width: (_vm.width + "px")})},[_c('div',{staticClass:"emfe-modal-header"},[_c('div',{staticClass:"emfe-modal-header-inner"},[_vm._v(_vm._s(_vm.title))]),_vm._v(" "),_c('div',{staticClass:"emfe-modal-header-close",on:{"click":_vm.closeModal}},[_vm._v("＋")])]),_vm._v(" "),_c('div',{staticClass:"emfe-modal-main"},[_vm._t("modal-main")],2),_vm._v(" "),_c('div',{staticClass:"emfe-modal-footer"},[_c('div',{staticClass:"emfe-modal-btn emfe-modal-btn-cancel",on:{"click":_vm.cancel}},[_vm._v(_vm._s(_vm.cancelText))]),_vm._v(" "),_c('div',{staticClass:"emfe-modal-btn emfe-modal-btn-ok",on:{"click":_vm.ok}},[_vm._v(_vm._s(_vm.okText))])])])]):_vm._e()},
 staticRenderFns: [],
   name: 'EmfeModal',
   props: {
@@ -3034,6 +3041,7 @@ staticRenderFns: [],
   methods: {
     alocked: function alocked() {
       this.state = this.state === true;
+      this.$emit('checked', this.state, this.title);
     },
   },
 };
@@ -3269,9 +3277,8 @@ EmfeTextarea$1.install = function (Vue$$1) {
   Vue$$1.component(EmfeTextarea$1.name, EmfeTextarea$1);
 };
 
-var prefixCls$11 = 'emfe-datapanel';
 var EmfeDatapanel$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-datapanel"},[_c('div',{staticClass:"emfe-datapanel-title"},[_c('span',[_vm._v(_vm._s(_vm.title))]),_vm._v(" "),_c('emfe-tooltip',{attrs:{"placement":"right-end"}},[_c('emfe-icon',{attrs:{"type":"hint","className":"emfe-datapanel-mark"},slot:"render"}),_vm._v(" "),_c('div',{slot:"tip"},[_vm._t("tipText")],2)],1)],1),_vm._v(" "),_c('div',{staticClass:"emfe-datapanel-main"},[_vm._v("\n    "+_vm._s(_vm.contentText)+"\n  ")])])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-datapanel",class:_vm.datapanelName},[_c('div',{staticClass:"emfe-datapanel-title"},[_c('span',[_vm._v(_vm._s(_vm.title))]),_vm._v(" "),_c('emfe-tooltip',{attrs:{"placement":"right-end"}},[_c('emfe-icon',{attrs:{"type":"hint","className":"emfe-datapanel-mark"},slot:"render"}),_vm._v(" "),_c('div',{slot:"tip"},[_vm._t("tipText")],2)],1)],1),_vm._v(" "),_c('div',{staticClass:"emfe-datapanel-main"},[_vm._v("\n    "+_vm._s(_vm.contentText)+"\n  ")])])},
 staticRenderFns: [],
   name: 'EmfeDatapanel',
   props: {
@@ -3289,9 +3296,9 @@ staticRenderFns: [],
     },
   },
   computed: {
-    textereaName: function textereaName() {
+    datapanelName: function datapanelName() {
       return [
-        ( obj = {}, obj[(prefixCls$11 + "-" + (this.className))] = !!this.className, obj ) ];
+        ( obj = {}, obj[((this.className) + "-datapanel")] = !!this.className, obj ) ];
       var obj;
     },
   },
@@ -3602,6 +3609,83 @@ EmfeCrumb$1.install = function (Vue$$1) {
   Vue$$1.component(EmfeCrumb$1.name, EmfeCrumb$1);
 };
 
+var prefixCls$14 = 'emfe-edit';
+var EmfeEdit$1 = {
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-edit"},_vm._l((_vm.oneList),function(one,index){return _c('div',{key:index,staticClass:"emfe-edit-wrap"},[_c('div',{staticClass:"emfe-edit-left",on:{"click":function($event){_vm.openTwoList(index);}}},[_c('div',{ref:"inputFocus",refInFor:true,staticClass:"emfe-edit-left-one",class:{'emfe-edit-left-one-open': one.openFlg}},[_c('emfe-input',{attrs:{"value":one.name,"className":"emfe-edit-left-one"}})],1),_vm._v(" "),_vm._l((one.twoList),function(two,ind){return _c('div',{directives:[{name:"show",rawName:"v-show",value:(one.openFlg),expression:"one.openFlg"}],staticClass:"emfe-edit-left-two"},[_c('div',{staticClass:"emfe-edit-left-two-text"},[_c('emfe-input',{attrs:{"value":two.name,"className":"emfe-edit-left-two"}})],1),_vm._v(" "),_c('div',{staticClass:"emfe-edit-left-two-btn",on:{"click":function($event){_vm.addTwoList(index, ind);}}},[_vm._v("+")]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.twoReduceFlg),expression:"twoReduceFlg"}],staticClass:"emfe-edit-left-two-btn",on:{"click":function($event){_vm.reduceTwoList(index, ind);}}},[_vm._v("-")])])})],2),_vm._v(" "),_c('div',{staticClass:"emfe-edit-right"},[_c('div',{staticClass:"emfe-edit-right-btn",on:{"click":function($event){_vm.addOneList(index);}}},[_vm._v("+")]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.oneReduceFlg),expression:"oneReduceFlg"}],staticClass:"emfe-edit-right-btn",staticStyle:{"line-height":"11px"},on:{"click":function($event){_vm.reduceOneList(index);}}},[_vm._v("-")])])])}))},
+staticRenderFns: [],
+  name: 'EmfeEdit',
+  data: function data() {
+    return {
+      oneReduceFlg: true,
+      twoReduceFlg: true,
+    };
+  },
+  props: {
+    className: {
+      type: String,
+      default: '',
+    },
+    oneList: {
+      type: Array,
+    },
+    addOneObj: {
+      type: Object,
+    },
+    addTwoObj: {
+      type: Object,
+    },
+  },
+  computed: {
+    textereaName: function textereaName() {
+      return [
+        ( obj = {}, obj[(prefixCls$14 + "-" + (this.className))] = !!this.className, obj ) ];
+      var obj;
+    },
+  },
+  methods: {
+    openTwoList: function openTwoList(index) {
+      this.oneList.forEach(function (ele) {
+        ele.openFlg = false;
+      });
+      this.oneList[index].openFlg = true;
+    },
+    addOneList: function addOneList(index) {
+      var this$1 = this;
+
+      this.oneList.splice(index + 1, 0, this.addOneObj);
+      this.openTwoList(index + 1);
+      this.oneReduceFlg = true;
+      setTimeout(function () {
+        this$1.$refs.inputFocus[index + 1].querySelector('input').focus();
+      }, 0);
+    },
+    reduceOneList: function reduceOneList(index) {
+      if (this.oneList.length >= 2) {
+        this.oneList.splice(index, 1);
+      }
+      if (this.oneList.length <= 1) {
+        this.oneReduceFlg = false;
+      }
+    },
+    addTwoList: function addTwoList(index, ind) {
+      this.oneList[index].twoList.splice(ind + 1, 0, this.addTwoObj);
+      this.twoReduceFlg = true;
+    },
+    reduceTwoList: function reduceTwoList(index, ind) {
+      if (this.oneList[index].twoList.length >= 2) {
+        this.oneList[index].twoList.splice(ind, 1);
+      }
+      if (this.oneList[index].twoList.length <= 1) {
+        this.twoReduceFlg = false;
+      }
+    },
+  },
+};
+
+EmfeEdit$1.install = function (Vue$$1) {
+  Vue$$1.component(EmfeEdit$1.name, EmfeEdit$1);
+};
+
 var seed = 0;
 var now = Date.now();
 
@@ -3737,6 +3821,16 @@ var emfeDocumentclick = {
   },
 };
 
+var emfeDocumentfocus = {
+  inserted: function inserted(el, value) {
+    console.log(el, value.value);
+    if (value.value) {
+      console.log(0);
+      el.focus();
+    }
+  },
+};
+
 // 组件
 // 服务
 // 指令
@@ -3781,10 +3875,12 @@ var emfeCpt = {
   EmfeSlide: EmfeSlide$1,
   EmfeCrumb: EmfeCrumb$1,
   EmfeHottip: EmfeHottip$1,
+  EmfeEdit: EmfeEdit$1,
 };
 
 var emfeDir = {
   emfeDocumentclick: emfeDocumentclick,
+  emfeDocumentfocus: emfeDocumentfocus,
 };
 
 //, opts = {}
