@@ -56,6 +56,9 @@ export default {
       return this.className ? `${this.className}-bar` : '';
     },
   },
+  mounted: function mounted() {
+    this.testUrl();
+  },
   methods: {
     testUrl() {
       const { fullPath, name } = this.$route;

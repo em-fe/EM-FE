@@ -12,6 +12,7 @@ import EmfeUpload from './components/emfe-upload/index';
 import EmfeDrag from './components/emfe-drag/index';
 import EmfeColor from './components/emfe-color/index';
 import EmfeInput from './components/emfe-input/index';
+import EmfeNumber from './components/emfe-number/index';
 import EmfeDate from './components/emfe-date/index';
 import EmfeTime from './components/emfe-time/index';
 import EmfeDatetime from './components/emfe-datetime/index';
@@ -56,6 +57,7 @@ const emfeCpt = {
   EmfeDrag,
   EmfeColor,
   EmfeInput,
+  EmfeNumber,
   EmfeButton: Button.EmfeButton,
   EmfeButtonGroup: Button.EmfeButtonGroup,
   EmfeSwitch,

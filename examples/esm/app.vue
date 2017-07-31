@@ -298,6 +298,13 @@ module.exports = {
               },
             },
             {
+              title: '数字',
+              icon: 'hotel',
+              routers: {
+                path: '/functions/number',
+              },
+            },
+            {
               title: '弹出框',
               icon: 'hotel',
               routers: {
