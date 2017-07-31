@@ -147,6 +147,11 @@ const router = new VueRouter({
           component: require('./components/functions/DatePage.vue'),
         },
         {
+          path: '/functions/number',
+          name: 'number',
+          component: require('./components/functions/NumberPage.vue'),
+        },
+        {
           path: '/functions/timepage',
           name: 'timepage',
           component: require('./components/functions/TimePage.vue'),
