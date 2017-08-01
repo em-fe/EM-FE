@@ -5,7 +5,7 @@
     </style>多选：</div>
 
     <!--  -->
-    <emfe-select :datas="data1" type="checkbox" @getAllData="getData" selectText="提示文字"></emfe-select>
+    <emfe-select :datas="data1" type="checkbox" @getAllData="getData" selectText="提示文字" @checkedopt="getlist"></emfe-select>
     API：自定义属性 :<br>
               :datas="data1"<br>
               type="checkbox"<br>
@@ -16,7 +16,7 @@
     </div>
 
     <!--  -->
-    <emfe-select :datas="data1" seleStu="newList" type="checkbox" @addDataCheck="addDataCheck" @getAllData="getData" selectText="提示文字" :checkVals="checkVals"></emfe-select>
+    <emfe-select :datas="data1" seleStu="newList" type="checkbox" @addDataCheck="addDataCheck" @checkedopt="getlist" @delopt="getlist2" @getAllData="getData" selectText="提示文字" :checkVals="checkVals"></emfe-select>
     API：包含3个配置项和一个方法：<br>
               自定义属性 :<br>
               :datas="data1"<br>
@@ -92,6 +92,12 @@ export default {
     },
      getAllData(allData) {
       console.log('选择的数据为：' + allData);
+    },
+    getlist(item) {
+      console.log('选中了：'+item);
+    },
+    getlist2(item) {
+      console.log('删除了：'+item);
     },
   },
 };

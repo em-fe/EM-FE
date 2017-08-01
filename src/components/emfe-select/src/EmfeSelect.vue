@@ -7,7 +7,7 @@
       </div>
       <label v-for="item in checkList" class="emfe-select-label" v-if="type==='checkbox'" :key="item.id">
         <span class="emfe-select-text">{{ item.name }}</span>
-        <input class="emfe-checkout-box-input" :disabled="item.disabled" type="checkbox" v-model="checkVal" :value="item.name" :key="item.id" @change="getdata">
+        <input class="emfe-checkout-box-input" :disabled="item.disabled" type="checkbox" v-model="checkVal" :value="item.name" :key="item.id" @change="getdata(item)">
       </label>
       <label v-for="item in checkList" class="emfe-select-label emfe-select-delabel" @click="spanTxt(item)" :disabled="item.disabled" v-if="type==='default'"><span :class="{'disabled': item.disabled}">{{ item.name }}</span></label>
     </div>
@@ -78,9 +78,14 @@ export default {
       this.checkList = [];
       this.flagCheck = false;
     },
-    getdata() {
+    getdata(item) {
       const va = this.checkVal;
       // console.log(va);
+      if (va.indexOf(item.name) !== -1) {
+        this.$emit('checkedopt', item.name);
+      } else {
+        this.$emit('delopt', item.name);
+      }
       this.$emit('getAllData', va);
     },
   },
