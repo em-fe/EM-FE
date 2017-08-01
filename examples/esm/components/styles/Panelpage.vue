@@ -12,7 +12,7 @@
     <emfe-panel className="add" type="hint" :data="dataList2"></emfe-panel>
     <br>
     <br>
-    <emfe-panel className="add" switchType='true' :data="dataList2" @switch-toogle="switchs"></emfe-panel>
+    <emfe-panel className="add" :switchType='true' :data="dataList2" @switch-toogle="switchs"></emfe-panel>
     <br>
      <h3>API</h3>
     <table style="width:100%;text-align:center" class="table">

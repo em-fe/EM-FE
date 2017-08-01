@@ -24,8 +24,8 @@ export default {
       default: false,
     },
     value: {
-      type: String,
-      default: '',
+      type: Boolean,
+      default: false,
     },
   },
   data() {
