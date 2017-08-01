@@ -33,8 +33,8 @@
         </tr>
         <tr>
           <td>data</td>
-          <td>数据 cont为内容，switchOk为是否有switch开关</td>
-          <td>Object</td>
+          <td>数据 text为内容，cont为次数，switchOk为是否有switch开关</td>
+          <td>Array</td>
           <td>默认[]</td>
         </tr>
         <tr>

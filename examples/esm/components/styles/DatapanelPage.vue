@@ -1,8 +1,10 @@
 <template>
   <div>
-    <emfe-datapanel title="总收集量" contentText="1234">
-      <div slot="tipText">aaaaaaaaa</div>
-    </emfe-datapanel>
+    <div class="dataPanelPage">
+      <emfe-datapanel title="总收集量" contentText="1234">
+        <div slot="tipText">aaaaaaaaa</div>
+      </emfe-datapanel>
+    </div>
     <br>
     <br>
     <br>
@@ -45,3 +47,8 @@ export default {
   name: 'datapanelPage',
 }
 </script>
+<style>
+  .dataPanelPage {
+    width: 300px;
+  }
+</style>
