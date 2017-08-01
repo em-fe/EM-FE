@@ -2,7 +2,7 @@
   <div class="inputpage">
   	<emfe-input placeholder="请输入文a字！" className="add" v-model="value">
     </emfe-input>
-    <div>{{value}}</div>
+    <div>支持v-model： {{value}}</div>
     <br>
     <emfe-input :disabled="true" placeholder="请输入文字！">
     </emfe-input>

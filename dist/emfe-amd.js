@@ -2017,6 +2017,7 @@ staticRenderFns: [],
       if (val === this.currentValue) { return; }
       this.currentValue = val;
       this.$emit('change', this.currentValue);
+      this.$emit('input', this.currentValue);
     },
   },
   watch: {
@@ -3997,7 +3998,7 @@ var emfeDocumentfocus = {
   },
 };
 
-// 组件 
+// 组件
 // 服务
 // 指令
 var emfeCpt = {
