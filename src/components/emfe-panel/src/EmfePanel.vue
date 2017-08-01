@@ -1,9 +1,9 @@
 <template>
   <div class="emfe-panel" :class="classList">
-    <div class="emfe-panel-box" :class="boxName" v-for='(key, value) in data'>
-      <div class="emfe-panel-box-left" :class="leftName">{{value}}</div>
-      <div class="emfe-panel-box-right" :class="rightName">{{key.cont}}<emfe-icon v-if="!!type" :type="type" className="emfe-panel-box" @icon-click="iconClick"></emfe-icon>
-      <emfe-switch v-if="!!switchType&&key.switchOk" @toggle="toggle">
+    <div class="emfe-panel-box" :class="boxName" v-for='(item, index) in data'>
+      <div class="emfe-panel-box-left" :class="leftName">{{item.text}}</div>
+      <div class="emfe-panel-box-right" :class="rightName">{{item.cont}}<emfe-icon v-if="!!type" :type="type" className="emfe-panel-box" @icon-click="iconClick"></emfe-icon>
+      <emfe-switch v-if="!!switchType&&item.switchOk" @toggle="toggle">
         <span slot="open">ON</span>
         <span slot="close">OFF</span>
       </emfe-switch>
@@ -20,9 +20,9 @@ export default {
       default: '',
     },
     data: {
-      type: Object,
+      type: Array,
       default() {
-        return {};
+        return [];
       },
     },
     type: {

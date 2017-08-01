@@ -23,7 +23,7 @@ const router = new VueRouter({
           component: require('./components/tips/IconPage.vue'),
         },
         {
-          path: '/tips/hottip',
+          path: 'hottip',
           name: 'hottippage',
           component: require('./components/tips/HottipPage.vue'),
         },
@@ -145,6 +145,11 @@ const router = new VueRouter({
           path: '/functions/datepage',
           name: 'datepage',
           component: require('./components/functions/DatePage.vue'),
+        },
+        {
+          path: '/functions/number',
+          name: 'number',
+          component: require('./components/functions/NumberPage.vue'),
         },
         {
           path: '/functions/timepage',

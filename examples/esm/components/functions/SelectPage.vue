@@ -10,25 +10,13 @@
               :datas="data1"<br>
               type="checkbox"<br>
 
-    <!-- / -->
 
-    <div style="margin:90px 0 10px">
-      单选：
-    </div>
-    <!--  -->
-    <emfe-select :datas="data2" type="radio" @getAllData="getData" selectText=""></emfe-select>
-    API：包含两个配置项：<br>
-              自定义属性 :<br>
-              :datas="data2"<br>
-              type="radio"
-    <!-- / -->
-
-    <div style="margin:90px 0 10px">
+    <div style="margin:50px 0 10px">
       带新建的多选
     </div>
 
     <!--  -->
-    <emfe-select :datas="data1" seleStu="newList" type="checkbox" @addDataCheck="addDataCheck" @getAllData="getData" selectText="提示文字"></emfe-select>
+    <emfe-select :datas="data1" seleStu="newList" type="checkbox" @addDataCheck="addDataCheck" @getAllData="getData" selectText="提示文字" :checkVals="checkVals"></emfe-select>
     API：包含3个配置项和一个方法：<br>
               自定义属性 :<br>
               :datas="data1"<br>
@@ -37,21 +25,7 @@
               一个方法是：addDataCheck （添加自定义数据使用）
     <!-- / -->
 
-    <div style="margin:90px 0 10px">
-      带新建的单选
-    </div>
-
-    <!--  -->
-    <emfe-select :datas="data2" seleStu="newList" type="radio" @addDataRadio="addDataRadio" @getAllData="getData" selectText="提示文字"></emfe-select>
-    API：包含3个配置项和一个方法：<br>
-              自定义属性 :<br>
-              :datas="data2"<br>
-              seleStu="newList"<br>
-              type="radio"<br>
-              一个方法是：addDataRadio （添加自定义数据使用）
-    <!-- / -->
-
-    <div style="margin:90px 0 10px">
+    <div style="margin:50px 0 10px">
       普通下拉框
     </div>
 
@@ -73,30 +47,21 @@ export default {
   name: 'pageSelect',
   data() {
     return {
+      checkedNames: ['Jack'],
+      checkVals: ['esfa','2'],
       datas: '',
       data1: [
         {
-          name: 'wefajlrjgakdjsdklfgjkdjfkldjfgkljfjdhjklhsdfjgkshdkljaiursfajkds',
+          name: '1',
         },
         {
-          name: '88888',
+          name: '2',
         },
         {
-          name: '88',
+          name: '3',
         },
         {
-          name: '888',
-        },
-      ],
-      data2: [
-        {
-          name: '666',
-        },
-        {
-          name: 'sfafgdgsdf',
-        },
-        {
-          name: 'ergdsf',
+          name: 'esfa',
         },
       ],
       data3: [
@@ -112,7 +77,10 @@ export default {
   },
   methods: {
     addDataCheck(nData) {
-      this.data1.push({ name:nData });
+      this.data1.push({
+        name:nData,
+        checked: true,
+     });
       console.log('添加：' + nData);
     },
     addDataRadio(nData) {

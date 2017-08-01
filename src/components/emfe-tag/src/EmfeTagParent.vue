@@ -15,6 +15,10 @@ export default {
       type: String,
       default: '',
     },
+    skin: {
+      type: String,
+      default: '',
+    },
     data: {
       type: Array,
       default() {
@@ -36,9 +40,6 @@ export default {
       ];
     },
   },
-  mounted() {
-    console.log(this.data);
-  },
   methods: {
     getIndex(index) {
       if (this.className === 'default') {
@@ -47,7 +48,9 @@ export default {
         });
       } else if (this.className === 'checket') {
         this.$children[index].activeOk = true;
-      } else if (this.className === 'screen') {
+      } else if (this.className === 'screen' && this.skin === 'blue') {
+        this.$children[index].activeOk = !this.$children[index].activeOk;
+      } else if (this.className === 'screen' && this.skin === 'yellow') {
         this.data.splice(index, 1);
       }
     },

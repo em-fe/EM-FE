@@ -4,15 +4,15 @@
     <ul class="emfe-bar-list">
       <template v-for="(childrenData, childrenDataIndex) in datas">
         <li class="emfe-bar-item" v-if="!childrenData.children">
-          <router-link :to="childrenData.routers" class="emfe-bar-link">{{ childrenData.title }}</router-link>
+          <router-link :to="childrenData.routers" class="emfe-bar-link" :class="{' emfe-bar-link-disabled': isDisabled}">{{ childrenData.title }}</router-link>
         </li>
         <li class="emfe-bar-item" :class="{'emfe-bar-item-on': childrenIndex == childrenDataIndex}" v-else>
-          <span href="javascript:;" class="emfe-bar-btn" @click="toogleChild(childrenDataIndex)" >{{ childrenData.title }}</span>
+          <span href="javascript:;" class="emfe-bar-btn" :class="{' emfe-bar-btn-disabled': isDisabled}" @click="toogleChild(childrenDataIndex)" >{{ childrenData.title }}</span>
           <i class="emfe-bar-arrow"></i>
           <emfe-transition name="gradual">
             <ul class="emfe-bar-childlist" v-show="childrenIndex == childrenDataIndex">
               <li class="emfe-bar-childitem" v-for="child in childrenData.children">
-                <router-link :to="child.routers" class="emfe-bar-childlink">{{ child.title }}</router-link>
+                <router-link :to="child.routers" class="emfe-bar-childlink" :class="{' emfe-bar-childlink-disabled': isDisabled}">{{ child.title }}</router-link>
               </li>
             </ul>
           </emfe-transition>
@@ -31,6 +31,7 @@ export default {
   data() {
     return {
       childrenIndex: -1,
+      isDisabled: this.disabled,
     };
   },
   props: {
@@ -47,11 +48,16 @@ export default {
       required: true,
     },
     className: String,
+    disabled: Boolean,
+    disableRex: String,
   },
   computed: {
     barName() {
       return this.className ? `${this.className}-bar` : '';
     },
+  },
+  mounted: function mounted() {
+    this.testUrl();
   },
   methods: {
     testUrl() {
@@ -73,9 +79,11 @@ export default {
       });
     },
     toogleChild(itemIndex) {
-      const eqLast = itemIndex === childrenLast;
-      this.childrenIndex = eqLast ? -1 : itemIndex;
-      childrenLast = eqLast ? -1 : itemIndex;
+      if (!this.isDisabled) {
+        const eqLast = itemIndex === childrenLast;
+        this.childrenIndex = eqLast ? -1 : itemIndex;
+        childrenLast = eqLast ? -1 : itemIndex;
+      }
     },
     tochildren(item) {
       if (O.hOwnProperty(item, 'routers')) {
@@ -91,6 +99,16 @@ export default {
     fullpath(val, oldVal) {
       if (val !== oldVal) {
         this.testUrl();
+      }
+    },
+    $route(val, oldVal) {
+      if (val.name !== oldVal.name) {
+        this.isDisabled = val.path.indexOf(this.disableRex) > -1;
+      }
+    },
+    disabled(val, oldVal) {
+      if (val !== oldVal) {
+        this.isDisabled = this.disabled;
       }
     },
   },

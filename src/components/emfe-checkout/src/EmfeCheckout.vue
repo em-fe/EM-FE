@@ -1,27 +1,26 @@
 <template>
-  <div class="emfe-checkout" :class="{'emfe-checkout-inline': inline}">
+  <div class="emfe-checkout" :class="checkoutName">
     <div class="emfe-checkout-box">
-      <input type="checkbox" class="emfe-checkout-box-input" v-model="state" @change="alocked" :disabled="disable">
-      <span class="emfe-checkout-box-span" :style="titleColor" :color="color">{{title}}</span>
+      <i class="emfe-checkout-inner" :class="innerName"></i>
+      <input type="checkbox" class="emfe-checkout-status" :checked="status" @change="alocked" :disabled="disable">
+      <span class="emfe-checkout-text" :class="textName">{{ newtitle }}</span>
     </div>
     <div class="emfe-checkout-slide" v-if="slideShow">
       <transition name="fade">
-        <div class="emfe-checkout-slide-wrap" v-if="state">
-          <div class="emfe-checkout-slide-wrap-open">
-            <slot name="slide" :class="slideName"></slot>
-          </div>
+        <div class="emfe-checkout-slide-wrap" v-show="status" :class="openName">
+          <slot name="slide"></slot>
         </div>
       </transition>
     </div>
   </div>
 </template>
 <script>
-const prefixCls = 'emfe-checkout';
 export default {
   name: 'EmfeCheckout',
   data() {
     return {
-      state: false,
+      status: this.value,
+      newtitle: this.title,
     };
   },
   props: {
@@ -29,43 +28,67 @@ export default {
       type: Boolean,
       default: false,
     },
-    className: {
-      type: String,
-      default: '',
+    value: {
+      type: Boolean,
+      default: false,
     },
+    className: String,
     disable: {
       type: Boolean,
       default: false,
     },
-    title: {
-      type: String,
-      default: '',
-    },
-    color: {
-      type: String,
-      default: '',
-    },
-    inline: {
-      type: String,
-      default: '',
-    },
+    title: String,
+    inline: String,
   },
   computed: {
-    slideName() {
+    innerName() {
       return [
         {
-          [`${prefixCls}-slide-${this.className}`]: !!this.className,
+          'emfe-checkout-inner-disable': this.disable, 'emfe-checkout-inner-checked': this.status,
         },
       ];
     },
-    titleColor() {
-      return this.color ? `color : ${this.color}` : '';
+    checkoutName() {
+      return [
+        {
+          [`${this.className}-checkout`]: !!this.className,
+          'emfe-checkout-inline': this.inline,
+        },
+      ];
+    },
+    openName() {
+      return [
+        {
+          [`${this.className}-slide-wrap-open`]: !!this.className,
+        },
+      ];
+    },
+    textName() {
+      return [
+        {
+          [`${this.className}-text`]: !!this.className,
+        },
+      ];
     },
   },
   methods: {
-    alocked() {
-      this.state = this.state === true;
-      this.$emit('checked', this.state, this.title);
+    alocked(e) {
+      this.setValue(e.target.checked);
+      this.$emit('input', this.status);
+      this.$emit('checked', this.status, this.title);
+    },
+    setValue(checked = this.value) {
+      this.status = checked;
+    },
+  },
+  watch: {
+    title(val, oldVal) {
+      if (val !== oldVal) {
+        this.newtitle = val;
+      }
+    },
+    value() {
+      this.setValue();
     },
   },
 };

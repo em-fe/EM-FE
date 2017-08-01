@@ -52,6 +52,13 @@ module.exports = {
                 },
               ],
             },
+            {
+              title: '展开收起',
+              icon: 'hotel',
+              routers: {
+                path: '/tips/hottip',
+              },
+            },
           ],
         },
         {
@@ -288,6 +295,13 @@ module.exports = {
               icon: 'hotel',
               routers: {
                 path: '/functions/upload',
+              },
+            },
+            {
+              title: '数字',
+              icon: 'hotel',
+              routers: {
+                path: '/functions/number',
               },
             },
             {

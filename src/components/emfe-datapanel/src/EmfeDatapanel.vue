@@ -15,7 +15,6 @@
   </div>
 </template>
 <script>
-const prefixCls = 'emfe-datapanel';
 export default {
   name: 'EmfeDatapanel',
   props: {

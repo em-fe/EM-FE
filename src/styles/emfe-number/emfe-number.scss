@@ -1,0 +1,115 @@
+.#{$prefix}number {
+  @include border();
+
+  height: 34px;
+  width: 100%;
+
+  &-plus,
+  &-reduce {
+    width: 32px;
+    height: 32px;
+    position: relative;
+    cursor: pointer;
+
+    &::before {
+      background: $brand-color-default;
+      content: ' ';
+      width: 16px;
+      height: 2px;
+      position: absolute;
+      top: 15px;
+      left: 8px;
+    }
+
+    &:hover {
+      &::before {
+        background: $brand-color-hover;
+      }
+    }
+
+    &:active {
+      &::before {
+        background: $brand-color-click;
+      }
+    }
+
+    &-disable {
+      cursor: no-drop;
+      background: $background-color-disable;
+
+      &::before,
+      &::after {
+        background: $text-color-disable !important;
+      }
+    }
+  }
+
+  &-reduce {
+    @include border(right);
+
+    float: left;
+  }
+
+  &-plus {
+    @include border(left);
+
+    float: right;
+
+    &::after {
+      background: $brand-color-default;
+      content: '';
+      position: absolute;
+      left: 15px;
+      top: 8px;
+      width: 2px;
+      height: 16px;
+    }
+
+    &:hover {
+      &::before {
+        background: $brand-color-hover;
+      }
+    }
+
+    &:active {
+      &::before {
+        background: $brand-color-click;
+      }
+    }
+  }
+
+  &-num {
+    float: left;
+    border: none;
+    padding: 0;
+    text-align: center;
+    width: calc(100% - 32px * 2);
+    height: 32px;
+  }
+
+  &-val,
+  &-unit {
+    outline: none;
+    line-height: 32px;
+    height: 32px;
+    font-size: 14px;
+    float: left;
+    width: 50%;
+  }
+
+  &-val {
+    border: none;
+    text-align: right;
+    padding: 0;
+  }
+
+  &-val-nounit {
+    width: 100%;
+    text-align: center;
+  }
+
+  &-unit {
+    cursor: default;
+    text-align: left;
+  }
+}

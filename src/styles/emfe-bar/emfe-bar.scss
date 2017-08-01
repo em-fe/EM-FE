@@ -56,6 +56,12 @@ $bar-top: 64px;
     display: block;
     padding-left: 32px;
     cursor: pointer;
+
+    &-disabled {
+      color: $text-color-disable;
+      pointer-events: none;
+      cursor: not-allowed;
+    }
   }
 
   &-link {
@@ -74,6 +80,22 @@ $bar-top: 64px;
     &:active {
       background: $brand-color-select;
       color: $brand-color-click;
+    }
+
+    &-disabled {
+      color: $text-color-disable;
+      pointer-events: none;
+      cursor: not-allowed;
+
+      &:hover {
+        background: none;
+        color: $text-color-disable;
+      }
+
+      &:active {
+        background: none;
+        color: $text-color-disable;
+      }
     }
   }
 
@@ -110,6 +132,22 @@ $bar-top: 64px;
       background: $brand-color-select;
       color: $brand-color-click;
     }
+
+    &-disabled {
+      color: $text-color-disable;
+      pointer-events: none;
+      cursor: not-allowed;
+
+      &:hover {
+        background: none;
+        color: $text-color-disable;
+      }
+
+      &:active {
+        background: none;
+        color: $text-color-disable;
+      }
+    }
   }
 
   &-childlink.router-link-active {
@@ -127,3 +165,7 @@ $bar-top: 64px;
     }
   }
 } // end emfe-menu-bar
+
+.router-link-active.emfe-bar-link-disabled {
+  cursor: pointer;
+}
