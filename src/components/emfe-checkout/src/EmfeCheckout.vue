@@ -2,7 +2,7 @@
   <div class="emfe-checkout" :class="checkoutName">
     <div class="emfe-checkout-box">
       <i class="emfe-checkout-inner" :class="innerName"></i>
-      <input type="checkbox" class="emfe-checkout-status" :checked="status" @change="alocked" :disabled="disable">
+      <input type="checkbox" class="emfe-checkout-status" :checked="status" @click.stop @change="alocked" :disabled="disable">
       <span class="emfe-checkout-text" :class="textName">{{ newtitle }}</span>
     </div>
     <div class="emfe-checkout-slide" v-if="slideShow">
