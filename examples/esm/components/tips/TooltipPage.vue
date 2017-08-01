@@ -211,6 +211,16 @@
     <br>
     <br>
     <br>
+    <div class="tip-diy">
+      <emfe-tooltip :styles="{position: 'absolute', top: 0, left: 0}" placement="right">
+        <button slot="render">diy</button>
+        <p slot="tip">自定义样式</p>
+      </emfe-tooltip>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
     <h3>API</h3>
     <table>
       <thead>
@@ -355,6 +365,10 @@ export default {
 
   &-event {
     text-align: center;
+  }
+
+  &-diy {
+    position: relative;
   }
 }
 

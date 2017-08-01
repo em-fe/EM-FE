@@ -162,6 +162,8 @@
   &-light {
     &-popper {
       @include tooltipBackgroundThemes(light);
+
+      color: $title-color;
     }
 
     &-arrow {

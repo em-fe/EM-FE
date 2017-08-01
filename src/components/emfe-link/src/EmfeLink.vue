@@ -30,7 +30,7 @@ export default {
       return this.className ? `${this.className}-link` : '';
     },
     emptyRouters() {
-      return JSON.stringify(this.routers) === '{}';
+      return O.empty(this.routers);
     },
     hasUrl() {
       let emptyJson = true;

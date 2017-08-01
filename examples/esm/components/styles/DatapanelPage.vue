@@ -9,6 +9,16 @@
     <br>
     <br>
     <br>
+    <p>自定义提示位置</p>
+    <div class="dataPanelPage">
+      <emfe-datapanel title="总收集量" contentText="1234" :styles="{position: 'absolute', top: 0, left: 0}">
+        <div slot="tipText">aaaaaaaaa</div>
+      </emfe-datapanel>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
     <h3>API</h3>
     <table style="width: 100%;text-align: center;">
       <thead>
