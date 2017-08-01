@@ -1,5 +1,5 @@
 <template>
-  <div class="emfe-datapanel">
+  <div class="emfe-datapanel" :class="datapanelName">
     <div class="emfe-datapanel-title">
       <span>{{title}}</span>
       <emfe-tooltip :styles="styles" placement="right-end">
@@ -15,7 +15,6 @@
   </div>
 </template>
 <script>
-const prefixCls = 'emfe-datapanel';
 export default {
   name: 'EmfeDatapanel',
   props: {
@@ -39,10 +38,10 @@ export default {
     },
   },
   computed: {
-    textereaName() {
+    datapanelName() {
       return [
         {
-          [`${prefixCls}-${this.className}`]: !!this.className,
+          [`${this.className}-datapanel`]: !!this.className,
         },
       ];
     },
