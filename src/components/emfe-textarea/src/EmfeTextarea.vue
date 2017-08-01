@@ -1,10 +1,7 @@
 <template>
-  <div class="emfe-textarea">
-    <textarea class="emfe-textarea-wrap" :class="textereaName"></textarea>
-  </div>
+  <textarea class="emfe-textarea" :class="textereaName" @input="change">{{ value }}</textarea>
 </template>
 <script>
-const prefixCls = 'emfe-textarea';
 export default {
   name: 'EmfeTextarea',
   props: {
@@ -12,14 +9,18 @@ export default {
       type: String,
       default: '',
     },
+    value: String,
   },
   computed: {
     textereaName() {
-      return [
-        {
-          [`${prefixCls}-${this.className}`]: !!this.className,
-        },
-      ];
+      return {
+        [`${this.className}-textarea`]: !!this.className,
+      };
+    },
+  },
+  methods: {
+    change(val) {
+      this.$emit('input', val.target.value);
     },
   },
 };

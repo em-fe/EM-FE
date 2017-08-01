@@ -1,6 +1,7 @@
 <template>
   <div>
-    <emfe-textarea className="main"></emfe-textarea>
+    <emfe-textarea className="main" v-model="des"></emfe-textarea>
+    支持 v-model {{ des }}
     <br>
     <br>
     <br>
@@ -29,5 +30,10 @@
 <script>
 export default {
   name: 'textareaPage',
+  data() {
+    return {
+      des: '11',
+    };
+  },
 }
 </script>

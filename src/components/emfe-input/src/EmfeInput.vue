@@ -2,7 +2,7 @@
   <div class="emfe-input" :class="addClass">
     <div :class="[classList]" >
       <emfe-icon v-if="iconOk" :type="iconType" className="emfe-input-box-icon-el"></emfe-icon>
-      <input :type="type" v-bind="$props" :class='addInput' :value="currentValue" v-on:input="change" class="emfe-input-box-input">
+      <input :type="type" v-bind="$props" :class='addInput' :value="currentValue" @:input="change" class="emfe-input-box-input">
     </div>
     <div class="emfe-input-box-text" :class="addErrorText" v-if="errOk"><slot name="error"></slot></div>
   </div>
@@ -96,6 +96,7 @@ export default {
       if (val === this.currentValue) return;
       this.currentValue = val;
       this.$emit('change', this.currentValue);
+      this.$emit('input', this.currentValue);
     },
   },
   watch: {
@@ -107,4 +108,3 @@ export default {
   },
 };
 </script>
-
