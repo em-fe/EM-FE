@@ -1,13 +1,13 @@
 <template>
-  <div class="emfe-datapanel">
+  <div class="emfe-datapanel" :class="datapanelName">
     <div class="emfe-datapanel-title">
       <span>{{title}}</span>
-      <emfe-tooltip placement="right-end">
-      <emfe-icon type="hint" slot="render" className="emfe-datapanel-mark"></emfe-icon>
-      <div slot="tip">
-        <slot name="tipText"></slot>
-      </div>
-    </emfe-tooltip>
+      <emfe-tooltip :styles="styles" placement="right-end">
+        <emfe-icon type="hint" slot="render" className="emfe-datapanel-mark"></emfe-icon>
+        <div slot="tip">
+          <slot name="tipText"></slot>
+        </div>
+      </emfe-tooltip>
     </div>
     <div class="emfe-datapanel-main">
       {{contentText}}
@@ -15,7 +15,6 @@
   </div>
 </template>
 <script>
-const prefixCls = 'emfe-datapanel';
 export default {
   name: 'EmfeDatapanel',
   props: {
@@ -31,12 +30,18 @@ export default {
       type: String,
       default: '',
     },
+    styles: {
+      type: Object,
+      default() {
+        return {};
+      },
+    },
   },
   computed: {
-    textereaName() {
+    datapanelName() {
       return [
         {
-          [`${prefixCls}-${this.className}`]: !!this.className,
+          [`${this.className}-datapanel`]: !!this.className,
         },
       ];
     },

@@ -14,7 +14,9 @@ node_modules/
 *.swp
 *.swo
 *.log
+*.ini
 examples/dist/
 yarn-error.log
 test/unit/coverage
 .vscode
+$Recycle.Bin

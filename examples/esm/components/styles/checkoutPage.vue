@@ -28,7 +28,7 @@
     <br>
     <div>
       <emfe-checkout className="diy" title="全选" inline="true" v-model="allChecked"  @checked="noChecked()"></emfe-checkout>
-      <emfe-checkout className="diy" :title="item.title" inline="true" v-for="item in allDatas" :key="item" v-model="item.checked"></emfe-checkout>
+      <emfe-checkout className="diy" :title="item.title" inline="true" v-for="(item, index) in allDatas" :key="index" v-model="item.checked"></emfe-checkout>
     </div>
     <br>
     <br>

@@ -205,6 +205,19 @@ export default {
         },
       ],
       data1: [
+        {
+          name: {text:'王小明', row:false},
+          age: {text:'北京市朝阳区芍药居1', row:false},
+          address: {text:'北京市朝阳区芍药居2', row:false},
+          address2: {text:'北京市朝阳区芍药居3', row:false},
+          address3: {text:'北京市朝阳区芍药居4', row:false},
+          address4: {slot: 'a',text:'北京市朝阳区芍药居4', row:false},
+          address5: {slot: 'd', row:false},
+          address6: {text:'北京市朝阳区芍药居7', row:false},
+          address7: {text:'北京市朝阳区芍药居7', row:false},
+          address8: {text:'北京市朝阳区芍药居7', row:false},
+          address9: {text:'北京市朝阳区芍药居7', row:false},
+        },
       ],
       dataSlot: [
         {
