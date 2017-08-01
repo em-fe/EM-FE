@@ -1,6 +1,12 @@
 <template>
   <div class="radio-page">
+    <h3>简单用法</h3>
     <emfe-radio index="0" name="group1" :disabled="true">文字</emfe-radio>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h3>单选用法</h3>
     <emfe-radio-group>
       <emfe-radio index="0" name="group2">文字</emfe-radio>
       <emfe-radio index="1" name="group2">文字</emfe-radio>
