@@ -1,5 +1,6 @@
 <template>
   <label :class="{'emfe-radio-checked': status}" class="emfe-radio clearfix">
+    <i class="emfe-radio-img" :class="{'emfe-radio-img-checked': status, 'emfe-radio-img-disabled': disabled}"></i>
     <input type="radio" @change="change" :name="name" :disabled="disabled" class="emfe-radio-input">
     <span class="emfe-radio-text"><slot></slot></span>
   </label>

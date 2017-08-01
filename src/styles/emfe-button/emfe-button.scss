@@ -11,6 +11,10 @@
   box-sizing: border-box;
   transition: color 0.1s linear, background-color 0.1s linear, border 0.1s linear;
 
+  &-icon {
+    color: $icon-color-default;
+  }
+
   &-default {
     @include button-colors($text-color-default, $brand-color-hover, $brand-color-click, $button-color-default, $brand-color-hover, $brand-color-click);
 
