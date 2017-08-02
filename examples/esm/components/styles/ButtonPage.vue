@@ -39,37 +39,37 @@
     </pre>
     <br>
     <emfe-button-group>
-      <emfe-button index="0" statu='true'>上下布局</emfe-button>
-      <emfe-button index="1">左右布局</emfe-button>
+      <emfe-button className="ddd" :group="true" index="0" statu='true'>上下布局</emfe-button>
+      <emfe-button className="ddd" :group="true" index="1">左右布局</emfe-button>
     </emfe-button-group>
     <pre>
       <code>
         <span>&lt;emfe-button-group&gt;</span>
-          <span>&lt;</span><span>emfe-button</span> <span>index</span><span>=</span><span>"0"</span> <span>statu</span><span>=</span><span>"true"</span><span>&gt;</span>上下布局<span>&lt;/emfe-button&gt;</span>
-          <span>&lt;</span><span>emfe-button</span> <span>index</span><span>=</span><span>"1"</span><span>&gt;</span>左右布局<span>&lt;/emfe-button&gt;</span>
+          <span>&lt;</span><span>emfe-button</span><span> :group="true"</span> <span>index</span><span>=</span><span>"0"</span> <span>statu</span><span>=</span><span>"true"</span><span>&gt;</span>上下布局<span>&lt;/emfe-button&gt;</span>
+          <span>&lt;</span><span>emfe-button</span><span> :group="true"</span> <span>index</span><span>=</span><span>"1"</span><span>&gt;</span>左右布局<span>&lt;/emfe-button&gt;</span>
         <span>&lt;emfe-button-group&gt;</span>
       </code>
     </pre>
     <br>
     <emfe-button-group>
-      <emfe-button class="emfe-button-w32" index="0" statu='true'>10</emfe-button>
-      <emfe-button class="emfe-button-w32" index="1">20</emfe-button>
-      <emfe-button class="emfe-button-w32" index="2">30</emfe-button>
-      <emfe-button class="emfe-button-w32" index="3">40</emfe-button>
-      <emfe-button class="emfe-button-w32" index="4">50</emfe-button>
-      <emfe-button class="emfe-button-w32" index="5">60</emfe-button>
-      <emfe-button class="emfe-button-w32" index="6">70</emfe-button>
-      <emfe-button class="emfe-button-w32" index="7">80</emfe-button>
-      <emfe-button class="emfe-button-w32" index="8">90</emfe-button>
-      <emfe-button class="emfe-button-w32" index="9">100</emfe-button>
+      <emfe-button :group="true" class="btnpage-button-w32" index="0" statu='true'>1</emfe-button>
+      <emfe-button :group="true" class="btnpage-button-w32" index="1">20</emfe-button>
+      <emfe-button :group="true" class="btnpage-button-w32" index="2">30</emfe-button>
+      <emfe-button :group="true" class="btnpage-button-w32" index="3">40</emfe-button>
+      <emfe-button :group="true" class="btnpage-button-w32" index="4">50</emfe-button>
+      <emfe-button :group="true" class="btnpage-button-w32" index="5">60</emfe-button>
+      <emfe-button :group="true" class="btnpage-button-w32" index="6">70</emfe-button>
+      <emfe-button :group="true" class="btnpage-button-w32" index="7">80</emfe-button>
+      <emfe-button :group="true" class="btnpage-button-w32" index="8">90</emfe-button>
+      <emfe-button :group="true" class="btnpage-button-w32" index="9">100</emfe-button>
     </emfe-button-group>
     <pre>
       <code>
         <span>&lt;emfe-button-group&gt;</span>
-          <span>&lt;</span><span>emfe-button</span> <span>class</span><span>=</span><span>"emfe-button-w32"</span> <span>index</span><span>=</span><span>"0"</span> <span>statu</span><span>=</span><span>"true"</span><span>&gt;</span>10<span>&lt;/emfe-button&gt;</span>
-          <span>&lt;</span><span>emfe-button</span> <span>class</span><span>=</span><span>"emfe-button-w32"</span> <span>index</span><span>=</span><span>"1"</span><span>&gt;</span>20<span>&lt;/emfe-button&gt;</span>
+          <span>&lt;</span><span>emfe-button</span><span> :group="true"</span> <span>class</span><span>=</span><span>"btnpage-button-w32"</span> <span>index</span><span>=</span><span>"0"</span> <span>statu</span><span>=</span><span>"true"</span><span>&gt;</span>1<span>&lt;/emfe-button&gt;</span>
+          <span>&lt;</span><span>emfe-button</span><span> :group="true"</span> <span>class</span><span>=</span><span>"btnpage-button-w32"</span> <span>index</span><span>=</span><span>"1"</span><span>&gt;</span>20<span>&lt;/emfe-button&gt;</span>
           <span>...</span>
-          <span>&lt;</span><span>emfe-button</span> <span>class</span><span>=</span><span>"emfe-button-w32"</span> <span>index</span><span>=</span><span>"9"</span><span>&gt;</span>100<span>&lt;/emfe-button&gt;</span>
+          <span>&lt;</span><span>emfe-button</span><span> :group="true"</span> <span>class</span><span>=</span><span>"btnpage-button-w32"</span> <span>index</span><span>=</span><span>"9"</span><span>&gt;</span>100<span>&lt;/emfe-button&gt;</span>
         <span>&lt;emfe-button-group&gt;</span>
       </code>
     </pre>
@@ -161,5 +161,13 @@ export default {
   .table td {
     border-top: 1px solid #dcdcdc;
     padding: 10px 0;
+  }
+
+  .btnpage-button-w32 {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    text-align: center;
+    line-height: 32px;
   }
 </style>

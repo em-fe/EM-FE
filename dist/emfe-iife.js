@@ -2813,7 +2813,7 @@ staticRenderFns: [],
     name: 'EmfeRadio',
     data: function data() {
       return {
-        status: false,
+        status: this.statu,
       };
     },
     props: {
@@ -2827,14 +2827,23 @@ staticRenderFns: [],
       disabled: {
         type: Boolean,
       },
+      statu: {
+        tyep: Boolean,
+        default: false,
+      },
     },
     methods: {
       change: function change() {
         var this$1 = this;
 
+        var index = 0;
         this.$parent.$children.forEach(function (element) {
           element.status = this$1.index === element.index;
+          if (element.status) {
+            index = element.index;
+          }
         });
+        this.$emit('change', index);
       },
     },
   };
@@ -2859,9 +2868,8 @@ var Radio = {
   EmfeRadioGroup: EmfeRadioGroup,
 };
 
-var prefixCls$6 = 'button';
 var EmfeButton = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('button',{staticClass:"emfe-button",class:_vm.buttonName,attrs:{"disabled":_vm.disabled},on:{"click":function($event){$event.stopPropagation();_vm.change($event);}}},[(_vm.type)?_c('emfe-icon',{staticClass:"emfe-button-icon",attrs:{"type":_vm.type}}):_vm._e(),_vm._v(" "),_c('span',{staticClass:"emfe-button-text",class:_vm.textName},[_vm._t("default")],2)],1)},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('button',{class:_vm.buttonName,attrs:{"disabled":_vm.disabled},on:{"click":function($event){$event.stopPropagation();_vm.change($event);}}},[(_vm.type)?_c('emfe-icon',{staticClass:"emfe-button-icon",attrs:{"type":_vm.type}}):_vm._e(),_vm._v(" "),_c('span',{staticClass:"emfe-button-text",class:_vm.textName},[_vm._t("default")],2)],1)},
 staticRenderFns: [],
   name: 'EmfeButton',
   data: function data() {
@@ -2885,14 +2893,18 @@ staticRenderFns: [],
     statu: {
       tyep: Boolean,
     },
+    group: Boolean,
   },
   created: function created() {
     this.status = this.statu;
   },
   computed: {
     buttonName: function buttonName() {
+      var group = this.group ? '-group-button' : '';
+      var btnName = this.className ? group : '-button';
       return [
-        ( obj = {}, obj[((this.className) + "-" + prefixCls$6)] = !!this.className, obj[(prefixCls$6 + "-on")] = !!this.status, obj ) ];
+        ("emfe-button" + group),
+        ( obj = {}, obj[btnName] = !!this.className, obj[("emfe-button" + group + "-on")] = !!this.status, obj ) ];
       var obj;
     },
     textName: function textName() {
@@ -3078,7 +3090,7 @@ EmfeSelect$1.install = function (Vue$$1) {
   Vue$$1.component(EmfeSelect$1.name, EmfeSelect$1);
 };
 
-var prefixCls$7 = 'emfe-modal';
+var prefixCls$6 = 'emfe-modal';
 var EmfeModal$1 = {
 render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.show)?_c('div',{staticClass:"emfe-modal"},[_c('div',{staticClass:"emfe-modal-mask"}),_vm._v(" "),_c('div',{staticClass:"emfe-modal-wrap",style:({width: (_vm.width + "px")})},[_c('div',{staticClass:"emfe-modal-header"},[_c('div',{staticClass:"emfe-modal-header-inner"},[_vm._v(_vm._s(_vm.title))]),_vm._v(" "),_c('div',{staticClass:"emfe-modal-header-close",on:{"click":_vm.closeModal}},[_vm._v("＋")])]),_vm._v(" "),_c('div',{staticClass:"emfe-modal-main"},[_vm._t("modal-main")],2),_vm._v(" "),_c('div',{staticClass:"emfe-modal-footer"},[_c('div',{staticClass:"emfe-modal-btn emfe-modal-btn-cancel",on:{"click":_vm.cancel}},[_vm._v(_vm._s(_vm.cancelText))]),_vm._v(" "),_c('div',{staticClass:"emfe-modal-btn emfe-modal-btn-ok",on:{"click":_vm.ok}},[_vm._v(_vm._s(_vm.okText))])])])]):_vm._e()},
 staticRenderFns: [],
@@ -3109,7 +3121,7 @@ staticRenderFns: [],
   computed: {
     mainName: function mainName() {
       return [
-        ( obj = {}, obj[(prefixCls$7 + "-main-" + (this.className))] = !!this.className, obj ) ];
+        ( obj = {}, obj[(prefixCls$6 + "-main-" + (this.className))] = !!this.className, obj ) ];
       var obj;
     },
   },
@@ -3241,7 +3253,7 @@ EmfeDrop$1.install = function (Vue$$1) {
   Vue$$1.component(EmfeDrop$1.name, EmfeDrop$1);
 };
 
-var prefixCls$8 = 'emfe-box';
+var prefixCls$7 = 'emfe-box';
 
 var EmfeTable = {
 render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-box"},[_c('div',{class:_vm.className},[(_vm.columns.length)?_c('table',{staticClass:"emfe-box-table",class:[_vm.classTable, _vm.classAdd],attrs:{"width":_vm.width}},[_vm._t("head"),_vm._v(" "),_c('tbody',[_vm._t("body")],2)],2):_vm._e(),_vm._v(" "),(!_vm.data.length)?_c('div',{staticClass:"emfe-box-nothing"},[_vm._v("没有数据")]):_vm._e()])])},
@@ -3277,13 +3289,13 @@ staticRenderFns: [],
   },
   computed: {
     className: function className() {
-      return this.type && this.columns.length > 0 ? (prefixCls$8 + "-overflow") : (prefixCls$8 + "-fixed");
+      return this.type && this.columns.length > 0 ? (prefixCls$7 + "-overflow") : (prefixCls$7 + "-fixed");
     },
     classAdd: function classAdd() {
       return this.classAddName ? ((this.classAddName) + "-table") : '';
     },
     classTable: function classTable() {
-      return this.type && this.columns.length > 0 ? (prefixCls$8 + "-overflow-table") : (prefixCls$8 + "-fixed-table");
+      return this.type && this.columns.length > 0 ? (prefixCls$7 + "-overflow-table") : (prefixCls$7 + "-fixed-table");
     },
     width: function width() {
       return this.type && this.columns.length > 10 ? ((this.percen) + "%") : '100%';
@@ -3478,7 +3490,7 @@ EmfeDatapanel$1.install = function (Vue$$1) {
   Vue$$1.component(EmfeDatapanel$1.name, EmfeDatapanel$1);
 };
 
-var prefixCls$9 = 'emfe-tag';
+var prefixCls$8 = 'emfe-tag';
 var EmfeTag = {
 render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-tag",class:_vm.classList,on:{"click":_vm.activeClass}},[(_vm.type)?_c('emfe-icon',{attrs:{"type":_vm.type,"className":"icon-page"}}):_vm._e(),_vm._v(" "),_vm._t("default"),_vm._v(" "),(!!_vm.skin)?_c('span'):_vm._e()],2)},
 staticRenderFns: [],
@@ -3512,7 +3524,7 @@ staticRenderFns: [],
   computed: {
     classList: function classList() {
       return [
-        ( obj = {}, obj[(prefixCls$9 + "-" + (this.className) + "-disable")] = this.disable, obj[(prefixCls$9 + "-" + (this.className))] = !this.disable, obj[(prefixCls$9 + "-" + (this.className) + "-active")] = this.activeOk && !this.skin, obj[(prefixCls$9 + "-" + (this.className) + "-" + (this.skin))] = !!this.skin, obj[(prefixCls$9 + "-" + (this.className) + "-" + (this.skin) + "-active")] = this.activeOk && !!this.skin, obj[((this.addName) + "-tag")] = !!this.addName, obj ) ];
+        ( obj = {}, obj[(prefixCls$8 + "-" + (this.className) + "-disable")] = this.disable, obj[(prefixCls$8 + "-" + (this.className))] = !this.disable, obj[(prefixCls$8 + "-" + (this.className) + "-active")] = this.activeOk && !this.skin, obj[(prefixCls$8 + "-" + (this.className) + "-" + (this.skin))] = !!this.skin, obj[(prefixCls$8 + "-" + (this.className) + "-" + (this.skin) + "-active")] = this.activeOk && !!this.skin, obj[((this.addName) + "-tag")] = !!this.addName, obj ) ];
       var obj;
     },
   },
@@ -3662,7 +3674,7 @@ EmfePanel$1.install = function (Vue$$1) {
   Vue$$1.component(EmfePanel$1.name, EmfePanel$1);
 };
 
-var prefixCls$10 = 'emfe-slide';
+var prefixCls$9 = 'emfe-slide';
 var EmfeSlide$1 = {
 render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-slide",class:_vm.slideName},[_c('div',{staticClass:"emfe-slide-main"},[_c('div',{staticClass:"emfe-slide-describe"},[_vm._v(_vm._s(_vm.slideLeft))]),_vm._v(" "),_c('div',{staticClass:"emfe-slide-progress"},[_c('progress',{ref:"slideBar",staticClass:"emfe-slide-progress-bar",attrs:{"value":_vm.moveValue,"max":_vm.maxPercent}}),_vm._v(" "),_c('emfe-drag',{attrs:{"className":"emfe-slide-progress","limit":"true","limitPosition":"center","dragDiyStyle":_vm.progress,"direction":"horizontal"},on:{"drag":_vm.drag}},[_c('span',{staticClass:"emfe-slide-progress-drag-left"}),_vm._v(" "),_c('span',{staticClass:"emfe-slide-progress-drag-right"})])],1),_vm._v(" "),_c('div',{staticClass:"emfe-slide-describe"},[_vm._v(_vm._s(_vm.slideRight))])]),_vm._v(" "),_c('div',[_vm._v(_vm._s(_vm.movePercent))])])},
 staticRenderFns: [],
@@ -3703,7 +3715,7 @@ staticRenderFns: [],
   computed: {
     slideName: function slideName() {
       return [
-        ( obj = {}, obj[(prefixCls$10 + "-" + (this.className))] = !!this.className, obj ) ];
+        ( obj = {}, obj[(prefixCls$9 + "-" + (this.className))] = !!this.className, obj ) ];
       var obj;
     },
   },
@@ -3786,7 +3798,7 @@ EmfeCrumb$1.install = function (Vue$$1) {
   Vue$$1.component(EmfeCrumb$1.name, EmfeCrumb$1);
 };
 
-var prefixCls$11 = 'emfe-edit';
+var prefixCls$10 = 'emfe-edit';
 var EmfeEdit$1 = {
 render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-edit"},_vm._l((_vm.oneList),function(one,index){return _c('div',{key:index,staticClass:"emfe-edit-wrap"},[_c('div',{staticClass:"emfe-edit-left",on:{"click":function($event){_vm.openTwoList(index);}}},[_c('div',{ref:"inputFocus",refInFor:true,staticClass:"emfe-edit-left-one",class:{'emfe-edit-left-one-open': one.openFlg}},[_c('emfe-input',{attrs:{"value":one.name,"className":"emfe-edit-left-one"}})],1),_vm._v(" "),_vm._l((one.twoList),function(two,ind){return _c('div',{directives:[{name:"show",rawName:"v-show",value:(one.openFlg),expression:"one.openFlg"}],staticClass:"emfe-edit-left-two"},[_c('div',{staticClass:"emfe-edit-left-two-text"},[_c('emfe-input',{attrs:{"value":two.name,"className":"emfe-edit-left-two"}})],1),_vm._v(" "),_c('div',{staticClass:"emfe-edit-left-two-btn",on:{"click":function($event){_vm.addTwoList(index, ind);}}},[_vm._v("+")]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.twoReduceFlg),expression:"twoReduceFlg"}],staticClass:"emfe-edit-left-two-btn",on:{"click":function($event){_vm.reduceTwoList(index, ind);}}},[_vm._v("-")])])})],2),_vm._v(" "),_c('div',{staticClass:"emfe-edit-right"},[_c('div',{staticClass:"emfe-edit-right-btn",on:{"click":function($event){_vm.addOneList(index);}}},[_vm._v("+")]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.oneReduceFlg),expression:"oneReduceFlg"}],staticClass:"emfe-edit-right-btn",staticStyle:{"line-height":"11px"},on:{"click":function($event){_vm.reduceOneList(index);}}},[_vm._v("-")])])])}))},
 staticRenderFns: [],
@@ -3815,7 +3827,7 @@ staticRenderFns: [],
   computed: {
     textereaName: function textereaName() {
       return [
-        ( obj = {}, obj[(prefixCls$11 + "-" + (this.className))] = !!this.className, obj ) ];
+        ( obj = {}, obj[(prefixCls$10 + "-" + (this.className))] = !!this.className, obj ) ];
       var obj;
     },
   },
