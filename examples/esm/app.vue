@@ -98,6 +98,13 @@ module.exports = {
                   },
                 },
                 {
+                  title: '短信验证码',
+                  icon: 'hotel',
+                  routers: {
+                    path: '/styles/smscodeCodepage',
+                  },
+                },
+                {
                   title: '按钮',
                   icon: 'hotel',
                   routers: {
@@ -221,6 +228,13 @@ module.exports = {
               icon: 'hotel',
               routers: {
                 path: '/styles/switch',
+              },
+            },
+            {
+              title: '进度指引',
+              icon: 'hotel',
+              routers: {
+                path: '/styles/steps',
               },
             },
             {
