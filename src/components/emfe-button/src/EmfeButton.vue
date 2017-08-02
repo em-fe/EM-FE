@@ -15,6 +15,7 @@ export default {
     };
   },
   props: {
+    theme: String,
     className: {
       type: String,
       default: '',
@@ -43,6 +44,7 @@ export default {
         `emfe-button${group}`,
         {
           [btnName]: !!this.className,
+          [`emfe-button-${this.theme}`]: !!this.theme,
           [`emfe-button${group}-on`]: !!this.status,
         },
       ];
