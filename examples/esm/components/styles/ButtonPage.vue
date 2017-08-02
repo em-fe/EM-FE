@@ -87,6 +87,12 @@
       </thead>
       <tbody>
         <tr>
+          <td>theme</td>
+          <td>主题颜色default，primary。</td>
+          <td>String</td>
+          <td>-</td>
+        </tr>
+        <tr>
           <td>className(class-name)</td>
           <td>自定义的 class 名称。</td>
           <td>String</td>

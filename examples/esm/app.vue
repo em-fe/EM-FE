@@ -372,7 +372,6 @@ module.exports = {
   watch: {
     $route(val) {
       this.fullpath = val.path;
-      console.log(11);
       localStorage.path = val.path;
     },
   },
