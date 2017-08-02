@@ -157,7 +157,7 @@ export default {
     close(e, noClose) {
       if (!this.open) {
         if (!noClose && this.status) {
-          this.$emit('close', this.date);
+          this.$emit('close', this.time);
         }
         this.status = false;
       }
