@@ -9,6 +9,7 @@
   cursor: pointer;
   box-sizing: border-box;
   transition: color 0.1s linear, background-color 0.1s linear, border 0.1s linear;
+  display: inline-block;
 
   &-icon {
     color: $icon-color-default;
