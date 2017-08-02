@@ -87,14 +87,14 @@ export default {
       ],
       data4: [
         {
-          name: '国安',
+          name: '中国',
           tel: '+86',
-          icon: 'hint',
+          icon: 'https://static.evente.cn/evente/img/flag/v1/zg.jpg',
         },
         {
-          name: '曼联',
+          name: '香港',
           tel: '+852',
-          icon: 'commodity',
+          icon: 'https://static.evente.cn/evente/img/flag/v1/xg.jpg',
         },
       ],
     };
