@@ -1,6 +1,6 @@
 <template>
-  <div class="emfe-select" v-emfe-documentclick="close">
-    <input class="emfe-input-box-input" type="text" :value="checkVal" readonly :placeholder="selectText" @click="inpcheck">
+  <div class="emfe-select" :class="selectName" v-emfe-documentclick="close">
+    <input class="emfe-input-box-input" type="text" :class="inputName" :value="checkVal" readonly :placeholder="selectText" @click="inpcheck">
     <div v-if="flagCheck" class="emfe-select-flag">
       <div class="emfe-select-custab" v-if="seleStu==='newList'">
         <input type="text" :placeholder="addText" class="emfe-input-box-input" v-model="newListVal"><span class="emfe-select-custab-btn" @click="newListBtn">保存</span>
@@ -51,6 +51,7 @@ export default {
         return [];
       },
     },
+    className: String,
   },
   data() {
     return {
@@ -59,6 +60,22 @@ export default {
       checkVal: this.checkVals,
       newListVal: '',
     };
+  },
+  computed: {
+    selectName() {
+      return [
+        {
+          [`${this.className}-select`]: !!this.className,
+        },
+      ];
+    },
+    inputName() {
+      return [
+        {
+          [`${this.className}-input-box-input`]: !!this.className,
+        },
+      ];
+    },
   },
   methods: {
     inpcheck() {

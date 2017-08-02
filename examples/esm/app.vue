@@ -84,6 +84,20 @@ module.exports = {
                   },
                 },
                 {
+                  title: '电话组合',
+                  icon: 'hotel',
+                  routers: {
+                    path: '/styles/tel',
+                  },
+                },
+                {
+                  title: '图片验证码',
+                  icon: 'hotel',
+                  routers: {
+                    path: '/styles/imgCodepage',
+                  },
+                },
+                {
                   title: '按钮',
                   icon: 'hotel',
                   routers: {
