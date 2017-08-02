@@ -11,7 +11,6 @@
       </label>
       <label v-for="item in checkList" class="emfe-select-label emfe-select-delabel" @click="spanTxt(item)" :disabled="item.disabled" v-if="type==='default'"><span :class="{'disabled': item.disabled}">{{ item.name }}</span></label>
       <div v-for="item in checkList" class="emfe-select-label emfe-select-delabel" @click="spanTxt(item)" :disabled="item.disabled" v-if="type==='icon'" :class="{'disabled': item.disabled}">
-        <!-- <emfe-icon :type="item.icon" className="emfe-select"></emfe-icon> -->
         <img class="emfe-select-icon" :src="item.icon" :alt="item.name">
         <span class="emfe-select-icon-piece">{{ item.name}}</span>
         <span class="emfe-select-icon-tel">{{ item.tel }}</span>
