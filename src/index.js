@@ -13,6 +13,7 @@ import EmfeDrag from './components/emfe-drag/index';
 import EmfeColor from './components/emfe-color/index';
 import EmfeInput from './components/emfe-input/index';
 import EmfeTel from './components/emfe-tel/index';
+import EmfeSmscode from './components/emfe-smscode/index';
 import EmfeImgcode from './components/emfe-imgcode/index';
 import EmfeNumber from './components/emfe-number/index';
 import EmfeDate from './components/emfe-date/index';
@@ -61,6 +62,7 @@ const emfeCpt = {
   EmfeInput,
   EmfeNumber,
   EmfeTel,
+  EmfeSmscode,
   EmfeImgcode,
   EmfeButton: Button.EmfeButton,
   EmfeButtonGroup: Button.EmfeButtonGroup,

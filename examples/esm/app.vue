@@ -98,6 +98,13 @@ module.exports = {
                   },
                 },
                 {
+                  title: '短信验证码',
+                  icon: 'hotel',
+                  routers: {
+                    path: '/styles/smscodeCodepage',
+                  },
+                },
+                {
                   title: '按钮',
                   icon: 'hotel',
                   routers: {

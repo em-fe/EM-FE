@@ -1,0 +1,101 @@
+<template>
+  <div class="emfe-smscode" :class="smscodeName">
+    <input type="number" class="emfe-smscode-input" :class="codeName" :value="nowData" :placeholder="placeholder" @input="input">
+    <button class="emfe-smscode-button" @click="click">{{ btnText }}</button>
+  </div>
+</template>
+<script>
+let timer = null;
+let go = true; // 是否可以继续获取
+
+export default {
+  name: 'EmfeSmscode',
+  data() {
+    const nowData = !this.value ? '' : this.value;
+    return {
+      nowData,
+      btnText: this.title,
+      allTimes: this.times,
+    };
+  },
+  props: {
+    placeholder: {
+      type: String,
+      default: '请输入验证码',
+    },
+    title: {
+      type: String,
+      default: '获取验证码',
+    },
+    errorTitle: {
+      type: String,
+      default: '重试',
+    },
+    value: {
+      type: [Number, String],
+    },
+    times: {
+      type: [Number, String],
+      default: 60,
+    },
+    className: String,
+  },
+  computed: {
+    smscodeName() {
+      return [
+        {
+          [`${this.className}-smscode`]: !!this.className,
+        },
+      ];
+    },
+    codeName() {
+      return [
+        {
+          [`${this.className}-smscode-code`]: !!this.className,
+        },
+      ];
+    },
+  },
+  methods: {
+    resetAuto() {
+      this.btnText = this.errorTitle;
+      this.allTimes = this.times;
+      go = true;
+    },
+    auto() {
+      if (this.allTimes > 1) {
+        this.allTimes--;
+        this.btnText = `${this.allTimes}秒后重试`;
+        timer = setTimeout(this.auto.bind(this), 1000);
+      } else {
+        clearTimeout(timer);
+        this.resetAuto();
+      }
+    },
+    input(ev) {
+      const val = ev.target.value;
+      this.$emit('change', val);
+      this.$emit('input', val);
+    },
+    click() {
+      if (go) {
+        go = false;
+        this.auto();
+        this.$emit('click');
+      }
+    },
+  },
+  watch: {
+    title(val, oldVal) {
+      if (val !== oldVal) {
+        this.btnText = val;
+      }
+    },
+    value(val, oldVal) {
+      if (val !== oldVal) {
+        this.nowData = val;
+      }
+    },
+  },
+};
+</script>
