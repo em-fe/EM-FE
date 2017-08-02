@@ -1,8 +1,8 @@
 <template>
   <div class="emfe-tel" :class="telName" v-emfe-documentclick="close">
-    <div class="emfe-tel-prefix" @click.stop="toggle">
+    <div class="emfe-tel-prefix" :class="prefixName" @click.stop="toggle">
       <img class="emfe-tel-prefix-piece" :src="nowData.url" :alt="nowData.name" v-show="nowData.url">
-      <span class="emfe-tel-prefix-text">{{ nowData.prefix }}</span>
+      <span class="emfe-tel-prefix-text" :class="prefixTextName">{{ nowData.prefix }}</span>
       <ul class="emfe-tel-prefix-flag" v-show="flagStatus">
         <li class="emfe-tel-prefix-label" v-for="data in datas" @click.stop="choice(data)">
           <img :src="data.url" :alt="data.name" class="emfe-tel-prefix-icon">
@@ -11,7 +11,7 @@
         </li>
       </ul>
     </div>
-    <input :type="type" class="emfe-tel-input" :placeholder="placeholder" :value="nowData.tel" @input="telChange">
+    <input :type="type" class="emfe-tel-input" :class="inputName" :placeholder="placeholder" :value="nowData.tel" @input="telChange">
   </div>
 </template>
 <script>
@@ -54,6 +54,27 @@ export default {
       return [
         {
           [`${this.className}-tel`]: !!this.className,
+        },
+      ];
+    },
+    prefixName() {
+      return [
+        {
+          [`${this.className}-tel-prefix`]: !!this.className,
+        },
+      ];
+    },
+    prefixTextName() {
+      return [
+        {
+          [`${this.className}-tel-prefix-text`]: !!this.className,
+        },
+      ];
+    },
+    inputName() {
+      return [
+        {
+          [`${this.className}-tel-input`]: !!this.className,
         },
       ];
     },

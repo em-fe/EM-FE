@@ -98,8 +98,25 @@ export default {
   },
 };
 </script>
-<style>
+<style lang="scss">
 .demo-tel {
   width: 392px;
+  height: 42px;
+
+  &-prefix {
+    height: 40px;
+
+    &::before {
+      bottom: 17px;
+    }
+
+    &-text {
+      line-height: 42px;
+    }
+  }
+
+  &-input {
+    height: 40px;
+  }
 }
 </style>

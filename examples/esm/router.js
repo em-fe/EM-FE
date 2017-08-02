@@ -45,6 +45,11 @@ const router = new VueRouter({
           component: require('./components/styles/TelPage.vue'),
         },
         {
+          path: '/styles/imgCodepage',
+          name: 'imgCodepage',
+          component: require('./components/styles/ImgCodepage.vue'),
+        },
+        {
           path: '/styles/panel',
           name: 'panel',
           component: require('./components/styles/PanelPage.vue'),
