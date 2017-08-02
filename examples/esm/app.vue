@@ -84,6 +84,13 @@ module.exports = {
                   },
                 },
                 {
+                  title: '电话组合',
+                  icon: 'hotel',
+                  routers: {
+                    path: '/styles/tel',
+                  },
+                },
+                {
                   title: '按钮',
                   icon: 'hotel',
                   routers: {
