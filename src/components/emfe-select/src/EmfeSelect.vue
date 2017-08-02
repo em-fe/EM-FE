@@ -10,16 +10,24 @@
         <input class="emfe-checkout-box-input" :disabled="item.disabled" type="checkbox" v-model="checkVal" :value="item.name" :key="item.id" @change="getdata(item)">
       </label>
       <label v-for="item in checkList" class="emfe-select-label emfe-select-delabel" @click="spanTxt(item)" :disabled="item.disabled" v-if="type==='default'"><span :class="{'disabled': item.disabled}">{{ item.name }}</span></label>
+      <div v-for="item in checkList" class="emfe-select-label emfe-select-delabel" @click="spanTxt(item)" :disabled="item.disabled" v-if="type==='icon'" :class="{'disabled': item.disabled}">
+        <emfe-icon :type="item.icon" className="emfe-select"></emfe-icon>
+        <span class="emfe-select-icon-piece">{{ item.name}}</span>
+        <span class="emfe-select-icon-tel">{{ item.tel }}</span>
+      </div>
     </div>
   </div>
 </template>
 <script>
+import _ from '../../../tools/lodash';
+
 export default {
   name: 'Select',
   props: {
     type: {
-      type: String,
-      default: '',
+      validator(value) {
+        return _.has(value, ['default', 'checkbox', 'icon']);
+      },
     },
     seleStu: {
       type: String,
@@ -61,17 +69,12 @@ export default {
       const newdata = this.newListVal;
       this.$emit('addDataCheck', newdata);
       this.$emit('addDataRadio', newdata);
-      // this.checkVal.push(newdata);
       this.newListVal = '';
-      // const va = this.checkVal;
-      // this.$emit('getAllData', va);
-      // console.log(va);
     },
     spanTxt(item) {
       if (item.disabled !== 'disabled') {
         this.checkVal = item.name;
-        // console.log(this.checkVals);
-        this.$emit('getDefData', this.checkVal);
+        this.$emit('getDefData', this.checkVal, item);
       }
     },
     close() {
@@ -80,13 +83,12 @@ export default {
     },
     getdata(item) {
       const va = this.checkVal;
-      // console.log(va);
       if (va.indexOf(item.name) !== -1) {
-        this.$emit('checkedopt', item.name);
+        this.$emit('checkedopt', item.name, item);
       } else {
-        this.$emit('delopt', item.name);
+        this.$emit('delopt', item.name, item);
       }
-      this.$emit('getAllData', va);
+      this.$emit('getAllData', va, item);
     },
   },
 };

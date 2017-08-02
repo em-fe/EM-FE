@@ -119,4 +119,18 @@
       font-size: 14px;
     }
   }
+
+  &-icon {
+    float: left;
+    line-height: 32px;
+
+    &-piece {
+      float: left;
+      padding-left: 8px;
+    }
+
+    &-tel {
+      float: right;
+    }
+  }
 }
