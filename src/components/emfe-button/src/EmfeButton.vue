@@ -1,5 +1,5 @@
 <template>
-  <button class="emfe-button" :disabled="disabled" @click.stop="change" :class="buttonName">
+  <button :disabled="disabled" @click.stop="change" :class="buttonName">
    <emfe-icon v-if="type" :type="type" class="emfe-button-icon"></emfe-icon>
     <span class="emfe-button-text" :class="textName">
       <slot></slot>
@@ -7,7 +7,6 @@
   </button>
 </template>
 <script>
-const prefixCls = 'button';
 export default {
   name: 'EmfeButton',
   data() {
@@ -31,16 +30,20 @@ export default {
     statu: {
       tyep: Boolean,
     },
+    group: Boolean,
   },
   created() {
     this.status = this.statu;
   },
   computed: {
     buttonName() {
+      const group = this.group ? '-group-button' : '';
+      const btnName = this.className ? group : '-button';
       return [
+        `emfe-button${group}`,
         {
-          [`${this.className}-${prefixCls}`]: !!this.className,
-          [`${prefixCls}-on`]: !!this.status,
+          [btnName]: !!this.className,
+          [`emfe-button${group}-on`]: !!this.status,
         },
       ];
     },

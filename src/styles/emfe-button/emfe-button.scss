@@ -6,7 +6,6 @@
   border-radius: $radius-size;
   text-align: center;
   font-size: 14px;
-  font-family: '微软雅黑';
   cursor: pointer;
   box-sizing: border-box;
   transition: color 0.1s linear, background-color 0.1s linear, border 0.1s linear;
@@ -40,39 +39,33 @@
   &-group {
     overflow: hidden;
 
-    > .#{$prefix}button {
+    &-button {
+      @extend .#{$prefix}button;
+
       @include button-colors($title-color, $btn-hover-color, $btn-active-color, $border-color, $btn-hover-color, $btn-active-color);
 
       float: left;
+      padding: 8px;
       border-radius: 0;
       margin-right: -1px;
       position: relative;
       z-index: 1;
 
       &:hover {
-        // position: relative;
         z-index: 2;
         transition: color 0.1s linear, background-color 0.1s linear, border 0.1s linear, z-index 0.1s linear;
       }
-    }
 
-    > .button-on {
-      color: $nothing-color;
-      background: $btn-color;
-      border-color: $border-on-color;
-      z-index: 2;
-
-      &:hover {
+      &-on {
         color: $nothing-color;
-      }
-    }
+        background: $btn-color;
+        border-color: $border-on-color;
+        z-index: 2;
 
-    > .#{$prefix}button-w32 {
-      width: 32px;
-      height: 32px;
-      padding: 0;
-      text-align: center;
-      line-height: 32px;
+        &:hover {
+          color: $nothing-color;
+        }
+      }
     }
   }
 }
