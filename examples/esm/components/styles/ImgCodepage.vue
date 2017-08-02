@@ -3,12 +3,23 @@
     <h3>普通用法</h3>
     <emfe-imgcode :src="src" v-model="model"></emfe-imgcode>
     当前： {{ model }}
+    <pre>
+      &lt;emfe-imgcode :src="src" v-model="model"&gt;&lt;/emfe-imgcode&gt;
+    </pre>
     <br>
     <br>
     <br>
     <br>
     <h3>自定义用法</h3>
     <emfe-imgcode className="demo" :src="src" v-model="model" @click="click"></emfe-imgcode>
+    <pre>
+      &lt;emfe-imgcode className="demo" :src="src" v-model="model" @click="click"&gt;&lt;/emfe-imgcode&gt;
+    </pre>
+    <pre>
+      click() {
+        this.src = 'https://static.evente.cn/evente/img/flag/v1/de.jpg';
+      }
+    </pre>
     <br>
     <br>
     <br>

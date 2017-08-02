@@ -3,6 +3,9 @@
     <h3>普通使用</h3>
     <emfe-tel :datas="data1" v-model="now" placeholder="电话"></emfe-tel>
     当前 {{ now }}
+    <pre>
+      &lt;emfe-tel :datas="data1" v-model="now" placeholder="电话"&gt;&lt;/emfe-tel&gt;
+    </pre>
     <br>
     <br>
     <br>
@@ -10,6 +13,9 @@
     <h3>自定义样式使用</h3>
     <emfe-tel className="demo" :datas="data1" v-model="now" placeholder="电话"></emfe-tel>
     当前 {{ now }}
+    <pre>
+      &lt;emfe-tel className="demo" :datas="data1" v-model="now" placeholder="电话"&gt;&lt;/emfe-tel&gt;
+    </pre>
     <br>
     <br>
     <br>

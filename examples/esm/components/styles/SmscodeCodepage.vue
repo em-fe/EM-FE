@@ -3,6 +3,10 @@
     <h3>普通用法</h3>
     <emfe-smscode v-model="model"></emfe-smscode>
     当前： {{ model }}
+
+    <pre>
+      &lt;emfe-smscode v-model="model"&gt;&lt;/emfe-smscode&gt;
+    </pre>
     <br>
     <br>
     <br>
@@ -10,6 +14,9 @@
     <h3>自定义用法</h3>
     <emfe-smscode className="demo" v-model="model" times="2" @click="click"></emfe-smscode>
     点击次数: {{ num }}
+    <pre>
+      &lt;emfe-smscode className="demo" v-model="model" times="2" @click="click"&gt;&lt;/emfe-smscode&gt;
+    </pre>
     <br>
     <br>
     <br>

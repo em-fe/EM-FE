@@ -1,5 +1,5 @@
 /*!
- * EMFE.js v1.0.9
+ * EMFE.js v1.0.10
  * (c) 2014-2017 李梦龙
  * Released under the MIT License.
  */
@@ -2037,6 +2037,282 @@ EmfeInput$1.install = function (Vue$$1) {
   Vue$$1.component(EmfeInput$1.name, EmfeInput$1);
 };
 
+var EmfeTel$1 = {
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"emfe-documentclick",rawName:"v-emfe-documentclick",value:(_vm.close),expression:"close"}],staticClass:"emfe-tel",class:_vm.telName},[_c('div',{staticClass:"emfe-tel-prefix",class:_vm.prefixName,on:{"click":function($event){$event.stopPropagation();_vm.toggle($event);}}},[_c('img',{directives:[{name:"show",rawName:"v-show",value:(_vm.nowData.url),expression:"nowData.url"}],staticClass:"emfe-tel-prefix-piece",attrs:{"src":_vm.nowData.url,"alt":_vm.nowData.name}}),_vm._v(" "),_c('span',{staticClass:"emfe-tel-prefix-text",class:_vm.prefixTextName},[_vm._v(_vm._s(_vm.nowData.prefix))]),_vm._v(" "),_c('ul',{directives:[{name:"show",rawName:"v-show",value:(_vm.flagStatus),expression:"flagStatus"}],staticClass:"emfe-tel-prefix-flag"},_vm._l((_vm.datas),function(data){return _c('li',{staticClass:"emfe-tel-prefix-label",on:{"click":function($event){$event.stopPropagation();_vm.choice(data);}}},[_c('img',{staticClass:"emfe-tel-prefix-icon",attrs:{"src":data.url,"alt":data.name}}),_vm._v(" "),_c('span',{staticClass:"emfe-tel-prefix-icon-piece"},[_vm._v(_vm._s(data.name))]),_vm._v(" "),_c('span',{staticClass:"emfe-tel-prefix-icon-tel"},[_vm._v(_vm._s(data.prefix))])])}))]),_vm._v(" "),_c('input',{staticClass:"emfe-tel-input",class:_vm.inputName,attrs:{"type":_vm.type,"placeholder":_vm.placeholder},domProps:{"value":_vm.nowData.tel},on:{"input":_vm.telChange}})])},
+staticRenderFns: [],
+  name: 'EmfeTel',
+  data: function data() {
+    var nowData = !this.value || O.empty(this.value) ? {
+      tel: '请选择',
+      name: '',
+      prefix: '',
+    } : this.value;
+    return {
+      flagStatus: false,
+      nowData: nowData,
+    };
+  },
+  props: {
+    datas: {
+      type: Array,
+      required: true,
+    },
+    value: {
+      type: Object,
+      default: function () {},
+    },
+    placeholder: {
+      type: String,
+      default: '请输入',
+    },
+    type: {
+      type: String,
+      default: 'number',
+    },
+    className: String,
+  },
+  computed: {
+    telName: function telName() {
+      return [
+        ( obj = {}, obj[((this.className) + "-tel")] = !!this.className, obj ) ];
+      var obj;
+    },
+    prefixName: function prefixName() {
+      return [
+        ( obj = {}, obj[((this.className) + "-tel-prefix")] = !!this.className, obj ) ];
+      var obj;
+    },
+    prefixTextName: function prefixTextName() {
+      return [
+        ( obj = {}, obj[((this.className) + "-tel-prefix-text")] = !!this.className, obj ) ];
+      var obj;
+    },
+    inputName: function inputName() {
+      return [
+        ( obj = {}, obj[((this.className) + "-tel-input")] = !!this.className, obj ) ];
+      var obj;
+    },
+  },
+  methods: {
+    toggle: function toggle() {
+      this.flagStatus = true;
+    },
+    choice: function choice(item) {
+      this.nowData = item;
+      this.flagStatus = false;
+      this.$emit('choice', this.nowData);
+      this.$emit('input', this.nowData);
+    },
+    telChange: function telChange(ev) {
+      this.nowData.tel = ev.target.value;
+      this.$emit('input', this.nowData);
+    },
+    close: function close() {
+      this.flagStatus = false;
+    },
+  },
+  watch: {
+    value: function value(val, oldVal) {
+      if (val !== oldVal) {
+        this.nowData = val;
+      }
+    },
+  },
+};
+
+EmfeTel$1.install = function (Vue$$1) {
+  Vue$$1.component(EmfeTel$1.name, EmfeTel$1);
+};
+
+var timer = null;
+var go = true; // 是否可以继续获取
+
+var EmfeSmscode$1 = {
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-smscode",class:_vm.smscodeName},[_c('input',{staticClass:"emfe-smscode-input",class:_vm.codeName,attrs:{"type":"number","placeholder":_vm.placeholder},domProps:{"value":_vm.nowData},on:{"input":_vm.input}}),_vm._v(" "),_c('button',{staticClass:"emfe-smscode-button",on:{"click":_vm.click}},[_vm._v(_vm._s(_vm.btnText))])])},
+staticRenderFns: [],
+  name: 'EmfeSmscode',
+  data: function data() {
+    var nowData = !this.value ? '' : this.value;
+    return {
+      nowData: nowData,
+      btnText: this.title,
+      allTimes: this.times,
+    };
+  },
+  props: {
+    placeholder: {
+      type: String,
+      default: '请输入验证码',
+    },
+    title: {
+      type: String,
+      default: '获取验证码',
+    },
+    errorTitle: {
+      type: String,
+      default: '重试',
+    },
+    value: {
+      type: [Number, String],
+    },
+    times: {
+      type: [Number, String],
+      default: 60,
+    },
+    className: String,
+  },
+  computed: {
+    smscodeName: function smscodeName() {
+      return [
+        ( obj = {}, obj[((this.className) + "-smscode")] = !!this.className, obj ) ];
+      var obj;
+    },
+    codeName: function codeName() {
+      return [
+        ( obj = {}, obj[((this.className) + "-smscode-code")] = !!this.className, obj ) ];
+      var obj;
+    },
+  },
+  methods: {
+    resetAuto: function resetAuto() {
+      this.btnText = this.errorTitle;
+      this.allTimes = this.times;
+      go = true;
+    },
+    auto: function auto() {
+      if (this.allTimes > 1) {
+        this.allTimes--;
+        this.btnText = (this.allTimes) + "秒后重试";
+        timer = setTimeout(this.auto.bind(this), 1000);
+      } else {
+        clearTimeout(timer);
+        this.resetAuto();
+      }
+    },
+    input: function input(ev) {
+      var val = ev.target.value;
+      this.$emit('change', val);
+      this.$emit('input', val);
+    },
+    click: function click() {
+      if (go) {
+        go = false;
+        this.auto();
+        this.$emit('click');
+      }
+    },
+  },
+  watch: {
+    title: function title(val, oldVal) {
+      if (val !== oldVal) {
+        this.btnText = val;
+      }
+    },
+    value: function value(val, oldVal) {
+      if (val !== oldVal) {
+        this.nowData = val;
+      }
+    },
+  },
+};
+
+EmfeSmscode$1.install = function (Vue$$1) {
+  Vue$$1.component(EmfeSmscode$1.name, EmfeSmscode$1);
+};
+
+var EmfeImgcode$1 = {
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-imgcode",class:_vm.imgcodeName},[_c('input',{staticClass:"emfe-imgcode-input",class:_vm.codeName,attrs:{"type":"number","placeholder":_vm.placeholder},domProps:{"value":_vm.nowData},on:{"input":_vm.input}}),_vm._v(" "),_c('img',{staticClass:"emfe-imgcode-code",attrs:{"src":_vm.newSrc,"alt":"图片验证码"},on:{"click":_vm.click}})])},
+staticRenderFns: [],
+  name: 'emfe-imgcode',
+  data: function data() {
+    var nowData = !this.value ? '' : this.value;
+    return {
+      nowData: nowData,
+      newSrc: this.src,
+    };
+  },
+  props: {
+    placeholder: {
+      type: String,
+      default: '请输入验证码',
+    },
+    value: {
+      type: [Number, String],
+    },
+    src: {
+      type: String,
+      required: true,
+    },
+    className: String,
+  },
+  computed: {
+    imgcodeName: function imgcodeName() {
+      return [
+        ( obj = {}, obj[((this.className) + "-imgcode")] = !!this.className, obj ) ];
+      var obj;
+    },
+    codeName: function codeName() {
+      return [
+        ( obj = {}, obj[((this.className) + "-imgcode-code")] = !!this.className, obj ) ];
+      var obj;
+    },
+  },
+  methods: {
+    input: function input(ev) {
+      var val = ev.target.value;
+      this.$emit('change', val);
+      this.$emit('input', val);
+    },
+    click: function click() {
+      this.$emit('click');
+    },
+  },
+  watch: {
+    value: function value(val, oldVal) {
+      if (val !== oldVal) {
+        this.nowData = val;
+      }
+    },
+    src: function src(val, oldVal) {
+      if (val !== oldVal) {
+        this.newSrc = val;
+      }
+    },
+  },
+};
+
+EmfeImgcode$1.install = function (Vue$$1) {
+  Vue$$1.component(EmfeImgcode$1.name, EmfeImgcode$1);
+};
+
+var EmfeSteps$1 = {
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-steps",class:_vm.stepsName},[_c('div',{staticClass:"emfe-steps-line"},_vm._l((_vm.datas),function(data,dataIndex){return _c('div',{class:{'emfe-steps-item-first': dataIndex === 0, 'emfe-steps-item-last': dataIndex === _vm.datas.length - 1, 'emfe-steps-item': dataIndex !== _vm.datas.length - 1 && dataIndex !== 0}},[(dataIndex === 0)?[(dataIndex === _vm.active)?[_c('emfe-icon',{attrs:{"className":"emfe-steps-item-first-on","type":data.icon}})]:[_c('emfe-icon',{attrs:{"className":"emfe-steps-item-first","type":data.icon}})]]:(dataIndex === _vm.datas.length - 1)?[(dataIndex === _vm.active)?[_c('emfe-icon',{attrs:{"className":"emfe-steps-item-last-on","type":data.icon}})]:[_c('emfe-icon',{attrs:{"className":"emfe-steps-item-last","type":data.icon}})]]:[(dataIndex === _vm.active)?[_c('emfe-icon',{attrs:{"className":"emfe-steps-item-on","type":data.icon}})]:[_c('emfe-icon',{attrs:{"className":"emfe-steps-item","type":data.icon}})]],_vm._v(" "),_c('span',{staticClass:"emfe-steps-item-text",class:{'emfe-steps-item-on-text': _vm.active === dataIndex}},[_vm._v(_vm._s(data.title))])],2)}))])},
+staticRenderFns: [],
+  name: 'EmfeSteps',
+  props: {
+    datas: {
+      type: Array,
+      required: true,
+    },
+    active: {
+      type: Number,
+      required: true,
+    },
+    className: String,
+  },
+  computed: {
+    stepsName: function stepsName() {
+      return [
+        ( obj = {}, obj[((this.className) + "-steps")] = !!this.className, obj ) ];
+      var obj;
+    },
+  },
+};
+
+EmfeSteps$1.install = function (Vue$$1) {
+  Vue$$1.component(EmfeSteps$1.name, EmfeSteps$1);
+};
+
 var EmfeNumber$1 = {
 render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-number"},[_c('button',{staticClass:"emfe-number-reduce",class:{'emfe-number-reduce-disable': _vm.reducedisable},on:{"click":_vm.reduce}}),_vm._v(" "),_c('div',{staticClass:"emfe-number-num"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.num),expression:"num"}],staticClass:"emfe-number-val",class:{'emfe-number-val-nounit': !_vm.unit},attrs:{"type":"tel","maxlength":_vm.max.length,"disabled":_vm.disabled},domProps:{"value":(_vm.num)},on:{"input":[function($event){if($event.target.composing){ return; }_vm.num=$event.target.value;},_vm.input],"focus":_vm.focus}}),_vm._v(" "),(_vm.unit)?_c('i',{staticClass:"emfe-number-unit"},[_vm._v(_vm._s(_vm.unit))]):_vm._e()]),_vm._v(" "),_c('button',{staticClass:"emfe-number-plus",class:{'emfe-number-plus-disable': _vm.plusdisable},on:{"click":_vm.plus}})])},
 staticRenderFns: [],
@@ -4056,6 +4332,10 @@ var emfeCpt = {
   EmfeColor: EmfeColor$1,
   EmfeInput: EmfeInput$1,
   EmfeNumber: EmfeNumber$1,
+  EmfeTel: EmfeTel$1,
+  EmfeSmscode: EmfeSmscode$1,
+  EmfeImgcode: EmfeImgcode$1,
+  EmfeSteps: EmfeSteps$1,
   EmfeButton: Button.EmfeButton,
   EmfeButtonGroup: Button.EmfeButtonGroup,
   EmfeSwitch: EmfeSwitch$1,
