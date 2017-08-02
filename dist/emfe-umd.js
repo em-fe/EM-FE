@@ -2881,7 +2881,11 @@ staticRenderFns: [],
     };
   },
   props: {
-    theme: String,
+    theme: {
+      validator: function validator(value) {
+        return _.has(value, ['default', 'primary']);
+      },
+    },
     className: {
       type: String,
       default: '',
@@ -2908,7 +2912,7 @@ staticRenderFns: [],
       var btnName = this.className ? group : '-button';
       return [
         ("emfe-button" + group),
-        ( obj = {}, obj[btnName] = !!this.className, obj[("emfe-button-" + (this.theme))] = !!this.theme, obj[("emfe-button" + group + "-on")] = !!this.status, obj ) ];
+        ( obj = {}, obj[("emfe-button-" + (this.theme))] = !!this.theme, obj[((this.className) + "-button" + btnName)] = !!this.className, obj[("emfe-button" + group + "-on")] = !!this.status, obj ) ];
       var obj;
     },
     textName: function textName() {

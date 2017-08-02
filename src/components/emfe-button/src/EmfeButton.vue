@@ -49,8 +49,8 @@ export default {
       return [
         `emfe-button${group}`,
         {
-          [btnName]: !!this.className,
           [`emfe-button-${this.theme}`]: !!this.theme,
+          [`${this.className}-button${btnName}`]: !!this.className,
           [`emfe-button${group}-on`]: !!this.status,
         },
       ];
