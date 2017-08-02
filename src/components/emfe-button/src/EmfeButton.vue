@@ -7,6 +7,8 @@
   </button>
 </template>
 <script>
+import _ from '../../../tools/lodash';
+
 export default {
   name: 'EmfeButton',
   data() {
@@ -15,7 +17,11 @@ export default {
     };
   },
   props: {
-    theme: String,
+    theme: {
+      validator(value) {
+        return _.has(value, ['default', 'primary']);
+      },
+    },
     className: {
       type: String,
       default: '',

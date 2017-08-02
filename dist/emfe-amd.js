@@ -2877,6 +2877,7 @@ staticRenderFns: [],
     };
   },
   props: {
+    theme: String,
     className: {
       type: String,
       default: '',
@@ -2903,7 +2904,7 @@ staticRenderFns: [],
       var btnName = this.className ? group : '-button';
       return [
         ("emfe-button" + group),
-        ( obj = {}, obj[btnName] = !!this.className, obj[("emfe-button" + group + "-on")] = !!this.status, obj ) ];
+        ( obj = {}, obj[btnName] = !!this.className, obj[("emfe-button-" + (this.theme))] = !!this.theme, obj[("emfe-button" + group + "-on")] = !!this.status, obj ) ];
       var obj;
     },
     textName: function textName() {
