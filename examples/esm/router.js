@@ -60,6 +60,11 @@ const router = new VueRouter({
           component: require('./components/styles/PanelPage.vue'),
         },
         {
+          path: '/styles/steps',
+          name: 'steps',
+          component: require('./components/styles/StepsPage.vue'),
+        },
+        {
           path: '/styles/crumbs',
           name: 'crumbspage',
           component: require('./components/styles/CrumbsPage.vue'),

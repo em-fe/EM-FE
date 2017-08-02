@@ -15,6 +15,7 @@ import EmfeInput from './components/emfe-input/index';
 import EmfeTel from './components/emfe-tel/index';
 import EmfeSmscode from './components/emfe-smscode/index';
 import EmfeImgcode from './components/emfe-imgcode/index';
+import EmfeSteps from './components/emfe-steps/index';
 import EmfeNumber from './components/emfe-number/index';
 import EmfeDate from './components/emfe-date/index';
 import EmfeTime from './components/emfe-time/index';
@@ -64,6 +65,7 @@ const emfeCpt = {
   EmfeTel,
   EmfeSmscode,
   EmfeImgcode,
+  EmfeSteps,
   EmfeButton: Button.EmfeButton,
   EmfeButtonGroup: Button.EmfeButtonGroup,
   EmfeSwitch,

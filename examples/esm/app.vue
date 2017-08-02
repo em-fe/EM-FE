@@ -231,6 +231,13 @@ module.exports = {
               },
             },
             {
+              title: '进度指引',
+              icon: 'hotel',
+              routers: {
+                path: '/styles/steps',
+              },
+            },
+            {
               title: '面包屑',
               icon: 'hotel',
               routers: {
