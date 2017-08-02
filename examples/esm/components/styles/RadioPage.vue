@@ -8,18 +8,27 @@
     <br>
     <h3>单选用法</h3>
     <emfe-radio-group>
-      <emfe-radio index="0" name="group2">文字</emfe-radio>
-      <emfe-radio index="1" name="group2">文字</emfe-radio>
+      <emfe-radio index="0" name="group2" :statu="index === 0" @change="change">文字</emfe-radio>
+      <emfe-radio index="1" name="group2" :statu="index === 1" @change="change">文字</emfe-radio>
     </emfe-radio-group>
+    <p>当前选中 {{ index }}</p>
     <pre>
       <code>
         <span>&lt;emfe-radio</span> <span>index</span><span>=</span><span>"0"</span> <span>name</span><span>=</span><span>"group1"</span> <span>:disabled</span><span>=</span><span>"true"</span><span>&gt;</span>文字<span>&lt;/emfe-radio&gt;</span>
       </code>
       <code>
-        <span>&lt;emfe-radio-group&gt;</span>
-          <span>&lt;emfe-radio</span> <span>index</span><span>=</span><span>"0"</span> <span>name</span><span>=</span><span>"group2"</span><span>&gt;</span>文字<span>&lt;/emfe-radio&gt;</span>
-          <span>&lt;emfe-radio</span> <span>index</span><span>=</span><span>"1"</span> <span>name</span><span>=</span><span>"group2"</span><span>&gt;</span>文字<span>&lt;/emfe-radio&gt;</span>
-        <span>&lt;/emfe-radio-group&gt;</span>
+        <span> <span>&lt;emfe-radio-group</span>&gt;</span>
+          <span>&lt;emfe-radio</span> <span>index</span><span>=</span><span>"0"</span> <span>name</span><span>=</span><span>"group2"</span> <span>:statu="index === 0"</span><span> @change="change"</span><span>&gt;</span>文字<span>&lt;/emfe-radio&gt;</span>
+          <span>&lt;emfe-radio</span> <span>index</span><span>=</span><span>"1"</span> <span>name</span><span>=</span><span>"group2"</span> <span>:statu="index === 1"</span><span> @change="change"</span><span>&gt;</span>文字<span>&lt;/emfe-radio&gt;</span>
+         <span>&lt;/emfe-radio-group&gt;</span>
+        <br>
+        <span>
+          methods: {
+            change(index) {
+              this.index = index;
+            },
+          },
+        </span>
       </code>
     </pre>
     <br>
@@ -57,13 +66,39 @@
         </tr>
       </tbody>
     </table>
+    <br>
+    <br>
+    <br>
+    <h3>注册的方法</h3>
+    <table style="width: 100%;text-align: center;">
+      <thead>
+        <tr>
+          <th>事件名</th>
+          <th>说明</th>
+          <th>返回值</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>change</td>
+          <td>点击单选触发</td>
+          <td>当前索引</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 <script>
   export default {
     data() {
       return {
+        index: 1,
       };
+    },
+    methods: {
+      change(index) {
+        this.index = index;
+      },
     },
   };
 </script>

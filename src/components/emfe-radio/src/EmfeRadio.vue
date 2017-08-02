@@ -10,7 +10,7 @@
     name: 'EmfeRadio',
     data() {
       return {
-        status: false,
+        status: this.statu,
       };
     },
     props: {
@@ -24,12 +24,21 @@
       disabled: {
         type: Boolean,
       },
+      statu: {
+        tyep: Boolean,
+        default: false,
+      },
     },
     methods: {
       change() {
+        let index = 0;
         this.$parent.$children.forEach((element) => {
           element.status = this.index === element.index;
+          if (element.status) {
+            index = element.index;
+          }
         });
+        this.$emit('change', index);
       },
     },
   };
