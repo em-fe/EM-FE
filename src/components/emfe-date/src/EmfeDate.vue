@@ -86,6 +86,10 @@ export default {
       type: String,
       default: '/',
     },
+    value: {
+      type: String,
+      default: '',
+    },
     // 默认文案
     placeholder: {
       type: String,
@@ -182,9 +186,19 @@ export default {
     },
   },
   mounted() {
-    if (this.today && !this.year) {
+    if (!this.value && this.today && !this.year) {
       this.year = this.today.getFullYear();
       this.month = this.today.getMonth();
+    }
+
+    if (this.value) {
+      const vals = this.value.split(this.format);
+      this.year = vals[0];
+      this.month = vals[1] - 1;
+      this.day = vals[2] - 0;
+      this.day = this.day > 9 ? this.day : `0${this.day}`;
+      const month = this.month + 1 > 9 ? this.month + 1 : `0${this.month + 1}`;
+      this.date = `${this.year}${this.format}${month}${this.format}${this.day}`;
     }
   },
   methods: {
@@ -249,6 +263,7 @@ export default {
         } else {
           this.ok();
         }
+        this.$emit('input', this.date);
       }
     },
     choicePrevMonthDay(day) {
@@ -277,6 +292,7 @@ export default {
     cancel() {
       this.date = this.placeholder;
       this.$emit('cancel', this.date);
+      this.$emit('input', this.date);
     },
   },
 };
