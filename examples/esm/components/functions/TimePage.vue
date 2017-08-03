@@ -43,6 +43,17 @@
     <br>
     <br>
     <br>
+    <h3>双向绑定示例</h3>
+    <br>
+    <br>
+    <p>当前日期： {{ demo6 }}</p>
+    <div style="width: 210px;">
+      <emfe-time v-model="demo6"></emfe-time>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
     <br>
     <br>
     <br>
@@ -146,6 +157,7 @@ export default {
       demo3: '',
       demo4: '',
       demo5: '',
+      demo6: '03:00:02',
     };
   },
   methods: {
