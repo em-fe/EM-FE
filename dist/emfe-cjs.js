@@ -1945,7 +1945,7 @@ var prefixCls$3 = 'emfe-input-box';
 var error = 'error';
 
 var EmfeInput$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-input",class:_vm.addClass},[_c('div',{class:[_vm.classList]},[(_vm.iconOk)?_c('emfe-icon',{attrs:{"type":_vm.iconType,"className":"emfe-input-box-icon-el"}}):_vm._e(),_vm._v(" "),_c('input',_vm._b({staticClass:"emfe-input-box-input",class:_vm.addInput,attrs:{"type":_vm.type},domProps:{"value":_vm.currentValue},on:{"input":_vm.change}},'input',_vm.$props))],1),_vm._v(" "),(_vm.errOk)?_c('div',{staticClass:"emfe-input-box-text",class:_vm.addErrorText},[_vm._t("error")],2):_vm._e()])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-input",class:_vm.addClass,style:(_vm.newStyle)},[_c('div',{class:[_vm.classList]},[(_vm.iconOk)?_c('emfe-icon',{attrs:{"type":_vm.iconType,"className":"emfe-input-box-icon-el"}}):_vm._e(),_vm._v(" "),_c('input',_vm._b({staticClass:"emfe-input-box-input",class:_vm.addInput,attrs:{"type":_vm.type},domProps:{"value":_vm.currentValue},on:{"input":_vm.change}},'input',_vm.$props))],1),_vm._v(" "),(_vm.errOk)?_c('div',{staticClass:"emfe-input-box-text",class:_vm.addErrorText},[_vm._t("error")],2):_vm._e()])},
 staticRenderFns: [],
   name: 'input',
   props: {
@@ -1956,6 +1956,10 @@ staticRenderFns: [],
     placeholder: {
       type: String,
       default: '',
+    },
+    readonly: {
+      type: Boolean,
+      default: false,
     },
     className: {
       type: String,
@@ -1989,6 +1993,7 @@ staticRenderFns: [],
   data: function data() {
     return {
       currentValue: this.value,
+      newStyle: this.style,
     };
   },
   computed: {
@@ -2312,7 +2317,7 @@ EmfeSteps$1.install = function (Vue$$1) {
 };
 
 var EmfeNumber$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-number"},[_c('button',{staticClass:"emfe-number-reduce",class:{'emfe-number-reduce-disable': _vm.reducedisable},on:{"click":_vm.reduce}}),_vm._v(" "),_c('div',{staticClass:"emfe-number-num"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.num),expression:"num"}],staticClass:"emfe-number-val",class:{'emfe-number-val-nounit': !_vm.unit},attrs:{"type":"tel","maxlength":_vm.max.length,"disabled":_vm.disabled},domProps:{"value":(_vm.num)},on:{"input":[function($event){if($event.target.composing){ return; }_vm.num=$event.target.value;},_vm.input],"focus":_vm.focus}}),_vm._v(" "),(_vm.unit)?_c('i',{staticClass:"emfe-number-unit"},[_vm._v(_vm._s(_vm.unit))]):_vm._e()]),_vm._v(" "),_c('button',{staticClass:"emfe-number-plus",class:{'emfe-number-plus-disable': _vm.plusdisable},on:{"click":_vm.plus}})])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-number",class:_vm.numberName},[_c('button',{staticClass:"emfe-number-reduce",class:{'emfe-number-reduce-disable': _vm.reducedisable},on:{"click":_vm.reduce}}),_vm._v(" "),_c('div',{staticClass:"emfe-number-num"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.num),expression:"num"}],staticClass:"emfe-number-val",class:{'emfe-number-val-nounit': !_vm.unit},attrs:{"type":"tel","maxlength":_vm.max.length,"disabled":_vm.disabled},domProps:{"value":(_vm.num)},on:{"input":[function($event){if($event.target.composing){ return; }_vm.num=$event.target.value;},_vm.input],"focus":_vm.focus}}),_vm._v(" "),(_vm.unit)?_c('i',{staticClass:"emfe-number-unit"},[_vm._v(_vm._s(_vm.unit))]):_vm._e()]),_vm._v(" "),_c('button',{staticClass:"emfe-number-plus",class:{'emfe-number-plus-disable': _vm.plusdisable},on:{"click":_vm.plus}})])},
 staticRenderFns: [],
   name: 'EmfeNumber',
   data: function data() {
@@ -2345,8 +2350,14 @@ staticRenderFns: [],
       type: Boolean,
       default: true,
     },
+    className: String,
   },
   computed: {
+    numberName: function numberName() {
+      return [
+        ( obj = {}, obj[((this.className) + "-number")] = !!this.className, obj ) ];
+      var obj;
+    },
     plusdisable: function plusdisable() {
       return this.max - this.num < this.step;
     },
@@ -2460,6 +2471,10 @@ staticRenderFns: [],
       type: String,
       default: '/',
     },
+    value: {
+      type: String,
+      default: '',
+    },
     // 默认文案
     placeholder: {
       type: String,
@@ -2560,9 +2575,19 @@ staticRenderFns: [],
     },
   },
   mounted: function mounted() {
-    if (this.today && !this.year) {
+    if (!this.value && this.today && !this.year) {
       this.year = this.today.getFullYear();
       this.month = this.today.getMonth();
+    }
+
+    if (this.value) {
+      var vals = this.value.split(this.format);
+      this.year = vals[0];
+      this.month = vals[1] - 1;
+      this.day = vals[2] - 0;
+      this.day = this.day > 9 ? this.day : ("0" + (this.day));
+      var month = this.month + 1 > 9 ? this.month + 1 : ("0" + (this.month + 1));
+      this.date = "" + (this.year) + (this.format) + month + (this.format) + (this.day);
     }
   },
   methods: {
@@ -2627,6 +2652,7 @@ staticRenderFns: [],
         } else {
           this.ok();
         }
+        this.$emit('input', this.date);
       }
     },
     choicePrevMonthDay: function choicePrevMonthDay(day) {
@@ -2655,6 +2681,7 @@ staticRenderFns: [],
     cancel: function cancel() {
       this.date = this.placeholder;
       this.$emit('cancel', this.date);
+      this.$emit('input', this.date);
     },
   },
 };
@@ -2718,6 +2745,10 @@ staticRenderFns: [],
       type: String,
       default: '选择时间',
     },
+    value: {
+      type: String,
+      default: '',
+    },
     confirm: {
       type: Boolean,
       default: true,
@@ -2775,6 +2806,13 @@ staticRenderFns: [],
     for (var i$2 = 0; i$2 < secondNum; i$2++) {
       this$1.seconds.push(timeObject.handleConputedTime(i$2, this$1.disabledSeconds));
     }
+    if (this.value) {
+      var vals = this.value.split(':');
+      this.hour = timeObject.zeroFill(vals[0] - 0);
+      this.minute = timeObject.zeroFill(vals[1] - 0);
+      this.second = timeObject.zeroFill(vals[2] - 0);
+      this.choiced = true;
+    }
   },
   methods: {
     setChoice: function setChoice() {
@@ -2790,6 +2828,7 @@ staticRenderFns: [],
         this.setChoice();
         this.hour = hour.num;
         this.$emit('choice', this.time);
+        this.$emit('input', this.time);
       }
     },
     choiceMinute: function choiceMinute(minute) {
@@ -2797,6 +2836,7 @@ staticRenderFns: [],
         this.setChoice();
         this.minute = minute.num;
         this.$emit('choice', this.time);
+        this.$emit('input', this.time);
       }
     },
     choiceSecond: function choiceSecond(second) {
@@ -2804,6 +2844,7 @@ staticRenderFns: [],
         this.setChoice();
         this.second = second.num;
         this.$emit('choice', this.time);
+        this.$emit('input', this.time);
       }
     },
     toggle: function toggle() {
@@ -2813,6 +2854,7 @@ staticRenderFns: [],
       if (!this.open) {
         if (!noClose && this.status) {
           this.$emit('close', this.time);
+          this.$emit('input', this.time);
         }
         this.status = false;
       }
@@ -2820,6 +2862,7 @@ staticRenderFns: [],
     ok: function ok() {
       this.close(true);
       this.$emit('ok', this.time);
+      this.$emit('input', this.time);
     },
     cancel: function cancel() {
       this.choiced = false;
@@ -2827,6 +2870,7 @@ staticRenderFns: [],
       this.minute = '';
       this.second = '';
       this.$emit('cancel', this.time);
+      this.$emit('input', this.time);
     },
   },
 };
@@ -2841,13 +2885,14 @@ var timeText = '选择时间';
 var dateText = '选择日期';
 
 var EmfeDatetime$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"emfe-documentclick",rawName:"v-emfe-documentclick",value:(_vm.close),expression:"close"}],staticClass:"emfe-datetime"},[_c('button',{staticClass:"emfe-datetime-btn",on:{"click":function($event){$event.stopPropagation();_vm.toggle($event);}}},[_c('span',{staticClass:"emfe-datetime-btn-text",class:{'emfe-datetime-btn-text-choice': _vm.choiced}},[_vm._v(_vm._s(_vm.dateTime))]),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(!_vm.choiced),expression:"!choiced"}],attrs:{"type":"hint","className":"emfe-datetime"},on:{"icon-click":_vm.toggle}}),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(_vm.choiced),expression:"choiced"}],attrs:{"type":"qr","className":"emfe-datetime"},on:{"icon-click":_vm.cancel}})],1),_vm._v(" "),_c('emfe-transition',{attrs:{"name":"fade"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.status),expression:"status"}],staticClass:"emfe-datetime-main emfe-datetime-main-position"},[_c('div',{staticClass:"emfe-datetime-type"},[_c('emfe-date',{directives:[{name:"show",rawName:"v-show",value:(_vm.isDate),expression:"isDate"}],ref:"date",attrs:{"format":_vm.formatDate,"open":true,"confirm":false,"disabledDate":_vm.disabledDate},on:{"choice":_vm.choiceDate}}),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(!_vm.isDate),expression:"!isDate"}],staticClass:"emfe-datetime-time"},[_c('div',{staticClass:"emfe-datetime-time-header"},[_vm._v(_vm._s(_vm.date))]),_vm._v(" "),_c('emfe-time',{ref:"time",attrs:{"className":"emfe-datetime","open":true,"confirm":false,"disabledHours":_vm.disabledHours,"disabledMinutes":_vm.disabledMinutes,"disabledSeconds":_vm.disabledSeconds},on:{"choice":_vm.choiceTime}})],1)],1),_vm._v(" "),_c('div',{staticClass:"emfe-datetime-footer"},[_c('button',{staticClass:"emfe-datetime-settype",on:{"click":_vm.typeToggle}},[_vm._v(_vm._s(_vm.typeText))]),_vm._v(" "),_c('button',{staticClass:"emfe-datetime-ok",on:{"click":function($event){$event.stopPropagation();_vm.ok($event);}}},[_vm._v("确定")])])])])],1)},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"emfe-documentclick",rawName:"v-emfe-documentclick",value:(_vm.close),expression:"close"}],staticClass:"emfe-datetime"},[_c('button',{staticClass:"emfe-datetime-btn",on:{"click":function($event){$event.stopPropagation();_vm.toggle($event);}}},[_c('span',{staticClass:"emfe-datetime-btn-text",class:{'emfe-datetime-btn-text-choice': _vm.choiced}},[_vm._v(_vm._s(_vm.dateTime))]),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(!_vm.choiced),expression:"!choiced"}],attrs:{"type":"hint","className":"emfe-datetime"},on:{"icon-click":_vm.toggle}}),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(_vm.choiced),expression:"choiced"}],attrs:{"type":"qr","className":"emfe-datetime"},on:{"icon-click":_vm.cancel}})],1),_vm._v(" "),_c('emfe-transition',{attrs:{"name":"fade"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.status),expression:"status"}],staticClass:"emfe-datetime-main emfe-datetime-main-position"},[_c('div',{staticClass:"emfe-datetime-type"},[_c('emfe-date',{directives:[{name:"show",rawName:"v-show",value:(_vm.isDate),expression:"isDate"}],ref:"date",attrs:{"format":_vm.formatDate,"open":true,"confirm":false,"disabledDate":_vm.disabledDate},on:{"choice":_vm.choiceDate},model:{value:(_vm.date),callback:function ($$v) {_vm.date=$$v;},expression:"date"}}),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(!_vm.isDate),expression:"!isDate"}],staticClass:"emfe-datetime-time"},[_c('div',{staticClass:"emfe-datetime-time-header"},[_vm._v(_vm._s(_vm.date))]),_vm._v(" "),_c('emfe-time',{ref:"time",attrs:{"className":"emfe-datetime","open":true,"confirm":false,"disabledHours":_vm.disabledHours,"disabledMinutes":_vm.disabledMinutes,"disabledSeconds":_vm.disabledSeconds},on:{"choice":_vm.choiceTime},model:{value:(_vm.time),callback:function ($$v) {_vm.time=$$v;},expression:"time"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"emfe-datetime-footer"},[_c('button',{staticClass:"emfe-datetime-settype",on:{"click":_vm.typeToggle}},[_vm._v(_vm._s(_vm.typeText))]),_vm._v(" "),_c('button',{staticClass:"emfe-datetime-ok",on:{"click":function($event){$event.stopPropagation();_vm.ok($event);}}},[_vm._v("确定")])])])])],1)},
 staticRenderFns: [],
   name: 'EmfeDatetime',
   data: function data() {
+    var vals = this.value.split(' ');
     return {
-      date: '',
-      time: timeZero,
+      date: this.value ? vals[0] : '',
+      time: this.value ? vals[1] : timeZero,
       choiced: false,
       isDate: true,
       typeText: timeText,
@@ -2863,6 +2908,10 @@ staticRenderFns: [],
     placeholder: {
       type: String,
       default: '选择日期和时间',
+    },
+    value: {
+      type: String,
+      default: '',
     },
     // 参数
     disabledDate: {
@@ -2904,17 +2953,18 @@ staticRenderFns: [],
         });
         newDateTime = (this.date) + " " + (this.time);
       }
+
+      this.$emit('input', newDateTime);
+
       return newDateTime;
     },
   },
   methods: {
-    choiceDate: function choiceDate(date) {
-      this.date = date;
+    choiceDate: function choiceDate() {
       this.choiced = true;
       this.$emit('choice-date', this.dateTime);
     },
-    choiceTime: function choiceTime(time) {
-      this.time = time;
+    choiceTime: function choiceTime() {
       this.choiced = true;
       this.$emit('choice-time', this.dateTime);
     },
@@ -2927,15 +2977,18 @@ staticRenderFns: [],
       // 让日期组件恢复初始状态
       this.$refs.time.cancel();
       this.$emit('cancel', this.dateTime);
+      this.$emit('input', this.dateTime);
     },
     ok: function ok() {
       this.close(true);
       this.$emit('ok', this.dateTime);
+      this.$emit('input', this.dateTime);
     },
     close: function close(e, noClose) {
       if (!this.open) {
         if (!noClose && this.status) {
           this.$emit('close', this.dateTime);
+          this.$emit('input', this.dateTime);
         }
         this.status = false;
       }
