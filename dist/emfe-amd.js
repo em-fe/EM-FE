@@ -3136,7 +3136,7 @@ EmfeTitle$1.install = function (Vue$$1) {
 };
 
 var EmfeRadio = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('label',{staticClass:"emfe-radio clearfix",class:{'emfe-radio-checked': _vm.status}},[_c('i',{staticClass:"emfe-radio-img",class:{'emfe-radio-img-checked': _vm.status, 'emfe-radio-img-disabled': _vm.disabled}}),_vm._v(" "),_c('input',{staticClass:"emfe-radio-input",attrs:{"type":"radio","name":_vm.name,"disabled":_vm.disabled},on:{"change":_vm.change}}),_vm._v(" "),_c('span',{staticClass:"emfe-radio-text"},[_vm._t("default")],2)])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('label',{staticClass:"emfe-radio clearfix",class:[{'emfe-radio-checked': _vm.status},_vm.labelClass]},[_c('i',{staticClass:"emfe-radio-img",class:{'emfe-radio-img-checked': _vm.status, 'emfe-radio-img-disabled': _vm.disabled}}),_vm._v(" "),_c('input',{staticClass:"emfe-radio-input",class:_vm.inputClass,attrs:{"type":"radio","name":_vm.name,"disabled":_vm.disabled},on:{"change":_vm.change}}),_vm._v(" "),_c('span',{staticClass:"emfe-radio-text",class:_vm.textClass},[_vm._t("default")],2)])},
 staticRenderFns: [],
     name: 'EmfeRadio',
     data: function data() {
@@ -3158,6 +3158,21 @@ staticRenderFns: [],
       statu: {
         tyep: Boolean,
         default: false,
+      },
+      className: {
+        type: String,
+        default: '',
+      },
+    },
+    computed: {
+      labelClass: function labelClass() {
+        return this.className ? ((this.className) + "-radio") : '';
+      },
+      inputClass: function inputClass() {
+        return this.className ? ((this.className) + "-radio-input") : '';
+      },
+      textClass: function textClass() {
+        return this.className ? ((this.className) + "-radio-input-text") : '';
       },
     },
     methods: {
