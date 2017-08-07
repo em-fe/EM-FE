@@ -1,8 +1,8 @@
 <template>
-  <div class="emfe-input" :class="addClass">
-    <div :class="[classList]" >
+  <div class="emfe-input" :class="addClass" :style="newStyle">
+    <div :class="[classList]">
       <emfe-icon v-if="iconOk" :type="iconType" className="emfe-input-box-icon-el"></emfe-icon>
-      <input :type="type" v-bind="$props" :class='addInput' :value="currentValue" v-on:input="change" class="emfe-input-box-input">
+      <input :type="type" :placeholder="newPlaceholder" v-bind="$props" :class='addInput' :value="currentValue" v-on:input="change" class="emfe-input-box-input">
     </div>
     <div class="emfe-input-box-text" :class="addErrorText" v-if="errOk"><slot name="error"></slot></div>
   </div>
@@ -22,6 +22,10 @@ export default {
     placeholder: {
       type: String,
       default: '',
+    },
+    readonly: {
+      type: Boolean,
+      default: false,
     },
     className: {
       type: String,
@@ -55,6 +59,8 @@ export default {
   data() {
     return {
       currentValue: this.value,
+      newStyle: this.style,
+      newPlaceholder: this.placeholder,
     };
   },
   computed: {
@@ -103,6 +109,11 @@ export default {
     value(val, oldVal) {
       if (val !== oldVal) {
         this.currentValue = val;
+      }
+    },
+    placeholder(val, oldVal) {
+      if (val !== oldVal) {
+        this.newPlaceholder = val;
       }
     },
   },

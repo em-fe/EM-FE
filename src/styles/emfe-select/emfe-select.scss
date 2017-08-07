@@ -58,6 +58,10 @@
     &:hover {
       background: $background-on-color;
     }
+
+    &[disabled] {
+      cursor: not-allowed;
+    }
   }
 
   &-delabel {
