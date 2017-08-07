@@ -47,7 +47,7 @@
         <span>&lt;emfe-button-group&gt;</span>
           <span>&lt;</span><span>emfe-button</span><span> :group="true"</span> <span>index</span><span>=</span><span>"0"</span> <span>statu</span><span>=</span><span>"true"</span><span>&gt;</span>上下布局<span>&lt;/emfe-button&gt;</span>
           <span>&lt;</span><span>emfe-button</span><span> :group="true"</span> <span>index</span><span>=</span><span>"1"</span><span>&gt;</span>左右布局<span>&lt;/emfe-button&gt;</span>
-        <span>&lt;emfe-button-group&gt;</span>
+        <span>&lt;/emfe-button-group&gt;</span>
       </code>
     </pre>
     <br>
@@ -70,7 +70,7 @@
           <span>&lt;</span><span>emfe-button</span><span> :group="true"</span> <span>class</span><span>=</span><span>"btnpage-button-w32"</span> <span>index</span><span>=</span><span>"1"</span><span>&gt;</span>20<span>&lt;/emfe-button&gt;</span>
           <span>...</span>
           <span>&lt;</span><span>emfe-button</span><span> :group="true"</span> <span>class</span><span>=</span><span>"btnpage-button-w32"</span> <span>index</span><span>=</span><span>"9"</span><span>&gt;</span>100<span>&lt;/emfe-button&gt;</span>
-        <span>&lt;emfe-button-group&gt;</span>
+        <span>&lt;/emfe-button-group&gt;</span>
       </code>
     </pre>
     <br>

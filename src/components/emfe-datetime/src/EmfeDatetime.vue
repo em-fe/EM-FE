@@ -1,11 +1,18 @@
 <template>
   <div class="emfe-datetime" v-emfe-documentclick="close">
-    <button class="emfe-datetime-btn" @click.stop="toggle">
+    <button class="emfe-datetime-btn" @click.stop="toggle" v-if="!disabled">
       <span class="emfe-datetime-btn-text" :class="{'emfe-datetime-btn-text-choice': choiced}">{{ dateTime }}</span>
       <!-- 日期 -->
       <emfe-icon type="hint" className="emfe-datetime" v-show="!choiced" @icon-click="toggle"></emfe-icon>
       <!-- 取消 -->
       <emfe-icon type="qr" className="emfe-datetime" v-show="choiced" @icon-click="cancel"></emfe-icon>
+    </button>
+    <button class="emfe-datetime-btn emfe-datetime-btn-disabled" v-if="disabled">
+      <span class="emfe-datetime-btn-text">{{ dateTime }}</span>
+      <!-- 日期 -->
+      <emfe-icon type="hint" className="emfe-datetime" v-show="!choiced"></emfe-icon>
+      <!-- 取消 -->
+      <emfe-icon type="qr" className="emfe-datetime" v-show="choiced"></emfe-icon>
     </button>
     <emfe-transition name="fade">
       <div class="emfe-datetime-main emfe-datetime-main-position" v-show="status">
@@ -59,6 +66,10 @@ export default {
       type: String,
       default: '',
     },
+    disabled: {
+      type: Boolean,
+      type: false,
+    },
     // 参数
     disabledDate: {
       type: Function,
@@ -100,7 +111,7 @@ export default {
         newDateTime = `${this.date} ${this.time}`;
       }
 
-      this.$emit('input', newDateTime);
+      this.$emit('input', newDateTime === this.placeholder ? '' : newDateTime);
 
       return newDateTime;
     },
@@ -149,7 +160,9 @@ export default {
       }
     },
     toggle() {
-      this.status = !this.status;
+      if (!this.disabled) {
+        this.status = !this.status;
+      }
     },
   },
 };

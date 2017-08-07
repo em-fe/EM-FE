@@ -99,6 +99,16 @@
       @include border(all, $btn-active-color);
     }
 
+    &-disabled {
+      &:hover {
+        @include border();
+      }
+
+      &:active {
+        @include border();
+      }
+    }
+
     &-text {
       padding: 0 8px;
       text-align: left;
