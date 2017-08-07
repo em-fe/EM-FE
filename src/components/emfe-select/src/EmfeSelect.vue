@@ -1,6 +1,6 @@
 <template>
-  <div class="emfe-select" v-emfe-documentclick="close">
-    <input class="emfe-input-box-input" type="text" :value="checkVal" readonly :placeholder="selectText" @click="inpcheck">
+  <div class="emfe-select" :class="selectName" v-emfe-documentclick="close">
+    <input class="emfe-input-box-input" type="text" :class="inputName" :value="checkVal" readonly :placeholder="selectText" @click="inpcheck">
     <div v-if="flagCheck" class="emfe-select-flag">
       <div class="emfe-select-custab" v-if="seleStu==='newList'">
         <input type="text" :placeholder="addText" class="emfe-input-box-input" v-model="newListVal"><span class="emfe-select-custab-btn" @click="newListBtn">保存</span>
@@ -10,16 +10,24 @@
         <input class="emfe-checkout-box-input" :disabled="item.disabled" type="checkbox" v-model="checkVal" :value="item.name" :key="item.id" @change="getdata(item)">
       </label>
       <label v-for="item in checkList" class="emfe-select-label emfe-select-delabel" @click="spanTxt(item)" :disabled="item.disabled" v-if="type==='default'"><span :class="{'disabled': item.disabled}">{{ item.name }}</span></label>
+      <div v-for="item in checkList" class="emfe-select-label emfe-select-delabel" @click="spanTxt(item)" :disabled="item.disabled" v-if="type==='icon'" :class="{'disabled': item.disabled}">
+        <img class="emfe-select-icon" :src="item.icon" :alt="item.name">
+        <span class="emfe-select-icon-piece">{{ item.name}}</span>
+        <span class="emfe-select-icon-tel">{{ item.tel }}</span>
+      </div>
     </div>
   </div>
 </template>
 <script>
+import _ from '../../../tools/lodash';
+
 export default {
   name: 'Select',
   props: {
     type: {
-      type: String,
-      default: '',
+      validator(value) {
+        return _.has(value, ['default', 'checkbox', 'icon']);
+      },
     },
     seleStu: {
       type: String,
@@ -43,6 +51,7 @@ export default {
         return [];
       },
     },
+    className: String,
   },
   data() {
     return {
@@ -51,6 +60,22 @@ export default {
       checkVal: this.checkVals,
       newListVal: '',
     };
+  },
+  computed: {
+    selectName() {
+      return [
+        {
+          [`${this.className}-select`]: !!this.className,
+        },
+      ];
+    },
+    inputName() {
+      return [
+        {
+          [`${this.className}-input-box-input`]: !!this.className,
+        },
+      ];
+    },
   },
   methods: {
     inpcheck() {
@@ -61,17 +86,12 @@ export default {
       const newdata = this.newListVal;
       this.$emit('addDataCheck', newdata);
       this.$emit('addDataRadio', newdata);
-      // this.checkVal.push(newdata);
       this.newListVal = '';
-      // const va = this.checkVal;
-      // this.$emit('getAllData', va);
-      // console.log(va);
     },
     spanTxt(item) {
       if (item.disabled !== 'disabled') {
         this.checkVal = item.name;
-        // console.log(this.checkVals);
-        this.$emit('getDefData', this.checkVal);
+        this.$emit('getDefData', this.checkVal, item);
       }
     },
     close() {
@@ -80,13 +100,12 @@ export default {
     },
     getdata(item) {
       const va = this.checkVal;
-      // console.log(va);
       if (va.indexOf(item.name) !== -1) {
-        this.$emit('checkedopt', item.name);
+        this.$emit('checkedopt', item.name, item);
       } else {
-        this.$emit('delopt', item.name);
+        this.$emit('delopt', item.name, item);
       }
-      this.$emit('getAllData', va);
+      this.$emit('getAllData', va, item);
     },
   },
 };

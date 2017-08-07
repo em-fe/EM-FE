@@ -40,9 +40,29 @@ const router = new VueRouter({
           component: require('./components/styles/TagPage.vue'),
         },
         {
+          path: '/styles/tel',
+          name: 'tel',
+          component: require('./components/styles/TelPage.vue'),
+        },
+        {
+          path: '/styles/imgCodepage',
+          name: 'imgCodepage',
+          component: require('./components/styles/ImgCodepage.vue'),
+        },
+        {
+          path: '/styles/smscodeCodepage',
+          name: 'smscodeCodepage',
+          component: require('./components/styles/SmscodeCodepage.vue'),
+        },
+        {
           path: '/styles/panel',
           name: 'panel',
           component: require('./components/styles/PanelPage.vue'),
+        },
+        {
+          path: '/styles/steps',
+          name: 'steps',
+          component: require('./components/styles/StepsPage.vue'),
         },
         {
           path: '/styles/crumbs',

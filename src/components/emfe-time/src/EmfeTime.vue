@@ -61,6 +61,10 @@ export default {
       type: String,
       default: '选择时间',
     },
+    value: {
+      type: String,
+      default: '',
+    },
     confirm: {
       type: Boolean,
       default: true,
@@ -120,6 +124,13 @@ export default {
     for (let i = 0; i < secondNum; i++) {
       this.seconds.push(TimeTool.handleConputedTime(i, this.disabledSeconds));
     }
+    if (this.value) {
+      const vals = this.value.split(':');
+      this.hour = TimeTool.zeroFill(vals[0] - 0);
+      this.minute = TimeTool.zeroFill(vals[1] - 0);
+      this.second = TimeTool.zeroFill(vals[2] - 0);
+      this.choiced = true;
+    }
   },
   methods: {
     setChoice() {
@@ -135,6 +146,7 @@ export default {
         this.setChoice();
         this.hour = hour.num;
         this.$emit('choice', this.time);
+        this.$emit('input', this.time);
       }
     },
     choiceMinute(minute) {
@@ -142,6 +154,7 @@ export default {
         this.setChoice();
         this.minute = minute.num;
         this.$emit('choice', this.time);
+        this.$emit('input', this.time);
       }
     },
     choiceSecond(second) {
@@ -149,6 +162,7 @@ export default {
         this.setChoice();
         this.second = second.num;
         this.$emit('choice', this.time);
+        this.$emit('input', this.time);
       }
     },
     toggle() {
@@ -157,7 +171,8 @@ export default {
     close(e, noClose) {
       if (!this.open) {
         if (!noClose && this.status) {
-          this.$emit('close', this.date);
+          this.$emit('close', this.time);
+          this.$emit('input', this.time);
         }
         this.status = false;
       }
@@ -165,6 +180,7 @@ export default {
     ok() {
       this.close(true);
       this.$emit('ok', this.time);
+      this.$emit('input', this.time);
     },
     cancel() {
       this.choiced = false;
@@ -172,6 +188,7 @@ export default {
       this.minute = '';
       this.second = '';
       this.$emit('cancel', this.time);
+      this.$emit('input', this.time);
     },
   },
 };

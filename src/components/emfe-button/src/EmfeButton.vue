@@ -1,5 +1,5 @@
 <template>
-  <button class="emfe-button" :disabled="disabled" @click.stop="change" :class="buttonName">
+  <button :disabled="disabled" @click.stop="change" :class="buttonName">
    <emfe-icon v-if="type" :type="type" class="emfe-button-icon"></emfe-icon>
     <span class="emfe-button-text" :class="textName">
       <slot></slot>
@@ -7,7 +7,8 @@
   </button>
 </template>
 <script>
-const prefixCls = 'button';
+import _ from '../../../tools/lodash';
+
 export default {
   name: 'EmfeButton',
   data() {
@@ -16,6 +17,11 @@ export default {
     };
   },
   props: {
+    theme: {
+      validator(value) {
+        return _.has(value, ['default', 'primary']);
+      },
+    },
     className: {
       type: String,
       default: '',
@@ -31,16 +37,21 @@ export default {
     statu: {
       tyep: Boolean,
     },
+    group: Boolean,
   },
   created() {
     this.status = this.statu;
   },
   computed: {
     buttonName() {
+      const group = this.group ? '-group-button' : '';
+      const btnName = this.className ? group : '-button';
       return [
+        `emfe-button${group}`,
         {
-          [`${this.className}-${prefixCls}`]: !!this.className,
-          [`${prefixCls}-on`]: !!this.status,
+          [`emfe-button-${this.theme}`]: !!this.theme,
+          [`${this.className}-button${btnName}`]: !!this.className,
+          [`emfe-button${group}-on`]: !!this.status,
         },
       ];
     },

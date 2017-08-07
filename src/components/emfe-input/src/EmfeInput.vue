@@ -96,6 +96,7 @@ export default {
       if (val === this.currentValue) return;
       this.currentValue = val;
       this.$emit('change', this.currentValue);
+      this.$emit('input', this.currentValue);
     },
   },
   watch: {
@@ -107,4 +108,3 @@ export default {
   },
 };
 </script>
-

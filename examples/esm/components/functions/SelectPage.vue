@@ -30,11 +30,23 @@
     </div>
 
     <!--  -->
-    <emfe-select :datas="data3" type="default"  @getDefData="getData"></emfe-select>
+    <emfe-select :datas="data3" type="default" @getDefData="getData"></emfe-select>
     API：包含2个配置项：<br>
               自定义属性 :<br>
               :datas="data3"<br>
               type="default"<br>
+    <!-- / -->
+
+    <div style="margin:50px 0 10px">
+      带 icon 的下拉框
+    </div>
+
+    <!--  -->
+    <emfe-select :datas="data4" type="icon" @getDefData="getData"></emfe-select>
+    API：包含2个配置项：<br>
+              自定义属性 :<br>
+              :datas="data4"<br>
+              type="icon"<br>
     <!-- / -->
 
     <h2 style="margin-top:50px">1.不可点击的数据添加上一条 disabled: 'disabled' 的字段，可点的字段不加；</h2>
@@ -73,6 +85,18 @@ export default {
           name: '一夜暴富',
         },
       ],
+      data4: [
+        {
+          name: '中国',
+          tel: '+86',
+          icon: 'https://static.evente.cn/evente/img/flag/v1/zg.jpg',
+        },
+        {
+          name: '香港',
+          tel: '+852',
+          icon: 'https://static.evente.cn/evente/img/flag/v1/xg.jpg',
+        },
+      ],
     };
   },
   methods: {
@@ -87,10 +111,10 @@ export default {
       this.data2.push({ name:nData });
       console.log('添加：' + nData);
     },
-    getData(allData) {
-      console.log('选择的数据为：' + allData);
+    getData(name, allData) {
+      console.log('111选择的数据为：' + name, allData);
     },
-     getAllData(allData) {
+    getAllData(allData) {
       console.log('选择的数据为：' + allData);
     },
     getlist(item) {
@@ -102,4 +126,3 @@ export default {
   },
 };
 </script>
-
