@@ -4,7 +4,7 @@
     <emfe-table :columns="columnSlot" classAddName="add" :data="dataSlot" type="true">
       <emfe-table-head  slot="head" >
       </emfe-table-head>
-      <emfe-table-body slot="body"  v-for="(dataList,index) in dataSlot" :ind="index" key="index" :dataList="dataList">
+      <emfe-table-body slot="body" @jump="Jump" v-for="(dataList,index) in dataSlot" :ind="index" key="index" :dataList="dataList">
         <div slot="a">
           <emfe-checkout color="#1996F9" :title="dataList.name.text">
           </emfe-checkout>
