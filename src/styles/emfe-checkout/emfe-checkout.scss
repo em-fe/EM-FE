@@ -6,10 +6,12 @@
   }
 
   &-inner {
+    @include border();
+
     width: 16px;
     height: 16px;
     border-radius: $radius-size;
-    background: $brand-color-default;
+    background: $background-color-write;
 
     &-checked {
       @include border(all, $border-on-color);
@@ -28,10 +30,10 @@
     width: 16px;
     height: 16px;
     display: block;
-    margin: 0;
+    margin: -8px 0 0;
     position: absolute;
     left: 1px;
-    top: 1px;
+    top: 50%;
     opacity: 0;
     filter: alpha(opacity=0);
   }
@@ -46,7 +48,6 @@
   }
 
   &-inline {
-    // float: left; //还得请浮动
     display: inline-block;
     margin-right: 15px;
   }
