@@ -221,6 +221,11 @@ const router = new VueRouter({
           name: 'slide',
           component: require('./components/functions/SlidePage.vue'),
         },
+        {
+          path: '/functions/opations',
+          name: 'opations',
+          component: require('./components/functions/OpationsPage.vue'),
+        },
       ],
       component: require('./components/functions/Index.vue'),
     },
