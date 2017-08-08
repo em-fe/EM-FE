@@ -1,6 +1,6 @@
 <template>
   <div class="uploadpage">
-    <emfe-upload @upload="upload" action="http://jsonplaceholder.typicode.com/photos">
+    <emfe-upload @upload="upload" action="http://esc.inner.evente.cn:30251/upload/upload">
       <button>上传</button>
     </emfe-upload>
   </div>
