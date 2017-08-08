@@ -94,7 +94,7 @@ export default {
       ],
       addOneObj: {
         name: '一级选项',
-        openFlg: true,
+        openFlg: false,
         twoList: [
           {
             name: '二级选项',
