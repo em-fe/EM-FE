@@ -15,6 +15,9 @@ var O = {
   empty: function empty(obj) {
     return JSON.stringify(obj) === '{}';
   },
+  copy: function copy(obj) {
+    return JSON.parse(JSON.stringify(obj));
+  },
 };
 
 var childrenLast = -1; // 记录上一个点击的二级手风琴的索引
@@ -2970,9 +2973,7 @@ staticRenderFns: [],
         });
         newDateTime = (this.date) + " " + (this.time);
       }
-
       this.$emit('input', newDateTime === this.placeholder ? '' : newDateTime);
-
       return newDateTime;
     },
   },
@@ -3600,28 +3601,110 @@ EmfeCheckout$1.install = function (Vue$$1) {
 };
 
 var EmfeDrop$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('emfe-drag',{attrs:{"className":_vm.className,"dragDiyStyle":_vm.posStyle},on:{"drag":_vm.drag}},[_vm._t("default")],2)},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{ref:"dragBox"},[_vm._t("default")],2)])},
 staticRenderFns: [],
   name: 'EmfeDrop',
+  data: function data() {
+    return {
+      firstIndex: '',
+      dropArr: [],
+      elesNode: [],
+      index: '',
+      heIndex: '',
+    };
+  },
   props: {
-    className: {
-      type: String,
-      default: '',
+    cell: {
+      type: Number,
+      default: 5,
     },
-    posStyle: {
-      type: String,
-      default: '',
+    margin: {
+      type: Number,
+      default: 5,
+    },
+    cellWidth: {
+      type: Number,
+      default: 200,
+    },
+    cellHeight: {
+      type: Number,
+      default: 200,
     },
   },
   mounted: function mounted() {
+    var this$1 = this;
+
+    var eles = this.$slots.default;
+    for (var i = 0; i < eles.length; i++) {
+      if (eles[i].elm.nodeType === 1) {
+        this$1.elesNode.push(eles[i].elm);
+      }
+    }
+    for (var i$1 = 0; i$1 < this.elesNode.length; i$1++) {
+      var row = Math.floor(i$1 / this$1.cell);
+      var topP = "" + ((this$1.cellHeight + this$1.margin) * row);
+      var bottomP = "" + ((this$1.cellHeight + this$1.margin) * (row + 1));
+      var leftP = "" + ((this$1.cellWidth + this$1.margin) * (i$1 - (row * this$1.cell)));
+      var rightP = "" + ((leftP * 1) + (this$1.cellWidth + this$1.margin));
+      this$1.dropArr.push([topP, leftP, bottomP, rightP]);
+      this$1.elesNode[i$1].style.top = topP + "px";
+      this$1.elesNode[i$1].style.left = leftP + "px";
+      this$1.elesNode[i$1].index = i$1;
+    }
   },
   methods: {
-    drag: function drag(e, left, top) {
-      this.$el.style.zIndex = 99;
-      this.disY = e.clientX - this.$el.offsetLeft;
-      // console.log(this.disY);
-      // console.log(left);
-      console.log(top);
+    beforeDrag: function beforeDrag(e) {
+      this.firstIndex = e.target.getAttribute('index');
+    },
+    drag: function drag(e) {
+      var this$1 = this;
+
+      var min = e.clientX > 0 && e.clientY > 0;
+      var max = e.clientX < document.body.clientWidth && e.clientY < window.innerHeight;
+      if (min && max) {
+        this.X = e.clientX - e.target.parentNode.parentNode.offsetLeft;
+        this.Y = e.clientY - e.target.parentNode.parentNode.offsetTop;
+        for (var j = 0; j < this.elesNode.length; j++) {
+          this$1.elesNode[j].style.zIndex = 1;
+        }
+        e.target.style.zIndex = 99;
+        var elesNode = this.elesNode;
+        for (var i = 0; i < elesNode.length; i++) {
+          this$1.heIndex = elesNode[i].getAttribute('index') * 1;
+          var DI = this$1.dropArr[this$1.heIndex];
+          if (this$1.X > DI[1] && this$1.X < DI[3] && this$1.Y > DI[0] && this$1.Y < DI[2]) {
+            this$1.firstIndex = e.target.getAttribute('index') * 1;
+            this$1.index = this$1.heIndex;
+            var test = function (num, j) {
+              for (var n = 0; n < this$1.elesNode.length; n++) {
+                if (this$1.elesNode[n].getAttribute('index') * 1 === j) {
+                  this$1.elesNode[n].style.top = (this$1.dropArr[j + num][0]) + "px";
+                  this$1.elesNode[n].style.left = (this$1.dropArr[j + num][1]) + "px";
+                  this$1.elesNode[n].setAttribute('index', num + j);
+                }
+              }
+            };
+            if (this$1.firstIndex > this$1.heIndex) {
+              for (var j$1 = this.firstIndex - 1; j$1 >= this.heIndex; j$1--) {
+                test(1, j$1);
+              }
+            } else {
+              for (var j$2 = this.firstIndex + 1; j$2 < this.heIndex + 1; j$2++) {
+                test(-1, j$2);
+              }
+            }
+            e.target.setAttribute('index', this$1.heIndex);
+          }
+        }
+      }
+    },
+    afterDrag: function afterDrag(e) {
+      if (this.index !== '') {
+        var offset = this.dropArr[this.index];
+        e.target.style.top = (offset[0]) + "px";
+        e.target.style.left = (offset[1]) + "px";
+        this.index = '';
+      }
     },
   },
 };
@@ -4175,9 +4258,8 @@ EmfeCrumb$1.install = function (Vue$$1) {
   Vue$$1.component(EmfeCrumb$1.name, EmfeCrumb$1);
 };
 
-var prefixCls$10 = 'emfe-edit';
 var EmfeEdit$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-edit"},_vm._l((_vm.oneList),function(one,index){return _c('div',{key:index,staticClass:"emfe-edit-wrap"},[_c('div',{staticClass:"emfe-edit-left",on:{"click":function($event){_vm.openTwoList(index);}}},[_c('div',{ref:"inputFocus",refInFor:true,staticClass:"emfe-edit-left-one",class:{'emfe-edit-left-one-open': one.openFlg}},[_c('emfe-input',{attrs:{"value":one.name,"className":"emfe-edit-left-one"}})],1),_vm._v(" "),_vm._l((one.twoList),function(two,ind){return _c('div',{directives:[{name:"show",rawName:"v-show",value:(one.openFlg),expression:"one.openFlg"}],staticClass:"emfe-edit-left-two"},[_c('div',{staticClass:"emfe-edit-left-two-text"},[_c('emfe-input',{attrs:{"value":two.name,"className":"emfe-edit-left-two"}})],1),_vm._v(" "),_c('div',{staticClass:"emfe-edit-left-two-btn",on:{"click":function($event){_vm.addTwoList(index, ind);}}},[_vm._v("+")]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.twoReduceFlg),expression:"twoReduceFlg"}],staticClass:"emfe-edit-left-two-btn",on:{"click":function($event){_vm.reduceTwoList(index, ind);}}},[_vm._v("-")])])})],2),_vm._v(" "),_c('div',{staticClass:"emfe-edit-right"},[_c('div',{staticClass:"emfe-edit-right-btn",on:{"click":function($event){_vm.addOneList(index);}}},[_vm._v("+")]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.oneReduceFlg),expression:"oneReduceFlg"}],staticClass:"emfe-edit-right-btn",staticStyle:{"line-height":"11px"},on:{"click":function($event){_vm.reduceOneList(index);}}},[_vm._v("-")])])])}))},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-edit",class:_vm.editBox},_vm._l((_vm.oneList),function(one,index){return _c('div',{key:index,staticClass:"emfe-edit-wrap"},[_c('div',{staticClass:"emfe-edit-left",on:{"click":function($event){_vm.openTwoList(index);}}},[_c('div',{ref:"inputFocus",refInFor:true,staticClass:"emfe-edit-left-one",class:{'emfe-edit-left-one-open': one.openFlg}},[_c('emfe-input',{attrs:{"value":one.name,"className":"emfe-edit-left-one"}})],1),_vm._v(" "),_vm._l((one.twoList),function(two,ind){return _c('div',{directives:[{name:"show",rawName:"v-show",value:(one.openFlg),expression:"one.openFlg"}],staticClass:"emfe-edit-left-two"},[_c('div',{staticClass:"emfe-edit-left-two-text"},[_c('emfe-input',{attrs:{"value":two.name,"className":"emfe-edit-left-two"}})],1),_vm._v(" "),_c('div',{staticClass:"emfe-edit-left-two-btn",on:{"click":function($event){_vm.addTwoList(index, ind);}}},[_vm._v("+")]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.twoReduceFlg),expression:"twoReduceFlg"}],staticClass:"emfe-edit-left-two-btn",on:{"click":function($event){_vm.reduceTwoList(index, ind);}}},[_vm._v("-")])])})],2),_vm._v(" "),_c('div',{staticClass:"emfe-edit-right"},[_c('div',{staticClass:"emfe-edit-right-btn",on:{"click":function($event){_vm.addOneList(index);}}},[_vm._v("+")]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.oneReduceFlg),expression:"oneReduceFlg"}],staticClass:"emfe-edit-right-btn",staticStyle:{"line-height":"11px"},on:{"click":function($event){_vm.reduceOneList(index);}}},[_vm._v("-")])])])}))},
 staticRenderFns: [],
   name: 'EmfeEdit',
   data: function data() {
@@ -4202,23 +4284,26 @@ staticRenderFns: [],
     },
   },
   computed: {
-    textereaName: function textereaName() {
+    editBox: function editBox() {
       return [
-        ( obj = {}, obj[(prefixCls$10 + "-" + (this.className))] = !!this.className, obj ) ];
+        ( obj = {}, obj[((this.className) + "-edit")] = !!this.className, obj ) ];
       var obj;
     },
   },
   methods: {
     openTwoList: function openTwoList(index) {
       this.oneList.forEach(function (ele) {
+        console.log(1, ele);
         ele.openFlg = false;
       });
       this.oneList[index].openFlg = true;
+      console.log(index, this.oneList);
     },
     addOneList: function addOneList(index) {
       var this$1 = this;
 
-      this.oneList.splice(index + 1, 0, this.addOneObj);
+      var newAddObj = O.copy(this.addOneObj);
+      this.oneList.splice(index + 1, 0, newAddObj);
       this.openTwoList(index + 1);
       this.oneReduceFlg = true;
       setTimeout(function () {
@@ -4234,7 +4319,7 @@ staticRenderFns: [],
       }
     },
     addTwoList: function addTwoList(index, ind) {
-      this.oneList[index].twoList.splice(ind + 1, 0, this.addTwoObj);
+      this.oneList[index].twoList.splice(ind + 1, 0, O.copy(this.addTwoObj));
       this.twoReduceFlg = true;
     },
     reduceTwoList: function reduceTwoList(index, ind) {
