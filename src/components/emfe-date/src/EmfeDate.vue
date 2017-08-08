@@ -1,11 +1,18 @@
 <template>
   <div class="emfe-date" :class="dateName" v-emfe-documentclick="close">
-    <button class="emfe-date-btn" @click.stop="toggle" v-if="!open">
+    <button class="emfe-date-btn" @click.stop="toggle" v-if="!open && !disabled">
       <span class="emfe-date-btn-text" :class="{'emfe-date-btn-text-choice': choiced}">{{ date }}</span>
       <!-- 日期 -->
       <emfe-icon type="hint" className="emfe-date" v-show="!choiced" @icon-click="toggle"></emfe-icon>
       <!-- 取消 -->
       <emfe-icon type="qr" className="emfe-date" v-show="choiced" @icon-click="cancel"></emfe-icon>
+    </button>
+    <button class="emfe-date-btn emfe-date-btn-disabled" v-if="!open && disabled">
+      <span class="emfe-date-btn-text" :class="{'emfe-date-btn-text-choice': choiced}">{{ date }}</span>
+      <!-- 日期 -->
+      <emfe-icon type="hint" className="emfe-date" v-show="!choiced"></emfe-icon>
+      <!-- 取消 -->
+      <emfe-icon type="qr" className="emfe-date" v-show="choiced"></emfe-icon>
     </button>
     <emfe-transition name="fade">
       <div class="emfe-date-box" :class="{'emfe-date-box-position': !open}" v-show="status">
@@ -89,6 +96,10 @@ export default {
     value: {
       type: String,
       default: '',
+    },
+    disabled: {
+      type: Boolean,
+      type: false,
     },
     // 默认文案
     placeholder: {

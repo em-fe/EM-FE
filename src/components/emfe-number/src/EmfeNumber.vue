@@ -1,5 +1,5 @@
 <template>
-  <div class="emfe-number">
+  <div class="emfe-number" :class="numberName">
     <button class="emfe-number-reduce" :class="{'emfe-number-reduce-disable': reducedisable}" @click="reduce"></button>
     <div class="emfe-number-num">
       <input type="tel" class="emfe-number-val" :class="{'emfe-number-val-nounit': !unit}" :maxlength="max.length" :disabled="disabled" v-model="num" @input="input" @focus="focus">
@@ -41,8 +41,16 @@ export default {
       type: Boolean,
       default: true,
     },
+    className: String,
   },
   computed: {
+    numberName() {
+      return [
+        {
+          [`${this.className}-number`]: !!this.className,
+        },
+      ];
+    },
     plusdisable() {
       return this.max - this.num < this.step;
     },

@@ -3,11 +3,11 @@
     <div class="emfe-edit-wrap" v-for="(one, index) in oneList" :key="index">
       <div class="emfe-edit-left" @click="openTwoList(index)">
         <div class="emfe-edit-left-one" :class="{'emfe-edit-left-one-open': one.openFlg}" ref="inputFocus">
-          <emfe-input :value="one.name" className='emfe-edit-left-one'></emfe-input>
+          <emfe-input v-model="one.name" className='emfe-edit-left-one'></emfe-input>
         </div>
         <div class="emfe-edit-left-two" v-for="(two, ind) in one.twoList" v-show="one.openFlg">
           <div class="emfe-edit-left-two-text">
-            <emfe-input :value="two.name" className='emfe-edit-left-two'></emfe-input>
+            <emfe-input v-model="two.name" className='emfe-edit-left-two'></emfe-input>
           </div>
           <div class="emfe-edit-left-two-btn" @click="addTwoList(index, ind)">+</div>
           <div v-show="twoReduceFlg" class="emfe-edit-left-two-btn" @click="reduceTwoList(index, ind)">-</div>
