@@ -42,6 +42,7 @@ export default {
         this.elesNode.push(eles[i].elm);
       }
     }
+    console.log(this.elesNode);
     for (let i = 0; i < this.elesNode.length; i++) {
       const row = Math.floor(i / this.cell);
       const topP = `${(this.cellHeight + this.margin) * row}`;

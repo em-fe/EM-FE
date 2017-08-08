@@ -366,6 +366,16 @@ module.exports = {
                 },
               },
             },
+            {
+              title: '选项拖拽',
+              icon: 'hotel',
+              routers: {
+                path: '/functions/opations',
+                query: {
+                  main: 4,
+                },
+              },
+            },
           ],
         },
       ],

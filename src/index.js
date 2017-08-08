@@ -39,6 +39,7 @@ import EmfeSlide from './components/emfe-slide/index';
 import EmfeHottip from './components/emfe-hottip/index';
 import EmfeCrumb from './components/emfe-crumb/index';
 import EmfeEdit from './components/emfe-edit/index';
+import EmfeOpations from './components/emfe-opations/index';
 // 服务
 import EmfeMessage from './components/emfe-message/index';
 // 指令
@@ -92,6 +93,7 @@ const emfeCpt = {
   EmfeCrumb,
   EmfeHottip,
   EmfeEdit,
+  EmfeOpations,
 };
 
 const emfeDir = {
