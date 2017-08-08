@@ -8,7 +8,7 @@
     </emfe-checkout>
     <emfe-checkout className="div" title="这是一个带颜色的标题">
     </emfe-checkout>
-    <emfe-checkout className="diy" :disable="true" title="禁用">
+    <emfe-checkout :disable="true" title="禁用">
     </emfe-checkout>
     <emfe-checkout className="diy" :slideShow="slideShow" title="限定一周内可选日期">
       <div slot="slide">
