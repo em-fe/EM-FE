@@ -187,6 +187,13 @@ export default {
       this.$emit('afterDrag', e);
     },
   },
+  watch: {
+    dragDiyStyle(val, oldVal) {
+      if (val !== oldVal) {
+        this.dragStyle = val;
+      }
+    },
+  },
   beforeDestroy() {
     refPos.x = 0;
     refPos.y = 0;
