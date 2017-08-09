@@ -1579,6 +1579,13 @@ staticRenderFns: [],
       this.$emit('afterDrag', e);
     },
   },
+  watch: {
+    dragDiyStyle: function dragDiyStyle(val, oldVal) {
+      if (val !== oldVal) {
+        this.dragStyle = val;
+      }
+    },
+  },
   beforeDestroy: function beforeDestroy() {
     refPos.x = 0;
     refPos.y = 0;
@@ -2419,6 +2426,13 @@ staticRenderFns: [],
       ev.target.select();
     },
   },
+  watch: {
+    value: function value(val, oldVal) {
+      if (val !== oldVal) {
+        this.num = val;
+      }
+    },
+  },
 };
 
 EmfeNumber$1.install = function (Vue$$1) {
@@ -2974,7 +2988,9 @@ staticRenderFns: [],
         });
         newDateTime = (this.date) + " " + (this.time);
       }
+
       this.$emit('input', newDateTime === this.placeholder ? '' : newDateTime);
+
       return newDateTime;
     },
   },
@@ -3379,9 +3395,19 @@ EmfePagination$1.install = function (Vue$$1) {
 };
 
 var EmfeSelect$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"emfe-documentclick",rawName:"v-emfe-documentclick",value:(_vm.close),expression:"close"}],staticClass:"emfe-select",class:_vm.selectName},[_c('input',{staticClass:"emfe-input-box-input",class:_vm.inputName,attrs:{"type":"text","readonly":"","placeholder":_vm.selectText},domProps:{"value":_vm.checkVal},on:{"click":_vm.inpcheck}}),_vm._v(" "),(_vm.flagCheck)?_c('div',{staticClass:"emfe-select-flag"},[(_vm.seleStu==='newList')?_c('div',{staticClass:"emfe-select-custab"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.newListVal),expression:"newListVal"}],staticClass:"emfe-input-box-input",attrs:{"type":"text","placeholder":_vm.addText},domProps:{"value":(_vm.newListVal)},on:{"input":function($event){if($event.target.composing){ return; }_vm.newListVal=$event.target.value;}}}),_c('span',{staticClass:"emfe-select-custab-btn",on:{"click":_vm.newListBtn}},[_vm._v("保存")])]):_vm._e(),_vm._v(" "),_vm._l((_vm.checkList),function(item){return (_vm.type==='checkbox')?_c('label',{key:item.id,staticClass:"emfe-select-label"},[_c('span',{staticClass:"emfe-select-text"},[_vm._v(_vm._s(item.name))]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.checkVal),expression:"checkVal"}],key:item.id,staticClass:"emfe-checkout-box-input",attrs:{"disabled":item.disabled,"type":"checkbox"},domProps:{"value":item.name,"checked":Array.isArray(_vm.checkVal)?_vm._i(_vm.checkVal,item.name)>-1:(_vm.checkVal)},on:{"change":function($event){_vm.getdata(item);},"__c":function($event){var $$a=_vm.checkVal,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=item.name,$$i=_vm._i($$a,$$v);if($$c){$$i<0&&(_vm.checkVal=$$a.concat($$v));}else{$$i>-1&&(_vm.checkVal=$$a.slice(0,$$i).concat($$a.slice($$i+1)));}}else{_vm.checkVal=$$c;}}}})]):_vm._e()}),_vm._v(" "),_vm._l((_vm.checkList),function(item){return (_vm.type==='default')?_c('label',{staticClass:"emfe-select-label emfe-select-delabel",attrs:{"disabled":item.disabled},on:{"click":function($event){_vm.spanTxt(item);}}},[_c('span',{class:{'disabled': item.disabled}},[_vm._v(_vm._s(item.name))])]):_vm._e()}),_vm._v(" "),_vm._l((_vm.checkList),function(item){return (_vm.type==='icon')?_c('div',{staticClass:"emfe-select-label emfe-select-delabel",class:{'disabled': item.disabled},attrs:{"disabled":item.disabled},on:{"click":function($event){_vm.spanTxt(item);}}},[_c('img',{staticClass:"emfe-select-icon",attrs:{"src":item.icon,"alt":item.name}}),_vm._v(" "),_c('span',{staticClass:"emfe-select-icon-piece"},[_vm._v(_vm._s(item.name))]),_vm._v(" "),_c('span',{staticClass:"emfe-select-icon-tel"},[_vm._v(_vm._s(item.tel))])]):_vm._e()})],2):_vm._e()])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"emfe-documentclick",rawName:"v-emfe-documentclick",value:(_vm.close),expression:"close"}],staticClass:"emfe-select",class:_vm.selectName},[_c('input',{staticClass:"emfe-select-input",class:_vm.inputName,attrs:{"type":"text","disabled":_vm.newDisabled,"readonly":"","placeholder":_vm.selectText},domProps:{"value":_vm.checkVal},on:{"click":_vm.inpcheck}}),_vm._v(" "),(_vm.flagCheck)?_c('div',{staticClass:"emfe-select-flag"},[(_vm.seleStu==='newList')?_c('div',{staticClass:"emfe-select-custab"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.newListVal),expression:"newListVal"}],staticClass:"emfe-select-input",attrs:{"type":"text","placeholder":_vm.addText},domProps:{"value":(_vm.newListVal)},on:{"input":function($event){if($event.target.composing){ return; }_vm.newListVal=$event.target.value;}}}),_vm._v(" "),_c('span',{staticClass:"emfe-select-custab-btn",on:{"click":_vm.newListBtn}},[_vm._v("保存")])]):_vm._e(),_vm._v(" "),_vm._l((_vm.checkList),function(item,itemIndex){return (_vm.type==='checkbox')?_c('label',{key:item.id,staticClass:"emfe-select-label"},[_c('span',{staticClass:"emfe-select-text"},[_vm._v(_vm._s(item.name))]),_vm._v(" "),_c('div',{staticClass:"emfe-select-checkout-box"},[_c('i',{staticClass:"emfe-select-checkout-inner",class:{'emfe-select-checkout-inner-checked': item.checked}}),_vm._v(" "),_c('input',{key:item.id,staticClass:"emfe-select-checkout-status",attrs:{"disabled":item.disabled,"type":"checkbox"},on:{"change":function($event){_vm.getdata(item);}}})])]):_vm._e()}),_vm._v(" "),_vm._l((_vm.checkList),function(item){return (_vm.type==='default')?_c('label',{staticClass:"emfe-select-label emfe-select-delabel",attrs:{"disabled":item.disabled},on:{"click":function($event){_vm.spanTxt(item);}}},[_c('span',{class:{'emfe-select-label-disabled': item.disabled}},[_vm._v(_vm._s(item.name))])]):_vm._e()}),_vm._v(" "),_vm._l((_vm.checkList),function(item){return (_vm.type==='icon')?_c('div',{staticClass:"emfe-select-label emfe-select-delabel",class:{'disabled': item.disabled},attrs:{"disabled":item.disabled},on:{"click":function($event){_vm.spanTxt(item);}}},[_c('img',{staticClass:"emfe-select-icon",attrs:{"src":item.icon,"alt":item.name}}),_vm._v(" "),_c('span',{staticClass:"emfe-select-icon-piece"},[_vm._v(_vm._s(item.name))]),_vm._v(" "),_c('span',{staticClass:"emfe-select-icon-tel"},[_vm._v(_vm._s(item.tel))])]):_vm._e()})],2):_vm._e()])},
 staticRenderFns: [],
   name: 'Select',
+  data: function data() {
+    return {
+      checkList: [],
+      flagCheck: false,
+      checkVal: this.checkVals,
+      newListVal: '',
+      newDisabled: this.disabled,
+      checkedNow: -1,
+    };
+  },
   props: {
     type: {
       validator: function validator(value) {
@@ -3391,6 +3417,10 @@ staticRenderFns: [],
     seleStu: {
       type: String,
       default: '',
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
     },
     datas: {
       type: Array,
@@ -3412,14 +3442,6 @@ staticRenderFns: [],
     },
     className: String,
   },
-  data: function data() {
-    return {
-      checkList: [],
-      flagCheck: false,
-      checkVal: this.checkVals,
-      newListVal: '',
-    };
-  },
   computed: {
     selectName: function selectName() {
       return [
@@ -3428,25 +3450,39 @@ staticRenderFns: [],
     },
     inputName: function inputName() {
       return [
-        ( obj = {}, obj[((this.className) + "-input-box-input")] = !!this.className, obj ) ];
+        ( obj = {}, obj[((this.className) + "-select-input")] = !!this.className, obj ) ];
       var obj;
     },
   },
   methods: {
     inpcheck: function inpcheck() {
+      var this$1 = this;
+
       this.checkList = this.datas;
+      this.checkList.forEach(function (cl) {
+        if (!O.hOwnProperty(cl, 'checked')) {
+          cl.checked = false;
+        }
+        if (this$1.checkVals.length > 0) {
+          this$1.checkVals.forEach(function (cVal) {
+            if (cl.name === cVal) {
+              cl.checked = true;
+            }
+          });
+        }
+      });
       this.flagCheck = this.checkList.length > 0;
     },
     newListBtn: function newListBtn() {
       var newdata = this.newListVal;
-      this.$emit('addDataCheck', newdata);
-      this.$emit('addDataRadio', newdata);
+      this.$emit('addDataCheck', newdata, this.datas);
+      this.$emit('addDataRadio', newdata, this.datas);
       this.newListVal = '';
     },
     spanTxt: function spanTxt(item) {
       if (item.disabled !== 'disabled') {
         this.checkVal = item.name;
-        this.$emit('getDefData', this.checkVal, item);
+        this.$emit('getDefData', this.checkVal, item, this.datas);
       }
     },
     close: function close() {
@@ -3455,12 +3491,32 @@ staticRenderFns: [],
     },
     getdata: function getdata(item) {
       var va = this.checkVal;
-      if (va.indexOf(item.name) !== -1) {
-        this.$emit('checkedopt', item.name, item);
+      var iNow = va.indexOf(item.name);
+      var hasItem = iNow !== -1;
+      item.checked = !hasItem;
+      if (hasItem) {
+        this.checkVals.splice(iNow, 1);
       } else {
-        this.$emit('delopt', item.name, item);
+        this.checkVals.push(item.name);
+      }
+      if (hasItem) {
+        this.$emit('checkedopt', item.name, item, this.datas);
+      } else {
+        this.$emit('delopt', item.name, item, this.datas);
       }
       this.$emit('getAllData', va, item);
+    },
+  },
+  watch: {
+    checkVals: function checkVals(val, oldVal) {
+      if (val !== oldVal) {
+        this.checkVal = val;
+      }
+    },
+    disabled: function disabled(val, oldVal) {
+      if (val !== oldVal) {
+        this.newDisabled = val;
+      }
     },
   },
 };
@@ -3641,6 +3697,7 @@ staticRenderFns: [],
         this$1.elesNode.push(eles[i].elm);
       }
     }
+    console.log(this.elesNode);
     for (var i$1 = 0; i$1 < this.elesNode.length; i$1++) {
       var row = Math.floor(i$1 / this$1.cell);
       var topP = "" + ((this$1.cellHeight + this$1.margin) * row);
@@ -4137,7 +4194,7 @@ EmfePanel$1.install = function (Vue$$1) {
 
 var prefixCls$9 = 'emfe-slide';
 var EmfeSlide$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-slide",class:_vm.slideName},[_c('div',{staticClass:"emfe-slide-main"},[_c('div',{staticClass:"emfe-slide-describe"},[_vm._v(_vm._s(_vm.slideLeft))]),_vm._v(" "),_c('div',{staticClass:"emfe-slide-progress"},[_c('progress',{ref:"slideBar",staticClass:"emfe-slide-progress-bar",attrs:{"value":_vm.moveValue,"max":_vm.maxPercent}}),_vm._v(" "),_c('emfe-drag',{attrs:{"className":"emfe-slide-progress","limit":"true","limitPosition":"center","dragDiyStyle":_vm.progress,"direction":"horizontal"},on:{"drag":_vm.drag}},[_c('span',{staticClass:"emfe-slide-progress-drag-left"}),_vm._v(" "),_c('span',{staticClass:"emfe-slide-progress-drag-right"})])],1),_vm._v(" "),_c('div',{staticClass:"emfe-slide-describe"},[_vm._v(_vm._s(_vm.slideRight))])]),_vm._v(" "),_c('div',[_vm._v(_vm._s(_vm.movePercent))])])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-slide",class:_vm.slideName},[_c('div',{staticClass:"emfe-slide-main"},[_c('div',{staticClass:"emfe-slide-describe"},[_vm._v(_vm._s(_vm.slideLeft))]),_vm._v(" "),_c('div',{staticClass:"emfe-slide-progress"},[_c('progress',{ref:"slideBar",staticClass:"emfe-slide-progress-bar",attrs:{"value":_vm.moveValue,"max":_vm.maxPercent}}),_vm._v(" "),_c('emfe-drag',{attrs:{"className":"emfe-slide-progress","limit":"true","limitPosition":"center","dragDiyStyle":_vm.progress,"direction":"horizontal"},on:{"drag":_vm.drag}},[_c('span',{staticClass:"emfe-slide-progress-drag-left"}),_vm._v(" "),_c('span',{staticClass:"emfe-slide-progress-drag-right"})])],1),_vm._v(" "),_c('div',{staticClass:"emfe-slide-describe"},[_vm._v(_vm._s(_vm.slideRight))])])])},
 staticRenderFns: [],
   name: 'EmfeSlide',
   data: function data() {
@@ -4145,6 +4202,7 @@ staticRenderFns: [],
       progress: '',
       movePercent: '',
       moveValue: '',
+      slideBarWidth: 0,
     };
   },
   props: {
@@ -4153,17 +4211,14 @@ staticRenderFns: [],
       default: '',
     },
     percent: {
-      type: String,
+      type: Number,
       default: '',
     },
     maxPercent: {
       type: String,
       default: '',
     },
-    slideWidth: {
-      type: String,
-      default: '476',
-    },
+    slideWidth: String,
     slideLeft: {
       type: String,
       default: '',
@@ -4180,22 +4235,24 @@ staticRenderFns: [],
       var obj;
     },
   },
-  created: function created() {
-    var slideBarL = ((this.slideWidth / this.maxPercent) * this.percent) - 26;
+  mounted: function mounted() {
+    var ref = this.$refs;
+    var slideBar = ref.slideBar;
+    this.slideBarWidth = this.slideWidth ? this.slideWidth : slideBar.clientWidth;
+    var slideBarL = ((this.slideBarWidth / this.maxPercent) * this.percent) - 26;
     this.progress = "left: " + slideBarL + "px";
     this.movePercent = (this.percent) + "%";
     this.moveValue = this.percent;
-  },
-  mounted: function mounted() {
     this.BarW = this.$children[0].$el.clientWidth;
   },
   methods: {
     drag: function drag(ev, left) {
-      var moveLeft = Math.round(((left + (this.BarW / 2)) / this.slideWidth) * this.maxPercent);
+      var iLeft = left + (this.BarW / 2);
+      var iScale = iLeft / this.slideBarWidth;
+      var moveLeft = Math.round(iScale * this.maxPercent);
       this.moveValue = moveLeft;
-      this.progress = "left: " + moveLeft + "px";
       this.movePercent = moveLeft + "%";
-      console.log(this.movePercent);
+      this.$emit('change', moveLeft);
     },
   },
 };
@@ -4260,7 +4317,7 @@ EmfeCrumb$1.install = function (Vue$$1) {
 };
 
 var EmfeEdit$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-edit",class:_vm.editBox},_vm._l((_vm.oneList),function(one,index){return _c('div',{key:index,staticClass:"emfe-edit-wrap"},[_c('div',{staticClass:"emfe-edit-left",on:{"click":function($event){_vm.openTwoList(index);}}},[_c('div',{ref:"inputFocus",refInFor:true,staticClass:"emfe-edit-left-one",class:{'emfe-edit-left-one-open': one.openFlg}},[_c('emfe-input',{attrs:{"value":one.name,"className":"emfe-edit-left-one"}})],1),_vm._v(" "),_vm._l((one.twoList),function(two,ind){return _c('div',{directives:[{name:"show",rawName:"v-show",value:(one.openFlg),expression:"one.openFlg"}],staticClass:"emfe-edit-left-two"},[_c('div',{staticClass:"emfe-edit-left-two-text"},[_c('emfe-input',{attrs:{"value":two.name,"className":"emfe-edit-left-two"}})],1),_vm._v(" "),_c('div',{staticClass:"emfe-edit-left-two-btn",on:{"click":function($event){_vm.addTwoList(index, ind);}}},[_vm._v("+")]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.twoReduceFlg),expression:"twoReduceFlg"}],staticClass:"emfe-edit-left-two-btn",on:{"click":function($event){_vm.reduceTwoList(index, ind);}}},[_vm._v("-")])])})],2),_vm._v(" "),_c('div',{staticClass:"emfe-edit-right"},[_c('div',{staticClass:"emfe-edit-right-btn",on:{"click":function($event){_vm.addOneList(index);}}},[_vm._v("+")]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.oneReduceFlg),expression:"oneReduceFlg"}],staticClass:"emfe-edit-right-btn",staticStyle:{"line-height":"11px"},on:{"click":function($event){_vm.reduceOneList(index);}}},[_vm._v("-")])])])}))},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-edit",class:_vm.editBox},_vm._l((_vm.oneList),function(one,index){return _c('div',{key:index,staticClass:"emfe-edit-wrap"},[_c('div',{staticClass:"emfe-edit-left",on:{"click":function($event){_vm.openTwoList(index);}}},[_c('div',{ref:"inputFocus",refInFor:true,staticClass:"emfe-edit-left-one",class:{'emfe-edit-left-one-open': one.openFlg}},[_c('emfe-input',{attrs:{"className":"emfe-edit-left-one"},model:{value:(one.name),callback:function ($$v) {one.name=$$v;},expression:"one.name"}})],1),_vm._v(" "),_vm._l((one.twoList),function(two,ind){return _c('div',{directives:[{name:"show",rawName:"v-show",value:(one.openFlg),expression:"one.openFlg"}],staticClass:"emfe-edit-left-two"},[_c('div',{staticClass:"emfe-edit-left-two-text"},[_c('emfe-input',{attrs:{"className":"emfe-edit-left-two"},model:{value:(two.name),callback:function ($$v) {two.name=$$v;},expression:"two.name"}})],1),_vm._v(" "),_c('div',{staticClass:"emfe-edit-left-two-btn",on:{"click":function($event){_vm.addTwoList(index, ind);}}},[_vm._v("+")]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.twoReduceFlg),expression:"twoReduceFlg"}],staticClass:"emfe-edit-left-two-btn",on:{"click":function($event){_vm.reduceTwoList(index, ind);}}},[_vm._v("-")])])})],2),_vm._v(" "),_c('div',{staticClass:"emfe-edit-right"},[_c('div',{staticClass:"emfe-edit-right-btn",on:{"click":function($event){_vm.addOneList(index);}}},[_vm._v("+")]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.oneReduceFlg),expression:"oneReduceFlg"}],staticClass:"emfe-edit-right-btn",staticStyle:{"line-height":"11px"},on:{"click":function($event){_vm.reduceOneList(index);}}},[_vm._v("-")])])])}))},
 staticRenderFns: [],
   name: 'EmfeEdit',
   data: function data() {
@@ -4336,6 +4393,74 @@ staticRenderFns: [],
 
 EmfeEdit$1.install = function (Vue$$1) {
   Vue$$1.component(EmfeEdit$1.name, EmfeEdit$1);
+};
+
+var EmfeOpations$1 = {
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-opations",class:_vm.opationsName},[_vm._l((_vm.opationsData),function(item,index){return _c('div',{key:index,staticClass:"emfe-opations-main"},[_c('i',{staticClass:"emfe-opations-icon emfe-opations-radio"}),_vm._v(" "),_c('emfe-input',{attrs:{"placeholder":item.text,"className":"emfe-opations"}}),_vm._v(" "),_c('i',{directives:[{name:"show",rawName:"v-show",value:(item.plusFlg),expression:"item.plusFlg"}],staticClass:"emfe-opations-icon emfe-opations-plus",class:{'emfe-opations-margin-right': !item.minusFlg},on:{"click":function($event){_vm.plus(index);}}}),_vm._v(" "),_c('i',{directives:[{name:"show",rawName:"v-show",value:(item.minusFlg),expression:"item.minusFlg"}],staticClass:"emfe-opations-icon emfe-opations-minus",class:{'emfe-opations-margin-left': !item.plusFlg},on:{"click":function($event){_vm.minus(index);}}}),_vm._v(" "),_c('i',{staticClass:"emfe-opations-icon emfe-opations-drag"})],1)}),_vm._v(" "),_c('div',{staticClass:"emfe-opations-operation"},[_c('div',{staticClass:"emfe-opations-operation-other",on:{"click":_vm.otherPlus}},[_vm._v("其他选项")])])],2)},
+staticRenderFns: [],
+  name: 'EmfeOpations',
+  data: function data() {
+    return {
+      clickNum: 0,
+    };
+  },
+  props: {
+    className: {
+      type: String,
+      default: '',
+    },
+    opationsItemData: {
+      type: Object,
+    },
+    opationsData: {
+      type: Array,
+    },
+    ind: {
+      type: [String, Number],
+    },
+  },
+  computed: {
+    opationsName: function opationsName() {
+      return [
+        ( obj = {}, obj[((this.className) + "-opations")] = !!this.className, obj ) ];
+      var obj;
+    },
+  },
+  methods: {
+    plus: function plus(index) {
+      var obj = {
+        text: '选项',
+        plusFlg: true,
+        minusFlg: true,
+      };
+      this.opationsData.splice(index + 1, 0, obj);
+      this.opationsData[index].minusFlg = true;
+    },
+    minus: function minus(index) {
+      this.opationsData.splice(index, 1);
+      if (this.opationsData.length <= 1) {
+        this.opationsData[index - 1].minusFlg = false;
+      }
+      if (this.clickNum !== 0) {
+        this.clickNum = 0;
+      }
+    },
+    otherPlus: function otherPlus() {
+      var obj = {
+        text: '其他',
+        plusFlg: false,
+        minusFlg: true,
+      };
+      if (this.clickNum === 0) {
+        this.opationsData.splice(this.opationsData.length, 0, obj);
+      }
+      this.clickNum++;
+    },
+  },
+};
+
+EmfeOpations$1.install = function (Vue$$1) {
+  Vue$$1.component(EmfeOpations$1.name, EmfeOpations$1);
 };
 
 var seed = 0;
@@ -4533,6 +4658,7 @@ var emfeCpt = {
   EmfeCrumb: EmfeCrumb$1,
   EmfeHottip: EmfeHottip$1,
   EmfeEdit: EmfeEdit$1,
+  EmfeOpations: EmfeOpations$1,
 };
 
 var emfeDir = {

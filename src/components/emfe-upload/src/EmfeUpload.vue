@@ -190,9 +190,6 @@ export default {
 
       this.handleStart(file);
 
-      const formData = new FormData();
-      formData.append(this.name, file);
-
       ajax({
         headers: this.headers,
         withCredentials: this.withCredentials,

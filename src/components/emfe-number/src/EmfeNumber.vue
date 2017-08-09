@@ -102,5 +102,12 @@ export default {
       ev.target.select();
     },
   },
+  watch: {
+    value(val, oldVal) {
+      if (val !== oldVal) {
+        this.num = val;
+      }
+    },
+  },
 };
 </script>
