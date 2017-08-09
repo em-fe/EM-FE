@@ -84,6 +84,13 @@ module.exports = {
                   },
                 },
                 {
+                  title: '更多输入框',
+                  icon: 'hotel',
+                  routers: {
+                    path: '/styles/inputmore',
+                  },
+                },
+                {
                   title: '电话组合',
                   icon: 'hotel',
                   routers: {
@@ -418,7 +425,7 @@ module.exports = {
 <style lang="scss">
 .warp {
   border: 1px solid #dcdcdc;
-  height: 2000px;
+  min-height: 2000px;
   padding: 24px;
 }
 .main-full {

@@ -140,6 +140,11 @@ const router = new VueRouter({
           component: require('./components/styles/Inputpage.vue'),
         },
         {
+          path: '/styles/inputmore',
+          name: 'inputmore',
+          component: require('./components/styles/Inputmorepage.vue'),
+        },
+        {
           path: '/styles/table',
           name: 'table',
           component: require('./components/styles/TablePage.vue'),

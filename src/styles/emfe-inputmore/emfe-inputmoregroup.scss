@@ -1,0 +1,12 @@
+$button-icon-size: 16px;
+$button-line-size: 2px;
+
+.#{$prefix}inputmore-group {
+  &-inputmore {
+    margin: 0 0 16px;
+
+    &:last-child {
+      margin: 0;
+    }
+  }
+}

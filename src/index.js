@@ -12,6 +12,7 @@ import EmfeUpload from './components/emfe-upload/index';
 import EmfeDrag from './components/emfe-drag/index';
 import EmfeColor from './components/emfe-color/index';
 import EmfeInput from './components/emfe-input/index';
+import EmfeInputmore from './components/emfe-inputmore/index';
 import EmfeTel from './components/emfe-tel/index';
 import EmfeSmscode from './components/emfe-smscode/index';
 import EmfeImgcode from './components/emfe-imgcode/index';
@@ -62,6 +63,8 @@ const emfeCpt = {
   EmfeDrag,
   EmfeColor,
   EmfeInput,
+  EmfeInputmore: EmfeInputmore.EmfeInputmore,
+  EmfeInputmoreGroup: EmfeInputmore.EmfeInputmoreGroup,
   EmfeNumber,
   EmfeTel,
   EmfeSmscode,
