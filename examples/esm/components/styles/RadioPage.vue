@@ -16,13 +16,13 @@
     <br>
     <br>
     <emfe-radio-group>
-      <emfe-radio index="0" name="groupSlide1" :statu="index === 0" @change="change">文字</emfe-radio>
+      <emfe-radio index="0" name="groupSlide1" :statu="index === 0" @change="change" className="diy">文字</emfe-radio>
       <emfe-radio index="1" name="groupSlide1" :statu="index === 1" @change="change" :slideShow="slideShow">文字
         <div slot="slide">
           <emfe-radio-group>
-            <emfe-radio index="0" name="groupSlide1-1" :statu="index === 0" @change="change">每台电脑/手机限填一次</emfe-radio>
-            <emfe-radio index="1" name="groupSlide1-1" :statu="index === 1" @change="change">每台电脑/手机限填两次</emfe-radio>
-            <emfe-radio index="2" name="groupSlide1-1" :statu="index === 2" @change="change">每台电脑/手机限填一次</emfe-radio>
+            <emfe-radio index="0" name="groupSlide1-1" :statu="index === 0" inline="true" @change="change">每台电脑/手机限填一次</emfe-radio>
+            <emfe-radio index="1" name="groupSlide1-1" :statu="index === 1" inline="true" @change="change">每台电脑/手机限填两次</emfe-radio>
+            <emfe-radio index="2" name="groupSlide1-1" :statu="index === 2" inline="true" @change="change">每台电脑/手机限填一次</emfe-radio>
           </emfe-radio-group>
         </div>
       </emfe-radio>
