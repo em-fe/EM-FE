@@ -132,9 +132,9 @@ export default {
         this.checkVals.push(item.name);
       }
       if (hasItem) {
-        this.$emit('checkedopt', item.name, item, this.datas);
-      } else {
         this.$emit('delopt', item.name, item, this.datas);
+      } else {
+        this.$emit('checkedopt', item.name, item, this.datas);
       }
       this.$emit('getAllData', va, item);
     },

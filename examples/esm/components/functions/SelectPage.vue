@@ -62,6 +62,7 @@ export default {
       checkedNames: ['Jack'],
       checkVals: ['esfa','2'],
       datas: '',
+      data1Checked: ['1', '2'],
       data1: [
         {
           name: '1',
