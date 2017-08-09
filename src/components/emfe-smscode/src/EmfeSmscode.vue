@@ -47,7 +47,7 @@ export default {
       return [
         {
           [`${this.className}-smscode`]: !!this.className,
-          'emfe-smscode-input-icon': this.icon,
+          'emfe-smscodeicon': this.icon,
         },
       ];
     },
@@ -55,6 +55,7 @@ export default {
       return [
         {
           [`${this.className}-smscode-code`]: !!this.className,
+          'emfe-smscode-input-icon': this.icon,
         },
       ];
     },
