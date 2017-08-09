@@ -8,6 +8,7 @@
   position: relative;
   display: block;
   cursor: pointer;
+  margin-bottom: 16px;
 
   &-img {
     width: 16px;
@@ -39,5 +40,31 @@
     float: left;
     font-size: 14px;
     margin-left: 8px;
+  }
+
+  &-slide {
+    display: block;
+    overflow: hidden;
+    clear: both;
+    margin-left: 7px;
+    border-left: 1px dashed #dcdcdc;
+
+    &-wrap {
+      padding: 16px 16px 0;
+      margin-top: 12px;
+      width: 100%;
+      height: auto;
+      background: $background-color-open;
+
+      .#{$prefix}radio-group {
+        // display: flex;
+        @include clearfix();
+      }
+
+      .#{$prefix}radio {
+        margin-right: 16px;
+        float: left;
+      }
+    }
   }
 }

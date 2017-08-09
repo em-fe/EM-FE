@@ -1,8 +1,8 @@
 .#{$prefix}hottip {
-  color: $brand-color-default;
+  color: $text-color-Three;
   background: $brand-color-select;
-  border: 1px solid $brand-color-default;
-  padding: 12px 30px;
+  border: 1px solid $border-color-prompt;
+  padding: 12px 32px;
   position: relative;
   font-size: 12px;
   word-break: break-all;
@@ -16,8 +16,8 @@
   &-btn {
     display: block;
     position: absolute;
-    right: 14px;
-    top: 14px;
+    right: 16px;
+    bottom: 16px;
     width: 16px;
     height: 16px;
 
