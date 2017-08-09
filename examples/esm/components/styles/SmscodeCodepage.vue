@@ -11,6 +11,17 @@
     <br>
     <br>
     <br>
+    <br>
+    <h3>icon用法</h3>
+    <emfe-smscode icon="hint" v-model="model"></emfe-smscode>
+    <br>
+    <pre>
+      &lt;emfe-smscode icon="hint" v-model="model"&gt;&lt;/emfe-smscode&gt;
+    </pre>
+    <br>
+    <br>
+    <br>
+    <br>
     <h3>自定义用法</h3>
     <emfe-smscode className="demo" v-model="model" times="2" @click="click"></emfe-smscode>
     点击次数: {{ num }}
