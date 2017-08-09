@@ -10,7 +10,7 @@
       <i class="emfe-opations-icon emfe-opations-drag"></i>
     </div>
     <div class="emfe-opations-operation">
-      <div class="emfe-opations-operation-other" @click="otherPlus">其他选项</div>
+      <div class="emfe-opations-operation-other" @click="otherPlus" v-show="clickFlg">其他选项</div>
     </div>
   </div>
 </template>
@@ -19,7 +19,7 @@ export default {
   name: 'EmfeOpations',
   data() {
     return {
-      clickNum: 0,
+      clickFlg: true,
     };
   },
   props: {
@@ -57,12 +57,29 @@ export default {
       this.opationsData[index].minusFlg = true;
     },
     minus(index) {
-      this.opationsData.splice(index, 1);
-      if (this.opationsData.length <= 1) {
-        this.opationsData[index - 1].minusFlg = false;
-      }
-      if (this.clickNum !== 0) {
-        this.clickNum = 0;
+      if (!this.clickFlg) {
+        if (index === this.opationsData.length - 1) {
+          this.opationsData.splice(index, 1);
+          this.clickFlg = true;
+        } else {
+          this.opationsData.splice(index, 1);
+          if (this.opationsData.length <= 2) {
+            if (index === 0) {
+              this.opationsData[index].minusFlg = false;
+            } else {
+              this.opationsData[index - 1].minusFlg = false;
+            }
+          }
+        }
+      } else {
+        this.opationsData.splice(index, 1);
+        if (this.opationsData.length <= 1) {
+          if (index === 0) {
+            this.opationsData[index].minusFlg = false;
+          } else {
+            this.opationsData[index - 1].minusFlg = false;
+          }
+        }
       }
     },
     otherPlus() {
@@ -71,10 +88,10 @@ export default {
         plusFlg: false,
         minusFlg: true,
       };
-      if (this.clickNum === 0) {
+      if (this.clickFlg) {
         this.opationsData.splice(this.opationsData.length, 0, obj);
       }
-      this.clickNum++;
+      this.clickFlg = false;
     },
   },
 };
