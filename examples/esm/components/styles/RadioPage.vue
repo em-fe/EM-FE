@@ -12,6 +12,30 @@
       <emfe-radio index="1" name="group2" :statu="index === 1" @change="change">文字</emfe-radio>
     </emfe-radio-group>
     <p>当前选中 {{ index }}</p>
+    <br>
+    <br>
+    <br>
+    <emfe-radio-group>
+      <emfe-radio index="0" name="groupSlide1" :statu="index === 0" @change="change" className="diy">文字</emfe-radio>
+      <emfe-radio index="1" name="groupSlide1" :statu="index === 1" @change="change" :slideShow="slideShow">文字
+        <div slot="slide">
+          <emfe-radio-group>
+            <emfe-radio index="0" name="groupSlide1-1" :statu="index === 0" inline="true" @change="change">每台电脑/手机限填一次</emfe-radio>
+            <emfe-radio index="1" name="groupSlide1-1" :statu="index === 1" inline="true" @change="change">每台电脑/手机限填两次</emfe-radio>
+            <emfe-radio index="2" name="groupSlide1-1" :statu="index === 2" inline="true" @change="change">每台电脑/手机限填一次</emfe-radio>
+          </emfe-radio-group>
+        </div>
+      </emfe-radio>
+      <emfe-radio index="2" name="groupSlide1" :statu="index === 2" @change="change" :slideShow="slideShow">文字
+        <div slot="slide">
+          <emfe-radio-group>
+            <emfe-radio index="0" name="groupSlide2-1" :statu="index === 0" @change="change">每台电脑/手机限填一次</emfe-radio>
+            <emfe-radio index="1" name="groupSlide2-1" :statu="index === 1" @change="change">每台电脑/手机限填一次</emfe-radio>
+          </emfe-radio-group>
+        </div>
+      </emfe-radio>
+    </emfe-radio-group>
+    <p>当前选中 {{ index }}</p>
     <pre>
       <code>
         <span>&lt;emfe-radio</span> <span>index</span><span>=</span><span>"0"</span> <span>name</span><span>=</span><span>"group1"</span> <span>:disabled</span><span>=</span><span>"true"</span><span>&gt;</span>文字<span>&lt;/emfe-radio&gt;</span>
@@ -98,6 +122,7 @@
   export default {
     data() {
       return {
+        slideShow: true,
         index: 1,
       };
     },

@@ -4,6 +4,17 @@
 
   height: 34px;
   border-radius: $radius-size;
+  position: relative;
+
+  &-icon {
+    position: absolute;
+    top: 50%;
+    left: 8px;
+    margin: -8px 0 0;
+    font-size: 16px;
+    line-height: 1;
+    color: $icon-color-default;
+  }
 
   &-input {
     float: left;
@@ -14,6 +25,10 @@
     padding: 0 8px;
     font-size: 16px;
     color: $text-color-default;
+
+    &-icon {
+      padding: 0 8px 0 24px;
+    }
   }
 
   &-button {
