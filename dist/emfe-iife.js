@@ -1062,6 +1062,8 @@ EmfeCopy$1.install = function (Vue$$1) {
   Vue$$1.component(EmfeCopy$1.name, EmfeCopy$1);
 };
 
+// https://github.com/ElemeFE/element/blob/dev/packages/upload/src/ajax.js
+
 function getError(action, option, xhr) {
   var msg = "fail to post " + action + " " + (xhr.status) + "'";
   var err = new Error(msg);
@@ -1092,41 +1094,36 @@ function upload(option) {
   var xhr = new XMLHttpRequest();
   var action = option.action;
 
-  if (xhr.upload) {
-    xhr.upload.onprogress = function (e) {
-      if (e.total > 0) {
-        e.percent = (e.loaded / e.total) * 100;
-      }
-      option.onProgress(e);
-    };
-  }
+  // if (xhr.upload) {
+  //   xhr.upload.onprogress = function progress(e) {
+  //     if (e.total > 0) {
+  //       e.percent = (e.loaded / e.total) * 100;
+  //     }
+  //     option.onProgress(e);
+  //   };
+  // }
 
   var formData = new FormData();
 
   if (option.data) {
-    Object.keys(option.data).map(function (key) {
-      formData.append(key, option.data[key]);
-      return key;
-    });
+    Object.keys(option.data).map(function (key) { return formData.append(key, option.data[key]); });
   }
 
   formData.append(option.filename, option.file);
 
-  xhr.onerror = function (e) {
+  xhr.onerror = function error(e) {
     option.onError(e);
   };
 
-  xhr.onload = function () {
+  xhr.onload = function onload() {
     if (xhr.status < 200 || xhr.status >= 300) {
-      option.onError(getError(action, option, xhr), getBody(xhr));
-      return false;
+      return option.onError(getError(action, option, xhr), getBody(xhr));
     }
 
-    option.onSuccess(getBody(xhr));
-    return false;
+    return option.onSuccess(getBody(xhr));
   };
 
-  xhr.open('get', action, true);
+  xhr.open('post', action, true);
 
   if (option.withCredentials && 'withCredentials' in xhr) {
     xhr.withCredentials = true;
@@ -1134,12 +1131,21 @@ function upload(option) {
 
   var headers = option.headers || {};
 
-  Object.keys(headers).forEach(function (header) {
-    if (O.hOwnProperty(headers, header) && headers[header] !== null) {
-      xhr.setRequestHeader(header, headers[header]);
+  // if (headers['X-Requested-With'] !== null) {
+  //   xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+  // }
+
+  Object.keys(headers).forEach(function (item) {
+    if (O.hOwnProperty(headers, item) && headers[item] !== null) {
+      xhr.setRequestHeader(item, headers[item]);
     }
   });
 
+  // for (const item in headers) {
+  //   if (O.hOwnProperty(headers, item) && headers[item] !== null) {
+  //     xhr.setRequestHeader(item, headers[item]);
+  //   }
+  // }
   xhr.send(formData);
 }
 
@@ -1323,9 +1329,6 @@ staticRenderFns: [],
       }
 
       this.handleStart(file);
-
-      var formData = new FormData();
-      formData.append(this.name, file);
 
       upload({
         headers: this.headers,
@@ -3395,7 +3398,7 @@ EmfePagination$1.install = function (Vue$$1) {
 };
 
 var EmfeSelect$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"emfe-documentclick",rawName:"v-emfe-documentclick",value:(_vm.close),expression:"close"}],staticClass:"emfe-select",class:_vm.selectName},[_c('input',{staticClass:"emfe-select-input",class:_vm.inputName,attrs:{"type":"text","disabled":_vm.newDisabled,"readonly":"","placeholder":_vm.selectText},domProps:{"value":_vm.checkVal},on:{"click":_vm.inpcheck}}),_vm._v(" "),(_vm.flagCheck)?_c('div',{staticClass:"emfe-select-flag"},[(_vm.seleStu==='newList')?_c('div',{staticClass:"emfe-select-custab"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.newListVal),expression:"newListVal"}],staticClass:"emfe-select-input",attrs:{"type":"text","placeholder":_vm.addText},domProps:{"value":(_vm.newListVal)},on:{"input":function($event){if($event.target.composing){ return; }_vm.newListVal=$event.target.value;}}}),_vm._v(" "),_c('span',{staticClass:"emfe-select-custab-btn",on:{"click":_vm.newListBtn}},[_vm._v("保存")])]):_vm._e(),_vm._v(" "),_vm._l((_vm.checkList),function(item,itemIndex){return (_vm.type==='checkbox')?_c('label',{key:item.id,staticClass:"emfe-select-label"},[_c('span',{staticClass:"emfe-select-text"},[_vm._v(_vm._s(item.name))]),_vm._v(" "),_c('div',{staticClass:"emfe-select-checkout-box"},[_c('i',{staticClass:"emfe-select-checkout-inner",class:{'emfe-select-checkout-inner-checked': item.checked}}),_vm._v(" "),_c('input',{key:item.id,staticClass:"emfe-select-checkout-status",attrs:{"disabled":item.disabled,"type":"checkbox"},on:{"change":function($event){_vm.getdata(item);}}})])]):_vm._e()}),_vm._v(" "),_vm._l((_vm.checkList),function(item){return (_vm.type==='default')?_c('label',{staticClass:"emfe-select-label emfe-select-delabel",attrs:{"disabled":item.disabled},on:{"click":function($event){_vm.spanTxt(item);}}},[_c('span',{class:{'emfe-select-label-disabled': item.disabled}},[_vm._v(_vm._s(item.name))])]):_vm._e()}),_vm._v(" "),_vm._l((_vm.checkList),function(item){return (_vm.type==='icon')?_c('div',{staticClass:"emfe-select-label emfe-select-delabel",class:{'disabled': item.disabled},attrs:{"disabled":item.disabled},on:{"click":function($event){_vm.spanTxt(item);}}},[_c('img',{staticClass:"emfe-select-icon",attrs:{"src":item.icon,"alt":item.name}}),_vm._v(" "),_c('span',{staticClass:"emfe-select-icon-piece"},[_vm._v(_vm._s(item.name))]),_vm._v(" "),_c('span',{staticClass:"emfe-select-icon-tel"},[_vm._v(_vm._s(item.tel))])]):_vm._e()})],2):_vm._e()])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"emfe-documentclick",rawName:"v-emfe-documentclick",value:(_vm.close),expression:"close"}],staticClass:"emfe-select",class:_vm.selectName},[_c('input',{staticClass:"emfe-select-input",class:_vm.inputName,attrs:{"type":"text","disabled":_vm.newDisabled,"readonly":"","placeholder":_vm.selectText},domProps:{"value":_vm.checkVal},on:{"click":_vm.inpcheck}}),_vm._v(" "),(_vm.flagCheck)?_c('div',{staticClass:"emfe-select-flag"},[(_vm.seleStu==='newList')?_c('div',{staticClass:"emfe-select-custab"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.newListVal),expression:"newListVal"}],staticClass:"emfe-select-input",attrs:{"type":"text","placeholder":_vm.addText},domProps:{"value":(_vm.newListVal)},on:{"input":function($event){if($event.target.composing){ return; }_vm.newListVal=$event.target.value;}}}),_vm._v(" "),_c('span',{staticClass:"emfe-select-custab-btn",on:{"click":_vm.newListBtn}},[_vm._v("保存")])]):_vm._e(),_vm._v(" "),_vm._l((_vm.checkList),function(item,itemIndex){return (_vm.type==='checkbox')?_c('label',{key:item.id,staticClass:"emfe-select-label",class:{'emfe-select-label-disabled': item.disabled}},[_c('span',{staticClass:"emfe-select-text"},[_vm._v(_vm._s(item.name))]),_vm._v(" "),_c('div',{staticClass:"emfe-select-checkout-box"},[_c('i',{staticClass:"emfe-select-checkout-inner",class:{'emfe-select-checkout-inner-checked': item.checked}}),_vm._v(" "),_c('input',{key:item.id,staticClass:"emfe-select-checkout-status",attrs:{"disabled":item.disabled,"type":"checkbox"},on:{"change":function($event){_vm.getdata(item);}}})])]):_vm._e()}),_vm._v(" "),_vm._l((_vm.checkList),function(item){return (_vm.type==='default')?_c('label',{staticClass:"emfe-select-label emfe-select-delabel",attrs:{"disabled":item.disabled},on:{"click":function($event){_vm.spanTxt(item);}}},[_c('span',{class:{'emfe-select-label-disabled': item.disabled}},[_vm._v(_vm._s(item.name))])]):_vm._e()}),_vm._v(" "),_vm._l((_vm.checkList),function(item){return (_vm.type==='icon')?_c('div',{staticClass:"emfe-select-label emfe-select-delabel",class:{'disabled': item.disabled},attrs:{"disabled":item.disabled},on:{"click":function($event){_vm.spanTxt(item);}}},[_c('img',{staticClass:"emfe-select-icon",attrs:{"src":item.icon,"alt":item.name}}),_vm._v(" "),_c('span',{staticClass:"emfe-select-icon-piece"},[_vm._v(_vm._s(item.name))]),_vm._v(" "),_c('span',{staticClass:"emfe-select-icon-tel"},[_vm._v(_vm._s(item.tel))])]):_vm._e()})],2):_vm._e()])},
 staticRenderFns: [],
   name: 'Select',
   data: function data() {
@@ -3500,9 +3503,9 @@ staticRenderFns: [],
         this.checkVals.push(item.name);
       }
       if (hasItem) {
-        this.$emit('checkedopt', item.name, item, this.datas);
-      } else {
         this.$emit('delopt', item.name, item, this.datas);
+      } else {
+        this.$emit('checkedopt', item.name, item, this.datas);
       }
       this.$emit('getAllData', va, item);
     },

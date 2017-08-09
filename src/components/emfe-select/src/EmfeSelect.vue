@@ -6,7 +6,7 @@
         <input type="text" :placeholder="addText" class="emfe-select-input" v-model="newListVal">
         <span class="emfe-select-custab-btn" @click="newListBtn">保存</span>
       </div>
-      <label v-for="(item, itemIndex) in checkList" class="emfe-select-label" v-if="type==='checkbox'" :key="item.id">
+      <label v-for="(item, itemIndex) in checkList" :class="{'emfe-select-label-disabled': item.disabled}" class="emfe-select-label" v-if="type==='checkbox'" :key="item.id">
         <span class="emfe-select-text">{{ item.name }}</span>
         <div class="emfe-select-checkout-box">
           <i class="emfe-select-checkout-inner" :class="{'emfe-select-checkout-inner-checked': item.checked}"></i>
