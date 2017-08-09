@@ -1,5 +1,6 @@
 <template>
   <div class="emfe-smscode" :class="smscodeName">
+    <emfe-icon v-if="icon" className="emfe-smscode" :type="icon"></emfe-icon>
     <input type="number" class="emfe-smscode-input" :class="codeName" :value="nowData" :placeholder="placeholder" @input="input">
     <button class="emfe-smscode-button" @click="click">{{ btnText }}</button>
   </div>
@@ -27,6 +28,7 @@ export default {
       type: String,
       default: '获取验证码',
     },
+    icon: String,
     errorTitle: {
       type: String,
       default: '重试',
@@ -45,6 +47,7 @@ export default {
       return [
         {
           [`${this.className}-smscode`]: !!this.className,
+          'emfe-smscode-input-icon': this.icon,
         },
       ];
     },
