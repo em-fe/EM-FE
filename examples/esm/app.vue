@@ -84,6 +84,27 @@ module.exports = {
                   },
                 },
                 {
+                  title: '电话组合',
+                  icon: 'hotel',
+                  routers: {
+                    path: '/styles/tel',
+                  },
+                },
+                {
+                  title: '图片验证码',
+                  icon: 'hotel',
+                  routers: {
+                    path: '/styles/imgCodepage',
+                  },
+                },
+                {
+                  title: '短信验证码',
+                  icon: 'hotel',
+                  routers: {
+                    path: '/styles/smscodeCodepage',
+                  },
+                },
+                {
                   title: '按钮',
                   icon: 'hotel',
                   routers: {
@@ -210,6 +231,13 @@ module.exports = {
               },
             },
             {
+              title: '进度指引',
+              icon: 'hotel',
+              routers: {
+                path: '/styles/steps',
+              },
+            },
+            {
               title: '面包屑',
               icon: 'hotel',
               routers: {
@@ -333,6 +361,16 @@ module.exports = {
               icon: 'hotel',
               routers: {
                 path: '/functions/slide',
+                query: {
+                  main: 4,
+                },
+              },
+            },
+            {
+              title: '选项拖拽',
+              icon: 'hotel',
+              routers: {
+                path: '/functions/opations',
                 query: {
                   main: 4,
                 },

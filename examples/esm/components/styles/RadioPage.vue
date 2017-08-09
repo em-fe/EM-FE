@@ -1,7 +1,7 @@
 <template>
   <div class="radio-page">
     <h3>简单用法</h3>
-    <emfe-radio index="0" name="group1" :disabled="true">文字</emfe-radio>
+    <emfe-radio index="0" className="diy" name="group1" :disabled="true">文字</emfe-radio>
     <br>
     <br>
     <br>
@@ -70,6 +70,12 @@
         </tr>
       </thead>
       <tbody>
+        <tr>
+          <td>className</td>
+          <td>选填</td>
+          <td>String</td>
+          <td>默认''</td>
+        </tr>
         <tr>
           <td>index</td>
           <td>必须填写</td>

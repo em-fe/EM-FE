@@ -1,8 +1,25 @@
 <template>
   <div>
-    <emfe-slide percent="50" maxPercent="100" slideWidth="476" slideLeft="小" slideRight="大"></emfe-slide>
+    <div class="demo">
+      <emfe-slide :percent="14" maxPercent="100" slideLeft="小" slideRight="大"></emfe-slide>
+    </div>
+    <br>
+    <pre>
+      &lt;emfe-slide percent="50" maxPercent="100" slideLeft="小" slideRight="大"&gt;&lt;/emfe-slide&gt;
+    </pre>
     <br>
     <br>
+    <emfe-slide :percent="val" maxPercent="100" slideLeft="小" slideRight="大" @change="change"></emfe-slide>
+    当前进度: {{ val }}%
+    <br>
+    <pre>
+      &lt;emfe-slide :percent="val" maxPercent="100" slideLeft="小" slideRight="大" @change="change"&gt;&lt;/emfe-slide&gt;
+    </pre>
+    <pre>
+      change(val) {
+        this.val = val;
+      }
+    </pre>
     <br>
     <br>
     <h3>API</h3>
@@ -65,9 +82,9 @@
       </thead>
       <tbody>
         <tr>
-          <td>drag</td>
-          <td>获取到滑动元素和距离左边的距离</td>
-          <td>-</td>
+          <td>change</td>
+          <td>拖动滑块触发</td>
+          <td>滑动元素和距离左边的距离</td>
         </tr>
       </tbody>
     </table>
@@ -76,5 +93,20 @@
 <script>
 export default {
   name: 'editPage',
+  data() {
+    return {
+      val: 14,
+    };
+  },
+  methods: {
+    change(val) {
+      this.val = val;
+    }
+  }
 }
 </script>
+<style>
+.demo {
+  width: 451px;
+}
+</style>

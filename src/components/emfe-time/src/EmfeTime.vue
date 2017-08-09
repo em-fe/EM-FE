@@ -1,11 +1,18 @@
 <template>
   <div class="emfe-time" v-emfe-documentclick="close" :class="timeName">
-    <button class="emfe-time-btn" v-if="!open" @click="toggle">
+    <button class="emfe-time-btn" v-if="!open && !disabled" @click="toggle">
       <span class="emfe-time-btn-text" :class="{'emfe-time-btn-text-choice': choiced}">{{ time }}</span>
       <!-- 日期 -->
       <emfe-icon type="hint" className="emfe-time" v-show="!choiced" @icon-click="toggle"></emfe-icon>
       <!-- 取消 -->
       <emfe-icon type="qr" className="emfe-time" v-show="choiced" @icon-click="cancel"></emfe-icon>
+    </button>
+    <button class="emfe-time-btn emfe-time-btn-disabled" v-if="!open && disabled">
+      <span class="emfe-time-btn-text">{{ time }}</span>
+      <!-- 日期 -->
+      <emfe-icon type="hint" className="emfe-time" v-show="!choiced"></emfe-icon>
+      <!-- 取消 -->
+      <emfe-icon type="qr" className="emfe-time" v-show="choiced"></emfe-icon>
     </button>
     <emfe-transition name="fade">
       <div class="emfe-time-box" v-show="status" :class="{'emfe-time-box-position': !open}">
@@ -61,9 +68,17 @@ export default {
       type: String,
       default: '选择时间',
     },
+    value: {
+      type: String,
+      default: '',
+    },
     confirm: {
       type: Boolean,
       default: true,
+    },
+    disabled: {
+      type: Boolean,
+      type: false,
     },
     // 默认显示
     open: {
@@ -120,6 +135,13 @@ export default {
     for (let i = 0; i < secondNum; i++) {
       this.seconds.push(TimeTool.handleConputedTime(i, this.disabledSeconds));
     }
+    if (this.value) {
+      const vals = this.value.split(':');
+      this.hour = TimeTool.zeroFill(vals[0] - 0);
+      this.minute = TimeTool.zeroFill(vals[1] - 0);
+      this.second = TimeTool.zeroFill(vals[2] - 0);
+      this.choiced = true;
+    }
   },
   methods: {
     setChoice() {
@@ -135,6 +157,7 @@ export default {
         this.setChoice();
         this.hour = hour.num;
         this.$emit('choice', this.time);
+        this.$emit('input', this.time);
       }
     },
     choiceMinute(minute) {
@@ -142,6 +165,7 @@ export default {
         this.setChoice();
         this.minute = minute.num;
         this.$emit('choice', this.time);
+        this.$emit('input', this.time);
       }
     },
     choiceSecond(second) {
@@ -149,6 +173,7 @@ export default {
         this.setChoice();
         this.second = second.num;
         this.$emit('choice', this.time);
+        this.$emit('input', this.time);
       }
     },
     toggle() {
@@ -158,6 +183,7 @@ export default {
       if (!this.open) {
         if (!noClose && this.status) {
           this.$emit('close', this.time);
+          this.$emit('input', this.time);
         }
         this.status = false;
       }
@@ -165,6 +191,7 @@ export default {
     ok() {
       this.close(true);
       this.$emit('ok', this.time);
+      this.$emit('input', this.time);
     },
     cancel() {
       this.choiced = false;
@@ -172,6 +199,7 @@ export default {
       this.minute = '';
       this.second = '';
       this.$emit('cancel', this.time);
+      this.$emit('input', this.time);
     },
   },
 };

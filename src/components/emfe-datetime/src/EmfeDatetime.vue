@@ -1,19 +1,26 @@
 <template>
   <div class="emfe-datetime" v-emfe-documentclick="close">
-    <button class="emfe-datetime-btn" @click.stop="toggle">
+    <button class="emfe-datetime-btn" @click.stop="toggle" v-if="!disabled">
       <span class="emfe-datetime-btn-text" :class="{'emfe-datetime-btn-text-choice': choiced}">{{ dateTime }}</span>
       <!-- 日期 -->
       <emfe-icon type="hint" className="emfe-datetime" v-show="!choiced" @icon-click="toggle"></emfe-icon>
       <!-- 取消 -->
       <emfe-icon type="qr" className="emfe-datetime" v-show="choiced" @icon-click="cancel"></emfe-icon>
     </button>
+    <button class="emfe-datetime-btn emfe-datetime-btn-disabled" v-if="disabled">
+      <span class="emfe-datetime-btn-text">{{ dateTime }}</span>
+      <!-- 日期 -->
+      <emfe-icon type="hint" className="emfe-datetime" v-show="!choiced"></emfe-icon>
+      <!-- 取消 -->
+      <emfe-icon type="qr" className="emfe-datetime" v-show="choiced"></emfe-icon>
+    </button>
     <emfe-transition name="fade">
       <div class="emfe-datetime-main emfe-datetime-main-position" v-show="status">
         <div class="emfe-datetime-type">
-          <emfe-date :format="formatDate" :open="true" :confirm="false" @choice="choiceDate" ref="date" v-show="isDate" :disabledDate="disabledDate"></emfe-date>
+          <emfe-date :format="formatDate" :open="true" :confirm="false" @choice="choiceDate" v-model="date" ref="date" v-show="isDate" :disabledDate="disabledDate"></emfe-date>
           <div class="emfe-datetime-time" v-show="!isDate">
             <div class="emfe-datetime-time-header">{{ date }}</div>
-            <emfe-time className="emfe-datetime" :open="true" :confirm="false" @choice="choiceTime" ref="time" :disabledHours="disabledHours" :disabledMinutes="disabledMinutes" :disabledSeconds="disabledSeconds"></emfe-time>
+            <emfe-time className="emfe-datetime" :open="true" :confirm="false" @choice="choiceTime" v-model="time" ref="time" :disabledHours="disabledHours" :disabledMinutes="disabledMinutes" :disabledSeconds="disabledSeconds"></emfe-time>
           </div>
         </div>
         <div class="emfe-datetime-footer">
@@ -35,9 +42,10 @@ const dateText = '选择日期';
 export default {
   name: 'EmfeDatetime',
   data() {
+    const vals = this.value.split(' ');
     return {
-      date: '',
-      time: timeZero,
+      date: this.value ? vals[0] : '',
+      time: this.value ? vals[1] : timeZero,
       choiced: false,
       isDate: true,
       typeText: timeText,
@@ -53,6 +61,14 @@ export default {
     placeholder: {
       type: String,
       default: '选择日期和时间',
+    },
+    value: {
+      type: String,
+      default: '',
+    },
+    disabled: {
+      type: Boolean,
+      type: false,
     },
     // 参数
     disabledDate: {
@@ -94,17 +110,18 @@ export default {
         });
         newDateTime = `${this.date} ${this.time}`;
       }
+
+      this.$emit('input', newDateTime === this.placeholder ? '' : newDateTime);
+
       return newDateTime;
     },
   },
   methods: {
-    choiceDate(date) {
-      this.date = date;
+    choiceDate() {
       this.choiced = true;
       this.$emit('choice-date', this.dateTime);
     },
-    choiceTime(time) {
-      this.time = time;
+    choiceTime() {
       this.choiced = true;
       this.$emit('choice-time', this.dateTime);
     },
@@ -117,15 +134,18 @@ export default {
       // 让日期组件恢复初始状态
       this.$refs.time.cancel();
       this.$emit('cancel', this.dateTime);
+      this.$emit('input', this.dateTime);
     },
     ok() {
       this.close(true);
       this.$emit('ok', this.dateTime);
+      this.$emit('input', this.dateTime);
     },
     close(e, noClose) {
       if (!this.open) {
         if (!noClose && this.status) {
           this.$emit('close', this.dateTime);
+          this.$emit('input', this.dateTime);
         }
         this.status = false;
       }
@@ -140,7 +160,9 @@ export default {
       }
     },
     toggle() {
-      this.status = !this.status;
+      if (!this.disabled) {
+        this.status = !this.status;
+      }
     },
   },
 };

@@ -12,6 +12,10 @@ import EmfeUpload from './components/emfe-upload/index';
 import EmfeDrag from './components/emfe-drag/index';
 import EmfeColor from './components/emfe-color/index';
 import EmfeInput from './components/emfe-input/index';
+import EmfeTel from './components/emfe-tel/index';
+import EmfeSmscode from './components/emfe-smscode/index';
+import EmfeImgcode from './components/emfe-imgcode/index';
+import EmfeSteps from './components/emfe-steps/index';
 import EmfeNumber from './components/emfe-number/index';
 import EmfeDate from './components/emfe-date/index';
 import EmfeTime from './components/emfe-time/index';
@@ -35,6 +39,7 @@ import EmfeSlide from './components/emfe-slide/index';
 import EmfeHottip from './components/emfe-hottip/index';
 import EmfeCrumb from './components/emfe-crumb/index';
 import EmfeEdit from './components/emfe-edit/index';
+import EmfeOpations from './components/emfe-opations/index';
 // 服务
 import EmfeMessage from './components/emfe-message/index';
 // 指令
@@ -58,6 +63,10 @@ const emfeCpt = {
   EmfeColor,
   EmfeInput,
   EmfeNumber,
+  EmfeTel,
+  EmfeSmscode,
+  EmfeImgcode,
+  EmfeSteps,
   EmfeButton: Button.EmfeButton,
   EmfeButtonGroup: Button.EmfeButtonGroup,
   EmfeSwitch,
@@ -84,6 +93,7 @@ const emfeCpt = {
   EmfeCrumb,
   EmfeHottip,
   EmfeEdit,
+  EmfeOpations,
 };
 
 const emfeDir = {
