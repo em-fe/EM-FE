@@ -1,7 +1,7 @@
 <template>
   <div class="emfe-smscode" :class="smscodeName">
     <emfe-icon v-if="icon" className="emfe-smscode" :type="icon"></emfe-icon>
-    <input type="number" class="emfe-smscode-input" :class="codeName" :value="nowData" :placeholder="placeholder" @input="input">
+    <input type="number" class="emfe-smscode-input" :class="codeName" :value="nowData" :placeholder="placeholder" @input="input" :disabled="newDisabled">
     <button class="emfe-smscode-button" @click="click">{{ btnText }}</button>
   </div>
 </template>
@@ -17,6 +17,7 @@ export default {
       nowData,
       btnText: this.title,
       allTimes: this.times,
+      newDisabled: this.disabled,
     };
   },
   props: {
@@ -29,6 +30,7 @@ export default {
       default: '获取验证码',
     },
     icon: String,
+    disabled: Boolean,
     errorTitle: {
       type: String,
       default: '重试',
@@ -47,7 +49,7 @@ export default {
       return [
         {
           [`${this.className}-smscode`]: !!this.className,
-          'emfe-smscode-input-icon': this.icon,
+          'emfe-smscodeicon': this.icon,
         },
       ];
     },
@@ -55,6 +57,7 @@ export default {
       return [
         {
           [`${this.className}-smscode-code`]: !!this.className,
+          'emfe-smscode-input-icon': this.icon,
         },
       ];
     },
@@ -81,7 +84,7 @@ export default {
       this.$emit('input', val);
     },
     click() {
-      if (go) {
+      if (go && !this.newDisabled) {
         go = false;
         this.auto();
         this.$emit('click');
@@ -97,6 +100,11 @@ export default {
     value(val, oldVal) {
       if (val !== oldVal) {
         this.nowData = val;
+      }
+    },
+    disabled(val, oldVal) {
+      if (val !== oldVal) {
+        this.newDisabled = val;
       }
     },
   },

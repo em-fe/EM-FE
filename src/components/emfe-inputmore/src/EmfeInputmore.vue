@@ -102,7 +102,7 @@ export default {
         const { loops, max, newLoops } = this.$parent;
 
         if (loops.length < max) {
-          loops.push(newLoops);
+          loops.splice(this.index + 1, 0, newLoops);
         }
         this.$emit('plus', loops[this.index], this.index, loops);
       } else {

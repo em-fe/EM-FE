@@ -1,11 +1,11 @@
-$button-icon-size: 16px;
+$button-icon-size: 15px;
 $button-line-size: 2px;
 
 .#{$prefix}inputmore {
   @include border();
 
   width: 100%;
-  height: 34px;
+  height: 32px;
   border-radius: $radius-size;
   position: relative;
 
@@ -15,16 +15,17 @@ $button-line-size: 2px;
     left: 8px;
     top: 50%;
     margin: -8px 0 0;
+    color: $icon-color-default;
   }
 
   &-input {
     border: none;
-    height: 32px;
-    line-height: 32px;
+    height: 30px;
+    line-height: 30px;
     padding: 0 8px;
     font-size: 14px;
     color: $text-color-default;
-    width: calc(100% - 64px);
+    width: calc(100% - 60px);
     float: left;
 
     &-icon {
