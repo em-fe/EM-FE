@@ -16,7 +16,7 @@
     </div>
 
     <!--  -->
-    <emfe-select :datas="data1" seleStu="newList" type="checkbox" @addDataCheck="addDataCheck" @checkedopt="getlist" @delopt="getlist2" @getAllData="getData" selectText="提示文字" :checkVals="checkVals"></emfe-select>
+    <emfe-select :datas="data1" seleStu="newList" type="checkbox" @addDataCheck="addDataCheck" @checkedopt="getlist" @delopt="getlist2" @getAllData="getData" selectText="提示文字"></emfe-select>
     API：包含3个配置项和一个方法：<br>
               自定义属性 :<br>
               :datas="data1"<br>
@@ -66,15 +66,23 @@ export default {
       data1: [
         {
           name: '1',
+          checked: true,
+          disabled: false,
         },
         {
           name: '2',
+          checked: true,
+          disabled: false,
         },
         {
           name: '3',
+          checked: false,
+          disabled: false,
         },
         {
           name: 'esfa',
+          checked: false,
+          disabled: false,
         },
       ],
       data3: [

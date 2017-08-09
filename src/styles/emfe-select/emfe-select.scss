@@ -130,6 +130,10 @@
 
     &-disabled {
       color: $text-color;
+
+      &:hover {
+        cursor: not-allowed;
+      }
     }
   }
 
