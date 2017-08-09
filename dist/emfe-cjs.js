@@ -1,5 +1,5 @@
 /*!
- * EMFE.js v1.0.10
+ * EMFE.js v1.0.11
  * (c) 2014-2017 李梦龙
  * Released under the MIT License.
  */
@@ -2060,6 +2060,195 @@ EmfeInput$1.install = function (Vue$$1) {
   Vue$$1.component(EmfeInput$1.name, EmfeInput$1);
 };
 
+var EmfeInputmore$1 = {
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-inputmore",class:_vm.inputmoreName},[(_vm.icon)?_c('emfe-icon',{attrs:{"className":"emfe-inputmore","type":_vm.icon}}):_vm._e(),_vm._v(" "),_c('input',{staticClass:"emfe-inputmore-input",class:_vm.inputName,attrs:{"placeholder":_vm.newPlaceholder,"type":_vm.type},domProps:{"value":_vm.currentValue},on:{"input":_vm.input}}),_vm._v(" "),_c('button',{staticClass:"emfe-inputmore-button emfe-inputmore-button-plus",class:_vm.addName,on:{"click":_vm.plus}}),_vm._v(" "),_c('button',{staticClass:"emfe-inputmore-button emfe-inputmore-button-reduce",class:_vm.reduceName,on:{"click":_vm.reduce}})],1)},
+staticRenderFns: [],
+  name: 'EmfeInputmore',
+  data: function data() {
+    return {
+      currentValue: this.value,
+      newPlaceholder: this.placeholder,
+      group: this.$parent.isGroup, // 如果是组合
+    };
+  },
+  props: {
+    icon: String,
+    type: {
+      type: String,
+      default: 'text',
+    },
+    placeholder: String,
+    value: {
+      type: [String, Number],
+      default: '',
+    },
+    index: {
+      type: Number,
+      required: true,
+    },
+    className: String,
+  },
+  computed: {
+    inputmoreName: function inputmoreName() {
+      return [
+        ( obj = {}, obj[((this.className) + "-inputmore")] = !!this.className, obj ) ];
+      var obj;
+    },
+    inputName: function inputName() {
+      return [
+        ( obj = {
+          'emfe-inputmore-input-icon': this.icon,
+        }, obj[((this.className) + "-inputmore-input")] = !!this.className, obj ) ];
+      var obj;
+    },
+    addName: function addName() {
+      var hasMax = false;
+      if (this.group) {
+        var ref = this.$parent;
+        var loops = ref.loops;
+        var max = ref.max;
+        hasMax = loops.length === max;
+      }
+      return [
+        ( obj = {
+          'emfe-inputmore-button-plus-disabled': !!hasMax,
+        }, obj[((this.className) + "-inputmore-button-plus")] = !!this.className, obj ) ];
+      var obj;
+    },
+    reduceName: function reduceName() {
+      var hasMin = false;
+      if (this.group) {
+        var ref = this.$parent;
+        var loops = ref.loops;
+        var min = ref.min;
+        hasMin = loops.length === min;
+      }
+      return [
+        ( obj = {
+          'emfe-inputmore-button-reduce-disabled': !!hasMin,
+        }, obj[((this.className) + "-inputmore-button-reduce")] = !!this.className, obj ) ];
+      var obj;
+    },
+  },
+  methods: {
+    input: function input(e) {
+      var val = e.target.value;
+      this.$emit('change', val);
+      this.$emit('input', val);
+    },
+    reduce: function reduce() {
+      if (this.group) {
+        var ref = this.$parent;
+        var loops = ref.loops;
+        var min = ref.min;
+        var now = loops[this.index];
+
+        if (loops.length > min) {
+          loops.splice(this.index, 1);
+        }
+        this.$emit('reduce', now, this.index, loops);
+      } else {
+        this.$emit('reduce', this.index);
+      }
+    },
+    plus: function plus() {
+      if (this.group) {
+        var ref = this.$parent;
+        var loops = ref.loops;
+        var max = ref.max;
+        var newLoops = ref.newLoops;
+
+        if (loops.length < max) {
+          loops.splice(this.index + 1, 0, newLoops);
+        }
+        this.$emit('plus', loops[this.index], this.index, loops);
+      } else {
+        this.$emit('plus', this.index);
+      }
+    },
+  },
+  watch: {
+    value: function value(val, oldVal) {
+      if (val !== oldVal) {
+        this.currentValue = val;
+      }
+    },
+    placeholder: function placeholder(val, oldVal) {
+      if (val !== oldVal) {
+        this.newPlaceholder = val;
+      }
+    },
+  },
+};
+
+var EmfeInputmoreGroup = {
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-inputmore-group",class:_vm.groupName},_vm._l((_vm.loops),function(data,dataIndex){return _c('emfe-inputmore',{key:dataIndex,attrs:{"className":_vm.inputmoreName,"placeholder":data.placeholder || _vm.placeholder,"icon":data.icon || _vm.icon,"type":data.type || _vm.type,"index":dataIndex},on:{"reduce":_vm.reduce,"plus":_vm.plus},model:{value:(data.num),callback:function ($$v) {data.num=$$v;},expression:"data.num"}})}))},
+staticRenderFns: [],
+  name: 'EmfeInputmoreGroup',
+  data: function data() {
+    return {
+      canDelete: true,
+      isGroup: true,
+      loops: this.datas,
+      newLoops: this.new,
+    };
+  },
+  props: {
+    className: String,
+    datas: {
+      type: Array,
+      required: true,
+    },
+    placeholder: String,
+    new: {
+      type: Object,
+      required: true,
+    },
+    type: String,
+    icon: String,
+    max: {
+      type: Number,
+      default: Infinity,
+    },
+    min: {
+      type: Number,
+      default: 1,
+    },
+  },
+  computed: {
+    groupName: function groupName() {
+      return [
+        ( obj = {}, obj[((this.className) + "-inputmore-group")] = !!this.className, obj ) ];
+      var obj;
+    },
+    inputmoreName: function inputmoreName() {
+      var name = this.className ? (" " + (this.className)) : '';
+      return ("emfe-inputmore-group" + name);
+    },
+  },
+  methods: {
+    reduce: function reduce(now, data, datas) {
+      this.$emit('reduce', now, data, datas);
+    },
+    plus: function plus(now, data, datas) {
+      this.$emit('plus', now, data, datas);
+    },
+  },
+};
+
+EmfeInputmore$1.install = function (Vue$$1) {
+  Vue$$1.component(EmfeInputmore$1.name, EmfeInputmore$1);
+};
+
+EmfeInputmoreGroup.install = function (Vue$$1) {
+  Vue$$1.component(EmfeInputmoreGroup.name, EmfeInputmoreGroup);
+};
+
+var EmfeInputmore = {
+  EmfeInputmore: EmfeInputmore$1,
+  EmfeInputmoreGroup: EmfeInputmoreGroup,
+};
+
 var EmfeTel$1 = {
 render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"emfe-documentclick",rawName:"v-emfe-documentclick",value:(_vm.close),expression:"close"}],staticClass:"emfe-tel",class:_vm.telName},[_c('div',{staticClass:"emfe-tel-prefix",class:_vm.prefixName,on:{"click":function($event){$event.stopPropagation();_vm.toggle($event);}}},[_c('img',{directives:[{name:"show",rawName:"v-show",value:(_vm.nowData.url),expression:"nowData.url"}],staticClass:"emfe-tel-prefix-piece",attrs:{"src":_vm.nowData.url,"alt":_vm.nowData.name}}),_vm._v(" "),_c('span',{staticClass:"emfe-tel-prefix-text",class:_vm.prefixTextName},[_vm._v(_vm._s(_vm.nowData.prefix))]),_vm._v(" "),_c('ul',{directives:[{name:"show",rawName:"v-show",value:(_vm.flagStatus),expression:"flagStatus"}],staticClass:"emfe-tel-prefix-flag"},_vm._l((_vm.datas),function(data){return _c('li',{staticClass:"emfe-tel-prefix-label",on:{"click":function($event){$event.stopPropagation();_vm.choice(data);}}},[_c('img',{staticClass:"emfe-tel-prefix-icon",attrs:{"src":data.url,"alt":data.name}}),_vm._v(" "),_c('span',{staticClass:"emfe-tel-prefix-icon-piece"},[_vm._v(_vm._s(data.name))]),_vm._v(" "),_c('span',{staticClass:"emfe-tel-prefix-icon-tel"},[_vm._v(_vm._s(data.prefix))])])}))]),_vm._v(" "),_c('input',{staticClass:"emfe-tel-input",class:_vm.inputName,attrs:{"type":_vm.type,"placeholder":_vm.placeholder},domProps:{"value":_vm.nowData.tel},on:{"input":_vm.telChange}})])},
 staticRenderFns: [],
@@ -2151,7 +2340,7 @@ var timer = null;
 var go = true; // 是否可以继续获取
 
 var EmfeSmscode$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-smscode",class:_vm.smscodeName},[_c('input',{staticClass:"emfe-smscode-input",class:_vm.codeName,attrs:{"type":"number","placeholder":_vm.placeholder},domProps:{"value":_vm.nowData},on:{"input":_vm.input}}),_vm._v(" "),_c('button',{staticClass:"emfe-smscode-button",on:{"click":_vm.click}},[_vm._v(_vm._s(_vm.btnText))])])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-smscode",class:_vm.smscodeName},[(_vm.icon)?_c('emfe-icon',{attrs:{"className":"emfe-smscode","type":_vm.icon}}):_vm._e(),_vm._v(" "),_c('input',{staticClass:"emfe-smscode-input",class:_vm.codeName,attrs:{"type":"number","placeholder":_vm.placeholder,"disabled":_vm.newDisabled},domProps:{"value":_vm.nowData},on:{"input":_vm.input}}),_vm._v(" "),_c('button',{staticClass:"emfe-smscode-button",on:{"click":_vm.click}},[_vm._v(_vm._s(_vm.btnText))])],1)},
 staticRenderFns: [],
   name: 'EmfeSmscode',
   data: function data() {
@@ -2160,6 +2349,7 @@ staticRenderFns: [],
       nowData: nowData,
       btnText: this.title,
       allTimes: this.times,
+      newDisabled: this.disabled,
     };
   },
   props: {
@@ -2171,6 +2361,8 @@ staticRenderFns: [],
       type: String,
       default: '获取验证码',
     },
+    icon: String,
+    disabled: Boolean,
     errorTitle: {
       type: String,
       default: '重试',
@@ -2187,12 +2379,16 @@ staticRenderFns: [],
   computed: {
     smscodeName: function smscodeName() {
       return [
-        ( obj = {}, obj[((this.className) + "-smscode")] = !!this.className, obj ) ];
+        ( obj = {
+          'emfe-smscodeicon': this.icon,
+        }, obj[((this.className) + "-smscode")] = !!this.className, obj ) ];
       var obj;
     },
     codeName: function codeName() {
       return [
-        ( obj = {}, obj[((this.className) + "-smscode-code")] = !!this.className, obj ) ];
+        ( obj = {
+          'emfe-smscode-input-icon': this.icon,
+        }, obj[((this.className) + "-smscode-code")] = !!this.className, obj ) ];
       var obj;
     },
   },
@@ -2218,7 +2414,7 @@ staticRenderFns: [],
       this.$emit('input', val);
     },
     click: function click() {
-      if (go) {
+      if (go && !this.newDisabled) {
         go = false;
         this.auto();
         this.$emit('click');
@@ -2234,6 +2430,11 @@ staticRenderFns: [],
     value: function value(val, oldVal) {
       if (val !== oldVal) {
         this.nowData = val;
+      }
+    },
+    disabled: function disabled(val, oldVal) {
+      if (val !== oldVal) {
+        this.newDisabled = val;
       }
     },
   },
@@ -3179,7 +3380,7 @@ EmfeTitle$1.install = function (Vue$$1) {
 };
 
 var EmfeRadio = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('label',{staticClass:"emfe-radio clearfix",class:[{'emfe-radio-checked': _vm.status},_vm.labelClass]},[_c('i',{staticClass:"emfe-radio-img",class:{'emfe-radio-img-checked': _vm.status, 'emfe-radio-img-disabled': _vm.disabled}}),_vm._v(" "),_c('input',{staticClass:"emfe-radio-input",class:_vm.inputClass,attrs:{"type":"radio","name":_vm.name,"disabled":_vm.disabled},on:{"change":_vm.change}}),_vm._v(" "),_c('span',{staticClass:"emfe-radio-text",class:_vm.textClass},[_vm._t("default")],2)])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('label',{staticClass:"emfe-radio clearfix",class:[{'emfe-radio-checked': _vm.status},_vm.labelClass]},[_c('i',{staticClass:"emfe-radio-img",class:{'emfe-radio-img-checked': _vm.status, 'emfe-radio-img-disabled': _vm.disabled}}),_vm._v(" "),_c('input',{staticClass:"emfe-radio-input",class:_vm.inputClass,attrs:{"type":"radio","name":_vm.name,"disabled":_vm.disabled},on:{"change":_vm.change}}),_vm._v(" "),_c('span',{staticClass:"emfe-radio-text",class:_vm.textClass},[_vm._t("default")],2),_vm._v(" "),(_vm.slideShow)?_c('div',{staticClass:"emfe-radio-slide"},[_c('transition',{attrs:{"name":"fade"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.status),expression:"status"}],staticClass:"emfe-radio-slide-wrap"},[_vm._t("slide")],2)])],1):_vm._e()])},
 staticRenderFns: [],
     name: 'EmfeRadio',
     data: function data() {
@@ -3188,6 +3389,10 @@ staticRenderFns: [],
       };
     },
     props: {
+      slideShow: {
+        type: Boolean,
+        default: false,
+      },
       index: {
         tyep: String,
         required: true,
@@ -3206,10 +3411,16 @@ staticRenderFns: [],
         type: String,
         default: '',
       },
+      inline: String,
     },
     computed: {
       labelClass: function labelClass() {
-        return this.className ? ((this.className) + "-radio") : '';
+        // return this.className ? `${this.className}-radio` : '';
+        return [
+          ( obj = {
+            'emfe-radio-inline': this.inline,
+          }, obj[((this.className) + "-radio")] = !!this.className, obj ) ];
+        var obj;
       },
       inputClass: function inputClass() {
         return this.className ? ((this.className) + "-radio-input") : '';
@@ -4400,12 +4611,12 @@ EmfeEdit$1.install = function (Vue$$1) {
 };
 
 var EmfeOpations$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-opations",class:_vm.opationsName},[_vm._l((_vm.opationsData),function(item,index){return _c('div',{key:index,staticClass:"emfe-opations-main"},[_c('i',{staticClass:"emfe-opations-icon emfe-opations-radio"}),_vm._v(" "),_c('emfe-input',{attrs:{"placeholder":item.text,"className":"emfe-opations"}}),_vm._v(" "),_c('i',{directives:[{name:"show",rawName:"v-show",value:(item.plusFlg),expression:"item.plusFlg"}],staticClass:"emfe-opations-icon emfe-opations-plus",class:{'emfe-opations-margin-right': !item.minusFlg},on:{"click":function($event){_vm.plus(index);}}}),_vm._v(" "),_c('i',{directives:[{name:"show",rawName:"v-show",value:(item.minusFlg),expression:"item.minusFlg"}],staticClass:"emfe-opations-icon emfe-opations-minus",class:{'emfe-opations-margin-left': !item.plusFlg},on:{"click":function($event){_vm.minus(index);}}}),_vm._v(" "),_c('i',{staticClass:"emfe-opations-icon emfe-opations-drag"})],1)}),_vm._v(" "),_c('div',{staticClass:"emfe-opations-operation"},[_c('div',{staticClass:"emfe-opations-operation-other",on:{"click":_vm.otherPlus}},[_vm._v("其他选项")])])],2)},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-opations",class:_vm.opationsName},[_vm._l((_vm.opationsData),function(item,index){return _c('div',{key:index,staticClass:"emfe-opations-main"},[_c('i',{staticClass:"emfe-opations-icon emfe-opations-radio"}),_vm._v(" "),_c('emfe-input',{attrs:{"placeholder":item.text,"className":"emfe-opations"}}),_vm._v(" "),_c('i',{directives:[{name:"show",rawName:"v-show",value:(item.plusFlg),expression:"item.plusFlg"}],staticClass:"emfe-opations-icon emfe-opations-plus",class:{'emfe-opations-margin-right': !item.minusFlg},on:{"click":function($event){_vm.plus(index);}}}),_vm._v(" "),_c('i',{directives:[{name:"show",rawName:"v-show",value:(item.minusFlg),expression:"item.minusFlg"}],staticClass:"emfe-opations-icon emfe-opations-minus",class:{'emfe-opations-margin-left': !item.plusFlg},on:{"click":function($event){_vm.minus(index);}}}),_vm._v(" "),_c('i',{staticClass:"emfe-opations-icon emfe-opations-drag"})],1)}),_vm._v(" "),_c('div',{staticClass:"emfe-opations-operation"},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.clickFlg),expression:"clickFlg"}],staticClass:"emfe-opations-operation-other",on:{"click":_vm.otherPlus}},[_vm._v("其他选项")])])],2)},
 staticRenderFns: [],
   name: 'EmfeOpations',
   data: function data() {
     return {
-      clickNum: 0,
+      clickFlg: true,
     };
   },
   props: {
@@ -4441,12 +4652,29 @@ staticRenderFns: [],
       this.opationsData[index].minusFlg = true;
     },
     minus: function minus(index) {
-      this.opationsData.splice(index, 1);
-      if (this.opationsData.length <= 1) {
-        this.opationsData[index - 1].minusFlg = false;
-      }
-      if (this.clickNum !== 0) {
-        this.clickNum = 0;
+      if (!this.clickFlg) {
+        if (index === this.opationsData.length - 1) {
+          this.opationsData.splice(index, 1);
+          this.clickFlg = true;
+        } else {
+          this.opationsData.splice(index, 1);
+          if (this.opationsData.length <= 2) {
+            if (index === 0) {
+              this.opationsData[index].minusFlg = false;
+            } else {
+              this.opationsData[index - 1].minusFlg = false;
+            }
+          }
+        }
+      } else {
+        this.opationsData.splice(index, 1);
+        if (this.opationsData.length <= 1) {
+          if (index === 0) {
+            this.opationsData[index].minusFlg = false;
+          } else {
+            this.opationsData[index - 1].minusFlg = false;
+          }
+        }
       }
     },
     otherPlus: function otherPlus() {
@@ -4455,10 +4683,10 @@ staticRenderFns: [],
         plusFlg: false,
         minusFlg: true,
       };
-      if (this.clickNum === 0) {
+      if (this.clickFlg) {
         this.opationsData.splice(this.opationsData.length, 0, obj);
       }
-      this.clickNum++;
+      this.clickFlg = false;
     },
   },
 };
@@ -4631,6 +4859,8 @@ var emfeCpt = {
   EmfeDrag: EmfeDrag$1,
   EmfeColor: EmfeColor$1,
   EmfeInput: EmfeInput$1,
+  EmfeInputmore: EmfeInputmore.EmfeInputmore,
+  EmfeInputmoreGroup: EmfeInputmore.EmfeInputmoreGroup,
   EmfeNumber: EmfeNumber$1,
   EmfeTel: EmfeTel$1,
   EmfeSmscode: EmfeSmscode$1,
