@@ -2,10 +2,10 @@
   <div class="emfe-edit" :class="editBox">
     <div class="emfe-edit-wrap" v-for="(one, index) in oneList" :key="index">
       <div class="emfe-edit-left" @click="openTwoList(index)">
-        <div class="emfe-edit-left-one" :class="{'emfe-edit-left-one-open': one.openFlg}" ref="inputFocus">
+        <div class="emfe-edit-left-one" :class="{'emfe-edit-left-one-open': openFlg === index}" ref="inputFocus">
           <emfe-input v-model="one.name" className='emfe-edit-left-one'></emfe-input>
         </div>
-        <div class="emfe-edit-left-two" v-for="(two, ind) in one.twoList" v-show="one.openFlg">
+        <div class="emfe-edit-left-two" v-for="(two, ind) in one.sub_choices" v-show="openFlg === index">
           <div class="emfe-edit-left-two-text">
             <emfe-input v-model="two.name" className='emfe-edit-left-two'></emfe-input>
           </div>
@@ -29,6 +29,7 @@ export default {
     return {
       oneReduceFlg: true,
       twoReduceFlg: true,
+      openFlg: -1,
     };
   },
   props: {
@@ -57,12 +58,7 @@ export default {
   },
   methods: {
     openTwoList(index) {
-      this.oneList.forEach((ele) => {
-        console.log(1, ele);
-        ele.openFlg = false;
-      });
-      this.oneList[index].openFlg = true;
-      console.log(index, this.oneList);
+      this.openFlg = index;
     },
     addOneList(index) {
       const newAddObj = O.copy(this.addOneObj);
@@ -82,14 +78,14 @@ export default {
       }
     },
     addTwoList(index, ind) {
-      this.oneList[index].twoList.splice(ind + 1, 0, O.copy(this.addTwoObj));
+      this.oneList[index].sub_choices.splice(ind + 1, 0, O.copy(this.addTwoObj));
       this.twoReduceFlg = true;
     },
     reduceTwoList(index, ind) {
-      if (this.oneList[index].twoList.length >= 2) {
-        this.oneList[index].twoList.splice(ind, 1);
+      if (this.oneList[index].sub_choices.length >= 2) {
+        this.oneList[index].sub_choices.splice(ind, 1);
       }
-      if (this.oneList[index].twoList.length <= 1) {
+      if (this.oneList[index].sub_choices.length <= 1) {
         this.twoReduceFlg = false;
       }
     },
