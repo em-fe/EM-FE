@@ -46,6 +46,14 @@
       <emfe-table-body slot="body"  v-for="(dataList,index) in data" :ind="index" key="index" :dataList="dataList">
       </emfe-table-body>
     </emfe-table>
+    <br>
+    <p>当表单没有数据的时候，nothingText是提示文字</p>
+    <emfe-table :columns="column1" :data="data10" nothingText="我这里没有数据呀！">
+      <emfe-table-head  slot="head" >
+      </emfe-table-head>
+      <emfe-table-body slot="body"  v-for="(dataList,index) in data10" :ind="index" key="index" :dataList="dataList">
+      </emfe-table-body>
+    </emfe-table>
     <h3>API</h3>
     <table style="width:100%;text-align:center" class="table">
       <thead>
@@ -92,6 +100,12 @@
           <td>需要type传 ‘true’，同时，data数据中row的value要传ture,row是确定那个td要合并，在该td下的td的text需要传""。</td>
           <td>Boolean</td>
           <td>false</td>
+        </tr>
+        <tr height="100px">
+          <td>nothingText</td>
+          <td>表单没有数据时候的提示文字！</td>
+          <td>String</td>
+          <td>默认为“暂无数据”</td>
         </tr>
       </tbody>
     </table>
@@ -204,6 +218,7 @@ export default {
           key: 'address7',
         },
       ],
+      data10: [],
       data1: [
         {
           name: {text:'王小明', row:false},

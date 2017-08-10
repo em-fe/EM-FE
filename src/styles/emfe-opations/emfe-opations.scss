@@ -2,6 +2,11 @@
   width: 100%;
   position: relative;
 
+  &-box {
+    width: 100%;
+    position: relative;
+  }
+
   &-main {
     display: flex;
     align-items: center;
@@ -56,6 +61,8 @@
 
   &-input {
     flex: 1;
+    -webkit-user-select: none;
+    user-select: none;
   }
 
   &-operation {
