@@ -4,6 +4,17 @@
 
   height: 34px;
   border-radius: $radius-size;
+  position: relative;
+
+  &-icon {
+    position: absolute;
+    top: 50%;
+    left: 8px;
+    margin: -8px 0 0;
+    font-size: 16px;
+    line-height: 1;
+    color: $icon-color-default;
+  }
 
   &-input {
     float: left;
@@ -12,8 +23,13 @@
     height: 32px;
     line-height: 32px;
     padding: 0 8px;
-    font-size: 16px;
+    font-size: 14px;
     color: $text-color-default;
+    border-radius: $radius-size;
+
+    &-icon {
+      padding: 0 8px 0 32px;
+    }
   }
 
   &-button {
@@ -26,7 +42,7 @@
     cursor: pointer;
     background: $background-color-title;
     color: $brand-color-default;
-    font-size: 18px;
+    font-size: 14px;
 
     &:hover {
       background: $brand-color-hover;
