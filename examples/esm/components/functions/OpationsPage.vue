@@ -1,6 +1,6 @@
 <template>
   <div class="emfe-opations-page">
-    <emfe-opations :opationsData="opationsData"></emfe-opations>
+    <emfe-opations :opationsData="opationsData" :margin="margin"></emfe-opations>
   </div>
 </template>
 <script>
@@ -25,6 +25,7 @@ export default {
           minusFlg: true,
         },
       ],
+      margin: 16,
     };
   },
 };

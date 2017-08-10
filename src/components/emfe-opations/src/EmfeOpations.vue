@@ -1,13 +1,15 @@
 <template>
   <div class="emfe-opations" :class="opationsName">
-    <div class="emfe-opations-main" v-for="(item, index) in opationsData" :key="index" >
-      <i class="emfe-opations-icon emfe-opations-radio"></i>
-      <emfe-input :placeholder="item.text" className="emfe-opations"></emfe-input>
-      <i class="emfe-opations-icon emfe-opations-plus" @click="plus(index)" v-show="item.plusFlg" 
-      :class="{'emfe-opations-margin-right': !item.minusFlg}"></i>
-      <i class="emfe-opations-icon emfe-opations-minus" @click="minus(index)" v-show="item.minusFlg"
-      :class="{'emfe-opations-margin-left': !item.plusFlg}"></i>
-      <i class="emfe-opations-icon emfe-opations-drag"></i>
+    <div class="emfe-opations-box" ref="dropBox">
+      <div class="emfe-opations-main" v-for="(item, index) in opationsData" :key="index" ref="dragBox" :index="index">
+        <i class="emfe-opations-icon emfe-opations-radio"></i>
+        <emfe-input :placeholder="item.text" className="emfe-opations"></emfe-input>
+        <i class="emfe-opations-icon emfe-opations-plus" @click="plus(index)" v-show="item.plusFlg" 
+        :class="{'emfe-opations-margin-right': !item.minusFlg}"></i>
+        <i class="emfe-opations-icon emfe-opations-minus" @click="minus(index)" v-show="item.minusFlg"
+        :class="{'emfe-opations-margin-left': !item.plusFlg}"></i>
+        <i class="emfe-opations-icon emfe-opations-drag"></i>
+      </div>
     </div>
     <div class="emfe-opations-operation">
       <div class="emfe-opations-operation-other" @click="otherPlus" v-show="clickFlg">其他选项</div>
@@ -32,9 +34,6 @@ export default {
     },
     opationsData: {
       type: Array,
-    },
-    ind: {
-      type: [String, Number],
     },
   },
   computed: {

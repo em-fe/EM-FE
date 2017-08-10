@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="dataPanelPage">
-      <emfe-datapanel title="总收集量" contentText="1234">
+      <emfe-datapanel title="总收集量" contentText="1234" companyText="人" iconFlg="true">
         <div slot="tipText">aaaaaaaaa</div>
       </emfe-datapanel>
     </div>
@@ -46,6 +46,18 @@
           <td>contentText</td>
           <td>数据模板的内容文字</td>
           <td>String</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>companyText</td>
+          <td>单位文字</td>
+          <td>String</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>iconFlg</td>
+          <td>是否有图标</td>
+          <td>Boolean</td>
           <td>-</td>
         </tr>
       </tbody>
