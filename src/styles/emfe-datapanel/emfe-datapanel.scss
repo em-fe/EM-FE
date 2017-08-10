@@ -1,8 +1,14 @@
 .#{$prefix}datapanel {
   width: 100%;
-  height: 96px;
   background: $background-color-title;
-  padding: 24px 0 16px 40px;
+  padding: 16px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &-box {
+    text-align: left;
+  }
 
   &-title {
     width: 100%;
@@ -17,9 +23,24 @@
 
   &-main {
     margin-top: 16px;
-    font-size: 20px;
-    line-height: 24px;
-    color: $text-color-default;
+    display: flex;
+    align-items: flex-end;
+
+    &-content {
+      font-size: 24px;
+      line-height: 20px;
+      font-weight: bold;
+      display: block;
+      color: $auxiliary-color-success;
+    }
+
+    &-company {
+      font-size: 14px;
+      line-height: 14px;
+      display: block;
+      color: $text-color-default;
+      margin-left: 8px;
+    }
   }
 
   &-mark-icon {
