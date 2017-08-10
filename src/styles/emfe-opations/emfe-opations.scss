@@ -1,10 +1,20 @@
 .#{$prefix}opations {
   width: 100%;
+  position: relative;
 
   &-main {
     display: flex;
     align-items: center;
     margin-bottom: 16px;
+    width: 100%;
+  }
+
+  &-hr {
+    @include border(all, $border-color, 1px, dashed);
+
+    height: 32px;
+    margin-bottom: 16px;
+    border-radius: $radius-size;
   }
 
   &-icon {
