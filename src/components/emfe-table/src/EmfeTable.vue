@@ -7,7 +7,7 @@
           <slot name="body"></slot>
         </tbody>
       </table>
-      <div class="emfe-box-nothing" v-if="!data.length">没有数据</div>
+      <div class="emfe-box-nothing" v-if="!data.length">{{nothingText}}</div>
     </div>
   </div>
 </template>
@@ -39,6 +39,10 @@ export default {
       default() {
         return [];
       },
+    },
+    nothingText: {
+      type: String,
+      default: '暂无数据',
     },
     classAddName: {
       type: String,
