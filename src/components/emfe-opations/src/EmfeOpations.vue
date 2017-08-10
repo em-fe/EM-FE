@@ -31,12 +31,16 @@ const hrBorderSize = 1;
 // 其他常量
 const otherConstant = (itemMarginBottom / 2) - hrBorderSize;
 
+let lastHit = -1;
+let lastDrag = -1;
+
 export default {
   name: 'EmfeOpations',
   data() {
     return {
       clickFlg: !this.other,
       datas: [],
+      hits: [],
     };
   },
   props: {
@@ -76,7 +80,7 @@ export default {
   mounted() {
     this.opationsData.forEach((od, odIndex) => {
       const newOd = {
-        text: od.text,
+        text: od,
       };
       newOd.style = {};
       newOd.hrStatus = false;
@@ -85,6 +89,7 @@ export default {
         newOd.noPlus = true;
       }
       this.datas.push(newOd);
+      this.hits.push(false);
     });
   },
   methods: {
@@ -92,8 +97,9 @@ export default {
       let hit = false;
       const twoTop = getElementTop(two) - this.scrollTop;
       const twoBottom = twoTop + two.clientHeight;
-      const { clientY } = one;
-      if (clientY <= twoBottom && clientY >= twoTop) {
+      const oneTop = getElementTop(one) - this.scrollTop;
+      const oneBottom = oneTop + one.clientHeight;
+      if (oneTop <= twoBottom && oneBottom >= twoTop) {
         hit = true;
       }
       return hit;
@@ -119,18 +125,33 @@ export default {
       const { index, style } = this.item;
       const disPosY = e.pageY - refPos.y;
       style.top = `${this.elTop + disPosY}px`;
+
       hits.forEach((hit, hitIndex) => {
         if (hitIndex !== index) {
-          const isHit = this.testHit(e, hit);
+          const isHit = this.testHit(hits[index], hit);
           if (isHit) {
-            this.item.index = hitIndex;
-            this.datas[hitIndex].index = index;
-            _.swap(this.datas, hitIndex, index);
-            _.swap(this.opationsData, hitIndex, index);
-            this.$emit('swap', this.item, hitIndex, index);
+            if (!this.hits[hitIndex] && !this.hits[index]) {
+              lastHit = hitIndex;
+              lastDrag = index;
+              this.hits[hitIndex] = true;
+              this.hits[index] = true;
+              this.item.index = hitIndex;
+              this.datas[hitIndex].index = index;
+              _.swap(this.datas, hitIndex, index);
+              _.swap(this.opationsData, hitIndex, index);
+              this.$emit('swap', this.item, hitIndex, index);
+            }
           }
         }
       });
+      // 当刚刚交换的两个元素，不在碰上的时候，允许检测
+      if (lastHit !== -1) {
+        const { offsetTop, clientHeight } = hits[lastHit];
+        if (Math.abs(offsetTop - hits[lastDrag].offsetTop) > clientHeight + 4) {
+          this.hits[lastHit] = false;
+          this.hits[lastDrag] = false;
+        }
+      }
       this.$emit('move', this.item);
       e.preventDefault();
       return false;
@@ -138,11 +159,7 @@ export default {
     up() {
       document.removeEventListener('mousemove', this.move, false);
       document.removeEventListener('mouseup', this.up, false);
-      this.item.style = {
-        position: 'relative',
-        left: 0,
-        top: 0,
-      };
+      this.item.style = {};
       this.item.hrStatus = false;
       this.item = {};
       this.$emit('up');
@@ -155,7 +172,8 @@ export default {
       };
       this.datas.splice(index + 1, 0, obj);
       this.opationsData.splice(index + 1, 0, '');
-      this.$emit('plus', this.opationsData[index], index);
+      console.log(this.datas[index], index, 0);
+      this.$emit('plus', this.datas[index], index);
     },
     minus(index) {
       if (!this.clickFlg && index === this.datas.length - 1) {
@@ -163,7 +181,7 @@ export default {
       }
       this.datas.splice(index, 1);
       this.opationsData.splice(index, 1);
-      this.$emit('minus', this.opationsData[index], index);
+      this.$emit('minus', this.datas[index], index);
     },
     otherPlus() {
       const obj = {
@@ -177,7 +195,7 @@ export default {
         this.opationsData.splice(this.datas.length, 0, '');
       }
       this.clickFlg = false;
-      this.$emit('otherplus', this.opationsData[this.datas.length - 1], this.datas.length - 1);
+      this.$emit('otherplus', this.datas[this.datas.length - 1], this.datas.length - 1);
     },
   },
 };
