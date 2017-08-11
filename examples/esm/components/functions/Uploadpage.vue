@@ -1,8 +1,12 @@
 <template>
   <div class="uploadpage">
-    <emfe-upload @upload="upload" action="http://esc.inner.evente.cn:30251/upload/upload">
-      <button>上传</button>
-    </emfe-upload>
+    <emfe-upload type="icon" @upload="upload" action="http://gateway.inner.evente.cn:8000/upload/upload"></emfe-upload>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <emfe-upload @upload="upload" action="http://gateway.inner.evente.cn:8000/upload/upload"></emfe-upload>
   </div>
 </template>
 <script>

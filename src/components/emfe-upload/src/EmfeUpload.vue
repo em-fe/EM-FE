@@ -1,15 +1,35 @@
 <template>
   <div class="emfe-upload" :class="uploadName">
-    <button class="emfe-upload-btn" :class="btnName">+</button>
-    <input class="emfe-upload-file" :class="fileName" type="file" @change="change">
+    <template v-if="type === 'icon'">
+      <emfe-button v-show="!src" theme="default" className="ddd" type="hint">上传图片</emfe-button>
+      <input v-show="!src" class="emfe-upload-file" :class="fileName" type="file" @change="change">
+      <div v-show="src" class="emfe-upload-icon-box">
+        <img class="emfe-upload-icon-box-img" :src="src">
+        <i class="emfe-upload-icon-box-close" @click="close">+</i>
+      </div>
+    </template>
+    <template v-if="type === 'plus'">
+      <button v-show="!src" class="emfe-upload-btn" :class="btnName">+</button>
+      <input v-show="!src" class="emfe-upload-file" :class="fileName" type="file" @change="change">
+      <img v-show="src" width="100%" :src="src">
+    </template>
   </div>
 </template>
 <script>
 import _ from '../../../tools/lodash';
 import ajax from './ajax';
 
+let canUpload = true;
+
 export default {
   name: 'upload',
+  data() {
+    return {
+      src: '',
+      fileList: [],
+      tempIndex: 1,
+    };
+  },
   props: {
     type: {
       validator(value) {
@@ -120,12 +140,6 @@ export default {
       },
     },
   },
-  data() {
-    return {
-      fileList: [],
-      tempIndex: 1,
-    };
-  },
   computed: {
     uploadName() {
       return [
@@ -188,22 +202,32 @@ export default {
         }
       }
 
-      this.handleStart(file);
+      if (canUpload) {
+        this.handleStart(file);
 
-      ajax({
-        headers: this.headers,
-        withCredentials: this.withCredentials,
-        file,
-        data: this.data,
-        filename: this.name,
-        action: this.action,
-        onSuccess: (res) => {
-          this.handleSuccess(res, file);
-        },
-        onError: (err, response) => {
-          this.handleError(err, response, file);
-        },
-      });
+        this.canUpload = false;
+
+        ajax({
+          headers: this.headers,
+          withCredentials: this.withCredentials,
+          file,
+          data: this.data,
+          filename: this.name,
+          action: this.action,
+          onSuccess: (res) => {
+            canUpload = true;
+            if (res.code === 10000) {
+              this.handleSuccess(res, file);
+            } else {
+              this.handleError(res);
+            }
+          },
+          onError: (err, response) => {
+            canUpload = true;
+            this.handleError(err, response, file);
+          },
+        });
+      }
 
       return false;
     },
@@ -225,6 +249,7 @@ export default {
       if (fileData) {
         fileData.status = 'finished';
         fileData.response = res;
+        this.loadImg(res.data.resource_url);
         this.onSuccess(res, fileData, this.fileList);
       }
     },
@@ -246,6 +271,16 @@ export default {
         return !target;
       });
       return target;
+    },
+    loadImg(src) {
+      const img = new Image();
+      img.src = src;
+      img.onload = () => {
+        this.src = src;
+      };
+    },
+    close() {
+      this.src = '';
     },
   },
 };
