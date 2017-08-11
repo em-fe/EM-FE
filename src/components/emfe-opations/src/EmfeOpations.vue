@@ -78,21 +78,26 @@ export default {
     },
   },
   mounted() {
-    this.opationsData.forEach((od, odIndex) => {
-      const newOd = {
-        text: od,
-      };
-      newOd.style = {};
-      newOd.hrStatus = false;
-      newOd.index = odIndex;
-      if (this.other && odIndex === this.opationsData.length - 1) {
-        newOd.noPlus = true;
-      }
-      this.datas.push(newOd);
-      this.hits.push(false);
-    });
+    this.handleData();
   },
   methods: {
+    handleData() {
+      this.datas = [];
+      this.hits = [];
+      this.opationsData.forEach((od, odIndex) => {
+        const newOd = {
+          text: od,
+        };
+        newOd.style = {};
+        newOd.hrStatus = false;
+        newOd.index = odIndex;
+        if (this.other && odIndex === this.opationsData.length - 1) {
+          newOd.noPlus = true;
+        }
+        this.datas.push(newOd);
+        this.hits.push(false);
+      });
+    },
     testHit(one, two) {
       let hit = false;
       const twoTop = getElementTop(two) - this.scrollTop;
@@ -196,6 +201,16 @@ export default {
       }
       this.clickFlg = false;
       this.$emit('otherplus', this.datas[this.datas.length - 1], this.datas.length - 1);
+    },
+  },
+  watch: {
+    opationsData() {
+      this.handleData();
+    },
+    other(val, oldVal) {
+      if (val !== oldVal) {
+        this.clickFlg = !val;
+      }
     },
   },
 };
