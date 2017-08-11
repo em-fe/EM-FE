@@ -1,4 +1,13 @@
 .#{$prefix}upload {
+  &-file {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+  }
+
   &-plus {
     position: relative;
     width: 160px;
@@ -10,13 +19,41 @@
       width: 100%;
       height: 100%;
     }
+  } // end emfe-upload-plus
 
-    &-file {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
+  &-icon {
+    width: 128px;
+    position: relative;
+
+    &-box {
+      width: 128px;
+      height: 80px;
+      position: relative;
+      padding: 10px 10px 0 0;
+
+      &-img {
+        display: block;
+        width: 118px;
+        height: 70px;
+      }
+
+      &-close {
+        @include border(all, $auxiliary-color-danger);
+
+        width: 16px;
+        height: 16px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        color: $auxiliary-color-danger;
+        border-radius: 8px;
+        font-size: 20px;
+        text-align: center;
+        line-height: 14px;
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+        cursor: pointer;
+      }
     }
   }
 }
