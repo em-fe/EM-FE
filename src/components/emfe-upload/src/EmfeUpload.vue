@@ -1,8 +1,8 @@
 <template>
   <div class="emfe-upload" :class="uploadName">
     <template v-if="type === 'icon'">
-      <emfe-button v-show="!src" theme="default" className="ddd" type="hint">上传图片</emfe-button>
-      <input v-show="!src" class="emfe-upload-file" :class="fileName" type="file" @change="change">
+      <emfe-button :disabled="disabled" v-show="!src" theme="default" className="ddd" type="hint">上传图片</emfe-button>
+      <input v-show="!src" class="emfe-upload-file" :class="fileName" :disabled="disabled" type="file" @change="change">
       <div v-show="src" class="emfe-upload-icon-box">
         <img class="emfe-upload-icon-box-img" :src="src">
         <i class="emfe-upload-icon-box-close" @click="close">+</i>
@@ -10,7 +10,7 @@
     </template>
     <template v-if="type === 'plus'">
       <button v-show="!src" class="emfe-upload-btn" :class="btnName">+</button>
-      <input v-show="!src" class="emfe-upload-file" :class="fileName" type="file" @change="change">
+      <input v-show="!src" class="emfe-upload-file" :class="fileName" :disabled="disabled" type="file" @change="change">
       <img v-show="src" width="100%" :src="src">
     </template>
   </div>
@@ -37,14 +37,7 @@ export default {
       },
       default: 'plus',
     },
-    imageMore: {
-      type: [Boolean, String],
-      default: false,
-    },
-    imageNumber: {
-      type: [Number, String],
-      default: 1,
-    },
+    disabled: Boolean,
     className: {
       type: String,
       default: '',
@@ -59,10 +52,6 @@ export default {
         return {};
       },
     },
-    multiple: {
-      type: Boolean,
-      default: false,
-    },
     data: {
       type: Object,
     },
@@ -74,29 +63,16 @@ export default {
       type: Boolean,
       default: false,
     },
-    showUploadList: {
-      type: Boolean,
-      default: true,
-    },
     format: {
       type: Array,
       default() {
         return [];
       },
     },
-    accept: {
-      type: String,
-    },
     maxSize: {
       type: Number,
     },
     beforeUpload: Function,
-    onProgress: {
-      type: Function,
-      default() {
-        return {};
-      },
-    },
     onSuccess: {
       type: Function,
       default() {
@@ -104,18 +80,6 @@ export default {
       },
     },
     onError: {
-      type: Function,
-      default() {
-        return {};
-      },
-    },
-    onRemove: {
-      type: Function,
-      default() {
-        return {};
-      },
-    },
-    onPreview: {
       type: Function,
       default() {
         return {};
@@ -133,12 +97,6 @@ export default {
         return {};
       },
     },
-    defaultFileList: {
-      type: Array,
-      default() {
-        return [];
-      },
-    },
   },
   computed: {
     uploadName() {
@@ -149,6 +107,9 @@ export default {
         },
         {
           [`${this.className}-upload-${this.type}`]: !!this.className,
+        },
+        {
+          'emfe-upload-disabled': this.disabled,
         },
       ];
     },
@@ -166,6 +127,9 @@ export default {
         {
           [`${this.className}-upload-${this.type}-file`]: !!this.className,
         },
+        {
+          'emfe-upload-file-disabled': this.disabled,
+        },
       ];
     },
   },
@@ -178,7 +142,7 @@ export default {
       }
 
       const postFiles = Array.prototype.slice.call(files);
-      // console.log(postFiles);
+
       postFiles.forEach((file) => {
         this.postHandle(file);
       });
