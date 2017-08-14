@@ -80,6 +80,12 @@
           <td>Boolean</td>
           <td>-</td>
         </tr>
+        <tr>
+          <td>stop</td>
+          <td>是否阻止冒泡</td>
+          <td>Boolean</td>
+          <td>true</td>
+        </tr>
       </tbody>
     </table>
     <h3>注册的方法</h3>
