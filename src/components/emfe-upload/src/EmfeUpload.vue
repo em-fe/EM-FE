@@ -128,9 +128,7 @@ export default {
   methods: {
     setAlign() {
       const { clientWidth, clientHeight } = this.$refs.img;
-      console.log(clientWidth, clientHeight, 8989);
       if (clientWidth !== 0 && clientHeight !== 0) {
-        console.log(clientWidth, clientHeight, 888);
         if (clientWidth > clientHeight) {
           this.align = 'horizontal';
         } else if (clientWidth < clientHeight) {
@@ -189,7 +187,6 @@ export default {
           action: this.action,
           onSuccess: (res) => {
             canUpload = true;
-            console.log('res', res);
             if (res.code === 10000) {
               this.handleSuccess(res, file);
             } else {
@@ -250,7 +247,7 @@ export default {
       img.src = src;
       img.onload = () => {
         this.src = src;
-        this.setAlign();
+        setTimeout(this.setAlign.bind(this), 0);
         this.$emit('success', res, fileData, this.fileList);
       };
     },
