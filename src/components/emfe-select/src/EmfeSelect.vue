@@ -72,6 +72,7 @@ export default {
         this.checkVal = item.name;
         // console.log(this.checkVals);
         this.$emit('getDefData', this.checkVal);
+        this.flagCheck = false;
       }
     },
     close() {
