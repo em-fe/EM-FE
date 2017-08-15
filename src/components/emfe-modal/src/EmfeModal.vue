@@ -6,18 +6,17 @@
         <div class="emfe-modal-header-inner">{{ title }}</div>
         <div class="emfe-modal-header-close" @click="closeModal">＋</div>
       </div>
-      <div class="emfe-modal-main">
-        <slot name="modal-main" :class="mainName"></slot>
+      <div class="emfe-modal-main" :class="mainName">
+        <slot name="modal-main"></slot>
       </div>
       <div class="emfe-modal-footer">
-        <div class="emfe-modal-btn emfe-modal-btn-cancel" @click="cancel">{{cancelText}}</div>
-        <div class="emfe-modal-btn emfe-modal-btn-ok" @click="ok">{{okText}}</div>
+        <div class="emfe-modal-btn emfe-modal-btn-cancel" @click="cancel" v-if="cancelFlg">{{cancelText}}</div>
+        <div class="emfe-modal-btn emfe-modal-btn-ok" @click="ok" v-if="okFlg">{{okText}}</div>
       </div>
     </div>
   </div>
 </template>
 <script>
-const prefixCls = 'emfe-modal';
 export default {
   name: 'EmfeModal',
   props: {
@@ -42,12 +41,20 @@ export default {
       type: String,
       default: '确定',
     },
+    cancelFlg: {
+      type: [String, Boolean],
+      default: true,
+    },
+    okFlg: {
+      type: [String, Boolean],
+      default: true,
+    },
   },
   computed: {
     mainName() {
       return [
         {
-          [`${prefixCls}-main-${this.className}`]: !!this.className,
+          [`${this.className}-modal-main`]: !!this.className,
         },
       ];
     },
