@@ -1,8 +1,8 @@
 <template>
   <div>
     <button @click="formBtn">我是表单弹出框，点我呀！</button>
-    <emfe-modal :show="formShow" :title="copyTitle" :width="width" @close="formClose" @cancel="formCancel" @ok="formOk" okText="保存">
-      <div slot="modal-main" className="form">
+    <emfe-modal :show="formShow" :title="copyTitle" :width="width" @close="formClose" @cancel="formCancel" @ok="formOk" okText="保存" className="form">
+      <div slot="modal-main">
         <div class="emfe-modal-main-input">
           <h6 class="emfe-modal-main-input-title">标题</h6>
           <emfe-input placeholder="表单标题"></emfe-input>
@@ -10,7 +10,7 @@
       </div>
     </emfe-modal>
     <button @click="promptBtn">我是提示弹出框，点我呀！</button>
-    <emfe-modal :show="promptShow" :title="deteleTitle" @close="promptClose" @cancel="promptCancel" @ok="promptOk">
+    <emfe-modal :show="promptShow" :title="deteleTitle" @close="promptClose" @cancel="promptCancel" @ok="promptOk" :cancelFlg="cancelFlg" okText="立即设置">
         <div slot="modal-main" class="emfe-modal-main-prompt">
           确认删除表单数据？
         </div>
@@ -67,6 +67,18 @@
           <td>String</td>
           <td>默认确定</td>
         </tr>
+        <tr>
+          <td>cancelFlg</td>
+          <td>是否显示取消按钮</td>
+          <td>Boolean</td>
+          <td>true</td>
+        </tr>
+        <tr>
+          <td>okFlg</td>
+          <td>是否显示取消按钮</td>
+          <td>Boolean</td>
+          <td>true</td>
+        </tr>
       </tbody>
     </table>
     <br>
@@ -109,6 +121,7 @@ export default {
       deteleTitle: '删除确认',
       copyTitle: '复制表单',
       width: 691,
+      cancelFlg: false,
     };
   },
   methods: {
