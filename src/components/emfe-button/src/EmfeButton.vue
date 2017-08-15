@@ -74,5 +74,12 @@ export default {
       this.$emit('click', index);
     },
   },
+  watch: {
+    statu(val, oldVal) {
+      if (val !== oldVal) {
+        this.status = val;
+      }
+    },
+  },
 };
 </script>

@@ -74,5 +74,12 @@
         this.$emit('change', index);
       },
     },
+    watch: {
+      statu(val, oldVal) {
+        if (val !== oldVal) {
+          this.status = val;
+        }
+      },
+    },
   };
 </script>

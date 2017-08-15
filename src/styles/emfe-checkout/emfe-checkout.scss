@@ -1,7 +1,7 @@
 .#{$prefix}checkout {
   &-box {
-    display: flex;
-    align-items: center;
+    @include clearfix();
+
     position: relative;
   }
 
@@ -12,6 +12,7 @@
     height: 16px;
     border-radius: $radius-size;
     background: $background-color-write;
+    float: left;
 
     &-checked {
       @include border(all, $border-on-color);
@@ -30,21 +31,22 @@
     width: 16px;
     height: 16px;
     display: block;
-    margin: -8px 0 0;
     position: absolute;
-    left: 1px;
-    top: 50%;
+    left: 0;
+    top: 0;
     opacity: 0;
     filter: alpha(opacity=0);
+    margin: 0;
   }
 
   &-text {
-    flex: 1;
     font-size: 14px;
     color: $text-color-default;
-    display: block;
+    float: left;
     line-height: 16px;
     margin-left: 8px;
+    word-wrap: break-word;
+    width: calc(100% - 24px);
   }
 
   &-inline {
