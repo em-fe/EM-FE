@@ -10,7 +10,7 @@
     </emfe-checkout>
     <emfe-checkout :disable="true" title="禁用">
     </emfe-checkout>
-    <emfe-checkout className="diy" :slideShow="slideShow" title="限定一周内可选日期">
+    <emfe-checkout className="diy" :slideShow="true" v-model="slideShow" title="限定一周内可选日期">
       <div slot="slide">
         <emfe-checkout title="周一" inline="true"></emfe-checkout>
         <emfe-checkout title="周二" inline="true"></emfe-checkout>
@@ -21,6 +21,7 @@
         <emfe-checkout title="周日" inline="true"></emfe-checkout>
       </div>
     </emfe-checkout>
+    <button @click="dad">dajk</button>
     <br>
     <br>
     <br>
@@ -113,7 +114,7 @@ export default {
   name: 'checkout-page',
   data() {
     return {
-      slideShow: true,
+      slideShow: false,
       title: '没选',
       initChecked: true,
       allDatas: [
@@ -143,6 +144,9 @@ export default {
     },
     noChecked() {
       this.allDatas.forEach((data) => data.checked = !data.checked);
+    },
+    dad() {
+      console.log(this.slideShow);
     },
   },
 }
