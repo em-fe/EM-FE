@@ -20,11 +20,11 @@ export default {
   props: {
     cell: {
       type: Number,
-      default: 5,
+      default: 0,
     },
     margin: {
       type: Number,
-      default: 5,
+      default: 0,
     },
     cellWidth: {
       type: Number,
@@ -42,7 +42,6 @@ export default {
         this.elesNode.push(eles[i].elm);
       }
     }
-    console.log(this.elesNode);
     for (let i = 0; i < this.elesNode.length; i++) {
       const row = Math.floor(i / this.cell);
       const topP = `${(this.cellHeight + this.margin) * row}`;

@@ -46,13 +46,14 @@ export default {
     };
   },
   methods: {
-    beforeDrag (e) {
+    beforeDrag(e) {
+      console.log(this.$children[0]);
       this.$children[0].beforeDrag(e);
     },
-    drag (e,x,y) {
+    drag(e) {
       this.$children[0].drag(e);
     },
-    afterDrag (e) {
+    afterDrag(e) {
       this.$children[0].afterDrag(e);
     },
   },
