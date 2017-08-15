@@ -2,7 +2,7 @@
   <div class="emfe-smscode" :class="smscodeName">
     <emfe-icon v-if="icon" className="emfe-smscode" :type="icon"></emfe-icon>
     <input type="number" class="emfe-smscode-input" :class="codeName" :value="nowData" :placeholder="placeholder" @input="input" :disabled="newDisabled">
-    <button class="emfe-smscode-button" @click="click">{{ btnText }}</button>
+    <button class="emfe-smscode-button" :class="btmName" @click="click">{{ btnText }}</button>
   </div>
 </template>
 <script>
@@ -58,6 +58,13 @@ export default {
         {
           [`${this.className}-smscode-code`]: !!this.className,
           'emfe-smscode-input-icon': this.icon,
+        },
+      ];
+    },
+    btmName() {
+      return [
+        {
+          [`${this.className}-smscode-button`]: !!this.className,
         },
       ];
     },

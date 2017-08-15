@@ -121,8 +121,12 @@ export default {
       closeFn: 0,
     };
   },
+  created() {
+    console.log(this.$EmfeMessage, 2);
+  },
   methods: {
     demo1() {
+      console.log(this.$EmfeMessage, 1);
       this.$EmfeMessage.info({
         content: '这是一个info提示',
         close: () => {
