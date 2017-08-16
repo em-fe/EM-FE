@@ -25,12 +25,12 @@
               <li class="emfe-time-m-list-item" v-for="hourLoop in hours" :class="{'emfe-time-m-list-item-on': hourLoop.num === hour, 'emfe-time-m-list-item-disable': hourLoop.undo}" @click.stop="choiceHour(hourLoop)">{{ hourLoop.num }}</li>
             </ul>
           </div>
-          <div class="emfe-time-m-item" :class="itemName">
+          <div class="emfe-time-m-item" :class="itemName" v-if="exact === 'minute' || exact === 'second'">
             <ul class="emfe-time-m-list">
               <li class="emfe-time-m-list-item" v-for="minuteLoop in minutes" :class="{'emfe-time-m-list-item-on': minuteLoop.num === minute, 'emfe-time-m-list-item-disable': minuteLoop.undo}" @click.stop="choiceMinute(minuteLoop)">{{ minuteLoop.num }}</li>
             </ul>
           </div>
-          <div class="emfe-time-m-item" :class="itemName">
+          <div class="emfe-time-m-item" :class="itemName" v-if="exact === 'second'">
             <ul class="emfe-time-m-list">
               <li class="emfe-time-m-list-item" v-for="(secondLoop, secondIndex) in seconds" :class="{'emfe-time-m-list-item-on': secondLoop.num === second, 'emfe-time-m-list-item-disable': secondLoop.undo}" @click.stop="choiceSecond(secondLoop)">{{ secondLoop.num }}</li>
             </ul>
@@ -42,6 +42,7 @@
 </template>
 <script>
 import TimeTool from '../../../tools/time';
+import _ from '../../../tools/lodash';
 
 const hourNum = 24;
 const minuteNum = 60;
@@ -71,6 +72,12 @@ export default {
     value: {
       type: String,
       default: '',
+    },
+    exact: {
+      validator(value) {
+        return _.has(value, ['hour', 'minute', 'second']);
+      },
+      default: 'second',
     },
     confirm: {
       type: Boolean,
@@ -115,12 +122,19 @@ export default {
         {
           [`${this.className}-item`]: !!this.className,
         },
+        [`emfe-time-m-item-${this.exact}`],
       ];
     },
     time() {
       let time = this.placeholder;
       if (this.choiced) {
-        time = `${this.hour}:${this.minute}:${this.second}`;
+        if (this.exact === 'hour') {
+          time = `${this.hour}`;
+        } else if (this.exact === 'minute') {
+          time = `${this.hour}:${this.minute}`;
+        } else {
+          time = `${this.hour}:${this.minute}:${this.second}`;
+        }
       }
       return time;
     },

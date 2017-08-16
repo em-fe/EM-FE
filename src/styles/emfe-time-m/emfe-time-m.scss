@@ -37,6 +37,14 @@
       @include border(left);
       @include border(right);
     }
+
+    &-hour {
+      width: 100%;
+    }
+
+    &-minute {
+      width: 50%;
+    }
   }
 
   &-list {
