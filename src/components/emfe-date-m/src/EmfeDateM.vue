@@ -127,15 +127,24 @@ export default {
       this.months.push(TimeTool.handleConputedDate(i, this.disabledMonths));
     }
     this.resetDays();
-    if (this.value) {
-      const dates = this.value.split(this.format);
-      this.year = TimeTool.zeroFill(dates[0] - 0);
-      this.month = TimeTool.zeroFill(dates[1] - 0);
-      this.day = TimeTool.zeroFill(dates[2] - 0);
-      this.choiced = true;
-    }
+
+    this.initData();
   },
   methods: {
+    initData() {
+      if (this.value && this.value !== this.placeholder) {
+        const dates = this.value.split(this.format);
+        this.year = TimeTool.zeroFill(dates[0] - 0);
+        this.month = TimeTool.zeroFill(dates[1] - 0);
+        this.day = TimeTool.zeroFill(dates[2] - 0);
+        this.choiced = true;
+      } else {
+        this.year = '';
+        this.month = '';
+        this.day = '';
+        this.choiced = false;
+      }
+    },
     setChoice() {
       if (!this.choiced) {
         this.year = TimeTool.loopChoice(this.years, this.year);
@@ -204,6 +213,13 @@ export default {
       this.day = '';
       this.$emit('cancel', this.date);
       this.$emit('input', this.date);
+    },
+  },
+  watch: {
+    value(val, oldVal) {
+      if (val !== oldVal) {
+        this.initData();
+      }
     },
   },
 };

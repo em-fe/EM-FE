@@ -36,6 +36,7 @@
     </div>
     <br>
     <br>
+    <emfe-button @click="click">去掉</emfe-button>
     <br>
     <br>
     <br>
@@ -171,6 +172,9 @@ export default {
     },
     demo3cancel(date) {
       this.demo3 = '';
+    },
+    click() {
+      this.demo4 = '';
     },
   },
 };

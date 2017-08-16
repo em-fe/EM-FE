@@ -148,15 +148,23 @@ export default {
     for (let i = 0; i < secondNum; i++) {
       this.seconds.push(TimeTool.handleConputedTime(i, this.disabledSeconds));
     }
-    if (this.value) {
-      const vals = this.value.split(':');
-      this.hour = TimeTool.zeroFill(vals[0] - 0);
-      this.minute = TimeTool.zeroFill(vals[1] - 0);
-      this.second = TimeTool.zeroFill(vals[2] - 0);
-      this.choiced = true;
-    }
+    this.initData();
   },
   methods: {
+    initData() {
+      if (this.value && this.value !== this.placeholder) {
+        const vals = this.value.split(':');
+        this.hour = TimeTool.zeroFill(vals[0] - 0);
+        this.minute = TimeTool.zeroFill(vals[1] - 0);
+        this.second = TimeTool.zeroFill(vals[2] - 0);
+        this.choiced = true;
+      } else {
+        this.hour = '';
+        this.minute = '';
+        this.second = '';
+        this.choiced = false;
+      }
+    },
     setChoice() {
       if (!this.choiced) {
         this.hour = TimeTool.loopChoice(this.hours, this.hour);
@@ -213,6 +221,13 @@ export default {
       this.second = '';
       this.$emit('cancel', this.time);
       this.$emit('input', this.time);
+    },
+  },
+  watch: {
+    value(val, oldVal) {
+      if (val !== oldVal) {
+        this.initData();
+      }
     },
   },
 };

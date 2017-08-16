@@ -197,20 +197,31 @@ export default {
     for (let i = 0; i < secondNum; i++) {
       this.seconds.push(TimeTool.handleConputedTime(i, this.disabledSeconds));
     }
-    if (this.value) {
-      const vals = this.value.split(' ');
-      const dates = vals[0].split(this.format);
-      const times = vals[1].split(':');
-      this.year = TimeTool.zeroFill(dates[0] - 0);
-      this.month = TimeTool.zeroFill(dates[1] - 0);
-      this.day = TimeTool.zeroFill(dates[2] - 0);
-      this.hour = TimeTool.zeroFill(times[0] - 0);
-      this.minute = TimeTool.zeroFill(times[1] - 0);
-      this.second = TimeTool.zeroFill(times[2] - 0);
-      this.choiced = true;
-    }
+    this.initData();
   },
   methods: {
+    initData() {
+      if (this.value && this.value !== this.placeholder) {
+        const vals = this.value.split(' ');
+        const dates = vals[0].split(this.format);
+        const times = vals[1].split(':');
+        this.year = TimeTool.zeroFill(dates[0] - 0);
+        this.month = TimeTool.zeroFill(dates[1] - 0);
+        this.day = TimeTool.zeroFill(dates[2] - 0);
+        this.hour = TimeTool.zeroFill(times[0] - 0);
+        this.minute = TimeTool.zeroFill(times[1] - 0);
+        this.second = TimeTool.zeroFill(times[2] - 0);
+        this.choiced = true;
+      } else {
+        this.year = '';
+        this.month = '';
+        this.day = '';
+        this.hour = '';
+        this.minute = '';
+        this.second = '';
+        this.choiced = false;
+      }
+    },
     setChoice() {
       if (!this.choiced) {
         this.year = TimeTool.loopChoice(this.years, this.year);
@@ -306,6 +317,13 @@ export default {
       this.day = '';
       this.$emit('cancel', this.datetime);
       this.$emit('input', this.datetime);
+    },
+  },
+  watch: {
+    value(val, oldVal) {
+      if (val !== oldVal) {
+        this.initData();
+      }
     },
   },
 };
