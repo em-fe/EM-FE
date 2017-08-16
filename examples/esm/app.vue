@@ -289,6 +289,13 @@ module.exports = {
                     path: '/functions/timepage',
                   },
                 },
+                {
+                  title: '时间m',
+                  icon: 'hotel',
+                  routers: {
+                    path: '/functions/timempage',
+                  },
+                },
               ],
             },
             {

@@ -187,6 +187,11 @@ const router = new VueRouter({
           component: require('./components/functions/DatetimePage.vue'),
         },
         {
+          path: '/functions/timempage',
+          name: 'timempage',
+          component: require('./components/functions/TimeMPage.vue'),
+        },
+        {
           path: '/functions/drag',
           name: 'drag',
           component: require('./components/functions/DragPage.vue'),

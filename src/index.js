@@ -20,6 +20,7 @@ import EmfeSteps from './components/emfe-steps/index';
 import EmfeNumber from './components/emfe-number/index';
 import EmfeDate from './components/emfe-date/index';
 import EmfeTime from './components/emfe-time/index';
+import EmfeTimeM from './components/emfe-time-m/index';
 import EmfeDatetime from './components/emfe-datetime/index';
 import EmfeLink from './components/emfe-link/index';
 import EmfeSwitch from './components/emfe-switch/index';
@@ -81,6 +82,7 @@ const emfeCpt = {
   EmfeTableBody: Table.EmfeTableBody,
   EmfeDate,
   EmfeTime,
+  EmfeTimeM,
   EmfeDatetime,
   EmfePagination,
   EmfeSelect,
