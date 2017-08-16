@@ -171,6 +171,11 @@ const router = new VueRouter({
           name: 'datepage',
           component: require('./components/functions/DatePage.vue'),
         },
+          {
+            path: '/functions/datempage',
+            name: 'datempage',
+            component: require('./components/functions/DateMPage.vue'),
+          },
         {
           path: '/functions/number',
           name: 'number',
@@ -185,6 +190,16 @@ const router = new VueRouter({
           path: '/functions/datetimepage',
           name: 'datetimepage',
           component: require('./components/functions/DatetimePage.vue'),
+        },
+        {
+          path: '/functions/datetimempage',
+          name: 'datetimempage',
+          component: require('./components/functions/DatetimeMPage.vue'),
+        },
+        {
+          path: '/functions/timempage',
+          name: 'timempage',
+          component: require('./components/functions/TimeMPage.vue'),
         },
         {
           path: '/functions/drag',

@@ -4,7 +4,21 @@
     <br>
     <br>
     <p>当前日期： {{ demo1 }}</p>
-    <emfe-datetime @ok="demo1ok" @cancel="demo1cancel" @close="demo1close"></emfe-datetime>
+    <emfe-datetime-m v-model="demo1"></emfe-datetime-m>
+    <pre>
+      &lt;emfe-datetime-m v-model="demo1"&gt;&lt;/emfe-datetime-m&gt;
+    </pre>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <p>当前日期： {{ demo1 }}</p>
+    <emfe-datetime-m @ok="demo1ok" @cancel="demo1cancel" @close="demo1close"></emfe-datetime-m>
+    <pre>
+      &lt;emfe-datetime-m @ok="demo1ok" @cancel="demo1cancel" @close="demo1close"&gt;&lt;/emfe-datetime-m&gt;
+    </pre>
     <br>
     <br>
     <h3>固定宽度示例</h3>
@@ -12,8 +26,13 @@
     <br>
     <p>当前日期： {{ demo2 }}</p>
     <div style="width: 300px;">
-      <emfe-datetime @ok="demo2ok" @cancel="demo2cancel"></emfe-datetime>
+      <emfe-datetime-m @ok="demo2ok" @cancel="demo2cancel"></emfe-datetime-m>
     </div>
+    <pre>
+      &lt;div style="width: 300px;"&gt;
+        &lt;emfe-datetime-m @ok="demo2ok" @cancel="demo2cancel"&gt;&lt;/emfe-datetime-m&gt;
+      &lt;/div&gt;
+    </pre>
     <br>
     <br>
     <h3>筛选禁用示例</h3>
@@ -21,8 +40,13 @@
     <br>
     <p>当前日期： {{ demo3 }}</p>
     <div style="width: 210px;">
-      <emfe-datetime @ok="demo3ok" @cancel="demo3cancel" :disabledDate="demo3opts" :disabledHours="[0, 1, 2]" :disabledMinutes="[1, 2]" :disabledSeconds="[0, 2, 44, 55]"></emfe-datetime>
+      <emfe-datetime-m @ok="demo3ok" @cancel="demo3cancel" :disabledDate="demo3opts" :disabledHours="[0, 1, 2]" :disabledMinutes="[1, 2]" :disabledSeconds="[0, 2, 44, 55]" :disabledYears="[1920, 1999]" :disabledMonths="[0, 2, 3]" :disabledDays="[3, 22, 30]"></emfe-datetime-m>
     </div>
+    <pre>
+      &lt;div style="width: 210px;"&gt;
+        &lt;emfe-datetime-m @ok="demo3ok" @cancel="demo3cancel" :disabledDate="demo3opts" :disabledHours="[0, 1, 2]" :disabledMinutes="[1, 2]" :disabledSeconds="[0, 2, 44, 55]" :disabledYears="[1920, 1999]" :disabledMonths="[0, 2, 3]" :disabledDays="[3, 22, 30]"&gt;&lt;/emfe-datetime-m&gt;
+      &lt;/div&gt;
+    </pre>
     <br>
     <br>
     <br>
@@ -31,12 +55,12 @@
     <br>
     <br>
     <p>当前日期： {{ demo4 }}</p>
-    <div style="width: 300px;">
-      <emfe-datetime v-model="demo4"></emfe-datetime>
-    </div>
+    <emfe-datetime-m v-model="demo4"></emfe-datetime-m>
+    <pre>
+      &lt;emfe-datetime-m v-model="demo4"&gt;&lt;/emfe-datetime-m&gt;
+    </pre>
     <br>
     <br>
-    <emfe-button @click="click">去掉</emfe-button>
     <br>
     <br>
     <br>
@@ -69,10 +93,34 @@
           <td>选择日期</td>
         </tr>
         <tr>
-          <td>disabledDate</td>
-          <td>设置不可选择的日期，参数为当前的日期，需要返回 Boolean 是否禁用这天</td>
-          <td>Function</td>
-          <td>-</td>
+          <td>yearStart</td>
+          <td>开始天数</td>
+          <td>Number</td>
+          <td>1920</td>
+        </tr>
+        <tr>
+          <td>yearEnd</td>
+          <td>结束天数</td>
+          <td>Number</td>
+          <td>2020</td>
+        </tr>
+        <tr>
+          <td>disabledYears</td>
+          <td>设置不可选择的年。组合禁止用户选择某个年</td>
+          <td>Array</td>
+          <td>[]</td>
+        </tr>
+        <tr>
+          <td>disabledMonths</td>
+          <td>设置不可选择的月。组合禁止用户选择某个月</td>
+          <td>Array</td>
+          <td>[]</td>
+        </tr>
+        <tr>
+          <td>disabledDays</td>
+          <td>设置不可选择的天。组合禁止用户选择某个天</td>
+          <td>Array</td>
+          <td>[]</td>
         </tr>
         <tr>
           <td>disabledHours</td>
@@ -172,9 +220,6 @@ export default {
     },
     demo3cancel(date) {
       this.demo3 = '';
-    },
-    click() {
-      this.demo4 = '';
     },
   },
 };

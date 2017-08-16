@@ -197,22 +197,23 @@ export default {
     },
   },
   mounted() {
-    if (!this.value && this.today && !this.year) {
-      this.year = this.today.getFullYear();
-      this.month = this.today.getMonth();
-    }
-
-    if (this.value) {
-      const vals = this.value.split(this.format);
-      this.year = vals[0];
-      this.month = vals[1] - 1;
-      this.day = vals[2] - 0;
-      this.day = this.day > 9 ? this.day : `0${this.day}`;
-      const month = this.month + 1 > 9 ? this.month + 1 : `0${this.month + 1}`;
-      this.date = `${this.year}${this.format}${month}${this.format}${this.day}`;
-    }
+    this.initData();
   },
   methods: {
+    initData() {
+      if (this.value && this.value !== this.placeholder) {
+        const vals = this.value.split(this.format);
+        this.year = vals[0];
+        this.month = vals[1] - 1;
+        this.day = vals[2] - 0;
+        this.day = this.day > 9 ? this.day : `0${this.day}`;
+        const month = this.month + 1 > 9 ? this.month + 1 : `0${this.month + 1}`;
+        this.date = `${this.year}${this.format}${month}${this.format}${this.day}`;
+      } else if (this.today && !this.year) {
+        this.year = this.today.getFullYear();
+        this.month = this.today.getMonth();
+      }
+    },
     resetDate() {
       this.today = new Date(this.today);
     },
@@ -304,6 +305,13 @@ export default {
       this.date = this.placeholder;
       this.$emit('cancel', this.date);
       this.$emit('input', this.date);
+    },
+  },
+  watch: {
+    value(val, oldVal) {
+      if (val !== oldVal) {
+        this.initData();
+      }
     },
   },
 };

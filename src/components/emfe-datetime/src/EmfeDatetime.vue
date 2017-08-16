@@ -46,7 +46,7 @@ export default {
     return {
       date: this.value ? vals[0] : '',
       time: this.value ? vals[1] : timeZero,
-      choiced: false,
+      choiced: !!this.value,
       isDate: true,
       typeText: timeText,
       status: false,
@@ -95,8 +95,10 @@ export default {
     dateTime() {
       let newDateTime = this.placeholder;
 
-      if (this.date) {
-        newDateTime = `${this.date} ${this.time}`;
+      if (this.date && this.date !== this.placeholder) {
+        if (!this.$refs.date || this.date !== this.$refs.date.placeholder) {
+          newDateTime = `${this.date} ${this.time}`;
+        }
       }
 
       if (!this.date && this.time !== timeZero) {
@@ -162,6 +164,16 @@ export default {
     toggle() {
       if (!this.disabled) {
         this.status = !this.status;
+      }
+    },
+  },
+  watch: {
+    value(val, oldVal) {
+      if (val !== oldVal) {
+        const vals = this.value.split(' ');
+        this.date = this.value ? vals[0] : '';
+        this.time = this.value ? vals[1] : timeZero;
+        this.choiced = !!this.value;
       }
     },
   },
