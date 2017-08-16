@@ -19,6 +19,7 @@ import EmfeImgcode from './components/emfe-imgcode/index';
 import EmfeSteps from './components/emfe-steps/index';
 import EmfeNumber from './components/emfe-number/index';
 import EmfeDate from './components/emfe-date/index';
+import EmfeDateM from './components/emfe-date-m/index';
 import EmfeTime from './components/emfe-time/index';
 import EmfeTimeM from './components/emfe-time-m/index';
 import EmfeDatetime from './components/emfe-datetime/index';
@@ -81,6 +82,7 @@ const emfeCpt = {
   EmfeTableHead: Table.EmfeTableHead,
   EmfeTableBody: Table.EmfeTableBody,
   EmfeDate,
+  EmfeDateM,
   EmfeTime,
   EmfeTimeM,
   EmfeDatetime,
