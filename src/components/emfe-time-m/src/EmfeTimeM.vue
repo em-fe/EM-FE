@@ -47,7 +47,6 @@ import _ from '../../../tools/lodash';
 const hourNum = 24;
 const minuteNum = 60;
 const secondNum = 60;
-// const zero = '00';
 
 export default {
   name: 'EmfeTimeM',

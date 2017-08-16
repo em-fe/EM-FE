@@ -179,7 +179,7 @@ export default {
       demo3: '',
       demo4: '',
       demo5: '',
-      demo6: '03:00:02',
+      demo6: '2017/02/02',
     };
   },
   methods: {

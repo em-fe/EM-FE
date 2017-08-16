@@ -1,38 +1,38 @@
 <template>
-  <div class="emfe-time-m" v-emfe-documentclick="close">
-    <button class="emfe-time-m-btn" v-if="!open && !disabled" @click="toggle">
-      <span class="emfe-time-m-btn-text" :class="{'emfe-time-m-btn-text-choice': choiced}">{{ time }}</span>
+  <div class="emfe-date-m" v-emfe-documentclick="close">
+    <button class="emfe-date-m-btn" v-if="!open && !disabled" @click="toggle">
+      <span class="emfe-date-m-btn-text" :class="{'emfe-date-m-btn-text-choice': choiced}">{{ date }}</span>
       <!-- 日期 -->
-      <emfe-icon type="hint" className="emfe-time-m" v-show="!choiced" @icon-click="toggle"></emfe-icon>
+      <emfe-icon type="hint" className="emfe-date-m" v-show="!choiced" @icon-click="toggle"></emfe-icon>
       <!-- 取消 -->
-      <emfe-icon type="qr" className="emfe-time-m" v-show="choiced" @icon-click="cancel"></emfe-icon>
+      <emfe-icon type="qr" className="emfe-date-m" v-show="choiced" @icon-click="cancel"></emfe-icon>
     </button>
-    <button class="emfe-time-m-btn emfe-time-m-btn-disabled" v-if="!open && disabled">
-      <span class="emfe-time-m-btn-text">{{ time }}</span>
+    <button class="emfe-date-m-btn emfe-date-m-btn-disabled" v-if="!open && disabled">
+      <span class="emfe-date-m-btn-text">{{ date }}</span>
       <!-- 日期 -->
-      <emfe-icon type="hint" className="emfe-time-m" v-show="!choiced"></emfe-icon>
+      <emfe-icon type="hint" className="emfe-date-m" v-show="!choiced"></emfe-icon>
       <!-- 取消 -->
-      <emfe-icon type="qr" className="emfe-time-m" v-show="choiced"></emfe-icon>
+      <emfe-icon type="qr" className="emfe-date-m" v-show="choiced"></emfe-icon>
     </button>
     <emfe-transition name="fade">
-      <div class="emfe-time-m-box" v-show="status" :class="{'emfe-time-m-box-position': !open}">
-        <div v-if="confirm" class="emfe-time-m-footer">
-          <button class="emfe-time-m-ok" @click.stop="ok">确定</button>
+      <div class="emfe-date-m-box" v-show="status" :class="{'emfe-date-m-box-position': !open}">
+        <div v-if="confirm" class="emfe-date-m-footer">
+          <button class="emfe-date-m-ok" @click.stop="ok">确定</button>
         </div>
-        <div class="emfe-time-m-main">
-          <div class="emfe-time-m-item">
-            <ul class="emfe-time-m-list">
-              <li class="emfe-time-m-list-item" v-for="yearLoop in years" :class="{'emfe-time-m-list-item-on': yearLoop.num === year, 'emfe-time-m-list-item-disable': yearLoop.undo}" @click.stop="choiceYear(yearLoop)">{{ yearLoop.num }}</li>
+        <div class="emfe-date-m-main">
+          <div class="emfe-date-m-item">
+            <ul class="emfe-date-m-list">
+              <li class="emfe-date-m-list-item" v-for="yearLoop in years" :class="{'emfe-date-m-list-item-on': yearLoop.num === year, 'emfe-date-m-list-item-disable': yearLoop.undo}" @click.stop="choiceYear(yearLoop)">{{ yearLoop.num }}</li>
             </ul>
           </div>
-          <div class="emfe-time-m-item">
-            <ul class="emfe-time-m-list">
-              <li class="emfe-time-m-list-item" v-for="monthLoop in months" :class="{'emfe-time-m-list-item-on': monthLoop.num === month, 'emfe-time-m-list-item-disable': monthLoop.undo}" @click.stop="choiceMonth(monthLoop)">{{ monthLoop.num }}</li>
+          <div class="emfe-date-m-item">
+            <ul class="emfe-date-m-list">
+              <li class="emfe-date-m-list-item" v-for="monthLoop in months" :class="{'emfe-date-m-list-item-on': monthLoop.num === month, 'emfe-date-m-list-item-disable': monthLoop.undo}" @click.stop="choiceMonth(monthLoop)">{{ monthLoop.num }}</li>
             </ul>
           </div>
-          <div class="emfe-time-m-item">
-            <ul class="emfe-time-m-list">
-              <li class="emfe-time-m-list-item" v-for="(dayLoop, dayIndex) in days" :class="{'emfe-time-m-list-item-on': dayLoop.num === day, 'emfe-time-m-list-item-disable': dayLoop.undo}" @click.stop="choiceDay(dayLoop)">{{ dayLoop.num }}</li>
+          <div class="emfe-date-m-item">
+            <ul class="emfe-date-m-list">
+              <li class="emfe-date-m-list-item" v-for="(dayLoop, dayIndex) in days" :class="{'emfe-date-m-list-item-on': dayLoop.num === day, 'emfe-date-m-list-item-disable': dayLoop.undo}" @click.stop="choiceDay(dayLoop)">{{ dayLoop.num }}</li>
             </ul>
           </div>
         </div>
@@ -74,7 +74,7 @@ export default {
     // 默认文案
     placeholder: {
       type: String,
-      default: '选择时间',
+      default: '选择日期',
     },
     value: {
       type: String,
@@ -111,12 +111,12 @@ export default {
     className: String,
   },
   computed: {
-    time() {
-      let time = this.placeholder;
+    date() {
+      let date = this.placeholder;
       if (this.choiced) {
-        time = `${this.year}${this.format}${this.month}${this.format}${this.day}`;
+        date = `${this.year}${this.format}${this.month}${this.format}${this.day}`;
       }
-      return time;
+      return date;
     },
   },
   mounted() {
@@ -127,6 +127,13 @@ export default {
       this.months.push(TimeTool.handleConputedDate(i, this.disabledMonths));
     }
     this.resetDays();
+    if (this.value) {
+      const dates = this.value.split(this.format);
+      this.year = TimeTool.zeroFill(dates[0] - 0);
+      this.month = TimeTool.zeroFill(dates[1] - 0);
+      this.day = TimeTool.zeroFill(dates[2] - 0);
+      this.choiced = true;
+    }
   },
   methods: {
     setChoice() {
@@ -152,8 +159,8 @@ export default {
         this.setChoice();
         this.year = year.num;
         this.resetDays(this.year, this.month);
-        this.$emit('choice', this.time);
-        this.$emit('input', this.time);
+        this.$emit('choice', this.date);
+        this.$emit('input', this.date);
       }
     },
     choiceMonth(month) {
@@ -161,16 +168,16 @@ export default {
         this.setChoice();
         this.month = month.num;
         this.resetDays(this.year, this.month);
-        this.$emit('choice', this.time);
-        this.$emit('input', this.time);
+        this.$emit('choice', this.date);
+        this.$emit('input', this.date);
       }
     },
     choiceDay(day) {
       if (!day.undo) {
         this.setChoice();
         this.day = day.num;
-        this.$emit('choice', this.time);
-        this.$emit('input', this.time);
+        this.$emit('choice', this.date);
+        this.$emit('input', this.date);
       }
     },
     toggle() {
@@ -179,24 +186,24 @@ export default {
     close(e, noClose) {
       if (!this.open) {
         if (!noClose && this.status) {
-          this.$emit('close', this.time);
-          this.$emit('input', this.time);
+          this.$emit('close', this.date);
+          this.$emit('input', this.date);
         }
         this.status = false;
       }
     },
     ok() {
       this.close(true);
-      this.$emit('ok', this.time);
-      this.$emit('input', this.time);
+      this.$emit('ok', this.date);
+      this.$emit('input', this.date);
     },
     cancel() {
       this.choiced = false;
       this.year = '';
       this.month = '';
       this.day = '';
-      this.$emit('cancel', this.time);
-      this.$emit('input', this.time);
+      this.$emit('cancel', this.date);
+      this.$emit('input', this.date);
     },
   },
 };

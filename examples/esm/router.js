@@ -173,7 +173,7 @@ const router = new VueRouter({
         },
           {
             path: '/functions/datempage',
-            name: 'datepage',
+            name: 'datempage',
             component: require('./components/functions/DateMPage.vue'),
           },
         {
@@ -190,6 +190,11 @@ const router = new VueRouter({
           path: '/functions/datetimepage',
           name: 'datetimepage',
           component: require('./components/functions/DatetimePage.vue'),
+        },
+        {
+          path: '/functions/datetimempage',
+          name: 'datetimempage',
+          component: require('./components/functions/DatetimeMPage.vue'),
         },
         {
           path: '/functions/timempage',

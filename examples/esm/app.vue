@@ -276,6 +276,13 @@ module.exports = {
                   },
                 },
                 {
+                  title: '日期时间m',
+                  icon: 'hotel',
+                  routers: {
+                    path: '/functions/datetimempage',
+                  },
+                },
+                {
                   title: '日期',
                   icon: 'hotel',
                   routers: {

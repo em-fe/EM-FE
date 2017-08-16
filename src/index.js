@@ -23,6 +23,7 @@ import EmfeDateM from './components/emfe-date-m/index';
 import EmfeTime from './components/emfe-time/index';
 import EmfeTimeM from './components/emfe-time-m/index';
 import EmfeDatetime from './components/emfe-datetime/index';
+import EmfeDatetimeM from './components/emfe-datetime-m/index';
 import EmfeLink from './components/emfe-link/index';
 import EmfeSwitch from './components/emfe-switch/index';
 import EmfeTitle from './components/emfe-title/index';
@@ -86,6 +87,7 @@ const emfeCpt = {
   EmfeTime,
   EmfeTimeM,
   EmfeDatetime,
+  EmfeDatetimeM,
   EmfePagination,
   EmfeSelect,
   EmfeCheckout,
