@@ -90,6 +90,21 @@
         this.testphone = this.$EmfeFormTest.phone(this.phone);
       },
     </pre>
+    <h3>登录密码 验证</h3>
+    {{ testpassword }}
+    <input type="text" v-model="password" @blur="blurpassword">
+    <pre>
+      &lt;input type="text" v-model="password" @blur="blurpassword"&gt;
+    </pre>
+    <pre>
+      password: 111,
+      testpassword: false,
+    </pre>
+    <pre>
+      blurpassword() {
+        this.testpassword = this.$EmfeFormTest.password(this.password);
+      },
+    </pre>
     <h3>email 验证</h3>
     {{ testemail }}
     <input type="text" v-model="email" @blur="bluremail">
@@ -150,6 +165,8 @@ export default {
     testweb: false,
     phone: 111,
     testphone: false,
+    password: 111,
+    testpassword: false,
     email: 111,
     testemail: false,
   }),
@@ -171,6 +188,9 @@ export default {
     },
     blurphone() {
       this.testphone = this.$EmfeFormTest.phone(this.phone);
+    },
+    blurpassword() {
+      this.testpassword = this.$EmfeFormTest.password(this.password);
     },
     bluremail() {
       this.testemail = this.$EmfeFormTest.email(this.email);
