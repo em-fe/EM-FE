@@ -167,6 +167,11 @@ const router = new VueRouter({
       name: 'Functions',
       children: [
         {
+          path: '/functions/formtest',
+          name: 'formtest',
+          component: require('./components/functions/FormTestPage.vue'),
+        },
+        {
           path: '/functions/datepage',
           name: 'datepage',
           component: require('./components/functions/DatePage.vue'),
