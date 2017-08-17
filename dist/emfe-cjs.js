@@ -1,5 +1,5 @@
 /*!
- * EMFE.js v1.0.11
+ * EMFE.js v1.0.12
  * (c) 2014-2017 李梦龙
  * Released under the MIT License.
  */

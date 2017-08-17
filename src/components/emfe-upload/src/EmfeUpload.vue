@@ -3,15 +3,19 @@
     <template v-if="type === 'icon'">
       <emfe-button :disabled="disabled" v-show="!src" theme="default" className="ddd" type="hint">上传图片</emfe-button>
       <input v-show="!src" class="emfe-upload-file" :class="fileName" :disabled="disabled" type="file" @change="change">
-      <div v-show="src" class="emfe-upload-icon-box">
-        <img class="emfe-upload-icon-box-img" :src="src">
-        <i class="emfe-upload-icon-box-close" @click="close">+</i>
+      <div v-show="src" :style="{opacity: canShow ? 1 : 0}" class="emfe-upload-icon-wrap">
+        <div class="emfe-upload-icon-wrap-box" :class="[`emfe-upload-icon-wrap-box-${align}`]">
+          <img class="emfe-upload-icon-wrap-box-img" :class="[`emfe-upload-img-${align}`]" :src="src" ref="img">
+        </div>
+        <i class="emfe-upload-icon-wrap-close" @click="close"></i>
       </div>
     </template>
     <template v-if="type === 'plus'">
       <button v-show="!src" class="emfe-upload-btn" :class="btnName">+</button>
       <input v-show="!src" class="emfe-upload-file" :class="fileName" :disabled="disabled" type="file" @change="change">
-      <img v-show="src" width="100%" :src="src">
+      <div v-show="src" class="emfe-upload-plus-box" :class="[`emfe-upload-plus-box-${align}`]" :style="{opacity: canShow ? 1 : 0}" @click="close">
+        <img :class="[`emfe-upload-img-${align}`]" v-show="src" :src="src" ref="img">
+      </div>
     </template>
   </div>
 </template>
@@ -26,8 +30,10 @@ export default {
   data() {
     return {
       src: '',
+      canShow: false,
       fileList: [],
       tempIndex: 1,
+      align: '',
     };
   },
   props: {
@@ -72,31 +78,7 @@ export default {
     maxSize: {
       type: Number,
     },
-    beforeUpload: Function,
-    onSuccess: {
-      type: Function,
-      default() {
-        return {};
-      },
-    },
-    onError: {
-      type: Function,
-      default() {
-        return {};
-      },
-    },
-    onExceededSize: {
-      type: Function,
-      default() {
-        return {};
-      },
-    },
-    onFormatError: {
-      type: Function,
-      default() {
-        return {};
-      },
-    },
+    url: String,
   },
   computed: {
     uploadName() {
@@ -133,7 +115,30 @@ export default {
       ];
     },
   },
+  mounted() {
+    if (this.url) {
+      const imgObject = new Image();
+      imgObject.src = this.url;
+      imgObject.onload = () => {
+        this.src = this.url;
+        setTimeout(this.setAlign.bind(this), 0);
+      };
+    }
+  },
   methods: {
+    setAlign() {
+      const { clientWidth, clientHeight } = this.$refs.img;
+      if (clientWidth !== 0 && clientHeight !== 0) {
+        if (clientWidth > clientHeight) {
+          this.align = 'horizontal';
+        } else if (clientWidth < clientHeight) {
+          this.align = 'vertical';
+        } else {
+          this.align = 'normal';
+        }
+      }
+      this.canShow = true;
+    },
     change(e) {
       const files = e.target.files;
 
@@ -153,7 +158,7 @@ export default {
         const fileFormat = file.name.split('.').pop().toLocaleLowerCase();
         const checked = this.format.some(item => item.toLocaleLowerCase() === fileFormat);
         if (!checked) {
-          this.onFormatError(file, this.fileList);
+          this.$emit('formatError', file, this.fileList);
           return false;
         }
       }
@@ -161,13 +166,15 @@ export default {
       // check maxSize
       if (this.maxSize) {
         if (file.size > this.maxSize * 1024) {
-          this.onExceededSize(file, this.fileList);
+          this.$emit('exceededSize', file, this.fileList);
           return false;
         }
       }
 
       if (canUpload) {
         this.handleStart(file);
+
+        this.$emit('before');
 
         this.canUpload = false;
 
@@ -183,7 +190,7 @@ export default {
             if (res.code === 10000) {
               this.handleSuccess(res, file);
             } else {
-              this.handleError(res);
+              this.handleError('上传失败', res, file);
             }
           },
           onError: (err, response) => {
@@ -213,8 +220,7 @@ export default {
       if (fileData) {
         fileData.status = 'finished';
         fileData.response = res;
-        this.loadImg(res.data.resource_url);
-        this.onSuccess(res, fileData, this.fileList);
+        this.loadImg(res.data.url, res, fileData);
       }
     },
     handleError(err, response, file) {
@@ -225,7 +231,7 @@ export default {
 
       fileList.splice(fileList.indexOf(fileData), 1);
 
-      this.onError(err, response, file);
+      this.$emit('error', err, response, file);
     },
     getFile(file) {
       const fileList = this.fileList;
@@ -236,15 +242,19 @@ export default {
       });
       return target;
     },
-    loadImg(src) {
+    loadImg(src, res, fileData) {
       const img = new Image();
       img.src = src;
       img.onload = () => {
         this.src = src;
+        setTimeout(this.setAlign.bind(this), 0);
+        this.$emit('success', res, fileData, this.fileList);
       };
     },
     close() {
       this.src = '';
+      this.canShow = false;
+      this.$emit('close');
     },
   },
 };

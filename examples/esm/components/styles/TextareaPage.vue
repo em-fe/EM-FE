@@ -5,6 +5,10 @@
     <br>
     <br>
     <br>
+    <emfe-button @click="click">改变值</emfe-button>
+    <br>
+    <br>
+    <br>
     <br>
     <h3>API</h3>
     <table style="width: 100%;text-align: center;">
@@ -34,6 +38,11 @@ export default {
     return {
       des: '11',
     };
+  },
+  methods: {
+    click() {
+      this.des = '我要你';
+    },
   },
 }
 </script>

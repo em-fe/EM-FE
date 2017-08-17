@@ -1,40 +1,40 @@
 <template>
-  <div class="emfe-time" v-emfe-documentclick="close" :class="timeName">
-    <button class="emfe-time-btn" v-if="!open && !disabled" @click="toggle">
-      <span class="emfe-time-btn-text" :class="{'emfe-time-btn-text-choice': choiced}">{{ time }}</span>
+  <div class="emfe-time-m" v-emfe-documentclick="close" :class="timeName">
+    <button class="emfe-time-m-btn" v-if="!open && !disabled" @click="toggle">
+      <span class="emfe-time-m-btn-text" :class="{'emfe-time-m-btn-text-choice': choiced}">{{ time }}</span>
       <!-- 日期 -->
-      <emfe-icon type="hint" className="emfe-time" v-show="!choiced" @icon-click="toggle"></emfe-icon>
+      <emfe-icon type="hint" className="emfe-time-m" v-show="!choiced" @icon-click="toggle"></emfe-icon>
       <!-- 取消 -->
-      <emfe-icon type="qr" className="emfe-time" v-show="choiced" @icon-click="cancel"></emfe-icon>
+      <emfe-icon type="qr" className="emfe-time-m" v-show="choiced" @icon-click="cancel"></emfe-icon>
     </button>
-    <button class="emfe-time-btn emfe-time-btn-disabled" v-if="!open && disabled">
-      <span class="emfe-time-btn-text">{{ time }}</span>
+    <button class="emfe-time-m-btn emfe-time-m-btn-disabled" v-if="!open && disabled">
+      <span class="emfe-time-m-btn-text">{{ time }}</span>
       <!-- 日期 -->
-      <emfe-icon type="hint" className="emfe-time" v-show="!choiced"></emfe-icon>
+      <emfe-icon type="hint" className="emfe-time-m" v-show="!choiced"></emfe-icon>
       <!-- 取消 -->
-      <emfe-icon type="qr" className="emfe-time" v-show="choiced"></emfe-icon>
+      <emfe-icon type="qr" className="emfe-time-m" v-show="choiced"></emfe-icon>
     </button>
     <emfe-transition name="fade">
-      <div class="emfe-time-box" v-show="status" :class="{'emfe-time-box-position': !open}">
-        <div class="emfe-time-main">
-          <div class="emfe-time-item" :class="itemName">
-            <ul class="emfe-time-list">
-              <li class="emfe-time-list-item" v-for="hourLoop in hours" :class="{'emfe-time-list-item-on': hourLoop.num === hour, 'emfe-time-list-item-disable': hourLoop.undo}" @click.stop="choiceHour(hourLoop)">{{ hourLoop.num }}</li>
-            </ul>
-          </div>
-          <div class="emfe-time-item" :class="itemName">
-            <ul class="emfe-time-list">
-              <li class="emfe-time-list-item" v-for="minuteLoop in minutes" :class="{'emfe-time-list-item-on': minuteLoop.num === minute, 'emfe-time-list-item-disable': minuteLoop.undo}" @click.stop="choiceMinute(minuteLoop)">{{ minuteLoop.num }}</li>
-            </ul>
-          </div>
-          <div class="emfe-time-item" :class="itemName">
-            <ul class="emfe-time-list">
-              <li class="emfe-time-list-item" v-for="(secondLoop, secondIndex) in seconds" :class="{'emfe-time-list-item-on': secondLoop.num === second, 'emfe-time-list-item-disable': secondLoop.undo}" @click.stop="choiceSecond(secondLoop)">{{ secondLoop.num }}</li>
-            </ul>
-          </div>
+      <div class="emfe-time-m-box" v-show="status" :class="{'emfe-time-m-box-position': !open}">
+        <div v-if="confirm" class="emfe-time-m-footer">
+          <button class="emfe-time-m-ok" @click.stop="ok">确定</button>
         </div>
-        <div v-if="confirm" class="emfe-time-footer">
-          <button class="emfe-time-ok" @click.stop="ok">确定</button>
+        <div class="emfe-time-m-main">
+          <div class="emfe-time-m-item" :class="itemName">
+            <ul class="emfe-time-m-list">
+              <li class="emfe-time-m-list-item" v-for="hourLoop in hours" :class="{'emfe-time-m-list-item-on': hourLoop.num === hour, 'emfe-time-m-list-item-disable': hourLoop.undo}" @click.stop="choiceHour(hourLoop)">{{ hourLoop.num }}</li>
+            </ul>
+          </div>
+          <div class="emfe-time-m-item" :class="itemName" v-if="exact === 'minute' || exact === 'second'">
+            <ul class="emfe-time-m-list">
+              <li class="emfe-time-m-list-item" v-for="minuteLoop in minutes" :class="{'emfe-time-m-list-item-on': minuteLoop.num === minute, 'emfe-time-m-list-item-disable': minuteLoop.undo}" @click.stop="choiceMinute(minuteLoop)">{{ minuteLoop.num }}</li>
+            </ul>
+          </div>
+          <div class="emfe-time-m-item" :class="itemName" v-if="exact === 'second'">
+            <ul class="emfe-time-m-list">
+              <li class="emfe-time-m-list-item" v-for="(secondLoop, secondIndex) in seconds" :class="{'emfe-time-m-list-item-on': secondLoop.num === second, 'emfe-time-m-list-item-disable': secondLoop.undo}" @click.stop="choiceSecond(secondLoop)">{{ secondLoop.num }}</li>
+            </ul>
+          </div>
         </div>
       </div>
     </emfe-transition>
@@ -42,14 +42,14 @@
 </template>
 <script>
 import TimeTool from '../../../tools/time';
+import _ from '../../../tools/lodash';
 
 const hourNum = 24;
 const minuteNum = 60;
 const secondNum = 60;
-// const zero = '00';
 
 export default {
-  name: 'EmfeTime',
+  name: 'EmfeTimeM',
   data() {
     return {
       hours: [],
@@ -71,6 +71,12 @@ export default {
     value: {
       type: String,
       default: '',
+    },
+    exact: {
+      validator(value) {
+        return _.has(value, ['hour', 'minute', 'second']);
+      },
+      default: 'second',
     },
     confirm: {
       type: Boolean,
@@ -115,12 +121,19 @@ export default {
         {
           [`${this.className}-item`]: !!this.className,
         },
+        [`emfe-time-m-item-${this.exact}`],
       ];
     },
     time() {
       let time = this.placeholder;
       if (this.choiced) {
-        time = `${this.hour}:${this.minute}:${this.second}`;
+        if (this.exact === 'hour') {
+          time = `${this.hour}`;
+        } else if (this.exact === 'minute') {
+          time = `${this.hour}:${this.minute}`;
+        } else {
+          time = `${this.hour}:${this.minute}:${this.second}`;
+        }
       }
       return time;
     },
