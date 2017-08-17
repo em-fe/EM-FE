@@ -46,6 +46,7 @@ import EmfeEdit from './components/emfe-edit/index';
 import EmfeOpations from './components/emfe-opations/index';
 // 服务
 import EmfeMessage from './components/emfe-message/index';
+import EmfeFormTest from './components/emfe-formtest/index';
 // 指令
 import emfeDocumentclick from './directives/emfe-documentclick';
 import emfeDocumentfocus from './directives/emfe-documentfocus';
@@ -123,6 +124,7 @@ const install = (Vue) => {
   });
 
   Vue.prototype.$EmfeMessage = EmfeMessage;
+  Vue.prototype.$EmfeFormTest = EmfeFormTest;
 };
 
 if (typeof window !== 'undefined' && window.Vue) {

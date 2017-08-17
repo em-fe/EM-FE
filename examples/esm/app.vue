@@ -340,6 +340,13 @@ module.exports = {
               },
             },
             {
+              title: '表单验证',
+              icon: 'hotel',
+              routers: {
+                path: '/functions/formtest',
+              },
+            },
+            {
               title: '复制',
               icon: 'hotel',
               routers: {
