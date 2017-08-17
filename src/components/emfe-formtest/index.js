@@ -47,4 +47,11 @@ export default {
     /* eslint-disable */
     return qqPattern.test(val);
   },
+  password(val) {
+    /* eslint-disable */
+    //QQ号正则，5至11位
+    const pwdPattern = /^[a-zA-Z0-9._@]{8,20}$/;
+    /* eslint-disable */
+    return pwdPattern.test(val);
+  },
 };
