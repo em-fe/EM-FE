@@ -1,6 +1,15 @@
 <template>
   <div class="time-m-page">
     <h3>手机时间组件</h3>
+    <emfe-time-m v-model="aaa" timeChoices="10:10:10|12:12:12"></emfe-time-m>
+    <pre>
+      &lt;emfe-time-m v-model="aaa" timeChoices="10:10:10|12:12:12"&gt;&lt;/emfe-time-m&gt;
+    </pre>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h3>手机时间组件</h3>
     {{ aaa }}
     <emfe-time-m v-model="aaa" exact="minute"></emfe-time-m>
     <br>
@@ -65,6 +74,12 @@
           <td>筛选， hour ， minute ， second</td>
           <td>String</td>
           <td>second</td>
+        </tr>
+        <tr>
+          <td>timeChoices</td>
+          <td>可选时间，必须|间隔</td>
+          <td>String</td>
+          <td>00:00:00|23:59:59</td>
         </tr>
       </tbody>
     </table>

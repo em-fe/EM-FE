@@ -155,6 +155,11 @@ export default {
       type: Array,
       default: () => [],
     },
+    // 可选时间
+    timeChoices: {
+      type: String,
+      default: '00:00:00|23:59:59',
+    },
     className: String,
   },
   computed: {
@@ -198,6 +203,7 @@ export default {
       this.seconds.push(TimeTool.handleConputedTime(i, this.disabledSeconds));
     }
     this.initData();
+    this.setTimeChoice();
   },
   methods: {
     initData() {
@@ -269,10 +275,54 @@ export default {
         this.$emit('input', this.datetime);
       }
     },
+    // 设置时间可选
+    setTimeChoice() {
+      const times = this.timeChoices.split('|');
+      const startTime = times[0].split(':');
+      const endTime = times[1].split(':');
+      const hours = [];
+      const minutes = [];
+      if (this.hours.length > 1) {
+        this.hours.forEach((h) => {
+          if (h.num < startTime[0] || h.num > endTime[0]) {
+            h.undo = true;
+          }
+        });
+        this.hours.forEach((h) => {
+          if (!h.undo) {
+            hours.push(h.num);
+          }
+        });
+      }
+      const hour = this.hour ? this.hour : hours[0];
+      const hourIsStart = hour === startTime[0];
+      const hourIsEnd = hour === endTime[0];
+      if (this.minutes.length > 1) {
+        this.minutes.forEach((min) => {
+          min.undo = (hourIsStart && min.num < startTime[1]) || (hourIsEnd && min.num > endTime[1]);
+        });
+        this.minutes.forEach((min) => {
+          if (!min.undo) {
+            minutes.push(min.num);
+          }
+        });
+      }
+      const minute = this.minute ? this.minute : minutes[0];
+      const minuteIsStart = minute === startTime[1];
+      const minuteIsEnd = minute === endTime[1];
+      if (this.seconds.length > 1) {
+        this.seconds.forEach((sec) => {
+          const before = hourIsStart && minuteIsStart && sec.num < startTime[2];
+          const after = hourIsEnd && minuteIsEnd && sec.num > endTime[2];
+          sec.undo = before || after;
+        });
+      }
+    },
     choiceHour(hour) {
       if (!hour.undo) {
         this.setChoice();
         this.hour = hour.num;
+        this.setTimeChoice();
         this.$emit('choice-time', this.datetime);
         this.$emit('input', this.datetime);
       }
@@ -281,6 +331,7 @@ export default {
       if (!minute.undo) {
         this.setChoice();
         this.minute = minute.num;
+        this.setTimeChoice();
         this.$emit('choice-time', this.datetime);
         this.$emit('input', this.datetime);
       }
@@ -289,6 +340,7 @@ export default {
       if (!second.undo) {
         this.setChoice();
         this.second = second.num;
+        this.setTimeChoice();
         this.$emit('choice-time', this.datetime);
         this.$emit('input', this.datetime);
       }
