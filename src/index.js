@@ -19,8 +19,11 @@ import EmfeImgcode from './components/emfe-imgcode/index';
 import EmfeSteps from './components/emfe-steps/index';
 import EmfeNumber from './components/emfe-number/index';
 import EmfeDate from './components/emfe-date/index';
+import EmfeDateM from './components/emfe-date-m/index';
 import EmfeTime from './components/emfe-time/index';
+import EmfeTimeM from './components/emfe-time-m/index';
 import EmfeDatetime from './components/emfe-datetime/index';
+import EmfeDatetimeM from './components/emfe-datetime-m/index';
 import EmfeLink from './components/emfe-link/index';
 import EmfeSwitch from './components/emfe-switch/index';
 import EmfeTitle from './components/emfe-title/index';
@@ -43,6 +46,7 @@ import EmfeEdit from './components/emfe-edit/index';
 import EmfeOpations from './components/emfe-opations/index';
 // 服务
 import EmfeMessage from './components/emfe-message/index';
+import EmfeFormTest from './components/emfe-formtest/index';
 // 指令
 import emfeDocumentclick from './directives/emfe-documentclick';
 import emfeDocumentfocus from './directives/emfe-documentfocus';
@@ -80,8 +84,11 @@ const emfeCpt = {
   EmfeTableHead: Table.EmfeTableHead,
   EmfeTableBody: Table.EmfeTableBody,
   EmfeDate,
+  EmfeDateM,
   EmfeTime,
+  EmfeTimeM,
   EmfeDatetime,
+  EmfeDatetimeM,
   EmfePagination,
   EmfeSelect,
   EmfeCheckout,
@@ -117,6 +124,7 @@ const install = (Vue) => {
   });
 
   Vue.prototype.$EmfeMessage = EmfeMessage;
+  Vue.prototype.$EmfeFormTest = EmfeFormTest;
 };
 
 if (typeof window !== 'undefined' && window.Vue) {
@@ -126,4 +134,5 @@ if (typeof window !== 'undefined' && window.Vue) {
 export default {
   version: '1.0.0',
   install,
+  EmfeMessage,
 };
