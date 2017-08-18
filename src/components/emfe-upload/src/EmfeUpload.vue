@@ -58,6 +58,7 @@ export default {
         return {};
       },
     },
+    handleDatas: Object,
     data: {
       type: Object,
     },
@@ -165,17 +166,18 @@ export default {
 
       // check maxSize
       if (this.maxSize) {
+        console.log(file.size, this.maxSize * 1024);
         if (file.size > this.maxSize * 1024) {
-          this.$emit('exceededSize', file, this.fileList);
+          this.$emit('exceededSize', file, this.fileList, this.handleDatas);
           return false;
         }
       }
 
       if (canUpload) {
         this.handleStart(file);
-
-        this.$emit('before');
-
+        console.log(1);
+        this.$emit('beforeUpload', file, this.handleDatas);
+        console.log(3);
         this.canUpload = false;
 
         ajax({
@@ -231,7 +233,7 @@ export default {
 
       fileList.splice(fileList.indexOf(fileData), 1);
 
-      this.$emit('error', err, response, file);
+      this.$emit('error', err, response, file, this.handleDatas);
     },
     getFile(file) {
       const fileList = this.fileList;
@@ -248,7 +250,7 @@ export default {
       img.onload = () => {
         this.src = src;
         setTimeout(this.setAlign.bind(this), 0);
-        this.$emit('success', res, fileData, this.fileList);
+        this.$emit('success', res, fileData, this.fileList, this.handleDatas);
       };
     },
     close() {
