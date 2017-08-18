@@ -31,7 +31,7 @@
       },
     </pre>
     <h3>数字 验证</h3>
-    {{ testnum }}
+    正负数( 带小数 ): {{ testnum }}
     <input type="text" v-model="num" @blur="blurnum">
     <pre>
       &lt;input type="text" v-model="num" @blur="blurnum"&gt;
@@ -45,6 +45,84 @@
         this.testnum = this.$EmfeFormTest.num(this.num);
       },
     </pre>
+    <br>
+    <br>
+    <br>
+    正负整数: {{ testnumint }}
+    <input type="text" v-model="numint" @blur="blurnumint">
+    <pre>
+      &lt;input type="text" v-model="numint" @blur="blurnumint"&gt;
+    </pre>
+    <pre>
+      numint: 222,
+      testnumint: false,
+    </pre>
+    <pre>
+      blurnumint() {
+        this.testnumint = this.$EmfeFormTest.numInt(this.numint);
+      },
+    </pre>
+    <br>
+    负数( 带小数 ): {{ testnegative }}
+    <input type="text" v-model="negative" @blur="blurnegative">
+    <pre>
+      &lt;input type="text" v-model="negative" @blur="blurnegative"&gt;
+    </pre>
+    <pre>
+      negative: 333,
+      testnegative: false,
+    </pre>
+    <pre>
+      blurnegative() {
+        this.testnegative = this.$EmfeFormTest.negative(this.negative);
+      },
+    </pre>
+    <br>
+    负整数: {{ testnegativeint }}
+    <input type="text" v-model="negativeint" @blur="blurnegativeint">
+    <pre>
+      &lt;input type="text" v-model="negativeint" @blur="blurnegativeint"&gt;
+    </pre>
+    <pre>
+      negativeint: 444,
+      testnegativeint: false,
+    </pre>
+    <pre>
+      blurnegativeint() {
+        this.testnegativeint = this.$EmfeFormTest.negativeint(this.negativeint);
+      },
+    </pre>
+    <br>
+    正整数: {{ testpositiveint }}
+    <input type="text" v-model="positiveint" @blur="blurpositiveint">
+    <pre>
+      &lt;input type="text" v-model="positiveint" @blur="blurpositiveint"&gt;
+    </pre>
+    <pre>
+      positiveint: 444,
+      testpositiveint: false,
+    </pre>
+    <pre>
+      blurpositiveint() {
+        this.testpositiveint = this.$EmfeFormTest.positiveInt(this.positiveint);
+      },
+    </pre>
+    <br>
+    正数( 带小数 ): {{ testpositive }}
+    <input type="text" v-model="positive" @blur="blurpositive">
+    <pre>
+      &lt;input type="text" v-model="positive" @blur="blurpositive"&gt;
+    </pre>
+    <pre>
+      positive: 555,
+      testpositive: false,
+    </pre>
+    <pre>
+      blurpositive() {
+        this.testpositive = this.$EmfeFormTest.positive(this.positive);
+      },
+    </pre>
+    <br>
     <h3>ip 验证</h3>
     {{ testip }}
     <input type="text" v-model="ip" @blur="blurip">
@@ -158,7 +236,17 @@ export default {
     card: 111,
     testcard: false,
     num: 111,
+    numint: 222,
     testnum: false,
+    testnumint: false,
+    negative: 333,
+    negativeint: 444,
+    testnegative: false,
+    testnegativeint: false,
+    positive: 555,
+    positiveint: 666,
+    testpositive: false,
+    testpositiveint: false,
     ip: 111,
     testip: false,
     web: 111,
@@ -179,6 +267,21 @@ export default {
     },
     blurnum() {
       this.testnum = this.$EmfeFormTest.num(this.num);
+    },
+    blurnumint() {
+      this.testnumint = this.$EmfeFormTest.numInt(this.numint);
+    },
+    blurnegative() {
+      this.testnegative = this.$EmfeFormTest.negative(this.negative);
+    },
+    blurnegativeint() {
+      this.testnegativeint = this.$EmfeFormTest.negativeInt(this.negativeint);
+    },
+    blurpositive() {
+      this.testpositive = this.$EmfeFormTest.positive(this.positive);
+    },
+    blurpositiveint() {
+      this.testpositiveint = this.$EmfeFormTest.positiveInt(this.positiveint);
     },
     blurip() {
       this.testip = this.$EmfeFormTest.ip(this.ip);
