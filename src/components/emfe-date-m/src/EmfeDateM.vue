@@ -108,6 +108,11 @@ export default {
       type: Array,
       default: () => [],
     },
+    // 一周内哪天可选
+    weekChoices: {
+      type: Array,
+      default: () => [1, 2, 3, 4, 5, 6, 7],
+    },
     className: String,
   },
   computed: {
@@ -159,9 +164,33 @@ export default {
       for (let i = 1; i < dateCountOfLastMonth + 1; i++) {
         this.days.push(TimeTool.handleConputedDate(i, this.disabledDays));
       }
-      if (this.day > dateCountOfLastMonth) {
-        this.day = TimeTool.loopChoice(this.days, this.day);
+      this.setWeekChoice();
+    },
+    setWeekChoice() {
+      let year = null;
+      let month = null;
+      if (this.years.length > 1) {
+        this.years.forEach((y) => {
+          if (!y.undo && year === null) {
+            year = y.num;
+          }
+        });
       }
+      if (this.months.length > 1) {
+        this.months.forEach((m) => {
+          if (!m.undo && month === null) {
+            month = m.num - 0;
+          }
+        });
+      }
+      this.days.forEach((tday) => {
+        const nowYear = this.year ? this.year : year;
+        const nowMonth = this.month ? this.month : month;
+        const nowDate = new Date(`${nowYear}/${nowMonth}/${tday.num}`);
+        const nowWeek = nowDate.getDay() + 1;
+        tday.undo = !this.weekChoices.every(wc => wc !== nowWeek);
+      });
+      this.day = TimeTool.loopChoice(this.days, this.day);
     },
     choiceYear(year) {
       if (!year.undo) {

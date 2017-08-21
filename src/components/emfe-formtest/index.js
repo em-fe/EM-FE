@@ -40,6 +40,52 @@ export default {
     /* eslint-disable */
     return numPattern.test(val);
   },
+  num(val) {
+    /* eslint-disable */
+    //数字
+    const numPattern = /^-?\d*\.?\d+$/;
+    /* eslint-disable */
+    return numPattern.test(val);
+  },
+  numInt(val) {
+    /* eslint-disable */
+    //数字
+    const numPattern = /^-?\d+$/;
+    /* eslint-disable */
+    return numPattern.test(val);
+  },
+  // 负整数
+  negativeInt(val) {
+    /* eslint-disable */
+    //数字
+    const numPattern = /^-\d+$/;
+    /* eslint-disable */
+    return numPattern.test(val);
+  },
+  // 负数（带小数）
+  negative(val) {
+    /* eslint-disable */
+    //数字
+    const numPattern = /^-\d*\.?\d+$/;
+    /* eslint-disable */
+    return numPattern.test(val);
+  },
+  // 正整数
+  positiveInt(val) {
+    /* eslint-disable */
+    //数字
+    const numPattern = /^\d+$/;
+    /* eslint-disable */
+    return numPattern.test(val);
+  },
+  // 正数（带小数）
+  positive(val) {
+    /* eslint-disable */
+    //数字
+    const numPattern = /^\d*\.?\d+$/;
+    /* eslint-disable */
+    return numPattern.test(val);
+  },
   qq(val) {
     /* eslint-disable */
     //QQ号正则，5至11位
