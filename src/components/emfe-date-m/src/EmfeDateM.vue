@@ -111,7 +111,7 @@ export default {
     // 一周内哪天可选
     weekChoices: {
       type: Array,
-      default: () => [1, 2, 3, 4, 5, 6, 7],
+      default: () => [],
     },
     className: String,
   },
@@ -166,6 +166,7 @@ export default {
       }
       this.setWeekChoice();
     },
+    // 设置日期可选
     setWeekChoice() {
       let year = null;
       let month = null;
