@@ -1,7 +1,7 @@
 <template>
   <div class="emfe-smscode" :class="smscodeName">
     <emfe-icon v-if="icon" className="emfe-smscode" :type="icon"></emfe-icon>
-    <input type="number" class="emfe-smscode-input" :class="codeName" :value="nowData" :placeholder="placeholder" @input="input" :disabled="newDisabled">
+    <input type="number" class="emfe-smscode-input" :class="codeName" :value="nowData" :placeholder="placeholder" @input="input" :disabled="newDisabled" @blur="blur">
     <button class="emfe-smscode-button" :class="btmName" @click="click">{{ btnText }}</button>
   </div>
 </template>
@@ -82,8 +82,6 @@ export default {
       this.$emit('end', false);
     },
     auto() {
-      console.log(1);
-      console.log(this.start);
       setTimeout(() => {
         if (this.start) {
           if (this.allTimes > 1) {
@@ -109,6 +107,9 @@ export default {
         this.$emit('click');
       }
     },
+    blur() {
+      this.$emit('blur');
+    },
   },
   watch: {
     title(val, oldVal) {
@@ -128,7 +129,6 @@ export default {
     },
     timeStart(val, oldVal) {
       if (val !== oldVal) {
-        console.log(val, 111);
         this.start = val;
       }
     },
