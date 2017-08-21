@@ -23,7 +23,7 @@
     <br>
     <br>
     <h3>自定义用法</h3>
-    <emfe-smscode className="demo" v-model="model" times="2" @click="click"></emfe-smscode>
+    <emfe-smscode className="demo" v-model="model" times="6" @click="click" :timeStart="start" @end="timeEnd"></emfe-smscode>
     点击次数: {{ num }}
     <pre>
       &lt;emfe-smscode className="demo" v-model="model" times="2" @click="click"&gt;&lt;/emfe-smscode&gt;
@@ -48,6 +48,12 @@
           <td>需要修改的样式</td>
           <td>String</td>
           <td>-</td>
+        </tr>
+        <tr>
+          <td>timeStart</td>
+          <td>控制是否开启定时器</td>
+          <td>Boolean</td>
+          <td>false</td>
         </tr>
         <tr>
           <td>title</td>
@@ -100,13 +106,26 @@ export default {
     return {
       model: 111111,
       num: 0,
+      start: false,
     };
+  },
+  watch: {
+    start(val, oldVal) {
+      if (val !== oldVal) {
+        this.start = val;
+      }
+    },
   },
   methods: {
     click() {
+      this.start = true;
       this.num++;
-    }
-  }
+    },
+    timeEnd(val) {
+      this.start = val;
+      console.log(this.start, 'sssss');
+    },
+  },
 };
 </script>
 <style lang="scss">
