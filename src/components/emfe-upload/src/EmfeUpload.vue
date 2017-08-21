@@ -7,13 +7,13 @@
         <div class="emfe-upload-icon-wrap-box" :class="[`emfe-upload-icon-wrap-box-${align}`]">
           <img class="emfe-upload-icon-wrap-box-img" :class="[`emfe-upload-img-${align}`]" :src="src" ref="img">
         </div>
-        <i class="emfe-upload-icon-wrap-close" @click="close"></i>
+        <i class="emfe-upload-icon-wrap-close" @click="closeFn"></i>
       </div>
     </template>
     <template v-if="type === 'plus'">
       <button v-show="!src" class="emfe-upload-btn" :class="btnName">+</button>
       <input v-show="!src" class="emfe-upload-file" :class="fileName" :disabled="disabled" type="file" @change="change">
-      <div v-show="src" class="emfe-upload-plus-box" :class="[`emfe-upload-plus-box-${align}`]" :style="{opacity: canShow ? 1 : 0}" @click="close">
+      <div v-show="src" class="emfe-upload-plus-box" :class="[`emfe-upload-plus-box-${align}`]" :style="{opacity: canShow ? 1 : 0}" @click="closeFn">
         <img :class="[`emfe-upload-img-${align}`]" v-show="src" :src="src" ref="img">
       </div>
     </template>
@@ -21,6 +21,7 @@
 </template>
 <script>
 import _ from '../../../tools/lodash';
+import EmfeMessage from '../../emfe-message/index';
 import ajax from './ajax';
 
 let canUpload = true;
@@ -58,6 +59,7 @@ export default {
         return {};
       },
     },
+    handleDatas: Object,
     data: {
       type: Object,
     },
@@ -79,6 +81,30 @@ export default {
       type: Number,
     },
     url: String,
+    success: {
+      type: Function,
+      default: () => {},
+    },
+    exceededSize: {
+      type: Function,
+      default: () => {},
+    },
+    formatError: {
+      type: Function,
+      default: () => {},
+    },
+    beforeUpload: {
+      type: Function,
+      default: () => {},
+    },
+    error: {
+      type: Function,
+      default: () => {},
+    },
+    close: {
+      type: Function,
+      default: () => {},
+    },
   },
   computed: {
     uploadName() {
@@ -158,24 +184,24 @@ export default {
         const fileFormat = file.name.split('.').pop().toLocaleLowerCase();
         const checked = this.format.some(item => item.toLocaleLowerCase() === fileFormat);
         if (!checked) {
-          this.$emit('formatError', file, this.fileList);
+          this.formatError(file, this.fileList, EmfeMessage);
+          this.$emit('formatError', file, this.fileList, EmfeMessage);
           return false;
         }
       }
-
       // check maxSize
       if (this.maxSize) {
         if (file.size > this.maxSize * 1024) {
-          this.$emit('exceededSize', file, this.fileList);
+          this.exceededSize(file, this.fileList, EmfeMessage);
+          this.$emit('exceededSize', file, this.fileList, EmfeMessage);
           return false;
         }
       }
 
       if (canUpload) {
         this.handleStart(file);
-
-        this.$emit('before');
-
+        this.beforeUpload(file, EmfeMessage);
+        this.$emit('beforeUpload', file, EmfeMessage);
         this.canUpload = false;
 
         ajax({
@@ -230,8 +256,8 @@ export default {
       fileData.status = 'fail';
 
       fileList.splice(fileList.indexOf(fileData), 1);
-
-      this.$emit('error', err, response, file);
+      this.error(err, response, file, EmfeMessage);
+      this.$emit('error', err, response, file, EmfeMessage);
     },
     getFile(file) {
       const fileList = this.fileList;
@@ -248,13 +274,15 @@ export default {
       img.onload = () => {
         this.src = src;
         setTimeout(this.setAlign.bind(this), 0);
-        this.$emit('success', res, fileData, this.fileList);
+        this.success(res, fileData, this.fileList, EmfeMessage);
+        this.$emit('success', res, fileData, this.fileList, EmfeMessage);
       };
     },
-    close() {
+    closeFn() {
       this.src = '';
       this.canShow = false;
-      this.$emit('close');
+      this.close(EmfeMessage);
+      this.$emit('close', EmfeMessage);
     },
   },
 };

@@ -18,6 +18,7 @@ export default {
       btnText: this.title,
       allTimes: this.times,
       newDisabled: this.disabled,
+      start: '',
     };
   },
   props: {
@@ -43,6 +44,10 @@ export default {
       default: 60,
     },
     className: String,
+    timeStart: {
+      type: [String, Boolean],
+      default: false,
+    },
   },
   computed: {
     smscodeName() {
@@ -74,16 +79,23 @@ export default {
       this.btnText = this.errorTitle;
       this.allTimes = this.times;
       go = true;
+      this.$emit('end', false);
     },
     auto() {
-      if (this.allTimes > 1) {
-        this.allTimes--;
-        this.btnText = `${this.allTimes}秒后重试`;
-        timer = setTimeout(this.auto.bind(this), 1000);
-      } else {
-        clearTimeout(timer);
-        this.resetAuto();
-      }
+      console.log(1);
+      console.log(this.start);
+      setTimeout(() => {
+        if (this.start) {
+          if (this.allTimes > 1) {
+            this.allTimes--;
+            this.btnText = `${this.allTimes}秒后重试`;
+            timer = setTimeout(this.auto.bind(this), 1000);
+          } else {
+            clearTimeout(timer);
+            this.resetAuto();
+          }
+        }
+      }, 500);
     },
     input(ev) {
       const val = ev.target.value;
@@ -112,6 +124,12 @@ export default {
     disabled(val, oldVal) {
       if (val !== oldVal) {
         this.newDisabled = val;
+      }
+    },
+    timeStart(val, oldVal) {
+      if (val !== oldVal) {
+        console.log(val, 111);
+        this.start = val;
       }
     },
   },
