@@ -50,6 +50,13 @@
     </div>
     <br>
     <br>
+    <h3>一周之内可选</h3>
+    <br>
+    <br>
+    <p>当前日之内可选期： {{ demo2 }}</p>
+    <emfe-date-m :weekChoices="[1,2,3]"></emfe-date-m>
+    <br>
+    <br>
     <br>
     <br>
     <br>
@@ -129,6 +136,13 @@
           <td>String</td>
           <td>second</td>
         </tr>
+        <tr>
+          <td>weekChoices</td>
+          <td>一周之内可选</td>
+          <td>Array</td>
+          <td>[]</td>
+        </tr>
+
       </tbody>
     </table>
     <br>
