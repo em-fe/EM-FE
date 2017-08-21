@@ -1,7 +1,7 @@
 <template>
   <div class="uploadpage">
     <h3>基本用法</h3>
-    <emfe-upload type="icon" action="http://gateway.inner.evente.cn:8000/upload/upload"></emfe-upload>
+    <emfe-upload type="icon" action="http://gateway.inner.evente.cn:8000/public/upload"></emfe-upload>
     <br>
     <pre>
       &lt;emfe-upload type="icon" action="http://gateway.inner.evente.cn:8000/upload/upload"&gt;&lt;/emfe-upload&gt;
@@ -12,7 +12,7 @@
     <br>
     <br>
     <h3>扩展用法</h3>
-    <emfe-upload v-show="!src1" type="icon" action="http://gateway.inner.evente.cn:8000/upload/upload" :onSuccess="suc"></emfe-upload>
+    <emfe-upload v-show="!src1" type="icon" action="http://gateway.inner.evente.cn:8000/public/upload" :onSuccess="suc"></emfe-upload>
     <img v-show="src1" :src="src1">
     <pre>
       &lt;emfe-upload v-show="!src1" type="icon" action="http://gateway.inner.evente.cn:8000/upload/upload" :onSuccess="suc"&gt;&lt;/emfe-upload&gt;
