@@ -30,8 +30,25 @@
     <br>
     <br>
     <br>
-    <h3>整体组合用法</h3>
-    <emfe-inputmore-group :datas="datas" :new="news" :max="4" :min="1" @reduce="reduceGroup" @plus="plusGroup"></emfe-inputmore-group>
+    <h3>整体组合用法1</h3>
+    <emfe-inputmore-group :datas="datas1" :inputHandle="inputdata1.bind(this)"></emfe-inputmore-group>
+    {{ datas1 }}
+    <pre>
+      &lg;emfe-inputmore-group :datas="datas1" :inputHandle="inputdata1.bind(this)"&gt;&lg;/emfe-inputmore-group&gt;
+    </pre>
+    <pre>
+      datas1: [222, 333],
+    </pre>
+    <pre>
+      inputdata1(now, index) {
+        this.datas1.splice(index, 1, now);
+      },
+    </pre>
+    <br>
+    <br>
+    <br>
+    <h3>整体组合用法2</h3>
+    <!-- <emfe-inputmore-group :datas="datas" :new="news" :max="4" :min="1" @reduce="reduceGroup" @plus="plusGroup"></emfe-inputmore-group> -->
     <p v-show="groupNow">当前点击的数据 {{ groupNow }}</p>
     <pre>
       &lt;emfe-inputmore-group :datas="datas" :new="news" :max="4" :min="1" @reduce="reduceGroup" @plus="plusGroup"&gt;&lt;/emfe-inputmore-group&gt;
@@ -207,6 +224,24 @@
           <td>String</td>
           <td>-</td>
         </tr>
+        <tr>
+          <td>reduceHandle</td>
+          <td>减少的时候触发</td>
+          <td>Function</td>
+          <td>当前值, 当前数据, 所有数据, 当前索引</td>
+        </tr>
+        <tr>
+          <td>plusHandle</td>
+          <td>增加的时候触发</td>
+          <td>Function</td>
+          <td>当前值, 当前数据, 所有数据, 当前索引</td>
+        </tr>
+        <tr>
+          <td>inputHandle</td>
+          <td>输入的时候触发</td>
+          <td>Function</td>
+          <td>当前值, 当前数据, 所有数据, 当前索引</td>
+        </tr>
       </tbody>
     </table>
     <br>
@@ -241,6 +276,7 @@ export default {
       input1: 'sss',
       input1Number: 0,
       input2: 111,
+      datas1: [222, 333],
       datas: [
         {
           num: 111,
@@ -270,6 +306,9 @@ export default {
     },
     plusGroup(now) {
       this.groupNow = now.num;
+    },
+    inputdata1(now, index) {
+      this.datas1.splice(index, 1, now);
     },
   },
 };
