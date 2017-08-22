@@ -1,6 +1,6 @@
 <template>
   <div class="inputpage">
-  	<emfe-input placeholder="请输入文a字！" className="add" v-model="value">
+  	<emfe-input placeholder="请输入文a字！" className="add" v-model="value" @blur="blur">
     </emfe-input>
     <div>支持v-model： {{value}}</div>
     <pre>
@@ -132,6 +132,11 @@
           <td>input变化触发</td>
           <td>input的val值</td>
         </tr>
+        <tr>
+          <td>blur</td>
+          <td>input失去焦点</td>
+          <td></td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -147,6 +152,9 @@ export default {
   methods: {
     change(val) {
       console.log(val);
+    },
+    blur() {
+      console.log('失去焦点');
     },
   },
 };
