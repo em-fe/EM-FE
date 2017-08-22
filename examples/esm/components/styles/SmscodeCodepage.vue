@@ -23,7 +23,7 @@
     <br>
     <br>
     <h3>自定义用法</h3>
-    <emfe-smscode className="demo" v-model="model" times="6" @click="click" :timeStart="start" @end="timeEnd"></emfe-smscode>
+    <emfe-smscode className="demo" v-model="model" times="6" @blur="blur" @click="click" :timeStart="start" @end="timeEnd"></emfe-smscode>
     点击次数: {{ num }}
     <pre>
       &lt;emfe-smscode className="demo" v-model="model" times="2" @click="click"&gt;&lt;/emfe-smscode&gt;
@@ -95,6 +95,11 @@
           <td>点击验证码</td>
           <td></td>
         </tr>
+        <tr>
+          <td>blur</td>
+          <td>文本框失去焦点</td>
+          <td></td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -118,12 +123,14 @@ export default {
   },
   methods: {
     click() {
-      this.start = true;
+      this.start = false;
       this.num++;
     },
     timeEnd(val) {
       this.start = val;
-      console.log(this.start, 'sssss');
+    },
+    blur() {
+
     },
   },
 };
