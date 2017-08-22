@@ -123,14 +123,14 @@ export default {
   },
   methods: {
     click() {
-      this.start = true;
+      this.start = false;
       this.num++;
     },
     timeEnd(val) {
       this.start = val;
     },
     blur() {
-      console.log('失去焦点');
+
     },
   },
 };

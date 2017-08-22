@@ -101,6 +101,9 @@ export default {
       this.$emit('input', val);
     },
     click() {
+      if (!this.start) {
+        this.$emit('click');
+      }
       if (go && !this.newDisabled) {
         go = false;
         this.auto();
