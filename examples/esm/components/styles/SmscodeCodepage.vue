@@ -14,6 +14,7 @@
     <br>
     <h3>icon用法</h3>
     <emfe-smscode icon="hint" v-model="model"></emfe-smscode>
+    {{ model }}
     <br>
     <pre>
       &lt;emfe-smscode icon="hint" v-model="model"&gt;&lt;/emfe-smscode&gt;
@@ -25,6 +26,7 @@
     <h3>自定义用法</h3>
     <emfe-smscode className="demo" v-model="model" times="6" @blur="blur" @click="click" :timeStart="start" @end="timeEnd"></emfe-smscode>
     点击次数: {{ num }}
+    {{ model }}
     <pre>
       &lt;emfe-smscode className="demo" v-model="model" times="2" @click="click"&gt;&lt;/emfe-smscode&gt;
     </pre>
