@@ -100,4 +100,11 @@ export default {
     /* eslint-disable */
     return pwdPattern.test(val);
   },
+  money(val) {
+    /* eslint-disable */
+    //金钱正则
+    const moneyPattern = /(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/;
+    /* eslint-disable */
+    return moneyPattern.test(val);
+  },
 };
