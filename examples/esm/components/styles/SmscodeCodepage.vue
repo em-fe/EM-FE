@@ -125,7 +125,7 @@ export default {
   },
   methods: {
     click() {
-      this.start = false;
+      this.start = true;
       this.num++;
     },
     timeEnd(val) {
