@@ -354,6 +354,13 @@ module.exports = {
               },
             },
             {
+              title: '倒计时',
+              icon: 'hotel',
+              routers: {
+                path: '/functions/countdown',
+              },
+            },
+            {
               title: '上传',
               icon: 'hotel',
               routers: {

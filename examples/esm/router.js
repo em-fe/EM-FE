@@ -167,6 +167,11 @@ const router = new VueRouter({
       name: 'Functions',
       children: [
         {
+          path: '/functions/countdown',
+          name: 'countdown',
+          component: require('./components/functions/Countdownpage.vue'),
+        },
+        {
           path: '/functions/formtest',
           name: 'formtest',
           component: require('./components/functions/FormTestPage.vue'),
