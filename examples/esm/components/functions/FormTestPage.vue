@@ -198,6 +198,21 @@
         this.testemail = this.$EmfeFormTest.email(this.email);
       },
     </pre>
+    <h3>money 验证</h3>
+    {{ testmoney }}
+    <input type="text" v-model="money" @blur="blurmoney">
+    <pre>
+      &lt;input type="text" v-model="money" @blur="blurmoney"&gt;
+    </pre>
+    <pre>
+      money: 111,
+      testmoney: false,
+    </pre>
+    <pre>
+      blurmoney() {
+        this.testmoney = this.$EmfeFormTest.money(this.money);
+      },
+    </pre>
     <br>
     <br>
     <br>
@@ -257,6 +272,8 @@ export default {
     testpassword: false,
     email: 111,
     testemail: false,
+    money: 12.23,
+    testmoney: false,
   }),
   methods: {
     blurqq() {
@@ -297,6 +314,9 @@ export default {
     },
     bluremail() {
       this.testemail = this.$EmfeFormTest.email(this.email);
+    },
+    blurmoney() {
+      this.testmoney = this.$EmfeFormTest.money(this.money);
     },
   },
 };

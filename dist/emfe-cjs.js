@@ -2109,7 +2109,7 @@ var prefixCls$3 = 'emfe-input-box';
 var error = 'error';
 
 var EmfeInput$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-input",class:_vm.addClass,style:(_vm.newStyle)},[_c('div',{class:[_vm.classList]},[(_vm.iconOk)?_c('emfe-icon',{attrs:{"type":_vm.iconType,"className":"emfe-input-box-icon-el"}}):_vm._e(),_vm._v(" "),_c('input',_vm._b({staticClass:"emfe-input-box-input",class:_vm.addInput,attrs:{"type":_vm.type,"placeholder":_vm.newPlaceholder},domProps:{"value":_vm.currentValue},on:{"input":_vm.change}},'input',_vm.$props))],1),_vm._v(" "),(_vm.errOk)?_c('div',{staticClass:"emfe-input-box-text",class:_vm.addErrorText},[_vm._t("error")],2):_vm._e()])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-input",class:_vm.addClass,style:(_vm.newStyle)},[_c('div',{class:[_vm.classList]},[(_vm.iconOk)?_c('emfe-icon',{attrs:{"type":_vm.iconType,"className":"emfe-input-box-icon-el"}}):_vm._e(),_vm._v(" "),_c('input',_vm._b({staticClass:"emfe-input-box-input",class:_vm.addInput,attrs:{"type":_vm.type,"placeholder":_vm.newPlaceholder},domProps:{"value":_vm.currentValue},on:{"input":_vm.change,"blur":_vm.blur}},'input',_vm.$props))],1),_vm._v(" "),(_vm.errOk)?_c('div',{staticClass:"emfe-input-box-text",class:_vm.addErrorText},[_vm._t("error")],2):_vm._e()])},
 staticRenderFns: [],
   name: 'input',
   props: {
@@ -2190,6 +2190,9 @@ staticRenderFns: [],
       this.currentValue = val;
       this.$emit('change', this.currentValue);
       this.$emit('input', this.currentValue);
+    },
+    blur: function blur() {
+      this.$emit('blur');
     },
   },
   watch: {
@@ -2493,7 +2496,7 @@ var timer = null;
 var go = true; // 是否可以继续获取
 
 var EmfeSmscode$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-smscode",class:_vm.smscodeName},[(_vm.icon)?_c('emfe-icon',{attrs:{"className":"emfe-smscode","type":_vm.icon}}):_vm._e(),_vm._v(" "),_c('input',{staticClass:"emfe-smscode-input",class:_vm.codeName,attrs:{"type":"number","placeholder":_vm.placeholder,"disabled":_vm.newDisabled},domProps:{"value":_vm.nowData},on:{"input":_vm.input}}),_vm._v(" "),_c('button',{staticClass:"emfe-smscode-button",class:_vm.btmName,on:{"click":_vm.click}},[_vm._v(_vm._s(_vm.btnText))])],1)},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-smscode",class:_vm.smscodeName},[(_vm.icon)?_c('emfe-icon',{attrs:{"className":"emfe-smscode","type":_vm.icon}}):_vm._e(),_vm._v(" "),_c('input',{staticClass:"emfe-smscode-input",class:_vm.codeName,attrs:{"type":"number","placeholder":_vm.placeholder,"disabled":_vm.newDisabled},domProps:{"value":_vm.nowData},on:{"input":_vm.input,"blur":_vm.blur}}),_vm._v(" "),_c('button',{staticClass:"emfe-smscode-button",class:_vm.btmName,on:{"click":_vm.click}},[_vm._v(_vm._s(_vm.btnText))])],1)},
 staticRenderFns: [],
   name: 'EmfeSmscode',
   data: function data() {
@@ -2565,8 +2568,6 @@ staticRenderFns: [],
     auto: function auto() {
       var this$1 = this;
 
-      console.log(1);
-      console.log(this.start);
       setTimeout(function () {
         if (this$1.start) {
           if (this$1.allTimes > 1) {
@@ -2589,8 +2590,11 @@ staticRenderFns: [],
       if (go && !this.newDisabled) {
         go = false;
         this.auto();
-        this.$emit('click');
       }
+      this.$emit('click');
+    },
+    blur: function blur() {
+      this.$emit('blur');
     },
   },
   watch: {
@@ -2611,7 +2615,6 @@ staticRenderFns: [],
     },
     timeStart: function timeStart(val, oldVal) {
       if (val !== oldVal) {
-        console.log(val, 111);
         this.start = val;
       }
     },
@@ -5977,6 +5980,13 @@ var EmfeFormTest = {
     var pwdPattern = /^[a-zA-Z0-9._@]{8,20}$/;
     /* eslint-disable */
     return pwdPattern.test(val);
+  },
+  money: function money(val) {
+    /* eslint-disable */
+    //金钱正则
+    var moneyPattern = /(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/;
+    /* eslint-disable */
+    return moneyPattern.test(val);
   },
 };
 
