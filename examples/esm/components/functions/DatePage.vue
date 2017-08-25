@@ -153,6 +153,7 @@ export default {
       demo5: '',
       demo6: '2017/08/09',
       demo4opts: (date) => {
+        console.log(date, date.valueOf(), 1);
         return date && date.valueOf() < Date.now() - 86400000;
       },
     };

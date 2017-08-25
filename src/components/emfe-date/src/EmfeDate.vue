@@ -269,13 +269,13 @@ export default {
         this.day = day.num > 9 ? day.num : `0${day.num}`;
         const month = this.month + 1 > 9 ? this.month + 1 : `0${this.month + 1}`;
         this.date = `${this.year}${this.format}${month}${this.format}${this.day}`;
+        this.$emit('input', this.date);
         // 如果有确定按钮
         if (!this.confirm) {
           this.$emit('choice', this.date);
         } else {
           this.ok();
         }
-        this.$emit('input', this.date);
       }
     },
     choicePrevMonthDay(day) {
@@ -303,8 +303,8 @@ export default {
     },
     cancel() {
       this.date = this.placeholder;
-      this.$emit('cancel', this.date);
       this.$emit('input', this.date);
+      this.$emit('cancel', this.date);
     },
   },
   watch: {

@@ -20,11 +20,11 @@
           <emfe-date :format="formatDate" :open="true" :confirm="false" @choice="choiceDate" v-model="date" ref="date" v-show="isDate" :disabledDate="disabledDate"></emfe-date>
           <div class="emfe-datetime-time" v-show="!isDate">
             <div class="emfe-datetime-time-header">{{ date }}</div>
-            <emfe-time className="emfe-datetime" :open="true" :confirm="false" @choice="choiceTime" v-model="time" ref="time" :disabledHours="disabledHours" :disabledMinutes="disabledMinutes" :disabledSeconds="disabledSeconds"></emfe-time>
+            <emfe-time className="emfe-datetime" :open="true" :confirm="false" @choice="choiceTime" v-model="time" ref="time" :timeChoices="timeChoices" :disabledHours="disabledHours" :disabledMinutes="disabledMinutes" :disabledSeconds="disabledSeconds"></emfe-time>
           </div>
         </div>
         <div class="emfe-datetime-footer">
-          <button class="emfe-datetime-settype" @click="typeToggle">{{ typeText }}</button>
+          <button class="emfe-datetime-settype" @click="typeToggle" :class="{'emfe-datetime-settype-disabled': disabledToggle}">{{ typeText }}</button>
           <button class="emfe-datetime-ok" @click.stop="ok">确定</button>
         </div>
       </div>
@@ -80,6 +80,11 @@ export default {
       type: Array,
       default: () => [],
     },
+    // 可选时间
+    timeChoices: {
+      type: String,
+      default: '00:00:00|23:59:59',
+    },
     // 禁用分钟
     disabledMinutes: {
       type: Array,
@@ -117,6 +122,9 @@ export default {
 
       return newDateTime;
     },
+    disabledToggle() {
+      return !this.date && this.time === timeZero;
+    },
   },
   methods: {
     choiceDate() {
@@ -153,12 +161,9 @@ export default {
       }
     },
     typeToggle() {
-      this.typeText = this.isDate ? dateText : timeText;
-      this.isDate = !this.isDate;
-      if (!this.date && this.time === timeZero) {
-        const today = initTimeDate();
-        const day = today.getDate();
-        this.date = `${today.getFullYear()}/${today.getMonth() + 1}/${day}`;
+      if (!this.disabledToggle) {
+        this.typeText = this.isDate ? dateText : timeText;
+        this.isDate = !this.isDate;
       }
     },
     toggle() {
