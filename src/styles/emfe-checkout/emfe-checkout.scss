@@ -1,18 +1,19 @@
 .#{$prefix}checkout {
-  overflow: hidden;
-
   &-box {
-    display: flex;
-    align-items: center;
-    overflow: hidden;
+    @include clearfix();
+
     position: relative;
+    display: block;
   }
 
   &-inner {
+    @include border();
+
     width: 16px;
     height: 16px;
     border-radius: $radius-size;
-    background: $brand-color-default;
+    background: $background-color-write;
+    float: left;
 
     &-checked {
       @include border(all, $border-on-color);
@@ -31,25 +32,25 @@
     width: 16px;
     height: 16px;
     display: block;
-    margin: 0;
     position: absolute;
-    left: 1px;
-    top: 1px;
+    left: 0;
+    top: 0;
     opacity: 0;
     filter: alpha(opacity=0);
+    margin: 0;
   }
 
   &-text {
-    flex: 1;
     font-size: 14px;
     color: $text-color-default;
-    display: block;
+    float: left;
     line-height: 16px;
     margin-left: 8px;
+    word-wrap: break-word;
+    width: calc(100% - 24px);
   }
 
   &-inline {
-    // float: left; //还得请浮动
     display: inline-block;
     margin-right: 15px;
   }
@@ -57,7 +58,7 @@
   &-slide {
     width: 100%;
     margin-left: 8px;
-    overflow: hidden;
+    overflow: -hidden;
 
     &-wrap {
       width: 100%;

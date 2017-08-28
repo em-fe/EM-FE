@@ -1,10 +1,11 @@
 <template>
   <div class="emfe-checkout" :class="checkoutName">
-    <div class="emfe-checkout-box">
+    <label class="emfe-checkout-box">
       <i class="emfe-checkout-inner" :class="innerName"></i>
-      <input type="checkbox" class="emfe-checkout-status" :checked="status" @click.stop @change="alocked" :disabled="disable">
+      <input type="checkbox" class="emfe-checkout-status" :checked="status" @click.stop @change="alocked" :disabled="disable" v-if="stop">
+      <input type="checkbox" class="emfe-checkout-status" :checked="status" @change="alocked" :disabled="disable" v-else>
       <span class="emfe-checkout-text" :class="textName">{{ newtitle }}</span>
-    </div>
+    </label>
     <div class="emfe-checkout-slide" v-if="slideShow">
       <transition name="fade">
         <div class="emfe-checkout-slide-wrap" v-show="status" :class="openName">
@@ -28,6 +29,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    stop: {
+      type: Boolean,
+      default: true,
+    },
     value: {
       type: Boolean,
       default: false,
@@ -39,6 +44,8 @@ export default {
     },
     title: String,
     inline: String,
+    change: Function,
+    index: [Number, String],
   },
   computed: {
     innerName() {
@@ -75,7 +82,10 @@ export default {
     alocked(e) {
       this.setValue(e.target.checked);
       this.$emit('input', this.status);
-      this.$emit('checked', this.status, this.title);
+      this.$emit('checked', this.status, this.title, this.index);
+      if (this.change) {
+        this.change(this.status, this.title, this.index);
+      }
     },
     setValue(checked = this.value) {
       this.status = checked;

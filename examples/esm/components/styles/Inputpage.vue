@@ -1,28 +1,60 @@
 <template>
   <div class="inputpage">
-  	<emfe-input placeholder="请输入文a字！" className="add" v-model="value">
+  	<emfe-input placeholder="请输入文a字！" className="add" v-model="value" @blur="blur">
     </emfe-input>
     <div>支持v-model： {{value}}</div>
+    <pre>
+      &lt;emfe-input placeholder="请输入文a字！" className="add" v-model="value"&gt;
+      &lt;/emfe-input&gt;
+    </pre>
     <br>
     <emfe-input :disabled="true" placeholder="请输入文字！">
     </emfe-input>
+    <pre>
+      &lt;emfe-input :disabled="true" placeholder="请输入文字！"&gt;
+      &lt;/emfe-input&gt;
+    </pre>
     <br>
     <emfe-input :autofocus="true" placeholder="请输入文字！">
     </emfe-input>
+    <pre>
+      &lt;emfe-input :autofocus="true" placeholder="请输入文字！"&gt;
+      &lt;/emfe-input&gt;
+    </pre>
     <br>
     <emfe-input :errOk="true"  className="add" placeholder="请输入文字！">
       <div slot="error">这是一个错误信息</div>
     </emfe-input>
+    <pre>
+      &lt;emfe-input :errOk="true"  className="add" placeholder="请输入文字！"&gt;
+        &lt;div slot="error"&gt;这是一个错误信息&lt;/div&gt;
+      &lt;/emfe-input&gt;
+    </pre>
     <br>
     <emfe-input :iconOk="true" iconType="site" placeholder="请输入文字！">
     </emfe-input>
+    <pre>
+      &lt;emfe-input :iconOk="true" iconType="site" placeholder="请输入文字！"&gt;
+      &lt;/emfe-input&gt;
+    </pre>
     <br>
     <emfe-input :iconOk="true" :errOk="true" iconType="qr" placeholder="请输入文字！">
     	<div slot="error">这是一个错误信息</div>
     </emfe-input>
+    <pre>
+      &lt;emfe-input :iconOk="true" :errOk="true" iconType="qr" placeholder="请输入文字！"&gt;
+      	&lt;div slot="error"&gt;这是一个错误信息&lt;/div&gt;
+      &lt;/emfe-input&gt;
+    </pre>
     <br>
     <emfe-input type="number" placeholder="请输入数字！" classAdd="add">
     </emfe-input>
+    <pre>
+      &lt;emfe-input type="number" placeholder="请输入数字！" classAdd="add"&gt;
+      &lt;/emfe-input&gt;
+    </pre>
+    <br><br>
+    <br><br>
     <br><br>
     <h3>API</h3>
     <table style="width:100%;text-align:center" class="table">
@@ -100,6 +132,11 @@
           <td>input变化触发</td>
           <td>input的val值</td>
         </tr>
+        <tr>
+          <td>blur</td>
+          <td>input失去焦点</td>
+          <td></td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -115,6 +152,9 @@ export default {
   methods: {
     change(val) {
       console.log(val);
+    },
+    blur() {
+      console.log('失去焦点');
     },
   },
 };

@@ -84,6 +84,34 @@ module.exports = {
                   },
                 },
                 {
+                  title: '更多输入框',
+                  icon: 'hotel',
+                  routers: {
+                    path: '/styles/inputmore',
+                  },
+                },
+                {
+                  title: '电话组合',
+                  icon: 'hotel',
+                  routers: {
+                    path: '/styles/tel',
+                  },
+                },
+                {
+                  title: '图片验证码',
+                  icon: 'hotel',
+                  routers: {
+                    path: '/styles/imgCodepage',
+                  },
+                },
+                {
+                  title: '短信验证码',
+                  icon: 'hotel',
+                  routers: {
+                    path: '/styles/smscodeCodepage',
+                  },
+                },
+                {
                   title: '按钮',
                   icon: 'hotel',
                   routers: {
@@ -210,6 +238,13 @@ module.exports = {
               },
             },
             {
+              title: '进度指引',
+              icon: 'hotel',
+              routers: {
+                path: '/styles/steps',
+              },
+            },
+            {
               title: '面包屑',
               icon: 'hotel',
               routers: {
@@ -241,6 +276,13 @@ module.exports = {
                   },
                 },
                 {
+                  title: '日期时间m',
+                  icon: 'hotel',
+                  routers: {
+                    path: '/functions/datetimempage',
+                  },
+                },
+                {
                   title: '日期',
                   icon: 'hotel',
                   routers: {
@@ -248,10 +290,24 @@ module.exports = {
                   },
                 },
                 {
+                  title: '日期m',
+                  icon: 'hotel',
+                  routers: {
+                    path: '/functions/datempage',
+                  },
+                },
+                {
                   title: '时间',
                   icon: 'hotel',
                   routers: {
                     path: '/functions/timepage',
+                  },
+                },
+                {
+                  title: '时间m',
+                  icon: 'hotel',
+                  routers: {
+                    path: '/functions/timempage',
                   },
                 },
               ],
@@ -284,10 +340,24 @@ module.exports = {
               },
             },
             {
+              title: '表单验证',
+              icon: 'hotel',
+              routers: {
+                path: '/functions/formtest',
+              },
+            },
+            {
               title: '复制',
               icon: 'hotel',
               routers: {
                 path: '/functions/copy',
+              },
+            },
+            {
+              title: '倒计时',
+              icon: 'hotel',
+              routers: {
+                path: '/functions/countdown',
               },
             },
             {
@@ -338,6 +408,16 @@ module.exports = {
                 },
               },
             },
+            {
+              title: '选项拖拽',
+              icon: 'hotel',
+              routers: {
+                path: '/functions/opations',
+                query: {
+                  main: 4,
+                },
+              },
+            },
           ],
         },
       ],
@@ -372,7 +452,6 @@ module.exports = {
   watch: {
     $route(val) {
       this.fullpath = val.path;
-      console.log(11);
       localStorage.path = val.path;
     },
   },
@@ -381,7 +460,7 @@ module.exports = {
 <style lang="scss">
 .warp {
   border: 1px solid #dcdcdc;
-  height: 2000px;
+  min-height: 2000px;
   padding: 24px;
 }
 .main-full {

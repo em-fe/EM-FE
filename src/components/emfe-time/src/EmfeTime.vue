@@ -1,11 +1,18 @@
 <template>
   <div class="emfe-time" v-emfe-documentclick="close" :class="timeName">
-    <button class="emfe-time-btn" v-if="!open" @click="toggle">
+    <button class="emfe-time-btn" v-if="!open && !disabled" @click="toggle">
       <span class="emfe-time-btn-text" :class="{'emfe-time-btn-text-choice': choiced}">{{ time }}</span>
       <!-- 日期 -->
       <emfe-icon type="hint" className="emfe-time" v-show="!choiced" @icon-click="toggle"></emfe-icon>
       <!-- 取消 -->
       <emfe-icon type="qr" className="emfe-time" v-show="choiced" @icon-click="cancel"></emfe-icon>
+    </button>
+    <button class="emfe-time-btn emfe-time-btn-disabled" v-if="!open && disabled">
+      <span class="emfe-time-btn-text">{{ time }}</span>
+      <!-- 日期 -->
+      <emfe-icon type="hint" className="emfe-time" v-show="!choiced"></emfe-icon>
+      <!-- 取消 -->
+      <emfe-icon type="qr" className="emfe-time" v-show="choiced"></emfe-icon>
     </button>
     <emfe-transition name="fade">
       <div class="emfe-time-box" v-show="status" :class="{'emfe-time-box-position': !open}">
@@ -61,9 +68,22 @@ export default {
       type: String,
       default: '选择时间',
     },
+    // 可选时间
+    timeChoices: {
+      type: String,
+      default: '00:00:00|23:59:59',
+    },
+    value: {
+      type: String,
+      default: '',
+    },
     confirm: {
       type: Boolean,
       default: true,
+    },
+    disabled: {
+      type: Boolean,
+      type: false,
     },
     // 默认显示
     open: {
@@ -120,8 +140,24 @@ export default {
     for (let i = 0; i < secondNum; i++) {
       this.seconds.push(TimeTool.handleConputedTime(i, this.disabledSeconds));
     }
+    this.initData();
+    this.setTimeChoice();
   },
   methods: {
+    initData() {
+      if (this.value && this.value !== this.placeholder) {
+        const vals = this.value.split(':');
+        this.hour = TimeTool.zeroFill(vals[0] - 0);
+        this.minute = TimeTool.zeroFill(vals[1] - 0);
+        this.second = TimeTool.zeroFill(vals[2] - 0);
+        this.choiced = true;
+      } else {
+        this.hour = '';
+        this.minute = '';
+        this.second = '';
+        this.choiced = false;
+      }
+    },
     setChoice() {
       if (!this.choiced) {
         this.hour = TimeTool.loopChoice(this.hours, this.hour);
@@ -130,25 +166,74 @@ export default {
         this.choiced = true;
       }
     },
+    // 设置时间可选
+    setTimeChoice() {
+      const times = this.timeChoices.split('|');
+      const startTime = times[0].split(':');
+      const endTime = times[1].split(':');
+      const hours = [];
+      const minutes = [];
+      if (this.hours.length > 1) {
+        this.hours.forEach((h) => {
+          if (h.num < startTime[0] || h.num > endTime[0]) {
+            h.undo = true;
+          }
+        });
+        this.hours.forEach((h) => {
+          if (!h.undo) {
+            hours.push(h.num);
+          }
+        });
+      }
+      const hour = this.hour ? this.hour : hours[0];
+      const hourIsStart = hour === startTime[0];
+      const hourIsEnd = hour === endTime[0];
+      if (this.minutes.length > 1) {
+        this.minutes.forEach((min) => {
+          min.undo = (hourIsStart && min.num < startTime[1]) || (hourIsEnd && min.num > endTime[1]);
+        });
+        this.minutes.forEach((min) => {
+          if (!min.undo) {
+            minutes.push(min.num);
+          }
+        });
+      }
+      const minute = this.minute ? this.minute : minutes[0];
+      const minuteIsStart = minute === startTime[1];
+      const minuteIsEnd = minute === endTime[1];
+      if (this.seconds.length > 1) {
+        this.seconds.forEach((sec) => {
+          const before = hourIsStart && minuteIsStart && sec.num < startTime[2];
+          const after = hourIsEnd && minuteIsEnd && sec.num > endTime[2];
+          sec.undo = before || after;
+        });
+      }
+    },
     choiceHour(hour) {
       if (!hour.undo) {
         this.setChoice();
         this.hour = hour.num;
+        this.setTimeChoice();
         this.$emit('choice', this.time);
+        this.$emit('input', this.time);
       }
     },
     choiceMinute(minute) {
       if (!minute.undo) {
         this.setChoice();
         this.minute = minute.num;
+        this.setTimeChoice();
         this.$emit('choice', this.time);
+        this.$emit('input', this.time);
       }
     },
     choiceSecond(second) {
       if (!second.undo) {
         this.setChoice();
         this.second = second.num;
+        this.setTimeChoice();
         this.$emit('choice', this.time);
+        this.$emit('input', this.time);
       }
     },
     toggle() {
@@ -157,7 +242,8 @@ export default {
     close(e, noClose) {
       if (!this.open) {
         if (!noClose && this.status) {
-          this.$emit('close', this.date);
+          this.$emit('close', this.time);
+          this.$emit('input', this.time);
         }
         this.status = false;
       }
@@ -165,6 +251,7 @@ export default {
     ok() {
       this.close(true);
       this.$emit('ok', this.time);
+      this.$emit('input', this.time);
     },
     cancel() {
       this.choiced = false;
@@ -172,6 +259,14 @@ export default {
       this.minute = '';
       this.second = '';
       this.$emit('cancel', this.time);
+      this.$emit('input', this.time);
+    },
+  },
+  watch: {
+    value(val, oldVal) {
+      if (val !== oldVal) {
+        this.initData();
+      }
     },
   },
 };

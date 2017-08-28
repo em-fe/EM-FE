@@ -1,13 +1,13 @@
 <template>
-  <div class="emfe-edit">
+  <div class="emfe-edit" :class="editBox">
     <div class="emfe-edit-wrap" v-for="(one, index) in oneList" :key="index">
       <div class="emfe-edit-left" @click="openTwoList(index)">
-        <div class="emfe-edit-left-one" :class="{'emfe-edit-left-one-open': one.openFlg}" ref="inputFocus">
-          <emfe-input :value="one.name" className='emfe-edit-left-one'></emfe-input>
+        <div class="emfe-edit-left-one" :class="{'emfe-edit-left-one-open': openFlg === index}" ref="inputFocus">
+          <emfe-input v-model="one.name" className='emfe-edit-left-one'></emfe-input>
         </div>
-        <div class="emfe-edit-left-two" v-for="(two, ind) in one.twoList" v-show="one.openFlg">
+        <div class="emfe-edit-left-two" v-for="(two, ind) in one.sub_choices" v-show="openFlg === index">
           <div class="emfe-edit-left-two-text">
-            <emfe-input :value="two.name" className='emfe-edit-left-two'></emfe-input>
+            <emfe-input v-model="two.name" className='emfe-edit-left-two'></emfe-input>
           </div>
           <div class="emfe-edit-left-two-btn" @click="addTwoList(index, ind)">+</div>
           <div v-show="twoReduceFlg" class="emfe-edit-left-two-btn" @click="reduceTwoList(index, ind)">-</div>
@@ -21,13 +21,15 @@
   </div>
 </template>
 <script>
-const prefixCls = 'emfe-edit';
+import O from '../../../tools/o';
+
 export default {
   name: 'EmfeEdit',
   data() {
     return {
       oneReduceFlg: true,
       twoReduceFlg: true,
+      openFlg: -1,
     };
   },
   props: {
@@ -46,23 +48,21 @@ export default {
     },
   },
   computed: {
-    textereaName() {
+    editBox() {
       return [
         {
-          [`${prefixCls}-${this.className}`]: !!this.className,
+          [`${this.className}-edit`]: !!this.className,
         },
       ];
     },
   },
   methods: {
     openTwoList(index) {
-      this.oneList.forEach((ele) => {
-        ele.openFlg = false;
-      });
-      this.oneList[index].openFlg = true;
+      this.openFlg = index;
     },
     addOneList(index) {
-      this.oneList.splice(index + 1, 0, this.addOneObj);
+      const newAddObj = O.copy(this.addOneObj);
+      this.oneList.splice(index + 1, 0, newAddObj);
       this.openTwoList(index + 1);
       this.oneReduceFlg = true;
       setTimeout(() => {
@@ -78,14 +78,14 @@ export default {
       }
     },
     addTwoList(index, ind) {
-      this.oneList[index].twoList.splice(ind + 1, 0, this.addTwoObj);
+      this.oneList[index].sub_choices.splice(ind + 1, 0, O.copy(this.addTwoObj));
       this.twoReduceFlg = true;
     },
     reduceTwoList(index, ind) {
-      if (this.oneList[index].twoList.length >= 2) {
-        this.oneList[index].twoList.splice(ind, 1);
+      if (this.oneList[index].sub_choices.length >= 2) {
+        this.oneList[index].sub_choices.splice(ind, 1);
       }
-      if (this.oneList[index].twoList.length <= 1) {
+      if (this.oneList[index].sub_choices.length <= 1) {
         this.twoReduceFlg = false;
       }
     },

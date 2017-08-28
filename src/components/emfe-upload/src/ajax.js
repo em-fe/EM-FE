@@ -1,5 +1,7 @@
 import O from '../../../tools/o';
 
+// https://github.com/ElemeFE/element/blob/dev/packages/upload/src/ajax.js
+
 function getError(action, option, xhr) {
   const msg = `fail to post ${action} ${xhr.status}'`;
   const err = new Error(msg);
@@ -30,41 +32,36 @@ export default function upload(option) {
   const xhr = new XMLHttpRequest();
   const action = option.action;
 
-  if (xhr.upload) {
-    xhr.upload.onprogress = (e) => {
-      if (e.total > 0) {
-        e.percent = (e.loaded / e.total) * 100;
-      }
-      option.onProgress(e);
-    };
-  }
+  // if (xhr.upload) {
+  //   xhr.upload.onprogress = function progress(e) {
+  //     if (e.total > 0) {
+  //       e.percent = (e.loaded / e.total) * 100;
+  //     }
+  //     option.onProgress(e);
+  //   };
+  // }
 
   const formData = new FormData();
 
   if (option.data) {
-    Object.keys(option.data).map((key) => {
-      formData.append(key, option.data[key]);
-      return key;
-    });
+    Object.keys(option.data).map(key => formData.append(key, option.data[key]));
   }
 
   formData.append(option.filename, option.file);
 
-  xhr.onerror = (e) => {
+  xhr.onerror = function error(e) {
     option.onError(e);
   };
 
-  xhr.onload = () => {
+  xhr.onload = function onload() {
     if (xhr.status < 200 || xhr.status >= 300) {
-      option.onError(getError(action, option, xhr), getBody(xhr));
-      return false;
+      return option.onError(getError(action, option, xhr), getBody(xhr));
     }
 
-    option.onSuccess(getBody(xhr));
-    return false;
+    return option.onSuccess(getBody(xhr));
   };
 
-  xhr.open('get', action, true);
+  xhr.open('post', action, true);
 
   if (option.withCredentials && 'withCredentials' in xhr) {
     xhr.withCredentials = true;
@@ -72,11 +69,20 @@ export default function upload(option) {
 
   const headers = option.headers || {};
 
-  Object.keys(headers).forEach((header) => {
-    if (O.hOwnProperty(headers, header) && headers[header] !== null) {
-      xhr.setRequestHeader(header, headers[header]);
+  // if (headers['X-Requested-With'] !== null) {
+  //   xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+  // }
+
+  Object.keys(headers).forEach((item) => {
+    if (O.hOwnProperty(headers, item) && headers[item] !== null) {
+      xhr.setRequestHeader(item, headers[item]);
     }
   });
 
+  // for (const item in headers) {
+  //   if (O.hOwnProperty(headers, item) && headers[item] !== null) {
+  //     xhr.setRequestHeader(item, headers[item]);
+  //   }
+  // }
   xhr.send(formData);
 }

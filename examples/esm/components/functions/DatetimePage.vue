@@ -16,7 +16,7 @@
     </div>
     <br>
     <br>
-    <h3>可用筛选示例</h3>
+    <h3>筛选禁用示例</h3>
     <br>
     <br>
     <p>当前日期： {{ demo3 }}</p>
@@ -25,6 +25,18 @@
     </div>
     <br>
     <br>
+    <br>
+    <br>
+    <h3>双向绑定示例</h3>
+    <br>
+    <br>
+    <p>当前日期： {{ demo4 }}</p>
+    <div style="width: 300px;">
+      <emfe-datetime v-model="demo4"></emfe-datetime>
+    </div>
+    <br>
+    <br>
+    <emfe-button @click="click">去掉</emfe-button>
     <br>
     <br>
     <br>
@@ -133,6 +145,7 @@ export default {
       demo1: '',
       demo2: '',
       demo3: '',
+      demo4: '2017/08/09 01:20:28',
       demo3opts: (date) => {
         return date && date.valueOf() < Date.now() - 86400000;
       },
@@ -159,6 +172,9 @@ export default {
     },
     demo3cancel(date) {
       this.demo3 = '';
+    },
+    click() {
+      this.demo4 = '';
     },
   },
 };

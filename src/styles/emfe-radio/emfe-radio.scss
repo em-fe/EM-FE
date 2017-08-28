@@ -8,6 +8,7 @@
   position: relative;
   display: block;
   cursor: pointer;
+  margin: 0 16px 16px 0;
 
   &-img {
     width: 16px;
@@ -25,6 +26,10 @@
     }
   }
 
+  &-inline {
+    display: inline-block;
+  }
+
   &-input {
     margin: 0;
     vertical-align: middle;
@@ -39,5 +44,33 @@
     float: left;
     font-size: 14px;
     margin-left: 8px;
+    word-wrap: break-word;
+    width: calc(100% - 24px);
+  }
+
+  &-slide {
+    display: block;
+    overflow: hidden;
+    clear: both;
+    margin-left: 7px;
+    border-left: 1px dashed #dcdcdc;
+
+    &-wrap {
+      padding: 16px 16px 0;
+      margin-top: 12px;
+      width: 100%;
+      height: auto;
+      background: $background-color-open;
+    }
+  }
+
+  &-group {
+    @include clearfix();
+
+    .#{$prefix}radio {
+      &-inline {
+        float: left;
+      }
+    }
   }
 }

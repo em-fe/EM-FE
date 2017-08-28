@@ -9,12 +9,13 @@
 
   &-describe {
     font-size: 14px;
-    margin: 0 32px;
+    width: 78px;
+    text-align: center;
     line-height: 32px;
   }
 
   &-progress {
-    width: 476px;
+    width: calc(100% - 156px);
     height: 24px;
     position: relative;
     display: flex;

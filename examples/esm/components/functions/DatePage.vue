@@ -32,12 +32,23 @@
     <br>
     <br>
     <br>
-    <h3>可用筛选示例</h3>
+    <h3>可用筛选禁用示例</h3>
     <br>
     <br>
     <p>当前日期： {{ demo4 }}</p>
     <div style="width: 210px;">
       <emfe-date :open="true" :confirm="false" @ok="demo4ok" @cancel="demo4cancel" :disabledDate="demo4opts"></emfe-date>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h3>双向绑定示例</h3>
+    <br>
+    <br>
+    <p>当前日期： {{ demo6 }}</p>
+    <div style="width: 210px;">
+      <emfe-date v-model="demo6"></emfe-date>
     </div>
     <br>
     <br>
@@ -140,7 +151,9 @@ export default {
       demo3: '',
       demo4: '',
       demo5: '',
+      demo6: '2017/08/09',
       demo4opts: (date) => {
+        console.log(date, date.valueOf(), 1);
         return date && date.valueOf() < Date.now() - 86400000;
       },
     };

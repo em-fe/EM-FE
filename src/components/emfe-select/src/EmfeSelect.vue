@@ -1,29 +1,56 @@
 <template>
-  <div class="emfe-select" v-emfe-documentclick="close">
-    <input class="emfe-input-box-input" type="text" :value="checkVal" readonly :placeholder="selectText" @click="inpcheck">
+  <div class="emfe-select" :class="selectName" v-emfe-documentclick="closeFn">
+    <input class="emfe-select-input" type="text" :class="inputName" :value="checkVal" :disabled="newDisabled" readonly :placeholder="selectText" @click="inpcheck">
     <div v-if="flagCheck" class="emfe-select-flag">
       <div class="emfe-select-custab" v-if="seleStu==='newList'">
-        <input type="text" :placeholder="addText" class="emfe-input-box-input" v-model="newListVal"><span class="emfe-select-custab-btn" @click="newListBtn">保存</span>
+        <input type="text" :placeholder="addText" class="emfe-select-input" v-model="newListVal">
+        <span class="emfe-select-custab-btn" @click="newListBtn">保存</span>
       </div>
-      <label v-for="item in checkList" class="emfe-select-label" v-if="type==='checkbox'" :key="item.id">
+      <label v-for="(item, itemIndex) in checkList" :class="{'emfe-select-label-disabled': item.disabled}" class="emfe-select-label" v-if="type==='checkbox'" :key="item.id">
         <span class="emfe-select-text">{{ item.name }}</span>
-        <input class="emfe-checkout-box-input" :disabled="item.disabled" type="checkbox" v-model="checkVal" :value="item.name" :key="item.id" @change="getdata(item)">
+        <div class="emfe-select-checkout-box">
+          <i class="emfe-select-checkout-inner" :class="{'emfe-select-checkout-inner-checked': item.checked}"></i>
+          <input class="emfe-select-checkout-status" :disabled="item.disabled" type="checkbox" :key="item.id" @change="getdata(item)">
+        </div>
       </label>
-      <label v-for="item in checkList" class="emfe-select-label emfe-select-delabel" @click="spanTxt(item)" :disabled="item.disabled" v-if="type==='default'"><span :class="{'disabled': item.disabled}">{{ item.name }}</span></label>
+      <label v-for="item in checkList" class="emfe-select-label emfe-select-delabel" @click="spanTxt(item)" :disabled="item.disabled" v-if="type==='default'"><span :class="{'emfe-select-label-disabled': item.disabled}">{{ item.name }}</span></label>
+      <div v-for="item in checkList" class="emfe-select-label emfe-select-delabel" @click="spanTxt(item)" :disabled="item.disabled" v-if="type==='icon'" :class="{'disabled': item.disabled}">
+        <img class="emfe-select-icon" :src="item.icon" :alt="item.name">
+        <span class="emfe-select-icon-piece">{{ item.name}}</span>
+        <span class="emfe-select-icon-tel">{{ item.tel }}</span>
+      </div>
     </div>
   </div>
 </template>
 <script>
+import _ from '../../../tools/lodash';
+import O from '../../../tools/o';
+
 export default {
   name: 'Select',
+  data() {
+    return {
+      checkList: [],
+      flagCheck: false,
+      checkVal: this.checkVals,
+      newListVal: '',
+      newDisabled: this.disabled,
+      checkedNow: -1,
+    };
+  },
   props: {
     type: {
-      type: String,
-      default: '',
+      validator(value) {
+        return _.has(value, ['default', 'checkbox', 'icon']);
+      },
     },
     seleStu: {
       type: String,
       default: '',
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
     },
     datas: {
       type: Array,
@@ -43,51 +70,94 @@ export default {
         return [];
       },
     },
+    className: String,
+    getDefData: Function,
+    close: Function,
   },
-  data() {
-    return {
-      checkList: [],
-      flagCheck: false,
-      checkVal: this.checkVals,
-      newListVal: '',
-    };
+  computed: {
+    selectName() {
+      return [
+        {
+          [`${this.className}-select`]: !!this.className,
+        },
+      ];
+    },
+    inputName() {
+      return [
+        {
+          [`${this.className}-select-input`]: !!this.className,
+        },
+      ];
+    },
   },
   methods: {
     inpcheck() {
       this.checkList = this.datas;
+      this.checkList.forEach((cl) => {
+        if (!O.hOwnProperty(cl, 'checked')) {
+          cl.checked = false;
+        }
+        if (this.checkVals.length > 0) {
+          this.checkVals.forEach((cVal) => {
+            if (cl.name === cVal) {
+              cl.checked = true;
+            }
+          });
+        }
+      });
       this.flagCheck = this.checkList.length > 0;
     },
     newListBtn() {
       const newdata = this.newListVal;
-      this.$emit('addDataCheck', newdata);
-      this.$emit('addDataRadio', newdata);
-      // this.checkVal.push(newdata);
+      this.$emit('addDataCheck', newdata, this.datas);
+      this.$emit('addDataRadio', newdata, this.datas);
       this.newListVal = '';
-      // const va = this.checkVal;
-      // this.$emit('getAllData', va);
-      // console.log(va);
     },
     spanTxt(item) {
       if (item.disabled !== 'disabled') {
         this.checkVal = item.name;
-        // console.log(this.checkVals);
-        this.$emit('getDefData', this.checkVal);
         this.flagCheck = false;
+        this.$emit('getDefData', this.checkVal, item, this.datas);
+        if (this.getDefData) {
+          this.getDefData(this.checkVal, item, this.datas);
+        }
       }
     },
-    close() {
+    closeFn() {
       this.checkList = [];
       this.flagCheck = false;
+      if (this.close) {
+        this.close();
+      }
     },
     getdata(item) {
       const va = this.checkVal;
-      // console.log(va);
-      if (va.indexOf(item.name) !== -1) {
-        this.$emit('checkedopt', item.name);
+      const iNow = va.indexOf(item.name);
+      const hasItem = iNow !== -1;
+      item.checked = !hasItem;
+      if (hasItem) {
+        this.checkVals.splice(iNow, 1);
       } else {
-        this.$emit('delopt', item.name);
+        this.checkVals.push(item.name);
       }
-      this.$emit('getAllData', va);
+      if (hasItem) {
+        this.$emit('delopt', item.name, item, this.datas);
+      } else {
+        this.$emit('checkedopt', item.name, item, this.datas);
+      }
+      this.$emit('getAllData', va, item);
+    },
+  },
+  watch: {
+    checkVals(val, oldVal) {
+      if (val !== oldVal) {
+        this.checkVal = val;
+      }
+    },
+    disabled(val, oldVal) {
+      if (val !== oldVal) {
+        this.newDisabled = val;
+      }
     },
   },
 };

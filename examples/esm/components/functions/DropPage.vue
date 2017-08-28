@@ -1,31 +1,61 @@
 <template>
   <div class="emfe-drop">
-    <div class="emfe-drop-box">
-      <emfe-drop className="no1" >姓名</emfe-drop>
-      <emfe-drop className="no1" posStyle="left: 60px; top: 0px;">学号</emfe-drop>
-      <emfe-drop className="no1" posStyle="left: 120px;">分数</emfe-drop>
-    </div>
+    <emfe-drop class="emfe-drop-drag" :cell="cell" :margin="margin">
+      <emfe-drag v-for="(item, index) in list" :key="index" className="emfe-drop-drag-no1" @afterDrag='afterDrag' @beforeDrag='beforeDrag' @drag='drag' :index='index'>{{item.text}}</emfe-drag>
+    </emfe-drop>
   </div>
 </template>
 <script>
 export default {
   name: 'drop-page',
+  data() {
+    return {
+      cell: 5,
+      margin: 5,
+      list: [
+        {
+          text: 1,
+        },
+        {
+          text: 2,
+        },
+        {
+          text: 3,
+        },
+        {
+          text: 4,
+        },
+        {
+          text: 5,
+        },{
+          text: 6,
+        },
+        {
+          text: 7,
+        },
+        {
+          text: 8,
+        },
+        {
+          text: 9,
+        },
+        {
+          text: 10,
+        },
+      ],
+    };
+  },
+  methods: {
+    beforeDrag(e) {
+      console.log(this.$children[0]);
+      this.$children[0].beforeDrag(e);
+    },
+    drag(e) {
+      this.$children[0].drag(e);
+    },
+    afterDrag(e) {
+      this.$children[0].afterDrag(e);
+    },
+  },
 };
 </script>
-<style>
-.emfe-drop{
-  position: relative;
-}
-.emfe-drop-box{
-  position: relative;
-  z-index: 22;
-}
-.no1-drag {
-  width: 50px;
-  height: 50px;
-  line-height: 50px;
-  text-align: center;
-  background: rgba(133, 10, 0, 0.4);
-  position: absolute;
-}
-</style>

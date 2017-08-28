@@ -1,11 +1,18 @@
 <template>
   <div class="emfe-date" :class="dateName" v-emfe-documentclick="close">
-    <button class="emfe-date-btn" @click.stop="toggle" v-if="!open">
+    <button class="emfe-date-btn" @click.stop="toggle" v-if="!open && !disabled">
       <span class="emfe-date-btn-text" :class="{'emfe-date-btn-text-choice': choiced}">{{ date }}</span>
       <!-- 日期 -->
       <emfe-icon type="hint" className="emfe-date" v-show="!choiced" @icon-click="toggle"></emfe-icon>
       <!-- 取消 -->
       <emfe-icon type="qr" className="emfe-date" v-show="choiced" @icon-click="cancel"></emfe-icon>
+    </button>
+    <button class="emfe-date-btn emfe-date-btn-disabled" v-if="!open && disabled">
+      <span class="emfe-date-btn-text" :class="{'emfe-date-btn-text-choice': choiced}">{{ date }}</span>
+      <!-- 日期 -->
+      <emfe-icon type="hint" className="emfe-date" v-show="!choiced"></emfe-icon>
+      <!-- 取消 -->
+      <emfe-icon type="qr" className="emfe-date" v-show="choiced"></emfe-icon>
     </button>
     <emfe-transition name="fade">
       <div class="emfe-date-box" :class="{'emfe-date-box-position': !open}" v-show="status">
@@ -85,6 +92,14 @@ export default {
     format: {
       type: String,
       default: '/',
+    },
+    value: {
+      type: String,
+      default: '',
+    },
+    disabled: {
+      type: Boolean,
+      type: false,
     },
     // 默认文案
     placeholder: {
@@ -182,12 +197,23 @@ export default {
     },
   },
   mounted() {
-    if (this.today && !this.year) {
-      this.year = this.today.getFullYear();
-      this.month = this.today.getMonth();
-    }
+    this.initData();
   },
   methods: {
+    initData() {
+      if (this.value && this.value !== this.placeholder) {
+        const vals = this.value.split(this.format);
+        this.year = vals[0];
+        this.month = vals[1] - 1;
+        this.day = vals[2] - 0;
+        this.day = this.day > 9 ? this.day : `0${this.day}`;
+        const month = this.month + 1 > 9 ? this.month + 1 : `0${this.month + 1}`;
+        this.date = `${this.year}${this.format}${month}${this.format}${this.day}`;
+      } else if (this.today && !this.year) {
+        this.year = this.today.getFullYear();
+        this.month = this.today.getMonth();
+      }
+    },
     resetDate() {
       this.today = new Date(this.today);
     },
@@ -243,6 +269,7 @@ export default {
         this.day = day.num > 9 ? day.num : `0${day.num}`;
         const month = this.month + 1 > 9 ? this.month + 1 : `0${this.month + 1}`;
         this.date = `${this.year}${this.format}${month}${this.format}${this.day}`;
+        this.$emit('input', this.date);
         // 如果有确定按钮
         if (!this.confirm) {
           this.$emit('choice', this.date);
@@ -276,7 +303,15 @@ export default {
     },
     cancel() {
       this.date = this.placeholder;
+      this.$emit('input', this.date);
       this.$emit('cancel', this.date);
+    },
+  },
+  watch: {
+    value(val, oldVal) {
+      if (val !== oldVal) {
+        this.initData();
+      }
     },
   },
 };

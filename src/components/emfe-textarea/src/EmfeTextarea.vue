@@ -1,5 +1,5 @@
 <template>
-  <textarea class="emfe-textarea" :class="textereaName" @input="change">{{ value }}</textarea>
+  <textarea class="emfe-textarea" :class="textereaName" @input="change" ref="textarea" @blur="blur">{{ value }}</textarea>
 </template>
 <script>
 export default {
@@ -21,6 +21,16 @@ export default {
   methods: {
     change(val) {
       this.$emit('input', val.target.value);
+    },
+    blur(val) {
+      this.$emit('blur', val.target.value);
+    },
+  },
+  watch: {
+    value(val, oldVal) {
+      if (val !== oldVal) {
+        this.$refs.textarea.value = val;
+      }
     },
   },
 };

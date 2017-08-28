@@ -44,10 +44,11 @@
 
     &-icon {
       box-sizing: border-box;
-      height: 34px;
+      height: 32px;
       background: $nothing-color;
       border-radius: 4px;
       position: relative;
+      color: $icon-color-default;
 
       &-el-icon {
         position: absolute;

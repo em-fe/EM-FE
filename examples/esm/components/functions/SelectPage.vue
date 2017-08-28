@@ -16,7 +16,7 @@
     </div>
 
     <!--  -->
-    <emfe-select :datas="data1" seleStu="newList" type="checkbox" @addDataCheck="addDataCheck" @checkedopt="getlist" @delopt="getlist2" @getAllData="getData" selectText="提示文字" :checkVals="checkVals"></emfe-select>
+    <emfe-select :datas="data1" seleStu="newList" type="checkbox" @addDataCheck="addDataCheck" @checkedopt="getlist" @delopt="getlist2" @getAllData="getData" selectText="提示文字"></emfe-select>
     API：包含3个配置项和一个方法：<br>
               自定义属性 :<br>
               :datas="data1"<br>
@@ -30,11 +30,23 @@
     </div>
 
     <!--  -->
-    <emfe-select :datas="data3" type="default"  @getDefData="getData"></emfe-select>
+    <emfe-select :datas="data3" type="default" @getDefData="getData"></emfe-select>
     API：包含2个配置项：<br>
               自定义属性 :<br>
               :datas="data3"<br>
               type="default"<br>
+    <!-- / -->
+
+    <div style="margin:50px 0 10px">
+      带 icon 的下拉框
+    </div>
+
+    <!--  -->
+    <emfe-select :datas="data4" type="icon" @getDefData="getData"></emfe-select>
+    API：包含2个配置项：<br>
+              自定义属性 :<br>
+              :datas="data4"<br>
+              type="icon"<br>
     <!-- / -->
 
     <h2 style="margin-top:50px">1.不可点击的数据添加上一条 disabled: 'disabled' 的字段，可点的字段不加；</h2>
@@ -50,18 +62,27 @@ export default {
       checkedNames: ['Jack'],
       checkVals: ['esfa','2'],
       datas: '',
+      data1Checked: ['1', '2'],
       data1: [
         {
           name: '1',
+          checked: true,
+          disabled: false,
         },
         {
           name: '2',
+          checked: true,
+          disabled: false,
         },
         {
           name: '3',
+          checked: false,
+          disabled: false,
         },
         {
           name: 'esfa',
+          checked: false,
+          disabled: false,
         },
       ],
       data3: [
@@ -71,6 +92,18 @@ export default {
         },
         {
           name: '一夜暴富',
+        },
+      ],
+      data4: [
+        {
+          name: '中国',
+          tel: '+86',
+          icon: 'https://static.evente.cn/evente/img/flag/v1/zg.jpg',
+        },
+        {
+          name: '香港',
+          tel: '+852',
+          icon: 'https://static.evente.cn/evente/img/flag/v1/xg.jpg',
         },
       ],
     };
@@ -87,10 +120,10 @@ export default {
       this.data2.push({ name:nData });
       console.log('添加：' + nData);
     },
-    getData(allData) {
-      console.log('选择的数据为：' + allData);
+    getData(name, allData) {
+      console.log('111选择的数据为：' + name, allData);
     },
-     getAllData(allData) {
+    getAllData(allData) {
       console.log('选择的数据为：' + allData);
     },
     getlist(item) {
@@ -102,4 +135,3 @@ export default {
   },
 };
 </script>
-

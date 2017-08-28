@@ -40,9 +40,29 @@ const router = new VueRouter({
           component: require('./components/styles/TagPage.vue'),
         },
         {
+          path: '/styles/tel',
+          name: 'tel',
+          component: require('./components/styles/TelPage.vue'),
+        },
+        {
+          path: '/styles/imgCodepage',
+          name: 'imgCodepage',
+          component: require('./components/styles/ImgCodepage.vue'),
+        },
+        {
+          path: '/styles/smscodeCodepage',
+          name: 'smscodeCodepage',
+          component: require('./components/styles/SmscodeCodepage.vue'),
+        },
+        {
           path: '/styles/panel',
           name: 'panel',
           component: require('./components/styles/PanelPage.vue'),
+        },
+        {
+          path: '/styles/steps',
+          name: 'steps',
+          component: require('./components/styles/StepsPage.vue'),
         },
         {
           path: '/styles/crumbs',
@@ -120,6 +140,11 @@ const router = new VueRouter({
           component: require('./components/styles/Inputpage.vue'),
         },
         {
+          path: '/styles/inputmore',
+          name: 'inputmore',
+          component: require('./components/styles/Inputmorepage.vue'),
+        },
+        {
           path: '/styles/table',
           name: 'table',
           component: require('./components/styles/TablePage.vue'),
@@ -142,10 +167,25 @@ const router = new VueRouter({
       name: 'Functions',
       children: [
         {
+          path: '/functions/countdown',
+          name: 'countdown',
+          component: require('./components/functions/Countdownpage.vue'),
+        },
+        {
+          path: '/functions/formtest',
+          name: 'formtest',
+          component: require('./components/functions/FormTestPage.vue'),
+        },
+        {
           path: '/functions/datepage',
           name: 'datepage',
           component: require('./components/functions/DatePage.vue'),
         },
+          {
+            path: '/functions/datempage',
+            name: 'datempage',
+            component: require('./components/functions/DateMPage.vue'),
+          },
         {
           path: '/functions/number',
           name: 'number',
@@ -160,6 +200,16 @@ const router = new VueRouter({
           path: '/functions/datetimepage',
           name: 'datetimepage',
           component: require('./components/functions/DatetimePage.vue'),
+        },
+        {
+          path: '/functions/datetimempage',
+          name: 'datetimempage',
+          component: require('./components/functions/DatetimeMPage.vue'),
+        },
+        {
+          path: '/functions/timempage',
+          name: 'timempage',
+          component: require('./components/functions/TimeMPage.vue'),
         },
         {
           path: '/functions/drag',
@@ -200,6 +250,11 @@ const router = new VueRouter({
           path: '/functions/slide',
           name: 'slide',
           component: require('./components/functions/SlidePage.vue'),
+        },
+        {
+          path: '/functions/opations',
+          name: 'opations',
+          component: require('./components/functions/OpationsPage.vue'),
         },
       ],
       component: require('./components/functions/Index.vue'),

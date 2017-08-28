@@ -1,15 +1,42 @@
 <template>
   <div class="emfe-upload" :class="uploadName">
-    <button class="emfe-upload-btn" :class="btnName">+</button>
-    <input class="emfe-upload-file" :class="fileName" type="file" @change="change">
+    <template v-if="type === 'icon'">
+      <emfe-button :disabled="disabled" v-show="!src" theme="default" className="ddd" type="hint">上传图片</emfe-button>
+      <input v-show="!src" class="emfe-upload-file" :class="fileName" :disabled="disabled" type="file" @change="change" ref="upload">
+      <div v-show="src" :style="{opacity: canShow ? 1 : 0}" class="emfe-upload-icon-wrap">
+        <div class="emfe-upload-icon-wrap-box" :class="[`emfe-upload-icon-wrap-box-${align}`]">
+          <img class="emfe-upload-icon-wrap-box-img" :class="[`emfe-upload-img-${align}`]" :src="src" ref="img">
+        </div>
+        <i class="emfe-upload-icon-wrap-close" @click="closeFn"></i>
+      </div>
+    </template>
+    <template v-if="type === 'plus'">
+      <button v-show="!src" class="emfe-upload-btn" :class="btnName">+</button>
+      <input v-show="!src" class="emfe-upload-file" :class="fileName" :disabled="disabled" type="file" @change="change" ref="uploadPlus">
+      <div v-show="src" class="emfe-upload-plus-box" :class="[`emfe-upload-plus-box-${align}`]" :style="{opacity: canShow ? 1 : 0}" @click="closePlusFn">
+        <img :class="[`emfe-upload-img-${align}`]" v-show="src" :src="src" ref="img">
+      </div>
+    </template>
   </div>
 </template>
 <script>
 import _ from '../../../tools/lodash';
+import EmfeMessage from '../../emfe-message/index';
 import ajax from './ajax';
+
+let canUpload = true;
 
 export default {
   name: 'upload',
+  data() {
+    return {
+      src: '',
+      canShow: false,
+      fileList: [],
+      tempIndex: 1,
+      align: '',
+    };
+  },
   props: {
     type: {
       validator(value) {
@@ -17,14 +44,7 @@ export default {
       },
       default: 'plus',
     },
-    imageMore: {
-      type: [Boolean, String],
-      default: false,
-    },
-    imageNumber: {
-      type: [Number, String],
-      default: 1,
-    },
+    disabled: Boolean,
     className: {
       type: String,
       default: '',
@@ -39,10 +59,7 @@ export default {
         return {};
       },
     },
-    multiple: {
-      type: Boolean,
-      default: false,
-    },
+    handleDatas: Object,
     data: {
       type: Object,
     },
@@ -54,77 +71,40 @@ export default {
       type: Boolean,
       default: false,
     },
-    showUploadList: {
-      type: Boolean,
-      default: true,
-    },
     format: {
       type: Array,
       default() {
         return [];
       },
     },
-    accept: {
-      type: String,
-    },
     maxSize: {
       type: Number,
     },
-    beforeUpload: Function,
-    onProgress: {
+    url: String,
+    success: {
       type: Function,
-      default() {
-        return {};
-      },
+      default: () => {},
     },
-    onSuccess: {
+    exceededSize: {
       type: Function,
-      default() {
-        return {};
-      },
+      default: () => {},
     },
-    onError: {
+    formatError: {
       type: Function,
-      default() {
-        return {};
-      },
+      default: () => {},
     },
-    onRemove: {
+    beforeUpload: {
       type: Function,
-      default() {
-        return {};
-      },
+      default: () => {},
     },
-    onPreview: {
+    error: {
       type: Function,
-      default() {
-        return {};
-      },
+      default: () => {},
     },
-    onExceededSize: {
+    close: {
       type: Function,
-      default() {
-        return {};
-      },
+      default: () => {},
     },
-    onFormatError: {
-      type: Function,
-      default() {
-        return {};
-      },
-    },
-    defaultFileList: {
-      type: Array,
-      default() {
-        return [];
-      },
-    },
-  },
-  data() {
-    return {
-      fileList: [],
-      tempIndex: 1,
-    };
   },
   computed: {
     uploadName() {
@@ -135,6 +115,9 @@ export default {
         },
         {
           [`${this.className}-upload-${this.type}`]: !!this.className,
+        },
+        {
+          'emfe-upload-disabled': this.disabled,
         },
       ];
     },
@@ -152,10 +135,36 @@ export default {
         {
           [`${this.className}-upload-${this.type}-file`]: !!this.className,
         },
+        {
+          'emfe-upload-file-disabled': this.disabled,
+        },
       ];
     },
   },
+  mounted() {
+    if (this.url) {
+      const imgObject = new Image();
+      imgObject.src = this.url;
+      imgObject.onload = () => {
+        this.src = this.url;
+        setTimeout(this.setAlign.bind(this), 0);
+      };
+    }
+  },
   methods: {
+    setAlign() {
+      const { clientWidth, clientHeight } = this.$refs.img;
+      if (clientWidth !== 0 && clientHeight !== 0) {
+        if (clientWidth > clientHeight) {
+          this.align = 'horizontal';
+        } else if (clientWidth < clientHeight) {
+          this.align = 'vertical';
+        } else {
+          this.align = 'normal';
+        }
+      }
+      this.canShow = true;
+    },
     change(e) {
       const files = e.target.files;
 
@@ -164,7 +173,7 @@ export default {
       }
 
       const postFiles = Array.prototype.slice.call(files);
-      // console.log(postFiles);
+
       postFiles.forEach((file) => {
         this.postHandle(file);
       });
@@ -175,38 +184,47 @@ export default {
         const fileFormat = file.name.split('.').pop().toLocaleLowerCase();
         const checked = this.format.some(item => item.toLocaleLowerCase() === fileFormat);
         if (!checked) {
-          this.onFormatError(file, this.fileList);
+          this.formatError(file, this.fileList, EmfeMessage);
+          this.$emit('formatError', file, this.fileList, EmfeMessage);
           return false;
         }
       }
-
       // check maxSize
       if (this.maxSize) {
         if (file.size > this.maxSize * 1024) {
-          this.onExceededSize(file, this.fileList);
+          this.exceededSize(file, this.fileList, EmfeMessage);
+          this.$emit('exceededSize', file, this.fileList, EmfeMessage);
           return false;
         }
       }
 
-      this.handleStart(file);
+      if (canUpload) {
+        this.handleStart(file);
+        this.beforeUpload(file, EmfeMessage);
+        this.$emit('beforeUpload', file, EmfeMessage);
+        this.canUpload = false;
 
-      const formData = new FormData();
-      formData.append(this.name, file);
-
-      ajax({
-        headers: this.headers,
-        withCredentials: this.withCredentials,
-        file,
-        data: this.data,
-        filename: this.name,
-        action: this.action,
-        onSuccess: (res) => {
-          this.handleSuccess(res, file);
-        },
-        onError: (err, response) => {
-          this.handleError(err, response, file);
-        },
-      });
+        ajax({
+          headers: this.headers,
+          withCredentials: this.withCredentials,
+          file,
+          data: this.data,
+          filename: this.name,
+          action: this.action,
+          onSuccess: (res) => {
+            canUpload = true;
+            if (res.code === 10000) {
+              this.handleSuccess(res, file);
+            } else {
+              this.handleError('上传失败', res, file);
+            }
+          },
+          onError: (err, response) => {
+            canUpload = true;
+            this.handleError(err, response, file);
+          },
+        });
+      }
 
       return false;
     },
@@ -228,7 +246,7 @@ export default {
       if (fileData) {
         fileData.status = 'finished';
         fileData.response = res;
-        this.onSuccess(res, fileData, this.fileList);
+        this.loadImg(res.data.url, res, fileData);
       }
     },
     handleError(err, response, file) {
@@ -238,8 +256,8 @@ export default {
       fileData.status = 'fail';
 
       fileList.splice(fileList.indexOf(fileData), 1);
-
-      this.onError(err, response, file);
+      this.error(err, response, file, EmfeMessage);
+      this.$emit('error', err, response, file, EmfeMessage);
     },
     getFile(file) {
       const fileList = this.fileList;
@@ -249,6 +267,30 @@ export default {
         return !target;
       });
       return target;
+    },
+    loadImg(src, res, fileData) {
+      const img = new Image();
+      img.src = src;
+      img.onload = () => {
+        this.src = src;
+        setTimeout(this.setAlign.bind(this), 0);
+        this.success(res, fileData, this.fileList, EmfeMessage);
+        this.$emit('success', res, fileData, this.fileList, EmfeMessage);
+      };
+    },
+    closeFn() {
+      this.$refs.upload.value = '';
+      this.closeCommon();
+    },
+    closePlusFn() {
+      this.$refs.uploadPlus.value = '';
+      this.closeCommon();
+    },
+    closeCommon() {
+      this.src = '';
+      this.canShow = false;
+      this.close(EmfeMessage);
+      this.$emit('close', EmfeMessage);
     },
   },
 };

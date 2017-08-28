@@ -4,8 +4,8 @@
       <h3>切换标签</h3>
       <br>
       <emfe-tag-parent addClass="add" className="default">
-        <emfe-tag index="0" @tag="tag">默认</emfe-tag>
-        <emfe-tag index="1" active=true @tag="tag">选中</emfe-tag>
+        <emfe-tag index="0">默认</emfe-tag>
+        <emfe-tag index="1" active=true>选中</emfe-tag>
         <emfe-tag index="2" disable="true">禁止</emfe-tag>
       </emfe-tag-parent>
     </div>
@@ -35,8 +35,8 @@
       <h3>筛选标签</h3>
       <br>
       <emfe-tag-parent className="screen" skin="blue">
-        <emfe-tag index="0">默认</emfe-tag>
-        <emfe-tag index="1">选中</emfe-tag>
+        <emfe-tag index="0"  @tag="tag">默认</emfe-tag>
+        <emfe-tag index="1"  @tag="tag">选中</emfe-tag>
       </emfe-tag-parent>
       <br>
       <emfe-tag-parent  addClass="add" className="screen" skin="yellow" :data="dataList">
@@ -111,7 +111,7 @@
       <tbody>
         <tr>
           <td>tag</td>
-          <td>点击tag，返回当前tag的索引值</td>
+          <td>点击tag，返回当前tag的索引值和标签激活状态</td>
           <td>Number</td>
         </tr>
       </tbody>
@@ -128,8 +128,8 @@ export default {
     };
   },
   methods:{
-    tag(index) {
-      console.log(index);
+    tag(index, activeOk) {
+      console.log(index, activeOk);
     },
     click() {
       this.active = !this.active;

@@ -57,6 +57,16 @@
       @include border(all, $btn-active-color);
     }
 
+    &-disabled {
+      &:hover {
+        @include border();
+      }
+
+      &:active {
+        @include border();
+      }
+    }
+
     &-text {
       padding: 0 8px;
       text-align: left;
@@ -111,6 +121,19 @@
     line-height: 32px;
     color: $btn-color;
     cursor: pointer;
+
+    &-disabled {
+      color: $text-color-disable;
+      cursor: no-drop;
+
+      &:hover {
+        color: $text-color-disable;
+      }
+
+      &:active {
+        color: $text-color-disable;
+      }
+    }
 
     &:hover {
       color: $btn-hover-color;

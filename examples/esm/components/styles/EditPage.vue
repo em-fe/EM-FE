@@ -69,8 +69,7 @@ export default {
       oneList: [
         {
           name: '选项1',
-          openFlg: false,
-          twoList: [
+          sub_choices: [
             {
               name: '二级选项',
             },
@@ -81,8 +80,7 @@ export default {
         },
         {
           name: '选项2',
-          openFlg: false,
-          twoList: [
+          sub_choices: [
             {
               name: '二级选项',
             },
@@ -94,8 +92,7 @@ export default {
       ],
       addOneObj: {
         name: '一级选项',
-        openFlg: true,
-        twoList: [
+        sub_choices: [
           {
             name: '二级选项',
           },

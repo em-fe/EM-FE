@@ -12,10 +12,18 @@ import EmfeUpload from './components/emfe-upload/index';
 import EmfeDrag from './components/emfe-drag/index';
 import EmfeColor from './components/emfe-color/index';
 import EmfeInput from './components/emfe-input/index';
+import EmfeInputmore from './components/emfe-inputmore/index';
+import EmfeTel from './components/emfe-tel/index';
+import EmfeSmscode from './components/emfe-smscode/index';
+import EmfeImgcode from './components/emfe-imgcode/index';
+import EmfeSteps from './components/emfe-steps/index';
 import EmfeNumber from './components/emfe-number/index';
 import EmfeDate from './components/emfe-date/index';
+import EmfeDateM from './components/emfe-date-m/index';
 import EmfeTime from './components/emfe-time/index';
+import EmfeTimeM from './components/emfe-time-m/index';
 import EmfeDatetime from './components/emfe-datetime/index';
+import EmfeDatetimeM from './components/emfe-datetime-m/index';
 import EmfeLink from './components/emfe-link/index';
 import EmfeSwitch from './components/emfe-switch/index';
 import EmfeTitle from './components/emfe-title/index';
@@ -35,8 +43,11 @@ import EmfeSlide from './components/emfe-slide/index';
 import EmfeHottip from './components/emfe-hottip/index';
 import EmfeCrumb from './components/emfe-crumb/index';
 import EmfeEdit from './components/emfe-edit/index';
+import EmfeOpations from './components/emfe-opations/index';
+import EmfeCountdown from './components/emfe-countdown/index';
 // 服务
 import EmfeMessage from './components/emfe-message/index';
+import EmfeFormTest from './components/emfe-formtest/index';
 // 指令
 import emfeDocumentclick from './directives/emfe-documentclick';
 import emfeDocumentfocus from './directives/emfe-documentfocus';
@@ -57,7 +68,13 @@ const emfeCpt = {
   EmfeDrag,
   EmfeColor,
   EmfeInput,
+  EmfeInputmore: EmfeInputmore.EmfeInputmore,
+  EmfeInputmoreGroup: EmfeInputmore.EmfeInputmoreGroup,
   EmfeNumber,
+  EmfeTel,
+  EmfeSmscode,
+  EmfeImgcode,
+  EmfeSteps,
   EmfeButton: Button.EmfeButton,
   EmfeButtonGroup: Button.EmfeButtonGroup,
   EmfeSwitch,
@@ -68,8 +85,11 @@ const emfeCpt = {
   EmfeTableHead: Table.EmfeTableHead,
   EmfeTableBody: Table.EmfeTableBody,
   EmfeDate,
+  EmfeDateM,
   EmfeTime,
+  EmfeTimeM,
   EmfeDatetime,
+  EmfeDatetimeM,
   EmfePagination,
   EmfeSelect,
   EmfeCheckout,
@@ -84,6 +104,8 @@ const emfeCpt = {
   EmfeCrumb,
   EmfeHottip,
   EmfeEdit,
+  EmfeOpations,
+  EmfeCountdown,
 };
 
 const emfeDir = {
@@ -104,6 +126,7 @@ const install = (Vue) => {
   });
 
   Vue.prototype.$EmfeMessage = EmfeMessage;
+  Vue.prototype.$EmfeFormTest = EmfeFormTest;
 };
 
 if (typeof window !== 'undefined' && window.Vue) {
@@ -113,4 +136,6 @@ if (typeof window !== 'undefined' && window.Vue) {
 export default {
   version: '1.0.0',
   install,
+  EmfeMessage,
+  EmfeFormTest,
 };
