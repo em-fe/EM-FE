@@ -116,6 +116,7 @@ export default {
     spanTxt(item) {
       if (item.disabled !== 'disabled') {
         this.checkVal = item.name;
+        this.flagCheck = false;
         this.$emit('getDefData', this.checkVal, item, this.datas);
         if (this.getDefData) {
           this.getDefData(this.checkVal, item, this.datas);

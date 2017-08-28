@@ -1,5 +1,5 @@
 <template>
-  <a class="emfe-link" :class="linkName" :href="emptyRouters ? 'javascript:;' : routers.url" v-if="hasUrl || emptyRouters" @click="click">
+  <a class="emfe-link" :class="linkName" :href="emptyRouters ? 'javascript:;' : routers.url" v-if="hasUrl || emptyRouters" @click="clickFn">
     <slot></slot>
   </a>
   <router-link class="emfe-link" :class="linkName" :tag="tag" :to="routers" v-else>
@@ -24,6 +24,10 @@ export default {
       type: String,
       default: '',
     },
+    click: {
+      type: Function,
+      default: () => {},
+    },
   },
   computed: {
     linkName() {
@@ -41,7 +45,8 @@ export default {
     },
   },
   methods: {
-    click() {
+    clickFn() {
+      this.click();
       this.$emit('click');
     },
   },
