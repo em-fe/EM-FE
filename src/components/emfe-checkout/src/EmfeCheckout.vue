@@ -2,13 +2,13 @@
   <div class="emfe-checkout" :class="checkoutName">
     <label class="emfe-checkout-box">
       <i class="emfe-checkout-inner" :class="innerName"></i>
-      <input type="checkbox" class="emfe-checkout-status" :checked="status" @click.stop @change="alocked" :disabled="disable" v-if="stop">
-      <input type="checkbox" class="emfe-checkout-status" :checked="status" @change="alocked" :disabled="disable" v-else>
+      <input type="checkbox" class="emfe-checkout-status" :checked="checkoutStatus" @click.stop @change="alocked" :name="name" :disabled="disable" v-if="stop">
+      <input type="checkbox" class="emfe-checkout-status" :checked="checkoutStatus" @change="alocked" :name="name" :disabled="disable" v-else>
       <span class="emfe-checkout-text" :class="textName">{{ newtitle }}</span>
     </label>
     <div class="emfe-checkout-slide" v-if="slideShow">
       <transition name="fade">
-        <div class="emfe-checkout-slide-wrap" v-show="status" :class="openName">
+        <div class="emfe-checkout-slide-wrap" v-show="checkoutStatus" :class="openName">
           <slot name="slide"></slot>
         </div>
       </transition>
@@ -20,7 +20,7 @@ export default {
   name: 'EmfeCheckout',
   data() {
     return {
-      status: this.value,
+      checkoutStatus: this.value,
       newtitle: this.title,
     };
   },
@@ -46,12 +46,16 @@ export default {
     inline: String,
     change: Function,
     index: [Number, String],
+    name: {
+      type: String,
+      required: true,
+    },
   },
   computed: {
     innerName() {
       return [
         {
-          'emfe-checkout-inner-disable': this.disable, 'emfe-checkout-inner-checked': this.status,
+          'emfe-checkout-inner-disable': this.disable, 'emfe-checkout-inner-checked': this.checkoutStatus,
         },
       ];
     },
@@ -81,14 +85,14 @@ export default {
   methods: {
     alocked(e) {
       this.setValue(e.target.checked);
-      this.$emit('input', this.status);
-      this.$emit('checked', this.status, this.title, this.index);
+      this.$emit('input', this.checkoutStatus);
+      this.$emit('checked', this.checkoutStatus, this.title, this.index);
       if (this.change) {
-        this.change(this.status, this.title, this.index);
+        this.change(this.checkoutStatus, this.title, this.index);
       }
     },
     setValue(checked = this.value) {
-      this.status = checked;
+      this.checkoutStatus = checked;
     },
   },
   watch: {
