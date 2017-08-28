@@ -1,6 +1,6 @@
 <template>
   <div>
-    <emfe-textarea className="main" v-model="des"></emfe-textarea>
+    <emfe-textarea className="main" v-model="des" @blur="blur"></emfe-textarea>
     支持 v-model {{ des }}
     <br>
     <br>
@@ -41,7 +41,10 @@ export default {
   },
   methods: {
     click() {
-      this.des = '我要你';
+      this.des = '点击变了';
+    },
+    blur() {
+      this.des = '失去焦点';
     },
   },
 }

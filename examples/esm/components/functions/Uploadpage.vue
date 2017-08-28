@@ -4,7 +4,7 @@
     <emfe-upload type="icon" action="http://gateway.inner.evente.cn:8000/public/upload"></emfe-upload>
     <br>
     <pre>
-      &lt;emfe-upload type="icon" action="http://gateway.inner.evente.cn:8000/upload/upload"&gt;&lt;/emfe-upload&gt;
+      &lt;emfe-upload type="icon" action="http://gateway.inner.evente.cn:8000/public/upload"&gt;&lt;/emfe-upload&gt;
     </pre>
     <br>
     <br>
@@ -15,7 +15,7 @@
     <emfe-upload v-show="!src1" type="icon" action="http://gateway.inner.evente.cn:8000/public/upload" :success="suc"></emfe-upload>
     <img v-show="src1" :src="src1">
     <pre>
-      &lt;emfe-upload v-show="!src1" type="icon" action="http://gateway.inner.evente.cn:8000/upload/upload" :success="suc"&gt;&lt;/emfe-upload&gt;
+      &lt;emfe-upload v-show="!src1" type="icon" action="http://gateway.inner.evente.cn:8000/public/upload" :success="suc"&gt;&lt;/emfe-upload&gt;
       &lt;img v-show="src1" :src="src1"&gt;
     </pre>
     <pre>
@@ -29,10 +29,10 @@
     <br>
     <br>
     <h3>另一种用法</h3>
-    <emfe-upload action="http://gateway.inner.evente.cn:8000/upload/upload"></emfe-upload>
+    <emfe-upload action="http://gateway.inner.evente.cn:8000/public/upload"></emfe-upload>
     <br>
     <pre>
-      &lt;emfe-upload action="http://gateway.inner.evente.cn:8000/upload/upload"&gt;&lt;/emfe-upload&gt;
+      &lt;emfe-upload action="http://gateway.inner.evente.cn:8000/public/upload"&gt;&lt;/emfe-upload&gt;
     </pre>
     <br>
     <br>
@@ -40,10 +40,10 @@
     <br>
     <br>
     <h3>禁用1</h3>
-    <emfe-upload type="icon" action="http://gateway.inner.evente.cn:8000/upload/upload" :disabled="true"></emfe-upload>
+    <emfe-upload type="icon" action="http://gateway.inner.evente.cn:8000/public/upload" :disabled="true"></emfe-upload>
     <br>
     <pre>
-      &lt;emfe-upload type="icon" action="http://gateway.inner.evente.cn:8000/upload/upload" :disabled="true"&gt;&lt;/emfe-upload&gt;
+      &lt;emfe-upload type="icon" action="http://gateway.inner.evente.cn:8000/public/upload" :disabled="true"&gt;&lt;/emfe-upload&gt;
     </pre>
     <br>
     <br>
@@ -51,9 +51,9 @@
     <br>
     <br>
     <h3>禁用2</h3>
-    <emfe-upload action="http://gateway.inner.evente.cn:8000/upload/upload" :disabled="true"></emfe-upload>
+    <emfe-upload action="http://gateway.inner.evente.cn:8000/public/upload" :disabled="true"></emfe-upload>
     <pre>
-      &lt;emfe-upload action="http://gateway.inner.evente.cn:8000/upload/upload" :disabled="true"&gt;&lt;/emfe-upload&gt;
+      &lt;emfe-upload action="http://gateway.inner.evente.cn:8000/public/upload" :disabled="true"&gt;&lt;/emfe-upload&gt;
     </pre>
     <br>
     <br>
@@ -61,15 +61,15 @@
     <br>
     <br>
     <h3>有图片用法</h3>
-    <emfe-upload url="http://www.mikecrm.com/ugc_2_a/pub/50/50oz53d92h8otumu6y7hy9h8lhtodabj/form/image/wMTAYnnFTntzhGluIt8R405Wdy6tAnY6.png" action="http://gateway.inner.evente.cn:8000/upload/upload"></emfe-upload>
-    <emfe-upload url="http://moshtest.qiniudn.com/b5/49/1f/e8054ae706682549b921e78755.jpg" action="http://gateway.inner.evente.cn:8000/upload/upload"></emfe-upload>
-    <emfe-upload url="http://www.mikecrm.com/ugc_2_a/pub/50/50oz53d92h8otumu6y7hy9h8lhtodabj/form/image/wMTAYnnFTntzhGluIt8R405Wdy6tAnY6.png" type="icon" action="http://gateway.inner.evente.cn:8000/upload/upload"></emfe-upload>
-    <emfe-upload url="http://moshtest.qiniudn.com/b5/49/1f/e8054ae706682549b921e78755.jpg" type="icon" action="http://gateway.inner.evente.cn:8000/upload/upload"></emfe-upload>
+    <emfe-upload url="http://www.mikecrm.com/ugc_2_a/pub/50/50oz53d92h8otumu6y7hy9h8lhtodabj/form/image/wMTAYnnFTntzhGluIt8R405Wdy6tAnY6.png" action="http://gateway.inner.evente.cn:8000/public/upload"></emfe-upload>
+    <emfe-upload url="http://moshtest.qiniudn.com/b5/49/1f/e8054ae706682549b921e78755.jpg" action="http://gateway.inner.evente.cn:8000/public/upload"></emfe-upload>
+    <emfe-upload url="http://www.mikecrm.com/ugc_2_a/pub/50/50oz53d92h8otumu6y7hy9h8lhtodabj/form/image/wMTAYnnFTntzhGluIt8R405Wdy6tAnY6.png" type="icon" action="http://gateway.inner.evente.cn:8000/public/upload"></emfe-upload>
+    <emfe-upload url="http://moshtest.qiniudn.com/b5/49/1f/e8054ae706682549b921e78755.jpg" type="icon" action="http://gateway.inner.evente.cn:8000/public/upload"></emfe-upload>
     <!-- http://moshtest.qiniudn.com/b5/49/1f/e8054ae706682549b921e78755.jpg -->
     <!-- http://www.mikecrm.com/ugc_2_a/pub/50/50oz53d92h8otumu6y7hy9h8lhtodabj/form/image/7LMA6ZFB8x0KyifVY86NdXqdbFQpjVEq.png -->
     <br>
     <pre>
-      &lt;emfe-upload url="http://moshtest.qiniudn.com/b5/49/1f/e8054ae706682549b921e78755.jpg" type="icon" action="http://gateway.inner.evente.cn:8000/upload/upload"&gt;&lt;/emfe-upload&gt;
+      &lt;emfe-upload url="http://moshtest.qiniudn.com/b5/49/1f/e8054ae706682549b921e78755.jpg" type="icon" action="http://gateway.inner.evente.cn:8000/public/upload"&gt;&lt;/emfe-upload&gt;
     </pre>
     <br>
     <br>
@@ -159,12 +159,12 @@
         <tr>
           <td>formatError</td>
           <td>文件格式验证失败时的钩子</td>
-          <td>file, fileList</td>
+          <td>file, fileList,EmfeMessage</td>
         </tr>
         <tr>
           <td>exceededSize</td>
           <td>文件超出指定大小限制时的钩子，返回字段为</td>
-          <td>file, fileList</td>
+          <td>file, fileList,EmfeMessage</td>
         </tr>
         <tr>
           <td>before</td>
@@ -174,12 +174,12 @@
         <tr>
           <td>error</td>
           <td>上传失败</td>
-          <td>error, file, fileList</td>
+          <td>error, file, fileList,EmfeMessage</td>
         </tr>
         <tr>
           <td>success</td>
           <td>上传成功</td>
-          <td>error, file, fileList</td>
+          <td>res,fileData,fileList,EmfeMessage</td>
         </tr>
       </tbody>
     </table>

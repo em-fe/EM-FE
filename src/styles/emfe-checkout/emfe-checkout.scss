@@ -3,6 +3,7 @@
     @include clearfix();
 
     position: relative;
+    display: block;
   }
 
   &-inner {

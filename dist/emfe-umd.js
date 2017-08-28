@@ -1278,7 +1278,7 @@ function upload(option) {
 var canUpload = true;
 
 var EmfeUpload$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-upload",class:_vm.uploadName},[(_vm.type === 'icon')?[_c('emfe-button',{directives:[{name:"show",rawName:"v-show",value:(!_vm.src),expression:"!src"}],attrs:{"disabled":_vm.disabled,"theme":"default","className":"ddd","type":"hint"}},[_vm._v("上传图片")]),_vm._v(" "),_c('input',{directives:[{name:"show",rawName:"v-show",value:(!_vm.src),expression:"!src"}],staticClass:"emfe-upload-file",class:_vm.fileName,attrs:{"disabled":_vm.disabled,"type":"file"},on:{"change":_vm.change}}),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.src),expression:"src"}],staticClass:"emfe-upload-icon-wrap",style:({opacity: _vm.canShow ? 1 : 0})},[_c('div',{staticClass:"emfe-upload-icon-wrap-box",class:[("emfe-upload-icon-wrap-box-" + _vm.align)]},[_c('img',{ref:"img",staticClass:"emfe-upload-icon-wrap-box-img",class:[("emfe-upload-img-" + _vm.align)],attrs:{"src":_vm.src}})]),_vm._v(" "),_c('i',{staticClass:"emfe-upload-icon-wrap-close",on:{"click":_vm.closeFn}})])]:_vm._e(),_vm._v(" "),(_vm.type === 'plus')?[_c('button',{directives:[{name:"show",rawName:"v-show",value:(!_vm.src),expression:"!src"}],staticClass:"emfe-upload-btn",class:_vm.btnName},[_vm._v("+")]),_vm._v(" "),_c('input',{directives:[{name:"show",rawName:"v-show",value:(!_vm.src),expression:"!src"}],staticClass:"emfe-upload-file",class:_vm.fileName,attrs:{"disabled":_vm.disabled,"type":"file"},on:{"change":_vm.change}}),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.src),expression:"src"}],staticClass:"emfe-upload-plus-box",class:[("emfe-upload-plus-box-" + _vm.align)],style:({opacity: _vm.canShow ? 1 : 0}),on:{"click":_vm.closeFn}},[_c('img',{directives:[{name:"show",rawName:"v-show",value:(_vm.src),expression:"src"}],ref:"img",class:[("emfe-upload-img-" + _vm.align)],attrs:{"src":_vm.src}})])]:_vm._e()],2)},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-upload",class:_vm.uploadName},[(_vm.type === 'icon')?[_c('emfe-button',{directives:[{name:"show",rawName:"v-show",value:(!_vm.src),expression:"!src"}],attrs:{"disabled":_vm.disabled,"theme":"default","className":"ddd","type":"hint"}},[_vm._v("上传图片")]),_vm._v(" "),_c('input',{directives:[{name:"show",rawName:"v-show",value:(!_vm.src),expression:"!src"}],ref:"upload",staticClass:"emfe-upload-file",class:_vm.fileName,attrs:{"disabled":_vm.disabled,"type":"file"},on:{"change":_vm.change}}),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.src),expression:"src"}],staticClass:"emfe-upload-icon-wrap",style:({opacity: _vm.canShow ? 1 : 0})},[_c('div',{staticClass:"emfe-upload-icon-wrap-box",class:[("emfe-upload-icon-wrap-box-" + _vm.align)]},[_c('img',{ref:"img",staticClass:"emfe-upload-icon-wrap-box-img",class:[("emfe-upload-img-" + _vm.align)],attrs:{"src":_vm.src}})]),_vm._v(" "),_c('i',{staticClass:"emfe-upload-icon-wrap-close",on:{"click":_vm.closeFn}})])]:_vm._e(),_vm._v(" "),(_vm.type === 'plus')?[_c('button',{directives:[{name:"show",rawName:"v-show",value:(!_vm.src),expression:"!src"}],staticClass:"emfe-upload-btn",class:_vm.btnName},[_vm._v("+")]),_vm._v(" "),_c('input',{directives:[{name:"show",rawName:"v-show",value:(!_vm.src),expression:"!src"}],ref:"uploadPlus",staticClass:"emfe-upload-file",class:_vm.fileName,attrs:{"disabled":_vm.disabled,"type":"file"},on:{"change":_vm.change}}),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.src),expression:"src"}],staticClass:"emfe-upload-plus-box",class:[("emfe-upload-plus-box-" + _vm.align)],style:({opacity: _vm.canShow ? 1 : 0}),on:{"click":_vm.closePlusFn}},[_c('img',{directives:[{name:"show",rawName:"v-show",value:(_vm.src),expression:"src"}],ref:"img",class:[("emfe-upload-img-" + _vm.align)],attrs:{"src":_vm.src}})])]:_vm._e()],2)},
 staticRenderFns: [],
   name: 'upload',
   data: function data() {
@@ -1535,6 +1535,14 @@ staticRenderFns: [],
       };
     },
     closeFn: function closeFn() {
+      this.$refs.upload.value = '';
+      this.closeCommon();
+    },
+    closePlusFn: function closePlusFn() {
+      this.$refs.uploadPlus.value = '';
+      this.closeCommon();
+    },
+    closeCommon: function closeCommon() {
       this.src = '';
       this.canShow = false;
       this.close(EmfeMessage);
@@ -2111,7 +2119,7 @@ var prefixCls$3 = 'emfe-input-box';
 var error = 'error';
 
 var EmfeInput$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-input",class:_vm.addClass,style:(_vm.newStyle)},[_c('div',{class:[_vm.classList]},[(_vm.iconOk)?_c('emfe-icon',{attrs:{"type":_vm.iconType,"className":"emfe-input-box-icon-el"}}):_vm._e(),_vm._v(" "),_c('input',_vm._b({staticClass:"emfe-input-box-input",class:_vm.addInput,attrs:{"type":_vm.type,"placeholder":_vm.newPlaceholder},domProps:{"value":_vm.currentValue},on:{"input":_vm.change,"blur":_vm.blur}},'input',_vm.$props))],1),_vm._v(" "),(_vm.errOk)?_c('div',{staticClass:"emfe-input-box-text",class:_vm.addErrorText},[_vm._t("error")],2):_vm._e()])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-input",class:_vm.addClass,style:(_vm.newStyle)},[_c('div',{class:[_vm.classList]},[(_vm.iconOk)?_c('emfe-icon',{attrs:{"type":_vm.iconType,"className":"emfe-input-box-icon-el"}}):_vm._e(),_vm._v(" "),_c('input',_vm._b({staticClass:"emfe-input-box-input",class:_vm.addInput,attrs:{"type":_vm.type,"placeholder":_vm.newPlaceholder},domProps:{"value":_vm.currentValue},on:{"input":_vm.change,"blur":_vm.blur}},'input',_vm.$props,false))],1),_vm._v(" "),(_vm.errOk)?_c('div',{staticClass:"emfe-input-box-text",class:_vm.addErrorText},[_vm._t("error")],2):_vm._e()])},
 staticRenderFns: [],
   name: 'input',
   props: {
@@ -2314,7 +2322,9 @@ staticRenderFns: [],
         var newLoops = ref.newLoops;
 
         if (loops.length < max) {
-          loops.splice(this.index + 1, 0, newLoops);
+          loops.splice(this.index + 1, 0, newLoops || {
+            num: '',
+          });
         }
         this.$emit('plus', loops[this.index], this.index, loops);
       } else {
@@ -2337,15 +2347,29 @@ staticRenderFns: [],
 };
 
 var EmfeInputmoreGroup = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-inputmore-group",class:_vm.groupName},_vm._l((_vm.loops),function(data,dataIndex){return _c('emfe-inputmore',{key:dataIndex,attrs:{"className":_vm.inputmoreName,"placeholder":data.placeholder || _vm.placeholder,"icon":data.icon || _vm.icon,"type":data.type || _vm.type,"index":dataIndex},on:{"reduce":_vm.reduce,"plus":_vm.plus},model:{value:(data.num),callback:function ($$v) {data.num=$$v;},expression:"data.num"}})}))},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-inputmore-group",class:_vm.groupName},_vm._l((_vm.loops),function(data,dataIndex){return _c('div',{staticClass:"emfe-inputmore-group-wrap",on:{"click":function($event){_vm.moreClick(dataIndex);}}},[_c('emfe-inputmore',{key:dataIndex,attrs:{"className":_vm.inputmoreName,"placeholder":data.placeholder || _vm.placeholder,"icon":data.icon || _vm.icon,"type":data.type || _vm.type,"index":dataIndex},on:{"reduce":_vm.reduce,"plus":_vm.plus,"input":_vm.input},model:{value:(data.num),callback:function ($$v) {data.num=$$v;},expression:"data.num"}})],1)}))},
 staticRenderFns: [],
   name: 'EmfeInputmoreGroup',
   data: function data() {
+    var loops = null;
+    var isObject = this.datas.every(function (data) { return !Array.isArray(data); });
+    if (isObject) {
+      loops = [];
+      this.datas.forEach(function (data) {
+        loops.push({
+          num: data,
+        });
+      });
+    } else {
+      loops = this.datas;
+    }
     return {
       canDelete: true,
       isGroup: true,
-      loops: this.datas,
+      isObject: isObject,
+      loops: loops,
       newLoops: this.new,
+      index: 0,
     };
   },
   props: {
@@ -2357,7 +2381,6 @@ staticRenderFns: [],
     placeholder: String,
     new: {
       type: Object,
-      required: true,
     },
     type: String,
     icon: String,
@@ -2369,6 +2392,9 @@ staticRenderFns: [],
       type: Number,
       default: 1,
     },
+    inputHandle: Function,
+    plusHandle: Function,
+    reduceHandle: Function,
   },
   computed: {
     groupName: function groupName() {
@@ -2382,11 +2408,26 @@ staticRenderFns: [],
     },
   },
   methods: {
+    moreClick: function moreClick(index) {
+      this.index = index;
+    },
     reduce: function reduce(now, data, datas) {
-      this.$emit('reduce', now, data, datas);
+      if (this.reduceHandle) {
+        this.reduceHandle(now, data, datas, this.index);
+      }
+      this.$emit('reduce', now, data, datas, this.index);
     },
     plus: function plus(now, data, datas) {
-      this.$emit('plus', now, data, datas);
+      if (this.plusHandle) {
+        this.plusHandle(now, data, datas, this.index);
+      }
+      this.$emit('plus', now, data, datas, this.index);
+    },
+    input: function input(now) {
+      if (this.inputHandle) {
+        this.inputHandle(now, this.index);
+      }
+      this.$emit('input', now, this.index);
     },
   },
 };
@@ -2498,7 +2539,7 @@ var timer = null;
 var go = true; // 是否可以继续获取
 
 var EmfeSmscode$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-smscode",class:_vm.smscodeName},[(_vm.icon)?_c('emfe-icon',{attrs:{"className":"emfe-smscode","type":_vm.icon}}):_vm._e(),_vm._v(" "),_c('input',{staticClass:"emfe-smscode-input",class:_vm.codeName,attrs:{"type":"number","placeholder":_vm.placeholder,"disabled":_vm.newDisabled},domProps:{"value":_vm.nowData},on:{"input":_vm.input,"blur":_vm.blur}}),_vm._v(" "),_c('button',{staticClass:"emfe-smscode-button",class:_vm.btmName,on:{"click":_vm.click}},[_vm._v(_vm._s(_vm.btnText))])],1)},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-smscode",class:_vm.smscodeName},[(_vm.icon)?_c('emfe-icon',{attrs:{"className":"emfe-smscode","type":_vm.icon}}):_vm._e(),_vm._v(" "),_c('input',{staticClass:"emfe-smscode-input",class:_vm.codeName,attrs:{"type":"number","placeholder":_vm.placeholder,"disabled":_vm.newDisabled},domProps:{"value":_vm.nowData},on:{"input":_vm.input,"blur":_vm.blur}}),_vm._v(" "),_c('button',{staticClass:"emfe-smscode-button",class:_vm.btmName,on:{"click":_vm.clickFn}},[_vm._v(_vm._s(_vm.btnText))])],1)},
 staticRenderFns: [],
   name: 'EmfeSmscode',
   data: function data() {
@@ -2538,6 +2579,7 @@ staticRenderFns: [],
       type: [String, Boolean],
       default: false,
     },
+    click: Function,
   },
   computed: {
     smscodeName: function smscodeName() {
@@ -2588,10 +2630,13 @@ staticRenderFns: [],
       this.$emit('change', val);
       this.$emit('input', val);
     },
-    click: function click() {
+    clickFn: function clickFn() {
       if (go && !this.newDisabled) {
         go = false;
         this.auto();
+      }
+      if (this.click) {
+        this.click();
       }
       this.$emit('click');
     },
@@ -3062,13 +3107,13 @@ staticRenderFns: [],
         this.day = day.num > 9 ? day.num : ("0" + (day.num));
         var month = this.month + 1 > 9 ? this.month + 1 : ("0" + (this.month + 1));
         this.date = "" + (this.year) + (this.format) + month + (this.format) + (this.day);
+        this.$emit('input', this.date);
         // 如果有确定按钮
         if (!this.confirm) {
           this.$emit('choice', this.date);
         } else {
           this.ok();
         }
-        this.$emit('input', this.date);
       }
     },
     choicePrevMonthDay: function choicePrevMonthDay(day) {
@@ -3096,8 +3141,8 @@ staticRenderFns: [],
     },
     cancel: function cancel() {
       this.date = this.placeholder;
-      this.$emit('cancel', this.date);
       this.$emit('input', this.date);
+      this.$emit('cancel', this.date);
     },
   },
   watch: {
@@ -3224,7 +3269,7 @@ staticRenderFns: [],
     // 一周内哪天可选
     weekChoices: {
       type: Array,
-      default: function () { return [1, 2, 3, 4, 5, 6, 7]; },
+      default: function () { return []; },
     },
     className: String,
   },
@@ -3283,6 +3328,7 @@ staticRenderFns: [],
       }
       this.setWeekChoice();
     },
+    // 设置日期可选
     setWeekChoice: function setWeekChoice() {
       var this$1 = this;
 
@@ -3403,6 +3449,11 @@ staticRenderFns: [],
       type: String,
       default: '选择时间',
     },
+    // 可选时间
+    timeChoices: {
+      type: String,
+      default: '00:00:00|23:59:59',
+    },
     value: {
       type: String,
       default: '',
@@ -3469,6 +3520,7 @@ staticRenderFns: [],
       this$1.seconds.push(timeObject.handleConputedTime(i$2, this$1.disabledSeconds));
     }
     this.initData();
+    this.setTimeChoice();
   },
   methods: {
     initData: function initData() {
@@ -3493,10 +3545,54 @@ staticRenderFns: [],
         this.choiced = true;
       }
     },
+    // 设置时间可选
+    setTimeChoice: function setTimeChoice() {
+      var times = this.timeChoices.split('|');
+      var startTime = times[0].split(':');
+      var endTime = times[1].split(':');
+      var hours = [];
+      var minutes = [];
+      if (this.hours.length > 1) {
+        this.hours.forEach(function (h) {
+          if (h.num < startTime[0] || h.num > endTime[0]) {
+            h.undo = true;
+          }
+        });
+        this.hours.forEach(function (h) {
+          if (!h.undo) {
+            hours.push(h.num);
+          }
+        });
+      }
+      var hour = this.hour ? this.hour : hours[0];
+      var hourIsStart = hour === startTime[0];
+      var hourIsEnd = hour === endTime[0];
+      if (this.minutes.length > 1) {
+        this.minutes.forEach(function (min) {
+          min.undo = (hourIsStart && min.num < startTime[1]) || (hourIsEnd && min.num > endTime[1]);
+        });
+        this.minutes.forEach(function (min) {
+          if (!min.undo) {
+            minutes.push(min.num);
+          }
+        });
+      }
+      var minute = this.minute ? this.minute : minutes[0];
+      var minuteIsStart = minute === startTime[1];
+      var minuteIsEnd = minute === endTime[1];
+      if (this.seconds.length > 1) {
+        this.seconds.forEach(function (sec) {
+          var before = hourIsStart && minuteIsStart && sec.num < startTime[2];
+          var after = hourIsEnd && minuteIsEnd && sec.num > endTime[2];
+          sec.undo = before || after;
+        });
+      }
+    },
     choiceHour: function choiceHour(hour) {
       if (!hour.undo) {
         this.setChoice();
         this.hour = hour.num;
+        this.setTimeChoice();
         this.$emit('choice', this.time);
         this.$emit('input', this.time);
       }
@@ -3505,6 +3601,7 @@ staticRenderFns: [],
       if (!minute.undo) {
         this.setChoice();
         this.minute = minute.num;
+        this.setTimeChoice();
         this.$emit('choice', this.time);
         this.$emit('input', this.time);
       }
@@ -3513,6 +3610,7 @@ staticRenderFns: [],
       if (!second.undo) {
         this.setChoice();
         this.second = second.num;
+        this.setTimeChoice();
         this.$emit('choice', this.time);
         this.$emit('input', this.time);
       }
@@ -3806,7 +3904,7 @@ var timeText = '选择时间';
 var dateText = '选择日期';
 
 var EmfeDatetime$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"emfe-documentclick",rawName:"v-emfe-documentclick",value:(_vm.close),expression:"close"}],staticClass:"emfe-datetime"},[(!_vm.disabled)?_c('button',{staticClass:"emfe-datetime-btn",on:{"click":function($event){$event.stopPropagation();_vm.toggle($event);}}},[_c('span',{staticClass:"emfe-datetime-btn-text",class:{'emfe-datetime-btn-text-choice': _vm.choiced}},[_vm._v(_vm._s(_vm.dateTime))]),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(!_vm.choiced),expression:"!choiced"}],attrs:{"type":"hint","className":"emfe-datetime"},on:{"icon-click":_vm.toggle}}),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(_vm.choiced),expression:"choiced"}],attrs:{"type":"qr","className":"emfe-datetime"},on:{"icon-click":_vm.cancel}})],1):_vm._e(),_vm._v(" "),(_vm.disabled)?_c('button',{staticClass:"emfe-datetime-btn emfe-datetime-btn-disabled"},[_c('span',{staticClass:"emfe-datetime-btn-text"},[_vm._v(_vm._s(_vm.dateTime))]),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(!_vm.choiced),expression:"!choiced"}],attrs:{"type":"hint","className":"emfe-datetime"}}),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(_vm.choiced),expression:"choiced"}],attrs:{"type":"qr","className":"emfe-datetime"}})],1):_vm._e(),_vm._v(" "),_c('emfe-transition',{attrs:{"name":"fade"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.status),expression:"status"}],staticClass:"emfe-datetime-main emfe-datetime-main-position"},[_c('div',{staticClass:"emfe-datetime-type"},[_c('emfe-date',{directives:[{name:"show",rawName:"v-show",value:(_vm.isDate),expression:"isDate"}],ref:"date",attrs:{"format":_vm.formatDate,"open":true,"confirm":false,"disabledDate":_vm.disabledDate},on:{"choice":_vm.choiceDate},model:{value:(_vm.date),callback:function ($$v) {_vm.date=$$v;},expression:"date"}}),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(!_vm.isDate),expression:"!isDate"}],staticClass:"emfe-datetime-time"},[_c('div',{staticClass:"emfe-datetime-time-header"},[_vm._v(_vm._s(_vm.date))]),_vm._v(" "),_c('emfe-time',{ref:"time",attrs:{"className":"emfe-datetime","open":true,"confirm":false,"disabledHours":_vm.disabledHours,"disabledMinutes":_vm.disabledMinutes,"disabledSeconds":_vm.disabledSeconds},on:{"choice":_vm.choiceTime},model:{value:(_vm.time),callback:function ($$v) {_vm.time=$$v;},expression:"time"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"emfe-datetime-footer"},[_c('button',{staticClass:"emfe-datetime-settype",on:{"click":_vm.typeToggle}},[_vm._v(_vm._s(_vm.typeText))]),_vm._v(" "),_c('button',{staticClass:"emfe-datetime-ok",on:{"click":function($event){$event.stopPropagation();_vm.ok($event);}}},[_vm._v("确定")])])])])],1)},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"emfe-documentclick",rawName:"v-emfe-documentclick",value:(_vm.close),expression:"close"}],staticClass:"emfe-datetime"},[(!_vm.disabled)?_c('button',{staticClass:"emfe-datetime-btn",on:{"click":function($event){$event.stopPropagation();_vm.toggle($event);}}},[_c('span',{staticClass:"emfe-datetime-btn-text",class:{'emfe-datetime-btn-text-choice': _vm.choiced}},[_vm._v(_vm._s(_vm.dateTime))]),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(!_vm.choiced),expression:"!choiced"}],attrs:{"type":"hint","className":"emfe-datetime"},on:{"icon-click":_vm.toggle}}),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(_vm.choiced),expression:"choiced"}],attrs:{"type":"qr","className":"emfe-datetime"},on:{"icon-click":_vm.cancel}})],1):_vm._e(),_vm._v(" "),(_vm.disabled)?_c('button',{staticClass:"emfe-datetime-btn emfe-datetime-btn-disabled"},[_c('span',{staticClass:"emfe-datetime-btn-text"},[_vm._v(_vm._s(_vm.dateTime))]),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(!_vm.choiced),expression:"!choiced"}],attrs:{"type":"hint","className":"emfe-datetime"}}),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(_vm.choiced),expression:"choiced"}],attrs:{"type":"qr","className":"emfe-datetime"}})],1):_vm._e(),_vm._v(" "),_c('emfe-transition',{attrs:{"name":"fade"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.status),expression:"status"}],staticClass:"emfe-datetime-main emfe-datetime-main-position"},[_c('div',{staticClass:"emfe-datetime-type"},[_c('emfe-date',{directives:[{name:"show",rawName:"v-show",value:(_vm.isDate),expression:"isDate"}],ref:"date",attrs:{"format":_vm.formatDate,"open":true,"confirm":false,"disabledDate":_vm.disabledDate},on:{"choice":_vm.choiceDate},model:{value:(_vm.date),callback:function ($$v) {_vm.date=$$v;},expression:"date"}}),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(!_vm.isDate),expression:"!isDate"}],staticClass:"emfe-datetime-time"},[_c('div',{staticClass:"emfe-datetime-time-header"},[_vm._v(_vm._s(_vm.date))]),_vm._v(" "),_c('emfe-time',{ref:"time",attrs:{"className":"emfe-datetime","open":true,"confirm":false,"timeChoices":_vm.timeChoices,"disabledHours":_vm.disabledHours,"disabledMinutes":_vm.disabledMinutes,"disabledSeconds":_vm.disabledSeconds},on:{"choice":_vm.choiceTime},model:{value:(_vm.time),callback:function ($$v) {_vm.time=$$v;},expression:"time"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"emfe-datetime-footer"},[_c('button',{staticClass:"emfe-datetime-settype",class:{'emfe-datetime-settype-disabled': _vm.disabledToggle},on:{"click":_vm.typeToggle}},[_vm._v(_vm._s(_vm.typeText))]),_vm._v(" "),_c('button',{staticClass:"emfe-datetime-ok",on:{"click":function($event){$event.stopPropagation();_vm.ok($event);}}},[_vm._v("确定")])])])])],1)},
 staticRenderFns: [],
   name: 'EmfeDatetime',
   data: function data() {
@@ -3848,6 +3946,11 @@ staticRenderFns: [],
       type: Array,
       default: function () { return []; },
     },
+    // 可选时间
+    timeChoices: {
+      type: String,
+      default: '00:00:00|23:59:59',
+    },
     // 禁用分钟
     disabledMinutes: {
       type: Array,
@@ -3885,6 +3988,9 @@ staticRenderFns: [],
 
       return newDateTime;
     },
+    disabledToggle: function disabledToggle() {
+      return !this.date && this.time === timeZero;
+    },
   },
   methods: {
     choiceDate: function choiceDate() {
@@ -3921,12 +4027,9 @@ staticRenderFns: [],
       }
     },
     typeToggle: function typeToggle() {
-      this.typeText = this.isDate ? dateText : timeText;
-      this.isDate = !this.isDate;
-      if (!this.date && this.time === timeZero) {
-        var today = initTimeDate();
-        var day = today.getDate();
-        this.date = (today.getFullYear()) + "/" + (today.getMonth() + 1) + "/" + day;
+      if (!this.disabledToggle) {
+        this.typeText = this.isDate ? dateText : timeText;
+        this.isDate = !this.isDate;
       }
     },
     toggle: function toggle() {
@@ -4048,6 +4151,11 @@ staticRenderFns: [],
       type: Array,
       default: function () { return []; },
     },
+    // 一周内哪天可选
+    weekChoices: {
+      type: Array,
+      default: function () { return []; },
+    },
     // 可选时间
     timeChoices: {
       type: String,
@@ -4143,6 +4251,7 @@ staticRenderFns: [],
       if (this.day > dateCountOfLastMonth) {
         this.day = timeObject.loopChoice(this.days, this.day);
       }
+      this.setWeekChoice();
     },
     choiceYear: function choiceYear(year) {
       if (!year.undo) {
@@ -4169,6 +4278,35 @@ staticRenderFns: [],
         this.$emit('choice-date', this.datetime);
         this.$emit('input', this.datetime);
       }
+    },
+    // 设置日期可选
+    setWeekChoice: function setWeekChoice() {
+      var this$1 = this;
+
+      var year = null;
+      var month = null;
+      if (this.years.length > 1) {
+        this.years.forEach(function (y) {
+          if (!y.undo && year === null) {
+            year = y.num;
+          }
+        });
+      }
+      if (this.months.length > 1) {
+        this.months.forEach(function (m) {
+          if (!m.undo && month === null) {
+            month = m.num - 0;
+          }
+        });
+      }
+      this.days.forEach(function (tday) {
+        var nowYear = this$1.year ? this$1.year : year;
+        var nowMonth = this$1.month ? this$1.month : month;
+        var nowDate = new Date((nowYear + "/" + nowMonth + "/" + (tday.num)));
+        var nowWeek = nowDate.getDay() + 1;
+        tday.undo = !this$1.weekChoices.every(function (wc) { return wc !== nowWeek; });
+      });
+      this.day = timeObject.loopChoice(this.days, this.day);
     },
     // 设置时间可选
     setTimeChoice: function setTimeChoice() {
@@ -4405,7 +4543,7 @@ EmfeTitle$1.install = function (Vue$$1) {
 };
 
 var EmfeRadio = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('label',{staticClass:"emfe-radio clearfix",class:[{'emfe-radio-checked': _vm.status},_vm.labelClass]},[_c('i',{staticClass:"emfe-radio-img",class:{'emfe-radio-img-checked': _vm.status, 'emfe-radio-img-disabled': _vm.disabled}}),_vm._v(" "),_c('input',{staticClass:"emfe-radio-input",class:_vm.inputClass,attrs:{"type":"radio","name":_vm.name,"disabled":_vm.disabled},on:{"change":_vm.change}}),_vm._v(" "),_c('span',{staticClass:"emfe-radio-text",class:_vm.textClass},[_vm._t("default")],2),_vm._v(" "),(_vm.slideShow)?_c('div',{staticClass:"emfe-radio-slide"},[_c('transition',{attrs:{"name":"fade"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.status),expression:"status"}],staticClass:"emfe-radio-slide-wrap"},[_vm._t("slide")],2)])],1):_vm._e()])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('label',{staticClass:"emfe-radio clearfix",class:[{'emfe-radio-checked': _vm.status},_vm.labelClass]},[_c('i',{staticClass:"emfe-radio-img",class:{'emfe-radio-img-checked': _vm.status, 'emfe-radio-img-disabled': _vm.disabled}}),_vm._v(" "),_c('input',{staticClass:"emfe-radio-input",class:_vm.inputClass,attrs:{"type":"radio","name":_vm.name,"disabled":_vm.disabled},on:{"change":_vm.changeFn}}),_vm._v(" "),_c('span',{staticClass:"emfe-radio-text",class:_vm.textClass},[_vm._t("default")],2),_vm._v(" "),(_vm.slideShow)?_c('div',{staticClass:"emfe-radio-slide"},[_c('transition',{attrs:{"name":"fade"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.status),expression:"status"}],staticClass:"emfe-radio-slide-wrap"},[_vm._t("slide")],2)])],1):_vm._e()])},
 staticRenderFns: [],
     name: 'EmfeRadio',
     data: function data() {
@@ -4437,6 +4575,7 @@ staticRenderFns: [],
         default: '',
       },
       inline: String,
+      change: Function,
     },
     computed: {
       labelClass: function labelClass() {
@@ -4455,7 +4594,7 @@ staticRenderFns: [],
       },
     },
     methods: {
-      change: function change() {
+      changeFn: function changeFn() {
         var this$1 = this;
 
         var index = 0;
@@ -4465,6 +4604,9 @@ staticRenderFns: [],
             index = element.index;
           }
         });
+        if (this.change) {
+          this.change(index);
+        }
         this.$emit('change', index);
       },
     },
@@ -4649,7 +4791,7 @@ EmfePagination$1.install = function (Vue$$1) {
 };
 
 var EmfeSelect$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"emfe-documentclick",rawName:"v-emfe-documentclick",value:(_vm.close),expression:"close"}],staticClass:"emfe-select",class:_vm.selectName},[_c('input',{staticClass:"emfe-select-input",class:_vm.inputName,attrs:{"type":"text","disabled":_vm.newDisabled,"readonly":"","placeholder":_vm.selectText},domProps:{"value":_vm.checkVal},on:{"click":_vm.inpcheck}}),_vm._v(" "),(_vm.flagCheck)?_c('div',{staticClass:"emfe-select-flag"},[(_vm.seleStu==='newList')?_c('div',{staticClass:"emfe-select-custab"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.newListVal),expression:"newListVal"}],staticClass:"emfe-select-input",attrs:{"type":"text","placeholder":_vm.addText},domProps:{"value":(_vm.newListVal)},on:{"input":function($event){if($event.target.composing){ return; }_vm.newListVal=$event.target.value;}}}),_vm._v(" "),_c('span',{staticClass:"emfe-select-custab-btn",on:{"click":_vm.newListBtn}},[_vm._v("保存")])]):_vm._e(),_vm._v(" "),_vm._l((_vm.checkList),function(item,itemIndex){return (_vm.type==='checkbox')?_c('label',{key:item.id,staticClass:"emfe-select-label",class:{'emfe-select-label-disabled': item.disabled}},[_c('span',{staticClass:"emfe-select-text"},[_vm._v(_vm._s(item.name))]),_vm._v(" "),_c('div',{staticClass:"emfe-select-checkout-box"},[_c('i',{staticClass:"emfe-select-checkout-inner",class:{'emfe-select-checkout-inner-checked': item.checked}}),_vm._v(" "),_c('input',{key:item.id,staticClass:"emfe-select-checkout-status",attrs:{"disabled":item.disabled,"type":"checkbox"},on:{"change":function($event){_vm.getdata(item);}}})])]):_vm._e()}),_vm._v(" "),_vm._l((_vm.checkList),function(item){return (_vm.type==='default')?_c('label',{staticClass:"emfe-select-label emfe-select-delabel",attrs:{"disabled":item.disabled},on:{"click":function($event){_vm.spanTxt(item);}}},[_c('span',{class:{'emfe-select-label-disabled': item.disabled}},[_vm._v(_vm._s(item.name))])]):_vm._e()}),_vm._v(" "),_vm._l((_vm.checkList),function(item){return (_vm.type==='icon')?_c('div',{staticClass:"emfe-select-label emfe-select-delabel",class:{'disabled': item.disabled},attrs:{"disabled":item.disabled},on:{"click":function($event){_vm.spanTxt(item);}}},[_c('img',{staticClass:"emfe-select-icon",attrs:{"src":item.icon,"alt":item.name}}),_vm._v(" "),_c('span',{staticClass:"emfe-select-icon-piece"},[_vm._v(_vm._s(item.name))]),_vm._v(" "),_c('span',{staticClass:"emfe-select-icon-tel"},[_vm._v(_vm._s(item.tel))])]):_vm._e()})],2):_vm._e()])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"emfe-documentclick",rawName:"v-emfe-documentclick",value:(_vm.closeFn),expression:"closeFn"}],staticClass:"emfe-select",class:_vm.selectName},[_c('input',{staticClass:"emfe-select-input",class:_vm.inputName,attrs:{"type":"text","disabled":_vm.newDisabled,"readonly":"","placeholder":_vm.selectText},domProps:{"value":_vm.checkVal},on:{"click":_vm.inpcheck}}),_vm._v(" "),(_vm.flagCheck)?_c('div',{staticClass:"emfe-select-flag"},[(_vm.seleStu==='newList')?_c('div',{staticClass:"emfe-select-custab"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.newListVal),expression:"newListVal"}],staticClass:"emfe-select-input",attrs:{"type":"text","placeholder":_vm.addText},domProps:{"value":(_vm.newListVal)},on:{"input":function($event){if($event.target.composing){ return; }_vm.newListVal=$event.target.value;}}}),_vm._v(" "),_c('span',{staticClass:"emfe-select-custab-btn",on:{"click":_vm.newListBtn}},[_vm._v("保存")])]):_vm._e(),_vm._v(" "),_vm._l((_vm.checkList),function(item,itemIndex){return (_vm.type==='checkbox')?_c('label',{key:item.id,staticClass:"emfe-select-label",class:{'emfe-select-label-disabled': item.disabled}},[_c('span',{staticClass:"emfe-select-text"},[_vm._v(_vm._s(item.name))]),_vm._v(" "),_c('div',{staticClass:"emfe-select-checkout-box"},[_c('i',{staticClass:"emfe-select-checkout-inner",class:{'emfe-select-checkout-inner-checked': item.checked}}),_vm._v(" "),_c('input',{key:item.id,staticClass:"emfe-select-checkout-status",attrs:{"disabled":item.disabled,"type":"checkbox"},on:{"change":function($event){_vm.getdata(item);}}})])]):_vm._e()}),_vm._v(" "),_vm._l((_vm.checkList),function(item){return (_vm.type==='default')?_c('label',{staticClass:"emfe-select-label emfe-select-delabel",attrs:{"disabled":item.disabled},on:{"click":function($event){_vm.spanTxt(item);}}},[_c('span',{class:{'emfe-select-label-disabled': item.disabled}},[_vm._v(_vm._s(item.name))])]):_vm._e()}),_vm._v(" "),_vm._l((_vm.checkList),function(item){return (_vm.type==='icon')?_c('div',{staticClass:"emfe-select-label emfe-select-delabel",class:{'disabled': item.disabled},attrs:{"disabled":item.disabled},on:{"click":function($event){_vm.spanTxt(item);}}},[_c('img',{staticClass:"emfe-select-icon",attrs:{"src":item.icon,"alt":item.name}}),_vm._v(" "),_c('span',{staticClass:"emfe-select-icon-piece"},[_vm._v(_vm._s(item.name))]),_vm._v(" "),_c('span',{staticClass:"emfe-select-icon-tel"},[_vm._v(_vm._s(item.tel))])]):_vm._e()})],2):_vm._e()])},
 staticRenderFns: [],
   name: 'Select',
   data: function data() {
@@ -4695,6 +4837,8 @@ staticRenderFns: [],
       },
     },
     className: String,
+    getDefData: Function,
+    close: Function,
   },
   computed: {
     selectName: function selectName() {
@@ -4737,11 +4881,17 @@ staticRenderFns: [],
       if (item.disabled !== 'disabled') {
         this.checkVal = item.name;
         this.$emit('getDefData', this.checkVal, item, this.datas);
+        if (this.getDefData) {
+          this.getDefData(this.checkVal, item, this.datas);
+        }
       }
     },
-    close: function close() {
+    closeFn: function closeFn() {
       this.checkList = [];
       this.flagCheck = false;
+      if (this.close) {
+        this.close();
+      }
     },
     getdata: function getdata(item) {
       var va = this.checkVal;
@@ -4839,7 +4989,7 @@ EmfeModal$1.install = function (Vue$$1) {
 };
 
 var EmfeCheckout$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-checkout",class:_vm.checkoutName},[_c('div',{staticClass:"emfe-checkout-box"},[_c('i',{staticClass:"emfe-checkout-inner",class:_vm.innerName}),_vm._v(" "),(_vm.stop)?_c('input',{staticClass:"emfe-checkout-status",attrs:{"type":"checkbox","disabled":_vm.disable},domProps:{"checked":_vm.status},on:{"click":function($event){$event.stopPropagation();},"change":_vm.alocked}}):_c('input',{staticClass:"emfe-checkout-status",attrs:{"type":"checkbox","disabled":_vm.disable},domProps:{"checked":_vm.status},on:{"change":_vm.alocked}}),_vm._v(" "),_c('span',{staticClass:"emfe-checkout-text",class:_vm.textName},[_vm._v(_vm._s(_vm.newtitle))])]),_vm._v(" "),(_vm.slideShow)?_c('div',{staticClass:"emfe-checkout-slide"},[_c('transition',{attrs:{"name":"fade"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.status),expression:"status"}],staticClass:"emfe-checkout-slide-wrap",class:_vm.openName},[_vm._t("slide")],2)])],1):_vm._e()])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-checkout",class:_vm.checkoutName},[_c('label',{staticClass:"emfe-checkout-box"},[_c('i',{staticClass:"emfe-checkout-inner",class:_vm.innerName}),_vm._v(" "),(_vm.stop)?_c('input',{staticClass:"emfe-checkout-status",attrs:{"type":"checkbox","disabled":_vm.disable},domProps:{"checked":_vm.status},on:{"click":function($event){$event.stopPropagation();},"change":_vm.alocked}}):_c('input',{staticClass:"emfe-checkout-status",attrs:{"type":"checkbox","disabled":_vm.disable},domProps:{"checked":_vm.status},on:{"change":_vm.alocked}}),_vm._v(" "),_c('span',{staticClass:"emfe-checkout-text",class:_vm.textName},[_vm._v(_vm._s(_vm.newtitle))])]),_vm._v(" "),(_vm.slideShow)?_c('div',{staticClass:"emfe-checkout-slide"},[_c('transition',{attrs:{"name":"fade"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.status),expression:"status"}],staticClass:"emfe-checkout-slide-wrap",class:_vm.openName},[_vm._t("slide")],2)])],1):_vm._e()])},
 staticRenderFns: [],
   name: 'EmfeCheckout',
   data: function data() {
@@ -4868,6 +5018,8 @@ staticRenderFns: [],
     },
     title: String,
     inline: String,
+    change: Function,
+    index: [Number, String],
   },
   computed: {
     innerName: function innerName() {
@@ -4898,7 +5050,10 @@ staticRenderFns: [],
     alocked: function alocked(e) {
       this.setValue(e.target.checked);
       this.$emit('input', this.status);
-      this.$emit('checked', this.status, this.title);
+      this.$emit('checked', this.status, this.title, this.index);
+      if (this.change) {
+        this.change(this.status, this.title, this.index);
+      }
     },
     setValue: function setValue(checked) {
       if ( checked === void 0 ) checked = this.value;
@@ -5212,7 +5367,7 @@ var Table = {
 };
 
 var EmfeTextarea$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('textarea',{ref:"textarea",staticClass:"emfe-textarea",class:_vm.textereaName,on:{"input":_vm.change}},[_vm._v(_vm._s(_vm.value))])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('textarea',{ref:"textarea",staticClass:"emfe-textarea",class:_vm.textereaName,on:{"input":_vm.change,"blur":_vm.blur}},[_vm._v(_vm._s(_vm.value))])},
 staticRenderFns: [],
   name: 'EmfeTextarea',
   props: {
@@ -5231,6 +5386,9 @@ staticRenderFns: [],
   methods: {
     change: function change(val) {
       this.$emit('input', val.target.value);
+    },
+    blur: function blur(val) {
+      this.$emit('blur', val.target.value);
     },
   },
   watch: {
@@ -5688,7 +5846,7 @@ var lastHit = -1;
 var lastDrag = -1;
 
 var EmfeOpations$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-opations",class:_vm.opationsName},[_vm._l((_vm.datas),function(item,index){return [_c('div',{key:index,ref:"hits",refInFor:true,staticClass:"emfe-opations-main",style:(item.style)},[_c('i',{staticClass:"emfe-opations-icon emfe-opations-radio"}),_vm._v(" "),_c('emfe-input',{attrs:{"placeholder":index === _vm.datas.length - 1 && !_vm.clickFlg ? _vm.otherPlaceholder : _vm.dataPlaceholder,"className":"emfe-opations"},model:{value:(_vm.opationsData[index]),callback:function ($$v) {var $$exp = _vm.opationsData, $$idx = index;if (!Array.isArray($$exp)){_vm.opationsData[index]=$$v;}else{$$exp.splice($$idx, 1, $$v);}},expression:"opationsData[index]"}}),_vm._v(" "),_c('i',{directives:[{name:"show",rawName:"v-show",value:(!item.noPlus),expression:"!item.noPlus"}],staticClass:"emfe-opations-icon emfe-opations-plus",class:{'emfe-opations-margin-right': !_vm.minusFlg},on:{"click":function($event){_vm.plus(index);}}}),_vm._v(" "),_c('i',{directives:[{name:"show",rawName:"v-show",value:(item.text === _vm.otherPlaceholder || _vm.minusFlg),expression:"item.text === otherPlaceholder || minusFlg"}],staticClass:"emfe-opations-icon emfe-opations-minus",class:{'emfe-opations-margin-left': item.noPlus},on:{"click":function($event){_vm.minus(index);}}}),_vm._v(" "),_c('i',{staticClass:"emfe-opations-icon emfe-opations-drag",on:{"mousedown":function($event){$event.stopPropagation();_vm.down($event, item);}}})],1),_vm._v(" "),(item.hrStatus)?_c('div',{staticClass:"emfe-opations-hr"}):_vm._e()]}),_vm._v(" "),_c('div',{staticClass:"emfe-opations-operation"},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.clickFlg),expression:"clickFlg"}],staticClass:"emfe-opations-operation-other",on:{"click":_vm.otherPlus}},[_vm._v("其他选项")])])],2)},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-opations",class:_vm.opationsName},[_vm._l((_vm.datas),function(item,index){return [_c('div',{key:index,ref:"hits",refInFor:true,staticClass:"emfe-opations-main",style:(item.style)},[_c('i',{staticClass:"emfe-opations-icon emfe-opations-radio"}),_vm._v(" "),_c('emfe-input',{attrs:{"placeholder":index === _vm.datas.length - 1 && !_vm.clickFlg ? _vm.otherPlaceholder : _vm.dataPlaceholder,"className":"emfe-opations"},model:{value:(_vm.opationsData[index]),callback:function ($$v) {_vm.$set(_vm.opationsData, index, $$v);},expression:"opationsData[index]"}}),_vm._v(" "),_c('i',{directives:[{name:"show",rawName:"v-show",value:(!item.noPlus),expression:"!item.noPlus"}],staticClass:"emfe-opations-icon emfe-opations-plus",class:{'emfe-opations-margin-right': !_vm.minusFlg},on:{"click":function($event){_vm.plus(index);}}}),_vm._v(" "),_c('i',{directives:[{name:"show",rawName:"v-show",value:(item.text === _vm.otherPlaceholder || _vm.minusFlg),expression:"item.text === otherPlaceholder || minusFlg"}],staticClass:"emfe-opations-icon emfe-opations-minus",class:{'emfe-opations-margin-left': item.noPlus},on:{"click":function($event){_vm.minus(index);}}}),_vm._v(" "),_c('i',{staticClass:"emfe-opations-icon emfe-opations-drag",on:{"mousedown":function($event){$event.stopPropagation();_vm.down($event, item);}}})],1),_vm._v(" "),(item.hrStatus)?_c('div',{staticClass:"emfe-opations-hr"}):_vm._e()]}),_vm._v(" "),_c('div',{staticClass:"emfe-opations-operation"},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.clickFlg),expression:"clickFlg"}],staticClass:"emfe-opations-operation-other",on:{"click":_vm.otherPlus}},[_vm._v("其他选项")])])],2)},
 staticRenderFns: [],
   name: 'EmfeOpations',
   data: function data() {
@@ -5879,6 +6037,62 @@ staticRenderFns: [],
 
 EmfeOpations$1.install = function (Vue$$1) {
   Vue$$1.component(EmfeOpations$1.name, EmfeOpations$1);
+};
+
+var timer$1 = null;
+
+var EmfeCountdown$1 = {
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-countdown",class:_vm.className ? [(_vm.className + "-countdown")] : ''},[_vm._l((_vm.hour),function(newHour){return _c('span',{staticClass:"emfe-countdown-time",class:_vm.className ? [(_vm.className + "-countdown-time")] : ''},[_vm._v(_vm._s(newHour))])}),_vm._v(" "),_c('span',{staticClass:"emfe-countdown-symbol",class:_vm.className ? [(_vm.className + "-countdown-symbol")] : ''},[_vm._v(":")]),_vm._v(" "),_vm._l((_vm.minute),function(min){return _c('span',{staticClass:"emfe-countdown-time",class:_vm.className ? [(_vm.className + "-countdown-time")] : ''},[_vm._v(_vm._s(min))])}),_vm._v(" "),_c('span',{staticClass:"emfe-countdown-symbol",class:_vm.className ? [(_vm.className + "-countdown-symbol")] : ''},[_vm._v(":")]),_vm._v(" "),_vm._l((_vm.second),function(sec){return _c('span',{staticClass:"emfe-countdown-time",class:_vm.className ? [(_vm.className + "-countdown-time")] : ''},[_vm._v(_vm._s(sec))])})],2)},
+staticRenderFns: [],
+  name: 'emfe-countdown',
+  data: function () { return ({
+    newTime: '',
+    step: 0,
+  }); },
+  props: {
+    time: {
+      type: String,
+      required: true,
+    },
+    className: String,
+  },
+  computed: {
+    hour: function hour() {
+      var day = Math.floor(this.step / 1000 / 60 / 60 / 24) * 24;
+      var hour = timeObject.zeroFill(Math.floor((this.step / 1000 / 60 / 60) % 24) + day);
+      return hour.toString();
+    },
+    minute: function minute() {
+      var minute = timeObject.zeroFill(Math.floor((this.step / 1000 / 60) % 60));
+      return minute.toString();
+    },
+    second: function second() {
+      var second = timeObject.zeroFill(Math.floor((this.step / 1000) % 60));
+      return second.toString();
+    },
+  },
+  created: function created() {
+    this.handleTime();
+    setTimeout(this.handleTime, 1000);
+  },
+  methods: {
+    handleTime: function handleTime() {
+      this.newTime = new Date(this.time);
+      var now = new Date();
+      var newTimeMsec = this.newTime.getTime();
+      var nowMsec = now.getTime();
+      this.step = newTimeMsec - nowMsec;
+      if (!this.step) {
+        clearTimeout(timer$1);
+      } else {
+        timer$1 = setTimeout(this.handleTime, 1000);
+      }
+    },
+  },
+};
+
+EmfeCountdown$1.install = function (Vue$$1) {
+  Vue$$1.component(EmfeCountdown$1.name, EmfeCountdown$1);
 };
 
 var EmfeFormTest = {
@@ -6074,6 +6288,7 @@ var emfeCpt = {
   EmfeHottip: EmfeHottip$1,
   EmfeEdit: EmfeEdit$1,
   EmfeOpations: EmfeOpations$1,
+  EmfeCountdown: EmfeCountdown$1,
 };
 
 var emfeDir = {

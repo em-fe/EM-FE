@@ -2,7 +2,7 @@
   <div class="emfe-upload" :class="uploadName">
     <template v-if="type === 'icon'">
       <emfe-button :disabled="disabled" v-show="!src" theme="default" className="ddd" type="hint">上传图片</emfe-button>
-      <input v-show="!src" class="emfe-upload-file" :class="fileName" :disabled="disabled" type="file" @change="change">
+      <input v-show="!src" class="emfe-upload-file" :class="fileName" :disabled="disabled" type="file" @change="change" ref="upload">
       <div v-show="src" :style="{opacity: canShow ? 1 : 0}" class="emfe-upload-icon-wrap">
         <div class="emfe-upload-icon-wrap-box" :class="[`emfe-upload-icon-wrap-box-${align}`]">
           <img class="emfe-upload-icon-wrap-box-img" :class="[`emfe-upload-img-${align}`]" :src="src" ref="img">
@@ -12,8 +12,8 @@
     </template>
     <template v-if="type === 'plus'">
       <button v-show="!src" class="emfe-upload-btn" :class="btnName">+</button>
-      <input v-show="!src" class="emfe-upload-file" :class="fileName" :disabled="disabled" type="file" @change="change">
-      <div v-show="src" class="emfe-upload-plus-box" :class="[`emfe-upload-plus-box-${align}`]" :style="{opacity: canShow ? 1 : 0}" @click="closeFn">
+      <input v-show="!src" class="emfe-upload-file" :class="fileName" :disabled="disabled" type="file" @change="change" ref="uploadPlus">
+      <div v-show="src" class="emfe-upload-plus-box" :class="[`emfe-upload-plus-box-${align}`]" :style="{opacity: canShow ? 1 : 0}" @click="closePlusFn">
         <img :class="[`emfe-upload-img-${align}`]" v-show="src" :src="src" ref="img">
       </div>
     </template>
@@ -279,6 +279,14 @@ export default {
       };
     },
     closeFn() {
+      this.$refs.upload.value = '';
+      this.closeCommon();
+    },
+    closePlusFn() {
+      this.$refs.uploadPlus.value = '';
+      this.closeCommon();
+    },
+    closeCommon() {
       this.src = '';
       this.canShow = false;
       this.close(EmfeMessage);
