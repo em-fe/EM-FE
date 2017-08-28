@@ -48,6 +48,10 @@ export default {
       type: [String, Boolean],
       default: false,
     },
+    end: {
+      type: Function,
+      default: () => {},
+    },
   },
   computed: {
     smscodeName() {

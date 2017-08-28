@@ -96,7 +96,7 @@ export default {
   password(val) {
     /* eslint-disable */
     //QQ号正则，5至11位
-    const pwdPattern = /^[a-zA-Z0-9._@]{8,20}$/;
+    const pwdPattern = /^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z\d]{8,20}$/;
     /* eslint-disable */
     return pwdPattern.test(val);
   },
