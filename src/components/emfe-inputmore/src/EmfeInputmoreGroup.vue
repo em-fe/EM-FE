@@ -10,7 +10,7 @@ export default {
   name: 'EmfeInputmoreGroup',
   data() {
     let loops = null;
-    const isObject = this.datas.every(data => data.num === undefined);
+    const isObject = this.datas.every(data => !Array.isArray(data));
     if (isObject) {
       loops = [];
       this.datas.forEach((data) => {
