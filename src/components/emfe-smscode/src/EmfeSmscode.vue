@@ -49,6 +49,10 @@ export default {
       default: false,
     },
     click: Function,
+    end: {
+      type: Function,
+      default: () => {},
+    },
   },
   computed: {
     smscodeName() {
@@ -81,6 +85,7 @@ export default {
       this.allTimes = this.times;
       go = true;
       this.$emit('end', false);
+      this.end(false);
     },
     auto() {
       setTimeout(() => {
@@ -102,14 +107,14 @@ export default {
       this.$emit('input', val);
     },
     clickFn() {
-      if (go && !this.newDisabled) {
+      if (go && !this.newDisabled && !this.start) {
         go = false;
         this.auto();
+        this.$emit('click');
       }
       if (this.click) {
         this.click();
       }
-      this.$emit('click');
     },
     blur() {
       this.$emit('blur');
