@@ -1,5 +1,5 @@
 <template>
-  <div class="emfe-select" :class="selectName" v-emfe-documentclick="close">
+  <div class="emfe-select" :class="selectName" v-emfe-documentclick="closeFn">
     <input class="emfe-select-input" type="text" :class="inputName" :value="checkVal" :disabled="newDisabled" readonly :placeholder="selectText" @click="inpcheck">
     <div v-if="flagCheck" class="emfe-select-flag">
       <div class="emfe-select-custab" v-if="seleStu==='newList'">
@@ -71,6 +71,8 @@ export default {
       },
     },
     className: String,
+    getDefData: Function,
+    close: Function,
   },
   computed: {
     selectName() {
@@ -115,11 +117,17 @@ export default {
       if (item.disabled !== 'disabled') {
         this.checkVal = item.name;
         this.$emit('getDefData', this.checkVal, item, this.datas);
+        if (this.getDefData) {
+          this.getDefData(this.checkVal, item, this.datas);
+        }
       }
     },
-    close() {
+    closeFn() {
       this.checkList = [];
       this.flagCheck = false;
+      if (this.close) {
+        this.close();
+      }
     },
     getdata(item) {
       const va = this.checkVal;

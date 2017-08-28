@@ -1,18 +1,33 @@
 <template>
   <div class="emfe-inputmore-group" :class="groupName">
-    <emfe-inputmore :className="inputmoreName" v-for="(data, dataIndex) in loops"
-    :placeholder="data.placeholder || placeholder" :icon="data.icon || icon" :type="data.type || type" :key="dataIndex" :index="dataIndex" v-model="data.num" @reduce="reduce" @plus="plus"></emfe-inputmore>
+    <div class="emfe-inputmore-group-wrap" v-for="(data, dataIndex) in loops" @click="moreClick(dataIndex)">
+      <emfe-inputmore :className="inputmoreName" :placeholder="data.placeholder || placeholder" :icon="data.icon || icon" :type="data.type || type" :key="dataIndex" :index="dataIndex" v-model="data.num" @reduce="reduce" @plus="plus" @input="input"></emfe-inputmore>
+    </div>
   </div>
 </template>
 <script>
 export default {
   name: 'EmfeInputmoreGroup',
   data() {
+    let loops = null;
+    const isObject = this.datas.every(data => !Array.isArray(data));
+    if (isObject) {
+      loops = [];
+      this.datas.forEach((data) => {
+        loops.push({
+          num: data,
+        });
+      });
+    } else {
+      loops = this.datas;
+    }
     return {
       canDelete: true,
       isGroup: true,
-      loops: this.datas,
+      isObject,
+      loops,
       newLoops: this.new,
+      index: 0,
     };
   },
   props: {
@@ -24,7 +39,6 @@ export default {
     placeholder: String,
     new: {
       type: Object,
-      required: true,
     },
     type: String,
     icon: String,
@@ -36,6 +50,9 @@ export default {
       type: Number,
       default: 1,
     },
+    inputHandle: Function,
+    plusHandle: Function,
+    reduceHandle: Function,
   },
   computed: {
     groupName() {
@@ -51,11 +68,26 @@ export default {
     },
   },
   methods: {
+    moreClick(index) {
+      this.index = index;
+    },
     reduce(now, data, datas) {
-      this.$emit('reduce', now, data, datas);
+      if (this.reduceHandle) {
+        this.reduceHandle(now, data, datas, this.index);
+      }
+      this.$emit('reduce', now, data, datas, this.index);
     },
     plus(now, data, datas) {
-      this.$emit('plus', now, data, datas);
+      if (this.plusHandle) {
+        this.plusHandle(now, data, datas, this.index);
+      }
+      this.$emit('plus', now, data, datas, this.index);
+    },
+    input(now) {
+      if (this.inputHandle) {
+        this.inputHandle(now, this.index);
+      }
+      this.$emit('input', now, this.index);
     },
   },
 };

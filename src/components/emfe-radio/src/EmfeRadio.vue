@@ -1,7 +1,7 @@
 <template>
   <label :class="[{'emfe-radio-checked': status},labelClass]" class="emfe-radio clearfix">
     <i class="emfe-radio-img" :class="{'emfe-radio-img-checked': status, 'emfe-radio-img-disabled': disabled}"></i>
-    <input :class="inputClass" type="radio" @change="change" :name="name" :disabled="disabled" class="emfe-radio-input">
+    <input :class="inputClass" type="radio" @change="changeFn" :name="name" :disabled="disabled" class="emfe-radio-input">
     <span :class='textClass' class="emfe-radio-text"><slot></slot></span>
     <div class="emfe-radio-slide" v-if="slideShow">
       <transition name="fade">
@@ -44,6 +44,7 @@
         default: '',
       },
       inline: String,
+      change: Function,
     },
     computed: {
       labelClass() {
@@ -63,7 +64,7 @@
       },
     },
     methods: {
-      change() {
+      changeFn() {
         let index = 0;
         this.$parent.$children.forEach((element) => {
           element.status = this.index === element.index;
@@ -71,6 +72,9 @@
             index = element.index;
           }
         });
+        if (this.change) {
+          this.change(index);
+        }
         this.$emit('change', index);
       },
     },

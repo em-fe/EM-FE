@@ -2,7 +2,7 @@
   <div class="emfe-smscode" :class="smscodeName">
     <emfe-icon v-if="icon" className="emfe-smscode" :type="icon"></emfe-icon>
     <input type="number" class="emfe-smscode-input" :class="codeName" :value="nowData" :placeholder="placeholder" @input="input" :disabled="newDisabled" @blur="blur">
-    <button class="emfe-smscode-button" :class="btmName" @click="click">{{ btnText }}</button>
+    <button class="emfe-smscode-button" :class="btmName" @click="clickFn">{{ btnText }}</button>
   </div>
 </template>
 <script>
@@ -48,10 +48,7 @@ export default {
       type: [String, Boolean],
       default: false,
     },
-    end: {
-      type: Function,
-      default: () => {},
-    },
+    click: Function,
   },
   computed: {
     smscodeName() {
@@ -104,10 +101,13 @@ export default {
       this.$emit('change', val);
       this.$emit('input', val);
     },
-    click() {
+    clickFn() {
       if (go && !this.newDisabled) {
         go = false;
         this.auto();
+      }
+      if (this.click) {
+        this.click();
       }
       this.$emit('click');
     },
