@@ -107,4 +107,11 @@ export default {
     /* eslint-disable */
     return moneyPattern.test(val);
   },
+  childAccount(val) {
+     /* eslint-disable */
+    //子账户正则
+    const childAccountPattern = /^(1[34578][0-9]{9}):(1[34578][0-9]{9})$/;
+    /* eslint-disable */
+    return childAccountPattern.test(val);
+  },
 };
