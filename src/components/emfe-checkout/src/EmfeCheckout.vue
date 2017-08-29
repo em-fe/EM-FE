@@ -46,10 +46,7 @@ export default {
     inline: String,
     change: Function,
     index: [Number, String],
-    name: {
-      type: String,
-      required: true,
-    },
+    name: String,
   },
   computed: {
     innerName() {
