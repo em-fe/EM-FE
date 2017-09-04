@@ -2,7 +2,7 @@
   <div class="emfe-panel" :class="classList">
     <div class="emfe-panel-box" :class="boxName" v-for='(item, index) in data'>
       <div class="emfe-panel-box-left" :class="leftName">{{item.text}}</div>
-      <div class="emfe-panel-box-right" :class="rightName">{{item.cont}}<emfe-icon v-if="!!type" :type="type" className="emfe-panel-box" @icon-click="iconClick"></emfe-icon>
+      <div class="emfe-panel-box-right" :class="rightName">{{item.cont}}<emfe-icon v-if="!!type" :type="type" className="emfe-panel-box" @icon-click="iconClick(index)"></emfe-icon>
       <emfe-switch :value="switchType" v-if="item.switchOk" @toggle="toggle">
         <span slot="open">ON</span>
         <span slot="close">OFF</span>
@@ -38,8 +38,8 @@ export default {
     toggle(status) {
       this.$emit('switch-toogle', status);
     },
-    iconClick() {
-      this.$emit('icon-click');
+    iconClick(index) {
+      this.$emit('icon-click', index);
     },
   },
   computed: {

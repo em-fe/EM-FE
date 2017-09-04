@@ -30,7 +30,7 @@ export default {
       default: '',
     },
     contentText: {
-      type: String,
+      type: [String, Number],
       default: '',
     },
     companyText: {
