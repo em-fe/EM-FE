@@ -100,6 +100,11 @@ const router = new VueRouter({
           component: require('./components/styles/TitlePage.vue'),
         },
         {
+          path: '/styles/titlec',
+          name: 'titlec',
+          component: require('./components/styles/TitleCPage.vue'),
+        },
+        {
           path: '/styles/button',
           name: 'button',
           component: require('./components/styles/ButtonPage.vue'),
@@ -118,6 +123,11 @@ const router = new VueRouter({
           path: '/styles/pagination',
           name: 'pagination',
           component: require('./components/styles/PaginationPage.vue'),
+        },
+        {
+          path: '/styles/paginationc',
+          name: 'paginationc',
+          component: require('./components/styles/PaginationCPage.vue'),
         },
         {
           path: '/styles/checkout',
@@ -153,6 +163,11 @@ const router = new VueRouter({
           path: '/styles/footerpage',
           name: 'footerpage',
           component: require('./components/styles/FooterPage.vue'),
+        },
+        {
+          path: '/styles/footercpage',
+          name: 'footerpagec',
+          component: require('./components/styles/FooterCPage.vue'),
         },
         {
           path: '/styles/input',

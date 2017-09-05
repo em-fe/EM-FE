@@ -26,7 +26,7 @@ import O from '../../../tools/o';
 let childrenLast = -1; // 记录上一个点击的二级手风琴的索引
 
 export default {
-  name: 'EmfeBar',
+  name: 'EmfeBarC',
   data() {
     return {
       childrenIndex: -1,
@@ -36,10 +36,6 @@ export default {
   props: {
     datas: {
       type: Array,
-      required: true,
-    },
-    title: {
-      type: String,
       required: true,
     },
     fullpath: {

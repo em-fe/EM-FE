@@ -167,6 +167,13 @@ module.exports = {
                   },
                 },
                 {
+                  title: '底部c端',
+                  icon: 'hotel',
+                  routers: {
+                    path: '/styles/footercpage',
+                  },
+                },
+                {
                   title: '导航',
                   icon: 'hotel',
                   routers: {
@@ -224,6 +231,13 @@ module.exports = {
               },
             },
             {
+              title: '分页c端',
+              icon: 'hotel',
+              routers: {
+                path: '/styles/paginationc',
+              },
+            },
+            {
               title: '超链',
               icon: 'hotel',
               routers: {
@@ -249,6 +263,13 @@ module.exports = {
               icon: 'hotel',
               routers: {
                 name: 'title',
+              },
+            },
+            {
+              title: 'Title标题C端',
+              icon: 'hotel',
+              routers: {
+                name: 'titlec',
               },
             },
             {

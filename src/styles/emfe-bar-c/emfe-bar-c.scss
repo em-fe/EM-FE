@@ -6,13 +6,14 @@ $bar-top: 64px;
 
   width: 120px;
   border-bottom: none;
+  float: left;
   height: 100%;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  z-index: 1;
   overflow: scroll;
-  background: $background-color-write;
+  background: $background-color-main;
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
 
   &-item {
     position: relative;
@@ -63,6 +64,7 @@ $bar-top: 64px;
     @include border(bottom);
 
     color: $text-color-Three;
+    background: $background-color-write;
     height: 36px;
     line-height: 36px;
     font-size: 12px;
@@ -111,6 +113,7 @@ $bar-top: 64px;
     height: 36px;
     width: 100%;
     display: block;
+    background: $background-color-write;
   }
 
   &-childlink {

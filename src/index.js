@@ -9,6 +9,7 @@ import EmfeMenu from './components/emfe-menu/index';
 import EmfeHeader from './components/emfe-header/index';
 import EmfeHeaderC from './components/emfe-header-c/index';
 import EmfeFooter from './components/emfe-footer/index';
+import EmfeFooterC from './components/emfe-footer-c/index';
 import EmfeCopy from './components/emfe-copy/index';
 import EmfeUpload from './components/emfe-upload/index';
 import EmfeDrag from './components/emfe-drag/index';
@@ -29,9 +30,11 @@ import EmfeDatetimeM from './components/emfe-datetime-m/index';
 import EmfeLink from './components/emfe-link/index';
 import EmfeSwitch from './components/emfe-switch/index';
 import EmfeTitle from './components/emfe-title/index';
+import EmfeTitleC from './components/emfe-title-c/index';
 import Radio from './components/emfe-radio/index';
 import Button from './components/emfe-button/index';
 import EmfePagination from './components/emfe-pagination/index';
+import EmfePaginationC from './components/emfe-pagination-c/index';
 import EmfeSelect from './components/emfe-select/index';
 import EmfeModal from './components/emfe-modal/index';
 import EmfeCheckout from './components/emfe-checkout/index';
@@ -69,6 +72,7 @@ const emfeCpt = {
   EmfeHeader,
   EmfeHeaderC,
   EmfeFooter,
+  EmfeFooterC,
   EmfeCopy,
   EmfeUpload,
   EmfeDrag,
@@ -85,6 +89,7 @@ const emfeCpt = {
   EmfeButtonGroup: Button.EmfeButtonGroup,
   EmfeSwitch,
   EmfeTitle,
+  EmfeTitleC,
   EmfeRadio: Radio.EmfeRadio,
   EmfeRadioGroup: Radio.EmfeRadioGroup,
   EmfeTable: Table.EmfeTable,
@@ -97,6 +102,7 @@ const emfeCpt = {
   EmfeDatetime,
   EmfeDatetimeM,
   EmfePagination,
+  EmfePaginationC,
   EmfeSelect,
   EmfeCheckout,
   EmfeDrop,
