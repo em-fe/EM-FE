@@ -153,7 +153,7 @@
         this.testweb = this.$EmfeFormTest.web(this.web);
       },
     </pre>
-    <h3>手机号 验证</h3>
+    <h3>手机号(主办号) 验证</h3>
     {{ testphone }}
     <input type="text" v-model="phone" @blur="blurphone">
     <pre>
@@ -166,6 +166,21 @@
     <pre>
       blurphone() {
         this.testphone = this.$EmfeFormTest.phone(this.phone);
+      },
+    </pre>
+    <h3>子账号 验证</h3>
+    {{ testchildaccount }}
+    <input type="text" v-model="childaccount" @blur="blurchildaccount">
+    <pre>
+      &lt;input type="text" v-model="childaccount" @blur="blurchildaccount"&gt;
+    </pre>
+    <pre>
+      childaccount: 111,
+      testchildaccount: false,
+    </pre>
+    <pre>
+      blurchildaccount() {
+        this.testchildaccount = this.$EmfeFormTest.childAccount(this.childaccount);
       },
     </pre>
     <h3>登录密码 验证</h3>
@@ -274,6 +289,8 @@ export default {
     testemail: false,
     money: 12.23,
     testmoney: false,
+    childaccount: 111,
+    testchildaccount: false,
   }),
   methods: {
     blurqq() {
@@ -317,6 +334,9 @@ export default {
     },
     blurmoney() {
       this.testmoney = this.$EmfeFormTest.money(this.money);
+    },
+    blurchildaccount() {
+      this.testchildaccount = this.$EmfeFormTest.childAccount(this.childaccount);
     },
   },
 };

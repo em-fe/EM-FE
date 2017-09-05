@@ -382,6 +382,13 @@ module.exports = {
               },
             },
             {
+              title: '登录弹出框',
+              icon: 'hotel',
+              routers: {
+                path: '/functions/loginmodal',
+              },
+            },
+            {
               title: '下拉框',
               icon: 'hotel',
               routers: {

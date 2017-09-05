@@ -45,6 +45,8 @@ import EmfeCrumb from './components/emfe-crumb/index';
 import EmfeEdit from './components/emfe-edit/index';
 import EmfeOpations from './components/emfe-opations/index';
 import EmfeCountdown from './components/emfe-countdown/index';
+import EmfeLogin from './components/emfe-login/index';
+import EmfeTitleline from './components/emfe-titleline/index';
 // 服务
 import EmfeMessage from './components/emfe-message/index';
 import EmfeFormTest from './components/emfe-formtest/index';
@@ -106,6 +108,8 @@ const emfeCpt = {
   EmfeEdit,
   EmfeOpations,
   EmfeCountdown,
+  EmfeLogin,
+  EmfeTitleline,
 };
 
 const emfeDir = {
