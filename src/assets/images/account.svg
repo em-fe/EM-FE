@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 45.1 (43504) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 2</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="微信扫码" transform="translate(-938.000000, -666.000000)">
+            <g id="Group" transform="translate(764.000000, 634.000000)">
+                <g id="Group-2" transform="translate(174.000000, 32.000000)">
+                    <circle id="Oval-4" fill="#1996F9" cx="20" cy="20" r="20"></circle>
+                    <path d="M19.4723618,10 C22.279732,10 24.5544388,12.2378559 24.5544388,14.998325 C24.5544388,17.758794 22.279732,19.9966499 19.4723618,19.9966499 C16.6649916,19.9966499 14.3902847,17.758794 14.3902847,14.998325 C14.3902847,12.2378559 16.6649916,10 19.4723618,10 Z M17.5661641,21.6649916 L21.80067,21.6649916 C25.4254606,21.6649916 28.3668342,24.5561139 28.3668342,28.1239531 L28.3668342,28.5393635 C28.3668342,29.9463987 25.4254606,30 21.80067,30 L17.5661641,30 C13.9413735,30 11,30 11,28.5393635 L11,28.1239531 C11,24.5561139 13.9413735,21.6649916 17.5661641,21.6649916 L17.5661641,21.6649916 Z" id="Shape" fill="#FFFFFF"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
