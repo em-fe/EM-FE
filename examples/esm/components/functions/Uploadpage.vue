@@ -20,7 +20,7 @@
     </pre>
     <pre>
       suc(data) {
-        this.src1 = data.data.resource_url;
+        this.src1 = data.url;
       },
     </pre>
     <br>
@@ -195,7 +195,7 @@ export default {
   },
   methods: {
     suc(data) {
-      this.src1 = data.data.url;
+      this.src1 = data.url;
     },
   },
 };

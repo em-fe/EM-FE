@@ -6,6 +6,7 @@ import EmfeTooltip from './components/emfe-tooltip/index';
 import EmfeTransition from './components/emfe-transition/index';
 import EmfeMenu from './components/emfe-menu/index';
 import EmfeHeader from './components/emfe-header/index';
+import EmfeHeaderC from './components/emfe-header-c/index';
 import EmfeFooter from './components/emfe-footer/index';
 import EmfeCopy from './components/emfe-copy/index';
 import EmfeUpload from './components/emfe-upload/index';
@@ -39,9 +40,11 @@ import EmfeTextarea from './components/emfe-textarea/index';
 import EmfeDatapanel from './components/emfe-datapanel/index';
 import Tag from './components/emfe-tag/index';
 import EmfePanel from './components/emfe-panel/index';
+import EmfePanelC from './components/emfe-panel-c/index';
 import EmfeSlide from './components/emfe-slide/index';
 import EmfeHottip from './components/emfe-hottip/index';
 import EmfeCrumb from './components/emfe-crumb/index';
+import EmfeCrumbC from './components/emfe-crumb-c/index';
 import EmfeEdit from './components/emfe-edit/index';
 import EmfeOpations from './components/emfe-opations/index';
 import EmfeCountdown from './components/emfe-countdown/index';
@@ -62,6 +65,7 @@ const emfeCpt = {
   EmfeModal,
   EmfeMenu,
   EmfeHeader,
+  EmfeHeaderC,
   EmfeFooter,
   EmfeCopy,
   EmfeUpload,
@@ -100,8 +104,10 @@ const emfeCpt = {
   EmfeTag: Tag.EmfeTag,
   EmfeTagParent: Tag.EmfeTagParent,
   EmfePanel,
+  EmfePanelC,
   EmfeSlide,
   EmfeCrumb,
+  EmfeCrumbC,
   EmfeHottip,
   EmfeEdit,
   EmfeOpations,

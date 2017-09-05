@@ -153,6 +153,13 @@ module.exports = {
                   },
                 },
                 {
+                  title: '头部C端',
+                  icon: 'hotel',
+                  routers: {
+                    path: '/styles/headercpage',
+                  },
+                },
+                {
                   title: '底部',
                   icon: 'hotel',
                   routers: {
@@ -184,6 +191,13 @@ module.exports = {
                   icon: 'hotel',
                   routers: {
                     path: '/styles/panel',
+                  },
+                },
+                {
+                  title: 'c端个人面板',
+                  icon: 'hotel',
+                  routers: {
+                    path: '/styles/panelc',
                   },
                 },
                 {
@@ -249,6 +263,13 @@ module.exports = {
               icon: 'hotel',
               routers: {
                 path: '/styles/crumbs',
+              },
+            },
+            {
+              title: '面包屑c',
+              icon: 'hotel',
+              routers: {
+                path: '/styles/crumbsc',
               },
             },
             {

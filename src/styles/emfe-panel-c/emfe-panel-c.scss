@@ -1,0 +1,85 @@
+.#{$prefix}panel-c {
+  @include border();
+  @include clearfix();
+
+  padding: 20px 30px;
+
+  &-logobox {
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    margin-right: 30px;
+    float: left;
+
+    &-logo {
+      width: 85px;
+      height: 85px;
+      display: block;
+      border-radius: 50%;
+    }
+  }
+
+  &-infobox {
+    float: left;
+
+    &-about {
+      @include clearfix();
+      @include border(bottom, $border-color, 1px, dashed);
+
+      padding: 8px 0 20px;
+      margin: 0 0 20px;
+
+      &-img {
+        width: 15px;
+        height: 15px;
+        float: left;
+        margin: 2px 5px 0 0;
+      }
+
+      &-text {
+        font-size: 16px;
+        color: $text-color-default;
+        padding: 0 0 0 20px;
+        line-height: 1;
+        float: left;
+
+        &:first-child {
+          padding: 0;
+        }
+
+        &-em {
+          color: $auxiliary-color-danger;
+          padding: 0 0 0 8px;
+          font-style: normal;
+        }
+      }
+    }
+  }
+
+  &-link {
+    margin-left: 20px;
+    float: left;
+    height: 16px;
+    width: 16px;
+    color: $text-color-prompt;
+  }
+
+  &-upload {
+    @include border(all, $border-color, 1px, dashed);
+
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    margin-right: 30px;
+    float: left;
+
+    &-plus-btn {
+      border: none;
+    }
+
+    & .emfe-upload-plus-box {
+      width: 85px;
+      height: 85px;
+    }
+  }
+}

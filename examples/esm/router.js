@@ -60,6 +60,11 @@ const router = new VueRouter({
           component: require('./components/styles/PanelPage.vue'),
         },
         {
+          path: '/styles/panelc',
+          name: 'panelc',
+          component: require('./components/styles/PanelCPage.vue'),
+        },
+        {
           path: '/styles/steps',
           name: 'steps',
           component: require('./components/styles/StepsPage.vue'),
@@ -68,6 +73,11 @@ const router = new VueRouter({
           path: '/styles/crumbs',
           name: 'crumbspage',
           component: require('./components/styles/CrumbsPage.vue'),
+        },
+        {
+          path: '/styles/crumbsc',
+          name: 'crumbscpage',
+          component: require('./components/styles/CrumbsCPage.vue'),
         },
         {
           path: '/styles/menu',
@@ -128,6 +138,11 @@ const router = new VueRouter({
           path: '/styles/headerpage',
           name: 'headerpage',
           component: require('./components/styles/HeaderPage.vue'),
+        },
+        {
+          path: '/styles/headercpage',
+          name: 'headercpage',
+          component: require('./components/styles/HeaderCPage.vue'),
         },
         {
           path: '/styles/footerpage',
