@@ -90,6 +90,11 @@ const router = new VueRouter({
           component: require('./components/styles/BarPage.vue'),
         },
         {
+          path: '/styles/barc',
+          name: 'barc',
+          component: require('./components/styles/BarCPage.vue'),
+        },
+        {
           path: '/styles/title',
           name: 'title',
           component: require('./components/styles/TitlePage.vue'),

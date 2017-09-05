@@ -180,6 +180,13 @@ module.exports = {
                     name: 'bar',
                   },
                 },
+                {
+                  title: '二级导航c端',
+                  icon: 'hotel',
+                  routers: {
+                    name: 'barc',
+                  },
+                },
               ],
             },
             {
