@@ -1,0 +1,37 @@
+.#{$prefix}crumb-c {
+  @include clearfix();
+
+  height: 52px;
+  line-height: 52px;
+  background: $background-color-write;
+  width: 100%;
+
+  &-title {
+    height: 52px;
+    line-height: 52px;
+    float: left;
+    font-size: 14px;
+  }
+
+  &-format {
+    float: left;
+    padding: 0 5px;
+  }
+
+  &-link {
+    height: 52px;
+    line-height: 52px;
+    float: left;
+    font-size: 14px;
+    color: $brand-c-default;
+    outline: none;
+
+    &:hover {
+      color: $brand-c-default;
+    }
+
+    &:active {
+      color: $brand-c-default;
+    }
+  }
+}

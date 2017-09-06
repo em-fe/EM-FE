@@ -96,6 +96,7 @@ $menu-top: 64px;
     position: relative;
     z-index: 1;
     overflow: scroll;
+    background: $background-color-write;
 
     &-header {
       @include border(bottom);

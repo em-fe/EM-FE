@@ -60,6 +60,11 @@ const router = new VueRouter({
           component: require('./components/styles/PanelPage.vue'),
         },
         {
+          path: '/styles/panelc',
+          name: 'panelc',
+          component: require('./components/styles/PanelCPage.vue'),
+        },
+        {
           path: '/styles/steps',
           name: 'steps',
           component: require('./components/styles/StepsPage.vue'),
@@ -68,6 +73,11 @@ const router = new VueRouter({
           path: '/styles/crumbs',
           name: 'crumbspage',
           component: require('./components/styles/CrumbsPage.vue'),
+        },
+        {
+          path: '/styles/crumbsc',
+          name: 'crumbscpage',
+          component: require('./components/styles/CrumbsCPage.vue'),
         },
         {
           path: '/styles/menu',
@@ -80,9 +90,19 @@ const router = new VueRouter({
           component: require('./components/styles/BarPage.vue'),
         },
         {
+          path: '/styles/barc',
+          name: 'barc',
+          component: require('./components/styles/BarCPage.vue'),
+        },
+        {
           path: '/styles/title',
           name: 'title',
           component: require('./components/styles/TitlePage.vue'),
+        },
+        {
+          path: '/styles/titlec',
+          name: 'titlec',
+          component: require('./components/styles/TitleCPage.vue'),
         },
         {
           path: '/styles/button',
@@ -103,6 +123,11 @@ const router = new VueRouter({
           path: '/styles/pagination',
           name: 'pagination',
           component: require('./components/styles/PaginationPage.vue'),
+        },
+        {
+          path: '/styles/paginationc',
+          name: 'paginationc',
+          component: require('./components/styles/PaginationCPage.vue'),
         },
         {
           path: '/styles/checkout',
@@ -130,9 +155,19 @@ const router = new VueRouter({
           component: require('./components/styles/HeaderPage.vue'),
         },
         {
+          path: '/styles/headercpage',
+          name: 'headercpage',
+          component: require('./components/styles/HeaderCPage.vue'),
+        },
+        {
           path: '/styles/footerpage',
           name: 'footerpage',
           component: require('./components/styles/FooterPage.vue'),
+        },
+        {
+          path: '/styles/footercpage',
+          name: 'footerpagec',
+          component: require('./components/styles/FooterCPage.vue'),
         },
         {
           path: '/styles/input',

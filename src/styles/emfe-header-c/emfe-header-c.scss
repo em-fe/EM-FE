@@ -1,0 +1,58 @@
+$header-height: 34px;
+
+.emfe-header-c {
+  @include border(bottom);
+
+  height: 35px;
+  background: #fff;
+  position: relative;
+  z-index: 2;
+
+  &-main {
+    margin: 0 auto;
+    width: 1040px;
+    height: $header-height;
+  }
+
+  &-eye {
+    padding: 0 0 0 20px;
+    float: left;
+    height: $header-height;
+  }
+
+  &-sidebar {
+    padding-left: 12px;
+    font-size: 16px;
+    color: $text-color;
+  }
+
+  &-info {
+    float: right;
+    padding: 0 32px;
+    font-size: 12px;
+    line-height: $header-height;
+    display: flex;
+  }
+
+  &-account {
+    padding-right: 24px;
+  }
+
+  &-signout {
+    padding-left: 12px;
+  }
+
+  &-link {
+    font-size: 12px !important;
+    color: $thead-text-color !important;
+    margin-right: 34px;
+  }
+
+  &-icon {
+    color: $brand-c-default;
+  }
+
+  &-logout {
+    font-size: 12px !important;
+  }
+}

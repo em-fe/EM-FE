@@ -2,7 +2,7 @@
   <div class="emfe-menu" :class="menuName" ref="menu">
     <div class="emfe-menu-main">
       <button class="emfe-menu-main-header" @click="menuToShort">
-        <emfe-icon class="emfe-menu-main-sidebar" type="sidebar"></emfe-icon>
+        <emfe-icon class="emfe-menu-main-sidebar" type="sidebar" @icon-click="menuToShort"></emfe-icon>
       </button>
       <ul class="emfe-menu-main-list">
         <li class="emfe-menu-main-item" v-for="(data, dataIndex) in datas">
@@ -92,6 +92,8 @@ export default {
       if (screenMd !== screenMdResize) {
         screenMd = screenMdResize;
         this.menuToShort('resize');
+      } else {
+        screenMd = '';
       }
     };
 

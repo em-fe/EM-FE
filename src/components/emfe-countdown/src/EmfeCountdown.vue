@@ -24,6 +24,10 @@ export default {
       required: true,
     },
     className: String,
+    end: {
+      type: Function,
+      default: () => {},
+    },
   },
   computed: {
     hour() {
@@ -53,6 +57,8 @@ export default {
       this.step = newTimeMsec - nowMsec;
       if (!this.step) {
         clearTimeout(timer);
+        this.$emit('end');
+        this.end();
       } else {
         timer = setTimeout(this.handleTime, 1000);
       }

@@ -1,6 +1,6 @@
 {
   "name": "em-fe",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "快速开发产品的UI库",
   "main": "dist/emfe.js",
   "files": [
