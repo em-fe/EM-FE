@@ -2,7 +2,7 @@ $header-height: 36px;
 $bar-top: 64px;
 
 .#{$prefix}bar-c {
-  @include border();
+  @include border(right);
 
   width: 120px;
   border-bottom: none;
