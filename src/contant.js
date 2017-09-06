@@ -1,3 +1,3 @@
 export default {
-  SCREEN_MD: 992,
+  SCREEN_MD: 1366,
 };

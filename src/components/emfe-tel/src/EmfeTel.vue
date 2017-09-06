@@ -49,9 +49,6 @@ export default {
     },
     className: String,
   },
-  created() {
-    console.log(this.value);
-  },
   computed: {
     telName() {
       return [
