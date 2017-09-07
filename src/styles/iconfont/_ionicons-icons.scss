@@ -1,90 +1,382 @@
-// Ionicons Icons
-// --------------------------
+.#{$prefix}icon-tupzhanshi2::before {
+  content: "\e96e";
+}
 
-.#{$prefix}icon-hint::before {
+.#{$prefix}icon-tupianshangchuan::before {
+  content: "\e91d";
+}
+
+.#{$prefix}icon-denglu::before {
   content: "\e900";
+  color: rgb(25, 150, 249);
 }
 
-.#{$prefix}icon-qr::before {
+.#{$prefix}icon-denglu::after {
   content: "\e901";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
 }
 
-.#{$prefix}icon-publish::before {
+.#{$prefix}icon-info::before {
   content: "\e902";
 }
 
-.#{$prefix}icon-list::before {
+.#{$prefix}icon-suc1::before {
   content: "\e903";
 }
 
-.#{$prefix}icon-stick::before {
+.#{$prefix}icon-xinxi::before {
+  content: "\e905";
+}
+
+.#{$prefix}icon-duobeijifen::before {
+  content: "\e906";
+}
+
+.#{$prefix}icon-huiyuanzhekou::before {
+  content: "\e907";
+}
+
+.#{$prefix}icon-huiyuanzhuanshuri::before {
+  content: "\e908";
+}
+
+.#{$prefix}icon-mianyunfei::before {
   content: "\e909";
 }
 
-.#{$prefix}icon-statistics::before {
+.#{$prefix}icon-querentouxiang::before {
   content: "\e90a";
 }
 
-.#{$prefix}icon-financial::before {
+.#{$prefix}icon-shengrizengsong::before {
   content: "\e90b";
 }
 
-.#{$prefix}icon-sidebar::before {
+.#{$prefix}icon-shenjijiangli::before {
   content: "\e90c";
 }
 
-.#{$prefix}icon-order::before {
+.#{$prefix}icon-shngrijifen::before {
   content: "\e90d";
 }
 
-.#{$prefix}icon-public::before {
+.#{$prefix}icon-tishixinxishouqi::before {
   content: "\e90e";
 }
 
-.#{$prefix}icon-diadema::before {
+.#{$prefix}icon-tishixinxizhankai::before {
   content: "\e90f";
 }
 
-.#{$prefix}icon-service::before {
+.#{$prefix}icon-vip::before {
   content: "\e910";
 }
 
-.#{$prefix}icon-paradise::before {
+.#{$prefix}icon-wanshanxinxjianglijifen::before {
   content: "\e911";
 }
 
-.#{$prefix}icon-commodity::before {
+.#{$prefix}icon-wuquanyi::before {
   content: "\e912";
 }
 
-.#{$prefix}icon-sale::before {
+.#{$prefix}icon-xiaofeijianglijifen::before {
   content: "\e913";
 }
 
-.#{$prefix}icon-show::before {
+.#{$prefix}icon-yaoqingjianglijifen::before {
   content: "\e914";
 }
 
-.#{$prefix}icon-marketing::before {
+.#{$prefix}icon-chengshi::before {
   content: "\e915";
 }
 
-.#{$prefix}icon-site::before {
+.#{$prefix}icon-duoxiangxiala::before {
   content: "\e916";
 }
 
-.#{$prefix}icon-account::before {
+.#{$prefix}icon-duoxuan::before {
   content: "\e917";
 }
 
-.#{$prefix}icon-hotel::before {
+.#{$prefix}icon-fengexian::before {
   content: "\e918";
 }
 
-.#{$prefix}icon-eventelogo::before {
+.#{$prefix}icon-jingtaidit::before {
   content: "\e919";
 }
 
-.#{$prefix}icon-ren::before {
-  content: "\e632";
+.#{$prefix}icon-radio::before {
+  content: "\e91a";
+}
+
+.#{$prefix}icon-riqixuanze::before {
+  content: "\e91b";
+}
+
+.#{$prefix}icon-shuzi::before {
+  content: "\e91c";
+}
+
+.#{$prefix}icon-wenbenmiaoshu::before {
+  content: "\e91e";
+}
+
+.#{$prefix}icon-wenbnekuang::before {
+  content: "\e91f";
+}
+
+.#{$prefix}icon-xialaxuanxiang::before {
+  content: "\e920";
+}
+
+.#{$prefix}icon-bumen::before {
+  content: "\e921";
+  color: rgb(76, 189, 99);
+}
+
+.#{$prefix}icon-bumen::after {
+  content: "\e922";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+
+.#{$prefix}icon-shenfenzheng::before {
+  content: "\e92e";
+}
+
+.#{$prefix}icon-shengri::before {
+  content: "\e92f";
+}
+
+.#{$prefix}icon-touxiang::before {
+  content: "\e934";
+  color: rgb(76, 189, 99);
+}
+
+.#{$prefix}icon-touxiang::after {
+  content: "\e935";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+
+.#{$prefix}icon-wangzhi::before {
+  content: "\e936";
+  color: rgb(76, 189, 99);
+}
+
+.#{$prefix}icon-wangzhi::after {
+  content: "\e937";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+
+.#{$prefix}icon-weibo::before {
+  content: "\e938";
+}
+
+.#{$prefix}icon-weixin::before {
+  content: "\e939";
+}
+
+.#{$prefix}icon-xingbie .path1::before {
+  content: "\e93a";
+  color: rgb(76, 189, 99);
+}
+
+.#{$prefix}icon-xingbie .path2::before {
+  content: "\e93b";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+
+.#{$prefix}icon-xingbie .path3::before {
+  content: "\e93c";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+
+.#{$prefix}icon-youxiang::before {
+  content: "\e940";
+}
+
+.#{$prefix}icon-zhiwei::before {
+  content: "\e941";
+  color: rgb(76, 189, 99);
+}
+
+.#{$prefix}icon-zhiwei::after {
+  content: "\e942";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+
+.#{$prefix}icon-zuoji::before {
+  content: "\e943";
+  color: rgb(76, 189, 99);
+}
+
+.#{$prefix}icon-zuoji::after {
+  content: "\e944";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+
+.#{$prefix}icon-card::before {
+  content: "\e946";
+}
+
+.#{$prefix}icon-chengwei2::before {
+  content: "\e947";
+}
+
+.#{$prefix}icon-dizhi2::before {
+  content: "\e948";
+}
+
+.#{$prefix}icon-email::before {
+  content: "\e949";
+}
+
+.#{$prefix}icon-fax::before {
+  content: "\e94a";
+}
+
+.#{$prefix}icon-gongsi2::before {
+  content: "\e94b";
+}
+
+.#{$prefix}icon-qq2::before {
+  content: "\e94c";
+}
+
+.#{$prefix}icon-sex::before {
+  content: "\e94d";
+}
+
+.#{$prefix}icon-shengri2::before {
+  content: "\e94e";
+}
+
+.#{$prefix}icon-shouji2::before {
+  content: "\e94f";
+}
+
+.#{$prefix}icon-site::before {
+  content: "\e950";
+}
+
+.#{$prefix}icon-suozaidi::before {
+  content: "\e951";
+}
+
+.#{$prefix}icon-tel::before {
+  content: "\e952";
+}
+
+.#{$prefix}icon-touxiang2::before {
+  content: "\e953";
+}
+
+.#{$prefix}icon-weibo2::before {
+  content: "\e954";
+}
+
+.#{$prefix}icon-weixin3::before {
+  content: "\e955";
+}
+
+.#{$prefix}icon-xingming2::before {
+  content: "\e956";
+}
+
+.#{$prefix}icon-zhiwei2::before {
+  content: "\e957";
+}
+
+.#{$prefix}icon-zanting::before {
+  content: "\e904";
+}
+
+.#{$prefix}icon-xiala2::before {
+  content: "\e96d";
+}
+
+.#{$prefix}icon-mima::before {
+  content: "\e958";
+}
+
+.#{$prefix}icon-eventename::before {
+  content: "\e959";
+}
+
+.#{$prefix}icon-publish::before {
+  content: "\e95a";
+}
+
+.#{$prefix}icon-qr::before {
+  content: "\e95b";
+}
+
+.#{$prefix}icon-set::before {
+  content: "\e95c";
+}
+
+.#{$prefix}icon-start::before {
+  content: "\e95d";
+  color: rgb(25, 150, 249);
+}
+
+.#{$prefix}icon-start::after {
+  content: "\e95e";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+
+.#{$prefix}icon-tip::before {
+  content: "\e95f";
+}
+
+.#{$prefix}icon-zhiding::before {
+  content: "\e964";
+}
+
+.#{$prefix}icon-rili::before {
+  content: "\e965";
+}
+
+.#{$prefix}icon-shanchu .path1::before {
+  content: "\e966";
+  color: rgb(0, 0, 0);
+}
+
+.#{$prefix}icon-shanchu .path2::before {
+  content: "\e967";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+
+.#{$prefix}icon-shanchu .path3::before {
+  content: "\e968";
+  margin-left: -1em;
+  color: rgb(255, 73, 73);
+}
+
+.#{$prefix}icon-shangchuan::before {
+  content: "\e969";
+}
+
+.#{$prefix}icon-shijian::before {
+  content: "\e96a";
+}
+
+.#{$prefix}icon-tanchuanguanbi::before {
+  content: "\e96b";
+}
+
+.#{$prefix}icon-tianjiatupian::before {
+  content: "\e96c";
 }
