@@ -213,7 +213,7 @@ export default {
           action: this.action,
           onSuccess: (res) => {
             canUpload = true;
-            if (res.code === 10000) {
+            if (!res.code) {
               this.handleSuccess(res, file);
             } else {
               this.handleError('上传失败', res, file);
@@ -246,7 +246,7 @@ export default {
       if (fileData) {
         fileData.status = 'finished';
         fileData.response = res;
-        this.loadImg(res.data.url, res, fileData);
+        this.loadImg(res.url, res, fileData);
       }
     },
     handleError(err, response, file) {

@@ -1,0 +1,29 @@
+.#{$prefix}titleline {
+  height: 16px;
+  line-height: 1;
+  font-size: 14px;
+  color: $text-color-default;
+  margin: 24px auto 16px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+
+  &::before,
+  &::after {
+    @include border(bottom);
+
+    height: 8px;
+    width: 156px;
+    position: absolute;
+    top: 0;
+    content: '';
+  }
+
+  &::before {
+    left: 0;
+  }
+
+  &::after {
+    right: 0;
+  }
+}

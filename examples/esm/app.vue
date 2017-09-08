@@ -153,10 +153,24 @@ module.exports = {
                   },
                 },
                 {
+                  title: '头部C端',
+                  icon: 'hotel',
+                  routers: {
+                    path: '/styles/headercpage',
+                  },
+                },
+                {
                   title: '底部',
                   icon: 'hotel',
                   routers: {
                     path: '/styles/footerpage',
+                  },
+                },
+                {
+                  title: '底部c端',
+                  icon: 'hotel',
+                  routers: {
+                    path: '/styles/footercpage',
                   },
                 },
                 {
@@ -173,6 +187,13 @@ module.exports = {
                     name: 'bar',
                   },
                 },
+                {
+                  title: '二级导航c端',
+                  icon: 'hotel',
+                  routers: {
+                    name: 'barc',
+                  },
+                },
               ],
             },
             {
@@ -184,6 +205,13 @@ module.exports = {
                   icon: 'hotel',
                   routers: {
                     path: '/styles/panel',
+                  },
+                },
+                {
+                  title: 'c端个人面板',
+                  icon: 'hotel',
+                  routers: {
+                    path: '/styles/panelc',
                   },
                 },
                 {
@@ -200,6 +228,13 @@ module.exports = {
               icon: 'hotel',
               routers: {
                 path: '/styles/pagination',
+              },
+            },
+            {
+              title: '分页c端',
+              icon: 'hotel',
+              routers: {
+                path: '/styles/paginationc',
               },
             },
             {
@@ -231,6 +266,13 @@ module.exports = {
               },
             },
             {
+              title: 'Title标题C端',
+              icon: 'hotel',
+              routers: {
+                name: 'titlec',
+              },
+            },
+            {
               title: 'switch开关',
               icon: 'hotel',
               routers: {
@@ -249,6 +291,13 @@ module.exports = {
               icon: 'hotel',
               routers: {
                 path: '/styles/crumbs',
+              },
+            },
+            {
+              title: '面包屑c',
+              icon: 'hotel',
+              routers: {
+                path: '/styles/crumbsc',
               },
             },
             {
@@ -379,6 +428,13 @@ module.exports = {
               icon: 'hotel',
               routers: {
                 path: '/functions/modal',
+              },
+            },
+            {
+              title: '登录弹出框',
+              icon: 'hotel',
+              routers: {
+                path: '/functions/loginmodal',
               },
             },
             {
