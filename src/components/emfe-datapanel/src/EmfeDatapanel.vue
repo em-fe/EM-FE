@@ -4,7 +4,7 @@
       <div class="emfe-datapanel-title">
         <span>{{title}}</span>
         <emfe-tooltip :styles="styles" placement="right-end">
-          <emfe-icon v-if="iconFlg" type="hint" slot="render" className="emfe-datapanel-mark"></emfe-icon>
+          <emfe-icon v-if="iconFlg" :type="type" slot="render" className="emfe-datapanel-mark"></emfe-icon>
           <div slot="tip">
             <slot name="tipText"></slot>
           </div>
@@ -45,6 +45,10 @@ export default {
       default() {
         return {};
       },
+    },
+    type: {
+      type: String,
+      default: 'set',
     },
   },
   computed: {
