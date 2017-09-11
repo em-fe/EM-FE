@@ -51,7 +51,7 @@
     <br>
     <div class="tip-top">
       <p>父级没有定位的时候</p>
-      <emfe-tooltip placement="top-start" theme="light" :arrowStatus="false">
+      <emfe-tooltip placement="top-start" types="click" @popper="poppers" theme="light" :arrowStatus="false">
         <button slot="render">top-start</button>
         <ul slot="tip">
           <li>这是top-start1</li>
@@ -274,6 +274,12 @@
           <td>String</td>
           <td>-</td>
         </tr>
+        <tr>
+          <td>types</td>
+          <td>自定义触发类型，默认hover, 可以点击触发</td>
+          <td>String</td>
+          <td>hover</td>
+        </tr>
       </tbody>
     </table>
     <br>
@@ -307,6 +313,11 @@
           <td>隐藏之后触发</td>
           <td>-</td>
         </tr>
+        <tr>
+          <td>popper</td>
+          <td>click点击事件触发</td>
+          <td>-</td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -326,6 +337,11 @@ export default {
     },
     afterHide() {
       console.log('afterHide');
+    },
+    poppers(hide) {
+      setTimeout(() => {
+        hide();
+      }, 3000)
     },
   },
 };

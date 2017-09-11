@@ -2,7 +2,7 @@
   <div class="emfe-table-box">
     <p>如果你希望传入多个slot，需要把数据里的slot设置为a-i，插入的slot对应a-i</p>
     <emfe-table :columns="columnSlot" classAddName="add" :data="dataSlot" type="true">
-      <emfe-table-head  slot="head" >
+      <emfe-table-head  slot="head"  @thJump='jumpTh'>
       </emfe-table-head>
       <emfe-table-body slot="body" @jump="Jump" v-for="(dataList,index) in dataSlot" :ind="index" key="index" :dataList="dataList">
         <div slot="a">
@@ -122,6 +122,11 @@
         <tr>
           <td>jump事件</td>
           <td>点击tr出发，返回值为tr的index</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>thJump事件</td>
+          <td>点击thead触发，返回值为当前th的index</td>
           <td>-</td>
         </tr>
       </tbody>
@@ -310,6 +315,9 @@ export default {
   methods: {
     Jump() {
       console.log('例子');
+    },
+    jumpTh(index) {
+      console.log(index);
     },
   },
 };

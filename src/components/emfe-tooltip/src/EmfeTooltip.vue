@@ -1,5 +1,5 @@
 <template>
-  <div class="emfe-tooltip" :class="tooltipName" :style="relativeStyle" @mouseenter="showPopper" @mouseleave="hidePopper">
+  <div class="emfe-tooltip" :class="tooltipName" :style="relativeStyle" @mouseenter="showPopper" @click='clickPopper' @mouseleave="hidePopper">
     <div class="emfe-tooltip-slot" :class="slotName" ref="reference">
       <slot name="render"></slot>
     </div>
@@ -87,6 +87,10 @@ export default {
     disable: {
       type: [Boolean, String],
       default: false,
+    },
+    types: {
+      type: String,
+      default: 'hover',
     },
   },
   data() {
@@ -243,29 +247,64 @@ export default {
       }
     },
     showPopper() {
-      if (this.disable) {
-        return;
+      if (this.types === 'hover') {
+        if (this.disable) {
+          return;
+        }
+        if (this.popperStatus) {
+          clearTimeout(enterTimer);
+          clearTimeout(leaveTimer);
+        }
+        enterTimer = setTimeout(() => {
+          this.popperStatus = true;
+        }, this.delayDefault);
       }
-      if (this.popperStatus) {
-        clearTimeout(enterTimer);
-        clearTimeout(leaveTimer);
-      }
-      enterTimer = setTimeout(() => {
-        this.popperStatus = true;
-      }, this.delayDefault);
     },
     hidePopper() {
-      if (this.disable) {
-        return;
+      if (this.types === 'hover') {
+        if (this.disable) {
+          return;
+        }
+        if (!this.popperStatus) {
+          clearTimeout(enterTimer);
+        }
+        leaveTimer = setTimeout(() => {
+          this.popperStatus = false;
+        }, this.delayDefault);
+        if (!this.popperStatus) {
+          clearTimeout(leaveTimer);
+        }
       }
-      if (!this.popperStatus) {
-        clearTimeout(enterTimer);
+    },
+    clickPopper() {
+      if (this.types === 'click') {
+        if (this.disable) {
+          return;
+        }
+        if (this.popperStatus) {
+          clearTimeout(enterTimer);
+          clearTimeout(leaveTimer);
+        }
+        enterTimer = setTimeout(() => {
+          this.popperStatus = true;
+        }, this.delayDefault);
       }
-      leaveTimer = setTimeout(() => {
-        this.popperStatus = false;
-      }, this.delayDefault);
-      if (!this.popperStatus) {
-        clearTimeout(leaveTimer);
+      this.$emit('popper', this.clickHide);
+    },
+    clickHide() {
+      if (this.types === 'click') {
+        if (this.disable) {
+          return;
+        }
+        if (!this.popperStatus) {
+          clearTimeout(enterTimer);
+        }
+        leaveTimer = setTimeout(() => {
+          this.popperStatus = false;
+        }, this.delayDefault);
+        if (!this.popperStatus) {
+          clearTimeout(leaveTimer);
+        }
       }
     },
   },
