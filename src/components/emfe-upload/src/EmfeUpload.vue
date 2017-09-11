@@ -17,6 +17,12 @@
         <img :class="[`emfe-upload-img-${align}`]" v-show="src" :src="src" ref="img">
       </div>
     </template>
+    <emfe-modal :show="interceptModal" title="截取器" @close="formClose" @cancel="formCancel" @ok="formOk" okText="保存" className="form">
+      <div slot="modal-main" class="emfe-upload-intercept-wrap">
+        <img :src="img" class="emfe-upload-intercept-img" :style="{ height: `${interceptCanvasHeight}px`, 'margin-top': `-${interceptCanvasHeight / 2}px`, 'margin-left': `-${interceptCanvasWidth / 2}px`}" ref="previewImg">
+        <div class="emfe-upload-intercept" :style="{width: `${interceptCanvasWidth}px`, height: `${interceptCanvasHeight}px`, 'margin-top': `-${interceptCanvasHeight / 2}px`, 'margin-left': `-${interceptCanvasWidth / 2}px`}"></div>
+      </div>
+    </emfe-modal>
   </div>
 </template>
 <script>
@@ -34,7 +40,14 @@ export default {
       canShow: false,
       fileList: [],
       tempIndex: 1,
+      img: '',
       align: '',
+      interceptModal: false,
+      interceptWidth: 440,
+      interceptCanvasWidth: 440,
+      interceptCanvasHeight: 440,
+      canvas: null,
+      canvasContext: null,
     };
   },
   props: {
@@ -105,6 +118,10 @@ export default {
       type: Function,
       default: () => {},
     },
+    intercept: {
+      type: Array,
+      default: () => [],
+    },
   },
   computed: {
     uploadName() {
@@ -150,8 +167,44 @@ export default {
         setTimeout(this.setAlign.bind(this), 0);
       };
     }
+    // 截取器
+    if (this.intercept.length > 0) {
+      this.interceptCanvasHeight = this.intercept[1] - 0;
+      this.interceptCanvasWidth = this.intercept[0] - 0;
+    }
   },
   methods: {
+    formBtn() {
+      this.interceptModal = true;
+    },
+    formClose() {
+      this.interceptModal = false;
+    },
+    formCancel() {
+      this.interceptModal = false;
+    },
+    formOk() {
+      this.getImageUrl();
+      console.log(this.clipData, 'this.clipData');
+      this.interceptModal = false;
+    },
+    initCanvas() {
+      const img = new Image();
+      img.src = this.img;
+      img.height = this.interceptCanvasHeight;
+      img.onload = () => {
+        this.canvas = document.createElement('canvas');
+        this.canvasContext = this.canvas.getContext('2d');
+        this.canvas.width = this.interceptCanvasWidth;
+        this.canvas.height = this.interceptCanvasHeight;
+        this.previewImg = this.$refs.previewImg;
+      };
+    },
+    getImageUrl() {
+      const { clientWidth, clientHeight } = this.previewImg;
+      this.canvasContext.drawImage(this.previewImg, 0, 0, clientWidth, clientHeight);
+      this.clipData = this.canvas.toDataURL('image/jpeg');
+    },
     setAlign() {
       const { clientWidth, clientHeight } = this.$refs.img;
       if (clientWidth !== 0 && clientHeight !== 0) {
@@ -174,9 +227,19 @@ export default {
 
       const postFiles = Array.prototype.slice.call(files);
 
-      postFiles.forEach((file) => {
-        this.postHandle(file);
-      });
+      if (this.intercept.length === 0) {
+        postFiles.forEach((file) => {
+          this.postHandle(file);
+        });
+      } else {
+        const reader = new FileReader();
+        reader.readAsDataURL(postFiles[0]);
+        reader.onload = (readerEvent) => {
+          this.img = readerEvent.target.result;
+          this.interceptModal = true;
+          this.initCanvas();
+        };
+      }
     },
     postHandle(file) {
       // check format

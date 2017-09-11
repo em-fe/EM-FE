@@ -1,5 +1,12 @@
 <template>
   <div class="uploadpage">
+    <h3>截取器</h3>
+    <emfe-upload type="icon" action="http://gateway.inner.evente.cn:8000/public/upload" :intercept="[100, 200]"></emfe-upload>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <h3>基本用法</h3>
     <emfe-upload type="icon" action="http://gateway.inner.evente.cn:8000/public/upload"></emfe-upload>
     <br>
@@ -116,7 +123,7 @@
         <tr>
           <td>data</td>
           <td>上传时附带的额外参数</td>
-          <td>String</td>
+          <td>Object</td>
           <td>-</td>
         </tr>
         <tr>

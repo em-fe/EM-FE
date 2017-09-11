@@ -3,6 +3,28 @@
     background: $background-color-disable;
   }
 
+  &-intercept {
+    @include border(all, $brand-color-default);
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    background: rgba(0, 0, 0, 0.4);
+
+    &-wrap {
+      height: 400px;
+      overflow: hidden;
+      background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQAQMAAAAlPW0iAAAAA3NCSVQICAjb4U/gAAAABlBMVEXMzMz////TjRV2AAAACXBIWXMAAArrAAAK6wGCiw1aAAAAHHRFWHRTb2Z0d2FyZQBBZG9iZSBGaXJld29ya3MgQ1M26LyyjAAAABFJREFUCJlj+M/AgBVhF/0PAH6/D/HkDxOGAAAAAElFTkSuQmCC');
+      position: relative;
+    }
+
+    &-img {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+    }
+  }
+
   &-img {
     &-normal {
       width: 100%;
