@@ -11,6 +11,10 @@ $menu-top: 64px;
   font-size: 14px;
   z-index: 2;
 
+  &-tooltip {
+    margin: 0 auto;
+  }
+
   &-main {
     @include box-shadow();
 
@@ -21,6 +25,11 @@ $menu-top: 64px;
     z-index: 2;
     overflow: scroll;
     background: $background-color-write;
+
+    &-sidebar {
+      font-size: 30px;
+      line-height: 48px;
+    }
 
     &-header {
       @include border(bottom);
@@ -52,7 +61,7 @@ $menu-top: 64px;
       color: $text-color-Three;
       height: 48px;
       line-height: 48px;
-      width: 100%;
+      width: calc(100% - 4px);
       display: block;
       display: flex;
       align-items: center;
@@ -83,7 +92,9 @@ $menu-top: 64px;
     }
 
     &-icon {
-      padding: 0 10px 0 16px;
+      padding: 0 16px;
+      font-size: 20px;
+      line-height: 48px;
     }
   } // end emfe-menu-main
 
