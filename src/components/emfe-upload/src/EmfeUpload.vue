@@ -103,6 +103,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    intercept: {
+      type: [Array, Number],
+      default: () => [],
+    },
     format: {
       type: Array,
       default() {
@@ -136,10 +140,6 @@ export default {
     close: {
       type: Function,
       default: () => {},
-    },
-    intercept: {
-      type: [Array, Number],
-      default: () => [],
     },
   },
   computed: {
