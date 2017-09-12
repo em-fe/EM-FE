@@ -11,6 +11,8 @@ import _ from '../../../tools/lodash';
 const refPos = {
   x: 0,
   y: 0,
+  oldX: 0,
+  oldY: 0,
 };
 
 export default {
@@ -39,7 +41,7 @@ export default {
       type: Array,
     },
     initialValue: { // 初始值
-      type: Number,
+      type: [Number, Array],
       default: 0,
     },
     direction: {
@@ -55,6 +57,10 @@ export default {
     dragDiyStyle: {
       type: String,
       default: '',
+    },
+    moveEle: {
+      type: Boolean,
+      default: true,
     },
   },
   computed: {
@@ -107,10 +113,15 @@ export default {
       if (this.dragEl && this.dragEl.length > 0) {
         downTop -= this.parentPaddingTop;
         downTop += this.scrollTop;
-        downTop += this.initialValue;
         downLeft -= this.parentPaddingLeft;
         downLeft += this.scrollLeft;
-        downLeft += this.initialValue;
+        if (Array.isArray(this.initialValue)) {
+          downTop += this.initialValue[1];
+          downLeft += this.initialValue[0];
+        } else {
+          downTop += this.initialValue;
+          downLeft += this.initialValue;
+        }
         this.dragEl.forEach((dragElement) => {
           if (this.direction === 'vertical') {
             dragElement.style.top = `${downTop}px`;
@@ -121,6 +132,13 @@ export default {
             dragElement.style.top = `${downTop}px`;
           }
         });
+        // 有可能会变宽高，比如截取器
+        this.elWidth = this.dragEl[0].clientWidth;
+        this.elHeight = this.dragEl[0].clientHeight;
+      } else {
+        // 有可能会变宽高，比如截取器
+        this.elWidth = this.$el.clientWidth;
+        this.elHeight = this.$el.clientHeight;
       }
       this.$emit('beforeDrag', e, downLeft, downTop);
     },
@@ -135,11 +153,16 @@ export default {
         elTop = e.clientY - this.parentTop;
         elTop -= this.parentPaddingTop;
         elTop += this.scrollTop;
-        elTop += this.initialValue;
         elLeft = e.clientX - this.parentLeft;
         elLeft -= this.parentPaddingLeft;
         elLeft += this.scrollLeft;
-        elLeft += this.initialValue;
+        if (Array.isArray(this.initialValue)) {
+          elTop += this.initialValue[1];
+          elLeft += this.initialValue[0];
+        } else {
+          elTop += this.initialValue;
+          elLeft += this.initialValue;
+        }
       } else {
         elLeft = this.elLeft + disPosX;
         elTop = this.elTop + disPosY;
@@ -160,26 +183,32 @@ export default {
         }
       }
 
-      if (this.dragEl && this.dragEl.length > 0) {
-        this.dragEl.forEach((dragElement) => {
+      if (this.moveEle) {
+        if (this.dragEl && this.dragEl.length > 0) {
+          this.dragEl.forEach((dragElement) => {
+            if (this.direction === 'vertical') {
+              dragElement.style.top = `${elTop}px`;
+            } else if (this.direction === 'horizontal') {
+              dragElement.style.left = `${elLeft}px`;
+            } else {
+              dragElement.style.left = `${elLeft}px`;
+              dragElement.style.top = `${elTop}px`;
+            }
+          });
+        } else {
+          this.dragStyle = `left: ${elLeft}px; top: ${elTop}px`;
           if (this.direction === 'vertical') {
-            dragElement.style.top = `${elTop}px`;
+            this.dragStyle = `top: ${elTop}px`;
           } else if (this.direction === 'horizontal') {
-            dragElement.style.left = `${elLeft}px`;
-          } else {
-            dragElement.style.left = `${elLeft}px`;
-            dragElement.style.top = `${elTop}px`;
+            this.dragStyle = `left: ${elLeft}px;`;
           }
-        });
-      } else {
-        this.dragStyle = `left: ${elLeft}px; top: ${elTop}px`;
-        if (this.direction === 'vertical') {
-          this.dragStyle = `top: ${elTop}px`;
-        } else if (this.direction === 'horizontal') {
-          this.dragStyle = `left: ${elLeft}px;`;
         }
       }
-      this.$emit('drag', e, elLeft, elTop);
+      this.$emit('drag', e, elLeft, elTop, refPos.oldX - elLeft, refPos.oldY - elTop);
+      refPos.oldX = elLeft;
+      refPos.oldY = elTop;
+
+      e.stopPropagation();
     },
     up(e) {
       document.removeEventListener('mousemove', this.move, false);
