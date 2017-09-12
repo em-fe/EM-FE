@@ -31,7 +31,7 @@
     <br>
     <br>
     <h3>扩展用法</h3>
-    <emfe-upload v-show="!src1" type="icon" action="http://gateway.inner.evente.cn:8000/public/upload" :success="suc"></emfe-upload>
+    <emfe-upload buttonText="上传文件" fileType='file' theme="primary" v-show="!src1" type="icon" action="http://gateway.inner.evente.cn:8000/public/upload?type=1" @success="suc"></emfe-upload>
     <img v-show="src1" :src="src1">
     <pre>
       &lt;emfe-upload v-show="!src1" type="icon" action="http://gateway.inner.evente.cn:8000/public/upload" :success="suc"&gt;&lt;/emfe-upload&gt;
@@ -162,6 +162,18 @@
           <td>String</td>
           <td>-</td>
         </tr>
+        <tr>
+          <td>buttonText</td>
+          <td>自定义按钮文字。</td>
+          <td>String</td>
+          <td>默认上传图片</td>
+        </tr>
+        <tr>
+          <td>fileType</td>
+          <td>自定义上传文件类型</td>
+          <td>String</td>
+          <td>默认image,</td>
+        </tr>
       </tbody>
     </table>
     <br>
@@ -215,6 +227,7 @@ export default {
   methods: {
     suc(data) {
       this.src1 = data.url;
+      console.log(data, 111111);
     },
   },
 };

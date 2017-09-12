@@ -1,7 +1,7 @@
 <template>
   <div class="emfe-upload" :class="uploadName">
     <template v-if="type === 'icon'">
-      <emfe-button :disabled="disabled" v-show="!src" theme="default" className="ddd" type="hint">上传图片</emfe-button>
+      <emfe-button :disabled="disabled" v-show="!src" :theme="theme">{{buttonText}}</emfe-button>
       <input v-show="!src" class="emfe-upload-file" :class="fileName" :disabled="disabled" type="file" @change="change" ref="upload">
       <div v-show="src" :style="{opacity: canShow ? 1 : 0}" class="emfe-upload-icon-wrap">
         <div class="emfe-upload-icon-wrap-box" :class="[`emfe-upload-icon-wrap-box-${align}`]">
@@ -140,6 +140,18 @@ export default {
     close: {
       type: Function,
       default: () => {},
+    },
+    buttonText: {
+      type: String,
+      default: '上传图片',
+    },
+    theme: {
+      type: String,
+      default: 'default',
+    },
+    fileType: {
+      type: String,
+      default: 'image',
     },
   },
   computed: {
@@ -358,7 +370,6 @@ export default {
         this.beforeUpload(file, EmfeMessage);
         this.$emit('beforeUpload', file, EmfeMessage);
         this.canUpload = false;
-
         ajax({
           headers: this.headers,
           withCredentials: this.withCredentials,
@@ -401,7 +412,11 @@ export default {
       if (fileData) {
         fileData.status = 'finished';
         fileData.response = res;
-        this.loadImg(res.url, res, fileData);
+        if (this.fileType === 'image') {
+          this.loadImg(res.url, res, fileData);
+        } else {
+          this.$emit('success', res, fileData, this.fileList, EmfeMessage);
+        }
       }
     },
     handleError(err, response, file) {
