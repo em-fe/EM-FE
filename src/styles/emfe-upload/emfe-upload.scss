@@ -7,9 +7,13 @@
     @include border(all, $brand-color-default);
 
     position: absolute;
-    left: 50%;
-    top: 50%;
+    left: 0;
+    top: 0;
     background: rgba(0, 0, 0, 0.4);
+
+    &-img {
+      pointer-events: none;
+    }
 
     &-wrap {
       height: 400px;
@@ -18,10 +22,39 @@
       position: relative;
     }
 
-    &-img {
+    &-drag {
+      position: relative;
+    }
+
+    &-point {
+      width: 10px;
+      height: 10px;
       position: absolute;
-      left: 50%;
-      top: 50%;
+      background: $brand-color-default;
+
+      &-sw {
+        cursor: sw-resize;
+        left: -5px;
+        bottom: -5px;
+      }
+
+      &-se {
+        cursor: se-resize;
+        right: -5px;
+        bottom: -5px;
+      }
+
+      &-nw {
+        cursor: nw-resize;
+        left: -5px;
+        top: -5px;
+      }
+
+      &-ne {
+        cursor: ne-resize;
+        right: -5px;
+        top: -5px;
+      }
     }
   }
 

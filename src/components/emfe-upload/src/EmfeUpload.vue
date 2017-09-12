@@ -17,35 +17,54 @@
         <img :class="[`emfe-upload-img-${align}`]" v-show="src" :src="src" ref="img">
       </div>
     </template>
-    <emfe-modal :show="interceptModal" title="截取器" @close="formClose" @cancel="formCancel" @ok="formOk" okText="保存" className="form">
-      <div slot="modal-main" class="emfe-upload-intercept-wrap">
-        <img :src="img" class="emfe-upload-intercept-img" :style="{ height: `${interceptCanvasHeight}px`, 'margin-top': `-${interceptCanvasHeight / 2}px`, 'margin-left': `-${interceptCanvasWidth / 2}px`}" ref="previewImg">
-        <div class="emfe-upload-intercept" :style="{width: `${interceptCanvasWidth}px`, height: `${interceptCanvasHeight}px`, 'margin-top': `-${interceptCanvasHeight / 2}px`, 'margin-left': `-${interceptCanvasWidth / 2}px`}"></div>
+    <emfe-modal :show="interceptModal" title="截取器" @close="formCancel" @cancel="formCancel" @ok="formOk" okText="保存" className="form">
+      <div slot="modal-main" class="emfe-upload-intercept-wrap" :style="{'padding-top': `${dragPaddingTop}px`, 'padding-left': `${dragPaddingLeft}px`}">
+        <emfe-drag class="emfe-upload-intercept-drag" :dragEl="drag1" :style="{ width: `${dragWidth}px`, height: `${dragHeight}px`}" :initialValue="[-interceptCanvasWidth/2, -interceptCanvasHeight/2]" limit="true" @drag="dragPosMove">
+          <img :src="img" class="emfe-upload-intercept-img" :style="{ width: `${dragWidth}px`, height: `${dragHeight}px`}" ref="previewImg">
+          <div class="emfe-upload-intercept" :style="{width: `${interceptCanvasWidth}px`, height: `${interceptCanvasHeight}px`, left: `${interceptLeft}px`, top: `${interceptTop}px`}" ref="drag1">
+            <emfe-drag class="emfe-upload-intercept-point emfe-upload-intercept-point-nw" @drag="nwPosMove" :moveEle="false"></emfe-drag>
+            <emfe-drag class="emfe-upload-intercept-point emfe-upload-intercept-point-ne" @drag="nePosMove" :moveEle="false"></emfe-drag>
+            <emfe-drag class="emfe-upload-intercept-point emfe-upload-intercept-point-sw" @drag="swPosMove" :moveEle="false"></emfe-drag>
+            <emfe-drag class="emfe-upload-intercept-point emfe-upload-intercept-point-se" @drag="sePosMove" :moveEle="false"></emfe-drag>
+          </div>
+        </emfe-drag>
       </div>
     </emfe-modal>
   </div>
 </template>
 <script>
 import _ from '../../../tools/lodash';
+import upload from '../../../tools/upload';
+import { openMask, closeMask } from '../../../tools/body';
 import EmfeMessage from '../../emfe-message/index';
 import ajax from './ajax';
 
 let canUpload = true;
+const uploadJpeg = 'image/jpeg';
+let pointOldLeft = 0; // 改变截取器遮罩大小
 
 export default {
   name: 'upload',
   data() {
     return {
+      drag1: [],
       src: '',
       canShow: false,
       fileList: [],
       tempIndex: 1,
       img: '',
       align: '',
-      interceptModal: false,
-      interceptWidth: 440,
-      interceptCanvasWidth: 440,
-      interceptCanvasHeight: 440,
+      interceptModal: false, // 截取器是否显示
+      interceptWidth: 360, // 截取器的宽
+      interceptHeight: 400, // 截取器的搞
+      interceptLeft: 0, // 截取器的左边距离
+      interceptTop: 0, // 截取器的有边距离
+      interceptCanvasWidth: 360, // 截取器截图的大小
+      interceptCanvasHeight: 400, // 截取器截图的大小
+      dragWidth: 'auto', // 拖拽的宽
+      dragHeight: 400, // 拖拽的高
+      dragPaddingLeft: 0,
+      dragPaddingTop: 0,
       canvas: null,
       canvasContext: null,
     };
@@ -119,7 +138,7 @@ export default {
       default: () => {},
     },
     intercept: {
-      type: Array,
+      type: [Array, Number],
       default: () => [],
     },
   },
@@ -167,43 +186,99 @@ export default {
         setTimeout(this.setAlign.bind(this), 0);
       };
     }
-    // 截取器
+    // 有截取器
     if (this.intercept.length > 0) {
-      this.interceptCanvasHeight = this.intercept[1] - 0;
-      this.interceptCanvasWidth = this.intercept[0] - 0;
+      if (this.intercept.length > 1) {
+        this.interceptCanvasWidth = this.intercept[0];
+        this.interceptCanvasHeight = this.intercept[1];
+      } else if (this.intercept.length === 1) {
+        this.interceptCanvasWidth = this.intercept[0];
+        this.interceptCanvasHeight = this.intercept[0];
+      }
     }
   },
   methods: {
-    formBtn() {
+    openInterceptModal() {
+      openMask();
       this.interceptModal = true;
     },
-    formClose() {
+    closeInterceptModal() {
+      closeMask();
       this.interceptModal = false;
     },
     formCancel() {
-      this.interceptModal = false;
+      this.closeInterceptModal();
+      this.resetInputFile();
     },
     formOk() {
-      this.getImageUrl();
-      console.log(this.clipData, 'this.clipData');
-      this.interceptModal = false;
+      this.initCanvas();
     },
     initCanvas() {
       const img = new Image();
       img.src = this.img;
-      img.height = this.interceptCanvasHeight;
       img.onload = () => {
         this.canvas = document.createElement('canvas');
         this.canvasContext = this.canvas.getContext('2d');
         this.canvas.width = this.interceptCanvasWidth;
         this.canvas.height = this.interceptCanvasHeight;
-        this.previewImg = this.$refs.previewImg;
+        this.getImageUrl();
+        this.postHandle(upload(this.clipData, uploadJpeg));
+        this.closeInterceptModal();
       };
     },
     getImageUrl() {
-      const { clientWidth, clientHeight } = this.previewImg;
-      this.canvasContext.drawImage(this.previewImg, 0, 0, clientWidth, clientHeight);
-      this.clipData = this.canvas.toDataURL('image/jpeg');
+      const { canvasContext, previewImg } = this;
+      console.log(previewImg, 1);
+      const { clientWidth, clientHeight } = previewImg;
+      const left = this.interceptLeft;
+      const top = this.interceptTop;
+      canvasContext.drawImage(previewImg, -left, -top, clientWidth, clientHeight);
+      this.clipData = this.canvas.toDataURL(uploadJpeg);
+    },
+    // 拖拽大方块改变截图位置
+    dragPosMove(ev, left, top) {
+      this.interceptLeft = left;
+      this.interceptTop = top;
+    },
+    // 角部拖拽改变大小
+    pointMoveChangeSize(ev, left, lDir, type) {
+      let widthStep = -left;
+      // 左上 || 左下
+      if (type === 'nw' || type === 'sw') {
+        const lChange = pointOldLeft - left;
+        widthStep = lChange;
+      }
+      const heightStep = (this.interceptCanvasHeight * widthStep) / this.interceptCanvasWidth;
+      if (this.interceptCanvasWidth + widthStep >= this.intercept[0] &&
+        this.interceptCanvasWidth + widthStep <= this.interceptWidth) {
+        this.interceptCanvasWidth += widthStep;
+        this.interceptCanvasHeight += heightStep;
+        // 左上 || 左下
+        if (type === 'nw' || type === 'sw') {
+          this.interceptLeft -= widthStep;
+        }
+        // 左上 || 右上
+        if (type === 'nw' || type === 'ne') {
+          this.interceptTop -= heightStep;
+        }
+        pointOldLeft = left;
+      }
+    },
+    // 左上
+    nwPosMove(ev, left, top, lDir) {
+      this.pointMoveChangeSize(ev, left, lDir, 'nw');
+    },
+    // 右上
+    nePosMove(ev, left, top, lDir) {
+      this.pointMoveChangeSize(ev, this.interceptCanvasWidth - left, lDir, 'ne');
+    },
+    // 左下
+    swPosMove(ev, left, top, lDir) {
+      this.pointMoveChangeSize(ev, left, lDir, 'sw');
+    },
+    // 右下
+    sePosMove(ev, left, top, lDir) {
+      this.pointMoveChangeSize(ev, this.interceptCanvasWidth - left, lDir);
     },
     setAlign() {
       const { clientWidth, clientHeight } = this.$refs.img;
@@ -236,8 +311,24 @@ export default {
         reader.readAsDataURL(postFiles[0]);
         reader.onload = (readerEvent) => {
           this.img = readerEvent.target.result;
-          this.interceptModal = true;
-          this.initCanvas();
+          this.openInterceptModal();
+          setTimeout(() => {
+            this.drag1.length = 0;
+            this.drag1.push(this.$refs.drag1);
+            this.previewImg = this.$refs.previewImg;
+            this.dragWidth = this.previewImg.clientWidth;
+            this.dragHeight = this.previewImg.clientHeight;
+            this.dragPaddingLeft = (this.dragWidth - this.interceptWidth) / 2;
+            this.dragPaddingTop = (this.dragHeight - this.interceptHeight) / 2;
+            const imgScale = this.dragHeight / this.dragWidth;
+            // 如果宽度超了
+            if (this.dragWidth > this.interceptWidth) {
+              this.dragWidth = this.interceptWidth;
+              this.dragHeight = imgScale * this.dragWidth;
+              this.dragPaddingLeft = (this.interceptWidth - this.dragWidth) / 2;
+              this.dragPaddingTop = (this.interceptHeight - this.dragHeight) / 2;
+            }
+          }, 0);
         };
       }
     },
@@ -262,6 +353,7 @@ export default {
       }
 
       if (canUpload) {
+        console.log(file);
         this.handleStart(file);
         this.beforeUpload(file, EmfeMessage);
         this.$emit('beforeUpload', file, EmfeMessage);
@@ -342,18 +434,26 @@ export default {
       };
     },
     closeFn() {
-      this.$refs.upload.value = '';
       this.closeCommon();
     },
     closePlusFn() {
-      this.$refs.uploadPlus.value = '';
       this.closeCommon();
     },
     closeCommon() {
       this.src = '';
       this.canShow = false;
+      this.resetInputFile();
       this.close(EmfeMessage);
       this.$emit('close', EmfeMessage);
+    },
+    resetInputFile() {
+      if (this.type === 'icon') {
+        this.$refs.upload.value = '';
+      } else {
+        this.$refs.uploadPlus.value = '';
+      }
+      this.dragWidth = 'auto';
+      this.dragHeight = 400;
     },
   },
 };

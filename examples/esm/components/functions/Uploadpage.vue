@@ -1,7 +1,19 @@
 <template>
   <div class="uploadpage">
     <h3>截取器</h3>
-    <emfe-upload type="icon" action="http://gateway.inner.evente.cn:8000/public/upload" :intercept="[100, 200]"></emfe-upload>
+    <emfe-upload type="icon" action="http://gateway.inner.evente.cn:8000/public/upload" :intercept="[100, 60]"></emfe-upload>
+    <pre>
+      &lt;emfe-upload type="icon" action="http://gateway.inner.evente.cn:8000/public/upload" :intercept="[100, 60]"&gt;&lt;/emfe-upload&gt;
+    </pre>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <emfe-upload action="http://gateway.inner.evente.cn:8000/public/upload" :intercept="[100, 60]"></emfe-upload>
+    <pre>
+      &lt;emfe-upload action="http://gateway.inner.evente.cn:8000/public/upload" :intercept="[100, 60]"&gt;&lt;/emfe-upload&gt;
+    </pre>
     <br>
     <br>
     <br>
