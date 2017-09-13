@@ -41,7 +41,7 @@ import weixinLogo from '../../../assets/images/weixin.svg';
 import accountLogo from '../../../assets/images/account.svg';
 
 export default {
-  name: 'emfe-login',
+  name: 'EmfeLogin',
   data() {
     return {
       title: '登录',
