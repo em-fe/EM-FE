@@ -1,8 +1,8 @@
 <template>
   <div class="emfe-upload" :class="uploadName">
     <template v-if="type === 'icon'">
-      <emfe-button :disabled="disabled" v-show="!src" :theme="theme">{{buttonText}}</emfe-button>
-      <input v-show="!src" class="emfe-upload-file" :class="fileName" :disabled="disabled" type="file" @change="change" ref="upload">
+      <emfe-button :disabled="disabled || !canUpload" v-show="!src" :theme="theme">{{ iconText }}</emfe-button>
+      <input v-show="!src" class="emfe-upload-file" :class="fileName" :disabled="disabled || !canUpload" type="file" @change="change" ref="upload">
       <div v-show="src" :style="{opacity: canShow ? 1 : 0}" class="emfe-upload-icon-wrap">
         <div class="emfe-upload-icon-wrap-box" :class="[`emfe-upload-icon-wrap-box-${align}`]">
           <img class="emfe-upload-icon-wrap-box-img" :class="[`emfe-upload-img-${align}`]" :src="src" ref="img">
@@ -11,8 +11,8 @@
       </div>
     </template>
     <template v-if="type === 'plus'">
-      <button v-show="!src" class="emfe-upload-btn" :class="btnName">+</button>
-      <input v-show="!src" class="emfe-upload-file" :class="fileName" :disabled="disabled" type="file" @change="change" ref="uploadPlus">
+      <button v-show="!src" class="emfe-upload-btn" :class="btnName">{{ plusText }}</button>
+      <input v-show="!src" class="emfe-upload-file" :class="fileName" :disabled="disabled || !canUpload" type="file" @change="change" ref="uploadPlus">
       <div v-show="src" class="emfe-upload-plus-box" :class="[`emfe-upload-plus-box-${align}`]" :style="{opacity: canShow ? 1 : 0}" @click="closePlusFn">
         <img :class="[`emfe-upload-img-${align}`]" v-show="src" :src="src" ref="img">
       </div>
@@ -39,7 +39,6 @@ import { openMask, closeMask } from '../../../tools/body';
 import EmfeMessage from '../../emfe-message/index';
 import ajax from './ajax';
 
-let canUpload = true;
 const uploadJpeg = 'image/jpeg';
 let pointOldLeft = 0; // 改变截取器遮罩大小
 
@@ -48,6 +47,7 @@ export default {
   data() {
     return {
       drag1: [],
+      canUpload: true,
       src: '',
       canShow: false,
       fileList: [],
@@ -67,6 +67,8 @@ export default {
       dragPaddingTop: 0,
       canvas: null,
       canvasContext: null,
+      iconText: this.buttonText,
+      plusText: '+',
     };
   },
   props: {
@@ -104,7 +106,7 @@ export default {
       default: false,
     },
     intercept: {
-      type: [Array, Number],
+      type: Array,
       default: () => [],
     },
     format: {
@@ -165,7 +167,7 @@ export default {
           [`${this.className}-upload-${this.type}`]: !!this.className,
         },
         {
-          'emfe-upload-disabled': this.disabled,
+          'emfe-upload-disabled': this.disabled || !this.canUpload,
         },
       ];
     },
@@ -184,7 +186,7 @@ export default {
           [`${this.className}-upload-${this.type}-file`]: !!this.className,
         },
         {
-          'emfe-upload-file-disabled': this.disabled,
+          'emfe-upload-file-disabled': this.disabled || !this.canUpload,
         },
       ];
     },
@@ -240,7 +242,6 @@ export default {
     },
     getImageUrl() {
       const { canvasContext, previewImg } = this;
-      console.log(previewImg, 1);
       const { clientWidth, clientHeight } = previewImg;
       const left = this.interceptLeft;
       const top = this.interceptTop;
@@ -292,12 +293,14 @@ export default {
     sePosMove(ev, left, top, lDir) {
       this.pointMoveChangeSize(ev, this.interceptCanvasWidth - left, lDir);
     },
-    setAlign() {
+    setAlign(res) {
       const { clientWidth, clientHeight } = this.$refs.img;
-      if (clientWidth !== 0 && clientHeight !== 0) {
-        if (clientWidth > clientHeight) {
+      const width = res ? res.width : clientWidth;
+      const height = res ? res.height : clientHeight;
+      if (width !== 0 && height !== 0) {
+        if (width > height) {
           this.align = 'horizontal';
-        } else if (clientWidth < clientHeight) {
+        } else if (width < height) {
           this.align = 'vertical';
         } else {
           this.align = 'normal';
@@ -364,12 +367,11 @@ export default {
         }
       }
 
-      if (canUpload) {
-        console.log(file);
+      if (this.canUpload) {
         this.handleStart(file);
         this.beforeUpload(file, EmfeMessage);
         this.$emit('beforeUpload', file, EmfeMessage);
-        this.canUpload = false;
+        this.canNotLoad();
         ajax({
           headers: this.headers,
           withCredentials: this.withCredentials,
@@ -378,7 +380,6 @@ export default {
           filename: this.name,
           action: this.action,
           onSuccess: (res) => {
-            canUpload = true;
             if (!res.code) {
               this.handleSuccess(res, file);
             } else {
@@ -386,7 +387,6 @@ export default {
             }
           },
           onError: (err, response) => {
-            canUpload = true;
             this.handleError(err, response, file);
           },
         });
@@ -415,6 +415,7 @@ export default {
         if (this.fileType === 'image') {
           this.loadImg(res.url, res, fileData);
         } else {
+          this.canLoad();
           this.$emit('success', res, fileData, this.fileList, EmfeMessage);
         }
       }
@@ -424,6 +425,7 @@ export default {
       const fileList = this.fileList;
 
       fileData.status = 'fail';
+      this.canLoad();
 
       fileList.splice(fileList.indexOf(fileData), 1);
       this.error(err, response, file, EmfeMessage);
@@ -443,7 +445,8 @@ export default {
       img.src = src;
       img.onload = () => {
         this.src = src;
-        setTimeout(this.setAlign.bind(this), 0);
+        setTimeout(this.setAlign.bind(this, res), 0);
+        this.canLoad();
         this.success(res, fileData, this.fileList, EmfeMessage);
         this.$emit('success', res, fileData, this.fileList, EmfeMessage);
       };
@@ -469,6 +472,22 @@ export default {
       }
       this.dragWidth = 'auto';
       this.dragHeight = 400;
+    },
+    canLoad() {
+      this.canUpload = true;
+      if (this.type === 'icon') {
+        this.iconText = this.buttonText;
+      } else {
+        this.plusText = '+';
+      }
+    },
+    canNotLoad() {
+      this.canUpload = false;
+      if (this.type === 'icon') {
+        this.iconText = '上传中';
+      } else {
+        this.plusText = '...';
+      }
     },
   },
 };
