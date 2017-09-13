@@ -174,6 +174,12 @@
           <td>String</td>
           <td>默认image,</td>
         </tr>
+        <tr>
+          <td>intercept</td>
+          <td>截取器开关，支持格式 [宽，高]</td>
+          <td>Array</td>
+          <td>默认image,</td>
+        </tr>
       </tbody>
     </table>
     <br>
