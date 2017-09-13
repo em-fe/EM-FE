@@ -1,7 +1,7 @@
 @font-face {
   font-family: $ionicons-font-family;
-  src: url("#{$ionicons-font-path}/icomoon.eot?#{$ionicons-version}");
-  src: url("#{$ionicons-font-path}/icomoon.eot?#{$ionicons-version}#iefix") format("embedded-opentype"), url("#{$ionicons-font-path}/icomoon.ttf?#{$ionicons-version}") format("truetype"), url("#{$ionicons-font-path}/icomoon.woff?#{$ionicons-version}") format("woff"), url("#{$ionicons-font-path}/icomoon.svg?#{$ionicons-version}#Ionicons") format("svg");
+  src: url("#{$ionicons-font-path}/#{$ionicons-font-file}.eot?t=#{$ionicons-version}");
+  src: url("#{$ionicons-font-path}/#{$ionicons-font-file}.eot?t=#{$ionicons-version}#iefix") format("embedded-opentype"), url("#{$ionicons-font-path}/#{$ionicons-font-file}.ttf?t=#{$ionicons-version}") format("truetype"), url("#{$ionicons-font-path}/#{$ionicons-font-file}.woff?t=#{$ionicons-version}") format("woff"), url("#{$ionicons-font-path}/#{$ionicons-font-file}.svg?t=#{$ionicons-version}##{$ionicons-font-file}") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -17,6 +17,7 @@
   line-height: 1;
   text-rendering: auto;
   display: inline-block;
+  color: $icon-color-default;
 
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
