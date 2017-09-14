@@ -1,5 +1,5 @@
 /*!
- * EMFE.js v1.0.15
+ * EMFE.js v1.0.16
  * (c) 2014-2017 李梦龙
  * Released under the MIT License.
  */
@@ -977,7 +977,7 @@ var childrenLast$2 = -1; // 记录上一个点击的二级手风琴的索引
 var screenMd = ''; // 屏幕是否大于992
 
 var EmfeMenu$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"menu",staticClass:"emfe-menu",class:_vm.menuName},[_c('div',{staticClass:"emfe-menu-main"},[_c('button',{staticClass:"emfe-menu-main-header",on:{"click":_vm.menuToShort}},[(_vm.menuShort)?_c('emfe-icon',{staticClass:"emfe-menu-main-sidebar",attrs:{"type":"menushouqi"},on:{"icon-click":_vm.menuToShort}}):_c('emfe-icon',{staticClass:"emfe-menu-main-sidebar",attrs:{"type":"menuzhankai"},on:{"icon-click":_vm.menuToShort}})],1),_vm._v(" "),_c('ul',{staticClass:"emfe-menu-main-list"},_vm._l((_vm.datas),function(data,dataIndex){return _c('li',{staticClass:"emfe-menu-main-item"},[(data.routers)?_c('a',{staticClass:"emfe-menu-main-link",class:{'emfe-menu-main-link-on': _vm.mainIndex === dataIndex},attrs:{"href":"javascript:;"},on:{"click":function($event){_vm.tochildren(data);}}},[_c('emfe-tooltip',{attrs:{"className":"emfe-menu","placement":"right","disable":!_vm.menuShort}},[_c('emfe-icon',{staticClass:"emfe-menu-main-icon",attrs:{"type":data.icon},on:{"icon-click":function($event){_vm.tochildren(data);}},slot:"render"}),_vm._v(" "),_c('span',{slot:"tip"},[_vm._v(_vm._s(data.title))])],1),_vm._v(" "),_c('span',{staticClass:"emfe-menu-main-text"},[_vm._v(_vm._s(data.title))])],1):_c('a',{staticClass:"emfe-menu-main-link",class:{'emfe-menu-main-link-on': _vm.mainIndex === dataIndex},attrs:{"href":"javascript:;"},on:{"click":function($event){_vm.tochildren(data);}}},[_c('emfe-tooltip',{attrs:{"className":"emfe-menu","placement":"right","disable":!_vm.menuShort}},[_c('emfe-icon',{staticClass:"emfe-menu-main-icon",attrs:{"type":data.icon},on:{"icon-click":function($event){_vm.tochildren(data);}},slot:"render"}),_vm._v(" "),_c('span',{slot:"tip"},[_vm._v(_vm._s(data.title))])],1),_vm._v(" "),_c('span',{staticClass:"emfe-menu-main-text"},[_vm._v(_vm._s(data.title))])],1)])}))]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.childrentatus),expression:"childrentatus"}],staticClass:"emfe-menu-minor"},[_c('h3',{staticClass:"emfe-menu-minor-header"},[_vm._v(_vm._s(_vm.childrenTitle))]),_vm._v(" "),_c('ul',{staticClass:"emfe-menu-minor-list"},[_vm._l((_vm.childrenDatas),function(childrenData,childrenDataIndex){return [(!childrenData.children)?_c('li',{staticClass:"emfe-menu-minor-item"},[_c('router-link',{staticClass:"emfe-menu-minor-link",attrs:{"to":childrenData.routers}},[_vm._v(_vm._s(childrenData.title))])],1):_c('li',{staticClass:"emfe-menu-minor-item",class:{'emfe-menu-minor-item-on': _vm.childrenIndex == childrenDataIndex}},[_c('span',{staticClass:"emfe-menu-minor-btn",attrs:{"href":"javascript:;"},on:{"click":function($event){_vm.toogleChild(childrenDataIndex);}}},[_vm._v(_vm._s(childrenData.title))]),_vm._v(" "),_c('i',{staticClass:"emfe-menu-minor-arrow"}),_vm._v(" "),_c('emfe-transition',{attrs:{"name":"gradual"}},[_c('ul',{directives:[{name:"show",rawName:"v-show",value:(_vm.childrenIndex == childrenDataIndex),expression:"childrenIndex == childrenDataIndex"}],staticClass:"emfe-menu-minor-childlist"},_vm._l((childrenData.children),function(child){return _c('li',{staticClass:"emfe-menu-minor-childitem"},[_c('router-link',{staticClass:"emfe-menu-minor-childlink",attrs:{"to":child.routers}},[_vm._v(_vm._s(child.title))])],1)}))])],1)]})],2)])])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"menu",staticClass:"emfe-menu",class:_vm.menuName},[_c('div',{staticClass:"emfe-menu-main"},[_c('button',{staticClass:"emfe-menu-main-header",on:{"click":_vm.menuToShort}},[(_vm.menuShort)?_c('emfe-icon',{staticClass:"emfe-menu-main-sidebar",attrs:{"type":"cedaohangshouqi"},on:{"icon-click":_vm.menuToShort}}):_c('emfe-icon',{staticClass:"emfe-menu-main-sidebar",attrs:{"type":"cedaohangzhankai"},on:{"icon-click":_vm.menuToShort}})],1),_vm._v(" "),_c('ul',{staticClass:"emfe-menu-main-list"},_vm._l((_vm.datas),function(data,dataIndex){return _c('li',{staticClass:"emfe-menu-main-item"},[(data.routers)?_c('a',{staticClass:"emfe-menu-main-link",class:{'emfe-menu-main-link-on': _vm.mainIndex === dataIndex},attrs:{"href":"javascript:;"},on:{"click":function($event){_vm.tochildren(data);}}},[_c('emfe-tooltip',{attrs:{"className":"emfe-menu","placement":"right","disable":!_vm.menuShort}},[_c('emfe-icon',{staticClass:"emfe-menu-main-icon",attrs:{"type":data.icon},on:{"icon-click":function($event){_vm.tochildren(data);}},slot:"render"}),_vm._v(" "),_c('span',{slot:"tip"},[_vm._v(_vm._s(data.title))])],1),_vm._v(" "),_c('span',{staticClass:"emfe-menu-main-text"},[_vm._v(_vm._s(data.title))])],1):_c('a',{staticClass:"emfe-menu-main-link",class:{'emfe-menu-main-link-on': _vm.mainIndex === dataIndex},attrs:{"href":"javascript:;"},on:{"click":function($event){_vm.tochildren(data);}}},[_c('emfe-tooltip',{attrs:{"className":"emfe-menu","placement":"right","disable":!_vm.menuShort}},[_c('emfe-icon',{staticClass:"emfe-menu-main-icon",attrs:{"type":data.icon},on:{"icon-click":function($event){_vm.tochildren(data);}},slot:"render"}),_vm._v(" "),_c('span',{slot:"tip"},[_vm._v(_vm._s(data.title))])],1),_vm._v(" "),_c('span',{staticClass:"emfe-menu-main-text"},[_vm._v(_vm._s(data.title))])],1)])}))]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.childrentatus),expression:"childrentatus"}],staticClass:"emfe-menu-minor"},[_c('h3',{staticClass:"emfe-menu-minor-header"},[_vm._v(_vm._s(_vm.childrenTitle))]),_vm._v(" "),_c('ul',{staticClass:"emfe-menu-minor-list"},[_vm._l((_vm.childrenDatas),function(childrenData,childrenDataIndex){return [(!childrenData.children)?_c('li',{staticClass:"emfe-menu-minor-item"},[_c('router-link',{staticClass:"emfe-menu-minor-link",attrs:{"to":childrenData.routers}},[_vm._v(_vm._s(childrenData.title))])],1):_c('li',{staticClass:"emfe-menu-minor-item",class:{'emfe-menu-minor-item-on': _vm.childrenIndex == childrenDataIndex}},[_c('span',{staticClass:"emfe-menu-minor-btn",attrs:{"href":"javascript:;"},on:{"click":function($event){_vm.toogleChild(childrenDataIndex);}}},[_vm._v(_vm._s(childrenData.title))]),_vm._v(" "),_c('i',{staticClass:"emfe-menu-minor-arrow"}),_vm._v(" "),_c('emfe-transition',{attrs:{"name":"gradual"}},[_c('ul',{directives:[{name:"show",rawName:"v-show",value:(_vm.childrenIndex == childrenDataIndex),expression:"childrenIndex == childrenDataIndex"}],staticClass:"emfe-menu-minor-childlist"},_vm._l((childrenData.children),function(child){return _c('li',{staticClass:"emfe-menu-minor-childitem"},[_c('router-link',{staticClass:"emfe-menu-minor-childlink",attrs:{"to":child.routers}},[_vm._v(_vm._s(child.title))])],1)}))])],1)]})],2)])])},
 staticRenderFns: [],
   name: 'EmfeMenu',
   data: function data() {
@@ -1229,7 +1229,7 @@ EmfeFooterC$1.install = function (Vue$$1) {
 };
 
 var EmfeCopy$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-copy",class:_vm.copyName},[_c('span',{class:_vm.textName},[_vm._v("表单页面：")]),_vm._v(" "),_c('input',{ref:"copyInput",class:_vm.valueName,attrs:{"readonly":_vm.read},domProps:{"value":_vm.copyValue}}),_vm._v(" "),_c('button',{staticClass:"emfe-copy-btn",class:_vm.btnName,on:{"click":_vm.copyHandle}},[_c('emfe-icon',{class:_vm.iconName,attrs:{"type":"stick"},on:{"icon-click":_vm.copyHandle}})],1)])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-copy",class:_vm.copyName},[_c('span',{class:_vm.textName},[_vm._v("表单页面：")]),_vm._v(" "),_c('input',{ref:"copyInput",class:_vm.valueName,attrs:{"readonly":_vm.read},domProps:{"value":_vm.copyValue}}),_vm._v(" "),_c('button',{staticClass:"emfe-copy-btn",class:_vm.btnName,on:{"click":_vm.copyHandle}},[_c('emfe-icon',{class:_vm.iconName,attrs:{"type":"fuzhi"},on:{"icon-click":_vm.copyHandle}})],1)])},
 staticRenderFns: [],
   name: 'EmfeCopy',
   props: {
@@ -1276,6 +1276,41 @@ staticRenderFns: [],
 
 EmfeCopy$1.install = function (Vue$$1) {
   Vue$$1.component(EmfeCopy$1.name, EmfeCopy$1);
+};
+
+/**
+ * database64文件格式转换为2进制
+ *
+ * @param  {[String]} data dataURL 的格式为 “data:image/png;base64,****”,逗号之前都是一些说明性的文字，我们只需要逗号之后的就行了
+ * @param  {[String]} type [description]
+ * @return {[blob]}      [description]
+ */
+var upload = function (data, type) {
+  var newData = data.split(',')[1];
+  newData = window.atob(newData);
+  var ia = new Uint8Array(newData.length);
+  for (var i = 0; i < newData.length; i++) {
+    ia[i] = newData.charCodeAt(i);
+  }
+  // canvas.toDataURL 返回的默认格式就是 image/png
+  return new Blob([ia], {
+    type: type,
+  });
+};
+
+var handler = function (event) {
+  event.preventDefault();
+  event.stopPropagation();
+};
+
+var openMask = function () {
+  document.body.addEventListener('touchmove', handler, false);
+  document.body.addEventListener('wheel', handler, false);
+};
+
+var closeMask = function () {
+  document.body.removeEventListener('touchmove', handler, false);
+  document.body.removeEventListener('wheel', handler, false);
 };
 
 var seed = 0;
@@ -1397,8 +1432,6 @@ var EmfeMessage = {
   },
 };
 
-// https://github.com/ElemeFE/element/blob/dev/packages/upload/src/ajax.js
-
 function getError(action, option, xhr) {
   var msg = "fail to post " + action + " " + (xhr.status) + "'";
   var err = new Error(msg);
@@ -1421,22 +1454,13 @@ function getBody(xhr) {
   }
 }
 
-function upload(option) {
+function upload$1(option) {
   if (typeof XMLHttpRequest === 'undefined') {
     return;
   }
 
   var xhr = new XMLHttpRequest();
   var action = option.action;
-
-  // if (xhr.upload) {
-  //   xhr.upload.onprogress = function progress(e) {
-  //     if (e.total > 0) {
-  //       e.percent = (e.loaded / e.total) * 100;
-  //     }
-  //     option.onProgress(e);
-  //   };
-  // }
 
   var formData = new FormData();
 
@@ -1476,27 +1500,41 @@ function upload(option) {
     }
   });
 
-  // for (const item in headers) {
-  //   if (O.hOwnProperty(headers, item) && headers[item] !== null) {
-  //     xhr.setRequestHeader(item, headers[item]);
-  //   }
-  // }
   xhr.send(formData);
 }
 
-var canUpload = true;
+var uploadJpeg = 'image/jpeg';
+var pointOldLeft = 0; // 改变截取器遮罩大小
 
 var EmfeUpload$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-upload",class:_vm.uploadName},[(_vm.type === 'icon')?[_c('emfe-button',{directives:[{name:"show",rawName:"v-show",value:(!_vm.src),expression:"!src"}],attrs:{"disabled":_vm.disabled,"theme":"default","className":"ddd","type":"hint"}},[_vm._v("上传图片")]),_vm._v(" "),_c('input',{directives:[{name:"show",rawName:"v-show",value:(!_vm.src),expression:"!src"}],ref:"upload",staticClass:"emfe-upload-file",class:_vm.fileName,attrs:{"disabled":_vm.disabled,"type":"file"},on:{"change":_vm.change}}),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.src),expression:"src"}],staticClass:"emfe-upload-icon-wrap",style:({opacity: _vm.canShow ? 1 : 0})},[_c('div',{staticClass:"emfe-upload-icon-wrap-box",class:[("emfe-upload-icon-wrap-box-" + _vm.align)]},[_c('img',{ref:"img",staticClass:"emfe-upload-icon-wrap-box-img",class:[("emfe-upload-img-" + _vm.align)],attrs:{"src":_vm.src}})]),_vm._v(" "),_c('i',{staticClass:"emfe-upload-icon-wrap-close",on:{"click":_vm.closeFn}})])]:_vm._e(),_vm._v(" "),(_vm.type === 'plus')?[_c('button',{directives:[{name:"show",rawName:"v-show",value:(!_vm.src),expression:"!src"}],staticClass:"emfe-upload-btn",class:_vm.btnName},[_vm._v("+")]),_vm._v(" "),_c('input',{directives:[{name:"show",rawName:"v-show",value:(!_vm.src),expression:"!src"}],ref:"uploadPlus",staticClass:"emfe-upload-file",class:_vm.fileName,attrs:{"disabled":_vm.disabled,"type":"file"},on:{"change":_vm.change}}),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.src),expression:"src"}],staticClass:"emfe-upload-plus-box",class:[("emfe-upload-plus-box-" + _vm.align)],style:({opacity: _vm.canShow ? 1 : 0}),on:{"click":_vm.closePlusFn}},[_c('img',{directives:[{name:"show",rawName:"v-show",value:(_vm.src),expression:"src"}],ref:"img",class:[("emfe-upload-img-" + _vm.align)],attrs:{"src":_vm.src}})])]:_vm._e()],2)},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-upload",class:_vm.uploadName},[(_vm.type === 'icon')?[_c('emfe-button',{directives:[{name:"show",rawName:"v-show",value:(!_vm.src),expression:"!src"}],attrs:{"disabled":_vm.disabled || !_vm.canUpload,"theme":_vm.theme,"type":"shangchuan"}},[_vm._v(_vm._s(_vm.iconText))]),_vm._v(" "),_c('input',{directives:[{name:"show",rawName:"v-show",value:(!_vm.src),expression:"!src"}],ref:"upload",staticClass:"emfe-upload-file",class:_vm.fileName,attrs:{"disabled":_vm.disabled || !_vm.canUpload,"type":"file"},on:{"change":_vm.change}}),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.src),expression:"src"}],staticClass:"emfe-upload-icon-wrap",style:({opacity: _vm.canShow ? 1 : 0})},[_c('div',{staticClass:"emfe-upload-icon-wrap-box",class:[("emfe-upload-icon-wrap-box-" + _vm.align)]},[_c('img',{ref:"img",staticClass:"emfe-upload-icon-wrap-box-img",class:[("emfe-upload-img-" + _vm.align)],attrs:{"src":_vm.src}})]),_vm._v(" "),_c('i',{staticClass:"emfe-upload-icon-wrap-close",on:{"click":_vm.closeFn}})])]:_vm._e(),_vm._v(" "),(_vm.type === 'plus')?[_c('button',{directives:[{name:"show",rawName:"v-show",value:(!_vm.src),expression:"!src"}],staticClass:"emfe-upload-btn",class:_vm.btnName},[_vm._v(_vm._s(_vm.plusText))]),_vm._v(" "),_c('input',{directives:[{name:"show",rawName:"v-show",value:(!_vm.src),expression:"!src"}],ref:"uploadPlus",staticClass:"emfe-upload-file",class:_vm.fileName,attrs:{"disabled":_vm.disabled || !_vm.canUpload,"type":"file"},on:{"change":_vm.change}}),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.src),expression:"src"}],staticClass:"emfe-upload-plus-box",class:[("emfe-upload-plus-box-" + _vm.align)],style:({opacity: _vm.canShow ? 1 : 0}),on:{"click":_vm.closePlusFn}},[_c('img',{directives:[{name:"show",rawName:"v-show",value:(_vm.src),expression:"src"}],ref:"img",class:[("emfe-upload-img-" + _vm.align)],attrs:{"src":_vm.src}})])]:_vm._e(),_vm._v(" "),_c('emfe-modal',{attrs:{"show":_vm.interceptModal,"title":"截取器","okText":"保存","className":"form"},on:{"close":_vm.formCancel,"cancel":_vm.formCancel,"ok":_vm.formOk}},[_c('div',{staticClass:"emfe-upload-intercept-wrap",style:({'padding-top': (_vm.dragPaddingTop + "px"), 'padding-left': (_vm.dragPaddingLeft + "px")}),slot:"modal-main"},[_c('emfe-drag',{staticClass:"emfe-upload-intercept-drag",style:({ width: (_vm.dragWidth + "px"), height: (_vm.dragHeight + "px")}),attrs:{"dragEl":_vm.drag1,"initialValue":[-_vm.interceptCanvasWidth/2, -_vm.interceptCanvasHeight/2],"limit":"true"},on:{"drag":_vm.dragPosMove}},[_c('img',{ref:"previewImg",staticClass:"emfe-upload-intercept-img",style:({ width: (_vm.dragWidth + "px"), height: (_vm.dragHeight + "px")}),attrs:{"src":_vm.img}}),_vm._v(" "),_c('div',{ref:"drag1",staticClass:"emfe-upload-intercept",style:({width: (_vm.interceptCanvasWidth + "px"), height: (_vm.interceptCanvasHeight + "px"), left: (_vm.interceptLeft + "px"), top: (_vm.interceptTop + "px")})},[_c('emfe-drag',{staticClass:"emfe-upload-intercept-point emfe-upload-intercept-point-nw",attrs:{"moveEle":false},on:{"drag":_vm.nwPosMove}}),_vm._v(" "),_c('emfe-drag',{staticClass:"emfe-upload-intercept-point emfe-upload-intercept-point-ne",attrs:{"moveEle":false},on:{"drag":_vm.nePosMove}}),_vm._v(" "),_c('emfe-drag',{staticClass:"emfe-upload-intercept-point emfe-upload-intercept-point-sw",attrs:{"moveEle":false},on:{"drag":_vm.swPosMove}}),_vm._v(" "),_c('emfe-drag',{staticClass:"emfe-upload-intercept-point emfe-upload-intercept-point-se",attrs:{"moveEle":false},on:{"drag":_vm.sePosMove}})],1)])],1)])],2)},
 staticRenderFns: [],
   name: 'upload',
   data: function data() {
     return {
+      drag1: [],
+      canUpload: true,
       src: '',
       canShow: false,
       fileList: [],
       tempIndex: 1,
+      img: '',
       align: '',
+      interceptModal: false, // 截取器是否显示
+      interceptWidth: 360, // 截取器的宽
+      interceptHeight: 400, // 截取器的搞
+      interceptLeft: 0, // 截取器的左边距离
+      interceptTop: 0, // 截取器的有边距离
+      interceptCanvasWidth: 360, // 截取器截图的大小
+      interceptCanvasHeight: 400, // 截取器截图的大小
+      dragWidth: 'auto', // 拖拽的宽
+      dragHeight: 400, // 拖拽的高
+      dragPaddingLeft: 0,
+      dragPaddingTop: 0,
+      canvas: null,
+      canvasContext: null,
+      iconText: this.buttonText,
+      plusText: '+',
     };
   },
   props: {
@@ -1533,6 +1571,10 @@ staticRenderFns: [],
       type: Boolean,
       default: false,
     },
+    intercept: {
+      type: Array,
+      default: function () { return []; },
+    },
     format: {
       type: Array,
       default: function default$2() {
@@ -1567,6 +1609,18 @@ staticRenderFns: [],
       type: Function,
       default: function () {},
     },
+    buttonText: {
+      type: String,
+      default: '上传图片',
+    },
+    theme: {
+      type: String,
+      default: 'default',
+    },
+    fileType: {
+      type: String,
+      default: 'image',
+    },
   },
   computed: {
     uploadName: function uploadName() {
@@ -1575,7 +1629,7 @@ staticRenderFns: [],
         ( obj = {}, obj[((this.className) + "-upload")] = !!this.className, obj ),
         ( obj$1 = {}, obj$1[((this.className) + "-upload-" + (this.type))] = !!this.className, obj$1 ),
         {
-          'emfe-upload-disabled': this.disabled,
+          'emfe-upload-disabled': this.disabled || !this.canUpload,
         } ];
       var obj;
       var obj$1;
@@ -1591,7 +1645,7 @@ staticRenderFns: [],
         [("emfe-upload-" + (this.type) + "-file")],
         ( obj = {}, obj[((this.className) + "-upload-" + (this.type) + "-file")] = !!this.className, obj ),
         {
-          'emfe-upload-file-disabled': this.disabled,
+          'emfe-upload-file-disabled': this.disabled || !this.canUpload,
         } ];
       var obj;
     },
@@ -1607,16 +1661,114 @@ staticRenderFns: [],
         setTimeout(this$1.setAlign.bind(this$1), 0);
       };
     }
+    // 有截取器
+    if (this.intercept.length > 0) {
+      if (this.intercept.length > 1) {
+        this.interceptCanvasWidth = this.intercept[0];
+        this.interceptCanvasHeight = this.intercept[1];
+      } else if (this.intercept.length === 1) {
+        this.interceptCanvasWidth = this.intercept[0];
+        this.interceptCanvasHeight = this.intercept[0];
+      }
+    }
   },
   methods: {
-    setAlign: function setAlign() {
+    openInterceptModal: function openInterceptModal() {
+      openMask();
+      this.interceptModal = true;
+    },
+    closeInterceptModal: function closeInterceptModal() {
+      closeMask();
+      this.interceptModal = false;
+    },
+    formCancel: function formCancel() {
+      this.closeInterceptModal();
+      this.resetInputFile();
+    },
+    formOk: function formOk() {
+      this.initCanvas();
+    },
+    initCanvas: function initCanvas() {
+      var this$1 = this;
+
+      var img = new Image();
+      img.src = this.img;
+      img.onload = function () {
+        this$1.canvas = document.createElement('canvas');
+        this$1.canvasContext = this$1.canvas.getContext('2d');
+        this$1.canvas.width = this$1.interceptCanvasWidth;
+        this$1.canvas.height = this$1.interceptCanvasHeight;
+        this$1.getImageUrl();
+        this$1.postHandle(upload(this$1.clipData, uploadJpeg));
+        this$1.closeInterceptModal();
+      };
+    },
+    getImageUrl: function getImageUrl() {
+      var ref = this;
+      var canvasContext = ref.canvasContext;
+      var previewImg = ref.previewImg;
+      var clientWidth = previewImg.clientWidth;
+      var clientHeight = previewImg.clientHeight;
+      var left = this.interceptLeft;
+      var top = this.interceptTop;
+      canvasContext.drawImage(previewImg, -left, -top, clientWidth, clientHeight);
+      this.clipData = this.canvas.toDataURL(uploadJpeg);
+    },
+    // 拖拽大方块改变截图位置
+    dragPosMove: function dragPosMove(ev, left, top) {
+      this.interceptLeft = left;
+      this.interceptTop = top;
+    },
+    // 角部拖拽改变大小
+    pointMoveChangeSize: function pointMoveChangeSize(ev, left, lDir, type) {
+      var widthStep = -left;
+      // 左上 || 左下
+      if (type === 'nw' || type === 'sw') {
+        var lChange = pointOldLeft - left;
+        widthStep = lChange;
+      }
+      var heightStep = (this.interceptCanvasHeight * widthStep) / this.interceptCanvasWidth;
+      if (this.interceptCanvasWidth + widthStep >= this.intercept[0] &&
+        this.interceptCanvasWidth + widthStep <= this.interceptWidth) {
+        this.interceptCanvasWidth += widthStep;
+        this.interceptCanvasHeight += heightStep;
+        // 左上 || 左下
+        if (type === 'nw' || type === 'sw') {
+          this.interceptLeft -= widthStep;
+        }
+        // 左上 || 右上
+        if (type === 'nw' || type === 'ne') {
+          this.interceptTop -= heightStep;
+        }
+        pointOldLeft = left;
+      }
+    },
+    // 左上
+    nwPosMove: function nwPosMove(ev, left, top, lDir) {
+      this.pointMoveChangeSize(ev, left, lDir, 'nw');
+    },
+    // 右上
+    nePosMove: function nePosMove(ev, left, top, lDir) {
+      this.pointMoveChangeSize(ev, this.interceptCanvasWidth - left, lDir, 'ne');
+    },
+    // 左下
+    swPosMove: function swPosMove(ev, left, top, lDir) {
+      this.pointMoveChangeSize(ev, left, lDir, 'sw');
+    },
+    // 右下
+    sePosMove: function sePosMove(ev, left, top, lDir) {
+      this.pointMoveChangeSize(ev, this.interceptCanvasWidth - left, lDir);
+    },
+    setAlign: function setAlign(res) {
       var ref = this.$refs.img;
       var clientWidth = ref.clientWidth;
       var clientHeight = ref.clientHeight;
-      if (clientWidth !== 0 && clientHeight !== 0) {
-        if (clientWidth > clientHeight) {
+      var width = res ? res.width : clientWidth;
+      var height = res ? res.height : clientHeight;
+      if (width !== 0 && height !== 0) {
+        if (width > height) {
           this.align = 'horizontal';
-        } else if (clientWidth < clientHeight) {
+        } else if (width < height) {
           this.align = 'vertical';
         } else {
           this.align = 'normal';
@@ -1635,9 +1787,35 @@ staticRenderFns: [],
 
       var postFiles = Array.prototype.slice.call(files);
 
-      postFiles.forEach(function (file) {
-        this$1.postHandle(file);
-      });
+      if (this.intercept.length === 0) {
+        postFiles.forEach(function (file) {
+          this$1.postHandle(file);
+        });
+      } else {
+        var reader = new FileReader();
+        reader.readAsDataURL(postFiles[0]);
+        reader.onload = function (readerEvent) {
+          this$1.img = readerEvent.target.result;
+          this$1.openInterceptModal();
+          setTimeout(function () {
+            this$1.drag1.length = 0;
+            this$1.drag1.push(this$1.$refs.drag1);
+            this$1.previewImg = this$1.$refs.previewImg;
+            this$1.dragWidth = this$1.previewImg.clientWidth;
+            this$1.dragHeight = this$1.previewImg.clientHeight;
+            this$1.dragPaddingLeft = (this$1.dragWidth - this$1.interceptWidth) / 2;
+            this$1.dragPaddingTop = (this$1.dragHeight - this$1.interceptHeight) / 2;
+            var imgScale = this$1.dragHeight / this$1.dragWidth;
+            // 如果宽度超了
+            if (this$1.dragWidth > this$1.interceptWidth) {
+              this$1.dragWidth = this$1.interceptWidth;
+              this$1.dragHeight = imgScale * this$1.dragWidth;
+              this$1.dragPaddingLeft = (this$1.interceptWidth - this$1.dragWidth) / 2;
+              this$1.dragPaddingTop = (this$1.interceptHeight - this$1.dragHeight) / 2;
+            }
+          }, 0);
+        };
+      }
     },
     postHandle: function postHandle(file) {
       var this$1 = this;
@@ -1661,13 +1839,12 @@ staticRenderFns: [],
         }
       }
 
-      if (canUpload) {
+      if (this.canUpload) {
         this.handleStart(file);
         this.beforeUpload(file, EmfeMessage);
         this.$emit('beforeUpload', file, EmfeMessage);
-        this.canUpload = false;
-
-        upload({
+        this.canNotLoad();
+        upload$1({
           headers: this.headers,
           withCredentials: this.withCredentials,
           file: file,
@@ -1675,7 +1852,6 @@ staticRenderFns: [],
           filename: this.name,
           action: this.action,
           onSuccess: function (res) {
-            canUpload = true;
             if (!res.code) {
               this$1.handleSuccess(res, file);
             } else {
@@ -1683,7 +1859,6 @@ staticRenderFns: [],
             }
           },
           onError: function (err, response) {
-            canUpload = true;
             this$1.handleError(err, response, file);
           },
         });
@@ -1709,7 +1884,12 @@ staticRenderFns: [],
       if (fileData) {
         fileData.status = 'finished';
         fileData.response = res;
-        this.loadImg(res.url, res, fileData);
+        if (this.fileType === 'image') {
+          this.loadImg(res.url, res, fileData);
+        } else {
+          this.canLoad();
+          this.$emit('success', res, fileData, this.fileList, EmfeMessage);
+        }
       }
     },
     handleError: function handleError(err, response, file) {
@@ -1717,6 +1897,7 @@ staticRenderFns: [],
       var fileList = this.fileList;
 
       fileData.status = 'fail';
+      this.canLoad();
 
       fileList.splice(fileList.indexOf(fileData), 1);
       this.error(err, response, file, EmfeMessage);
@@ -1738,24 +1919,49 @@ staticRenderFns: [],
       img.src = src;
       img.onload = function () {
         this$1.src = src;
-        setTimeout(this$1.setAlign.bind(this$1), 0);
+        setTimeout(this$1.setAlign.bind(this$1, res), 0);
+        this$1.canLoad();
         this$1.success(res, fileData, this$1.fileList, EmfeMessage);
         this$1.$emit('success', res, fileData, this$1.fileList, EmfeMessage);
       };
     },
     closeFn: function closeFn() {
-      this.$refs.upload.value = '';
       this.closeCommon();
     },
     closePlusFn: function closePlusFn() {
-      this.$refs.uploadPlus.value = '';
       this.closeCommon();
     },
     closeCommon: function closeCommon() {
       this.src = '';
       this.canShow = false;
+      this.resetInputFile();
       this.close(EmfeMessage);
       this.$emit('close', EmfeMessage);
+    },
+    resetInputFile: function resetInputFile() {
+      if (this.type === 'icon') {
+        this.$refs.upload.value = '';
+      } else {
+        this.$refs.uploadPlus.value = '';
+      }
+      this.dragWidth = 'auto';
+      this.dragHeight = 400;
+    },
+    canLoad: function canLoad() {
+      this.canUpload = true;
+      if (this.type === 'icon') {
+        this.iconText = this.buttonText;
+      } else {
+        this.plusText = '+';
+      }
+    },
+    canNotLoad: function canNotLoad() {
+      this.canUpload = false;
+      if (this.type === 'icon') {
+        this.iconText = '上传中';
+      } else {
+        this.plusText = '...';
+      }
     },
   },
 };
@@ -1768,6 +1974,8 @@ EmfeUpload$1.install = function (Vue$$1) {
 var refPos = {
   x: 0,
   y: 0,
+  oldX: 0,
+  oldY: 0,
 };
 
 var EmfeDrag$1 = {
@@ -1798,7 +2006,7 @@ staticRenderFns: [],
       type: Array,
     },
     initialValue: { // 初始值
-      type: Number,
+      type: [Number, Array],
       default: 0,
     },
     direction: {
@@ -1814,6 +2022,10 @@ staticRenderFns: [],
     dragDiyStyle: {
       type: String,
       default: '',
+    },
+    moveEle: {
+      type: Boolean,
+      default: true,
     },
   },
   computed: {
@@ -1870,10 +2082,15 @@ staticRenderFns: [],
       if (this.dragEl && this.dragEl.length > 0) {
         downTop -= this.parentPaddingTop;
         downTop += this.scrollTop;
-        downTop += this.initialValue;
         downLeft -= this.parentPaddingLeft;
         downLeft += this.scrollLeft;
-        downLeft += this.initialValue;
+        if (Array.isArray(this.initialValue)) {
+          downTop += this.initialValue[1];
+          downLeft += this.initialValue[0];
+        } else {
+          downTop += this.initialValue;
+          downLeft += this.initialValue;
+        }
         this.dragEl.forEach(function (dragElement) {
           if (this$1.direction === 'vertical') {
             dragElement.style.top = downTop + "px";
@@ -1884,6 +2101,13 @@ staticRenderFns: [],
             dragElement.style.top = downTop + "px";
           }
         });
+        // 有可能会变宽高，比如截取器
+        this.elWidth = this.dragEl[0].clientWidth;
+        this.elHeight = this.dragEl[0].clientHeight;
+      } else {
+        // 有可能会变宽高，比如截取器
+        this.elWidth = this.$el.clientWidth;
+        this.elHeight = this.$el.clientHeight;
       }
       this.$emit('beforeDrag', e, downLeft, downTop);
     },
@@ -1900,11 +2124,16 @@ staticRenderFns: [],
         elTop = e.clientY - this.parentTop;
         elTop -= this.parentPaddingTop;
         elTop += this.scrollTop;
-        elTop += this.initialValue;
         elLeft = e.clientX - this.parentLeft;
         elLeft -= this.parentPaddingLeft;
         elLeft += this.scrollLeft;
-        elLeft += this.initialValue;
+        if (Array.isArray(this.initialValue)) {
+          elTop += this.initialValue[1];
+          elLeft += this.initialValue[0];
+        } else {
+          elTop += this.initialValue;
+          elLeft += this.initialValue;
+        }
       } else {
         elLeft = this.elLeft + disPosX;
         elTop = this.elTop + disPosY;
@@ -1925,26 +2154,32 @@ staticRenderFns: [],
         }
       }
 
-      if (this.dragEl && this.dragEl.length > 0) {
-        this.dragEl.forEach(function (dragElement) {
-          if (this$1.direction === 'vertical') {
-            dragElement.style.top = elTop + "px";
-          } else if (this$1.direction === 'horizontal') {
-            dragElement.style.left = elLeft + "px";
-          } else {
-            dragElement.style.left = elLeft + "px";
-            dragElement.style.top = elTop + "px";
+      if (this.moveEle) {
+        if (this.dragEl && this.dragEl.length > 0) {
+          this.dragEl.forEach(function (dragElement) {
+            if (this$1.direction === 'vertical') {
+              dragElement.style.top = elTop + "px";
+            } else if (this$1.direction === 'horizontal') {
+              dragElement.style.left = elLeft + "px";
+            } else {
+              dragElement.style.left = elLeft + "px";
+              dragElement.style.top = elTop + "px";
+            }
+          });
+        } else {
+          this.dragStyle = "left: " + elLeft + "px; top: " + elTop + "px";
+          if (this.direction === 'vertical') {
+            this.dragStyle = "top: " + elTop + "px";
+          } else if (this.direction === 'horizontal') {
+            this.dragStyle = "left: " + elLeft + "px;";
           }
-        });
-      } else {
-        this.dragStyle = "left: " + elLeft + "px; top: " + elTop + "px";
-        if (this.direction === 'vertical') {
-          this.dragStyle = "top: " + elTop + "px";
-        } else if (this.direction === 'horizontal') {
-          this.dragStyle = "left: " + elLeft + "px;";
         }
       }
-      this.$emit('drag', e, elLeft, elTop);
+      this.$emit('drag', e, elLeft, elTop, refPos.oldX - elLeft, refPos.oldY - elTop);
+      refPos.oldX = elLeft;
+      refPos.oldY = elTop;
+
+      e.stopPropagation();
     },
     up: function up(e) {
       document.removeEventListener('mousemove', this.move, false);
@@ -2328,7 +2563,7 @@ var prefixCls$3 = 'emfe-input-box';
 var error = 'error';
 
 var EmfeInput$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-input",class:_vm.addClass,style:(_vm.newStyle)},[_c('div',{class:[_vm.classList]},[(_vm.iconOk)?_c('emfe-icon',{attrs:{"type":_vm.iconType,"className":"emfe-input-box-icon-el"}}):_vm._e(),_vm._v(" "),_c('input',_vm._b({staticClass:"emfe-input-box-input",class:_vm.addInput,attrs:{"type":_vm.type,"placeholder":_vm.newPlaceholder},domProps:{"value":_vm.currentValue},on:{"input":_vm.change,"blur":_vm.blur}},'input',_vm.$props,false))],1),_vm._v(" "),(_vm.errOk)?_c('div',{staticClass:"emfe-input-box-text",class:_vm.addErrorText},[_vm._t("error")],2):_vm._e()])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-input",class:_vm.addClass,style:(_vm.newStyle)},[_c('div',{class:[_vm.classList]},[(_vm.iconOk)?_c('emfe-icon',{attrs:{"type":_vm.iconType,"className":"emfe-input-box-icon-el"}}):_vm._e(),_vm._v(" "),_c('input',_vm._b({staticClass:"emfe-input-box-input",class:_vm.addInput,attrs:{"type":_vm.type,"placeholder":_vm.newPlaceholder},domProps:{"value":_vm.currentValue},on:{"input":_vm.change,"blur":_vm.blur}},'input',_vm.$props))],1),_vm._v(" "),(_vm.errOk)?_c('div',{staticClass:"emfe-input-box-text",class:_vm.addErrorText},[_vm._t("error")],2):_vm._e()])},
 staticRenderFns: [],
   name: 'input',
   props: {
@@ -3120,7 +3355,7 @@ var allDays = 42;
 var allYears = 10;
 
 var EmfeDate$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"emfe-documentclick",rawName:"v-emfe-documentclick",value:(_vm.close),expression:"close"}],staticClass:"emfe-date",class:_vm.dateName},[(!_vm.open && !_vm.disabled)?_c('button',{staticClass:"emfe-date-btn",on:{"click":function($event){$event.stopPropagation();_vm.toggle($event);}}},[_c('span',{staticClass:"emfe-date-btn-text",class:{'emfe-date-btn-text-choice': _vm.choiced}},[_vm._v(_vm._s(_vm.date))]),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(!_vm.choiced),expression:"!choiced"}],attrs:{"type":"hint","className":"emfe-date"},on:{"icon-click":_vm.toggle}}),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(_vm.choiced),expression:"choiced"}],attrs:{"type":"qr","className":"emfe-date"},on:{"icon-click":_vm.cancel}})],1):_vm._e(),_vm._v(" "),(!_vm.open && _vm.disabled)?_c('button',{staticClass:"emfe-date-btn emfe-date-btn-disabled"},[_c('span',{staticClass:"emfe-date-btn-text",class:{'emfe-date-btn-text-choice': _vm.choiced}},[_vm._v(_vm._s(_vm.date))]),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(!_vm.choiced),expression:"!choiced"}],attrs:{"type":"hint","className":"emfe-date"}}),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(_vm.choiced),expression:"choiced"}],attrs:{"type":"qr","className":"emfe-date"}})],1):_vm._e(),_vm._v(" "),_c('emfe-transition',{attrs:{"name":"fade"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.status),expression:"status"}],staticClass:"emfe-date-box",class:{'emfe-date-box-position': !_vm.open}},[_c('div',{staticClass:"emfe-date-header"},[_c('button',{staticClass:"emfe-date-prevyear",on:{"click":function($event){$event.stopPropagation();_vm.prevYear($event);}}},[_vm._v("<<")]),_vm._v(" "),_c('button',{directives:[{name:"show",rawName:"v-show",value:(_vm.currentView === 'date'),expression:"currentView === 'date'"}],staticClass:"emfe-date-prevmonth",on:{"click":function($event){$event.stopPropagation();_vm.prevMonth($event);}}},[_vm._v("<")]),_vm._v(" "),_c('span',{directives:[{name:"show",rawName:"v-show",value:(_vm.currentView === 'date'),expression:"currentView === 'date'"}],staticClass:"emfe-date-text"},[_c('i',{staticClass:"emfe-date-text-year",on:{"click":function($event){$event.stopPropagation();_vm.yearHandle($event);}}},[_vm._v(_vm._s(_vm.year))]),_vm._v(" "),_c('em',[_vm._v("-")]),_vm._v(" "),_c('i',{staticClass:"emfe-date-text-month",on:{"click":function($event){$event.stopPropagation();_vm.monthHandle($event);}}},[_vm._v(_vm._s(_vm.month+1))])]),_vm._v(" "),_c('span',{directives:[{name:"show",rawName:"v-show",value:(_vm.currentView === 'month'),expression:"currentView === 'month'"}],staticClass:"emfe-date-text"},[_c('i',{staticClass:"emfe-date-text-year",on:{"click":function($event){$event.stopPropagation();_vm.yearHandle($event);}}},[_vm._v(_vm._s(_vm.year))])]),_vm._v(" "),_c('span',{directives:[{name:"show",rawName:"v-show",value:(_vm.currentView === 'year'),expression:"currentView === 'year'"}],staticClass:"emfe-date-text"},[_c('i',{staticClass:"emfe-date-text-yearrange",on:{"click":function($event){$event.stopPropagation();_vm.yearHandle($event);}}},[_vm._v(_vm._s(_vm.startYear)+" - "+_vm._s(_vm.years[_vm.years.length - 1]))])]),_vm._v(" "),_c('button',{directives:[{name:"show",rawName:"v-show",value:(_vm.currentView === 'date'),expression:"currentView === 'date'"}],staticClass:"emfe-date-nextmonth",on:{"click":function($event){$event.stopPropagation();_vm.nextMonth($event);}}},[_vm._v(">")]),_vm._v(" "),_c('button',{staticClass:"emfe-date-nextyear",on:{"click":function($event){$event.stopPropagation();_vm.nextYear($event);}}},[_vm._v(">>")])]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.currentView === 'date'),expression:"currentView === 'date'"}]},[_c('div',{staticClass:"emfe-date-week"},[_c('span',{staticClass:"emfe-date-week-item"},[_vm._v("日")]),_vm._v(" "),_c('span',{staticClass:"emfe-date-week-item"},[_vm._v("一")]),_vm._v(" "),_c('span',{staticClass:"emfe-date-week-item"},[_vm._v("二")]),_vm._v(" "),_c('span',{staticClass:"emfe-date-week-item"},[_vm._v("三")]),_vm._v(" "),_c('span',{staticClass:"emfe-date-week-item"},[_vm._v("四")]),_vm._v(" "),_c('span',{staticClass:"emfe-date-week-item"},[_vm._v("五")]),_vm._v(" "),_c('span',{staticClass:"emfe-date-week-item"},[_vm._v("六")])]),_vm._v(" "),_c('div',{staticClass:"emfe-date-day"},[_vm._l((_vm.lastMonthDays),function(day){return _c('span',{staticClass:"emfe-date-item emfe-date-item-prev",class:{'emfe-date-item-disable': day.undo},on:{"click":function($event){$event.stopPropagation();_vm.choicePrevMonthDay(day);}}},[_vm._v(_vm._s(day.num))])}),_vm._v(" "),_vm._l((_vm.days),function(day){return _c('span',{staticClass:"emfe-date-item",class:{'emfe-date-item-disable': day.undo, 'emfe-date-today': day.today, 'emfe-date-choice': day.choice},on:{"click":function($event){$event.stopPropagation();_vm.choiceDay(day);}}},[_vm._v(_vm._s(day.num))])}),_vm._v(" "),_vm._l((_vm.nextMonthDays),function(day){return _c('span',{staticClass:"emfe-date-item emfe-date-item-prev",class:{'emfe-date-item-disable': day.undo},on:{"click":function($event){$event.stopPropagation();_vm.choiceNextMonthDay(day);}}},[_vm._v(_vm._s(day.num))])})],2)]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.currentView === 'month'),expression:"currentView === 'month'"}],staticClass:"emfe-date-month"},_vm._l((_vm.months),function(month){return _c('span',{staticClass:"emfe-date-month-item",on:{"click":function($event){$event.stopPropagation();_vm.choiceMonth(month);}}},[_vm._v(_vm._s(month))])})),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.currentView === 'year'),expression:"currentView === 'year'"}],staticClass:"emfe-date-year"},_vm._l((_vm.years),function(year){return _c('span',{staticClass:"emfe-date-year-item",on:{"click":function($event){$event.stopPropagation();_vm.choiceYear(year);}}},[_vm._v(_vm._s(year))])})),_vm._v(" "),(_vm.confirm)?_c('div',{staticClass:"emfe-date-footer"},[_c('button',{staticClass:"emfe-date-ok",on:{"click":function($event){$event.stopPropagation();_vm.ok($event);}}},[_vm._v("确定")])]):_vm._e()])])],1)},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"emfe-documentclick",rawName:"v-emfe-documentclick",value:(_vm.close),expression:"close"}],staticClass:"emfe-date",class:_vm.dateName},[(!_vm.open && !_vm.disabled)?_c('button',{staticClass:"emfe-date-btn",on:{"click":function($event){$event.stopPropagation();_vm.toggle($event);}}},[_c('span',{staticClass:"emfe-date-btn-text",class:{'emfe-date-btn-text-choice': _vm.choiced}},[_vm._v(_vm._s(_vm.date))]),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(!_vm.choiced),expression:"!choiced"}],attrs:{"type":"rili","className":"emfe-date"},on:{"icon-click":_vm.toggle}}),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(_vm.choiced),expression:"choiced"}],attrs:{"type":"shanchu","className":"emfe-date"},on:{"icon-click":_vm.cancel}})],1):_vm._e(),_vm._v(" "),(!_vm.open && _vm.disabled)?_c('button',{staticClass:"emfe-date-btn emfe-date-btn-disabled"},[_c('span',{staticClass:"emfe-date-btn-text",class:{'emfe-date-btn-text-choice': _vm.choiced}},[_vm._v(_vm._s(_vm.date))]),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(!_vm.choiced),expression:"!choiced"}],attrs:{"type":"rili","className":"emfe-date"}}),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(_vm.choiced),expression:"choiced"}],attrs:{"type":"shanchu","className":"emfe-date"}})],1):_vm._e(),_vm._v(" "),_c('emfe-transition',{attrs:{"name":"fade"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.status),expression:"status"}],staticClass:"emfe-date-box",class:{'emfe-date-box-position': !_vm.open}},[_c('div',{staticClass:"emfe-date-header"},[_c('button',{staticClass:"emfe-date-prevyear",on:{"click":function($event){$event.stopPropagation();_vm.prevYear($event);}}},[_vm._v("<<")]),_vm._v(" "),_c('button',{directives:[{name:"show",rawName:"v-show",value:(_vm.currentView === 'date'),expression:"currentView === 'date'"}],staticClass:"emfe-date-prevmonth",on:{"click":function($event){$event.stopPropagation();_vm.prevMonth($event);}}},[_vm._v("<")]),_vm._v(" "),_c('span',{directives:[{name:"show",rawName:"v-show",value:(_vm.currentView === 'date'),expression:"currentView === 'date'"}],staticClass:"emfe-date-text"},[_c('i',{staticClass:"emfe-date-text-year",on:{"click":function($event){$event.stopPropagation();_vm.yearHandle($event);}}},[_vm._v(_vm._s(_vm.year))]),_vm._v(" "),_c('em',[_vm._v("-")]),_vm._v(" "),_c('i',{staticClass:"emfe-date-text-month",on:{"click":function($event){$event.stopPropagation();_vm.monthHandle($event);}}},[_vm._v(_vm._s(_vm.month+1))])]),_vm._v(" "),_c('span',{directives:[{name:"show",rawName:"v-show",value:(_vm.currentView === 'month'),expression:"currentView === 'month'"}],staticClass:"emfe-date-text"},[_c('i',{staticClass:"emfe-date-text-year",on:{"click":function($event){$event.stopPropagation();_vm.yearHandle($event);}}},[_vm._v(_vm._s(_vm.year))])]),_vm._v(" "),_c('span',{directives:[{name:"show",rawName:"v-show",value:(_vm.currentView === 'year'),expression:"currentView === 'year'"}],staticClass:"emfe-date-text"},[_c('i',{staticClass:"emfe-date-text-yearrange",on:{"click":function($event){$event.stopPropagation();_vm.yearHandle($event);}}},[_vm._v(_vm._s(_vm.startYear)+" - "+_vm._s(_vm.years[_vm.years.length - 1]))])]),_vm._v(" "),_c('button',{directives:[{name:"show",rawName:"v-show",value:(_vm.currentView === 'date'),expression:"currentView === 'date'"}],staticClass:"emfe-date-nextmonth",on:{"click":function($event){$event.stopPropagation();_vm.nextMonth($event);}}},[_vm._v(">")]),_vm._v(" "),_c('button',{staticClass:"emfe-date-nextyear",on:{"click":function($event){$event.stopPropagation();_vm.nextYear($event);}}},[_vm._v(">>")])]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.currentView === 'date'),expression:"currentView === 'date'"}]},[_c('div',{staticClass:"emfe-date-week"},[_c('span',{staticClass:"emfe-date-week-item"},[_vm._v("日")]),_vm._v(" "),_c('span',{staticClass:"emfe-date-week-item"},[_vm._v("一")]),_vm._v(" "),_c('span',{staticClass:"emfe-date-week-item"},[_vm._v("二")]),_vm._v(" "),_c('span',{staticClass:"emfe-date-week-item"},[_vm._v("三")]),_vm._v(" "),_c('span',{staticClass:"emfe-date-week-item"},[_vm._v("四")]),_vm._v(" "),_c('span',{staticClass:"emfe-date-week-item"},[_vm._v("五")]),_vm._v(" "),_c('span',{staticClass:"emfe-date-week-item"},[_vm._v("六")])]),_vm._v(" "),_c('div',{staticClass:"emfe-date-day"},[_vm._l((_vm.lastMonthDays),function(day){return _c('span',{staticClass:"emfe-date-item emfe-date-item-prev",class:{'emfe-date-item-disable': day.undo},on:{"click":function($event){$event.stopPropagation();_vm.choicePrevMonthDay(day);}}},[_vm._v(_vm._s(day.num))])}),_vm._v(" "),_vm._l((_vm.days),function(day){return _c('span',{staticClass:"emfe-date-item",class:{'emfe-date-item-disable': day.undo, 'emfe-date-today': day.today, 'emfe-date-choice': day.choice},on:{"click":function($event){$event.stopPropagation();_vm.choiceDay(day);}}},[_vm._v(_vm._s(day.num))])}),_vm._v(" "),_vm._l((_vm.nextMonthDays),function(day){return _c('span',{staticClass:"emfe-date-item emfe-date-item-prev",class:{'emfe-date-item-disable': day.undo},on:{"click":function($event){$event.stopPropagation();_vm.choiceNextMonthDay(day);}}},[_vm._v(_vm._s(day.num))])})],2)]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.currentView === 'month'),expression:"currentView === 'month'"}],staticClass:"emfe-date-month"},_vm._l((_vm.months),function(month){return _c('span',{staticClass:"emfe-date-month-item",on:{"click":function($event){$event.stopPropagation();_vm.choiceMonth(month);}}},[_vm._v(_vm._s(month))])})),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.currentView === 'year'),expression:"currentView === 'year'"}],staticClass:"emfe-date-year"},_vm._l((_vm.years),function(year){return _c('span',{staticClass:"emfe-date-year-item",on:{"click":function($event){$event.stopPropagation();_vm.choiceYear(year);}}},[_vm._v(_vm._s(year))])})),_vm._v(" "),(_vm.confirm)?_c('div',{staticClass:"emfe-date-footer"},[_c('button',{staticClass:"emfe-date-ok",on:{"click":function($event){$event.stopPropagation();_vm.ok($event);}}},[_vm._v("确定")])]):_vm._e()])])],1)},
 staticRenderFns: [],
   name: 'EmfeDate',
   data: function data() {
@@ -3415,7 +3650,7 @@ var timeObject = {
 };
 
 var EmfeDateM$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"emfe-documentclick",rawName:"v-emfe-documentclick",value:(_vm.close),expression:"close"}],staticClass:"emfe-date-m"},[(!_vm.open && !_vm.disabled)?_c('button',{staticClass:"emfe-date-m-btn",on:{"click":_vm.toggle}},[_c('span',{staticClass:"emfe-date-m-btn-text",class:{'emfe-date-m-btn-text-choice': _vm.choiced}},[_vm._v(_vm._s(_vm.date))]),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(!_vm.choiced),expression:"!choiced"}],attrs:{"type":"hint","className":"emfe-date-m"},on:{"icon-click":_vm.toggle}}),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(_vm.choiced),expression:"choiced"}],attrs:{"type":"qr","className":"emfe-date-m"},on:{"icon-click":_vm.cancel}})],1):_vm._e(),_vm._v(" "),(!_vm.open && _vm.disabled)?_c('button',{staticClass:"emfe-date-m-btn emfe-date-m-btn-disabled"},[_c('span',{staticClass:"emfe-date-m-btn-text"},[_vm._v(_vm._s(_vm.date))]),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(!_vm.choiced),expression:"!choiced"}],attrs:{"type":"hint","className":"emfe-date-m"}}),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(_vm.choiced),expression:"choiced"}],attrs:{"type":"qr","className":"emfe-date-m"}})],1):_vm._e(),_vm._v(" "),_c('emfe-transition',{attrs:{"name":"fade"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.status),expression:"status"}],staticClass:"emfe-date-m-box",class:{'emfe-date-m-box-position': !_vm.open}},[(_vm.confirm)?_c('div',{staticClass:"emfe-date-m-footer"},[_c('button',{staticClass:"emfe-date-m-ok",on:{"click":function($event){$event.stopPropagation();_vm.ok($event);}}},[_vm._v("确定")])]):_vm._e(),_vm._v(" "),_c('div',{staticClass:"emfe-date-m-main"},[_c('div',{staticClass:"emfe-date-m-item"},[_c('ul',{staticClass:"emfe-date-m-list"},_vm._l((_vm.years),function(yearLoop){return _c('li',{staticClass:"emfe-date-m-list-item",class:{'emfe-date-m-list-item-on': yearLoop.num === _vm.year, 'emfe-date-m-list-item-disable': yearLoop.undo},on:{"click":function($event){$event.stopPropagation();_vm.choiceYear(yearLoop);}}},[_vm._v(_vm._s(yearLoop.num))])}))]),_vm._v(" "),_c('div',{staticClass:"emfe-date-m-item"},[_c('ul',{staticClass:"emfe-date-m-list"},_vm._l((_vm.months),function(monthLoop){return _c('li',{staticClass:"emfe-date-m-list-item",class:{'emfe-date-m-list-item-on': monthLoop.num === _vm.month, 'emfe-date-m-list-item-disable': monthLoop.undo},on:{"click":function($event){$event.stopPropagation();_vm.choiceMonth(monthLoop);}}},[_vm._v(_vm._s(monthLoop.num))])}))]),_vm._v(" "),_c('div',{staticClass:"emfe-date-m-item"},[_c('ul',{staticClass:"emfe-date-m-list"},_vm._l((_vm.days),function(dayLoop,dayIndex){return _c('li',{staticClass:"emfe-date-m-list-item",class:{'emfe-date-m-list-item-on': dayLoop.num === _vm.day, 'emfe-date-m-list-item-disable': dayLoop.undo},on:{"click":function($event){$event.stopPropagation();_vm.choiceDay(dayLoop);}}},[_vm._v(_vm._s(dayLoop.num))])}))])])])])],1)},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"emfe-documentclick",rawName:"v-emfe-documentclick",value:(_vm.close),expression:"close"}],staticClass:"emfe-date-m"},[(!_vm.open && !_vm.disabled)?_c('button',{staticClass:"emfe-date-m-btn",on:{"click":_vm.toggle}},[_c('span',{staticClass:"emfe-date-m-btn-text",class:{'emfe-date-m-btn-text-choice': _vm.choiced}},[_vm._v(_vm._s(_vm.date))]),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(!_vm.choiced),expression:"!choiced"}],attrs:{"type":"rili","className":"emfe-date-m"},on:{"icon-click":_vm.toggle}}),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(_vm.choiced),expression:"choiced"}],attrs:{"type":"shanchu","className":"emfe-date-m"},on:{"icon-click":_vm.cancel}})],1):_vm._e(),_vm._v(" "),(!_vm.open && _vm.disabled)?_c('button',{staticClass:"emfe-date-m-btn emfe-date-m-btn-disabled"},[_c('span',{staticClass:"emfe-date-m-btn-text"},[_vm._v(_vm._s(_vm.date))]),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(!_vm.choiced),expression:"!choiced"}],attrs:{"type":"rili","className":"emfe-date-m"}}),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(_vm.choiced),expression:"choiced"}],attrs:{"type":"shanchu","className":"emfe-date-m"}})],1):_vm._e(),_vm._v(" "),_c('emfe-transition',{attrs:{"name":"fade"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.status),expression:"status"}],staticClass:"emfe-date-m-box",class:{'emfe-date-m-box-position': !_vm.open}},[(_vm.confirm)?_c('div',{staticClass:"emfe-date-m-footer"},[_c('button',{staticClass:"emfe-date-m-ok",on:{"click":function($event){$event.stopPropagation();_vm.ok($event);}}},[_vm._v("确定")])]):_vm._e(),_vm._v(" "),_c('div',{staticClass:"emfe-date-m-main"},[_c('div',{staticClass:"emfe-date-m-item"},[_c('ul',{staticClass:"emfe-date-m-list"},_vm._l((_vm.years),function(yearLoop){return _c('li',{staticClass:"emfe-date-m-list-item",class:{'emfe-date-m-list-item-on': yearLoop.num === _vm.year, 'emfe-date-m-list-item-disable': yearLoop.undo},on:{"click":function($event){$event.stopPropagation();_vm.choiceYear(yearLoop);}}},[_vm._v(_vm._s(yearLoop.num))])}))]),_vm._v(" "),_c('div',{staticClass:"emfe-date-m-item"},[_c('ul',{staticClass:"emfe-date-m-list"},_vm._l((_vm.months),function(monthLoop){return _c('li',{staticClass:"emfe-date-m-list-item",class:{'emfe-date-m-list-item-on': monthLoop.num === _vm.month, 'emfe-date-m-list-item-disable': monthLoop.undo},on:{"click":function($event){$event.stopPropagation();_vm.choiceMonth(monthLoop);}}},[_vm._v(_vm._s(monthLoop.num))])}))]),_vm._v(" "),_c('div',{staticClass:"emfe-date-m-item"},[_c('ul',{staticClass:"emfe-date-m-list"},_vm._l((_vm.days),function(dayLoop,dayIndex){return _c('li',{staticClass:"emfe-date-m-list-item",class:{'emfe-date-m-list-item-on': dayLoop.num === _vm.day, 'emfe-date-m-list-item-disable': dayLoop.undo},on:{"click":function($event){$event.stopPropagation();_vm.choiceDay(dayLoop);}}},[_vm._v(_vm._s(dayLoop.num))])}))])])])])],1)},
 staticRenderFns: [],
   name: 'EmfeTimeM',
   data: function data() {
@@ -3642,7 +3877,7 @@ var secondNum = 60;
 // const zero = '00';
 
 var EmfeTime$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"emfe-documentclick",rawName:"v-emfe-documentclick",value:(_vm.close),expression:"close"}],staticClass:"emfe-time",class:_vm.timeName},[(!_vm.open && !_vm.disabled)?_c('button',{staticClass:"emfe-time-btn",on:{"click":_vm.toggle}},[_c('span',{staticClass:"emfe-time-btn-text",class:{'emfe-time-btn-text-choice': _vm.choiced}},[_vm._v(_vm._s(_vm.time))]),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(!_vm.choiced),expression:"!choiced"}],attrs:{"type":"hint","className":"emfe-time"},on:{"icon-click":_vm.toggle}}),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(_vm.choiced),expression:"choiced"}],attrs:{"type":"qr","className":"emfe-time"},on:{"icon-click":_vm.cancel}})],1):_vm._e(),_vm._v(" "),(!_vm.open && _vm.disabled)?_c('button',{staticClass:"emfe-time-btn emfe-time-btn-disabled"},[_c('span',{staticClass:"emfe-time-btn-text"},[_vm._v(_vm._s(_vm.time))]),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(!_vm.choiced),expression:"!choiced"}],attrs:{"type":"hint","className":"emfe-time"}}),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(_vm.choiced),expression:"choiced"}],attrs:{"type":"qr","className":"emfe-time"}})],1):_vm._e(),_vm._v(" "),_c('emfe-transition',{attrs:{"name":"fade"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.status),expression:"status"}],staticClass:"emfe-time-box",class:{'emfe-time-box-position': !_vm.open}},[_c('div',{staticClass:"emfe-time-main"},[_c('div',{staticClass:"emfe-time-item",class:_vm.itemName},[_c('ul',{staticClass:"emfe-time-list"},_vm._l((_vm.hours),function(hourLoop){return _c('li',{staticClass:"emfe-time-list-item",class:{'emfe-time-list-item-on': hourLoop.num === _vm.hour, 'emfe-time-list-item-disable': hourLoop.undo},on:{"click":function($event){$event.stopPropagation();_vm.choiceHour(hourLoop);}}},[_vm._v(_vm._s(hourLoop.num))])}))]),_vm._v(" "),_c('div',{staticClass:"emfe-time-item",class:_vm.itemName},[_c('ul',{staticClass:"emfe-time-list"},_vm._l((_vm.minutes),function(minuteLoop){return _c('li',{staticClass:"emfe-time-list-item",class:{'emfe-time-list-item-on': minuteLoop.num === _vm.minute, 'emfe-time-list-item-disable': minuteLoop.undo},on:{"click":function($event){$event.stopPropagation();_vm.choiceMinute(minuteLoop);}}},[_vm._v(_vm._s(minuteLoop.num))])}))]),_vm._v(" "),_c('div',{staticClass:"emfe-time-item",class:_vm.itemName},[_c('ul',{staticClass:"emfe-time-list"},_vm._l((_vm.seconds),function(secondLoop,secondIndex){return _c('li',{staticClass:"emfe-time-list-item",class:{'emfe-time-list-item-on': secondLoop.num === _vm.second, 'emfe-time-list-item-disable': secondLoop.undo},on:{"click":function($event){$event.stopPropagation();_vm.choiceSecond(secondLoop);}}},[_vm._v(_vm._s(secondLoop.num))])}))])]),_vm._v(" "),(_vm.confirm)?_c('div',{staticClass:"emfe-time-footer"},[_c('button',{staticClass:"emfe-time-ok",on:{"click":function($event){$event.stopPropagation();_vm.ok($event);}}},[_vm._v("确定")])]):_vm._e()])])],1)},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"emfe-documentclick",rawName:"v-emfe-documentclick",value:(_vm.close),expression:"close"}],staticClass:"emfe-time",class:_vm.timeName},[(!_vm.open && !_vm.disabled)?_c('button',{staticClass:"emfe-time-btn",on:{"click":_vm.toggle}},[_c('span',{staticClass:"emfe-time-btn-text",class:{'emfe-time-btn-text-choice': _vm.choiced}},[_vm._v(_vm._s(_vm.time))]),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(!_vm.choiced),expression:"!choiced"}],attrs:{"type":"shijian","className":"emfe-time"},on:{"icon-click":_vm.toggle}}),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(_vm.choiced),expression:"choiced"}],attrs:{"type":"shanchu","className":"emfe-time"},on:{"icon-click":_vm.cancel}})],1):_vm._e(),_vm._v(" "),(!_vm.open && _vm.disabled)?_c('button',{staticClass:"emfe-time-btn emfe-time-btn-disabled"},[_c('span',{staticClass:"emfe-time-btn-text"},[_vm._v(_vm._s(_vm.time))]),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(!_vm.choiced),expression:"!choiced"}],attrs:{"type":"shijian","className":"emfe-time"}}),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(_vm.choiced),expression:"choiced"}],attrs:{"type":"shanchu","className":"emfe-time"}})],1):_vm._e(),_vm._v(" "),_c('emfe-transition',{attrs:{"name":"fade"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.status),expression:"status"}],staticClass:"emfe-time-box",class:{'emfe-time-box-position': !_vm.open}},[_c('div',{staticClass:"emfe-time-main"},[_c('div',{staticClass:"emfe-time-item",class:_vm.itemName},[_c('ul',{staticClass:"emfe-time-list"},_vm._l((_vm.hours),function(hourLoop){return _c('li',{staticClass:"emfe-time-list-item",class:{'emfe-time-list-item-on': hourLoop.num === _vm.hour, 'emfe-time-list-item-disable': hourLoop.undo},on:{"click":function($event){$event.stopPropagation();_vm.choiceHour(hourLoop);}}},[_vm._v(_vm._s(hourLoop.num))])}))]),_vm._v(" "),_c('div',{staticClass:"emfe-time-item",class:_vm.itemName},[_c('ul',{staticClass:"emfe-time-list"},_vm._l((_vm.minutes),function(minuteLoop){return _c('li',{staticClass:"emfe-time-list-item",class:{'emfe-time-list-item-on': minuteLoop.num === _vm.minute, 'emfe-time-list-item-disable': minuteLoop.undo},on:{"click":function($event){$event.stopPropagation();_vm.choiceMinute(minuteLoop);}}},[_vm._v(_vm._s(minuteLoop.num))])}))]),_vm._v(" "),_c('div',{staticClass:"emfe-time-item",class:_vm.itemName},[_c('ul',{staticClass:"emfe-time-list"},_vm._l((_vm.seconds),function(secondLoop,secondIndex){return _c('li',{staticClass:"emfe-time-list-item",class:{'emfe-time-list-item-on': secondLoop.num === _vm.second, 'emfe-time-list-item-disable': secondLoop.undo},on:{"click":function($event){$event.stopPropagation();_vm.choiceSecond(secondLoop);}}},[_vm._v(_vm._s(secondLoop.num))])}))])]),_vm._v(" "),(_vm.confirm)?_c('div',{staticClass:"emfe-time-footer"},[_c('button',{staticClass:"emfe-time-ok",on:{"click":function($event){$event.stopPropagation();_vm.ok($event);}}},[_vm._v("确定")])]):_vm._e()])])],1)},
 staticRenderFns: [],
   name: 'EmfeTime',
   data: function data() {
@@ -3873,7 +4108,7 @@ var minuteNum$1 = 60;
 var secondNum$1 = 60;
 
 var EmfeTimeM$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"emfe-documentclick",rawName:"v-emfe-documentclick",value:(_vm.close),expression:"close"}],staticClass:"emfe-time-m",class:_vm.timeName},[(!_vm.open && !_vm.disabled)?_c('button',{staticClass:"emfe-time-m-btn",on:{"click":_vm.toggle}},[_c('span',{staticClass:"emfe-time-m-btn-text",class:{'emfe-time-m-btn-text-choice': _vm.choiced}},[_vm._v(_vm._s(_vm.time))]),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(!_vm.choiced),expression:"!choiced"}],attrs:{"type":"hint","className":"emfe-time-m"},on:{"icon-click":_vm.toggle}}),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(_vm.choiced),expression:"choiced"}],attrs:{"type":"qr","className":"emfe-time-m"},on:{"icon-click":_vm.cancel}})],1):_vm._e(),_vm._v(" "),(!_vm.open && _vm.disabled)?_c('button',{staticClass:"emfe-time-m-btn emfe-time-m-btn-disabled"},[_c('span',{staticClass:"emfe-time-m-btn-text"},[_vm._v(_vm._s(_vm.time))]),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(!_vm.choiced),expression:"!choiced"}],attrs:{"type":"hint","className":"emfe-time-m"}}),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(_vm.choiced),expression:"choiced"}],attrs:{"type":"qr","className":"emfe-time-m"}})],1):_vm._e(),_vm._v(" "),_c('emfe-transition',{attrs:{"name":"fade"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.status),expression:"status"}],staticClass:"emfe-time-m-box",class:{'emfe-time-m-box-position': !_vm.open}},[(_vm.confirm)?_c('div',{staticClass:"emfe-time-m-footer"},[_c('button',{staticClass:"emfe-time-m-ok",on:{"click":function($event){$event.stopPropagation();_vm.ok($event);}}},[_vm._v("确定")])]):_vm._e(),_vm._v(" "),_c('div',{staticClass:"emfe-time-m-main"},[_c('div',{staticClass:"emfe-time-m-item",class:_vm.itemName},[_c('ul',{staticClass:"emfe-time-m-list"},_vm._l((_vm.hours),function(hourLoop){return _c('li',{staticClass:"emfe-time-m-list-item",class:{'emfe-time-m-list-item-on': hourLoop.num === _vm.hour, 'emfe-time-m-list-item-disable': hourLoop.undo},on:{"click":function($event){$event.stopPropagation();_vm.choiceHour(hourLoop);}}},[_vm._v(_vm._s(hourLoop.num))])}))]),_vm._v(" "),(_vm.exact === 'minute' || _vm.exact === 'second')?_c('div',{staticClass:"emfe-time-m-item",class:_vm.itemName},[_c('ul',{staticClass:"emfe-time-m-list"},_vm._l((_vm.minutes),function(minuteLoop){return _c('li',{staticClass:"emfe-time-m-list-item",class:{'emfe-time-m-list-item-on': minuteLoop.num === _vm.minute, 'emfe-time-m-list-item-disable': minuteLoop.undo},on:{"click":function($event){$event.stopPropagation();_vm.choiceMinute(minuteLoop);}}},[_vm._v(_vm._s(minuteLoop.num))])}))]):_vm._e(),_vm._v(" "),(_vm.exact === 'second')?_c('div',{staticClass:"emfe-time-m-item",class:_vm.itemName},[_c('ul',{staticClass:"emfe-time-m-list"},_vm._l((_vm.seconds),function(secondLoop,secondIndex){return _c('li',{staticClass:"emfe-time-m-list-item",class:{'emfe-time-m-list-item-on': secondLoop.num === _vm.second, 'emfe-time-m-list-item-disable': secondLoop.undo},on:{"click":function($event){$event.stopPropagation();_vm.choiceSecond(secondLoop);}}},[_vm._v(_vm._s(secondLoop.num))])}))]):_vm._e()])])])],1)},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"emfe-documentclick",rawName:"v-emfe-documentclick",value:(_vm.close),expression:"close"}],staticClass:"emfe-time-m",class:_vm.timeName},[(!_vm.open && !_vm.disabled)?_c('button',{staticClass:"emfe-time-m-btn",on:{"click":_vm.toggle}},[_c('span',{staticClass:"emfe-time-m-btn-text",class:{'emfe-time-m-btn-text-choice': _vm.choiced}},[_vm._v(_vm._s(_vm.time))]),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(!_vm.choiced),expression:"!choiced"}],attrs:{"type":"shijian","className":"emfe-time-m"},on:{"icon-click":_vm.toggle}}),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(_vm.choiced),expression:"choiced"}],attrs:{"type":"shanchu","className":"emfe-time-m"},on:{"icon-click":_vm.cancel}})],1):_vm._e(),_vm._v(" "),(!_vm.open && _vm.disabled)?_c('button',{staticClass:"emfe-time-m-btn emfe-time-m-btn-disabled"},[_c('span',{staticClass:"emfe-time-m-btn-text"},[_vm._v(_vm._s(_vm.time))]),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(!_vm.choiced),expression:"!choiced"}],attrs:{"type":"shijian","className":"emfe-time-m"}}),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(_vm.choiced),expression:"choiced"}],attrs:{"type":"shanchu","className":"emfe-time-m"}})],1):_vm._e(),_vm._v(" "),_c('emfe-transition',{attrs:{"name":"fade"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.status),expression:"status"}],staticClass:"emfe-time-m-box",class:{'emfe-time-m-box-position': !_vm.open}},[(_vm.confirm)?_c('div',{staticClass:"emfe-time-m-footer"},[_c('button',{staticClass:"emfe-time-m-ok",on:{"click":function($event){$event.stopPropagation();_vm.ok($event);}}},[_vm._v("确定")])]):_vm._e(),_vm._v(" "),_c('div',{staticClass:"emfe-time-m-main"},[_c('div',{staticClass:"emfe-time-m-item",class:_vm.itemName},[_c('ul',{staticClass:"emfe-time-m-list"},_vm._l((_vm.hours),function(hourLoop){return _c('li',{staticClass:"emfe-time-m-list-item",class:{'emfe-time-m-list-item-on': hourLoop.num === _vm.hour, 'emfe-time-m-list-item-disable': hourLoop.undo},on:{"click":function($event){$event.stopPropagation();_vm.choiceHour(hourLoop);}}},[_vm._v(_vm._s(hourLoop.num))])}))]),_vm._v(" "),(_vm.exact === 'minute' || _vm.exact === 'second')?_c('div',{staticClass:"emfe-time-m-item",class:_vm.itemName},[_c('ul',{staticClass:"emfe-time-m-list"},_vm._l((_vm.minutes),function(minuteLoop){return _c('li',{staticClass:"emfe-time-m-list-item",class:{'emfe-time-m-list-item-on': minuteLoop.num === _vm.minute, 'emfe-time-m-list-item-disable': minuteLoop.undo},on:{"click":function($event){$event.stopPropagation();_vm.choiceMinute(minuteLoop);}}},[_vm._v(_vm._s(minuteLoop.num))])}))]):_vm._e(),_vm._v(" "),(_vm.exact === 'second')?_c('div',{staticClass:"emfe-time-m-item",class:_vm.itemName},[_c('ul',{staticClass:"emfe-time-m-list"},_vm._l((_vm.seconds),function(secondLoop,secondIndex){return _c('li',{staticClass:"emfe-time-m-list-item",class:{'emfe-time-m-list-item-on': secondLoop.num === _vm.second, 'emfe-time-m-list-item-disable': secondLoop.undo},on:{"click":function($event){$event.stopPropagation();_vm.choiceSecond(secondLoop);}}},[_vm._v(_vm._s(secondLoop.num))])}))]):_vm._e()])])])],1)},
 staticRenderFns: [],
   name: 'EmfeTimeM',
   data: function data() {
@@ -4118,7 +4353,7 @@ var timeText = '选择时间';
 var dateText = '选择日期';
 
 var EmfeDatetime$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"emfe-documentclick",rawName:"v-emfe-documentclick",value:(_vm.close),expression:"close"}],staticClass:"emfe-datetime"},[(!_vm.disabled)?_c('button',{staticClass:"emfe-datetime-btn",on:{"click":function($event){$event.stopPropagation();_vm.toggle($event);}}},[_c('span',{staticClass:"emfe-datetime-btn-text",class:{'emfe-datetime-btn-text-choice': _vm.choiced}},[_vm._v(_vm._s(_vm.dateTime))]),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(!_vm.choiced),expression:"!choiced"}],attrs:{"type":"hint","className":"emfe-datetime"},on:{"icon-click":_vm.toggle}}),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(_vm.choiced),expression:"choiced"}],attrs:{"type":"qr","className":"emfe-datetime"},on:{"icon-click":_vm.cancel}})],1):_vm._e(),_vm._v(" "),(_vm.disabled)?_c('button',{staticClass:"emfe-datetime-btn emfe-datetime-btn-disabled"},[_c('span',{staticClass:"emfe-datetime-btn-text"},[_vm._v(_vm._s(_vm.dateTime))]),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(!_vm.choiced),expression:"!choiced"}],attrs:{"type":"hint","className":"emfe-datetime"}}),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(_vm.choiced),expression:"choiced"}],attrs:{"type":"qr","className":"emfe-datetime"}})],1):_vm._e(),_vm._v(" "),_c('emfe-transition',{attrs:{"name":"fade"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.status),expression:"status"}],staticClass:"emfe-datetime-main emfe-datetime-main-position"},[_c('div',{staticClass:"emfe-datetime-type"},[_c('emfe-date',{directives:[{name:"show",rawName:"v-show",value:(_vm.isDate),expression:"isDate"}],ref:"date",attrs:{"format":_vm.formatDate,"open":true,"confirm":false,"disabledDate":_vm.disabledDate},on:{"choice":_vm.choiceDate},model:{value:(_vm.date),callback:function ($$v) {_vm.date=$$v;},expression:"date"}}),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(!_vm.isDate),expression:"!isDate"}],staticClass:"emfe-datetime-time"},[_c('div',{staticClass:"emfe-datetime-time-header"},[_vm._v(_vm._s(_vm.date))]),_vm._v(" "),_c('emfe-time',{ref:"time",attrs:{"className":"emfe-datetime","open":true,"confirm":false,"timeChoices":_vm.timeChoices,"disabledHours":_vm.disabledHours,"disabledMinutes":_vm.disabledMinutes,"disabledSeconds":_vm.disabledSeconds},on:{"choice":_vm.choiceTime},model:{value:(_vm.time),callback:function ($$v) {_vm.time=$$v;},expression:"time"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"emfe-datetime-footer"},[_c('button',{staticClass:"emfe-datetime-settype",class:{'emfe-datetime-settype-disabled': _vm.disabledToggle},on:{"click":_vm.typeToggle}},[_vm._v(_vm._s(_vm.typeText))]),_vm._v(" "),_c('button',{staticClass:"emfe-datetime-ok",on:{"click":function($event){$event.stopPropagation();_vm.ok($event);}}},[_vm._v("确定")])])])])],1)},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"emfe-documentclick",rawName:"v-emfe-documentclick",value:(_vm.close),expression:"close"}],staticClass:"emfe-datetime"},[(!_vm.disabled)?_c('button',{staticClass:"emfe-datetime-btn",on:{"click":function($event){$event.stopPropagation();_vm.toggle($event);}}},[_c('span',{staticClass:"emfe-datetime-btn-text",class:{'emfe-datetime-btn-text-choice': _vm.choiced}},[_vm._v(_vm._s(_vm.dateTime))]),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(!_vm.choiced),expression:"!choiced"}],attrs:{"type":"shijian","className":"emfe-datetime"},on:{"icon-click":_vm.toggle}}),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(_vm.choiced),expression:"choiced"}],attrs:{"type":"shanchu","className":"emfe-datetime"},on:{"icon-click":_vm.cancel}})],1):_vm._e(),_vm._v(" "),(_vm.disabled)?_c('button',{staticClass:"emfe-datetime-btn emfe-datetime-btn-disabled"},[_c('span',{staticClass:"emfe-datetime-btn-text"},[_vm._v(_vm._s(_vm.dateTime))]),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(!_vm.choiced),expression:"!choiced"}],attrs:{"type":"shijian","className":"emfe-datetime"}}),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(_vm.choiced),expression:"choiced"}],attrs:{"type":"shanchu","className":"emfe-datetime"}})],1):_vm._e(),_vm._v(" "),_c('emfe-transition',{attrs:{"name":"fade"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.status),expression:"status"}],staticClass:"emfe-datetime-main emfe-datetime-main-position"},[_c('div',{staticClass:"emfe-datetime-type"},[_c('emfe-date',{directives:[{name:"show",rawName:"v-show",value:(_vm.isDate),expression:"isDate"}],ref:"date",attrs:{"format":_vm.formatDate,"open":true,"confirm":false,"disabledDate":_vm.disabledDate},on:{"choice":_vm.choiceDate},model:{value:(_vm.date),callback:function ($$v) {_vm.date=$$v;},expression:"date"}}),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(!_vm.isDate),expression:"!isDate"}],staticClass:"emfe-datetime-time"},[_c('div',{staticClass:"emfe-datetime-time-header"},[_vm._v(_vm._s(_vm.date))]),_vm._v(" "),_c('emfe-time',{ref:"time",attrs:{"className":"emfe-datetime","open":true,"confirm":false,"timeChoices":_vm.timeChoices,"disabledHours":_vm.disabledHours,"disabledMinutes":_vm.disabledMinutes,"disabledSeconds":_vm.disabledSeconds},on:{"choice":_vm.choiceTime},model:{value:(_vm.time),callback:function ($$v) {_vm.time=$$v;},expression:"time"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"emfe-datetime-footer"},[_c('button',{staticClass:"emfe-datetime-settype",class:{'emfe-datetime-settype-disabled': _vm.disabledToggle},on:{"click":_vm.typeToggle}},[_vm._v(_vm._s(_vm.typeText))]),_vm._v(" "),_c('button',{staticClass:"emfe-datetime-ok",on:{"click":function($event){$event.stopPropagation();_vm.ok($event);}}},[_vm._v("确定")])])])])],1)},
 staticRenderFns: [],
   name: 'EmfeDatetime',
   data: function data() {
@@ -4273,7 +4508,7 @@ var minuteNum$2 = 60;
 var secondNum$2 = 60;
 
 var EmfeDatetimeM$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"emfe-documentclick",rawName:"v-emfe-documentclick",value:(_vm.close),expression:"close"}],staticClass:"emfe-datetime-m"},[(!_vm.open && !_vm.disabled)?_c('button',{staticClass:"emfe-datetime-m-btn",on:{"click":_vm.toggle}},[_c('span',{staticClass:"emfe-datetime-m-btn-text",class:{'emfe-datetime-m-btn-text-choice': _vm.choiced}},[_vm._v(_vm._s(_vm.datetime))]),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(!_vm.choiced),expression:"!choiced"}],attrs:{"type":"hint","className":"emfe-datetime-m"},on:{"icon-click":_vm.toggle}}),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(_vm.choiced),expression:"choiced"}],attrs:{"type":"qr","className":"emfe-datetime-m"},on:{"icon-click":_vm.cancel}})],1):_vm._e(),_vm._v(" "),(!_vm.open && _vm.disabled)?_c('button',{staticClass:"emfe-datetime-m-btn emfe-datetime-m-btn-disabled"},[_c('span',{staticClass:"emfe-datetime-m-btn-text"},[_vm._v(_vm._s(_vm.date))]),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(!_vm.choiced),expression:"!choiced"}],attrs:{"type":"hint","className":"emfe-datetime-m"}}),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(_vm.choiced),expression:"choiced"}],attrs:{"type":"qr","className":"emfe-datetime-m"}})],1):_vm._e(),_vm._v(" "),_c('emfe-transition',{attrs:{"name":"fade"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.status),expression:"status"}],staticClass:"emfe-datetime-m-box",class:{'emfe-datetime-m-box-position': !_vm.open}},[(_vm.confirm)?_c('div',{staticClass:"emfe-datetime-m-footer"},[_c('button',{staticClass:"emfe-datetime-m-ok",on:{"click":function($event){$event.stopPropagation();_vm.ok($event);}}},[_vm._v("确定")])]):_vm._e(),_vm._v(" "),_c('div',{staticClass:"emfe-datetime-m-main"},[_c('div',{staticClass:"emfe-datetime-m-item",class:_vm.itemName},[_c('ul',{staticClass:"emfe-datetime-m-list"},_vm._l((_vm.years),function(yearLoop){return _c('li',{staticClass:"emfe-datetime-m-list-item",class:{'emfe-datetime-m-list-item-on': yearLoop.num === _vm.year, 'emfe-datetime-m-list-item-disable': yearLoop.undo},on:{"click":function($event){$event.stopPropagation();_vm.choiceYear(yearLoop);}}},[_vm._v(_vm._s(yearLoop.num))])}))]),_vm._v(" "),_c('div',{staticClass:"emfe-datetime-m-item",class:_vm.itemName},[_c('ul',{staticClass:"emfe-datetime-m-list"},_vm._l((_vm.months),function(monthLoop){return _c('li',{staticClass:"emfe-datetime-m-list-item",class:{'emfe-datetime-m-list-item-on': monthLoop.num === _vm.month, 'emfe-datetime-m-list-item-disable': monthLoop.undo},on:{"click":function($event){$event.stopPropagation();_vm.choiceMonth(monthLoop);}}},[_vm._v(_vm._s(monthLoop.num))])}))]),_vm._v(" "),_c('div',{staticClass:"emfe-datetime-m-item",class:_vm.itemName},[_c('ul',{staticClass:"emfe-datetime-m-list"},_vm._l((_vm.days),function(dayLoop,dayIndex){return _c('li',{staticClass:"emfe-datetime-m-list-item",class:{'emfe-datetime-m-list-item-on': dayLoop.num === _vm.day, 'emfe-datetime-m-list-item-disable': dayLoop.undo},on:{"click":function($event){$event.stopPropagation();_vm.choiceDay(dayLoop);}}},[_vm._v(_vm._s(dayLoop.num))])}))]),_vm._v(" "),_c('div',{staticClass:"emfe-datetime-m-item",class:_vm.itemName},[_c('ul',{staticClass:"emfe-datetime-m-list"},_vm._l((_vm.hours),function(hourLoop){return _c('li',{staticClass:"emfe-datetime-m-list-item",class:{'emfe-datetime-m-list-item-on': hourLoop.num === _vm.hour, 'emfe-datetime-m-list-item-disable': hourLoop.undo},on:{"click":function($event){$event.stopPropagation();_vm.choiceHour(hourLoop);}}},[_vm._v(_vm._s(hourLoop.num))])}))]),_vm._v(" "),(_vm.exact === 'minute' || _vm.exact === 'second')?_c('div',{staticClass:"emfe-datetime-m-item",class:_vm.itemName},[_c('ul',{staticClass:"emfe-datetime-m-list"},_vm._l((_vm.minutes),function(minuteLoop){return _c('li',{staticClass:"emfe-datetime-m-list-item",class:{'emfe-datetime-m-list-item-on': minuteLoop.num === _vm.minute, 'emfe-datetime-m-list-item-disable': minuteLoop.undo},on:{"click":function($event){$event.stopPropagation();_vm.choiceMinute(minuteLoop);}}},[_vm._v(_vm._s(minuteLoop.num))])}))]):_vm._e(),_vm._v(" "),(_vm.exact === 'second')?_c('div',{staticClass:"emfe-datetime-m-item",class:_vm.itemName},[_c('ul',{staticClass:"emfe-datetime-m-list"},_vm._l((_vm.seconds),function(secondLoop,secondIndex){return _c('li',{staticClass:"emfe-datetime-m-list-item",class:{'emfe-datetime-m-list-item-on': secondLoop.num === _vm.second, 'emfe-datetime-m-list-item-disable': secondLoop.undo},on:{"click":function($event){$event.stopPropagation();_vm.choiceSecond(secondLoop);}}},[_vm._v(_vm._s(secondLoop.num))])}))]):_vm._e()])])])],1)},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"emfe-documentclick",rawName:"v-emfe-documentclick",value:(_vm.close),expression:"close"}],staticClass:"emfe-datetime-m"},[(!_vm.open && !_vm.disabled)?_c('button',{staticClass:"emfe-datetime-m-btn",on:{"click":_vm.toggle}},[_c('span',{staticClass:"emfe-datetime-m-btn-text",class:{'emfe-datetime-m-btn-text-choice': _vm.choiced}},[_vm._v(_vm._s(_vm.datetime))]),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(!_vm.choiced),expression:"!choiced"}],attrs:{"type":"rili","className":"emfe-datetime-m"},on:{"icon-click":_vm.toggle}}),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(_vm.choiced),expression:"choiced"}],attrs:{"type":"shanchu","className":"emfe-datetime-m"},on:{"icon-click":_vm.cancel}})],1):_vm._e(),_vm._v(" "),(!_vm.open && _vm.disabled)?_c('button',{staticClass:"emfe-datetime-m-btn emfe-datetime-m-btn-disabled"},[_c('span',{staticClass:"emfe-datetime-m-btn-text"},[_vm._v(_vm._s(_vm.date))]),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(!_vm.choiced),expression:"!choiced"}],attrs:{"type":"rili","className":"emfe-datetime-m"}}),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(_vm.choiced),expression:"choiced"}],attrs:{"type":"shanchu","className":"emfe-datetime-m"}})],1):_vm._e(),_vm._v(" "),_c('emfe-transition',{attrs:{"name":"fade"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.status),expression:"status"}],staticClass:"emfe-datetime-m-box",class:{'emfe-datetime-m-box-position': !_vm.open}},[(_vm.confirm)?_c('div',{staticClass:"emfe-datetime-m-footer"},[_c('button',{staticClass:"emfe-datetime-m-ok",on:{"click":function($event){$event.stopPropagation();_vm.ok($event);}}},[_vm._v("确定")])]):_vm._e(),_vm._v(" "),_c('div',{staticClass:"emfe-datetime-m-main"},[_c('div',{staticClass:"emfe-datetime-m-item",class:_vm.itemName},[_c('ul',{staticClass:"emfe-datetime-m-list"},_vm._l((_vm.years),function(yearLoop){return _c('li',{staticClass:"emfe-datetime-m-list-item",class:{'emfe-datetime-m-list-item-on': yearLoop.num === _vm.year, 'emfe-datetime-m-list-item-disable': yearLoop.undo},on:{"click":function($event){$event.stopPropagation();_vm.choiceYear(yearLoop);}}},[_vm._v(_vm._s(yearLoop.num))])}))]),_vm._v(" "),_c('div',{staticClass:"emfe-datetime-m-item",class:_vm.itemName},[_c('ul',{staticClass:"emfe-datetime-m-list"},_vm._l((_vm.months),function(monthLoop){return _c('li',{staticClass:"emfe-datetime-m-list-item",class:{'emfe-datetime-m-list-item-on': monthLoop.num === _vm.month, 'emfe-datetime-m-list-item-disable': monthLoop.undo},on:{"click":function($event){$event.stopPropagation();_vm.choiceMonth(monthLoop);}}},[_vm._v(_vm._s(monthLoop.num))])}))]),_vm._v(" "),_c('div',{staticClass:"emfe-datetime-m-item",class:_vm.itemName},[_c('ul',{staticClass:"emfe-datetime-m-list"},_vm._l((_vm.days),function(dayLoop,dayIndex){return _c('li',{staticClass:"emfe-datetime-m-list-item",class:{'emfe-datetime-m-list-item-on': dayLoop.num === _vm.day, 'emfe-datetime-m-list-item-disable': dayLoop.undo},on:{"click":function($event){$event.stopPropagation();_vm.choiceDay(dayLoop);}}},[_vm._v(_vm._s(dayLoop.num))])}))]),_vm._v(" "),_c('div',{staticClass:"emfe-datetime-m-item",class:_vm.itemName},[_c('ul',{staticClass:"emfe-datetime-m-list"},_vm._l((_vm.hours),function(hourLoop){return _c('li',{staticClass:"emfe-datetime-m-list-item",class:{'emfe-datetime-m-list-item-on': hourLoop.num === _vm.hour, 'emfe-datetime-m-list-item-disable': hourLoop.undo},on:{"click":function($event){$event.stopPropagation();_vm.choiceHour(hourLoop);}}},[_vm._v(_vm._s(hourLoop.num))])}))]),_vm._v(" "),(_vm.exact === 'minute' || _vm.exact === 'second')?_c('div',{staticClass:"emfe-datetime-m-item",class:_vm.itemName},[_c('ul',{staticClass:"emfe-datetime-m-list"},_vm._l((_vm.minutes),function(minuteLoop){return _c('li',{staticClass:"emfe-datetime-m-list-item",class:{'emfe-datetime-m-list-item-on': minuteLoop.num === _vm.minute, 'emfe-datetime-m-list-item-disable': minuteLoop.undo},on:{"click":function($event){$event.stopPropagation();_vm.choiceMinute(minuteLoop);}}},[_vm._v(_vm._s(minuteLoop.num))])}))]):_vm._e(),_vm._v(" "),(_vm.exact === 'second')?_c('div',{staticClass:"emfe-datetime-m-item",class:_vm.itemName},[_c('ul',{staticClass:"emfe-datetime-m-list"},_vm._l((_vm.seconds),function(secondLoop,secondIndex){return _c('li',{staticClass:"emfe-datetime-m-list-item",class:{'emfe-datetime-m-list-item-on': secondLoop.num === _vm.second, 'emfe-datetime-m-list-item-disable': secondLoop.undo},on:{"click":function($event){$event.stopPropagation();_vm.choiceSecond(secondLoop);}}},[_vm._v(_vm._s(secondLoop.num))])}))]):_vm._e()])])])],1)},
 staticRenderFns: [],
   name: 'EmfeTimeM',
   data: function data() {
@@ -4699,13 +4934,18 @@ staticRenderFns: [],
       default: false,
     },
     value: {
-      type: Boolean,
+      type: [Boolean, String],
       default: false,
+    },
+    interceptor: {
+      type: Boolean,
+      default: true,
     },
   },
   data: function data() {
     return {
       currentValue: this.value,
+      interceptorDefault: this.interceptor,
     };
   },
   computed: {
@@ -4724,9 +4964,20 @@ staticRenderFns: [],
   methods: {
     toggle: function toggle() {
       if (!this.disabled) {
-        var checked = !this.currentValue;
-        this.currentValue = checked;
-        this.$emit('toggle', checked);
+        if (this.interceptorDefault) {
+          this.changeValue();
+        }
+        this.$emit('toggle', this.currentValue);
+      }
+    },
+    changeValue: function changeValue() {
+      this.currentValue = !this.currentValue;
+    },
+  },
+  watch: {
+    interceptor: function interceptor(val, oldVal) {
+      if (val !== oldVal) {
+        this.changeValue();
       }
     },
   },
@@ -6274,7 +6525,7 @@ var lastHit = -1;
 var lastDrag = -1;
 
 var EmfeOpations$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-opations",class:_vm.opationsName},[_vm._l((_vm.datas),function(item,index){return [_c('div',{key:index,ref:"hits",refInFor:true,staticClass:"emfe-opations-main",style:(item.style)},[_c('i',{staticClass:"emfe-opations-icon emfe-opations-radio"}),_vm._v(" "),_c('emfe-input',{attrs:{"placeholder":index === _vm.datas.length - 1 && !_vm.clickFlg ? _vm.otherPlaceholder : _vm.dataPlaceholder,"className":"emfe-opations"},model:{value:(_vm.opationsData[index]),callback:function ($$v) {_vm.$set(_vm.opationsData, index, $$v);},expression:"opationsData[index]"}}),_vm._v(" "),_c('i',{directives:[{name:"show",rawName:"v-show",value:(!item.noPlus),expression:"!item.noPlus"}],staticClass:"emfe-opations-icon emfe-opations-plus",class:{'emfe-opations-margin-right': !_vm.minusFlg},on:{"click":function($event){_vm.plus(index);}}}),_vm._v(" "),_c('i',{directives:[{name:"show",rawName:"v-show",value:(item.text === _vm.otherPlaceholder || _vm.minusFlg),expression:"item.text === otherPlaceholder || minusFlg"}],staticClass:"emfe-opations-icon emfe-opations-minus",class:{'emfe-opations-margin-left': item.noPlus},on:{"click":function($event){_vm.minus(index);}}}),_vm._v(" "),_c('i',{staticClass:"emfe-opations-icon emfe-opations-drag",on:{"mousedown":function($event){$event.stopPropagation();_vm.down($event, item);}}})],1),_vm._v(" "),(item.hrStatus)?_c('div',{staticClass:"emfe-opations-hr"}):_vm._e()]}),_vm._v(" "),_c('div',{staticClass:"emfe-opations-operation"},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.clickFlg),expression:"clickFlg"}],staticClass:"emfe-opations-operation-other",on:{"click":_vm.otherPlus}},[_vm._v("其他选项")])])],2)},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-opations",class:_vm.opationsName},[_vm._l((_vm.datas),function(item,index){return [_c('div',{key:index,ref:"hits",refInFor:true,staticClass:"emfe-opations-main",style:(item.style)},[_c('i',{staticClass:"emfe-opations-icon emfe-opations-radio"}),_vm._v(" "),_c('emfe-input',{attrs:{"placeholder":index === _vm.datas.length - 1 && !_vm.clickFlg ? _vm.otherPlaceholder : _vm.dataPlaceholder,"className":"emfe-opations"},model:{value:(_vm.opationsData[index]),callback:function ($$v) {var $$exp = _vm.opationsData, $$idx = index;if (!Array.isArray($$exp)){_vm.opationsData[index]=$$v;}else{$$exp.splice($$idx, 1, $$v);}},expression:"opationsData[index]"}}),_vm._v(" "),_c('i',{directives:[{name:"show",rawName:"v-show",value:(!item.noPlus),expression:"!item.noPlus"}],staticClass:"emfe-opations-icon emfe-opations-plus",class:{'emfe-opations-margin-right': !_vm.minusFlg},on:{"click":function($event){_vm.plus(index);}}}),_vm._v(" "),_c('i',{directives:[{name:"show",rawName:"v-show",value:(item.text === _vm.otherPlaceholder || _vm.minusFlg),expression:"item.text === otherPlaceholder || minusFlg"}],staticClass:"emfe-opations-icon emfe-opations-minus",class:{'emfe-opations-margin-left': item.noPlus},on:{"click":function($event){_vm.minus(index);}}}),_vm._v(" "),_c('i',{staticClass:"emfe-opations-icon emfe-opations-drag",on:{"mousedown":function($event){$event.stopPropagation();_vm.down($event, item);}}})],1),_vm._v(" "),(item.hrStatus)?_c('div',{staticClass:"emfe-opations-hr"}):_vm._e()]}),_vm._v(" "),_c('div',{staticClass:"emfe-opations-operation"},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.clickFlg),expression:"clickFlg"}],staticClass:"emfe-opations-operation-other",on:{"click":_vm.otherPlus}},[_vm._v("其他选项")])])],2)},
 staticRenderFns: [],
   name: 'EmfeOpations',
   data: function data() {
@@ -6553,7 +6804,7 @@ function getBody$1(xhr) {
   }
 }
 
-function upload$1(option) {
+function upload$2(option) {
   if (typeof XMLHttpRequest === 'undefined') {
     return;
   }
@@ -6733,7 +6984,7 @@ staticRenderFns: [function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._
         this.pwdFlg = false;
       }
       if (this.telFlg && this.pwdFlg) {
-        upload$1({
+        upload$2({
           headers: this.headers,
           type: 'POST',
           data: JSON.stringify(this.data),
@@ -6745,7 +6996,7 @@ staticRenderFns: [function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._
               var autoData = "Bearer " + Rtoken;
               var callBack = res.data.call_back_url;
               callBack.forEach(function (url) {
-                upload$1({
+                upload$2({
                   headers: this$1.headers,
                   type: 'GET',
                   action: url,
