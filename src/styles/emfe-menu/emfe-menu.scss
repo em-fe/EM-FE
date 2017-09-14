@@ -61,8 +61,8 @@ $menu-top: 64px;
       color: $text-color-Three;
       height: 48px;
       line-height: 48px;
-      width: calc(100% - 4px);
-      display: block;
+      // width: calc(100% - 4px);
+      width: 100%;
       display: flex;
       align-items: center;
 
