@@ -2,20 +2,21 @@
   <div class="emfe-menu" :class="menuName" ref="menu">
     <div class="emfe-menu-main">
       <button class="emfe-menu-main-header" @click="menuToShort">
-        <emfe-icon class="emfe-menu-main-sidebar" type="sidebar"></emfe-icon>
+        <emfe-icon class="emfe-menu-main-sidebar" type="menushouqi" @icon-click="menuToShort" v-if="menuShort"></emfe-icon>
+        <emfe-icon class="emfe-menu-main-sidebar" type="menuzhankai" @icon-click="menuToShort" v-else></emfe-icon>
       </button>
       <ul class="emfe-menu-main-list">
         <li class="emfe-menu-main-item" v-for="(data, dataIndex) in datas">
           <a href="javascript:;" class="emfe-menu-main-link" :class="{'emfe-menu-main-link-on': mainIndex === dataIndex}" @click="tochildren(data)" v-if="data.routers">
-            <emfe-tooltip placement="right" :disable="!menuShort">
-              <emfe-icon class="emfe-menu-main-icon" :type="data.icon"  slot="render"></emfe-icon>
+            <emfe-tooltip className="emfe-menu" placement="right" :disable="!menuShort">
+              <emfe-icon class="emfe-menu-main-icon" :type="data.icon" slot="render" @icon-click="tochildren(data)"></emfe-icon>
               <span slot="tip">{{ data.title }}</span>
             </emfe-tooltip>
             <span class="emfe-menu-main-text">{{ data.title }}</span>
           </a>
           <a href="javascript:;" class="emfe-menu-main-link" :class="{'emfe-menu-main-link-on': mainIndex === dataIndex}" @click="tochildren(data)" v-else>
-            <emfe-tooltip placement="right" :disable="!menuShort">
-              <emfe-icon class="emfe-menu-main-icon" :type="data.icon"  slot="render"></emfe-icon>
+            <emfe-tooltip className="emfe-menu" placement="right" :disable="!menuShort">
+              <emfe-icon class="emfe-menu-main-icon" :type="data.icon" slot="render" @icon-click="tochildren(data)"></emfe-icon>
               <span slot="tip">{{ data.title }}</span>
             </emfe-tooltip>
             <span class="emfe-menu-main-text">{{ data.title }}</span>
@@ -92,6 +93,8 @@ export default {
       if (screenMd !== screenMdResize) {
         screenMd = screenMdResize;
         this.menuToShort('resize');
+      } else {
+        screenMd = '';
       }
     };
 

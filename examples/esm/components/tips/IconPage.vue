@@ -58,13 +58,32 @@ export default {
   data() {
     return {
       types: [
-        ['hint', 'qr', 'hotel'],
-        ['publish', 'list', 'eventelogo'],
-        ['stick', 'statistics', 'account'],
-        ['financial', 'sidebar', 'order'],
-        ['public', 'diadema', 'service'],
-        ['paradise', 'commodity', 'sale'],
-        ['marketing', 'site'],
+        ['tupzhanshi2', 'qr', 'tupianshangchuan'],
+        ['publish', 'info', 'suc1'],
+        ['xinxi', 'duobeijifen', 'huiyuanzhekou'],
+        ['huiyuanzhuanshuri', 'mianyunfei', 'querentouxiang'],
+        ['shengrizengsong', 'shenjijiangli', 'shngrijifen'],
+        ['tishixinxishouqi', 'tishixinxizhankai', 'vip'],
+        ['wanshanxinxjianglijifen', 'wuquanyi', 'xiaofeijianglijifen'],
+        ['yaoqingjianglijifen', 'chengshi', 'duoxiangxiala'],
+        ['duoxuan', 'fengexian', 'jingtaidit'],
+        ['radio', 'riqixuanze', 'shuzi'],
+        ['wenbenmiaoshu', 'wenbnekuang', 'xialaxuanxiang'],
+        ['qq2', 'shenfenzheng', 'shengri'],
+        ['weibo', 'weixin', 'youxiang'],
+        ['gongsi2', 'card', 'chengwei2'],
+        ['dizhi2', 'email', 'fax'],
+        ['sex', 'shengri2', 'shouji2'],
+        ['site', 'suozaidi', 'tel'],
+        ['touxiang2', 'weibo2', 'weixin3'],
+        ['xingming2', 'zhiwei2', 'xiala2'],
+        ['mima', 'eventename', 'publish'],
+        ['set', 'tip', 'zhiding'],
+        ['rili', 'shangchuan', 'shijian'],
+        ['tanchuanguanbi', 'tianjiatupian', 'denglu'],
+        ['zuoji', 'bumen', 'wangzhi'],
+        ['zhiwei', 'start', 'touxiang'],
+        ['zanting'],
       ],
     };
   },
@@ -73,6 +92,7 @@ export default {
 <style lang="scss">
 .icon {
   text-align: center;
+  font-size: 20px;
 
   &-page {
     color: #19efef;

@@ -1,5 +1,5 @@
 /*!
- * EMFE.js v1.0.12
+ * EMFE.js v1.0.15
  * (c) 2014-2017 李梦龙
  * Released under the MIT License.
  */
@@ -119,6 +119,102 @@ staticRenderFns: [],
 
 EmfeBar$1.install = function (Vue$$1) {
   Vue$$1.component(EmfeBar$1.name, EmfeBar$1);
+};
+
+var childrenLast$1 = -1; // 记录上一个点击的二级手风琴的索引
+
+var EmfeBarC$1 = {
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-bar-c",class:_vm.barName},[_c('ul',{staticClass:"emfe-bar-c-list"},[_vm._l((_vm.datas),function(childrenData,childrenDataIndex){return [(!childrenData.children)?_c('li',{staticClass:"emfe-bar-c-item"},[_c('router-link',{staticClass:"emfe-bar-c-link",class:{' emfe-bar-c-link-disabled': _vm.isDisabled},attrs:{"to":childrenData.routers}},[_vm._v(_vm._s(childrenData.title))])],1):_c('li',{staticClass:"emfe-bar-c-item",class:{'emfe-bar-c-item-on': _vm.childrenIndex == childrenDataIndex}},[_c('span',{staticClass:"emfe-bar-c-btn",class:{' emfe-bar-c-btn-disabled': _vm.isDisabled},attrs:{"href":"javascript:;"},on:{"click":function($event){_vm.toogleChild(childrenDataIndex);}}},[_vm._v(_vm._s(childrenData.title))]),_vm._v(" "),_c('i',{staticClass:"emfe-bar-c-arrow"}),_vm._v(" "),_c('emfe-transition',{attrs:{"name":"gradual"}},[_c('ul',{directives:[{name:"show",rawName:"v-show",value:(_vm.childrenIndex == childrenDataIndex),expression:"childrenIndex == childrenDataIndex"}],staticClass:"emfe-bar-c-childlist"},_vm._l((childrenData.children),function(child){return _c('li',{staticClass:"emfe-bar-c-childitem"},[_c('router-link',{staticClass:"emfe-bar-c-childlink",class:{' emfe-bar-c-childlink-disabled': _vm.isDisabled},attrs:{"to":child.routers}},[_vm._v(_vm._s(child.title))])],1)}))])],1)]})],2)])},
+staticRenderFns: [],
+  name: 'EmfeBarC',
+  data: function data() {
+    return {
+      childrenIndex: -1,
+      isDisabled: this.disabled,
+    };
+  },
+  props: {
+    datas: {
+      type: Array,
+      required: true,
+    },
+    fullpath: {
+      type: String,
+      required: true,
+    },
+    className: String,
+    disabled: Boolean,
+    disableRex: String,
+  },
+  computed: {
+    barName: function barName() {
+      return this.className ? ((this.className) + "-bar") : '';
+    },
+  },
+  mounted: function mounted() {
+    this.testUrl();
+  },
+  methods: {
+    testUrl: function testUrl() {
+      var this$1 = this;
+
+      var ref = this.$route;
+      var fullPath = ref.fullPath;
+      var name = ref.name;
+
+      var newFullPath = this.fullpath ? this.fullpath : fullPath;
+
+      this.datas.forEach(function (data, dataNum) {
+        // 如果一级导航有子节点
+        if (O.hOwnProperty(data, 'children')) {
+          data.children.forEach(function (dataChild) {
+            var inChildFullPath = O.hOwnProperty(dataChild, 'routers') && O.hOwnProperty(dataChild.routers, 'path') && newFullPath.indexOf(dataChild.routers.path) > -1;
+            if (inChildFullPath || name === dataChild.routers.name) {
+              // 打开二级导航的折叠
+              this$1.toogleChild(dataNum);
+            }
+          });
+        }
+      });
+    },
+    toogleChild: function toogleChild(itemIndex) {
+      if (!this.isDisabled) {
+        var eqLast = itemIndex === childrenLast$1;
+        this.childrenIndex = eqLast ? -1 : itemIndex;
+        childrenLast$1 = eqLast ? -1 : itemIndex;
+      }
+    },
+    tochildren: function tochildren(item) {
+      if (O.hOwnProperty(item, 'routers')) {
+        this.$router.push(item.routers);
+      }
+
+      if (O.hOwnProperty(item, 'url')) {
+        window.open(item.url);
+      }
+    },
+  },
+  watch: {
+    fullpath: function fullpath(val, oldVal) {
+      if (val !== oldVal) {
+        this.testUrl();
+      }
+    },
+    $route: function $route(val, oldVal) {
+      if (val.name !== oldVal.name) {
+        this.isDisabled = val.path.indexOf(this.disableRex) > -1;
+      }
+    },
+    disabled: function disabled(val, oldVal) {
+      if (val !== oldVal) {
+        this.isDisabled = this.disabled;
+      }
+    },
+  },
+};
+
+EmfeBarC$1.install = function (Vue$$1) {
+  Vue$$1.component(EmfeBarC$1.name, EmfeBarC$1);
 };
 
 var _ = {
@@ -300,7 +396,7 @@ var Grid = {
 var prefixCls$2 = 'emfe-icon';
 
 var EmfeIcon$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('i',{class:_vm.name,on:{"click":function($event){$event.stopPropagation();_vm.click($event);}}})},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('i',{class:_vm.name,on:{"click":function($event){$event.stopPropagation();_vm.clickFn($event);}}})},
 staticRenderFns: [],
   name: 'EmfeIcon',
   props: {
@@ -309,6 +405,10 @@ staticRenderFns: [],
       default: '',
     },
     type: String,
+    click: {
+      type: Function,
+      default: function () {},
+    },
   },
   computed: {
     name: function name() {
@@ -318,8 +418,9 @@ staticRenderFns: [],
     },
   },
   methods: {
-    click: function click() {
+    clickFn: function clickFn() {
       this.$emit('icon-click');
+      this.click();
     },
   },
 };
@@ -481,7 +582,7 @@ var checkPosition = function (self) {
 };
 
 var EmfeTooltip$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-tooltip",class:_vm.tooltipName,style:(_vm.relativeStyle),on:{"mouseenter":_vm.showPopper,"mouseleave":_vm.hidePopper}},[_c('div',{ref:"reference",staticClass:"emfe-tooltip-slot",class:_vm.slotName},[_vm._t("render")],2),_vm._v(" "),_c('transition',{attrs:{"name":"fade"},on:{"enter":_vm.enter,"before-enter":_vm.beforeEnter,"after-enter":_vm.afterEnter,"before-leave":_vm.beforeLeave,"after-leave":_vm.afterLeave}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.popperStatus),expression:"popperStatus"}],ref:"popper",staticClass:"emfe-tooltip-popper",class:_vm.popperName,style:(_vm.popperStyle)},[(_vm.arrowStatus)?_c('i',{staticClass:"emfe-tooltip-arrow",class:_vm.arrowPlacement}):_vm._e(),_vm._v(" "),_vm._t("tip")],2)])],1)},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-tooltip",class:_vm.tooltipName,style:(_vm.relativeStyle),on:{"mouseenter":_vm.showPopper,"click":_vm.clickPopper,"mouseleave":_vm.hidePopper}},[_c('div',{ref:"reference",staticClass:"emfe-tooltip-slot",class:_vm.slotName},[_vm._t("render")],2),_vm._v(" "),_c('transition',{attrs:{"name":"fade"},on:{"enter":_vm.enter,"before-enter":_vm.beforeEnter,"after-enter":_vm.afterEnter,"before-leave":_vm.beforeLeave,"after-leave":_vm.afterLeave}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.popperStatus),expression:"popperStatus"}],ref:"popper",staticClass:"emfe-tooltip-popper",class:_vm.popperName,style:(_vm.popperStyle)},[(_vm.arrowStatus)?_c('i',{staticClass:"emfe-tooltip-arrow",class:_vm.arrowPlacement}):_vm._e(),_vm._v(" "),_vm._t("tip")],2)])],1)},
 staticRenderFns: [],
   name: 'EmfeTooltip',
   props: {
@@ -522,6 +623,10 @@ staticRenderFns: [],
     disable: {
       type: [Boolean, String],
       default: false,
+    },
+    types: {
+      type: String,
+      default: 'hover',
     },
   },
   data: function data() {
@@ -690,31 +795,70 @@ staticRenderFns: [],
     showPopper: function showPopper() {
       var this$1 = this;
 
-      if (this.disable) {
-        return;
+      if (this.types === 'hover') {
+        if (this.disable) {
+          return;
+        }
+        if (this.popperStatus) {
+          clearTimeout(enterTimer);
+          clearTimeout(leaveTimer);
+        }
+        enterTimer = setTimeout(function () {
+          this$1.popperStatus = true;
+        }, this.delayDefault);
       }
-      if (this.popperStatus) {
-        clearTimeout(enterTimer);
-        clearTimeout(leaveTimer);
-      }
-      enterTimer = setTimeout(function () {
-        this$1.popperStatus = true;
-      }, this.delayDefault);
     },
     hidePopper: function hidePopper() {
       var this$1 = this;
 
-      if (this.disable) {
-        return;
+      if (this.types === 'hover') {
+        if (this.disable) {
+          return;
+        }
+        if (!this.popperStatus) {
+          clearTimeout(enterTimer);
+        }
+        leaveTimer = setTimeout(function () {
+          this$1.popperStatus = false;
+        }, this.delayDefault);
+        if (!this.popperStatus) {
+          clearTimeout(leaveTimer);
+        }
       }
-      if (!this.popperStatus) {
-        clearTimeout(enterTimer);
+    },
+    clickPopper: function clickPopper() {
+      var this$1 = this;
+
+      if (this.types === 'click') {
+        if (this.disable) {
+          return;
+        }
+        if (this.popperStatus) {
+          clearTimeout(enterTimer);
+          clearTimeout(leaveTimer);
+        }
+        enterTimer = setTimeout(function () {
+          this$1.popperStatus = true;
+        }, this.delayDefault);
       }
-      leaveTimer = setTimeout(function () {
-        this$1.popperStatus = false;
-      }, this.delayDefault);
-      if (!this.popperStatus) {
-        clearTimeout(leaveTimer);
+      this.$emit('popper', this.clickHide);
+    },
+    clickHide: function clickHide() {
+      var this$1 = this;
+
+      if (this.types === 'click') {
+        if (this.disable) {
+          return;
+        }
+        if (!this.popperStatus) {
+          clearTimeout(enterTimer);
+        }
+        leaveTimer = setTimeout(function () {
+          this$1.popperStatus = false;
+        }, this.delayDefault);
+        if (!this.popperStatus) {
+          clearTimeout(leaveTimer);
+        }
       }
     },
   },
@@ -818,7 +962,7 @@ var EmfeTransition = {
 };
 
 var Contant = {
-  SCREEN_MD: 992,
+  SCREEN_MD: 1366,
 };
 
 var srceen = {
@@ -827,11 +971,11 @@ var srceen = {
   },
 };
 
-var childrenLast$1 = -1; // 记录上一个点击的二级手风琴的索引
+var childrenLast$2 = -1; // 记录上一个点击的二级手风琴的索引
 var screenMd = ''; // 屏幕是否大于992
 
 var EmfeMenu$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"menu",staticClass:"emfe-menu",class:_vm.menuName},[_c('div',{staticClass:"emfe-menu-main"},[_c('button',{staticClass:"emfe-menu-main-header",on:{"click":_vm.menuToShort}},[_c('emfe-icon',{staticClass:"emfe-menu-main-sidebar",attrs:{"type":"sidebar"}})],1),_vm._v(" "),_c('ul',{staticClass:"emfe-menu-main-list"},_vm._l((_vm.datas),function(data,dataIndex){return _c('li',{staticClass:"emfe-menu-main-item"},[(data.routers)?_c('a',{staticClass:"emfe-menu-main-link",class:{'emfe-menu-main-link-on': _vm.mainIndex === dataIndex},attrs:{"href":"javascript:;"},on:{"click":function($event){_vm.tochildren(data);}}},[_c('emfe-tooltip',{attrs:{"placement":"right","disable":!_vm.menuShort}},[_c('emfe-icon',{staticClass:"emfe-menu-main-icon",attrs:{"type":data.icon},slot:"render"}),_vm._v(" "),_c('span',{slot:"tip"},[_vm._v(_vm._s(data.title))])],1),_vm._v(" "),_c('span',{staticClass:"emfe-menu-main-text"},[_vm._v(_vm._s(data.title))])],1):_c('a',{staticClass:"emfe-menu-main-link",class:{'emfe-menu-main-link-on': _vm.mainIndex === dataIndex},attrs:{"href":"javascript:;"},on:{"click":function($event){_vm.tochildren(data);}}},[_c('emfe-tooltip',{attrs:{"placement":"right","disable":!_vm.menuShort}},[_c('emfe-icon',{staticClass:"emfe-menu-main-icon",attrs:{"type":data.icon},slot:"render"}),_vm._v(" "),_c('span',{slot:"tip"},[_vm._v(_vm._s(data.title))])],1),_vm._v(" "),_c('span',{staticClass:"emfe-menu-main-text"},[_vm._v(_vm._s(data.title))])],1)])}))]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.childrentatus),expression:"childrentatus"}],staticClass:"emfe-menu-minor"},[_c('h3',{staticClass:"emfe-menu-minor-header"},[_vm._v(_vm._s(_vm.childrenTitle))]),_vm._v(" "),_c('ul',{staticClass:"emfe-menu-minor-list"},[_vm._l((_vm.childrenDatas),function(childrenData,childrenDataIndex){return [(!childrenData.children)?_c('li',{staticClass:"emfe-menu-minor-item"},[_c('router-link',{staticClass:"emfe-menu-minor-link",attrs:{"to":childrenData.routers}},[_vm._v(_vm._s(childrenData.title))])],1):_c('li',{staticClass:"emfe-menu-minor-item",class:{'emfe-menu-minor-item-on': _vm.childrenIndex == childrenDataIndex}},[_c('span',{staticClass:"emfe-menu-minor-btn",attrs:{"href":"javascript:;"},on:{"click":function($event){_vm.toogleChild(childrenDataIndex);}}},[_vm._v(_vm._s(childrenData.title))]),_vm._v(" "),_c('i',{staticClass:"emfe-menu-minor-arrow"}),_vm._v(" "),_c('emfe-transition',{attrs:{"name":"gradual"}},[_c('ul',{directives:[{name:"show",rawName:"v-show",value:(_vm.childrenIndex == childrenDataIndex),expression:"childrenIndex == childrenDataIndex"}],staticClass:"emfe-menu-minor-childlist"},_vm._l((childrenData.children),function(child){return _c('li',{staticClass:"emfe-menu-minor-childitem"},[_c('router-link',{staticClass:"emfe-menu-minor-childlink",attrs:{"to":child.routers}},[_vm._v(_vm._s(child.title))])],1)}))])],1)]})],2)])])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"menu",staticClass:"emfe-menu",class:_vm.menuName},[_c('div',{staticClass:"emfe-menu-main"},[_c('button',{staticClass:"emfe-menu-main-header",on:{"click":_vm.menuToShort}},[(_vm.menuShort)?_c('emfe-icon',{staticClass:"emfe-menu-main-sidebar",attrs:{"type":"menushouqi"},on:{"icon-click":_vm.menuToShort}}):_c('emfe-icon',{staticClass:"emfe-menu-main-sidebar",attrs:{"type":"menuzhankai"},on:{"icon-click":_vm.menuToShort}})],1),_vm._v(" "),_c('ul',{staticClass:"emfe-menu-main-list"},_vm._l((_vm.datas),function(data,dataIndex){return _c('li',{staticClass:"emfe-menu-main-item"},[(data.routers)?_c('a',{staticClass:"emfe-menu-main-link",class:{'emfe-menu-main-link-on': _vm.mainIndex === dataIndex},attrs:{"href":"javascript:;"},on:{"click":function($event){_vm.tochildren(data);}}},[_c('emfe-tooltip',{attrs:{"className":"emfe-menu","placement":"right","disable":!_vm.menuShort}},[_c('emfe-icon',{staticClass:"emfe-menu-main-icon",attrs:{"type":data.icon},on:{"icon-click":function($event){_vm.tochildren(data);}},slot:"render"}),_vm._v(" "),_c('span',{slot:"tip"},[_vm._v(_vm._s(data.title))])],1),_vm._v(" "),_c('span',{staticClass:"emfe-menu-main-text"},[_vm._v(_vm._s(data.title))])],1):_c('a',{staticClass:"emfe-menu-main-link",class:{'emfe-menu-main-link-on': _vm.mainIndex === dataIndex},attrs:{"href":"javascript:;"},on:{"click":function($event){_vm.tochildren(data);}}},[_c('emfe-tooltip',{attrs:{"className":"emfe-menu","placement":"right","disable":!_vm.menuShort}},[_c('emfe-icon',{staticClass:"emfe-menu-main-icon",attrs:{"type":data.icon},on:{"icon-click":function($event){_vm.tochildren(data);}},slot:"render"}),_vm._v(" "),_c('span',{slot:"tip"},[_vm._v(_vm._s(data.title))])],1),_vm._v(" "),_c('span',{staticClass:"emfe-menu-main-text"},[_vm._v(_vm._s(data.title))])],1)])}))]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.childrentatus),expression:"childrentatus"}],staticClass:"emfe-menu-minor"},[_c('h3',{staticClass:"emfe-menu-minor-header"},[_vm._v(_vm._s(_vm.childrenTitle))]),_vm._v(" "),_c('ul',{staticClass:"emfe-menu-minor-list"},[_vm._l((_vm.childrenDatas),function(childrenData,childrenDataIndex){return [(!childrenData.children)?_c('li',{staticClass:"emfe-menu-minor-item"},[_c('router-link',{staticClass:"emfe-menu-minor-link",attrs:{"to":childrenData.routers}},[_vm._v(_vm._s(childrenData.title))])],1):_c('li',{staticClass:"emfe-menu-minor-item",class:{'emfe-menu-minor-item-on': _vm.childrenIndex == childrenDataIndex}},[_c('span',{staticClass:"emfe-menu-minor-btn",attrs:{"href":"javascript:;"},on:{"click":function($event){_vm.toogleChild(childrenDataIndex);}}},[_vm._v(_vm._s(childrenData.title))]),_vm._v(" "),_c('i',{staticClass:"emfe-menu-minor-arrow"}),_vm._v(" "),_c('emfe-transition',{attrs:{"name":"gradual"}},[_c('ul',{directives:[{name:"show",rawName:"v-show",value:(_vm.childrenIndex == childrenDataIndex),expression:"childrenIndex == childrenDataIndex"}],staticClass:"emfe-menu-minor-childlist"},_vm._l((childrenData.children),function(child){return _c('li',{staticClass:"emfe-menu-minor-childitem"},[_c('router-link',{staticClass:"emfe-menu-minor-childlink",attrs:{"to":child.routers}},[_vm._v(_vm._s(child.title))])],1)}))])],1)]})],2)])])},
 staticRenderFns: [],
   name: 'EmfeMenu',
   data: function data() {
@@ -872,6 +1016,8 @@ staticRenderFns: [],
       if (screenMd !== screenMdResize) {
         screenMd = screenMdResize;
         this$1.menuToShort('resize');
+      } else {
+        screenMd = '';
       }
     };
 
@@ -923,14 +1069,14 @@ staticRenderFns: [],
       }
     },
     toogleChild: function toogleChild(itemIndex) {
-      var eqLast = itemIndex === childrenLast$1;
+      var eqLast = itemIndex === childrenLast$2;
       this.childrenIndex = eqLast ? -1 : itemIndex;
-      childrenLast$1 = eqLast ? -1 : itemIndex;
+      childrenLast$2 = eqLast ? -1 : itemIndex;
     },
     tochildren: function tochildren(item) {
       if (O.hOwnProperty(item, 'routers') || O.hOwnProperty(item, 'url')) {
         this.childrenIndex = -1;
-        childrenLast$1 = -1;
+        childrenLast$2 = -1;
         this.$emit('short', this.menuShort, this.childrentatus);
       }
 
@@ -1001,6 +1147,49 @@ EmfeHeader$1.install = function (Vue$$1) {
   Vue$$1.component(EmfeHeader$1.name, EmfeHeader$1);
 };
 
+var EmfeHeaderC$1 = {
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('header',{staticClass:"emfe-header-c"},[_c('div',{staticClass:"emfe-header-c-main"},[_c('div',{staticClass:"emfe-header-c-eye"},[_c('img',{attrs:{"src":_vm.logo,"height":"100%"}})]),_vm._v(" "),_c('div',{staticClass:"emfe-header-c-info"},[_c('span',{staticClass:"emfe-header-c-account"},[_vm._v("活动易首页 你好，"+_vm._s(_vm.user))]),_vm._v(" "),_c('emfe-link',{attrs:{"className":"emfe-header-c","routers":_vm.orderRouter},on:{"click":_vm.orderClick}},[_vm._v("我的订单")]),_vm._v(" "),_c('span',[_c('emfe-icon',{attrs:{"className":"emfe-header-c","type":"hint"}}),_vm._v(" "),_c('emfe-link',{attrs:{"className":"emfe-header-c","routers":_vm.followRouter},on:{"click":_vm.followClick}},[_vm._v("我的关注")])],1),_vm._v(" "),_c('span',[_c('emfe-icon',{attrs:{"className":"emfe-header-c","type":"hint"}}),_vm._v(" "),_c('emfe-link',{attrs:{"className":"emfe-header-c","routers":_vm.followRouter},on:{"click":_vm.followClick}},[_vm._v("购物车 ("+_vm._s(_vm.followNum)+")")])],1),_vm._v(" "),_c('emfe-link',{staticClass:"emfe-header-c-logout",attrs:{"routers":{}},on:{"click":_vm.logout}},[_vm._v("退出")])],1)])])},
+staticRenderFns: [],
+  name: 'EmfeHeaderC',
+  props: {
+    logo: {
+      type: String,
+      required: true,
+    },
+    user: {
+      type: String,
+      required: true,
+    },
+    orderRouter: {
+      type: [Object, String],
+      required: true,
+    },
+    followRouter: {
+      type: [Object, String],
+      required: true,
+    },
+    followNum: {
+      type: Number,
+      required: true,
+    },
+  },
+  methods: {
+    logout: function logout() {
+      this.$emit('logout');
+    },
+    orderClick: function orderClick() {
+      this.$emit('orderClick');
+    },
+    followClick: function followClick() {
+      this.$emit('followClick');
+    },
+  },
+};
+
+EmfeHeaderC$1.install = function (Vue$$1) {
+  Vue$$1.component(EmfeHeaderC$1.name, EmfeHeaderC$1);
+};
+
 var EmfeFooter$1 = {
 render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('footer',{staticClass:"emfe-footer"},[_vm._v(_vm._s(_vm.content))])},
 staticRenderFns: [],
@@ -1015,6 +1204,26 @@ staticRenderFns: [],
 
 EmfeFooter$1.install = function (Vue$$1) {
   Vue$$1.component(EmfeFooter$1.name, EmfeFooter$1);
+};
+
+var EmfeFooterC$1 = {
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('footer',{staticClass:"emfe-footer-c"},[_c('img',{staticClass:"emfe-footer-c-logo",attrs:{"src":_vm.logo}}),_vm._v(" "),_c('p',{staticClass:"emfe-footer-c-text"},[_vm._v(_vm._s(_vm.content))])])},
+staticRenderFns: [],
+  name: 'EmfeFooterC',
+  props: {
+    content: {
+      type: String,
+      required: true,
+    },
+    logo: {
+      type: String,
+      required: true,
+    },
+  },
+};
+
+EmfeFooterC$1.install = function (Vue$$1) {
+  Vue$$1.component(EmfeFooterC$1.name, EmfeFooterC$1);
 };
 
 var EmfeCopy$1 = {
@@ -1065,6 +1274,41 @@ staticRenderFns: [],
 
 EmfeCopy$1.install = function (Vue$$1) {
   Vue$$1.component(EmfeCopy$1.name, EmfeCopy$1);
+};
+
+/**
+ * database64文件格式转换为2进制
+ *
+ * @param  {[String]} data dataURL 的格式为 “data:image/png;base64,****”,逗号之前都是一些说明性的文字，我们只需要逗号之后的就行了
+ * @param  {[String]} type [description]
+ * @return {[blob]}      [description]
+ */
+var upload = function (data, type) {
+  var newData = data.split(',')[1];
+  newData = window.atob(newData);
+  var ia = new Uint8Array(newData.length);
+  for (var i = 0; i < newData.length; i++) {
+    ia[i] = newData.charCodeAt(i);
+  }
+  // canvas.toDataURL 返回的默认格式就是 image/png
+  return new Blob([ia], {
+    type: type,
+  });
+};
+
+var handler = function (event) {
+  event.preventDefault();
+  event.stopPropagation();
+};
+
+var openMask = function () {
+  document.body.addEventListener('touchmove', handler, false);
+  document.body.addEventListener('wheel', handler, false);
+};
+
+var closeMask = function () {
+  document.body.removeEventListener('touchmove', handler, false);
+  document.body.removeEventListener('wheel', handler, false);
 };
 
 var seed = 0;
@@ -1186,8 +1430,6 @@ var EmfeMessage = {
   },
 };
 
-// https://github.com/ElemeFE/element/blob/dev/packages/upload/src/ajax.js
-
 function getError(action, option, xhr) {
   var msg = "fail to post " + action + " " + (xhr.status) + "'";
   var err = new Error(msg);
@@ -1210,22 +1452,13 @@ function getBody(xhr) {
   }
 }
 
-function upload(option) {
+function upload$1(option) {
   if (typeof XMLHttpRequest === 'undefined') {
     return;
   }
 
   var xhr = new XMLHttpRequest();
   var action = option.action;
-
-  // if (xhr.upload) {
-  //   xhr.upload.onprogress = function progress(e) {
-  //     if (e.total > 0) {
-  //       e.percent = (e.loaded / e.total) * 100;
-  //     }
-  //     option.onProgress(e);
-  //   };
-  // }
 
   var formData = new FormData();
 
@@ -1265,27 +1498,41 @@ function upload(option) {
     }
   });
 
-  // for (const item in headers) {
-  //   if (O.hOwnProperty(headers, item) && headers[item] !== null) {
-  //     xhr.setRequestHeader(item, headers[item]);
-  //   }
-  // }
   xhr.send(formData);
 }
 
-var canUpload = true;
+var uploadJpeg = 'image/jpeg';
+var pointOldLeft = 0; // 改变截取器遮罩大小
 
 var EmfeUpload$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-upload",class:_vm.uploadName},[(_vm.type === 'icon')?[_c('emfe-button',{directives:[{name:"show",rawName:"v-show",value:(!_vm.src),expression:"!src"}],attrs:{"disabled":_vm.disabled,"theme":"default","className":"ddd","type":"hint"}},[_vm._v("上传图片")]),_vm._v(" "),_c('input',{directives:[{name:"show",rawName:"v-show",value:(!_vm.src),expression:"!src"}],ref:"upload",staticClass:"emfe-upload-file",class:_vm.fileName,attrs:{"disabled":_vm.disabled,"type":"file"},on:{"change":_vm.change}}),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.src),expression:"src"}],staticClass:"emfe-upload-icon-wrap",style:({opacity: _vm.canShow ? 1 : 0})},[_c('div',{staticClass:"emfe-upload-icon-wrap-box",class:[("emfe-upload-icon-wrap-box-" + _vm.align)]},[_c('img',{ref:"img",staticClass:"emfe-upload-icon-wrap-box-img",class:[("emfe-upload-img-" + _vm.align)],attrs:{"src":_vm.src}})]),_vm._v(" "),_c('i',{staticClass:"emfe-upload-icon-wrap-close",on:{"click":_vm.closeFn}})])]:_vm._e(),_vm._v(" "),(_vm.type === 'plus')?[_c('button',{directives:[{name:"show",rawName:"v-show",value:(!_vm.src),expression:"!src"}],staticClass:"emfe-upload-btn",class:_vm.btnName},[_vm._v("+")]),_vm._v(" "),_c('input',{directives:[{name:"show",rawName:"v-show",value:(!_vm.src),expression:"!src"}],ref:"uploadPlus",staticClass:"emfe-upload-file",class:_vm.fileName,attrs:{"disabled":_vm.disabled,"type":"file"},on:{"change":_vm.change}}),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.src),expression:"src"}],staticClass:"emfe-upload-plus-box",class:[("emfe-upload-plus-box-" + _vm.align)],style:({opacity: _vm.canShow ? 1 : 0}),on:{"click":_vm.closePlusFn}},[_c('img',{directives:[{name:"show",rawName:"v-show",value:(_vm.src),expression:"src"}],ref:"img",class:[("emfe-upload-img-" + _vm.align)],attrs:{"src":_vm.src}})])]:_vm._e()],2)},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-upload",class:_vm.uploadName},[(_vm.type === 'icon')?[_c('emfe-button',{directives:[{name:"show",rawName:"v-show",value:(!_vm.src),expression:"!src"}],attrs:{"disabled":_vm.disabled || !_vm.canUpload,"theme":_vm.theme}},[_vm._v(_vm._s(_vm.iconText))]),_vm._v(" "),_c('input',{directives:[{name:"show",rawName:"v-show",value:(!_vm.src),expression:"!src"}],ref:"upload",staticClass:"emfe-upload-file",class:_vm.fileName,attrs:{"disabled":_vm.disabled || !_vm.canUpload,"type":"file"},on:{"change":_vm.change}}),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.src),expression:"src"}],staticClass:"emfe-upload-icon-wrap",style:({opacity: _vm.canShow ? 1 : 0})},[_c('div',{staticClass:"emfe-upload-icon-wrap-box",class:[("emfe-upload-icon-wrap-box-" + _vm.align)]},[_c('img',{ref:"img",staticClass:"emfe-upload-icon-wrap-box-img",class:[("emfe-upload-img-" + _vm.align)],attrs:{"src":_vm.src}})]),_vm._v(" "),_c('i',{staticClass:"emfe-upload-icon-wrap-close",on:{"click":_vm.closeFn}})])]:_vm._e(),_vm._v(" "),(_vm.type === 'plus')?[_c('button',{directives:[{name:"show",rawName:"v-show",value:(!_vm.src),expression:"!src"}],staticClass:"emfe-upload-btn",class:_vm.btnName},[_vm._v(_vm._s(_vm.plusText))]),_vm._v(" "),_c('input',{directives:[{name:"show",rawName:"v-show",value:(!_vm.src),expression:"!src"}],ref:"uploadPlus",staticClass:"emfe-upload-file",class:_vm.fileName,attrs:{"disabled":_vm.disabled || !_vm.canUpload,"type":"file"},on:{"change":_vm.change}}),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.src),expression:"src"}],staticClass:"emfe-upload-plus-box",class:[("emfe-upload-plus-box-" + _vm.align)],style:({opacity: _vm.canShow ? 1 : 0}),on:{"click":_vm.closePlusFn}},[_c('img',{directives:[{name:"show",rawName:"v-show",value:(_vm.src),expression:"src"}],ref:"img",class:[("emfe-upload-img-" + _vm.align)],attrs:{"src":_vm.src}})])]:_vm._e(),_vm._v(" "),_c('emfe-modal',{attrs:{"show":_vm.interceptModal,"title":"截取器","okText":"保存","className":"form"},on:{"close":_vm.formCancel,"cancel":_vm.formCancel,"ok":_vm.formOk}},[_c('div',{staticClass:"emfe-upload-intercept-wrap",style:({'padding-top': (_vm.dragPaddingTop + "px"), 'padding-left': (_vm.dragPaddingLeft + "px")}),slot:"modal-main"},[_c('emfe-drag',{staticClass:"emfe-upload-intercept-drag",style:({ width: (_vm.dragWidth + "px"), height: (_vm.dragHeight + "px")}),attrs:{"dragEl":_vm.drag1,"initialValue":[-_vm.interceptCanvasWidth/2, -_vm.interceptCanvasHeight/2],"limit":"true"},on:{"drag":_vm.dragPosMove}},[_c('img',{ref:"previewImg",staticClass:"emfe-upload-intercept-img",style:({ width: (_vm.dragWidth + "px"), height: (_vm.dragHeight + "px")}),attrs:{"src":_vm.img}}),_vm._v(" "),_c('div',{ref:"drag1",staticClass:"emfe-upload-intercept",style:({width: (_vm.interceptCanvasWidth + "px"), height: (_vm.interceptCanvasHeight + "px"), left: (_vm.interceptLeft + "px"), top: (_vm.interceptTop + "px")})},[_c('emfe-drag',{staticClass:"emfe-upload-intercept-point emfe-upload-intercept-point-nw",attrs:{"moveEle":false},on:{"drag":_vm.nwPosMove}}),_vm._v(" "),_c('emfe-drag',{staticClass:"emfe-upload-intercept-point emfe-upload-intercept-point-ne",attrs:{"moveEle":false},on:{"drag":_vm.nePosMove}}),_vm._v(" "),_c('emfe-drag',{staticClass:"emfe-upload-intercept-point emfe-upload-intercept-point-sw",attrs:{"moveEle":false},on:{"drag":_vm.swPosMove}}),_vm._v(" "),_c('emfe-drag',{staticClass:"emfe-upload-intercept-point emfe-upload-intercept-point-se",attrs:{"moveEle":false},on:{"drag":_vm.sePosMove}})],1)])],1)])],2)},
 staticRenderFns: [],
   name: 'upload',
   data: function data() {
     return {
+      drag1: [],
+      canUpload: true,
       src: '',
       canShow: false,
       fileList: [],
       tempIndex: 1,
+      img: '',
       align: '',
+      interceptModal: false, // 截取器是否显示
+      interceptWidth: 360, // 截取器的宽
+      interceptHeight: 400, // 截取器的搞
+      interceptLeft: 0, // 截取器的左边距离
+      interceptTop: 0, // 截取器的有边距离
+      interceptCanvasWidth: 360, // 截取器截图的大小
+      interceptCanvasHeight: 400, // 截取器截图的大小
+      dragWidth: 'auto', // 拖拽的宽
+      dragHeight: 400, // 拖拽的高
+      dragPaddingLeft: 0,
+      dragPaddingTop: 0,
+      canvas: null,
+      canvasContext: null,
+      iconText: this.buttonText,
+      plusText: '+',
     };
   },
   props: {
@@ -1322,6 +1569,10 @@ staticRenderFns: [],
       type: Boolean,
       default: false,
     },
+    intercept: {
+      type: Array,
+      default: function () { return []; },
+    },
     format: {
       type: Array,
       default: function default$2() {
@@ -1356,6 +1607,18 @@ staticRenderFns: [],
       type: Function,
       default: function () {},
     },
+    buttonText: {
+      type: String,
+      default: '上传图片',
+    },
+    theme: {
+      type: String,
+      default: 'default',
+    },
+    fileType: {
+      type: String,
+      default: 'image',
+    },
   },
   computed: {
     uploadName: function uploadName() {
@@ -1364,7 +1627,7 @@ staticRenderFns: [],
         ( obj = {}, obj[((this.className) + "-upload")] = !!this.className, obj ),
         ( obj$1 = {}, obj$1[((this.className) + "-upload-" + (this.type))] = !!this.className, obj$1 ),
         {
-          'emfe-upload-disabled': this.disabled,
+          'emfe-upload-disabled': this.disabled || !this.canUpload,
         } ];
       var obj;
       var obj$1;
@@ -1380,7 +1643,7 @@ staticRenderFns: [],
         [("emfe-upload-" + (this.type) + "-file")],
         ( obj = {}, obj[((this.className) + "-upload-" + (this.type) + "-file")] = !!this.className, obj ),
         {
-          'emfe-upload-file-disabled': this.disabled,
+          'emfe-upload-file-disabled': this.disabled || !this.canUpload,
         } ];
       var obj;
     },
@@ -1396,16 +1659,114 @@ staticRenderFns: [],
         setTimeout(this$1.setAlign.bind(this$1), 0);
       };
     }
+    // 有截取器
+    if (this.intercept.length > 0) {
+      if (this.intercept.length > 1) {
+        this.interceptCanvasWidth = this.intercept[0];
+        this.interceptCanvasHeight = this.intercept[1];
+      } else if (this.intercept.length === 1) {
+        this.interceptCanvasWidth = this.intercept[0];
+        this.interceptCanvasHeight = this.intercept[0];
+      }
+    }
   },
   methods: {
-    setAlign: function setAlign() {
+    openInterceptModal: function openInterceptModal() {
+      openMask();
+      this.interceptModal = true;
+    },
+    closeInterceptModal: function closeInterceptModal() {
+      closeMask();
+      this.interceptModal = false;
+    },
+    formCancel: function formCancel() {
+      this.closeInterceptModal();
+      this.resetInputFile();
+    },
+    formOk: function formOk() {
+      this.initCanvas();
+    },
+    initCanvas: function initCanvas() {
+      var this$1 = this;
+
+      var img = new Image();
+      img.src = this.img;
+      img.onload = function () {
+        this$1.canvas = document.createElement('canvas');
+        this$1.canvasContext = this$1.canvas.getContext('2d');
+        this$1.canvas.width = this$1.interceptCanvasWidth;
+        this$1.canvas.height = this$1.interceptCanvasHeight;
+        this$1.getImageUrl();
+        this$1.postHandle(upload(this$1.clipData, uploadJpeg));
+        this$1.closeInterceptModal();
+      };
+    },
+    getImageUrl: function getImageUrl() {
+      var ref = this;
+      var canvasContext = ref.canvasContext;
+      var previewImg = ref.previewImg;
+      var clientWidth = previewImg.clientWidth;
+      var clientHeight = previewImg.clientHeight;
+      var left = this.interceptLeft;
+      var top = this.interceptTop;
+      canvasContext.drawImage(previewImg, -left, -top, clientWidth, clientHeight);
+      this.clipData = this.canvas.toDataURL(uploadJpeg);
+    },
+    // 拖拽大方块改变截图位置
+    dragPosMove: function dragPosMove(ev, left, top) {
+      this.interceptLeft = left;
+      this.interceptTop = top;
+    },
+    // 角部拖拽改变大小
+    pointMoveChangeSize: function pointMoveChangeSize(ev, left, lDir, type) {
+      var widthStep = -left;
+      // 左上 || 左下
+      if (type === 'nw' || type === 'sw') {
+        var lChange = pointOldLeft - left;
+        widthStep = lChange;
+      }
+      var heightStep = (this.interceptCanvasHeight * widthStep) / this.interceptCanvasWidth;
+      if (this.interceptCanvasWidth + widthStep >= this.intercept[0] &&
+        this.interceptCanvasWidth + widthStep <= this.interceptWidth) {
+        this.interceptCanvasWidth += widthStep;
+        this.interceptCanvasHeight += heightStep;
+        // 左上 || 左下
+        if (type === 'nw' || type === 'sw') {
+          this.interceptLeft -= widthStep;
+        }
+        // 左上 || 右上
+        if (type === 'nw' || type === 'ne') {
+          this.interceptTop -= heightStep;
+        }
+        pointOldLeft = left;
+      }
+    },
+    // 左上
+    nwPosMove: function nwPosMove(ev, left, top, lDir) {
+      this.pointMoveChangeSize(ev, left, lDir, 'nw');
+    },
+    // 右上
+    nePosMove: function nePosMove(ev, left, top, lDir) {
+      this.pointMoveChangeSize(ev, this.interceptCanvasWidth - left, lDir, 'ne');
+    },
+    // 左下
+    swPosMove: function swPosMove(ev, left, top, lDir) {
+      this.pointMoveChangeSize(ev, left, lDir, 'sw');
+    },
+    // 右下
+    sePosMove: function sePosMove(ev, left, top, lDir) {
+      this.pointMoveChangeSize(ev, this.interceptCanvasWidth - left, lDir);
+    },
+    setAlign: function setAlign(res) {
       var ref = this.$refs.img;
       var clientWidth = ref.clientWidth;
       var clientHeight = ref.clientHeight;
-      if (clientWidth !== 0 && clientHeight !== 0) {
-        if (clientWidth > clientHeight) {
+      var width = res ? res.width : clientWidth;
+      var height = res ? res.height : clientHeight;
+      if (width !== 0 && height !== 0) {
+        if (width > height) {
           this.align = 'horizontal';
-        } else if (clientWidth < clientHeight) {
+        } else if (width < height) {
           this.align = 'vertical';
         } else {
           this.align = 'normal';
@@ -1424,9 +1785,35 @@ staticRenderFns: [],
 
       var postFiles = Array.prototype.slice.call(files);
 
-      postFiles.forEach(function (file) {
-        this$1.postHandle(file);
-      });
+      if (this.intercept.length === 0) {
+        postFiles.forEach(function (file) {
+          this$1.postHandle(file);
+        });
+      } else {
+        var reader = new FileReader();
+        reader.readAsDataURL(postFiles[0]);
+        reader.onload = function (readerEvent) {
+          this$1.img = readerEvent.target.result;
+          this$1.openInterceptModal();
+          setTimeout(function () {
+            this$1.drag1.length = 0;
+            this$1.drag1.push(this$1.$refs.drag1);
+            this$1.previewImg = this$1.$refs.previewImg;
+            this$1.dragWidth = this$1.previewImg.clientWidth;
+            this$1.dragHeight = this$1.previewImg.clientHeight;
+            this$1.dragPaddingLeft = (this$1.dragWidth - this$1.interceptWidth) / 2;
+            this$1.dragPaddingTop = (this$1.dragHeight - this$1.interceptHeight) / 2;
+            var imgScale = this$1.dragHeight / this$1.dragWidth;
+            // 如果宽度超了
+            if (this$1.dragWidth > this$1.interceptWidth) {
+              this$1.dragWidth = this$1.interceptWidth;
+              this$1.dragHeight = imgScale * this$1.dragWidth;
+              this$1.dragPaddingLeft = (this$1.interceptWidth - this$1.dragWidth) / 2;
+              this$1.dragPaddingTop = (this$1.interceptHeight - this$1.dragHeight) / 2;
+            }
+          }, 0);
+        };
+      }
     },
     postHandle: function postHandle(file) {
       var this$1 = this;
@@ -1450,13 +1837,12 @@ staticRenderFns: [],
         }
       }
 
-      if (canUpload) {
+      if (this.canUpload) {
         this.handleStart(file);
         this.beforeUpload(file, EmfeMessage);
         this.$emit('beforeUpload', file, EmfeMessage);
-        this.canUpload = false;
-
-        upload({
+        this.canNotLoad();
+        upload$1({
           headers: this.headers,
           withCredentials: this.withCredentials,
           file: file,
@@ -1464,15 +1850,13 @@ staticRenderFns: [],
           filename: this.name,
           action: this.action,
           onSuccess: function (res) {
-            canUpload = true;
-            if (res.code === 10000) {
+            if (!res.code) {
               this$1.handleSuccess(res, file);
             } else {
               this$1.handleError('上传失败', res, file);
             }
           },
           onError: function (err, response) {
-            canUpload = true;
             this$1.handleError(err, response, file);
           },
         });
@@ -1498,7 +1882,12 @@ staticRenderFns: [],
       if (fileData) {
         fileData.status = 'finished';
         fileData.response = res;
-        this.loadImg(res.data.url, res, fileData);
+        if (this.fileType === 'image') {
+          this.loadImg(res.url, res, fileData);
+        } else {
+          this.canLoad();
+          this.$emit('success', res, fileData, this.fileList, EmfeMessage);
+        }
       }
     },
     handleError: function handleError(err, response, file) {
@@ -1506,6 +1895,7 @@ staticRenderFns: [],
       var fileList = this.fileList;
 
       fileData.status = 'fail';
+      this.canLoad();
 
       fileList.splice(fileList.indexOf(fileData), 1);
       this.error(err, response, file, EmfeMessage);
@@ -1527,24 +1917,49 @@ staticRenderFns: [],
       img.src = src;
       img.onload = function () {
         this$1.src = src;
-        setTimeout(this$1.setAlign.bind(this$1), 0);
+        setTimeout(this$1.setAlign.bind(this$1, res), 0);
+        this$1.canLoad();
         this$1.success(res, fileData, this$1.fileList, EmfeMessage);
         this$1.$emit('success', res, fileData, this$1.fileList, EmfeMessage);
       };
     },
     closeFn: function closeFn() {
-      this.$refs.upload.value = '';
       this.closeCommon();
     },
     closePlusFn: function closePlusFn() {
-      this.$refs.uploadPlus.value = '';
       this.closeCommon();
     },
     closeCommon: function closeCommon() {
       this.src = '';
       this.canShow = false;
+      this.resetInputFile();
       this.close(EmfeMessage);
       this.$emit('close', EmfeMessage);
+    },
+    resetInputFile: function resetInputFile() {
+      if (this.type === 'icon') {
+        this.$refs.upload.value = '';
+      } else {
+        this.$refs.uploadPlus.value = '';
+      }
+      this.dragWidth = 'auto';
+      this.dragHeight = 400;
+    },
+    canLoad: function canLoad() {
+      this.canUpload = true;
+      if (this.type === 'icon') {
+        this.iconText = this.buttonText;
+      } else {
+        this.plusText = '+';
+      }
+    },
+    canNotLoad: function canNotLoad() {
+      this.canUpload = false;
+      if (this.type === 'icon') {
+        this.iconText = '上传中';
+      } else {
+        this.plusText = '...';
+      }
     },
   },
 };
@@ -1557,6 +1972,8 @@ EmfeUpload$1.install = function (Vue$$1) {
 var refPos = {
   x: 0,
   y: 0,
+  oldX: 0,
+  oldY: 0,
 };
 
 var EmfeDrag$1 = {
@@ -1587,7 +2004,7 @@ staticRenderFns: [],
       type: Array,
     },
     initialValue: { // 初始值
-      type: Number,
+      type: [Number, Array],
       default: 0,
     },
     direction: {
@@ -1603,6 +2020,10 @@ staticRenderFns: [],
     dragDiyStyle: {
       type: String,
       default: '',
+    },
+    moveEle: {
+      type: Boolean,
+      default: true,
     },
   },
   computed: {
@@ -1659,10 +2080,15 @@ staticRenderFns: [],
       if (this.dragEl && this.dragEl.length > 0) {
         downTop -= this.parentPaddingTop;
         downTop += this.scrollTop;
-        downTop += this.initialValue;
         downLeft -= this.parentPaddingLeft;
         downLeft += this.scrollLeft;
-        downLeft += this.initialValue;
+        if (Array.isArray(this.initialValue)) {
+          downTop += this.initialValue[1];
+          downLeft += this.initialValue[0];
+        } else {
+          downTop += this.initialValue;
+          downLeft += this.initialValue;
+        }
         this.dragEl.forEach(function (dragElement) {
           if (this$1.direction === 'vertical') {
             dragElement.style.top = downTop + "px";
@@ -1673,6 +2099,13 @@ staticRenderFns: [],
             dragElement.style.top = downTop + "px";
           }
         });
+        // 有可能会变宽高，比如截取器
+        this.elWidth = this.dragEl[0].clientWidth;
+        this.elHeight = this.dragEl[0].clientHeight;
+      } else {
+        // 有可能会变宽高，比如截取器
+        this.elWidth = this.$el.clientWidth;
+        this.elHeight = this.$el.clientHeight;
       }
       this.$emit('beforeDrag', e, downLeft, downTop);
     },
@@ -1689,11 +2122,16 @@ staticRenderFns: [],
         elTop = e.clientY - this.parentTop;
         elTop -= this.parentPaddingTop;
         elTop += this.scrollTop;
-        elTop += this.initialValue;
         elLeft = e.clientX - this.parentLeft;
         elLeft -= this.parentPaddingLeft;
         elLeft += this.scrollLeft;
-        elLeft += this.initialValue;
+        if (Array.isArray(this.initialValue)) {
+          elTop += this.initialValue[1];
+          elLeft += this.initialValue[0];
+        } else {
+          elTop += this.initialValue;
+          elLeft += this.initialValue;
+        }
       } else {
         elLeft = this.elLeft + disPosX;
         elTop = this.elTop + disPosY;
@@ -1714,26 +2152,32 @@ staticRenderFns: [],
         }
       }
 
-      if (this.dragEl && this.dragEl.length > 0) {
-        this.dragEl.forEach(function (dragElement) {
-          if (this$1.direction === 'vertical') {
-            dragElement.style.top = elTop + "px";
-          } else if (this$1.direction === 'horizontal') {
-            dragElement.style.left = elLeft + "px";
-          } else {
-            dragElement.style.left = elLeft + "px";
-            dragElement.style.top = elTop + "px";
+      if (this.moveEle) {
+        if (this.dragEl && this.dragEl.length > 0) {
+          this.dragEl.forEach(function (dragElement) {
+            if (this$1.direction === 'vertical') {
+              dragElement.style.top = elTop + "px";
+            } else if (this$1.direction === 'horizontal') {
+              dragElement.style.left = elLeft + "px";
+            } else {
+              dragElement.style.left = elLeft + "px";
+              dragElement.style.top = elTop + "px";
+            }
+          });
+        } else {
+          this.dragStyle = "left: " + elLeft + "px; top: " + elTop + "px";
+          if (this.direction === 'vertical') {
+            this.dragStyle = "top: " + elTop + "px";
+          } else if (this.direction === 'horizontal') {
+            this.dragStyle = "left: " + elLeft + "px;";
           }
-        });
-      } else {
-        this.dragStyle = "left: " + elLeft + "px; top: " + elTop + "px";
-        if (this.direction === 'vertical') {
-          this.dragStyle = "top: " + elTop + "px";
-        } else if (this.direction === 'horizontal') {
-          this.dragStyle = "left: " + elLeft + "px;";
         }
       }
-      this.$emit('drag', e, elLeft, elTop);
+      this.$emit('drag', e, elLeft, elTop, refPos.oldX - elLeft, refPos.oldY - elTop);
+      refPos.oldX = elLeft;
+      refPos.oldY = elTop;
+
+      e.stopPropagation();
     },
     up: function up(e) {
       document.removeEventListener('mousemove', this.move, false);
@@ -2444,7 +2888,7 @@ var EmfeInputmore = {
 };
 
 var EmfeTel$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"emfe-documentclick",rawName:"v-emfe-documentclick",value:(_vm.close),expression:"close"}],staticClass:"emfe-tel",class:_vm.telName},[_c('div',{staticClass:"emfe-tel-prefix",class:_vm.prefixName,on:{"click":function($event){$event.stopPropagation();_vm.toggle($event);}}},[_c('img',{directives:[{name:"show",rawName:"v-show",value:(_vm.nowData.url),expression:"nowData.url"}],staticClass:"emfe-tel-prefix-piece",attrs:{"src":_vm.nowData.url,"alt":_vm.nowData.name}}),_vm._v(" "),_c('span',{staticClass:"emfe-tel-prefix-text",class:_vm.prefixTextName},[_vm._v(_vm._s(_vm.nowData.prefix))]),_vm._v(" "),_c('ul',{directives:[{name:"show",rawName:"v-show",value:(_vm.flagStatus),expression:"flagStatus"}],staticClass:"emfe-tel-prefix-flag"},_vm._l((_vm.datas),function(data){return _c('li',{staticClass:"emfe-tel-prefix-label",on:{"click":function($event){$event.stopPropagation();_vm.choice(data);}}},[_c('img',{staticClass:"emfe-tel-prefix-icon",attrs:{"src":data.url,"alt":data.name}}),_vm._v(" "),_c('span',{staticClass:"emfe-tel-prefix-icon-piece"},[_vm._v(_vm._s(data.name))]),_vm._v(" "),_c('span',{staticClass:"emfe-tel-prefix-icon-tel"},[_vm._v(_vm._s(data.prefix))])])}))]),_vm._v(" "),_c('input',{staticClass:"emfe-tel-input",class:_vm.inputName,attrs:{"type":_vm.type,"placeholder":_vm.placeholder},domProps:{"value":_vm.nowData.tel},on:{"input":_vm.telChange}})])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"emfe-documentclick",rawName:"v-emfe-documentclick",value:(_vm.close),expression:"close"}],staticClass:"emfe-tel",class:_vm.telName},[_c('div',{staticClass:"emfe-tel-prefix",class:_vm.prefixName,on:{"click":function($event){$event.stopPropagation();_vm.toggle($event);}}},[_c('img',{directives:[{name:"show",rawName:"v-show",value:(_vm.nowData.url),expression:"nowData.url"}],staticClass:"emfe-tel-prefix-piece",attrs:{"src":_vm.nowData.url,"alt":_vm.nowData.name}}),_vm._v(" "),_c('span',{staticClass:"emfe-tel-prefix-text",class:_vm.prefixTextName},[_vm._v("+"+_vm._s(_vm.nowData.prefix))]),_vm._v(" "),_c('ul',{directives:[{name:"show",rawName:"v-show",value:(_vm.flagStatus),expression:"flagStatus"}],staticClass:"emfe-tel-prefix-flag"},_vm._l((_vm.datas),function(data){return _c('li',{staticClass:"emfe-tel-prefix-label",on:{"click":function($event){$event.stopPropagation();_vm.choice(data);}}},[_c('img',{staticClass:"emfe-tel-prefix-icon",attrs:{"src":data.url,"alt":data.name}}),_vm._v(" "),_c('span',{staticClass:"emfe-tel-prefix-icon-piece"},[_vm._v(_vm._s(data.name))]),_vm._v(" "),_c('span',{staticClass:"emfe-tel-prefix-icon-tel"},[_vm._v("+"+_vm._s(data.prefix))])])}))]),_vm._v(" "),_c('input',{staticClass:"emfe-tel-input",class:_vm.inputName,attrs:{"type":_vm.type,"placeholder":_vm.placeholder},domProps:{"value":_vm.nowData.tel},on:{"input":_vm.telChange,"blur":_vm.telBlur}})])},
 staticRenderFns: [],
   name: 'EmfeTel',
   data: function data() {
@@ -2476,9 +2920,6 @@ staticRenderFns: [],
       default: 'number',
     },
     className: String,
-  },
-  created: function created() {
-    console.log(this.value);
   },
   computed: {
     telName: function telName() {
@@ -2518,6 +2959,9 @@ staticRenderFns: [],
     },
     close: function close() {
       this.flagStatus = false;
+    },
+    telBlur: function telBlur() {
+      this.$emit('blur');
     },
   },
   watch: {
@@ -2578,6 +3022,10 @@ staticRenderFns: [],
       default: false,
     },
     click: Function,
+    end: {
+      type: Function,
+      default: function () {},
+    },
   },
   computed: {
     smscodeName: function smscodeName() {
@@ -2606,6 +3054,7 @@ staticRenderFns: [],
       this.allTimes = this.times;
       go = true;
       this.$emit('end', false);
+      this.end(false);
     },
     auto: function auto() {
       var this$1 = this;
@@ -2629,14 +3078,14 @@ staticRenderFns: [],
       this.$emit('input', val);
     },
     clickFn: function clickFn() {
-      if (go && !this.newDisabled) {
+      if (go && !this.newDisabled && !this.start) {
         go = false;
         this.auto();
+        this.$emit('click');
       }
       if (this.click) {
         this.click();
       }
-      this.$emit('click');
     },
     blur: function blur() {
       this.$emit('blur');
@@ -4416,7 +4865,7 @@ EmfeDatetimeM$1.install = function (Vue$$1) {
 };
 
 var EmfeLink$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.hasUrl || _vm.emptyRouters)?_c('a',{staticClass:"emfe-link",class:_vm.linkName,attrs:{"href":_vm.emptyRouters ? 'javascript:;' : _vm.routers.url},on:{"click":_vm.click}},[_vm._t("default")],2):_c('router-link',{staticClass:"emfe-link",class:_vm.linkName,attrs:{"tag":_vm.tag,"to":_vm.routers}},[_vm._t("default")],2)},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.hasUrl || _vm.emptyRouters)?_c('a',{staticClass:"emfe-link",class:_vm.linkName,attrs:{"href":_vm.emptyRouters ? 'javascript:;' : _vm.routers.url},on:{"click":_vm.clickFn}},[_vm._t("default")],2):_c('router-link',{staticClass:"emfe-link",class:_vm.linkName,attrs:{"tag":_vm.tag,"to":_vm.routers}},[_vm._t("default")],2)},
 staticRenderFns: [],
   name: 'emfe-link',
   props: {
@@ -4431,6 +4880,10 @@ staticRenderFns: [],
     className: {
       type: String,
       default: '',
+    },
+    click: {
+      type: Function,
+      default: function () {},
     },
   },
   computed: {
@@ -4449,7 +4902,8 @@ staticRenderFns: [],
     },
   },
   methods: {
-    click: function click() {
+    clickFn: function clickFn() {
+      this.click();
       this.$emit('click');
     },
   },
@@ -4478,13 +4932,18 @@ staticRenderFns: [],
       default: false,
     },
     value: {
-      type: Boolean,
+      type: [Boolean, String],
       default: false,
+    },
+    interceptor: {
+      type: Boolean,
+      default: true,
     },
   },
   data: function data() {
     return {
       currentValue: this.value,
+      interceptorDefault: this.interceptor,
     };
   },
   computed: {
@@ -4503,9 +4962,20 @@ staticRenderFns: [],
   methods: {
     toggle: function toggle() {
       if (!this.disabled) {
-        var checked = !this.currentValue;
-        this.currentValue = checked;
-        this.$emit('toggle', checked);
+        if (this.interceptorDefault) {
+          this.changeValue();
+        }
+        this.$emit('toggle', this.currentValue);
+      }
+    },
+    changeValue: function changeValue() {
+      this.currentValue = !this.currentValue;
+    },
+  },
+  watch: {
+    interceptor: function interceptor(val, oldVal) {
+      if (val !== oldVal) {
+        this.changeValue();
       }
     },
   },
@@ -4538,6 +5008,31 @@ staticRenderFns: [],
 
 EmfeTitle$1.install = function (Vue$$1) {
   Vue$$1.component(EmfeTitle$1.name, EmfeTitle$1);
+};
+
+var prefixCls$6 = 'title-c';
+
+var EmfeTitleC$1 = {
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-title-c",class:_vm.titleName},[_c('div',{staticClass:"emfe-title-c-panel"},[_vm._t("default")],2)])},
+staticRenderFns: [],
+  name: 'EmfeTitleC',
+  props: {
+    className: {
+      type: String,
+      default: '',
+    },
+  },
+  computed: {
+    titleName: function titleName() {
+      return [
+        ( obj = {}, obj[((this.className) + "-" + prefixCls$6)] = !!this.className, obj ) ];
+      var obj;
+    },
+  },
+};
+
+EmfeTitleC$1.install = function (Vue$$1) {
+  Vue$$1.component(EmfeTitleC$1.name, EmfeTitleC$1);
 };
 
 var EmfeRadio = {
@@ -4788,6 +5283,64 @@ EmfePagination$1.install = function (Vue$$1) {
   Vue$$1.component(EmfePagination$1.name, EmfePagination$1);
 };
 
+var EmfePaginationC$1 = {
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-pagination-c"},[_c('ul',[(_vm.pageCount > 1)?_c('li',{staticClass:"emfe-pagination-c-item",class:{disabled: _vm.curPage == 1},on:{"click":_vm.prevPage}},[_vm._v("上一页")]):_vm._e(),_vm._v(" "),_c('li',{staticClass:"emfe-pagination-c-item",class:{'emfe-pagination-c-item-on': _vm.curPage == 1},on:{"click":function($event){_vm.page(1);}}},[_vm._v("1")]),_vm._v(" "),_c('li',{directives:[{name:"show",rawName:"v-show",value:(_vm.curPage > 5 && _vm.pageCount > 10),expression:"curPage > 5 && pageCount > 10"}],staticClass:"emfe-pagination-c-item"},[_vm._v("...")]),_vm._v(" "),_vm._l((_vm.middlePages),function(item,index){return _c('li',{staticClass:"emfe-pagination-c-item",class:{'emfe-pagination-c-item-on': _vm.curPage == index+_vm.offset},on:{"click":function($event){_vm.page(index+_vm.offset);}}},[_vm._v(_vm._s(index+_vm.offset))])}),_vm._v(" "),_c('li',{directives:[{name:"show",rawName:"v-show",value:(_vm.curPage < _vm.bigLimit && _vm.pageCount > 10),expression:"curPage < bigLimit && pageCount > 10"}],staticClass:"emfe-pagination-c-item"},[_vm._v("...")]),_vm._v(" "),(_vm.pageCount > 1)?_c('li',{staticClass:"emfe-pagination-c-item",class:{'emfe-pagination-c-item-on': _vm.curPage == _vm.pageCount},on:{"click":function($event){_vm.page(_vm.pageCount);}}},[_vm._v(_vm._s(_vm.pageCount))]):_vm._e(),_vm._v(" "),(_vm.pageCount > 1)?_c('li',{staticClass:"emfe-pagination-c-item",class:{disabled: _vm.curPage == _vm.pageCount},on:{"click":_vm.nextPage}},[_vm._v("下一页")]):_vm._e()],2)])},
+staticRenderFns: [],
+  props: ['pageCount'],
+  data: function data() {
+    return {
+      curPage: 1,
+    };
+  },
+  computed: {
+    middlePages: function middlePages() {
+      var num;
+      if (this.pageCount <= 2) {
+        num = 0;
+      } else if (this.pageCount > 2 && this.pageCount <= 10) {
+        num = this.pageCount - 2;
+      } else {
+        num = this.curPage > 999 ? 2 : 5;
+      }
+      return num;
+    },
+    bigLimit: function bigLimit() {
+      return this.middlePages > 5 ? this.pageCount - 6 : this.pageCount - 3;
+    },
+    offset: function offset() {
+      var curNum;
+      if (this.curPage <= 5) {
+        curNum = 2;
+      } else if (this.curPage >= this.bigLimit) {
+        curNum = this.bigLimit - 2;
+      } else {
+        curNum = this.middlePages > 5 ? this.curPage - 3 : this.curPage - 2;
+      }
+      return curNum;
+    },
+  },
+  methods: {
+    page: function page(indexPage) {
+      this.$emit('togglePage', indexPage);
+      this.curPage = indexPage;
+    },
+    prevPage: function prevPage() {
+      if (this.curPage !== 1) {
+        this.page(this.curPage - 1);
+      }
+    },
+    nextPage: function nextPage() {
+      if (this.curPage !== this.pageCount) {
+        this.page(this.curPage + 1);
+      }
+    },
+  },
+};
+
+EmfePaginationC$1.install = function (Vue$$1) {
+  Vue$$1.component(EmfePaginationC$1.name, EmfePaginationC$1);
+};
+
 var EmfeSelect$1 = {
 render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"emfe-documentclick",rawName:"v-emfe-documentclick",value:(_vm.closeFn),expression:"closeFn"}],staticClass:"emfe-select",class:_vm.selectName},[_c('input',{staticClass:"emfe-select-input",class:_vm.inputName,attrs:{"type":"text","disabled":_vm.newDisabled,"readonly":"","placeholder":_vm.selectText},domProps:{"value":_vm.checkVal},on:{"click":_vm.inpcheck}}),_vm._v(" "),(_vm.flagCheck)?_c('div',{staticClass:"emfe-select-flag"},[(_vm.seleStu==='newList')?_c('div',{staticClass:"emfe-select-custab"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.newListVal),expression:"newListVal"}],staticClass:"emfe-select-input",attrs:{"type":"text","placeholder":_vm.addText},domProps:{"value":(_vm.newListVal)},on:{"input":function($event){if($event.target.composing){ return; }_vm.newListVal=$event.target.value;}}}),_vm._v(" "),_c('span',{staticClass:"emfe-select-custab-btn",on:{"click":_vm.newListBtn}},[_vm._v("保存")])]):_vm._e(),_vm._v(" "),_vm._l((_vm.checkList),function(item,itemIndex){return (_vm.type==='checkbox')?_c('label',{key:item.id,staticClass:"emfe-select-label",class:{'emfe-select-label-disabled': item.disabled}},[_c('span',{staticClass:"emfe-select-text"},[_vm._v(_vm._s(item.name))]),_vm._v(" "),_c('div',{staticClass:"emfe-select-checkout-box"},[_c('i',{staticClass:"emfe-select-checkout-inner",class:{'emfe-select-checkout-inner-checked': item.checked}}),_vm._v(" "),_c('input',{key:item.id,staticClass:"emfe-select-checkout-status",attrs:{"disabled":item.disabled,"type":"checkbox"},on:{"change":function($event){_vm.getdata(item);}}})])]):_vm._e()}),_vm._v(" "),_vm._l((_vm.checkList),function(item){return (_vm.type==='default')?_c('label',{staticClass:"emfe-select-label emfe-select-delabel",attrs:{"disabled":item.disabled},on:{"click":function($event){_vm.spanTxt(item);}}},[_c('span',{class:{'emfe-select-label-disabled': item.disabled}},[_vm._v(_vm._s(item.name))])]):_vm._e()}),_vm._v(" "),_vm._l((_vm.checkList),function(item){return (_vm.type==='icon')?_c('div',{staticClass:"emfe-select-label emfe-select-delabel",class:{'disabled': item.disabled},attrs:{"disabled":item.disabled},on:{"click":function($event){_vm.spanTxt(item);}}},[_c('img',{staticClass:"emfe-select-icon",attrs:{"src":item.icon,"alt":item.name}}),_vm._v(" "),_c('span',{staticClass:"emfe-select-icon-piece"},[_vm._v(_vm._s(item.name))]),_vm._v(" "),_c('span',{staticClass:"emfe-select-icon-tel"},[_vm._v(_vm._s(item.tel))])]):_vm._e()})],2):_vm._e()])},
 staticRenderFns: [],
@@ -4878,6 +5431,7 @@ staticRenderFns: [],
     spanTxt: function spanTxt(item) {
       if (item.disabled !== 'disabled') {
         this.checkVal = item.name;
+        this.flagCheck = false;
         this.$emit('getDefData', this.checkVal, item, this.datas);
         if (this.getDefData) {
           this.getDefData(this.checkVal, item, this.datas);
@@ -4987,12 +5541,12 @@ EmfeModal$1.install = function (Vue$$1) {
 };
 
 var EmfeCheckout$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-checkout",class:_vm.checkoutName},[_c('label',{staticClass:"emfe-checkout-box"},[_c('i',{staticClass:"emfe-checkout-inner",class:_vm.innerName}),_vm._v(" "),(_vm.stop)?_c('input',{staticClass:"emfe-checkout-status",attrs:{"type":"checkbox","disabled":_vm.disable},domProps:{"checked":_vm.status},on:{"click":function($event){$event.stopPropagation();},"change":_vm.alocked}}):_c('input',{staticClass:"emfe-checkout-status",attrs:{"type":"checkbox","disabled":_vm.disable},domProps:{"checked":_vm.status},on:{"change":_vm.alocked}}),_vm._v(" "),_c('span',{staticClass:"emfe-checkout-text",class:_vm.textName},[_vm._v(_vm._s(_vm.newtitle))])]),_vm._v(" "),(_vm.slideShow)?_c('div',{staticClass:"emfe-checkout-slide"},[_c('transition',{attrs:{"name":"fade"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.status),expression:"status"}],staticClass:"emfe-checkout-slide-wrap",class:_vm.openName},[_vm._t("slide")],2)])],1):_vm._e()])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-checkout",class:_vm.checkoutName},[_c('label',{staticClass:"emfe-checkout-box"},[_c('i',{staticClass:"emfe-checkout-inner",class:_vm.innerName}),_vm._v(" "),(_vm.stop)?_c('input',{staticClass:"emfe-checkout-status",attrs:{"type":"checkbox","name":_vm.name,"disabled":_vm.disable},domProps:{"checked":_vm.checkoutStatus},on:{"click":function($event){$event.stopPropagation();},"change":_vm.alocked}}):_c('input',{staticClass:"emfe-checkout-status",attrs:{"type":"checkbox","name":_vm.name,"disabled":_vm.disable},domProps:{"checked":_vm.checkoutStatus},on:{"change":_vm.alocked}}),_vm._v(" "),_c('span',{staticClass:"emfe-checkout-text",class:_vm.textName},[_vm._v(_vm._s(_vm.newtitle))])]),_vm._v(" "),(_vm.slideShow)?_c('div',{staticClass:"emfe-checkout-slide"},[_c('transition',{attrs:{"name":"fade"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.checkoutStatus),expression:"checkoutStatus"}],staticClass:"emfe-checkout-slide-wrap",class:_vm.openName},[_vm._t("slide")],2)])],1):_vm._e()])},
 staticRenderFns: [],
   name: 'EmfeCheckout',
   data: function data() {
     return {
-      status: this.value,
+      checkoutStatus: this.value,
       newtitle: this.title,
     };
   },
@@ -5018,12 +5572,13 @@ staticRenderFns: [],
     inline: String,
     change: Function,
     index: [Number, String],
+    name: String,
   },
   computed: {
     innerName: function innerName() {
       return [
         {
-          'emfe-checkout-inner-disable': this.disable, 'emfe-checkout-inner-checked': this.status,
+          'emfe-checkout-inner-disable': this.disable, 'emfe-checkout-inner-checked': this.checkoutStatus,
         } ];
     },
     checkoutName: function checkoutName() {
@@ -5047,16 +5602,16 @@ staticRenderFns: [],
   methods: {
     alocked: function alocked(e) {
       this.setValue(e.target.checked);
-      this.$emit('input', this.status);
-      this.$emit('checked', this.status, this.title, this.index);
+      this.$emit('input', this.checkoutStatus);
+      this.$emit('checked', this.checkoutStatus, this.title, this.index);
       if (this.change) {
-        this.change(this.status, this.title, this.index);
+        this.change(this.checkoutStatus, this.title, this.index);
       }
     },
     setValue: function setValue(checked) {
       if ( checked === void 0 ) checked = this.value;
 
-      this.status = checked;
+      this.checkoutStatus = checked;
     },
   },
   watch: {
@@ -5188,7 +5743,7 @@ EmfeDrop$1.install = function (Vue$$1) {
   Vue$$1.component(EmfeDrop$1.name, EmfeDrop$1);
 };
 
-var prefixCls$6 = 'emfe-box';
+var prefixCls$7 = 'emfe-box';
 
 var EmfeTable = {
 render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-box"},[_c('div',{class:_vm.className},[(_vm.columns.length)?_c('table',{staticClass:"emfe-box-table",class:[_vm.classTable, _vm.classAdd],attrs:{"width":_vm.width}},[_vm._t("head"),_vm._v(" "),_c('tbody',[_vm._t("body")],2)],2):_vm._e(),_vm._v(" "),(!_vm.data.length)?_c('div',{staticClass:"emfe-box-nothing"},[_vm._v(_vm._s(_vm.nothingText))]):_vm._e()])])},
@@ -5228,13 +5783,13 @@ staticRenderFns: [],
   },
   computed: {
     className: function className() {
-      return this.type && this.columns.length > 0 ? (prefixCls$6 + "-overflow") : (prefixCls$6 + "-fixed");
+      return this.type && this.columns.length > 0 ? (prefixCls$7 + "-overflow") : (prefixCls$7 + "-fixed");
     },
     classAdd: function classAdd() {
       return this.classAddName ? ((this.classAddName) + "-table") : '';
     },
     classTable: function classTable() {
-      return this.type && this.columns.length > 0 ? (prefixCls$6 + "-overflow-table") : (prefixCls$6 + "-fixed-table");
+      return this.type && this.columns.length > 0 ? (prefixCls$7 + "-overflow-table") : (prefixCls$7 + "-fixed-table");
     },
     width: function width() {
       return this.type && this.columns.length > 10 ? ((this.percen) + "%") : '100%';
@@ -5243,7 +5798,7 @@ staticRenderFns: [],
 };
 
 var EmfeTableHead = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('thead',{staticClass:"emfe-box-table-head",class:_vm.classHead},[_c('tr',{staticClass:"emfe-box-table-head-tr",class:_vm.classTr},[_vm._l((this.$parent.columns),function(item,index){return _c('th',{staticClass:"emfe-box-table-head-tr-th",class:_vm.classTh},[_c('div',[_vm._v(_vm._s(item.title))])])})],2)])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('thead',{staticClass:"emfe-box-table-head",class:_vm.classHead},[_c('tr',{staticClass:"emfe-box-table-head-tr",class:_vm.classTr},[_vm._l((this.$parent.columns),function(item,index){return _c('th',{staticClass:"emfe-box-table-head-tr-th",class:_vm.classTh,on:{"click":function($event){_vm.jump(index);}}},[_c('div',[_vm._v(_vm._s(item.title))])])})],2)])},
 staticRenderFns: [],
   name: 'EmfeTableHead',
   data: function data() {
@@ -5270,6 +5825,11 @@ staticRenderFns: [],
         ((this.className) + "-table-head-tr-th"),
         ( obj = {}, obj[((this.$parent.classAdd) + "-thead-tr-th")] = !!this.classAdd, obj ) ];
       var obj;
+    },
+  },
+  methods: {
+    jump: function jump(index) {
+      this.$emit('thJump', index);
     },
   },
 };
@@ -5403,7 +5963,7 @@ EmfeTextarea$1.install = function (Vue$$1) {
 };
 
 var EmfeDatapanel$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-datapanel",class:_vm.datapanelName},[_c('div',{staticClass:"emfe-datapanel-box"},[_c('div',{staticClass:"emfe-datapanel-title"},[_c('span',[_vm._v(_vm._s(_vm.title))]),_vm._v(" "),_c('emfe-tooltip',{attrs:{"styles":_vm.styles,"placement":"right-end"}},[(_vm.iconFlg)?_c('emfe-icon',{attrs:{"type":"hint","className":"emfe-datapanel-mark"},slot:"render"}):_vm._e(),_vm._v(" "),_c('div',{slot:"tip"},[_vm._t("tipText")],2)],1)],1),_vm._v(" "),_c('div',{staticClass:"emfe-datapanel-main"},[_c('span',{staticClass:"emfe-datapanel-main-content"},[_vm._v(_vm._s(_vm.contentText))]),_vm._v(" "),(_vm.companyText)?_c('span',{staticClass:"emfe-datapanel-main-company"},[_vm._v(_vm._s(_vm.companyText))]):_vm._e()])])])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-datapanel",class:_vm.datapanelName},[_c('div',{staticClass:"emfe-datapanel-box"},[_c('div',{staticClass:"emfe-datapanel-title"},[_c('span',[_vm._v(_vm._s(_vm.title))]),_vm._v(" "),_c('emfe-tooltip',{attrs:{"styles":_vm.styles,"placement":"right-end"}},[(_vm.iconFlg)?_c('emfe-icon',{attrs:{"type":_vm.type,"className":"emfe-datapanel-mark"},slot:"render"}):_vm._e(),_vm._v(" "),_c('div',{slot:"tip"},[_vm._t("tipText")],2)],1)],1),_vm._v(" "),_c('div',{staticClass:"emfe-datapanel-main"},[_c('span',{staticClass:"emfe-datapanel-main-content"},[_vm._v(_vm._s(_vm.contentText))]),_vm._v(" "),(_vm.companyText)?_c('span',{staticClass:"emfe-datapanel-main-company"},[_vm._v(_vm._s(_vm.companyText))]):_vm._e()])])])},
 staticRenderFns: [],
   name: 'EmfeDatapanel',
   props: {
@@ -5416,7 +5976,7 @@ staticRenderFns: [],
       default: '',
     },
     contentText: {
-      type: String,
+      type: [String, Number],
       default: '',
     },
     companyText: {
@@ -5432,6 +5992,10 @@ staticRenderFns: [],
         return {};
       },
     },
+    type: {
+      type: String,
+      default: 'set',
+    },
   },
   computed: {
     datapanelName: function datapanelName() {
@@ -5446,7 +6010,7 @@ EmfeDatapanel$1.install = function (Vue$$1) {
   Vue$$1.component(EmfeDatapanel$1.name, EmfeDatapanel$1);
 };
 
-var prefixCls$7 = 'emfe-tag';
+var prefixCls$8 = 'emfe-tag';
 var EmfeTag = {
 render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-tag",class:_vm.classList,on:{"click":_vm.activeClass}},[(_vm.type)?_c('emfe-icon',{attrs:{"type":_vm.type,"className":"icon-page"}}):_vm._e(),_vm._v(" "),_vm._t("default"),_vm._v(" "),(!!_vm.skin)?_c('span'):_vm._e()],2)},
 staticRenderFns: [],
@@ -5480,7 +6044,7 @@ staticRenderFns: [],
   computed: {
     classList: function classList() {
       return [
-        ( obj = {}, obj[(prefixCls$7 + "-" + (this.className) + "-disable")] = this.disable, obj[(prefixCls$7 + "-" + (this.className))] = !this.disable, obj[(prefixCls$7 + "-" + (this.className) + "-active")] = this.activeOk && !this.skin, obj[(prefixCls$7 + "-" + (this.className) + "-" + (this.skin))] = !!this.skin, obj[(prefixCls$7 + "-" + (this.className) + "-" + (this.skin) + "-active")] = this.activeOk && !!this.skin, obj[((this.addName) + "-tag")] = !!this.addName, obj ) ];
+        ( obj = {}, obj[(prefixCls$8 + "-" + (this.className) + "-disable")] = this.disable, obj[(prefixCls$8 + "-" + (this.className))] = !this.disable, obj[(prefixCls$8 + "-" + (this.className) + "-active")] = this.activeOk && !this.skin, obj[(prefixCls$8 + "-" + (this.className) + "-" + (this.skin))] = !!this.skin, obj[(prefixCls$8 + "-" + (this.className) + "-" + (this.skin) + "-active")] = this.activeOk && !!this.skin, obj[((this.addName) + "-tag")] = !!this.addName, obj ) ];
       var obj;
     },
   },
@@ -5571,7 +6135,7 @@ var Tag = {
 };
 
 var EmfePanel$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-panel",class:_vm.classList},_vm._l((_vm.data),function(item,index){return _c('div',{staticClass:"emfe-panel-box",class:_vm.boxName},[_c('div',{staticClass:"emfe-panel-box-left",class:_vm.leftName},[_vm._v(_vm._s(item.text))]),_vm._v(" "),_c('div',{staticClass:"emfe-panel-box-right",class:_vm.rightName},[_vm._v(_vm._s(item.cont)),(!!_vm.type)?_c('emfe-icon',{attrs:{"type":_vm.type,"className":"emfe-panel-box"},on:{"icon-click":_vm.iconClick}}):_vm._e(),_vm._v(" "),(item.switchOk)?_c('emfe-switch',{attrs:{"value":_vm.switchType},on:{"toggle":_vm.toggle}},[_c('span',{slot:"open"},[_vm._v("ON")]),_vm._v(" "),_c('span',{slot:"close"},[_vm._v("OFF")])]):_vm._e()],1)])}))},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-panel",class:_vm.classList},_vm._l((_vm.data),function(item,index){return _c('div',{staticClass:"emfe-panel-box",class:_vm.boxName},[_c('div',{staticClass:"emfe-panel-box-left",class:_vm.leftName},[_vm._v(_vm._s(item.text))]),_vm._v(" "),_c('div',{staticClass:"emfe-panel-box-right",class:_vm.rightName},[_vm._v(_vm._s(item.cont)),(!!_vm.type)?_c('emfe-icon',{attrs:{"type":_vm.type,"className":"emfe-panel-box"},on:{"icon-click":function($event){_vm.iconClick(index);}}}):_vm._e(),_vm._v(" "),(item.switchOk)?_c('emfe-switch',{attrs:{"value":_vm.switchType},on:{"toggle":_vm.toggle}},[_c('span',{slot:"open"},[_vm._v("ON")]),_vm._v(" "),_c('span',{slot:"close"},[_vm._v("OFF")])]):_vm._e()],1)])}))},
 staticRenderFns: [],
   name: 'panel',
   props: {
@@ -5598,8 +6162,8 @@ staticRenderFns: [],
     toggle: function toggle(status) {
       this.$emit('switch-toogle', status);
     },
-    iconClick: function iconClick() {
-      this.$emit('icon-click');
+    iconClick: function iconClick(index) {
+      this.$emit('icon-click', index);
     },
   },
   computed: {
@@ -5630,7 +6194,89 @@ EmfePanel$1.install = function (Vue$$1) {
   Vue$$1.component(EmfePanel$1.name, EmfePanel$1);
 };
 
-var prefixCls$8 = 'emfe-slide';
+var EmfePanelC$1 = {
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-panel-c"},[_c('div',{staticClass:"emfe-panel-c-logobox"},[_c('emfe-upload',{attrs:{"className":"emfe-panel-c","action":_vm.uploadAction},on:{"success":_vm.uploadSuccess}})],1),_vm._v(" "),_c('div',{staticClass:"emfe-panel-c-infobox"},[_c('div',{staticClass:"emfe-panel-c-infobox-about"},[_c('span',{staticClass:"emfe-panel-c-infobox-about-text"},[_vm._v("早上好，李根")]),_vm._v(" "),_c('span',{staticClass:"emfe-panel-c-infobox-about-text"},[_c('img',{staticClass:"emfe-panel-c-infobox-about-img",attrs:{"src":_vm.memberlogo}}),_vm._v("黄金会员")]),_vm._v(" "),_c('span',{staticClass:"emfe-panel-c-infobox-about-text"},[_vm._v("成长值"),_c('em',{staticClass:"emfe-panel-c-infobox-about-text-em"},[_vm._v(_vm._s(_vm.growth))])]),_vm._v(" "),_c('span',{staticClass:"emfe-panel-c-infobox-about-text"},[_vm._v("积分"),_c('em',{staticClass:"emfe-panel-c-infobox-about-text-em"},[_vm._v(_vm._s(_vm.integral))])]),_vm._v(" "),_c('span',{staticClass:"emfe-panel-c-infobox-about-text"},[_vm._v("余额"),_c('em',{staticClass:"emfe-panel-c-infobox-about-text-em"},[_vm._v("￥"+_vm._s(_vm.balance))])])]),_vm._v(" "),_c('div',{staticClass:"emfe-panel-c-infobox-info"},[_c('span',{staticClass:"emfe-panel-c-infobox-about-text"},[_vm._v("账号：+8618618468079")]),_vm._v(" "),_c('emfe-link',{attrs:{"className":"emfe-panel-c","routers":_vm.telRouters}},[_c('emfe-icon',{attrs:{"type":"hint","className":"emfe-panel-c"}})],1),_vm._v(" "),_c('emfe-link',{attrs:{"className":"emfe-panel-c","routers":_vm.infoRouters}},[_c('emfe-icon',{attrs:{"type":"hint","className":"emfe-panel-c"}})],1),_vm._v(" "),_c('emfe-link',{attrs:{"className":"emfe-panel-c","routers":_vm.walletRouters}},[_c('emfe-icon',{attrs:{"type":"hint","className":"emfe-panel-c"}})],1)],1)])])},
+staticRenderFns: [],
+  name: 'EmfePanelC',
+  data: function data() {
+    return {
+      logo: '',
+    };
+  },
+  props: {
+    memberlogo: {
+      type: String,
+      required: true,
+    },
+    growth: {
+      type: Number,
+      required: true,
+    },
+    integral: {
+      type: Number,
+      required: true,
+    },
+    balance: {
+      type: Number,
+      required: true,
+    },
+    telRouters: {
+      type: Object,
+      required: true,
+    },
+    infoRouters: {
+      type: Object,
+      required: true,
+    },
+    walletRouters: {
+      type: Object,
+      required: true,
+    },
+    uploadAction: {
+      type: String,
+      required: true,
+    },
+  },
+  methods: {
+    toggle: function toggle(status) {
+      this.$emit('switch-toogle', status);
+    },
+    iconClick: function iconClick(index) {
+      this.$emit('icon-click', index);
+    },
+    uploadSuccess: function uploadSuccess(res) {
+      console.log(res);
+    },
+  },
+  computed: {
+    classList: function classList() {
+      return [
+        ( obj = {}, obj[((this.className) + "-panel")] = !!this.className, obj ) ];
+      var obj;
+    },
+    boxName: function boxName() {
+      return [
+        ( obj = {}, obj[((this.className) + "-panel-box")] = !!this.className, obj ) ];
+      var obj;
+    },
+    leftName: function leftName() {
+      return [
+        ( obj = {}, obj[((this.className) + "-panel-box-left")] = !!this.className, obj ) ];
+      var obj;
+    },
+    rightName: function rightName() {
+      return [
+        ( obj = {}, obj[((this.className) + "-panel-box-right")] = !!this.className, obj ) ];
+      var obj;
+    },
+  },
+};
+
+EmfePanelC$1.install = function (Vue$$1) {
+  Vue$$1.component(EmfePanelC$1.name, EmfePanelC$1);
+};
+
+var prefixCls$9 = 'emfe-slide';
 var EmfeSlide$1 = {
 render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-slide",class:_vm.slideName},[_c('div',{staticClass:"emfe-slide-main"},[_c('div',{staticClass:"emfe-slide-describe"},[_vm._v(_vm._s(_vm.slideLeft))]),_vm._v(" "),_c('div',{staticClass:"emfe-slide-progress"},[_c('progress',{ref:"slideBar",staticClass:"emfe-slide-progress-bar",attrs:{"value":_vm.moveValue,"max":_vm.maxPercent}}),_vm._v(" "),_c('emfe-drag',{attrs:{"className":"emfe-slide-progress","limit":"true","limitPosition":"center","dragDiyStyle":_vm.progress,"direction":"horizontal"},on:{"drag":_vm.drag}},[_c('span',{staticClass:"emfe-slide-progress-drag-left"}),_vm._v(" "),_c('span',{staticClass:"emfe-slide-progress-drag-right"})])],1),_vm._v(" "),_c('div',{staticClass:"emfe-slide-describe"},[_vm._v(_vm._s(_vm.slideRight))])])])},
 staticRenderFns: [],
@@ -5669,7 +6315,7 @@ staticRenderFns: [],
   computed: {
     slideName: function slideName() {
       return [
-        ( obj = {}, obj[(prefixCls$8 + "-" + (this.className))] = !!this.className, obj ) ];
+        ( obj = {}, obj[(prefixCls$9 + "-" + (this.className))] = !!this.className, obj ) ];
       var obj;
     },
   },
@@ -5752,6 +6398,39 @@ staticRenderFns: [],
 
 EmfeCrumb$1.install = function (Vue$$1) {
   Vue$$1.component(EmfeCrumb$1.name, EmfeCrumb$1);
+};
+
+var EmfeCrumbC$1 = {
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-crumb-c"},[_c('span',{staticClass:"emfe-crumb-c-title"},[_vm._v("您的位置：")]),_vm._v(" "),_vm._l((_vm.datas),function(data){return [_c('span',{staticClass:"emfe-crumb-c-title"},[_vm._v(_vm._s(data))]),_vm._v(" "),_c('i',{staticClass:"emfe-crumb-c-format"},[_vm._v(_vm._s(_vm.format))])]}),_vm._v(" "),_c('emfe-link',{attrs:{"className":"emfe-crumb-c","routers":_vm.routers},on:{"click":_vm.click}},[_vm._v(_vm._s(_vm.linkText))])],2)},
+staticRenderFns: [],
+  name: 'EmfeCrumbC',
+  props: {
+    routers: {
+      type: Object,
+      required: true,
+    },
+    format: {
+      type: String,
+      default: '>',
+    },
+    datas: {
+      type: Array,
+      required: true,
+    },
+    linkText: {
+      type: String,
+      required: true,
+    },
+  },
+  methods: {
+    click: function click() {
+      this.$emit('click');
+    },
+  },
+};
+
+EmfeCrumbC$1.install = function (Vue$$1) {
+  Vue$$1.component(EmfeCrumbC$1.name, EmfeCrumbC$1);
 };
 
 var EmfeEdit$1 = {
@@ -6053,6 +6732,10 @@ staticRenderFns: [],
       required: true,
     },
     className: String,
+    end: {
+      type: Function,
+      default: function () {},
+    },
   },
   computed: {
     hour: function hour() {
@@ -6082,6 +6765,8 @@ staticRenderFns: [],
       this.step = newTimeMsec - nowMsec;
       if (!this.step) {
         clearTimeout(timer$1);
+        this.$emit('end');
+        this.end();
       } else {
         timer$1 = setTimeout(this.handleTime, 1000);
       }
@@ -6091,6 +6776,286 @@ staticRenderFns: [],
 
 EmfeCountdown$1.install = function (Vue$$1) {
   Vue$$1.component(EmfeCountdown$1.name, EmfeCountdown$1);
+};
+
+// https://github.com/ElemeFE/element/blob/dev/packages/upload/src/ajax.js
+
+function getError$1(action, option, xhr) {
+  var msg = "fail to post " + action + " " + (xhr.status) + "'";
+  var err = new Error(msg);
+  err.status = xhr.status;
+  err.method = 'post';
+  err.url = action;
+  return err;
+}
+
+function getBody$1(xhr) {
+  var text = xhr.responseText || xhr.response;
+  if (!text) {
+    return text;
+  }
+
+  try {
+    return JSON.parse(text);
+  } catch (e) {
+    return text;
+  }
+}
+
+function upload$2(option) {
+  if (typeof XMLHttpRequest === 'undefined') {
+    return;
+  }
+
+  var xhr = new XMLHttpRequest();
+  var action = option.action;
+
+  // if (xhr.upload) {
+  //   xhr.upload.onprogress = function progress(e) {
+  //     if (e.total > 0) {
+  //       e.percent = (e.loaded / e.total) * 100;
+  //     }
+  //     option.onProgress(e);
+  //   };
+  // }
+
+  xhr.onerror = function error(e) {
+    option.onError(e);
+  };
+
+  xhr.onload = function onload() {
+    if (xhr.status < 200 || xhr.status >= 300) {
+      return option.onError(getError$1(action, option, xhr), getBody$1(xhr));
+    }
+
+    return option.onSuccess(getBody$1(xhr));
+  };
+  if (option.type === 'POST') {
+    xhr.open('post', action, true);
+    xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+  } else {
+    xhr.open('get', action, true);
+  }
+
+  var headers = option.headers || {};
+
+  // if (headers['X-Requested-With'] !== null) {
+  //   xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+  // }
+
+  Object.keys(headers).forEach(function (item) {
+    if (O.hOwnProperty(headers, item) && headers[item] !== null) {
+      xhr.setRequestHeader(item, headers[item]);
+    }
+  });
+
+  // for (const item in headers) {
+  //   if (O.hOwnProperty(headers, item) && headers[item] !== null) {
+  //     xhr.setRequestHeader(item, headers[item]);
+  //   }
+  // }
+  if (option.type === 'POST') {
+    xhr.send(option.data);
+  } else {
+    xhr.send();
+  }
+}
+
+var EmfeLogin$1 = {
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.show)?_c('div',{staticClass:"emfe-login",class:_vm.loginName},[_c('div',{staticClass:"emfe-login-mask"}),_vm._v(" "),_c('div',{staticClass:"emfe-login-wrap"},[_c('div',{staticClass:"emfe-login-header"},[_c('div',{staticClass:"emfe-login-header-inner"},[_vm._v(_vm._s(_vm.title))]),_vm._v(" "),_c('div',{staticClass:"emfe-login-header-close",on:{"click":_vm.close}},[_vm._v("＋")])]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(!_vm.weixin),expression:"!weixin"}],staticClass:"emfe-login-main"},[_c('emfe-tel',{attrs:{"className":"emfe-login","datas":_vm.telsData,"placeholder":"请输入手机号"},model:{value:(_vm.telNow),callback:function ($$v) {_vm.telNow=$$v;},expression:"telNow"}}),_vm._v(" "),_c('div',{staticClass:"emfe-login-main-tips"},[_vm._v(_vm._s(_vm.telError))]),_vm._v(" "),_c('emfe-input',{attrs:{"className":"emfe-login","type":"password","placeholder":"请输入密码"},model:{value:(_vm.data.password),callback:function ($$v) {_vm.data.password=$$v;},expression:"data.password"}}),_vm._v(" "),_c('div',{staticClass:"emfe-login-main-tips emfe-login-main-tips-two"},[_vm._v(_vm._s(_vm.pwdError))]),_vm._v(" "),_c('emfe-imgcode',{directives:[{name:"show",rawName:"v-show",value:(_vm.codeNow),expression:"codeNow"}],attrs:{"className":"emfe-login","src":_vm.imgSrc},on:{"click":_vm.imgClick},model:{value:(_vm.imgNow),callback:function ($$v) {_vm.imgNow=$$v;},expression:"imgNow"}}),_vm._v(" "),_c('emfe-button',{attrs:{"theme":"primary","className":"emfe-login"},on:{"click":_vm.login}},[_vm._v("登录")]),_vm._v(" "),_c('div',{staticClass:"emfe-login-handle"},[_c('emfe-checkout',{attrs:{"className":"emfe-login-handle","title":"下次自动登录"},model:{value:(_vm.autoLogin),callback:function ($$v) {_vm.autoLogin=$$v;},expression:"autoLogin"}}),_vm._v(" "),_c('emfe-link',{attrs:{"className":"emfe-login-handle","routers":{}},on:{"click":_vm.forgot}},[_vm._v("忘记密码？")]),_vm._v(" "),_c('emfe-link',{attrs:{"className":"emfe-login-handle-child","routers":{}},on:{"click":_vm.register}},[_vm._v("注册登录")])],1),_vm._v(" "),_c('emfe-titleline',{attrs:{"title":"微信登录"}}),_vm._v(" "),_c('div',{staticClass:"emfe-login-type"},[_c('img',{attrs:{"src":_vm.weixinLogo,"alt":"微信"},on:{"click":_vm.toggleType}})])],1),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.weixin),expression:"weixin"}],staticClass:"emfe-login-weixin"},[_vm._m(0),_vm._v(" "),_c('emfe-titleline',{attrs:{"title":"账户登录"}}),_vm._v(" "),_c('div',{staticClass:"emfe-login-type"},[_c('img',{attrs:{"src":_vm.accountLogo,"alt":"账号登录"},on:{"click":_vm.toggleType}})])],1)])]):_vm._e()},
+staticRenderFns: [function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-login-weixin-code",attrs:{"id":"login_weixin"}},[_c('img',{staticClass:"emfe-login-weixin-code-img",attrs:{"src":"https://static.evente.cn/evente/img/flag/v1/zg.jpg","alt":"微信登录"}})])}],
+  name: 'EmfeLogin',
+  data: function data() {
+    return {
+      title: '登录',
+      telNow: {
+        name: ' ',
+        tel: '',
+        prefix: '86',
+        url: 'https://static.evente.cn/evente/img/flag/v1/zg.jpg',
+      },
+      telsData: [
+        {
+          name: '中国',
+          tel: '',
+          prefix: '86',
+          url: 'https://static.evente.cn/evente/img/flag/v1/zg.jpg',
+        },
+        {
+          name: '香港',
+          tel: '',
+          prefix: '852',
+          url: 'https://static.evente.cn/evente/img/flag/v1/xg.jpg',
+        } ],
+      data: {
+        code: '',
+        phone: '',
+        password: '',
+        auto_login: 1,
+      },
+      telError: '',
+      pwdError: '',
+      telFlg: false,
+      pwdFlg: false,
+      imgNow: '',
+      imgSrc: 'https://static.evente.cn/evente/img/flag/v1/mlxy.jpg',
+      codeNow: false,
+      autoLogin: false,
+      weixinLogo: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjQwcHgiIGhlaWdodD0iNDBweCIgdmlld0JveD0iMCAwIDQwIDQwIiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPgogICAgPCEtLSBHZW5lcmF0b3I6IFNrZXRjaCA0NS4xICg0MzUwNCkgLSBodHRwOi8vd3d3LmJvaGVtaWFuY29kaW5nLmNvbS9za2V0Y2ggLS0+CiAgICA8dGl0bGU+U2hhcGU8L3RpdGxlPgogICAgPGRlc2M+Q3JlYXRlZCB3aXRoIFNrZXRjaC48L2Rlc2M+CiAgICA8ZGVmcz48L2RlZnM+CiAgICA8ZyBpZD0iUGFnZS0xIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgICAgICA8ZyBpZD0i55m75b2VLSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTkzOC4wMDAwMDAsIC02MjcuMDAwMDAwKSIgZmlsbD0iIzRDQkQ2MyI+CiAgICAgICAgICAgIDxwYXRoIGQ9Ik05NjAuNjM5MzcyLDY0Ni45ODM2NDYgQzk2MC4xODM0MTUsNjQ2Ljk4MzY0NiA5NTkuNzI3MTc3LDY0Ny40MDcxNzUgOTU5LjcyNzE3Nyw2NDcuOTI4NjkgQzk1OS43MjcxNzcsNjQ4LjM1MjA3OSA5NjAuMTgzMTM0LDY0OC43NzU0NjggOTYwLjYzOTM3Miw2NDguNzc1NDY4IEM5NjEuMzI0MDEsNjQ4Ljc3NTQ2OCA5NjEuODEyNjc2LDY0OC4zNTE5MzggOTYxLjgxMjY3Niw2NDcuOTI4NjkgQzk2MS44MTI2NzYsNjQ3LjQwNzMxNSA5NjEuMzI0MDEsNjQ2Ljk4MzY0NiA5NjAuNjM5MzcyLDY0Ni45ODM2NDYgTDk2MC42MzkzNzIsNjQ2Ljk4MzY0NiBaIE05NTcuNjQxODE4LDY0Mi41ODQ1MjkgQzk1OC4zNTg3NDMsNjQyLjU4NDUyOSA5NTguODE0ODQxLDY0Mi4xMjg1NzEgOTU4LjgxNDg0MSw2NDEuNDQ0MDc0IEM5NTguODE0ODQxLDY0MC43Mjc0MjkgOTU4LjM1ODc0Myw2NDAuMzAzNjE5IDk1Ny42NDE4MTgsNjQwLjMwMzYxOSBDOTU2Ljk1NzQ2MSw2NDAuMzAzNjE5IDk1Ni4zMDU2NzIsNjQwLjcyNzQyOSA5NTYuMzA1NjcyLDY0MS40NDQwNzQgQzk1Ni4zMDU2NzIsNjQyLjEyODcxMiA5NTYuOTU3NDYxLDY0Mi41ODQ1MjkgOTU3LjY0MTgxOCw2NDIuNTg0NTI5IEw5NTcuNjQxODE4LDY0Mi41ODQ1MjkgWiBNOTU4LjAwMDIxMSw2MjcgQzk0Ni45NTQ2MTgsNjI3IDkzOCw2MzUuOTU0MTk3IDkzOCw2NDYuOTk5Nzg5IEM5MzgsNjU4LjA0NTgwMyA5NDYuOTU0NjE4LDY2NyA5NTguMDAwMjExLDY2NyBDOTY5LjA0NTgwMyw2NjcgOTc4LDY1OC4wNDU4MDMgOTc4LDY0Ni45OTk3ODkgQzk3OC4wMDAxNCw2MzUuOTU0MTk3IDk2OS4wNDYwODQsNjI3IDk1OC4wMDAyMTEsNjI3IEw5NTguMDAwMjExLDYyNyBaIE05NTQuMjIwMTczLDY1Mi4wNjcxMiBDOTUzLjAxNDU4Miw2NTIuMDY3MTIgOTUyLjEzNDY3NCw2NTEuODcxNTY5IDk1MC45OTM5MzksNjUxLjU0NTMyNCBMOTQ3LjcwMjg0OSw2NTMuMjA3NTc0IEw5NDguNjQ4MTc0LDY1MC40MDUxNSBDOTQ2LjMzNDQxNSw2NDguNzc2MTcgOTQ0Ljk2NTg0Miw2NDYuNzIzMDk5IDk0NC45NjU4NDIsNjQ0LjIxMzc5IEM5NDQuOTY1ODQyLDYzOS43ODIyNDUgOTQ5LjEzNjg0LDYzNi4zOTM0NDkgOTU0LjIyMDE3Myw2MzYuMzkzNDQ5IEM5NTguNzE2ODU1LDYzNi4zOTM0NDkgOTYyLjcyNTQzMiw2MzkuMDY1MzE5IDk2My41MDcyMTQsNjQyLjg0NTc3NyBDOTYzLjE4MTM5LDY0Mi43ODAwNzkgOTYyLjg4Nzk5NCw2NDIuNzQ3NjUxIDk2Mi42Mjc0NDcsNjQyLjc0NzY1MSBDOTU4LjE5NTYyMSw2NDIuNzQ3NjUxIDk1NC43NzQyNTcsNjQ2LjA3MTQ1IDk1NC43NzQyNTcsNjUwLjA3OTMyNiBDOTU0Ljc3NDI1Nyw2NTAuNzYzODIzIDk1NC44NzE5NjIsNjUxLjM4Mjc2MyA5NTUuMDM0ODA0LDY1Mi4wMzQ4MzIgQzk1NC43NzQzOTcsNjUyLjA2NzEyIDk1NC40ODEwMDEsNjUyLjA2NzEyIDk1NC4yMjAxNzMsNjUyLjA2NzEyIEw5NTQuMjIwMTczLDY1Mi4wNjcxMiBaIE05NjcuODA4NjI2LDY1NS4yNjAzNjQgTDk2OC40NjAyNzQsNjU3LjYwNjY5MSBMOTY1Ljk4MzUzMyw2NTYuMjA1NjkgQzk2NS4wMzg3Nyw2NTYuNDAwOTU5IDk2NC4xMjYyOTQsNjU2LjY5NDIxNSA5NjMuMTgxMzksNjU2LjY5NDIxNSBDOTU4LjgxNDg0MSw2NTYuNjk0MjE1IDk1NS4zNjA5MDksNjUzLjY5NjUyMSA5NTUuMzYwOTA5LDY0OS45ODE3NjEgQzk1NS4zNjA5MDksNjQ2LjI2NzAwMSA5NTguODE0ODQxLDY0My4yNjkxNjYgOTYzLjE4MTM5LDY0My4yNjkxNjYgQzk2Ny4zMTk4MTksNjQzLjI2OTE2NiA5NzEuMDM0Mjk5LDY0Ni4yNjcwMDEgOTcxLjAzNDI5OSw2NDkuOTgxNzYxIEM5NzEuMDM0NDM5LDY1Mi4wNjcxMiA5NjkuNjMzMTU3LDY1My45MjQzNTkgOTY3LjgwODYyNiw2NTUuMjYwMzY0IEw5NjcuODA4NjI2LDY1NS4yNjAzNjQgWiBNOTUxLjE4OTc3LDY0MC4zMDM0NzkgQzk1MC41MDU0MTMsNjQwLjMwMzQ3OSA5NDkuNzg4NzY5LDY0MC43MjcyODkgOTQ5Ljc4ODc2OSw2NDEuNDQzOTM0IEM5NDkuNzg4NzY5LDY0Mi4xMjg0MzEgOTUwLjUwNTQxMyw2NDIuNTg0ODA5IDk1MS4xODk3Nyw2NDIuNTg0ODA5IEM5NTEuODQxNTU5LDY0Mi41ODQ4MDkgOTUyLjM2Mjc5Myw2NDIuMTI4NDMxIDk1Mi4zNjI3OTMsNjQxLjQ0MzkzNCBDOTUyLjM2Mjc5Myw2NDAuNzI3Mjg5IDk1MS44NDE1NTksNjQwLjMwMzQ3OSA5NTEuMTg5NzcsNjQwLjMwMzQ3OSBMOTUxLjE4OTc3LDY0MC4zMDM0NzkgWiBNOTY1Ljc1NTQxNCw2NDYuOTgzNjQ2IEM5NjUuMjY2NzQ4LDY0Ni45ODM2NDYgOTY0Ljg0MzA3OSw2NDcuNDA3MTc1IDk2NC44NDMwNzksNjQ3LjkyODY5IEM5NjQuODQzMDc5LDY0OC4zNTIwNzkgOTY1LjI2Njc0OCw2NDguNzc1NDY4IDk2NS43NTU0MTQsNjQ4Ljc3NTQ2OCBDOTY2LjQwNzIwMyw2NDguNzc1NDY4IDk2Ni44OTU4NjksNjQ4LjM1MTkzOCA5NjYuODk1ODY5LDY0Ny45Mjg2OSBDOTY2Ljg5NTg2OSw2NDcuNDA3MzE1IDk2Ni40MDcyMDMsNjQ2Ljk4MzY0NiA5NjUuNzU1NDE0LDY0Ni45ODM2NDYgTDk2NS43NTU0MTQsNjQ2Ljk4MzY0NiBaIiBpZD0iU2hhcGUiPjwvcGF0aD4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg==',
+      accountLogo: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjQwcHgiIGhlaWdodD0iNDBweCIgdmlld0JveD0iMCAwIDQwIDQwIiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPgogICAgPCEtLSBHZW5lcmF0b3I6IFNrZXRjaCA0NS4xICg0MzUwNCkgLSBodHRwOi8vd3d3LmJvaGVtaWFuY29kaW5nLmNvbS9za2V0Y2ggLS0+CiAgICA8dGl0bGU+R3JvdXAgMjwvdGl0bGU+CiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4KICAgIDxkZWZzPjwvZGVmcz4KICAgIDxnIGlkPSJQYWdlLTEiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxnIGlkPSLlvq7kv6HmiavnoIEiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC05MzguMDAwMDAwLCAtNjY2LjAwMDAwMCkiPgogICAgICAgICAgICA8ZyBpZD0iR3JvdXAiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDc2NC4wMDAwMDAsIDYzNC4wMDAwMDApIj4KICAgICAgICAgICAgICAgIDxnIGlkPSJHcm91cC0yIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNzQuMDAwMDAwLCAzMi4wMDAwMDApIj4KICAgICAgICAgICAgICAgICAgICA8Y2lyY2xlIGlkPSJPdmFsLTQiIGZpbGw9IiMxOTk2RjkiIGN4PSIyMCIgY3k9IjIwIiByPSIyMCI+PC9jaXJjbGU+CiAgICAgICAgICAgICAgICAgICAgPHBhdGggZD0iTTE5LjQ3MjM2MTgsMTAgQzIyLjI3OTczMiwxMCAyNC41NTQ0Mzg4LDEyLjIzNzg1NTkgMjQuNTU0NDM4OCwxNC45OTgzMjUgQzI0LjU1NDQzODgsMTcuNzU4Nzk0IDIyLjI3OTczMiwxOS45OTY2NDk5IDE5LjQ3MjM2MTgsMTkuOTk2NjQ5OSBDMTYuNjY0OTkxNiwxOS45OTY2NDk5IDE0LjM5MDI4NDcsMTcuNzU4Nzk0IDE0LjM5MDI4NDcsMTQuOTk4MzI1IEMxNC4zOTAyODQ3LDEyLjIzNzg1NTkgMTYuNjY0OTkxNiwxMCAxOS40NzIzNjE4LDEwIFogTTE3LjU2NjE2NDEsMjEuNjY0OTkxNiBMMjEuODAwNjcsMjEuNjY0OTkxNiBDMjUuNDI1NDYwNiwyMS42NjQ5OTE2IDI4LjM2NjgzNDIsMjQuNTU2MTEzOSAyOC4zNjY4MzQyLDI4LjEyMzk1MzEgTDI4LjM2NjgzNDIsMjguNTM5MzYzNSBDMjguMzY2ODM0MiwyOS45NDYzOTg3IDI1LjQyNTQ2MDYsMzAgMjEuODAwNjcsMzAgTDE3LjU2NjE2NDEsMzAgQzEzLjk0MTM3MzUsMzAgMTEsMzAgMTEsMjguNTM5MzYzNSBMMTEsMjguMTIzOTUzMSBDMTEsMjQuNTU2MTEzOSAxMy45NDEzNzM1LDIxLjY2NDk5MTYgMTcuNTY2MTY0MSwyMS42NjQ5OTE2IEwxNy41NjYxNjQxLDIxLjY2NDk5MTYgWiIgaWQ9IlNoYXBlIiBmaWxsPSIjRkZGRkZGIj48L3BhdGg+CiAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg==',
+      weixin: false,
+    };
+  },
+  props: {
+    className: {
+      type: String,
+      default: '',
+    },
+    show: {
+      type: [Boolean, String],
+      default: false,
+    },
+    referrerUrl: {
+      type: String,
+    },
+    action: {
+      type: String,
+      required: true,
+    },
+    headers: {
+      type: Object,
+      default: function default$1() {
+        return {};
+      },
+    },
+    forgotName: {
+      type: String,
+      required: true,
+    },
+    registerName: {
+      type: String,
+      required: true,
+    },
+    loginClose: {
+      type: Function,
+      default: function () {},
+    },
+  },
+  computed: {
+    loginName: function loginName() {
+      return this.className ? ((this.className) + "-login") : '';
+    },
+  },
+  methods: {
+    close: function close() {
+      this.loginClose(false);
+    },
+    imgClick: function imgClick() {
+      this.imgSrc = 'https://static.evente.cn/evente/img/flag/v1/de.jpg';
+    },
+    login: function login() {
+      var this$1 = this;
+
+      if (this.autoLogin) {
+        this.data.auto_login = 2;
+      }
+      this.data.phone = this.telNow.tel;
+      this.data.code = this.telNow.prefix;
+      if (this.data.phone === '') {
+        this.telFlg = false;
+        this.telError = '请输入手机号';
+      } else if (this.$EmfeFormTest.phone(this.data.phone)) {
+        this.telError = '';
+        this.telFlg = true;
+      } else {
+        this.telFlg = false;
+        this.telError = '请输入正确手机号';
+      }
+      if (this.data.password === '') {
+        this.pwdError = '请输入密码';
+        this.pwdFlg = false;
+      } else if (this.$EmfeFormTest.password(this.data.password)) {
+        this.pwdError = '';
+        this.pwdFlg = true;
+      } else {
+        this.pwdError = '账号密码不匹配';
+        this.pwdFlg = false;
+      }
+      if (this.telFlg && this.pwdFlg) {
+        upload$2({
+          headers: this.headers,
+          type: 'POST',
+          data: JSON.stringify(this.data),
+          action: this.action,
+          onSuccess: function (res) {
+            if (res.code === 10000) {
+              window.location.href = this$1.referrerUrl;
+              var Rtoken = res.data.token;
+              var autoData = "Bearer " + Rtoken;
+              var callBack = res.data.call_back_url;
+              callBack.forEach(function (url) {
+                upload$2({
+                  headers: this$1.headers,
+                  type: 'GET',
+                  action: url,
+                });
+              });
+              window.$cookie.set('Authorization', autoData, res.data.expires);
+            } else if (res.code === 2012023) {
+              this$1.telError = res.message;
+              this$1.codeNow = true;
+            } else {
+              this$1.telError = res.message;
+            }
+          },
+          onError: function (err, response) {
+            console.log(err, response);
+          },
+        });
+      }
+    },
+    forgot: function forgot() {
+      this.$router.push({ name: this.forgotName });
+    },
+    register: function register() {
+      this.$router.push({ name: this.registerName });
+    },
+    toggleType: function toggleType() {
+      this.weixin = !this.weixin;
+      if (this.weixin) {
+        var obj = new window.WxLogin({
+          id: 'login_weixin',
+          appid: 'wx0fc7f448c3ed4e4e',
+          scope: 'snsapi_login',
+          redirect_uri: 'http%3a%2f%2f192.168.1.184%3a8180%2fweixin',
+          state: 'login',
+          style: '',
+          href: '',
+        });
+        console.log(obj);
+      }
+    },
+  },
+};
+
+EmfeLogin$1.install = function (Vue$$1) {
+  Vue$$1.component(EmfeLogin$1.name, EmfeLogin$1);
+};
+
+var EmfeTitleLine = {
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-titleline"},[_vm._v(_vm._s(_vm.title))])},
+staticRenderFns: [],
+  name: 'emfe-titleline',
+  props: {
+    title: {
+      type: String,
+      required: true,
+    },
+  },
+};
+
+EmfeTitleLine.install = function (Vue$$1) {
+  Vue$$1.component(EmfeTitleLine.name, EmfeTitleLine);
 };
 
 var EmfeFormTest = {
@@ -6191,7 +7156,7 @@ var EmfeFormTest = {
   password: function password(val) {
     /* eslint-disable */
     //QQ号正则，5至11位
-    var pwdPattern = /^[a-zA-Z0-9._@]{8,20}$/;
+    var pwdPattern = /^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z\d]{8,20}$/;
     /* eslint-disable */
     return pwdPattern.test(val);
   },
@@ -6201,6 +7166,13 @@ var EmfeFormTest = {
     var moneyPattern = /(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/;
     /* eslint-disable */
     return moneyPattern.test(val);
+  },
+  childAccount: function childAccount(val) {
+     /* eslint-disable */
+    //子账户正则
+    var childAccountPattern = /^(1[34578][0-9]{9}):(1[34578][0-9]{9})$/;
+    /* eslint-disable */
+    return childAccountPattern.test(val);
   },
 };
 
@@ -6237,13 +7209,16 @@ var emfeCpt = {
   EmfeCol: Grid.EmfeCol,
   EmfeRow: Grid.EmfeRow,
   EmfeBar: EmfeBar$1,
+  EmfeBarC: EmfeBarC$1,
   EmfeIcon: EmfeIcon$1,
   EmfeTooltip: EmfeTooltip$1,
   EmfeTransition: EmfeTransition,
   EmfeModal: EmfeModal$1,
   EmfeMenu: EmfeMenu$1,
   EmfeHeader: EmfeHeader$1,
+  EmfeHeaderC: EmfeHeaderC$1,
   EmfeFooter: EmfeFooter$1,
+  EmfeFooterC: EmfeFooterC$1,
   EmfeCopy: EmfeCopy$1,
   EmfeUpload: EmfeUpload$1,
   EmfeDrag: EmfeDrag$1,
@@ -6260,6 +7235,7 @@ var emfeCpt = {
   EmfeButtonGroup: Button.EmfeButtonGroup,
   EmfeSwitch: EmfeSwitch$1,
   EmfeTitle: EmfeTitle$1,
+  EmfeTitleC: EmfeTitleC$1,
   EmfeRadio: Radio.EmfeRadio,
   EmfeRadioGroup: Radio.EmfeRadioGroup,
   EmfeTable: Table.EmfeTable,
@@ -6272,6 +7248,7 @@ var emfeCpt = {
   EmfeDatetime: EmfeDatetime$1,
   EmfeDatetimeM: EmfeDatetimeM$1,
   EmfePagination: EmfePagination$1,
+  EmfePaginationC: EmfePaginationC$1,
   EmfeSelect: EmfeSelect$1,
   EmfeCheckout: EmfeCheckout$1,
   EmfeDrop: EmfeDrop$1,
@@ -6281,12 +7258,16 @@ var emfeCpt = {
   EmfeTag: Tag.EmfeTag,
   EmfeTagParent: Tag.EmfeTagParent,
   EmfePanel: EmfePanel$1,
+  EmfePanelC: EmfePanelC$1,
   EmfeSlide: EmfeSlide$1,
   EmfeCrumb: EmfeCrumb$1,
+  EmfeCrumbC: EmfeCrumbC$1,
   EmfeHottip: EmfeHottip$1,
   EmfeEdit: EmfeEdit$1,
   EmfeOpations: EmfeOpations$1,
   EmfeCountdown: EmfeCountdown$1,
+  EmfeLogin: EmfeLogin$1,
+  EmfeTitleline: EmfeTitleLine,
 };
 
 var emfeDir = {

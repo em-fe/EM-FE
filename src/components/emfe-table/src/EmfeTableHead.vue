@@ -2,7 +2,7 @@
   <thead class="emfe-box-table-head" :class="classHead">
     <tr class="emfe-box-table-head-tr" :class="classTr">
       <template>
-	      <th class="emfe-box-table-head-tr-th" :class="classTh" v-for="(item , index) in this.$parent.columns">
+	      <th class="emfe-box-table-head-tr-th" @click="jump(index)" :class="classTh" v-for="(item , index) in this.$parent.columns">
 	        <div>{{item.title}}</div>
 	      </th>
       </template>
@@ -42,6 +42,11 @@ export default {
           [`${this.$parent.classAdd}-thead-tr-th`]: !!this.classAdd,
         },
       ];
+    },
+  },
+  methods: {
+    jump(index) {
+      this.$emit('thJump', index);
     },
   },
 };

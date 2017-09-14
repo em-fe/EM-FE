@@ -1,20 +1,20 @@
 <template>
   <div class="switch-page">
-    <emfe-switch className="aaa">
-      <span class="aaa" slot="open">ON</span>
-      <span class="aaa" slot="close">OFF</span>
-    </emfe-switch>
-    <br>
+  <h3>基本用法</h3>
+  <emfe-switch className="aaa" :value="status" @toggle="toggle">
+    <span class="aaa" slot="open">ON</span>
+    <span class="aaa" slot="close">OFF</span>
+  </emfe-switch>
+  当前状态 status: {{ status }}
+  <br>
   <pre>
-    <code>
-      <span>&lt;emfe-switch&gt;</span>
-        <span>&lt;span</span> <span>slot</span><span>=</span><span>"open"</span><span>&gt;</span>ON<span>&lt;/span&gt;</span>
-        <span>&lt;span</span> <span>slot</span><span>=</span><span>"open"</span><span>&gt;</span>OFF<span>&lt;/span&gt;</span>
-      <span>&lt;/emfe-switch&gt;</span>
-    </code>
+    &lt;emfe-switch className="aaa" :value="status" @toggle="toggle"&gt;
+      &lt;span class="aaa" slot="open"&gt;ON&lt;/span&gt;
+      &lt;span class="aaa" slot="close"&gt;OFF&lt;/span&gt;
+    &lt;/emfe-switch&gt;
   </pre>
     <br>
-    <emfe-switch className="aaa" value='true'>
+    <emfe-switch className="aaa" value="true">
       <span class="aaa" slot="open">ON</span>
       <span class="aaa" slot="close">OFF</span>
     </emfe-switch>
@@ -27,6 +27,10 @@
     </code>
   </pre>
     <br>
+    <br>
+    <br>
+    <br>
+    <h3>禁用</h3>
     <emfe-switch :disabled="true">
       <span slot="open">ON</span>
       <span slot="close">OFF</span>
@@ -39,6 +43,30 @@
       <span>&lt;/emfe-switch&gt;</span>
     </code>
   </pre>
+  <br>
+  <br>
+  <br>
+  <h3>拦截器</h3>
+  <emfe-switch className="aaa" :interceptor="interceptor" @toggle="interceptorChange"></emfe-switch>
+  <pre>
+    switch代码
+    &lt;emfe-switch className="aaa" :interceptor="interceptor" @toggle="interceptorChange"&gt;
+      &lt;span class="aaa" slot="open"&gt;ON&lt;/span&gt;
+      &lt;span class="aaa" slot="close"&gt;OFF&lt;/span&gt;
+    &lt;/emfe-switch&gt;
+  </pre>
+  <br>
+  <pre>
+    提示框代码
+    &lt;emfe-modal :show="modal" title="拦截一下" @close="modalCancel" @cancel="modalCancel" @ok="modalOk"&gt;
+      &lt;div slot="modal-main"&gt;吃了么？&lt;/div&gt;
+    &lt;/emfe-modal&gt;
+  </pre>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
     <br>
     <br>
     <br>
@@ -97,11 +125,43 @@
         </tr>
       </tbody>
     </table>
+    <emfe-modal :show="modal" title="拦截一下" @close="modalCancel" @cancel="modalCancel" @ok="modalOk">
+      <div slot="modal-main">吃了么？</div>
+    </emfe-modal>
   </div>
 </template>
 <script>
 export default {
   name: 'switch-page',
+  data() {
+    return {
+      interceptor: false,
+      modal: false,
+      status: false,
+    };
+  },
+  methods: {
+    toggle(status) {
+      this.status = status;
+    },
+    interceptorChange(status) {
+      this.openModal();
+    },
+    openModal() {
+      this.modal = true;
+    },
+    closeModal() {
+      this.modal = false;
+    },
+    modalCancel() {
+      this.interceptor = false;
+      this.closeModal();
+    },
+    modalOk() {
+      this.interceptor = !this.interceptor;
+      this.closeModal();
+    },
+  },
 };
 </script>
 <style>

@@ -7,8 +7,10 @@ $header-height: 64px;
 
   height: $header-height;
   background: #fff;
-  position: relative;
+  // position: relative;
   z-index: 2;
+  position: fixed;
+  width: 100%;
 
   &-eye {
     padding: 12px 0 12px 32px;

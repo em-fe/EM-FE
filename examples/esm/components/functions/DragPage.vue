@@ -7,33 +7,78 @@
     <div class="drag0">
       <emfe-drag className="no1"></emfe-drag>
     </div>
+    <pre>
+      &lt;emfe-drag className="no1"&gt;&lt;/emfe-drag&gt;
+    </pre>
+    <br>
+    <br>
+    <br>
     <br>
     <h3>限制范围示例</h3>
     <br>
     <div class="drag1">
       <emfe-drag className="no1" limit="true"></emfe-drag>
     </div>
+    <pre>
+      &lt;emfe-drag className="no1" limit="true"&gt;&lt;/emfe-drag&gt;
+    </pre>
+    <br>
+    <br>
+    <br>
+    <br>
     <h3>限制范围，元素超过范围在中间示例</h3>
     <br>
     <div class="drag1">
       <emfe-drag className="no1" limit="true" limitPosition="center"></emfe-drag>
     </div>
+    <pre>
+      &lt;emfe-drag className="no1" limit="true" limitPosition="center"&gt;&lt;/emfe-drag&gt;
+    </pre>
+    <br>
+    <br>
+    <br>
+    <br>
     <h3>某一方向的拖拽示例</h3>
     <br>
     <div class="drag1">
       <emfe-drag className="no1" direction="horizontal"></emfe-drag>
     </div>
+    <pre>
+      &lt;emfe-drag className="no1" direction="horizontal"&gt;&lt;/emfe-drag&gt;
+    </pre>
+    <br>
+    <br>
+    <br>
+    <br>
     <h3>父级是拖拽范围，里面的一个子元素是拖拽元素示例</h3>
     <p>1. 基本用法</p>
     <br>
     <emfe-drag className="parent" :dragEl="drag1">
       <div class="child-drag" ref="drag1"></div>
     </emfe-drag>
+    <pre>
+      &lt;emfe-drag className="parent" :dragEl="drag1"&gt;
+        &lt;div class="child-drag" ref="drag1"&gt;&lt;/div&gt;
+      &lt;/emfe-drag&gt;
+    </pre>
+    <br>
+    <br>
+    <br>
+    <br>
     <p>2. 鼠标在拖拽元素中间</p>
     <br>
     <emfe-drag className="parent" :dragEl="drag2" :initialValue="-25">
       <div class="child-drag" ref="drag2"></div>
     </emfe-drag>
+    <pre>
+      &lt;emfe-drag className="parent" :dragEl="drag2" :initialValue="-25"&gt;
+        &lt;div class="child-drag" ref="drag2"&gt;&lt;/div&gt;
+      &lt;/emfe-drag&gt;
+    </pre>
+    <br>
+    <br>
+    <br>
+    <br>
     <h3>API</h3>
     <table>
       <thead>
@@ -108,7 +153,7 @@
         <tr>
           <td>drag</td>
           <td>拖拽时触发</td>
-          <td>Event 对象，元素左边距离，元素上面距离</td>
+          <td>Event 对象，元素左边距离，元素上面距离， 向左(大于0)还是向右(小于0)， 向上(大于0)还是向下(小于0)</td>
         </tr>
         <tr>
           <td>afterDrag</td>
