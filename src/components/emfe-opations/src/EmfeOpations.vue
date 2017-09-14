@@ -126,10 +126,22 @@ export default {
       return false;
     },
     move(e) {
-      const { hits } = this.$refs;
-      const { index, style } = this.item;
+      const { style } = this.item;
       const disPosY = e.pageY - refPos.y;
       style.top = `${this.elTop + disPosY}px`;
+      this.$emit('move', this.item);
+      e.preventDefault();
+      return false;
+    },
+    up() {
+      document.removeEventListener('mousemove', this.move, false);
+      document.removeEventListener('mouseup', this.up, false);
+      this.testHitAndHandle();
+      this.$emit('up');
+    },
+    testHitAndHandle() {
+      const { hits } = this.$refs;
+      const { index } = this.item;
 
       hits.forEach((hit, hitIndex) => {
         if (hitIndex !== index) {
@@ -157,17 +169,9 @@ export default {
           this.hits[lastDrag] = false;
         }
       }
-      this.$emit('move', this.item);
-      e.preventDefault();
-      return false;
-    },
-    up() {
-      document.removeEventListener('mousemove', this.move, false);
-      document.removeEventListener('mouseup', this.up, false);
       this.item.style = {};
       this.item.hrStatus = false;
       this.item = {};
-      this.$emit('up');
     },
     plus(index) {
       const obj = {

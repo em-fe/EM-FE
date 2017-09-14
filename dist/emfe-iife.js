@@ -5630,7 +5630,7 @@ EmfeCheckout$1.install = function (Vue$$1) {
 };
 
 var EmfeDrop$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{ref:"dragBox"},[_vm._t("default")],2)])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{class:_vm.className},_vm._l((_vm.datas),function(modalFieldItem,modalFieldIndex){return _c('emfe-drag',{key:modalFieldIndex,attrs:{"className":_vm.className,"index":modalFieldIndex},on:{"afterDrag":_vm.afterDrag,"beforeDrag":_vm.beforeDrag,"drag":_vm.drag}},[_vm._v(_vm._s(modalFieldItem.title))])}))},
 staticRenderFns: [],
   name: 'EmfeDrop',
   data: function data() {
@@ -5643,9 +5643,9 @@ staticRenderFns: [],
     };
   },
   props: {
-    cell: {
-      type: Number,
-      default: 0,
+    datas: {
+      type: Array,
+      required: true,
     },
     margin: {
       type: Number,
@@ -5659,81 +5659,20 @@ staticRenderFns: [],
       type: Number,
       default: 200,
     },
+    className: {
+      type: String,
+      default: '',
+    },
   },
   mounted: function mounted() {
-    var this$1 = this;
 
-    var eles = this.$slots.default;
-    for (var i = 0; i < eles.length; i++) {
-      if (eles[i].elm.nodeType === 1) {
-        this$1.elesNode.push(eles[i].elm);
-      }
-    }
-    for (var i$1 = 0; i$1 < this.elesNode.length; i$1++) {
-      var row = Math.floor(i$1 / this$1.cell);
-      var topP = "" + ((this$1.cellHeight + this$1.margin) * row);
-      var bottomP = "" + ((this$1.cellHeight + this$1.margin) * (row + 1));
-      var leftP = "" + ((this$1.cellWidth + this$1.margin) * (i$1 - (row * this$1.cell)));
-      var rightP = "" + ((leftP * 1) + (this$1.cellWidth + this$1.margin));
-      this$1.dropArr.push([topP, leftP, bottomP, rightP]);
-      this$1.elesNode[i$1].style.top = topP + "px";
-      this$1.elesNode[i$1].style.left = leftP + "px";
-      this$1.elesNode[i$1].index = i$1;
-    }
   },
   methods: {
-    beforeDrag: function beforeDrag(e) {
-      this.firstIndex = e.target.getAttribute('index');
+    beforeDrag: function beforeDrag() {
     },
-    drag: function drag(e) {
-      var this$1 = this;
-
-      var min = e.clientX > 0 && e.clientY > 0;
-      var max = e.clientX < document.body.clientWidth && e.clientY < window.innerHeight;
-      if (min && max) {
-        this.X = e.clientX - e.target.parentNode.parentNode.offsetLeft;
-        this.Y = e.clientY - e.target.parentNode.parentNode.offsetTop;
-        for (var j = 0; j < this.elesNode.length; j++) {
-          this$1.elesNode[j].style.zIndex = 1;
-        }
-        e.target.style.zIndex = 99;
-        var elesNode = this.elesNode;
-        for (var i = 0; i < elesNode.length; i++) {
-          this$1.heIndex = elesNode[i].getAttribute('index') * 1;
-          var DI = this$1.dropArr[this$1.heIndex];
-          if (this$1.X > DI[1] && this$1.X < DI[3] && this$1.Y > DI[0] && this$1.Y < DI[2]) {
-            this$1.firstIndex = e.target.getAttribute('index') * 1;
-            this$1.index = this$1.heIndex;
-            var test = function (num, j) {
-              for (var n = 0; n < this$1.elesNode.length; n++) {
-                if (this$1.elesNode[n].getAttribute('index') * 1 === j) {
-                  this$1.elesNode[n].style.top = (this$1.dropArr[j + num][0]) + "px";
-                  this$1.elesNode[n].style.left = (this$1.dropArr[j + num][1]) + "px";
-                  this$1.elesNode[n].setAttribute('index', num + j);
-                }
-              }
-            };
-            if (this$1.firstIndex > this$1.heIndex) {
-              for (var j$1 = this.firstIndex - 1; j$1 >= this.heIndex; j$1--) {
-                test(1, j$1);
-              }
-            } else {
-              for (var j$2 = this.firstIndex + 1; j$2 < this.heIndex + 1; j$2++) {
-                test(-1, j$2);
-              }
-            }
-            e.target.setAttribute('index', this$1.heIndex);
-          }
-        }
-      }
+    drag: function drag() {
     },
-    afterDrag: function afterDrag(e) {
-      if (this.index !== '') {
-        var offset = this.dropArr[this.index];
-        e.target.style.top = (offset[0]) + "px";
-        e.target.style.left = (offset[1]) + "px";
-        this.index = '';
-      }
+    afterDrag: function afterDrag() {
     },
   },
 };
