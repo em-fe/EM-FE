@@ -31,10 +31,10 @@
       &lt;/emfe-input&gt;
     </pre>
     <br>
-    <emfe-input :iconOk="true" iconType="site" placeholder="请输入文字！">
+    <emfe-input :iconOk="true" iconType="fabu" placeholder="请输入文字！">
     </emfe-input>
     <pre>
-      &lt;emfe-input :iconOk="true" iconType="site" placeholder="请输入文字！"&gt;
+      &lt;emfe-input :iconOk="true" iconType="fabu" placeholder="请输入文字！"&gt;
       &lt;/emfe-input&gt;
     </pre>
     <br>
