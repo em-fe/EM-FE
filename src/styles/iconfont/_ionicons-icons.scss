@@ -398,7 +398,7 @@
   color: $brand-color-default;
 }
 
-.#{$prefix}icon-fuzhi:before {
+.#{$prefix}icon-fuzhi::before {
   content: "\e69c";
   color: $brand-color-default;
 }
