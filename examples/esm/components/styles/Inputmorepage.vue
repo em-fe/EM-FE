@@ -21,11 +21,11 @@
     <br>
     <br>
     <h3>icon</h3>
-    <emfe-inputmore type="number" icon="hint" v-model="input2" :index="0"></emfe-inputmore>
+    <emfe-inputmore type="number" icon="fabu" v-model="input2" :index="0"></emfe-inputmore>
     {{ input2 }}
     <br>
     <pre>
-      &lt;emfe-inputmore type="number" icon="hint" v-model="input2" :index="0"&gt;&lt;/emfe-inputmore&gt;
+      &lt;emfe-inputmore type="number" icon="fabu" v-model="input2" :index="0"&gt;&lt;/emfe-inputmore&gt;
     </pre>
     <br>
     <br>
@@ -57,16 +57,16 @@
       datas: [
         {
           num: 111,
-          icon: 'hint',
+          icon: 'fabu',
         },
         {
           num: 222,
-          icon: 'hint',
+          icon: 'fabu',
         },
       ],
       news: {
         num: 1,
-        icon: 'hint',
+        icon: 'fabu',
       },
     </pre>
     <pre>
@@ -199,11 +199,11 @@
           <td>数据，必须[
             {
               num: 111,
-              icon: 'hint',
+              icon: 'fabu',
             },
             {
               num: 222,
-              icon: 'hint',
+              icon: 'fabu',
             },
           ]</td>
           <td>Array</td>
@@ -213,7 +213,7 @@
           <td>new</td>
           <td>添加数据，必须{
             num: 1,
-            icon: 'hint',
+            icon: 'fabu',
           }</td>
           <td>Object</td>
           <td>-</td>
@@ -280,16 +280,16 @@ export default {
       datas: [
         {
           num: 111,
-          icon: 'hint',
+          icon: 'fabu',
         },
         {
           num: 222,
-          icon: 'hint',
+          icon: 'fabu',
         },
       ],
       news: {
         num: 1,
-        icon: 'hint',
+        icon: 'fabu',
       },
       groupNow: '',
     };

@@ -27,11 +27,11 @@
       </code>
     </pre>
     <br>
-    <emfe-button theme="default" type="hint">带有图标</emfe-button>
+    <emfe-button theme="default" type="fabu">带有图标</emfe-button>
     <emfe-button theme="default" type="site" :disabled="true">带有图标禁用</emfe-button>
     <pre>
       <code>
-        <span>&lt;</span><span>emfe-button</span> <span> theme="default"</span> <span>className</span><span>=</span><span>"ddd"</span> <span>type</span><span>=</span><span>"hint"</span><span>&gt;</span>带有图标<span>&lt;/emfe-button&gt;</span>
+        <span>&lt;</span><span>emfe-button</span> <span> theme="default"</span> <span>className</span><span>=</span><span>"ddd"</span> <span>type</span><span>=</span><span>"fabu"</span><span>&gt;</span>带有图标<span>&lt;/emfe-button&gt;</span>
       </code>
       <code>
         <span>&lt;</span><span>emfe-button</span> <span> theme="default"</span> <span>type</span><span>=</span><span>"site"</span> <span>:disabled</span><span>=</span><span>"true"</span><span>&gt;</span>带有图标禁用<span>&lt;/emfe-button&gt;</span>
@@ -100,7 +100,7 @@
         </tr>
         <tr>
           <td>type</td>
-          <td>按钮需要添加图标时，type=“ 图标唯一的标识（如：hint） ”</td>
+          <td>按钮需要添加图标时，type=“ 图标唯一的标识（如：fabu） ”</td>
           <td>String</td>
           <td>默认没有</td>
         </tr>

@@ -2,17 +2,46 @@
   <div class="">
     <h3>普通用法</h3>
     <emfe-steps :datas="data1" :active="0"></emfe-steps>
+    <pre>
+      &lt;emfe-steps :datas="data1" :active="0"&gt;&lt;/emfe-steps&gt;
+    </pre>
+    <pre>
+      data1: [
+        {
+          title: '账户信息',
+          icon: 'fabu',
+        },
+        {
+          title: '账户1信息',
+          icon: 'fabu',
+        },
+        {
+          title: '账户4信息',
+          icon: 'fabu',
+        },
+        {
+          title: '账户2信息',
+          icon: 'fabu',
+        }
+      ],
+    </pre>
     <br>
     <br>
     <br>
     <br>
     <emfe-steps :datas="data1" :active="1"></emfe-steps>
+    <pre>
+      &lt;emfe-steps :datas="data1" :active="1"&gt;&lt;/emfe-steps&gt;
+    </pre>
     <br>
     <br>
     <br>
     <br>
     <h3>自定义用法</h3>
     <emfe-steps className="demo" :datas="data1" :active="2"></emfe-steps>
+    <pre>
+      &lt;emfe-steps className="demo" :datas="data1" :active="2"&gt;&lt;/emfe-steps&gt;
+    </pre>
     <br>
     <br>
     <br>
@@ -58,19 +87,19 @@ export default {
       data1: [
         {
           title: '账户信息',
-          icon: 'hint',
+          icon: 'fabu',
         },
         {
           title: '账户1信息',
-          icon: 'hint',
+          icon: 'fabu',
         },
         {
           title: '账户4信息',
-          icon: 'hint',
+          icon: 'fabu',
         },
         {
           title: '账户2信息',
-          icon: 'hint',
+          icon: 'fabu',
         }
       ],
     };

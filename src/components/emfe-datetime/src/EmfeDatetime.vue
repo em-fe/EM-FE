@@ -3,16 +3,16 @@
     <button class="emfe-datetime-btn" @click.stop="toggle" v-if="!disabled">
       <span class="emfe-datetime-btn-text" :class="{'emfe-datetime-btn-text-choice': choiced}">{{ dateTime }}</span>
       <!-- 日期 -->
-      <emfe-icon type="hint" className="emfe-datetime" v-show="!choiced" @icon-click="toggle"></emfe-icon>
+      <emfe-icon type="shijian" className="emfe-datetime" v-show="!choiced" @icon-click="toggle"></emfe-icon>
       <!-- 取消 -->
-      <emfe-icon type="qr" className="emfe-datetime" v-show="choiced" @icon-click="cancel"></emfe-icon>
+      <emfe-icon type="shanchu" className="emfe-datetime" v-show="choiced" @icon-click="cancel"></emfe-icon>
     </button>
     <button class="emfe-datetime-btn emfe-datetime-btn-disabled" v-if="disabled">
       <span class="emfe-datetime-btn-text">{{ dateTime }}</span>
       <!-- 日期 -->
-      <emfe-icon type="hint" className="emfe-datetime" v-show="!choiced"></emfe-icon>
+      <emfe-icon type="shijian" className="emfe-datetime" v-show="!choiced"></emfe-icon>
       <!-- 取消 -->
-      <emfe-icon type="qr" className="emfe-datetime" v-show="choiced"></emfe-icon>
+      <emfe-icon type="shanchu" className="emfe-datetime" v-show="choiced"></emfe-icon>
     </button>
     <emfe-transition name="fade">
       <div class="emfe-datetime-main emfe-datetime-main-position" v-show="status">
