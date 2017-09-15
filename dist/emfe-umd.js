@@ -1278,6 +1278,41 @@ EmfeCopy$1.install = function (Vue$$1) {
   Vue$$1.component(EmfeCopy$1.name, EmfeCopy$1);
 };
 
+/**
+ * database64文件格式转换为2进制
+ *
+ * @param  {[String]} data dataURL 的格式为 “data:image/png;base64,****”,逗号之前都是一些说明性的文字，我们只需要逗号之后的就行了
+ * @param  {[String]} type [description]
+ * @return {[blob]}      [description]
+ */
+var upload = function (data, type) {
+  var newData = data.split(',')[1];
+  newData = window.atob(newData);
+  var ia = new Uint8Array(newData.length);
+  for (var i = 0; i < newData.length; i++) {
+    ia[i] = newData.charCodeAt(i);
+  }
+  // canvas.toDataURL 返回的默认格式就是 image/png
+  return new Blob([ia], {
+    type: type,
+  });
+};
+
+var handler = function (event) {
+  event.preventDefault();
+  event.stopPropagation();
+};
+
+var openMask = function () {
+  document.body.addEventListener('touchmove', handler, false);
+  document.body.addEventListener('wheel', handler, false);
+};
+
+var closeMask = function () {
+  document.body.removeEventListener('touchmove', handler, false);
+  document.body.removeEventListener('wheel', handler, false);
+};
+
 var seed = 0;
 var now = Date.now();
 
@@ -1397,8 +1432,6 @@ var EmfeMessage = {
   },
 };
 
-// https://github.com/ElemeFE/element/blob/dev/packages/upload/src/ajax.js
-
 function getError(action, option, xhr) {
   var msg = "fail to post " + action + " " + (xhr.status) + "'";
   var err = new Error(msg);
@@ -1421,22 +1454,13 @@ function getBody(xhr) {
   }
 }
 
-function upload(option) {
+function upload$1(option) {
   if (typeof XMLHttpRequest === 'undefined') {
     return;
   }
 
   var xhr = new XMLHttpRequest();
   var action = option.action;
-
-  // if (xhr.upload) {
-  //   xhr.upload.onprogress = function progress(e) {
-  //     if (e.total > 0) {
-  //       e.percent = (e.loaded / e.total) * 100;
-  //     }
-  //     option.onProgress(e);
-  //   };
-  // }
 
   var formData = new FormData();
 
@@ -1476,27 +1500,41 @@ function upload(option) {
     }
   });
 
-  // for (const item in headers) {
-  //   if (O.hOwnProperty(headers, item) && headers[item] !== null) {
-  //     xhr.setRequestHeader(item, headers[item]);
-  //   }
-  // }
   xhr.send(formData);
 }
 
-var canUpload = true;
+var uploadJpeg = 'image/jpeg';
+var pointOldLeft = 0; // 改变截取器遮罩大小
 
 var EmfeUpload$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-upload",class:_vm.uploadName},[(_vm.type === 'icon')?[_c('emfe-button',{directives:[{name:"show",rawName:"v-show",value:(!_vm.src),expression:"!src"}],attrs:{"disabled":_vm.disabled,"theme":"default","className":"ddd","type":"hint"}},[_vm._v("上传图片")]),_vm._v(" "),_c('input',{directives:[{name:"show",rawName:"v-show",value:(!_vm.src),expression:"!src"}],ref:"upload",staticClass:"emfe-upload-file",class:_vm.fileName,attrs:{"disabled":_vm.disabled,"type":"file"},on:{"change":_vm.change}}),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.src),expression:"src"}],staticClass:"emfe-upload-icon-wrap",style:({opacity: _vm.canShow ? 1 : 0})},[_c('div',{staticClass:"emfe-upload-icon-wrap-box",class:[("emfe-upload-icon-wrap-box-" + _vm.align)]},[_c('img',{ref:"img",staticClass:"emfe-upload-icon-wrap-box-img",class:[("emfe-upload-img-" + _vm.align)],attrs:{"src":_vm.src}})]),_vm._v(" "),_c('i',{staticClass:"emfe-upload-icon-wrap-close",on:{"click":_vm.closeFn}})])]:_vm._e(),_vm._v(" "),(_vm.type === 'plus')?[_c('button',{directives:[{name:"show",rawName:"v-show",value:(!_vm.src),expression:"!src"}],staticClass:"emfe-upload-btn",class:_vm.btnName},[_vm._v("+")]),_vm._v(" "),_c('input',{directives:[{name:"show",rawName:"v-show",value:(!_vm.src),expression:"!src"}],ref:"uploadPlus",staticClass:"emfe-upload-file",class:_vm.fileName,attrs:{"disabled":_vm.disabled,"type":"file"},on:{"change":_vm.change}}),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.src),expression:"src"}],staticClass:"emfe-upload-plus-box",class:[("emfe-upload-plus-box-" + _vm.align)],style:({opacity: _vm.canShow ? 1 : 0}),on:{"click":_vm.closePlusFn}},[_c('img',{directives:[{name:"show",rawName:"v-show",value:(_vm.src),expression:"src"}],ref:"img",class:[("emfe-upload-img-" + _vm.align)],attrs:{"src":_vm.src}})])]:_vm._e()],2)},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-upload",class:_vm.uploadName},[(_vm.type === 'icon')?[_c('emfe-button',{directives:[{name:"show",rawName:"v-show",value:(!_vm.src),expression:"!src"}],attrs:{"disabled":_vm.disabled || !_vm.canUpload,"theme":_vm.theme}},[_vm._v(_vm._s(_vm.iconText))]),_vm._v(" "),_c('input',{directives:[{name:"show",rawName:"v-show",value:(!_vm.src),expression:"!src"}],ref:"upload",staticClass:"emfe-upload-file",class:_vm.fileName,attrs:{"disabled":_vm.disabled || !_vm.canUpload,"type":"file"},on:{"change":_vm.change}}),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.src),expression:"src"}],staticClass:"emfe-upload-icon-wrap",style:({opacity: _vm.canShow ? 1 : 0})},[_c('div',{staticClass:"emfe-upload-icon-wrap-box",class:[("emfe-upload-icon-wrap-box-" + _vm.align)]},[_c('img',{ref:"img",staticClass:"emfe-upload-icon-wrap-box-img",class:[("emfe-upload-img-" + _vm.align)],attrs:{"src":_vm.src}})]),_vm._v(" "),_c('i',{staticClass:"emfe-upload-icon-wrap-close",on:{"click":_vm.closeFn}})])]:_vm._e(),_vm._v(" "),(_vm.type === 'plus')?[_c('button',{directives:[{name:"show",rawName:"v-show",value:(!_vm.src),expression:"!src"}],staticClass:"emfe-upload-btn",class:_vm.btnName},[_vm._v(_vm._s(_vm.plusText))]),_vm._v(" "),_c('input',{directives:[{name:"show",rawName:"v-show",value:(!_vm.src),expression:"!src"}],ref:"uploadPlus",staticClass:"emfe-upload-file",class:_vm.fileName,attrs:{"disabled":_vm.disabled || !_vm.canUpload,"type":"file"},on:{"change":_vm.change}}),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.src),expression:"src"}],staticClass:"emfe-upload-plus-box",class:[("emfe-upload-plus-box-" + _vm.align)],style:({opacity: _vm.canShow ? 1 : 0}),on:{"click":_vm.closePlusFn}},[_c('img',{directives:[{name:"show",rawName:"v-show",value:(_vm.src),expression:"src"}],ref:"img",class:[("emfe-upload-img-" + _vm.align)],attrs:{"src":_vm.src}})])]:_vm._e(),_vm._v(" "),_c('emfe-modal',{attrs:{"show":_vm.interceptModal,"title":"截取器","okText":"保存","className":"form"},on:{"close":_vm.formCancel,"cancel":_vm.formCancel,"ok":_vm.formOk}},[_c('div',{staticClass:"emfe-upload-intercept-wrap",style:({'padding-top': (_vm.dragPaddingTop + "px"), 'padding-left': (_vm.dragPaddingLeft + "px")}),slot:"modal-main"},[_c('emfe-drag',{staticClass:"emfe-upload-intercept-drag",style:({ width: (_vm.dragWidth + "px"), height: (_vm.dragHeight + "px")}),attrs:{"dragEl":_vm.drag1,"initialValue":[-_vm.interceptCanvasWidth/2, -_vm.interceptCanvasHeight/2],"limit":"true"},on:{"drag":_vm.dragPosMove}},[_c('img',{ref:"previewImg",staticClass:"emfe-upload-intercept-img",style:({ width: (_vm.dragWidth + "px"), height: (_vm.dragHeight + "px")}),attrs:{"src":_vm.img}}),_vm._v(" "),_c('div',{ref:"drag1",staticClass:"emfe-upload-intercept",style:({width: (_vm.interceptCanvasWidth + "px"), height: (_vm.interceptCanvasHeight + "px"), left: (_vm.interceptLeft + "px"), top: (_vm.interceptTop + "px")})},[_c('emfe-drag',{staticClass:"emfe-upload-intercept-point emfe-upload-intercept-point-nw",attrs:{"moveEle":false},on:{"drag":_vm.nwPosMove}}),_vm._v(" "),_c('emfe-drag',{staticClass:"emfe-upload-intercept-point emfe-upload-intercept-point-ne",attrs:{"moveEle":false},on:{"drag":_vm.nePosMove}}),_vm._v(" "),_c('emfe-drag',{staticClass:"emfe-upload-intercept-point emfe-upload-intercept-point-sw",attrs:{"moveEle":false},on:{"drag":_vm.swPosMove}}),_vm._v(" "),_c('emfe-drag',{staticClass:"emfe-upload-intercept-point emfe-upload-intercept-point-se",attrs:{"moveEle":false},on:{"drag":_vm.sePosMove}})],1)])],1)])],2)},
 staticRenderFns: [],
   name: 'upload',
   data: function data() {
     return {
+      drag1: [],
+      canUpload: true,
       src: '',
       canShow: false,
       fileList: [],
       tempIndex: 1,
+      img: '',
       align: '',
+      interceptModal: false, // 截取器是否显示
+      interceptWidth: 360, // 截取器的宽
+      interceptHeight: 400, // 截取器的搞
+      interceptLeft: 0, // 截取器的左边距离
+      interceptTop: 0, // 截取器的有边距离
+      interceptCanvasWidth: 360, // 截取器截图的大小
+      interceptCanvasHeight: 400, // 截取器截图的大小
+      dragWidth: 'auto', // 拖拽的宽
+      dragHeight: 400, // 拖拽的高
+      dragPaddingLeft: 0,
+      dragPaddingTop: 0,
+      canvas: null,
+      canvasContext: null,
+      iconText: this.buttonText,
+      plusText: '+',
     };
   },
   props: {
@@ -1533,6 +1571,10 @@ staticRenderFns: [],
       type: Boolean,
       default: false,
     },
+    intercept: {
+      type: Array,
+      default: function () { return []; },
+    },
     format: {
       type: Array,
       default: function default$2() {
@@ -1567,6 +1609,18 @@ staticRenderFns: [],
       type: Function,
       default: function () {},
     },
+    buttonText: {
+      type: String,
+      default: '上传图片',
+    },
+    theme: {
+      type: String,
+      default: 'default',
+    },
+    fileType: {
+      type: String,
+      default: 'image',
+    },
   },
   computed: {
     uploadName: function uploadName() {
@@ -1575,7 +1629,7 @@ staticRenderFns: [],
         ( obj = {}, obj[((this.className) + "-upload")] = !!this.className, obj ),
         ( obj$1 = {}, obj$1[((this.className) + "-upload-" + (this.type))] = !!this.className, obj$1 ),
         {
-          'emfe-upload-disabled': this.disabled,
+          'emfe-upload-disabled': this.disabled || !this.canUpload,
         } ];
       var obj;
       var obj$1;
@@ -1591,7 +1645,7 @@ staticRenderFns: [],
         [("emfe-upload-" + (this.type) + "-file")],
         ( obj = {}, obj[((this.className) + "-upload-" + (this.type) + "-file")] = !!this.className, obj ),
         {
-          'emfe-upload-file-disabled': this.disabled,
+          'emfe-upload-file-disabled': this.disabled || !this.canUpload,
         } ];
       var obj;
     },
@@ -1607,16 +1661,114 @@ staticRenderFns: [],
         setTimeout(this$1.setAlign.bind(this$1), 0);
       };
     }
+    // 有截取器
+    if (this.intercept.length > 0) {
+      if (this.intercept.length > 1) {
+        this.interceptCanvasWidth = this.intercept[0];
+        this.interceptCanvasHeight = this.intercept[1];
+      } else if (this.intercept.length === 1) {
+        this.interceptCanvasWidth = this.intercept[0];
+        this.interceptCanvasHeight = this.intercept[0];
+      }
+    }
   },
   methods: {
-    setAlign: function setAlign() {
+    openInterceptModal: function openInterceptModal() {
+      openMask();
+      this.interceptModal = true;
+    },
+    closeInterceptModal: function closeInterceptModal() {
+      closeMask();
+      this.interceptModal = false;
+    },
+    formCancel: function formCancel() {
+      this.closeInterceptModal();
+      this.resetInputFile();
+    },
+    formOk: function formOk() {
+      this.initCanvas();
+    },
+    initCanvas: function initCanvas() {
+      var this$1 = this;
+
+      var img = new Image();
+      img.src = this.img;
+      img.onload = function () {
+        this$1.canvas = document.createElement('canvas');
+        this$1.canvasContext = this$1.canvas.getContext('2d');
+        this$1.canvas.width = this$1.interceptCanvasWidth;
+        this$1.canvas.height = this$1.interceptCanvasHeight;
+        this$1.getImageUrl();
+        this$1.postHandle(upload(this$1.clipData, uploadJpeg));
+        this$1.closeInterceptModal();
+      };
+    },
+    getImageUrl: function getImageUrl() {
+      var ref = this;
+      var canvasContext = ref.canvasContext;
+      var previewImg = ref.previewImg;
+      var clientWidth = previewImg.clientWidth;
+      var clientHeight = previewImg.clientHeight;
+      var left = this.interceptLeft;
+      var top = this.interceptTop;
+      canvasContext.drawImage(previewImg, -left, -top, clientWidth, clientHeight);
+      this.clipData = this.canvas.toDataURL(uploadJpeg);
+    },
+    // 拖拽大方块改变截图位置
+    dragPosMove: function dragPosMove(ev, left, top) {
+      this.interceptLeft = left;
+      this.interceptTop = top;
+    },
+    // 角部拖拽改变大小
+    pointMoveChangeSize: function pointMoveChangeSize(ev, left, lDir, type) {
+      var widthStep = -left;
+      // 左上 || 左下
+      if (type === 'nw' || type === 'sw') {
+        var lChange = pointOldLeft - left;
+        widthStep = lChange;
+      }
+      var heightStep = (this.interceptCanvasHeight * widthStep) / this.interceptCanvasWidth;
+      if (this.interceptCanvasWidth + widthStep >= this.intercept[0] &&
+        this.interceptCanvasWidth + widthStep <= this.interceptWidth) {
+        this.interceptCanvasWidth += widthStep;
+        this.interceptCanvasHeight += heightStep;
+        // 左上 || 左下
+        if (type === 'nw' || type === 'sw') {
+          this.interceptLeft -= widthStep;
+        }
+        // 左上 || 右上
+        if (type === 'nw' || type === 'ne') {
+          this.interceptTop -= heightStep;
+        }
+        pointOldLeft = left;
+      }
+    },
+    // 左上
+    nwPosMove: function nwPosMove(ev, left, top, lDir) {
+      this.pointMoveChangeSize(ev, left, lDir, 'nw');
+    },
+    // 右上
+    nePosMove: function nePosMove(ev, left, top, lDir) {
+      this.pointMoveChangeSize(ev, this.interceptCanvasWidth - left, lDir, 'ne');
+    },
+    // 左下
+    swPosMove: function swPosMove(ev, left, top, lDir) {
+      this.pointMoveChangeSize(ev, left, lDir, 'sw');
+    },
+    // 右下
+    sePosMove: function sePosMove(ev, left, top, lDir) {
+      this.pointMoveChangeSize(ev, this.interceptCanvasWidth - left, lDir);
+    },
+    setAlign: function setAlign(res) {
       var ref = this.$refs.img;
       var clientWidth = ref.clientWidth;
       var clientHeight = ref.clientHeight;
-      if (clientWidth !== 0 && clientHeight !== 0) {
-        if (clientWidth > clientHeight) {
+      var width = res ? res.width : clientWidth;
+      var height = res ? res.height : clientHeight;
+      if (width !== 0 && height !== 0) {
+        if (width > height) {
           this.align = 'horizontal';
-        } else if (clientWidth < clientHeight) {
+        } else if (width < height) {
           this.align = 'vertical';
         } else {
           this.align = 'normal';
@@ -1635,9 +1787,35 @@ staticRenderFns: [],
 
       var postFiles = Array.prototype.slice.call(files);
 
-      postFiles.forEach(function (file) {
-        this$1.postHandle(file);
-      });
+      if (this.intercept.length === 0) {
+        postFiles.forEach(function (file) {
+          this$1.postHandle(file);
+        });
+      } else {
+        var reader = new FileReader();
+        reader.readAsDataURL(postFiles[0]);
+        reader.onload = function (readerEvent) {
+          this$1.img = readerEvent.target.result;
+          this$1.openInterceptModal();
+          setTimeout(function () {
+            this$1.drag1.length = 0;
+            this$1.drag1.push(this$1.$refs.drag1);
+            this$1.previewImg = this$1.$refs.previewImg;
+            this$1.dragWidth = this$1.previewImg.clientWidth;
+            this$1.dragHeight = this$1.previewImg.clientHeight;
+            this$1.dragPaddingLeft = (this$1.dragWidth - this$1.interceptWidth) / 2;
+            this$1.dragPaddingTop = (this$1.dragHeight - this$1.interceptHeight) / 2;
+            var imgScale = this$1.dragHeight / this$1.dragWidth;
+            // 如果宽度超了
+            if (this$1.dragWidth > this$1.interceptWidth) {
+              this$1.dragWidth = this$1.interceptWidth;
+              this$1.dragHeight = imgScale * this$1.dragWidth;
+              this$1.dragPaddingLeft = (this$1.interceptWidth - this$1.dragWidth) / 2;
+              this$1.dragPaddingTop = (this$1.interceptHeight - this$1.dragHeight) / 2;
+            }
+          }, 0);
+        };
+      }
     },
     postHandle: function postHandle(file) {
       var this$1 = this;
@@ -1661,13 +1839,12 @@ staticRenderFns: [],
         }
       }
 
-      if (canUpload) {
+      if (this.canUpload) {
         this.handleStart(file);
         this.beforeUpload(file, EmfeMessage);
         this.$emit('beforeUpload', file, EmfeMessage);
-        this.canUpload = false;
-
-        upload({
+        this.canNotLoad();
+        upload$1({
           headers: this.headers,
           withCredentials: this.withCredentials,
           file: file,
@@ -1675,7 +1852,6 @@ staticRenderFns: [],
           filename: this.name,
           action: this.action,
           onSuccess: function (res) {
-            canUpload = true;
             if (!res.code) {
               this$1.handleSuccess(res, file);
             } else {
@@ -1683,7 +1859,6 @@ staticRenderFns: [],
             }
           },
           onError: function (err, response) {
-            canUpload = true;
             this$1.handleError(err, response, file);
           },
         });
@@ -1709,7 +1884,12 @@ staticRenderFns: [],
       if (fileData) {
         fileData.status = 'finished';
         fileData.response = res;
-        this.loadImg(res.url, res, fileData);
+        if (this.fileType === 'image') {
+          this.loadImg(res.url, res, fileData);
+        } else {
+          this.canLoad();
+          this.$emit('success', res, fileData, this.fileList, EmfeMessage);
+        }
       }
     },
     handleError: function handleError(err, response, file) {
@@ -1717,6 +1897,7 @@ staticRenderFns: [],
       var fileList = this.fileList;
 
       fileData.status = 'fail';
+      this.canLoad();
 
       fileList.splice(fileList.indexOf(fileData), 1);
       this.error(err, response, file, EmfeMessage);
@@ -1738,24 +1919,49 @@ staticRenderFns: [],
       img.src = src;
       img.onload = function () {
         this$1.src = src;
-        setTimeout(this$1.setAlign.bind(this$1), 0);
+        setTimeout(this$1.setAlign.bind(this$1, res), 0);
+        this$1.canLoad();
         this$1.success(res, fileData, this$1.fileList, EmfeMessage);
         this$1.$emit('success', res, fileData, this$1.fileList, EmfeMessage);
       };
     },
     closeFn: function closeFn() {
-      this.$refs.upload.value = '';
       this.closeCommon();
     },
     closePlusFn: function closePlusFn() {
-      this.$refs.uploadPlus.value = '';
       this.closeCommon();
     },
     closeCommon: function closeCommon() {
       this.src = '';
       this.canShow = false;
+      this.resetInputFile();
       this.close(EmfeMessage);
       this.$emit('close', EmfeMessage);
+    },
+    resetInputFile: function resetInputFile() {
+      if (this.type === 'icon') {
+        this.$refs.upload.value = '';
+      } else {
+        this.$refs.uploadPlus.value = '';
+      }
+      this.dragWidth = 'auto';
+      this.dragHeight = 400;
+    },
+    canLoad: function canLoad() {
+      this.canUpload = true;
+      if (this.type === 'icon') {
+        this.iconText = this.buttonText;
+      } else {
+        this.plusText = '+';
+      }
+    },
+    canNotLoad: function canNotLoad() {
+      this.canUpload = false;
+      if (this.type === 'icon') {
+        this.iconText = '上传中';
+      } else {
+        this.plusText = '...';
+      }
     },
   },
 };
@@ -1768,6 +1974,8 @@ EmfeUpload$1.install = function (Vue$$1) {
 var refPos = {
   x: 0,
   y: 0,
+  oldX: 0,
+  oldY: 0,
 };
 
 var EmfeDrag$1 = {
@@ -1798,7 +2006,7 @@ staticRenderFns: [],
       type: Array,
     },
     initialValue: { // 初始值
-      type: Number,
+      type: [Number, Array],
       default: 0,
     },
     direction: {
@@ -1814,6 +2022,10 @@ staticRenderFns: [],
     dragDiyStyle: {
       type: String,
       default: '',
+    },
+    moveEle: {
+      type: Boolean,
+      default: true,
     },
   },
   computed: {
@@ -1870,10 +2082,15 @@ staticRenderFns: [],
       if (this.dragEl && this.dragEl.length > 0) {
         downTop -= this.parentPaddingTop;
         downTop += this.scrollTop;
-        downTop += this.initialValue;
         downLeft -= this.parentPaddingLeft;
         downLeft += this.scrollLeft;
-        downLeft += this.initialValue;
+        if (Array.isArray(this.initialValue)) {
+          downTop += this.initialValue[1];
+          downLeft += this.initialValue[0];
+        } else {
+          downTop += this.initialValue;
+          downLeft += this.initialValue;
+        }
         this.dragEl.forEach(function (dragElement) {
           if (this$1.direction === 'vertical') {
             dragElement.style.top = downTop + "px";
@@ -1884,6 +2101,13 @@ staticRenderFns: [],
             dragElement.style.top = downTop + "px";
           }
         });
+        // 有可能会变宽高，比如截取器
+        this.elWidth = this.dragEl[0].clientWidth;
+        this.elHeight = this.dragEl[0].clientHeight;
+      } else {
+        // 有可能会变宽高，比如截取器
+        this.elWidth = this.$el.clientWidth;
+        this.elHeight = this.$el.clientHeight;
       }
       this.$emit('beforeDrag', e, downLeft, downTop);
     },
@@ -1900,11 +2124,16 @@ staticRenderFns: [],
         elTop = e.clientY - this.parentTop;
         elTop -= this.parentPaddingTop;
         elTop += this.scrollTop;
-        elTop += this.initialValue;
         elLeft = e.clientX - this.parentLeft;
         elLeft -= this.parentPaddingLeft;
         elLeft += this.scrollLeft;
-        elLeft += this.initialValue;
+        if (Array.isArray(this.initialValue)) {
+          elTop += this.initialValue[1];
+          elLeft += this.initialValue[0];
+        } else {
+          elTop += this.initialValue;
+          elLeft += this.initialValue;
+        }
       } else {
         elLeft = this.elLeft + disPosX;
         elTop = this.elTop + disPosY;
@@ -1925,26 +2154,32 @@ staticRenderFns: [],
         }
       }
 
-      if (this.dragEl && this.dragEl.length > 0) {
-        this.dragEl.forEach(function (dragElement) {
-          if (this$1.direction === 'vertical') {
-            dragElement.style.top = elTop + "px";
-          } else if (this$1.direction === 'horizontal') {
-            dragElement.style.left = elLeft + "px";
-          } else {
-            dragElement.style.left = elLeft + "px";
-            dragElement.style.top = elTop + "px";
+      if (this.moveEle) {
+        if (this.dragEl && this.dragEl.length > 0) {
+          this.dragEl.forEach(function (dragElement) {
+            if (this$1.direction === 'vertical') {
+              dragElement.style.top = elTop + "px";
+            } else if (this$1.direction === 'horizontal') {
+              dragElement.style.left = elLeft + "px";
+            } else {
+              dragElement.style.left = elLeft + "px";
+              dragElement.style.top = elTop + "px";
+            }
+          });
+        } else {
+          this.dragStyle = "left: " + elLeft + "px; top: " + elTop + "px";
+          if (this.direction === 'vertical') {
+            this.dragStyle = "top: " + elTop + "px";
+          } else if (this.direction === 'horizontal') {
+            this.dragStyle = "left: " + elLeft + "px;";
           }
-        });
-      } else {
-        this.dragStyle = "left: " + elLeft + "px; top: " + elTop + "px";
-        if (this.direction === 'vertical') {
-          this.dragStyle = "top: " + elTop + "px";
-        } else if (this.direction === 'horizontal') {
-          this.dragStyle = "left: " + elLeft + "px;";
         }
       }
-      this.$emit('drag', e, elLeft, elTop);
+      this.$emit('drag', e, elLeft, elTop, refPos.oldX - elLeft, refPos.oldY - elTop);
+      refPos.oldX = elLeft;
+      refPos.oldY = elTop;
+
+      e.stopPropagation();
     },
     up: function up(e) {
       document.removeEventListener('mousemove', this.move, false);
@@ -4699,13 +4934,18 @@ staticRenderFns: [],
       default: false,
     },
     value: {
-      type: Boolean,
+      type: [Boolean, String],
       default: false,
+    },
+    interceptor: {
+      type: Boolean,
+      default: true,
     },
   },
   data: function data() {
     return {
       currentValue: this.value,
+      interceptorDefault: this.interceptor,
     };
   },
   computed: {
@@ -4724,9 +4964,20 @@ staticRenderFns: [],
   methods: {
     toggle: function toggle() {
       if (!this.disabled) {
-        var checked = !this.currentValue;
-        this.currentValue = checked;
-        this.$emit('toggle', checked);
+        if (this.interceptorDefault) {
+          this.changeValue();
+        }
+        this.$emit('toggle', this.currentValue);
+      }
+    },
+    changeValue: function changeValue() {
+      this.currentValue = !this.currentValue;
+    },
+  },
+  watch: {
+    interceptor: function interceptor(val, oldVal) {
+      if (val !== oldVal) {
+        this.changeValue();
       }
     },
   },
@@ -6553,7 +6804,7 @@ function getBody$1(xhr) {
   }
 }
 
-function upload$1(option) {
+function upload$2(option) {
   if (typeof XMLHttpRequest === 'undefined') {
     return;
   }
@@ -6733,7 +6984,7 @@ staticRenderFns: [function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._
         this.pwdFlg = false;
       }
       if (this.telFlg && this.pwdFlg) {
-        upload$1({
+        upload$2({
           headers: this.headers,
           type: 'POST',
           data: JSON.stringify(this.data),
@@ -6745,7 +6996,7 @@ staticRenderFns: [function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._
               var autoData = "Bearer " + Rtoken;
               var callBack = res.data.call_back_url;
               callBack.forEach(function (url) {
-                upload$1({
+                upload$2({
                   headers: this$1.headers,
                   type: 'GET',
                   action: url,
