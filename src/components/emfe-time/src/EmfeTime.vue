@@ -3,16 +3,16 @@
     <button class="emfe-time-btn" v-if="!open && !disabled" @click="toggle">
       <span class="emfe-time-btn-text" :class="{'emfe-time-btn-text-choice': choiced}">{{ time }}</span>
       <!-- 日期 -->
-      <emfe-icon type="hint" className="emfe-time" v-show="!choiced" @icon-click="toggle"></emfe-icon>
+      <emfe-icon type="shijian" className="emfe-time" v-show="!choiced" @icon-click="toggle"></emfe-icon>
       <!-- 取消 -->
-      <emfe-icon type="qr" className="emfe-time" v-show="choiced" @icon-click="cancel"></emfe-icon>
+      <emfe-icon type="shanchu" className="emfe-time" v-show="choiced" @icon-click="cancel"></emfe-icon>
     </button>
     <button class="emfe-time-btn emfe-time-btn-disabled" v-if="!open && disabled">
       <span class="emfe-time-btn-text">{{ time }}</span>
       <!-- 日期 -->
-      <emfe-icon type="hint" className="emfe-time" v-show="!choiced"></emfe-icon>
+      <emfe-icon type="shijian" className="emfe-time" v-show="!choiced"></emfe-icon>
       <!-- 取消 -->
-      <emfe-icon type="qr" className="emfe-time" v-show="choiced"></emfe-icon>
+      <emfe-icon type="shanchu" className="emfe-time" v-show="choiced"></emfe-icon>
     </button>
     <emfe-transition name="fade">
       <div class="emfe-time-box" v-show="status" :class="{'emfe-time-box-position': !open}">

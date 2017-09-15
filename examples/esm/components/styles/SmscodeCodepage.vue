@@ -13,11 +13,11 @@
     <br>
     <br>
     <h3>icon用法</h3>
-    <emfe-smscode icon="hint" v-model="model"></emfe-smscode>
+    <emfe-smscode icon="fabu" v-model="model"></emfe-smscode>
     {{ model }}
     <br>
     <pre>
-      &lt;emfe-smscode icon="hint" v-model="model"&gt;&lt;/emfe-smscode&gt;
+      &lt;emfe-smscode icon="fabu" v-model="model"&gt;&lt;/emfe-smscode&gt;
     </pre>
     <br>
     <br>

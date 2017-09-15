@@ -1,7 +1,7 @@
 <template>
   <div class="emfe-upload" :class="uploadName">
     <template v-if="type === 'icon'">
-      <emfe-button :disabled="disabled || !canUpload" v-show="!src" :theme="theme">{{ iconText }}</emfe-button>
+      <emfe-button :disabled="disabled || !canUpload" v-show="!src" :theme="theme" type="shangchuan">{{ iconText }}</emfe-button>
       <input v-show="!src" class="emfe-upload-file" :class="fileName" :disabled="disabled || !canUpload" type="file" @change="change" ref="upload">
       <div v-show="src" :style="{opacity: canShow ? 1 : 0}" class="emfe-upload-icon-wrap">
         <div class="emfe-upload-icon-wrap-box" :class="[`emfe-upload-icon-wrap-box-${align}`]">

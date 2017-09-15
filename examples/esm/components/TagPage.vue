@@ -24,9 +24,9 @@
       <h3>复选标签带icon</h3>
       <br>
       <emfe-tag-parent className="checket">
-        <emfe-tag index="0" type="hint">默认</emfe-tag>
-        <emfe-tag index="1" type="hint">选中</emfe-tag>
-        <emfe-tag index="2" type="hint" disable="true"></emfe-icon>禁止</emfe-tag>
+        <emfe-tag index="0" type="fabu">默认</emfe-tag>
+        <emfe-tag index="1" type="fabu">选中</emfe-tag>
+        <emfe-tag index="2" type="fabu" disable="true"></emfe-icon>禁止</emfe-tag>
       </emfe-tag-parent>
     </div>
     <br>
