@@ -1,0 +1,26 @@
+.#{$prefix}smscode-c {
+  @include clearfix();
+
+  height: 34px;
+  display: flex;
+
+  &-input {
+    flex: 1;
+    height: 100%;
+
+    &-box {
+      height: 100%;
+
+      &-input {
+        height: 100%;
+      }
+    }
+  }
+
+  &-button-c {
+    width: 120px;
+    height: 100%;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+}

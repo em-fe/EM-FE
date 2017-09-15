@@ -45,6 +45,11 @@ const router = new VueRouter({
           component: require('./components/styles/TelPage.vue'),
         },
         {
+          path: '/styles/telc',
+          name: 'telc',
+          component: require('./components/styles/TelCPage.vue'),
+        },
+        {
           path: '/styles/imgCodepage',
           name: 'imgCodepage',
           component: require('./components/styles/ImgCodepage.vue'),
@@ -53,6 +58,11 @@ const router = new VueRouter({
           path: '/styles/smscodeCodepage',
           name: 'smscodeCodepage',
           component: require('./components/styles/SmscodeCodepage.vue'),
+        },
+        {
+          path: '/styles/smscodecCodepage',
+          name: 'smscodecCodepage',
+          component: require('./components/styles/SmscodecCodepage.vue'),
         },
         {
           path: '/styles/panel',
@@ -110,6 +120,11 @@ const router = new VueRouter({
           component: require('./components/styles/ButtonPage.vue'),
         },
         {
+          path: '/styles/buttonc',
+          name: 'buttonc',
+          component: require('./components/styles/ButtonCPage.vue'),
+        },
+        {
           path: '/styles/switch',
           name: 'switch',
           component: require('./components/styles/SwitchPage.vue'),
@@ -118,6 +133,11 @@ const router = new VueRouter({
           path: '/styles/radio',
           name: 'radio',
           component: require('./components/styles/RadioPage.vue'),
+        },
+        {
+          path: '/styles/radioc',
+          name: 'radioc',
+          component: require('./components/styles/RadioCPage.vue'),
         },
         {
           path: '/styles/pagination',
@@ -133,6 +153,11 @@ const router = new VueRouter({
           path: '/styles/checkout',
           name: 'checkout',
           component: require('./components/styles/checkoutPage.vue'),
+        },
+        {
+          path: '/styles/checkoutc',
+          name: 'checkoutc',
+          component: require('./components/styles/checkoutCPage.vue'),
         },
         {
           path: '/styles/textarea',
@@ -264,7 +289,12 @@ const router = new VueRouter({
         {
           path: '/functions/modal',
           name: 'modal',
-          component: require('./components/functions/modal.vue'),
+          component: require('./components/functions/ModalPage.vue'),
+        },
+        {
+          path: '/functions/modalc',
+          name: 'modalc',
+          component: require('./components/functions/ModalCPage.vue'),
         },
         {
           path: '/functions/loginmodal',

@@ -77,6 +77,13 @@ module.exports = {
                   },
                 },
                 {
+                  title: '多选C',
+                  icon: 'checkout',
+                  routers: {
+                    path: '/styles/checkoutc',
+                  },
+                },
+                {
                   title: 'input输入框',
                   icon: 'erweima',
                   routers: {
@@ -98,6 +105,13 @@ module.exports = {
                   },
                 },
                 {
+                  title: '电话组合C',
+                  icon: 'hotel',
+                  routers: {
+                    path: '/styles/telc',
+                  },
+                },
+                {
                   title: '图片验证码',
                   icon: 'erweima',
                   routers: {
@@ -112,10 +126,24 @@ module.exports = {
                   },
                 },
                 {
+                  title: '短信验证码C',
+                  icon: 'hotel',
+                  routers: {
+                    path: '/styles/smscodecCodepage',
+                  },
+                },
+                {
                   title: '按钮',
                   icon: 'erweima',
                   routers: {
                     path: '/styles/button',
+                  },
+                },
+                {
+                  title: '按钮C',
+                  icon: 'hotel',
+                  routers: {
+                    path: '/styles/buttonc',
                   },
                 },
                 {
@@ -126,10 +154,17 @@ module.exports = {
                   },
                 },
                 {
-                  title: 'radio单选框',
+                  title: '单选',
                   icon: 'erweima',
                   routers: {
                     path: '/styles/radio',
+                  },
+                },
+                {
+                  title: '单选C',
+                  icon: 'erweima',
+                  routers: {
+                    path: '/styles/radioc',
                   },
                 },
               ],
@@ -428,6 +463,13 @@ module.exports = {
               icon: 'erweima',
               routers: {
                 path: '/functions/modal',
+              },
+            },
+            {
+              title: '弹出框C',
+              icon: 'hotel',
+              routers: {
+                path: '/functions/modalc',
               },
             },
             {

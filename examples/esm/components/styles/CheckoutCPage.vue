@@ -1,34 +1,34 @@
  <template>
   <div>
     <h4>填写设置</h4>
-    <emfe-checkout className="diy" title="双向数据绑定，默认选中项" v-model="initChecked">
-    </emfe-checkout>
+    <emfe-checkout-c className="diy" title="双向数据绑定，默认选中项" v-model="initChecked">
+    </emfe-checkout-c>
     {{ initChecked }}
-    <emfe-checkout className="diy" :title="title" @checked="checked">
-    </emfe-checkout>
-    <emfe-checkout className="div" title="这是一个带颜色的标题">
-    </emfe-checkout>
-    <emfe-checkout :disable="true" title="禁用">
-    </emfe-checkout>
-    <emfe-checkout className="diy" :slideShow="true" v-model="slideShow" title="限定一周内可选日期">
+    <emfe-checkout-c className="diy" :title="title" @checked="checked">
+    </emfe-checkout-c>
+    <emfe-checkout-c className="div" title="这是一个带颜色的标题">
+    </emfe-checkout-c>
+    <emfe-checkout-c :disable="true" title="禁用">
+    </emfe-checkout-c>
+    <emfe-checkout-c className="diy" :slideShow="true" v-model="slideShow" title="限定一周内可选日期">
       <div slot="slide">
-        <emfe-checkout title="周一" inline="true"></emfe-checkout>
-        <emfe-checkout title="周二" inline="true"></emfe-checkout>
-        <emfe-checkout title="周三" inline="true"></emfe-checkout>
-        <emfe-checkout title="周四" inline="true"></emfe-checkout>
-        <emfe-checkout title="周五" inline="true"></emfe-checkout>
-        <emfe-checkout title="周六" inline="true"></emfe-checkout>
-        <emfe-checkout title="周日" inline="true"></emfe-checkout>
+        <emfe-checkout-c title="周一" inline="true"></emfe-checkout-c>
+        <emfe-checkout-c title="周二" inline="true"></emfe-checkout-c>
+        <emfe-checkout-c title="周三" inline="true"></emfe-checkout-c>
+        <emfe-checkout-c title="周四" inline="true"></emfe-checkout-c>
+        <emfe-checkout-c title="周五" inline="true"></emfe-checkout-c>
+        <emfe-checkout-c title="周六" inline="true"></emfe-checkout-c>
+        <emfe-checkout-c title="周日" inline="true"></emfe-checkout-c>
       </div>
-    </emfe-checkout>
+    </emfe-checkout-c>
     <br>
     <br>
     <br>
     反选 {{ allChecked }}
     <br>
     <div>
-      <emfe-checkout className="diy" title="反选" inline="true" v-model="allChecked"  @checked="noChecked()"></emfe-checkout>
-      <emfe-checkout className="diy" :title="item.title" inline="true" v-for="(item, index) in allDatas" :key="index" v-model="item.checked"></emfe-checkout>
+      <emfe-checkout-c className="diy" title="反选" inline="true" v-model="allChecked"  @checked="noChecked()"></emfe-checkout-c>
+      <emfe-checkout-c className="diy" :title="item.title" inline="true" v-for="(item, index) in allDatas" :key="index" v-model="item.checked"></emfe-checkout-c>
     </div>
     <br>
     <br>
@@ -152,7 +152,7 @@ export default {
 </script>
 <style>
 .div-text {
-  color: #1996F9;
+  color: #fd883b;
   margin: 8px 0;
 }
 .diy-text {
