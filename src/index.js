@@ -17,7 +17,9 @@ import EmfeColor from './components/emfe-color/index';
 import EmfeInput from './components/emfe-input/index';
 import EmfeInputmore from './components/emfe-inputmore/index';
 import EmfeTel from './components/emfe-tel/index';
+import EmfeTelC from './components/emfe-tel-c/index';
 import EmfeSmscode from './components/emfe-smscode/index';
+import EmfeSmscodeC from './components/emfe-smscode-c/index';
 import EmfeImgcode from './components/emfe-imgcode/index';
 import EmfeSteps from './components/emfe-steps/index';
 import EmfeNumber from './components/emfe-number/index';
@@ -32,12 +34,16 @@ import EmfeSwitch from './components/emfe-switch/index';
 import EmfeTitle from './components/emfe-title/index';
 import EmfeTitleC from './components/emfe-title-c/index';
 import Radio from './components/emfe-radio/index';
+import RadioC from './components/emfe-radio-c/index';
 import Button from './components/emfe-button/index';
+import ButtonC from './components/emfe-button-c/index';
 import EmfePagination from './components/emfe-pagination/index';
 import EmfePaginationC from './components/emfe-pagination-c/index';
 import EmfeSelect from './components/emfe-select/index';
 import EmfeModal from './components/emfe-modal/index';
+import EmfeModalC from './components/emfe-modal-c/index';
 import EmfeCheckout from './components/emfe-checkout/index';
+import EmfeCheckoutC from './components/emfe-checkout-c/index';
 import EmfeDrop from './components/emfe-drop/index';
 import Table from './components/emfe-table/index';
 import EmfeTextarea from './components/emfe-textarea/index';
@@ -70,6 +76,7 @@ const emfeCpt = {
   EmfeTooltip,
   EmfeTransition,
   EmfeModal,
+  EmfeModalC,
   EmfeMenu,
   EmfeHeader,
   EmfeHeaderC,
@@ -84,16 +91,22 @@ const emfeCpt = {
   EmfeInputmoreGroup: EmfeInputmore.EmfeInputmoreGroup,
   EmfeNumber,
   EmfeTel,
+  EmfeTelC,
   EmfeSmscode,
+  EmfeSmscodeC,
   EmfeImgcode,
   EmfeSteps,
   EmfeButton: Button.EmfeButton,
   EmfeButtonGroup: Button.EmfeButtonGroup,
+  EmfeButtonC: ButtonC.EmfeButtonC,
+  EmfeButtonGroupC: ButtonC.EmfeButtonGroupC,
   EmfeSwitch,
   EmfeTitle,
   EmfeTitleC,
   EmfeRadio: Radio.EmfeRadio,
   EmfeRadioGroup: Radio.EmfeRadioGroup,
+  EmfeRadioC: RadioC.EmfeRadioC,
+  EmfeRadioGroupC: RadioC.EmfeRadioGroupC,
   EmfeTable: Table.EmfeTable,
   EmfeTableHead: Table.EmfeTableHead,
   EmfeTableBody: Table.EmfeTableBody,
@@ -107,6 +120,7 @@ const emfeCpt = {
   EmfePaginationC,
   EmfeSelect,
   EmfeCheckout,
+  EmfeCheckoutC,
   EmfeDrop,
   EmfeLink,
   EmfeTextarea,
