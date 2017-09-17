@@ -1,6 +1,6 @@
 <template>
   <div>
-    <emfe-drop className="abc-drop" :margin="margin" :datas="list"></emfe-drop>
+    <emfe-drop className="abc-drop" :margin="margin" :opationsData="list"></emfe-drop>
   </div>
 </template>
 <script>
@@ -61,7 +61,7 @@ export default {
 <style>
 .abc-drop {
   width: 720px;
-  height: 35px;
+  height: 32px;
   display: flex;
 }
 .abc-drop-drag {

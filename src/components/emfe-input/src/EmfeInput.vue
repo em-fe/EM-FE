@@ -2,7 +2,7 @@
   <div class="emfe-input" :class="addClass" :style="newStyle">
     <div :class="[classList]">
       <emfe-icon v-if="iconOk" :type="iconType" className="emfe-input-box-icon-el"></emfe-icon>
-      <input :type="type" :placeholder="newPlaceholder" v-bind="$props" :class='addInput' :value="currentValue" v-on:input="change" class="emfe-input-box-input" @blur="blur">
+      <input :type="type" :placeholder="newPlaceholder" v-bind="$props" :class='addInput' :value="currentValue" v-on:input="changeFn" class="emfe-input-box-input" @blur="blur">
     </div>
     <div class="emfe-input-box-text" :class="addErrorText" v-if="errOk"><slot name="error"></slot></div>
   </div>
@@ -55,6 +55,10 @@ export default {
       type: String,
       default: 'text',
     },
+    change: {
+      type: Function,
+      default: () => {},
+    },
   },
   data() {
     return {
@@ -97,10 +101,11 @@ export default {
     },
   },
   methods: {
-    change() {
+    changeFn() {
       const val = event.target.value;
       if (val === this.currentValue) return;
       this.currentValue = val;
+      this.change(this.currentValue);
       this.$emit('change', this.currentValue);
       this.$emit('input', this.currentValue);
     },

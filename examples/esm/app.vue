@@ -372,13 +372,23 @@ module.exports = {
                     path: '/functions/drag',
                   },
                 },
-                // {
-                //   title: '换位置',
-                //   icon: 'erweima',
-                //   routers: {
-                //     path: '/functions/drop',
-                //   },
-                // },
+                {
+                  title: '换位置',
+                  icon: 'erweima',
+                  routers: {
+                    path: '/functions/drop',
+                  },
+                },
+                {
+                  title: '选项拖拽',
+                  icon: 'erweima',
+                  routers: {
+                    path: '/functions/opations',
+                    query: {
+                      main: 4,
+                    },
+                  },
+                },
               ],
             },
             {
@@ -445,30 +455,10 @@ module.exports = {
               }
             },
             {
-              title: 'drop',
-              icon: 'erweima',
-              routers: {
-                path: '/functions/drop',
-                query: {
-                  main: 4,
-                },
-              },
-            },
-            {
               title: '滑动',
               icon: 'erweima',
               routers: {
                 path: '/functions/slide',
-                query: {
-                  main: 4,
-                },
-              },
-            },
-            {
-              title: '选项拖拽',
-              icon: 'erweima',
-              routers: {
-                path: '/functions/opations',
                 query: {
                   main: 4,
                 },
