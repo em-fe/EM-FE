@@ -55,6 +55,11 @@ const router = new VueRouter({
           component: require('./components/styles/ImgCodepage.vue'),
         },
         {
+          path: '/styles/imgCodepageC',
+          name: 'imgCodeCpage',
+          component: require('./components/styles/ImgCodeCpage.vue'),
+        },
+        {
           path: '/styles/smscodeCodepage',
           name: 'smscodeCodepage',
           component: require('./components/styles/SmscodeCodepage.vue'),
