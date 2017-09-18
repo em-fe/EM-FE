@@ -1,7 +1,7 @@
  <template>
   <tr @click="jump(ind)" class="emfe-box-table-tr" :class="classTr">
     <template>
-      <td class="emfe-box-table-tr-td" :class="classTd" :rowspan="dataList[list.key].row ? rowSpan[list.key]:0"  v-for="(list , index) in dataSlice" v-if="!dataList[list.key].hebing">
+      <td class="emfe-box-table-tr-td" :class="[classTd, {'emfe-box-table-tr-td-checked': checked === index}]" :rowspan="dataList[list.key].row ? rowSpan[list.key]:0"  v-for="(list , index) in dataSlice" v-if="!dataList[list.key].hebing">
         <slot name="a" v-if="dataList[list.key].slot==='a'"></slot>
         <slot name="b" v-if="dataList[list.key].slot==='b'"></slot>
         <slot name="c" v-if="dataList[list.key].slot==='c'"></slot>
@@ -39,6 +39,10 @@ export default {
     ind: {
       type: Number,
       default: 0,
+    },
+    checked: {
+      type: Number,
+      default: -1,
     },
   },
   computed: {

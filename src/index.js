@@ -22,6 +22,7 @@ import EmfeSmscode from './components/emfe-smscode/index';
 import EmfeSmscodeC from './components/emfe-smscode-c/index';
 import EmfeImgcode from './components/emfe-imgcode/index';
 import EmfeSteps from './components/emfe-steps/index';
+import EmfeStepsC from './components/emfe-steps-c/index';
 import EmfeNumber from './components/emfe-number/index';
 import EmfeDate from './components/emfe-date/index';
 import EmfeDateM from './components/emfe-date-m/index';
@@ -96,6 +97,7 @@ const emfeCpt = {
   EmfeSmscodeC,
   EmfeImgcode,
   EmfeSteps,
+  EmfeStepsC,
   EmfeButton: Button.EmfeButton,
   EmfeButtonGroup: Button.EmfeButtonGroup,
   EmfeButtonC: ButtonC.EmfeButtonC,
