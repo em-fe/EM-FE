@@ -9,7 +9,7 @@
       </div>
     </div>
     <br>
-    <emfe-panel className="add" type="hint" :data="dataList2" @icon-click='iconClick'></emfe-panel>
+    <emfe-panel className="add" type="fabu" :data="dataList2" @icon-click='iconClick'></emfe-panel>
     <br>
     <br>
     <emfe-panel className="add" :switchType='true' :data="dataList2" @switch-toogle="switchs"></emfe-panel>

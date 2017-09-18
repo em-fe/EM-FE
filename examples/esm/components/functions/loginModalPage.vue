@@ -9,18 +9,18 @@ export default {
   name: 'loginModalPage',
   data() {
     return {
-    	loginShow: false,
+      loginShow: false,
       url: 'http://gateway.inner.evente.cn:8000/member/org/login',
-    	referrerUrl: 'https://www.baidu.com/',
+      referrerUrl: 'https://www.baidu.com/',
     };
   },
   methods: {
-  	login() {
+    login() {
       this.loginShow = true;
-  	},
-  	loginClose(val) {
+    },
+    loginClose(val) {
       this.loginShow = val;
-  	},
+    },
   },
 };
 </script>

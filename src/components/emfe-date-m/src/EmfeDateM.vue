@@ -1,18 +1,18 @@
 <template>
   <div class="emfe-date-m" v-emfe-documentclick="close">
-    <button class="emfe-date-m-btn" v-if="!open && !disabled" @click="toggle">
+    <button class="emfe-date-m-btn" v-if="!open && !disabled" @click="toggle" :class="buttonName">
       <span class="emfe-date-m-btn-text" :class="{'emfe-date-m-btn-text-choice': choiced}">{{ date }}</span>
       <!-- 日期 -->
-      <emfe-icon type="hint" className="emfe-date-m" v-show="!choiced" @icon-click="toggle"></emfe-icon>
+      <emfe-icon type="rili" className="emfe-date-m" v-show="!choiced" @icon-click="toggle"></emfe-icon>
       <!-- 取消 -->
-      <emfe-icon type="qr" className="emfe-date-m" v-show="choiced" @icon-click="cancel"></emfe-icon>
+      <emfe-icon type="shanchu" className="emfe-date-m" v-show="choiced" @icon-click="cancel"></emfe-icon>
     </button>
-    <button class="emfe-date-m-btn emfe-date-m-btn-disabled" v-if="!open && disabled">
+    <button class="emfe-date-m-btn emfe-date-m-btn-disabled" v-if="!open && disabled" :class="buttonName">
       <span class="emfe-date-m-btn-text">{{ date }}</span>
       <!-- 日期 -->
-      <emfe-icon type="hint" className="emfe-date-m" v-show="!choiced"></emfe-icon>
+      <emfe-icon type="rili" className="emfe-date-m" v-show="!choiced"></emfe-icon>
       <!-- 取消 -->
-      <emfe-icon type="qr" className="emfe-date-m" v-show="choiced"></emfe-icon>
+      <emfe-icon type="shanchu" className="emfe-date-m" v-show="choiced"></emfe-icon>
     </button>
     <emfe-transition name="fade">
       <div class="emfe-date-m-box" v-show="status" :class="{'emfe-date-m-box-position': !open}">
@@ -122,6 +122,13 @@ export default {
         date = `${this.year}${this.format}${this.month}${this.format}${this.day}`;
       }
       return date;
+    },
+    buttonName() {
+      return [
+        {
+          [`${this.className}-button`]: !!this.className,
+        },
+      ];
     },
   },
   mounted() {
