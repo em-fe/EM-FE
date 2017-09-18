@@ -329,6 +329,13 @@ module.exports = {
               },
             },
             {
+              title: '进度指引C',
+              icon: 'erweima',
+              routers: {
+                path: '/styles/stepsc',
+              },
+            },
+            {
               title: '面包屑',
               icon: 'erweima',
               routers: {
