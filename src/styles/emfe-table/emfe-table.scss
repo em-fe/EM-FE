@@ -73,6 +73,10 @@
           color: $thead-text-color;
           letter-spacing: 0;
           line-height: 16px;
+
+          &-checked {
+            background: #f8dbd8;
+          }
         }
       }
     }
@@ -99,6 +103,10 @@
         color: $title-color;
         letter-spacing: -0.3px;
         line-height: 16px;
+
+        &-checked {
+          background: #ffefed;
+        }
       }
     }
   }

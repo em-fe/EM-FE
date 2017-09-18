@@ -2,9 +2,9 @@
   <div class="emfe-table-box">
     <p>如果你希望传入多个slot，需要把数据里的slot设置为a-i，插入的slot对应a-i</p>
     <emfe-table :columns="columnSlot" classAddName="add" :data="dataSlot" type="true">
-      <emfe-table-head  slot="head"  @thJump='jumpTh'>
+      <emfe-table-head  slot="head"  @thJump='jumpTh' :checked="cell">
       </emfe-table-head>
-      <emfe-table-body slot="body" @jump="Jump" v-for="(dataList,index) in dataSlot" :ind="index" key="index" :dataList="dataList">
+      <emfe-table-body slot="body" @jump="Jump" v-for="(dataList,index) in dataSlot" :ind="index" key="index" :dataList="dataList" :checked="cell">
         <div slot="a">
           <emfe-checkout color="#1996F9" :title="dataList.name.text">
           </emfe-checkout>
@@ -107,6 +107,12 @@
           <td>String</td>
           <td>默认为“暂无数据”</td>
         </tr>
+        <tr height="100px">
+          <td>checked</td>
+          <td>选中列显示提示颜色</td>
+          <td>Number</td>
+          <td>-1(不显示)</td>
+        </tr>
       </tbody>
     </table>
      <br><br>
@@ -139,6 +145,7 @@ export default {
   name: 'table-page',
   data() {
     return {
+      cell: 4,
       column1:[
         {
           title: 'icon',
