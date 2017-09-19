@@ -25,6 +25,24 @@ module.exports = {
           },
         },
         {
+          title: '指令',
+          icon: 'erweima',
+          children: [
+            {
+              title: '点击body事件',
+              routers: {
+                path: '/directives/docclick',
+              },
+            },
+            {
+              title: '自定义滚动',
+              routers: {
+                path: '/directives/iscroll',
+              },
+            },
+          ],
+        },
+        {
           title: '提示组件',
           icon: 'erweima',
           children: [
