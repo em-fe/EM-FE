@@ -1,8 +1,6 @@
 <template>
-  <div class="emfe-drop">
-    <emfe-drop class="emfe-drop-drag" :cell="cell" :margin="margin">
-      <emfe-drag v-for="(item, index) in list" :key="index" className="emfe-drop-drag-no1" @afterDrag='afterDrag' @beforeDrag='beforeDrag' @drag='drag' :index='index'>{{item.text}}</emfe-drag>
-    </emfe-drop>
+  <div>
+    <emfe-drop className="abc-drop" :margin="margin" :opationsData="list"></emfe-drop>
   </div>
 </template>
 <script>
@@ -10,52 +8,82 @@ export default {
   name: 'drop-page',
   data() {
     return {
-      cell: 5,
       margin: 5,
       list: [
         {
-          text: 1,
+          title: 1,
         },
         {
-          text: 2,
+          title: 2,
         },
         {
-          text: 3,
+          title: 3,
         },
         {
-          text: 4,
+          title: 4,
         },
         {
-          text: 5,
+          title: 5,
         },{
-          text: 6,
+          title: 6,
         },
         {
-          text: 7,
+          title: 7,
         },
         {
-          text: 8,
+          title: 8,
         },
         {
-          text: 9,
+          title: 9,
         },
         {
-          text: 10,
+          title: 10,
         },
       ],
     };
   },
   methods: {
     beforeDrag(e) {
-      console.log(this.$children[0]);
-      this.$children[0].beforeDrag(e);
+      console.log('beforeDrag');
     },
     drag(e) {
-      this.$children[0].drag(e);
+      console.log('draging');
     },
     afterDrag(e) {
-      this.$children[0].afterDrag(e);
+      console.log('afterDrag');
+    },
+    hit() {
+      console.log('afterDrag');
     },
   },
 };
 </script>
+<style>
+.abc-drop {
+  width: 720px;
+  height: 32px;
+  display: flex;
+}
+.abc-drop-drag {
+  -webkit-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  height: 32px;
+  line-height: 32px;
+  border: 1px solid #dcdcdc;
+  margin-left: -1px;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: move;
+}
+</style>

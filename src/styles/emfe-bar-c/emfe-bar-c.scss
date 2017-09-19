@@ -15,6 +15,12 @@ $bar-top: 64px;
   top: 0;
   left: 0;
 
+  &-iscroll {
+    height: calc(100% - 48px);
+    position: relative;
+    overflow: hidden;
+  }
+
   &-item {
     position: relative;
 

@@ -68,6 +68,7 @@ import EmfeFormTest from './components/emfe-formtest/index';
 // 指令
 import emfeDocumentclick from './directives/emfe-documentclick';
 import emfeDocumentfocus from './directives/emfe-documentfocus';
+import emfeIscroll from './directives/emfe-iscroll';
 
 const emfeCpt = {
   EmfeCol: Grid.EmfeCol,
@@ -147,6 +148,7 @@ const emfeCpt = {
 const emfeDir = {
   emfeDocumentclick,
   emfeDocumentfocus,
+  emfeIscroll,
 };
 
 //, opts = {}
