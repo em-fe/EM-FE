@@ -5,7 +5,7 @@ const router = new VueRouter({
   routes: [
     {
       path: '/directives',
-      name: 'docclick',
+      name: 'directives',
       children: [
         {
           path: '/directives/docclick',
