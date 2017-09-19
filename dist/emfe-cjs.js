@@ -3451,6 +3451,71 @@ EmfeImgcode$1.install = function (Vue$$1) {
   Vue$$1.component(EmfeImgcode$1.name, EmfeImgcode$1);
 };
 
+var EmfeImgcodeC$1 = {
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-imgcode-c",class:_vm.imgcodeName},[_c('input',{staticClass:"emfe-imgcode-c-input",class:_vm.codeName,attrs:{"type":"number","placeholder":_vm.placeholder},domProps:{"value":_vm.nowData},on:{"input":_vm.input}}),_vm._v(" "),_c('img',{staticClass:"emfe-imgcode-c-code",attrs:{"src":_vm.newSrc,"alt":"图片验证码"},on:{"click":_vm.click}})])},
+staticRenderFns: [],
+  name: 'emfe-imgcode-c',
+  data: function data() {
+    var nowData = !this.value ? '' : this.value;
+    return {
+      nowData: nowData,
+      newSrc: this.src,
+    };
+  },
+  props: {
+    placeholder: {
+      type: String,
+      default: '请输入验证码',
+    },
+    value: {
+      type: [Number, String],
+    },
+    src: {
+      type: String,
+      required: true,
+    },
+    className: String,
+  },
+  computed: {
+    imgcodeName: function imgcodeName() {
+      return [
+        ( obj = {}, obj[((this.className) + "-imgcode")] = !!this.className, obj ) ];
+      var obj;
+    },
+    codeName: function codeName() {
+      return [
+        ( obj = {}, obj[((this.className) + "-imgcode-code")] = !!this.className, obj ) ];
+      var obj;
+    },
+  },
+  methods: {
+    input: function input(ev) {
+      var val = ev.target.value;
+      this.$emit('change', val);
+      this.$emit('input', val);
+    },
+    click: function click() {
+      this.$emit('click');
+    },
+  },
+  watch: {
+    value: function value(val, oldVal) {
+      if (val !== oldVal) {
+        this.nowData = val;
+      }
+    },
+    src: function src(val, oldVal) {
+      if (val !== oldVal) {
+        this.newSrc = val;
+      }
+    },
+  },
+};
+
+EmfeImgcodeC$1.install = function (Vue$$1) {
+  Vue$$1.component(EmfeImgcodeC$1.name, EmfeImgcodeC$1);
+};
+
 var EmfeSteps$1 = {
 render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-steps",class:_vm.stepsName},[_c('div',{staticClass:"emfe-steps-line"},_vm._l((_vm.datas),function(data,dataIndex){return _c('div',{class:{'emfe-steps-item-first': dataIndex === 0, 'emfe-steps-item-last': dataIndex === _vm.datas.length - 1, 'emfe-steps-item': dataIndex !== _vm.datas.length - 1 && dataIndex !== 0}},[(dataIndex === 0)?[(dataIndex === _vm.active)?[_c('emfe-icon',{attrs:{"className":"emfe-steps-item-first-on","type":data.icon}})]:[_c('emfe-icon',{attrs:{"className":"emfe-steps-item-first","type":data.icon}})]]:(dataIndex === _vm.datas.length - 1)?[(dataIndex === _vm.active)?[_c('emfe-icon',{attrs:{"className":"emfe-steps-item-last-on","type":data.icon}})]:[_c('emfe-icon',{attrs:{"className":"emfe-steps-item-last","type":data.icon}})]]:[(dataIndex === _vm.active)?[_c('emfe-icon',{attrs:{"className":"emfe-steps-item-on","type":data.icon}})]:[_c('emfe-icon',{attrs:{"className":"emfe-steps-item","type":data.icon}})]],_vm._v(" "),_c('span',{staticClass:"emfe-steps-item-text",class:{'emfe-steps-item-on-text': _vm.active === dataIndex}},[_vm._v(_vm._s(data.title))])],2)}))])},
 staticRenderFns: [],
@@ -7998,6 +8063,7 @@ var emfeCpt = {
   EmfeSmscode: EmfeSmscode$1,
   EmfeSmscodeC: EmfeSmscodeC$1,
   EmfeImgcode: EmfeImgcode$1,
+  EmfeImgcodeC: EmfeImgcodeC$1,
   EmfeSteps: EmfeSteps$1,
   EmfeStepsC: EmfeStepsC$1,
   EmfeButton: Button.EmfeButton,

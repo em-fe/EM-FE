@@ -119,6 +119,13 @@ module.exports = {
                   },
                 },
                 {
+                  title: '图片验证码C',
+                  icon: 'erweima',
+                  routers: {
+                    path: '/styles/imgCodepageC',
+                  },
+                },
+                {
                   title: '短信验证码',
                   icon: 'erweima',
                   routers: {
