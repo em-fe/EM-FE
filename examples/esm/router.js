@@ -55,6 +55,11 @@ const router = new VueRouter({
           component: require('./components/styles/ImgCodepage.vue'),
         },
         {
+          path: '/styles/imgCodepageC',
+          name: 'imgCodeCpage',
+          component: require('./components/styles/ImgCodeCpage.vue'),
+        },
+        {
           path: '/styles/smscodeCodepage',
           name: 'smscodeCodepage',
           component: require('./components/styles/SmscodeCodepage.vue'),
@@ -78,6 +83,11 @@ const router = new VueRouter({
           path: '/styles/steps',
           name: 'steps',
           component: require('./components/styles/StepsPage.vue'),
+        },
+        {
+          path: '/styles/stepsc',
+          name: 'stepsc',
+          component: require('./components/styles/StepsCPage.vue'),
         },
         {
           path: '/styles/crumbs',

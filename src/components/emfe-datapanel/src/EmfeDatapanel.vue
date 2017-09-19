@@ -2,7 +2,7 @@
   <div class="emfe-datapanel" :class="datapanelName">
     <div class="emfe-datapanel-box">
       <div class="emfe-datapanel-title">
-        <span>{{title}}</span>
+        <span class="emfe-datapanel-title-text">{{title}}</span>
         <emfe-tooltip :styles="styles" placement="right-end">
           <emfe-icon v-if="iconFlg" :type="type" slot="render" className="emfe-datapanel-mark"></emfe-icon>
           <div slot="tip">

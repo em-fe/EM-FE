@@ -1,5 +1,5 @@
 /*!
- * EMFE.js v1.0.16
+ * EMFE.js v1.0.18
  * (c) 2014-2017 李梦龙
  * Released under the MIT License.
  */
@@ -220,9 +220,32 @@ var _ = {
   has: function has(value, valueList) {
     return valueList.filter(function (val) { return val === value; }).length > 0;
   },
+  // 将数据插入到数组的某一位置
   swap: function swap(arr, index1, index2) {
-    arr[index1] = arr.splice(index2, 1, arr[index1])[0];
+    var popData = arr.splice(index2, 1)[0];
+    arr.splice(index1, 0, popData);
     return arr;
+  },
+  // 将数组中两个对象的某一个值交换
+  exchangeAttrValue: function exchangeAttrValue(obj1, obj2, attr) {
+    var val = '';
+    if (Array.isArray(obj1[attr])) {
+      val = [];
+      obj1[attr].forEach(function (obj1Val) { return val.push(obj1Val); });
+    } else if (typeof obj1[attr] === 'object') {
+      val = Object.assign({}, obj1[attr]);
+    } else {
+      val = obj1[attr];
+    }
+    if (Array.isArray(obj2[attr])) {
+      obj1[attr] = [];
+      obj2[attr].forEach(function (obj2Val) { return obj1[attr].push(obj2Val); });
+    } else if (typeof obj2[attr] === 'object') {
+      obj1[attr] = Object.assign({}, obj2[attr]);
+    } else {
+      obj1[attr] = obj2[attr];
+    }
+    obj2[attr] = val;
   },
 };
 
@@ -1147,7 +1170,7 @@ EmfeHeader$1.install = function (Vue$$1) {
 };
 
 var EmfeHeaderC$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('header',{staticClass:"emfe-header-c"},[_c('div',{staticClass:"emfe-header-c-main"},[_c('div',{staticClass:"emfe-header-c-eye"},[_c('img',{attrs:{"src":_vm.logo,"height":"100%"}})]),_vm._v(" "),_c('div',{staticClass:"emfe-header-c-info"},[_c('span',{staticClass:"emfe-header-c-account"},[_vm._v("活动易首页 你好，"+_vm._s(_vm.user))]),_vm._v(" "),_c('emfe-link',{attrs:{"className":"emfe-header-c","routers":_vm.orderRouter},on:{"click":_vm.orderClick}},[_vm._v("我的订单")]),_vm._v(" "),_c('span',[_c('emfe-icon',{attrs:{"className":"emfe-header-c","type":"hint"}}),_vm._v(" "),_c('emfe-link',{attrs:{"className":"emfe-header-c","routers":_vm.followRouter},on:{"click":_vm.followClick}},[_vm._v("我的关注")])],1),_vm._v(" "),_c('span',[_c('emfe-icon',{attrs:{"className":"emfe-header-c","type":"hint"}}),_vm._v(" "),_c('emfe-link',{attrs:{"className":"emfe-header-c","routers":_vm.followRouter},on:{"click":_vm.followClick}},[_vm._v("购物车 ("+_vm._s(_vm.followNum)+")")])],1),_vm._v(" "),_c('emfe-link',{staticClass:"emfe-header-c-logout",attrs:{"routers":{}},on:{"click":_vm.logout}},[_vm._v("退出")])],1)])])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('header',{staticClass:"emfe-header-c"},[_c('div',{staticClass:"emfe-header-c-main"},[_c('div',{staticClass:"emfe-header-c-eye"},[_c('img',{attrs:{"src":_vm.logo,"height":"100%"}})]),_vm._v(" "),_c('div',{staticClass:"emfe-header-c-info"},[_c('span',{staticClass:"emfe-header-c-account"},[_vm._v("活动易首页 你好，"+_vm._s(_vm.user))]),_vm._v(" "),_c('emfe-link',{attrs:{"className":"emfe-header-c","routers":_vm.orderRouter},on:{"click":_vm.orderClick}},[_vm._v("我的订单")]),_vm._v(" "),_c('span',[_c('emfe-icon',{attrs:{"className":"emfe-header-c","type":"hint"}}),_vm._v(" "),_c('emfe-link',{attrs:{"className":"emfe-header-c","routers":_vm.followRouter},on:{"click":_vm.followClick}},[_vm._v("购物车 ("+_vm._s(_vm.followNum)+")")])],1),_vm._v(" "),_c('emfe-link',{staticClass:"emfe-header-c-logout",attrs:{"routers":{}},on:{"click":_vm.logout}},[_vm._v("退出")])],1)])])},
 staticRenderFns: [],
   name: 'EmfeHeaderC',
   props: {
@@ -2560,7 +2583,7 @@ var prefixCls$3 = 'emfe-input-box';
 var error = 'error';
 
 var EmfeInput$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-input",class:_vm.addClass,style:(_vm.newStyle)},[_c('div',{class:[_vm.classList]},[(_vm.iconOk)?_c('emfe-icon',{attrs:{"type":_vm.iconType,"className":"emfe-input-box-icon-el"}}):_vm._e(),_vm._v(" "),_c('input',_vm._b({staticClass:"emfe-input-box-input",class:_vm.addInput,attrs:{"type":_vm.type,"placeholder":_vm.newPlaceholder},domProps:{"value":_vm.currentValue},on:{"input":_vm.change,"blur":_vm.blur}},'input',_vm.$props))],1),_vm._v(" "),(_vm.errOk)?_c('div',{staticClass:"emfe-input-box-text",class:_vm.addErrorText},[_vm._t("error")],2):_vm._e()])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-input",class:_vm.addClass,style:(_vm.newStyle)},[_c('div',{class:[_vm.classList]},[(_vm.iconOk)?_c('emfe-icon',{attrs:{"type":_vm.iconType,"className":"emfe-input-box-icon-el"}}):_vm._e(),_vm._v(" "),_c('input',_vm._b({staticClass:"emfe-input-box-input",class:_vm.addInput,attrs:{"type":_vm.type,"placeholder":_vm.newPlaceholder},domProps:{"value":_vm.currentValue},on:{"input":_vm.changeFn,"blur":_vm.blur}},'input',_vm.$props))],1),_vm._v(" "),(_vm.errOk)?_c('div',{staticClass:"emfe-input-box-text",class:_vm.addErrorText},[_vm._t("error")],2):_vm._e()])},
 staticRenderFns: [],
   name: 'input',
   props: {
@@ -2604,6 +2627,10 @@ staticRenderFns: [],
       type: String,
       default: 'text',
     },
+    change: {
+      type: Function,
+      default: function () {},
+    },
   },
   data: function data() {
     return {
@@ -2635,10 +2662,11 @@ staticRenderFns: [],
     },
   },
   methods: {
-    change: function change() {
+    changeFn: function changeFn() {
       var val = event.target.value;
       if (val === this.currentValue) { return; }
       this.currentValue = val;
+      this.change(this.currentValue);
       this.$emit('change', this.currentValue);
       this.$emit('input', this.currentValue);
     },
@@ -3422,6 +3450,71 @@ EmfeImgcode$1.install = function (Vue$$1) {
   Vue$$1.component(EmfeImgcode$1.name, EmfeImgcode$1);
 };
 
+var EmfeImgcodeC$1 = {
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-imgcode-c",class:_vm.imgcodeName},[_c('input',{staticClass:"emfe-imgcode-c-input",class:_vm.codeName,attrs:{"type":"number","placeholder":_vm.placeholder},domProps:{"value":_vm.nowData},on:{"input":_vm.input}}),_vm._v(" "),_c('img',{staticClass:"emfe-imgcode-c-code",attrs:{"src":_vm.newSrc,"alt":"图片验证码"},on:{"click":_vm.click}})])},
+staticRenderFns: [],
+  name: 'emfe-imgcode-c',
+  data: function data() {
+    var nowData = !this.value ? '' : this.value;
+    return {
+      nowData: nowData,
+      newSrc: this.src,
+    };
+  },
+  props: {
+    placeholder: {
+      type: String,
+      default: '请输入验证码',
+    },
+    value: {
+      type: [Number, String],
+    },
+    src: {
+      type: String,
+      required: true,
+    },
+    className: String,
+  },
+  computed: {
+    imgcodeName: function imgcodeName() {
+      return [
+        ( obj = {}, obj[((this.className) + "-imgcode")] = !!this.className, obj ) ];
+      var obj;
+    },
+    codeName: function codeName() {
+      return [
+        ( obj = {}, obj[((this.className) + "-imgcode-code")] = !!this.className, obj ) ];
+      var obj;
+    },
+  },
+  methods: {
+    input: function input(ev) {
+      var val = ev.target.value;
+      this.$emit('change', val);
+      this.$emit('input', val);
+    },
+    click: function click() {
+      this.$emit('click');
+    },
+  },
+  watch: {
+    value: function value(val, oldVal) {
+      if (val !== oldVal) {
+        this.nowData = val;
+      }
+    },
+    src: function src(val, oldVal) {
+      if (val !== oldVal) {
+        this.newSrc = val;
+      }
+    },
+  },
+};
+
+EmfeImgcodeC$1.install = function (Vue$$1) {
+  Vue$$1.component(EmfeImgcodeC$1.name, EmfeImgcodeC$1);
+};
+
 var EmfeSteps$1 = {
 render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-steps",class:_vm.stepsName},[_c('div',{staticClass:"emfe-steps-line"},_vm._l((_vm.datas),function(data,dataIndex){return _c('div',{class:{'emfe-steps-item-first': dataIndex === 0, 'emfe-steps-item-last': dataIndex === _vm.datas.length - 1, 'emfe-steps-item': dataIndex !== _vm.datas.length - 1 && dataIndex !== 0}},[(dataIndex === 0)?[(dataIndex === _vm.active)?[_c('emfe-icon',{attrs:{"className":"emfe-steps-item-first-on","type":data.icon}})]:[_c('emfe-icon',{attrs:{"className":"emfe-steps-item-first","type":data.icon}})]]:(dataIndex === _vm.datas.length - 1)?[(dataIndex === _vm.active)?[_c('emfe-icon',{attrs:{"className":"emfe-steps-item-last-on","type":data.icon}})]:[_c('emfe-icon',{attrs:{"className":"emfe-steps-item-last","type":data.icon}})]]:[(dataIndex === _vm.active)?[_c('emfe-icon',{attrs:{"className":"emfe-steps-item-on","type":data.icon}})]:[_c('emfe-icon',{attrs:{"className":"emfe-steps-item","type":data.icon}})]],_vm._v(" "),_c('span',{staticClass:"emfe-steps-item-text",class:{'emfe-steps-item-on-text': _vm.active === dataIndex}},[_vm._v(_vm._s(data.title))])],2)}))])},
 staticRenderFns: [],
@@ -3448,6 +3541,34 @@ staticRenderFns: [],
 
 EmfeSteps$1.install = function (Vue$$1) {
   Vue$$1.component(EmfeSteps$1.name, EmfeSteps$1);
+};
+
+var EmfeStepsC$1 = {
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-steps-c",class:_vm.stepscName},[_c('div',{staticClass:"emfe-steps-c-text"},_vm._l((_vm.datas.stepsText),function(item){return _c('p',{staticClass:"emfe-steps-c-text-item"},[_vm._v(_vm._s(item.text))])})),_vm._v(" "),_c('div',{staticClass:"emfe-steps-c-main"},_vm._l((_vm.datas.allStepsNums),function(i){return _c('div',{staticClass:"emfe-steps-c-main-item",class:{'emfe-steps-c-main-flex': i !== _vm.datas.allStepsNums}},[(i >= _vm.active)?_c('p',{staticClass:"emfe-steps-c-main-item-text",class:{'emfe-steps-c-main-item-now': i === _vm.active}},[_vm._v(_vm._s(i))]):_vm._e(),_vm._v(" "),(i < _vm.active)?_c('emfe-icon',{attrs:{"type":"querentouxiang","className":"emfe-steps-c"}}):_vm._e(),_vm._v(" "),(i !== _vm.datas.allStepsNums)?_c('div',{staticClass:"emfe-steps-c-main-item-line",class:{'emfe-steps-c-main-item-line-active': i < _vm.active}}):_vm._e()],1)}))])},
+staticRenderFns: [],
+  name: 'EmfeSteps',
+  props: {
+    datas: {
+      type: Object,
+      required: true,
+    },
+    active: {
+      type: Number,
+      required: true,
+    },
+    className: String,
+  },
+  computed: {
+    stepscName: function stepscName() {
+      return [
+        ( obj = {}, obj[((this.className) + "-stepsc")] = !!this.className, obj ) ];
+      var obj;
+    },
+  },
+};
+
+EmfeStepsC$1.install = function (Vue$$1) {
+  Vue$$1.component(EmfeStepsC$1.name, EmfeStepsC$1);
 };
 
 var EmfeNumber$1 = {
@@ -6211,23 +6332,38 @@ EmfeCheckoutC$1.install = function (Vue$$1) {
   Vue$$1.component(EmfeCheckoutC$1.name, EmfeCheckoutC$1);
 };
 
+// 记录位置 x,y
+var refPos$1 = {
+  y: 0,
+  x: 0,
+};
+// // 占位 边框 1 px
+var hrBorderSize = 1;
+// 其他常量
+var otherConstant = 0;
+
+// 上一个虚拟框的索引
+var lastHrIndex = -1;
+
+// 每个拖拽的宽度
+var dragWidth = -1;
+
 var EmfeDrop$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{ref:"dragBox"},[_vm._t("default")],2)])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-drop",class:_vm.className},[_vm._l((_vm.datas),function(item,index){return [(item.hrStatus)?_c('div',{staticClass:"emfe-drop-hr",class:[(_vm.className + "-drag")],style:({width: item.style.width})}):_vm._e(),_vm._v(" "),_c('span',{key:index,ref:"hits",refInFor:true,class:[(_vm.className + "-drag")],style:(item.style),attrs:{"index":index},on:{"mousedown":function($event){$event.stopPropagation();_vm.down($event, index, item);}}},[_vm._v(_vm._s(item.title))])]}),_vm._v(" "),(_vm.lastHrStatus)?_c('div',{staticClass:"emfe-drop-hr"}):_vm._e()],2)},
 staticRenderFns: [],
   name: 'EmfeDrop',
   data: function data() {
     return {
-      firstIndex: '',
-      dropArr: [],
-      elesNode: [],
-      index: '',
-      heIndex: '',
+      datas: [],
+      lastHrStatus: false, // 如果碰到最后一个最后一个分割线显示
+      lastHit: -1,
+      lastDrag: -1,
     };
   },
   props: {
-    cell: {
-      type: Number,
-      default: 0,
+    opationsData: {
+      type: Array,
+      required: true,
     },
     margin: {
       type: Number,
@@ -6241,81 +6377,170 @@ staticRenderFns: [],
       type: Number,
       default: 200,
     },
+    className: {
+      type: String,
+      default: '',
+    },
   },
   mounted: function mounted() {
-    var this$1 = this;
-
-    var eles = this.$slots.default;
-    for (var i = 0; i < eles.length; i++) {
-      if (eles[i].elm.nodeType === 1) {
-        this$1.elesNode.push(eles[i].elm);
-      }
-    }
-    for (var i$1 = 0; i$1 < this.elesNode.length; i$1++) {
-      var row = Math.floor(i$1 / this$1.cell);
-      var topP = "" + ((this$1.cellHeight + this$1.margin) * row);
-      var bottomP = "" + ((this$1.cellHeight + this$1.margin) * (row + 1));
-      var leftP = "" + ((this$1.cellWidth + this$1.margin) * (i$1 - (row * this$1.cell)));
-      var rightP = "" + ((leftP * 1) + (this$1.cellWidth + this$1.margin));
-      this$1.dropArr.push([topP, leftP, bottomP, rightP]);
-      this$1.elesNode[i$1].style.top = topP + "px";
-      this$1.elesNode[i$1].style.left = leftP + "px";
-      this$1.elesNode[i$1].index = i$1;
-    }
+    this.handleData();
   },
   methods: {
-    beforeDrag: function beforeDrag(e) {
-      this.firstIndex = e.target.getAttribute('index');
-    },
-    drag: function drag(e) {
+    handleData: function handleData() {
       var this$1 = this;
 
-      var min = e.clientX > 0 && e.clientY > 0;
-      var max = e.clientX < document.body.clientWidth && e.clientY < window.innerHeight;
-      if (min && max) {
-        this.X = e.clientX - e.target.parentNode.parentNode.offsetLeft;
-        this.Y = e.clientY - e.target.parentNode.parentNode.offsetTop;
-        for (var j = 0; j < this.elesNode.length; j++) {
-          this$1.elesNode[j].style.zIndex = 1;
-        }
-        e.target.style.zIndex = 99;
-        var elesNode = this.elesNode;
-        for (var i = 0; i < elesNode.length; i++) {
-          this$1.heIndex = elesNode[i].getAttribute('index') * 1;
-          var DI = this$1.dropArr[this$1.heIndex];
-          if (this$1.X > DI[1] && this$1.X < DI[3] && this$1.Y > DI[0] && this$1.Y < DI[2]) {
-            this$1.firstIndex = e.target.getAttribute('index') * 1;
-            this$1.index = this$1.heIndex;
-            var test = function (num, j) {
-              for (var n = 0; n < this$1.elesNode.length; n++) {
-                if (this$1.elesNode[n].getAttribute('index') * 1 === j) {
-                  this$1.elesNode[n].style.top = (this$1.dropArr[j + num][0]) + "px";
-                  this$1.elesNode[n].style.left = (this$1.dropArr[j + num][1]) + "px";
-                  this$1.elesNode[n].setAttribute('index', num + j);
-                }
-              }
-            };
-            if (this$1.firstIndex > this$1.heIndex) {
-              for (var j$1 = this.firstIndex - 1; j$1 >= this.heIndex; j$1--) {
-                test(1, j$1);
-              }
-            } else {
-              for (var j$2 = this.firstIndex + 1; j$2 < this.heIndex + 1; j$2++) {
-                test(-1, j$2);
-              }
-            }
-            e.target.setAttribute('index', this$1.heIndex);
+      this.opationsData.forEach(function (od, odIndex) {
+        var newOd = {
+          title: od.title,
+          style: {},
+          hrStatus: false,
+          index: odIndex,
+        };
+        this$1.datas.push(newOd);
+      });
+    },
+    testHit: function testHit(one, two) {
+      var hit = false;
+      var twoTop = getElementTop(two) - this.scrollTop;
+      var twoBottom = twoTop + two.clientHeight;
+      var oneTop = getElementTop(one) - this.scrollTop;
+      var oneBottom = oneTop + one.clientHeight;
+
+      var twoLeft = getElementLeft(two) - this.scrollLeft;
+      var twoRight = twoLeft + two.clientWidth;
+      var oneLeft = getElementLeft(one) - this.scrollLeft;
+      var oneRight = oneLeft + one.clientWidth;
+      if (oneTop <= twoBottom && oneBottom >= twoTop
+      && oneLeft <= twoRight && oneRight >= twoLeft) {
+        hit = true;
+      }
+      return hit;
+    },
+    down: function down(e, index, item) {
+      this.scrollTop = document.body.scrollTop;
+      this.scrollLeft = document.body.scrollLeft;
+      this.elTop = (e.target.offsetTop - otherConstant);
+      this.elLeft = (e.target.offsetLeft - otherConstant);
+      refPos$1.y = e.pageY;
+      refPos$1.x = e.pageX;
+      dragWidth = e.target.clientWidth + (hrBorderSize * 2);
+      document.addEventListener('mousemove', this.move, false);
+      document.addEventListener('mouseup', this.up, false);
+      item.style = {
+        width: (dragWidth + "px"),
+        position: 'absolute',
+        left: ((this.elLeft) + "px"),
+        top: ((this.elTop) + "px"),
+      };
+      item.hrStatus = true;
+      this.lastDrag = index;
+      this.$emit('down', this.datas[this.lastDrag], this.opationsData[this.lastDrag]);
+      return false;
+    },
+    move: function move(e) {
+      var this$1 = this;
+
+      var ref = this.$refs;
+      var hits = ref.hits;
+      var ref$1 = this.datas[this.lastDrag];
+      var index = ref$1.index;
+      var style = ref$1.style;
+      var disPosY = e.pageY - refPos$1.y;
+      var disPosX = e.pageX - refPos$1.x;
+      style.top = (this.elTop + disPosY) + "px";
+      style.left = (this.elLeft + disPosX) + "px";
+      hits.forEach(function (hit, hitIndex) {
+        if (hitIndex !== index) {
+          var isHit = this$1.testHit(hits[index], hit);
+          if (isHit) {
+            this$1.getHitIndex(hitIndex);
+            this$1.moveDragHr();
           }
         }
+      });
+      this.$emit('move', this.datas[this.lastDrag], this.opationsData[this.lastDrag]);
+      e.preventDefault();
+      return false;
+    },
+    up: function up() {
+      document.removeEventListener('mousemove', this.move, false);
+      document.removeEventListener('mouseup', this.up, false);
+      this.swapData();
+      if (lastHrIndex < this.datas.length && lastHrIndex > -1) {
+        this.datas[lastHrIndex].hrStatus = false;
+      } else {
+        this.lastHrStatus = false;
+      }
+      this.datas[this.lastHit > -1 ? this.lastHit : this.lastDrag].style = {};
+      this.datas[this.lastDrag].hrStatus = false;
+      this.lastHit = -1;
+      this.lastDrag = -1;
+      lastHrIndex = -1;
+      dragWidth = -1;
+      this.$emit('up');
+    },
+    getHitIndex: function getHitIndex(hitIndex) {
+      this.lastHit = hitIndex;
+    },
+    // 移动拖拽的虚线框
+    moveDragHr: function moveDragHr() {
+      var hrIndex = this.lastDrag < this.lastHit ? 1 : 0;
+      this.lastHrStatus = false;
+      this.datas[this.lastDrag].hrStatus = false;
+      if (lastHrIndex > -1 && lastHrIndex < this.datas.length) {
+        this.datas[lastHrIndex].hrStatus = false;
+      }
+      lastHrIndex = this.lastHit + hrIndex;
+      if (lastHrIndex < this.datas.length) {
+        this.datas[lastHrIndex].hrStatus = true;
+      } else {
+        this.lastHrStatus = true;
       }
     },
-    afterDrag: function afterDrag(e) {
-      if (this.index !== '') {
-        var offset = this.dropArr[this.index];
-        e.target.style.top = (offset[0]) + "px";
-        e.target.style.left = (offset[1]) + "px";
-        this.index = '';
+    swapData: function swapData() {
+      if (this.lastHit > -1) {
+        var ref = this;
+        var opationsData = ref.opationsData;
+        var datas = ref.datas;
+        var lastHit = ref.lastHit;
+        var lastDrag = ref.lastDrag;
+        _.exchangeAttrValue(datas[lastDrag], datas[lastHit], 'index');
+        _.swap(this.datas, this.lastHit, this.lastDrag);
+        _.swap(opationsData, lastHit, lastDrag);
+        this.$emit('swap', datas[lastDrag], lastHit, lastDrag, opationsData[lastDrag]);
       }
+    },
+    plus: function plus(index) {
+      var obj = {
+        other: false,
+        hrStatus: false,
+        style: {},
+      };
+      this.datas.splice(index + 1, 0, obj);
+      this.opationsData.splice(index + 1, 0, '');
+      this.$emit('plus', this.datas[index], index);
+    },
+    minus: function minus(index, item) {
+      if (!this.clickFlg && item.other) {
+        this.clickFlg = true;
+      }
+      this.datas.splice(index, 1);
+      this.opationsData.splice(index, 1);
+      this.$emit('minus', this.datas[index], index);
+    },
+    otherPlus: function otherPlus() {
+      var obj = {
+        hrStatus: false,
+        other: true,
+        style: {},
+        noPlus: true,
+      };
+      if (this.clickFlg) {
+        this.datas.splice(this.datas.length, 0, obj);
+        this.opationsData.splice(this.datas.length, 0, '');
+      }
+      this.clickFlg = false;
+      this.$emit('otherplus', this.datas[this.datas.length - 1], this.datas.length - 1);
     },
   },
 };
@@ -6379,7 +6604,7 @@ staticRenderFns: [],
 };
 
 var EmfeTableHead = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('thead',{staticClass:"emfe-box-table-head",class:_vm.classHead},[_c('tr',{staticClass:"emfe-box-table-head-tr",class:_vm.classTr},[_vm._l((this.$parent.columns),function(item,index){return _c('th',{staticClass:"emfe-box-table-head-tr-th",class:_vm.classTh,on:{"click":function($event){_vm.jump(index);}}},[_c('div',[_vm._v(_vm._s(item.title))])])})],2)])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('thead',{staticClass:"emfe-box-table-head",class:_vm.classHead},[_c('tr',{staticClass:"emfe-box-table-head-tr",class:_vm.classTr},[_vm._l((this.$parent.columns),function(item,index){return _c('th',{staticClass:"emfe-box-table-head-tr-th",class:[_vm.classTh, {'emfe-box-table-head-tr-th-checked': _vm.checked === index}],on:{"click":function($event){_vm.jump(index);}}},[_c('div',[_vm._v(_vm._s(item.title))])])})],2)])},
 staticRenderFns: [],
   name: 'EmfeTableHead',
   data: function data() {
@@ -6387,6 +6612,12 @@ staticRenderFns: [],
       className: this.$parent.className,
       classAdd: this.$parent.classAdd,
     };
+  },
+  props: {
+    checked: {
+      type: Number,
+      default: -1,
+    },
   },
   computed: {
     classHead: function classHead() {
@@ -6416,7 +6647,7 @@ staticRenderFns: [],
 };
 
 var EmfeTableBody = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('tr',{staticClass:"emfe-box-table-tr",class:_vm.classTr,on:{"click":function($event){_vm.jump(_vm.ind);}}},[_vm._l((_vm.dataSlice),function(list,index){return (!_vm.dataList[list.key].hebing)?_c('td',{staticClass:"emfe-box-table-tr-td",class:_vm.classTd,attrs:{"rowspan":_vm.dataList[list.key].row ? _vm.rowSpan[list.key]:0}},[(_vm.dataList[list.key].slot==='a')?_vm._t("a"):_vm._e(),_vm._v(" "),(_vm.dataList[list.key].slot==='b')?_vm._t("b"):_vm._e(),_vm._v(" "),(_vm.dataList[list.key].slot==='c')?_vm._t("c"):_vm._e(),_vm._v(" "),(_vm.dataList[list.key].slot==='d')?_vm._t("d"):_vm._e(),_vm._v(" "),(_vm.dataList[list.key].slot==='e')?_vm._t("e"):_vm._e(),_vm._v(" "),(_vm.dataList[list.key].slot==='f')?_vm._t("f"):_vm._e(),_vm._v(" "),(_vm.dataList[list.key].slot==='g')?_vm._t("g"):_vm._e(),_vm._v(" "),(_vm.dataList[list.key].slot==='h')?_vm._t("h"):_vm._e(),_vm._v(" "),(_vm.dataList[list.key].slot==='i')?_vm._t("i"):_vm._e(),_vm._v(" "),(!_vm.dataList[list.key].slot)?_c('div',[_vm._v(_vm._s(_vm.dataList[list.key].text))]):_vm._e()],2):_vm._e()})],2)},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('tr',{staticClass:"emfe-box-table-tr",class:_vm.classTr,on:{"click":function($event){_vm.jump(_vm.ind);}}},[_vm._l((_vm.dataSlice),function(list,index){return (!_vm.dataList[list.key].hebing)?_c('td',{staticClass:"emfe-box-table-tr-td",class:[_vm.classTd, {'emfe-box-table-tr-td-checked': _vm.checked === index}],attrs:{"rowspan":_vm.dataList[list.key].row ? _vm.rowSpan[list.key]:0}},[(_vm.dataList[list.key].slot==='a')?_vm._t("a"):_vm._e(),_vm._v(" "),(_vm.dataList[list.key].slot==='b')?_vm._t("b"):_vm._e(),_vm._v(" "),(_vm.dataList[list.key].slot==='c')?_vm._t("c"):_vm._e(),_vm._v(" "),(_vm.dataList[list.key].slot==='d')?_vm._t("d"):_vm._e(),_vm._v(" "),(_vm.dataList[list.key].slot==='e')?_vm._t("e"):_vm._e(),_vm._v(" "),(_vm.dataList[list.key].slot==='f')?_vm._t("f"):_vm._e(),_vm._v(" "),(_vm.dataList[list.key].slot==='g')?_vm._t("g"):_vm._e(),_vm._v(" "),(_vm.dataList[list.key].slot==='h')?_vm._t("h"):_vm._e(),_vm._v(" "),(_vm.dataList[list.key].slot==='i')?_vm._t("i"):_vm._e(),_vm._v(" "),(!_vm.dataList[list.key].slot)?_c('div',[_vm._v(_vm._s(_vm.dataList[list.key].text))]):_vm._e()],2):_vm._e()})],2)},
 staticRenderFns: [],
   name: 'EmfeTableBody',
   data: function data() {
@@ -6439,6 +6670,10 @@ staticRenderFns: [],
     ind: {
       type: Number,
       default: 0,
+    },
+    checked: {
+      type: Number,
+      default: -1,
     },
   },
   computed: {
@@ -6544,7 +6779,7 @@ EmfeTextarea$1.install = function (Vue$$1) {
 };
 
 var EmfeDatapanel$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-datapanel",class:_vm.datapanelName},[_c('div',{staticClass:"emfe-datapanel-box"},[_c('div',{staticClass:"emfe-datapanel-title"},[_c('span',[_vm._v(_vm._s(_vm.title))]),_vm._v(" "),_c('emfe-tooltip',{attrs:{"styles":_vm.styles,"placement":"right-end"}},[(_vm.iconFlg)?_c('emfe-icon',{attrs:{"type":_vm.type,"className":"emfe-datapanel-mark"},slot:"render"}):_vm._e(),_vm._v(" "),_c('div',{slot:"tip"},[_vm._t("tipText")],2)],1)],1),_vm._v(" "),_c('div',{staticClass:"emfe-datapanel-main"},[_c('span',{staticClass:"emfe-datapanel-main-content"},[_vm._v(_vm._s(_vm.contentText))]),_vm._v(" "),(_vm.companyText)?_c('span',{staticClass:"emfe-datapanel-main-company"},[_vm._v(_vm._s(_vm.companyText))]):_vm._e()])])])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-datapanel",class:_vm.datapanelName},[_c('div',{staticClass:"emfe-datapanel-box"},[_c('div',{staticClass:"emfe-datapanel-title"},[_c('span',{staticClass:"emfe-datapanel-title-text"},[_vm._v(_vm._s(_vm.title))]),_vm._v(" "),_c('emfe-tooltip',{attrs:{"styles":_vm.styles,"placement":"right-end"}},[(_vm.iconFlg)?_c('emfe-icon',{attrs:{"type":_vm.type,"className":"emfe-datapanel-mark"},slot:"render"}):_vm._e(),_vm._v(" "),_c('div',{slot:"tip"},[_vm._t("tipText")],2)],1)],1),_vm._v(" "),_c('div',{staticClass:"emfe-datapanel-main"},[_c('span',{staticClass:"emfe-datapanel-main-content"},[_vm._v(_vm._s(_vm.contentText))]),_vm._v(" "),(_vm.companyText)?_c('span',{staticClass:"emfe-datapanel-main-company"},[_vm._v(_vm._s(_vm.companyText))]):_vm._e()])])])},
 staticRenderFns: [],
   name: 'EmfeDatapanel',
   props: {
@@ -7090,28 +7325,29 @@ EmfeEdit$1.install = function (Vue$$1) {
 };
 
 // 记录位置 x,y
-var refPos$1 = {
+var refPos$2 = {
   y: 0,
 };
 // 距下边距 16 px
 var itemMarginBottom = 16;
 // 占位 边框 1 px
-var hrBorderSize = 1;
+var hrBorderSize$1 = 1;
 // 其他常量
-var otherConstant = (itemMarginBottom / 2) - hrBorderSize;
-
-var lastHit = -1;
-var lastDrag = -1;
+var otherConstant$1 = (itemMarginBottom / 2) - hrBorderSize$1;
+// 上一个虚拟框的索引
+var lastHrIndex$1 = -1;
 
 var EmfeOpations$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-opations",class:_vm.opationsName},[_vm._l((_vm.datas),function(item,index){return [_c('div',{key:index,ref:"hits",refInFor:true,staticClass:"emfe-opations-main",style:(item.style)},[_c('i',{staticClass:"emfe-opations-icon emfe-opations-radio"}),_vm._v(" "),_c('emfe-input',{attrs:{"placeholder":index === _vm.datas.length - 1 && !_vm.clickFlg ? _vm.otherPlaceholder : _vm.dataPlaceholder,"className":"emfe-opations"},model:{value:(_vm.opationsData[index]),callback:function ($$v) {var $$exp = _vm.opationsData, $$idx = index;if (!Array.isArray($$exp)){_vm.opationsData[index]=$$v;}else{$$exp.splice($$idx, 1, $$v);}},expression:"opationsData[index]"}}),_vm._v(" "),_c('i',{directives:[{name:"show",rawName:"v-show",value:(!item.noPlus),expression:"!item.noPlus"}],staticClass:"emfe-opations-icon emfe-opations-plus",class:{'emfe-opations-margin-right': !_vm.minusFlg},on:{"click":function($event){_vm.plus(index);}}}),_vm._v(" "),_c('i',{directives:[{name:"show",rawName:"v-show",value:(item.text === _vm.otherPlaceholder || _vm.minusFlg),expression:"item.text === otherPlaceholder || minusFlg"}],staticClass:"emfe-opations-icon emfe-opations-minus",class:{'emfe-opations-margin-left': item.noPlus},on:{"click":function($event){_vm.minus(index);}}}),_vm._v(" "),_c('i',{staticClass:"emfe-opations-icon emfe-opations-drag",on:{"mousedown":function($event){$event.stopPropagation();_vm.down($event, item);}}})],1),_vm._v(" "),(item.hrStatus)?_c('div',{staticClass:"emfe-opations-hr"}):_vm._e()]}),_vm._v(" "),_c('div',{staticClass:"emfe-opations-operation"},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.clickFlg),expression:"clickFlg"}],staticClass:"emfe-opations-operation-other",on:{"click":_vm.otherPlus}},[_vm._v("其他选项")])])],2)},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-opations",class:_vm.opationsName},[_vm._l((_vm.datas),function(item,index){return [(item.hrStatus)?_c('div',{staticClass:"emfe-opations-hr"}):_vm._e(),_vm._v(" "),_c('div',{key:index,ref:"hits",refInFor:true,staticClass:"emfe-opations-main",style:(item.style)},[_c('i',{staticClass:"emfe-opations-icon emfe-opations-radio"}),_vm._v(" "),_c('emfe-input',{attrs:{"placeholder":item.other && !_vm.clickFlg ? _vm.otherPlaceholder : _vm.dataPlaceholder,"className":"emfe-opations"},model:{value:(_vm.opationsData[index]),callback:function ($$v) {var $$exp = _vm.opationsData, $$idx = index;if (!Array.isArray($$exp)){_vm.opationsData[index]=$$v;}else{$$exp.splice($$idx, 1, $$v);}},expression:"opationsData[index]"}}),_vm._v(" "),_c('i',{directives:[{name:"show",rawName:"v-show",value:(!item.noPlus),expression:"!item.noPlus"}],staticClass:"emfe-opations-icon emfe-opations-plus",class:{'emfe-opations-margin-right': !_vm.minusFlg},on:{"click":function($event){_vm.plus(index);}}}),_vm._v(" "),_c('i',{directives:[{name:"show",rawName:"v-show",value:(_vm.minusFlg),expression:"minusFlg"}],staticClass:"emfe-opations-icon emfe-opations-minus",class:{'emfe-opations-margin-left': item.noPlus},on:{"click":function($event){_vm.minus(index, item);}}}),_vm._v(" "),_c('i',{staticClass:"emfe-opations-icon emfe-opations-drag",on:{"mousedown":function($event){$event.stopPropagation();_vm.down($event, index, item);}}})],1)]}),_vm._v(" "),(_vm.lastHrStatus)?_c('div',{staticClass:"emfe-opations-hr"}):_vm._e(),_vm._v(" "),_c('div',{staticClass:"emfe-opations-operation"},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.clickFlg),expression:"clickFlg"}],staticClass:"emfe-opations-operation-other",on:{"click":_vm.otherPlus}},[_vm._v("其他选项")])])],2)},
 staticRenderFns: [],
   name: 'EmfeOpations',
   data: function data() {
     return {
       clickFlg: !this.other,
       datas: [],
-      hits: [],
+      lastHrStatus: false, // 如果碰到最后一个最后一个分割线显示
+      lastHit: -1,
+      lastDrag: -1,
     };
   },
   props: {
@@ -7153,20 +7389,15 @@ staticRenderFns: [],
     handleData: function handleData() {
       var this$1 = this;
 
-      this.datas = [];
-      this.hits = [];
       this.opationsData.forEach(function (od, odIndex) {
         var newOd = {
-          text: od,
+          style: {},
+          hrStatus: false,
+          index: odIndex,
+          other: odIndex === this$1.opationsData.length - 1,
+          noPlus: this$1.other && odIndex === this$1.opationsData.length - 1,
         };
-        newOd.style = {};
-        newOd.hrStatus = false;
-        newOd.index = odIndex;
-        if (this$1.other && odIndex === this$1.opationsData.length - 1) {
-          newOd.noPlus = true;
-        }
         this$1.datas.push(newOd);
-        this$1.hits.push(false);
       });
     },
     testHit: function testHit(one, two) {
@@ -7180,10 +7411,10 @@ staticRenderFns: [],
       }
       return hit;
     },
-    down: function down(e, item) {
+    down: function down(e, index, item) {
       this.scrollTop = document.body.scrollTop;
-      this.elTop = (e.target.offsetTop - otherConstant);
-      refPos$1.y = e.pageY;
+      this.elTop = (e.target.offsetTop - otherConstant$1);
+      refPos$2.y = e.pageY;
       document.addEventListener('mousemove', this.move, false);
       document.addEventListener('mouseup', this.up, false);
       item.style = {
@@ -7192,8 +7423,8 @@ staticRenderFns: [],
         top: ((this.elTop) + "px"),
       };
       item.hrStatus = true;
-      this.item = item;
-      this.$emit('down', this.item);
+      this.lastDrag = index;
+      this.$emit('down', this.datas[this.lastDrag], this.opationsData[this.lastDrag]);
       return false;
     },
     move: function move(e) {
@@ -7201,65 +7432,85 @@ staticRenderFns: [],
 
       var ref = this.$refs;
       var hits = ref.hits;
-      var ref$1 = this.item;
+      var ref$1 = this.datas[this.lastDrag];
       var index = ref$1.index;
       var style = ref$1.style;
-      var disPosY = e.pageY - refPos$1.y;
+      var disPosY = e.pageY - refPos$2.y;
       style.top = (this.elTop + disPosY) + "px";
-
       hits.forEach(function (hit, hitIndex) {
         if (hitIndex !== index) {
           var isHit = this$1.testHit(hits[index], hit);
           if (isHit) {
-            if (!this$1.hits[hitIndex] && !this$1.hits[index]) {
-              lastHit = hitIndex;
-              lastDrag = index;
-              this$1.hits[hitIndex] = true;
-              this$1.hits[index] = true;
-              this$1.item.index = hitIndex;
-              this$1.datas[hitIndex].index = index;
-              _.swap(this$1.datas, hitIndex, index);
-              _.swap(this$1.opationsData, hitIndex, index);
-              this$1.$emit('swap', this$1.item, hitIndex, index);
-            }
+            this$1.getHitIndex(hitIndex);
+            this$1.moveDragHr();
           }
         }
       });
-      // 当刚刚交换的两个元素，不在碰上的时候，允许检测
-      if (lastHit !== -1) {
-        var ref$2 = hits[lastHit];
-        var offsetTop = ref$2.offsetTop;
-        var clientHeight = ref$2.clientHeight;
-        if (Math.abs(offsetTop - hits[lastDrag].offsetTop) > clientHeight + 4) {
-          this.hits[lastHit] = false;
-          this.hits[lastDrag] = false;
-        }
-      }
-      this.$emit('move', this.item);
+      this.$emit('move', this.datas[this.lastDrag], this.opationsData[this.lastDrag]);
       e.preventDefault();
       return false;
     },
     up: function up() {
       document.removeEventListener('mousemove', this.move, false);
       document.removeEventListener('mouseup', this.up, false);
-      this.item.style = {};
-      this.item.hrStatus = false;
-      this.item = {};
+      this.swapData();
+      if (lastHrIndex$1 < this.datas.length && lastHrIndex$1 > -1) {
+        this.datas[lastHrIndex$1].hrStatus = false;
+      } else {
+        this.lastHrStatus = false;
+      }
+      if (this.lastHit > -1) {
+        this.datas[this.lastHit].style = {};
+      }
+      this.datas[this.lastDrag].hrStatus = false;
+      this.lastHit = -1;
+      this.lastDrag = -1;
+      lastHrIndex$1 = -1;
       this.$emit('up');
+    },
+    getHitIndex: function getHitIndex(hitIndex) {
+      this.lastHit = hitIndex;
+    },
+    // 移动拖拽的虚线框
+    moveDragHr: function moveDragHr() {
+      var hrIndex = this.lastDrag < this.lastHit ? 1 : 0;
+      this.lastHrStatus = false;
+      this.datas[this.lastDrag].hrStatus = false;
+      if (lastHrIndex$1 > -1 && lastHrIndex$1 < this.datas.length) {
+        this.datas[lastHrIndex$1].hrStatus = false;
+      }
+      lastHrIndex$1 = this.lastHit + hrIndex;
+      if (lastHrIndex$1 < this.datas.length) {
+        this.datas[lastHrIndex$1].hrStatus = true;
+      } else {
+        this.lastHrStatus = true;
+      }
+    },
+    swapData: function swapData() {
+      if (this.lastHit > -1) {
+        var ref = this;
+        var opationsData = ref.opationsData;
+        var datas = ref.datas;
+        var lastHit = ref.lastHit;
+        var lastDrag = ref.lastDrag;
+        _.exchangeAttrValue(datas[lastDrag], datas[lastHit], 'index');
+        _.swap(this.datas, this.lastHit, this.lastDrag);
+        _.swap(opationsData, lastHit, lastDrag);
+        this.$emit('swap', datas[lastDrag], lastHit, lastDrag, opationsData[lastDrag]);
+      }
     },
     plus: function plus(index) {
       var obj = {
-        text: '',
+        other: false,
         hrStatus: false,
         style: {},
       };
       this.datas.splice(index + 1, 0, obj);
       this.opationsData.splice(index + 1, 0, '');
-      console.log(this.datas[index], index, 0);
       this.$emit('plus', this.datas[index], index);
     },
-    minus: function minus(index) {
-      if (!this.clickFlg && index === this.datas.length - 1) {
+    minus: function minus(index, item) {
+      if (!this.clickFlg && item.other) {
         this.clickFlg = true;
       }
       this.datas.splice(index, 1);
@@ -7268,8 +7519,8 @@ staticRenderFns: [],
     },
     otherPlus: function otherPlus() {
       var obj = {
-        text: '',
         hrStatus: false,
+        other: true,
         style: {},
         noPlus: true,
       };
@@ -7282,9 +7533,6 @@ staticRenderFns: [],
     },
   },
   watch: {
-    opationsData: function opationsData() {
-      this.handleData();
-    },
     other: function other(val, oldVal) {
       if (val !== oldVal) {
         this.clickFlg = !val;
@@ -7814,7 +8062,9 @@ var emfeCpt = {
   EmfeSmscode: EmfeSmscode$1,
   EmfeSmscodeC: EmfeSmscodeC$1,
   EmfeImgcode: EmfeImgcode$1,
+  EmfeImgcodeC: EmfeImgcodeC$1,
   EmfeSteps: EmfeSteps$1,
+  EmfeStepsC: EmfeStepsC$1,
   EmfeButton: Button.EmfeButton,
   EmfeButtonGroup: Button.EmfeButtonGroup,
   EmfeButtonC: ButtonC.EmfeButtonC,
