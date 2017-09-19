@@ -13,46 +13,8 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
 
-  &-fixed {
-    &-table {
-      width: 100%;
-
-      &-head {
-        &-tr {
-          display: flex;
-          min-height: 48px;
-
-          &-th {
-            display: flex;
-            flex: 1;
-            align-items: center;
-            box-sizing: border-box;
-          }
-        }
-      }
-
-      &-body {
-        &-tr {
-          display: flex;
-          min-height: 48px;
-          margin-top: -1px;
-
-          &-td {
-            display: flex;
-            flex: 1;
-            align-items: center;
-            box-sizing: border-box;
-          }
-        }
-      }
-    }
-  }
-
-  &-overflow {
-    overflow-x: auto;
-  }
-
   &-table {
+    width: 100%;
     border-collapse: collapse;
 
     &-head {
@@ -76,6 +38,10 @@
 
           &-checked {
             background: #f8dbd8;
+          }
+
+          &-div {
+            white-space: nowrap;
           }
         }
       }
@@ -107,7 +73,15 @@
         &-checked {
           background: #ffefed;
         }
+
+        &-div {
+          white-space: nowrap;
+        }
       }
     }
   }
+}
+
+.border {
+  border: 1px solid $border-color;
 }
