@@ -39,7 +39,7 @@
 import ajax from './ajax';
 
 export default {
-  name: 'emfe-login',
+  name: 'EmfeLogin',
   data() {
     return {
       title: '登录',

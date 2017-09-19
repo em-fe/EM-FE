@@ -21,14 +21,13 @@
         <emfe-checkout title="周日" inline="true"></emfe-checkout>
       </div>
     </emfe-checkout>
-    <button @click="dad">dajk</button>
     <br>
     <br>
     <br>
-    全选 {{ allChecked }}
+    反选 {{ allChecked }}
     <br>
     <div>
-      <emfe-checkout className="diy" title="全选" inline="true" v-model="allChecked"  @checked="noChecked()"></emfe-checkout>
+      <emfe-checkout className="diy" title="反选" inline="true" v-model="allChecked"  @checked="noChecked()"></emfe-checkout>
       <emfe-checkout className="diy" :title="item.title" inline="true" v-for="(item, index) in allDatas" :key="index" v-model="item.checked"></emfe-checkout>
     </div>
     <br>
