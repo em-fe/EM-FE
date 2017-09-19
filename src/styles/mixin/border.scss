@@ -1,9 +1,21 @@
-@mixin border($direction: all, $color: $border-color, $size: 1px, $type: solid) {
+@mixin border($direction: all, $color: $border-color, $size: 1px, $type: solid, $important: false) {
   @if $direction == all {
-    border: $size $type $color;
+    @if $important {
+      border: $size $type $color !important;
+    }
+
+    @else {
+      border: $size $type $color;
+    }
   }
 
   @else {
-    border-#{$direction}: $size $type $color;
+    @if $important {
+      border-#{$direction}: $size $type $color !important;
+    }
+
+    @else {
+      border-#{$direction}: $size $type $color;
+    }
   }
 }
