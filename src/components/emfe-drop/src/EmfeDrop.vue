@@ -41,21 +41,13 @@ export default {
       type: Array,
       required: true,
     },
-    margin: {
-      type: Number,
-      default: 0,
-    },
-    cellWidth: {
-      type: Number,
-      default: 200,
-    },
-    cellHeight: {
-      type: Number,
-      default: 200,
-    },
     className: {
       type: String,
       default: '',
+    },
+    swap: {
+      type: Function,
+      default: () => {},
     },
   },
   mounted() {
@@ -173,6 +165,7 @@ export default {
         _.swap(this.datas, this.lastHit, this.lastDrag);
         _.swap(opationsData, lastHit, lastDrag);
         this.$emit('swap', datas[lastDrag], lastHit, lastDrag, opationsData[lastDrag]);
+        this.swap(datas[lastDrag], lastHit, lastDrag, opationsData[lastDrag]);
       }
     },
     plus(index) {
