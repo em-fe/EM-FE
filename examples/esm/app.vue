@@ -25,6 +25,24 @@ module.exports = {
           },
         },
         {
+          title: '指令',
+          icon: 'erweima',
+          children: [
+            {
+              title: '点击body事件',
+              routers: {
+                path: '/directives/docclick',
+              },
+            },
+            {
+              title: '自定义滚动',
+              routers: {
+                path: '/directives/iscroll',
+              },
+            },
+          ],
+        },
+        {
           title: '提示组件',
           icon: 'erweima',
           children: [
@@ -116,6 +134,13 @@ module.exports = {
                   icon: 'erweima',
                   routers: {
                     path: '/styles/imgCodepage',
+                  },
+                },
+                {
+                  title: '图片验证码C',
+                  icon: 'erweima',
+                  routers: {
+                    path: '/styles/imgCodepageC',
                   },
                 },
                 {
@@ -414,13 +439,23 @@ module.exports = {
                     path: '/functions/drag',
                   },
                 },
-                // {
-                //   title: '换位置',
-                //   icon: 'erweima',
-                //   routers: {
-                //     path: '/functions/drop',
-                //   },
-                // },
+                {
+                  title: '换位置',
+                  icon: 'erweima',
+                  routers: {
+                    path: '/functions/drop',
+                  },
+                },
+                {
+                  title: '选项拖拽',
+                  icon: 'erweima',
+                  routers: {
+                    path: '/functions/opations',
+                    query: {
+                      main: 4,
+                    },
+                  },
+                },
               ],
             },
             {
@@ -494,30 +529,10 @@ module.exports = {
               }
             },
             {
-              title: 'drop',
-              icon: 'erweima',
-              routers: {
-                path: '/functions/drop',
-                query: {
-                  main: 4,
-                },
-              },
-            },
-            {
               title: '滑动',
               icon: 'erweima',
               routers: {
                 path: '/functions/slide',
-                query: {
-                  main: 4,
-                },
-              },
-            },
-            {
-              title: '选项拖拽',
-              icon: 'erweima',
-              routers: {
-                path: '/functions/opations',
                 query: {
                   main: 4,
                 },

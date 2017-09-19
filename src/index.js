@@ -21,6 +21,7 @@ import EmfeTelC from './components/emfe-tel-c/index';
 import EmfeSmscode from './components/emfe-smscode/index';
 import EmfeSmscodeC from './components/emfe-smscode-c/index';
 import EmfeImgcode from './components/emfe-imgcode/index';
+import EmfeImgcodeC from './components/emfe-imgcode-c/index';
 import EmfeSteps from './components/emfe-steps/index';
 import EmfeStepsC from './components/emfe-steps-c/index';
 import EmfeNumber from './components/emfe-number/index';
@@ -67,6 +68,7 @@ import EmfeFormTest from './components/emfe-formtest/index';
 // 指令
 import emfeDocumentclick from './directives/emfe-documentclick';
 import emfeDocumentfocus from './directives/emfe-documentfocus';
+import emfeIscroll from './directives/emfe-iscroll';
 
 const emfeCpt = {
   EmfeCol: Grid.EmfeCol,
@@ -96,6 +98,7 @@ const emfeCpt = {
   EmfeSmscode,
   EmfeSmscodeC,
   EmfeImgcode,
+  EmfeImgcodeC,
   EmfeSteps,
   EmfeStepsC,
   EmfeButton: Button.EmfeButton,
@@ -145,6 +148,7 @@ const emfeCpt = {
 const emfeDir = {
   emfeDocumentclick,
   emfeDocumentfocus,
+  emfeIscroll,
 };
 
 //, opts = {}
