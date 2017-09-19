@@ -193,12 +193,7 @@ export default {
   },
   mounted() {
     if (this.url) {
-      const imgObject = new Image();
-      imgObject.src = this.url;
-      imgObject.onload = () => {
-        this.src = this.url;
-        setTimeout(this.setAlign.bind(this), 0);
-      };
+      this.initImg();
     }
     // 有截取器
     if (this.intercept.length > 0) {
@@ -212,6 +207,14 @@ export default {
     }
   },
   methods: {
+    initImg() {
+      const imgObject = new Image();
+      imgObject.src = this.url;
+      imgObject.onload = () => {
+        this.src = this.url;
+        setTimeout(this.setAlign.bind(this), 0);
+      };
+    },
     openInterceptModal() {
       openMask();
       this.interceptModal = true;
@@ -262,8 +265,9 @@ export default {
         widthStep = lChange;
       }
       const heightStep = (this.interceptCanvasHeight * widthStep) / this.interceptCanvasWidth;
+
       if (this.interceptCanvasWidth + widthStep >= this.intercept[0] &&
-        this.interceptCanvasWidth + widthStep <= this.interceptWidth) {
+        this.interceptCanvasWidth + widthStep <= this.dragWidth - this.interceptLeft) {
         this.interceptCanvasWidth += widthStep;
         this.interceptCanvasHeight += heightStep;
         // 左上 || 左下
@@ -487,6 +491,13 @@ export default {
         this.iconText = '上传中';
       } else {
         this.plusText = '...';
+      }
+    },
+  },
+  watch: {
+    url(val, oldVal) {
+      if (val !== oldVal) {
+        this.initImg();
       }
     },
   },
