@@ -50,6 +50,18 @@
           <td>-</td>
         </tr>
         <tr>
+          <td>theme</td>
+          <td>提示框主题</td>
+          <td>String</td>
+          <td>""</td>
+        </tr>
+        <tr>
+          <td>placement</td>
+          <td>提示框位置</td>
+          <td>String</td>
+          <td>""</td>
+        </tr>
+        <tr>
           <td>contentText</td>
           <td>数据模板的内容文字</td>
           <td>String</td>

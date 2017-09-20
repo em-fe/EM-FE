@@ -46,7 +46,7 @@ export default {
     },
     placement: {
       type: String,
-      default: '',
+      default: 'bottom',
     },
     styles: {
       type: Object,
