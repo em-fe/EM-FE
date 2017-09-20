@@ -1,6 +1,13 @@
 <template>
   <div>
     <div class="dataPanelPage">
+      <emfe-datapanel title="总收集量" type="fabu" theme="light" placement="bottom" contentText="1234" companyText="人" iconFlg="true">
+        <div slot="tipText">aaaaaaaaa</div>
+      </emfe-datapanel>
+    </div>
+    <br>
+    <br>
+    <div class="dataPanelPage">
       <emfe-datapanel title="总收集量" type="fabu" contentText="1234" companyText="人" iconFlg="true">
         <div slot="tipText">aaaaaaaaa</div>
       </emfe-datapanel>
