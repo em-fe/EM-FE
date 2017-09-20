@@ -15,7 +15,7 @@
       <emfe-icon type="shanchu" className="emfe-date" v-show="choiced"></emfe-icon>
     </button>
     <emfe-transition name="fade">
-      <div class="emfe-date-box" :class="{'emfe-date-box-position': !open}" v-show="status">
+      <div class="emfe-date-box" :class="{'emfe-date-box-position': !open}" v-show="status" :style="panelstyle">
         <div class="emfe-date-header">
           <button class="emfe-date-prevyear" @click.stop="prevYear">&lt;&lt;</button>
           <button class="emfe-date-prevmonth" @click.stop="prevMonth" v-show="currentView === 'date'">&lt;</button>
@@ -89,6 +89,10 @@ export default {
     };
   },
   props: {
+    panelstyle: {
+      type: Object,
+      default: () => {},
+    },
     format: {
       type: String,
       default: '/',

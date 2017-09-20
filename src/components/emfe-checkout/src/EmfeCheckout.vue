@@ -2,7 +2,7 @@
   <div class="emfe-checkout" :class="checkoutName">
     <label class="emfe-checkout-box">
       <i class="emfe-checkout-inner" :class="innerName"></i>
-      <input type="checkbox" class="emfe-checkout-status" :checked="checkoutStatus" @click.stop @change="alocked" :name="name" :disabled="disable" v-if="stop">
+      <input type="checkbox" class="emfe-checkout-status" :checked="checkoutStatus" @click.stop="click" @change="alocked" :name="name" :disabled="disable" v-if="stop">
       <input type="checkbox" class="emfe-checkout-status" :checked="checkoutStatus" @change="alocked" :name="name" :disabled="disable" v-else>
       <span class="emfe-checkout-text" :class="textName">{{ newtitle }}</span>
     </label>
@@ -90,6 +90,9 @@ export default {
     },
     setValue(checked = this.value) {
       this.checkoutStatus = checked;
+    },
+    click() {
+      this.$emit('click', this.checkoutStatus);
     },
   },
   watch: {

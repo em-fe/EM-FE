@@ -1,12 +1,23 @@
 <template>
   <div>
+    <h3>API</h3>
+    <div>
+      参数类型 <br>
+      1. 数组[callback, config] <br>
+      2. 对象(config) <br>
+      3. 函数(callback)
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
     <p>本组件采用 iscroll5 做底层滚动库做的二次封装</p>
     <p><a href="http://iscrolljs.com/" target="_blank">iscrolljs</a> 参照地址： <a href="http://iscrolljs.com/" target="_blank">http://iscrolljs.com/</a></p>
     <br>
     <br>
     <br>
     <br>
-    <div class="docpage" v-emfe-iscroll="config">
+    <div class="docpage" v-emfe-iscroll="[func, config]">
       <div>
         <p>一些不必要的内容</p>
         <p>一些不必要的内容</p>
@@ -95,6 +106,11 @@ export default {
         preventDefault: true,
       },
     };
+  },
+  methods: {
+    func(iscroll) {
+      console.log(iscroll);
+    },
   },
 };
 </script>

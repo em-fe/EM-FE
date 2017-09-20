@@ -1,12 +1,17 @@
 import IScroll from 'iscroll';
+import O from '../tools/o';
 
 export default {
   inserted(el, binding, vnode) {
     let callBack;
     let iscrollOptions = binding.value;
     // 判断输入参数
-    const vtype = binding.value ? [].toString.call(binding.value) : undefined;
+    const vtype = binding.value ? O.type(binding.value) : undefined;
     switch (vtype) {
+      case '[object Array]':
+        callBack = binding.value[0];
+        iscrollOptions = binding.value[1];
+        break;
       case '[object Function]':
         callBack = binding.value;
         break;
