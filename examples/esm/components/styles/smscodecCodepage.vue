@@ -28,7 +28,7 @@
     点击次数: {{ num }}
     {{ model }}
     <pre>
-      &lt;emfe-smscode-c className="demo" v-model="model" times="2" @click="click"&gt;&lt;/emfe-smscode-c&gt;
+      &lt;emfe-smscode-c className="demo" v-model="model" times="6" @click="click" :timeStart="start" :end="timeEnd"&gt;&lt;/emfe-smscode-c&gt;
     </pre>
     <br>
     <br>

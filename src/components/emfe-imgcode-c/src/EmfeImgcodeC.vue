@@ -1,6 +1,6 @@
 <template>
   <div class="emfe-imgcode-c" :class="imgcodeName">
-    <input type="number" class="emfe-imgcode-c-input" :class="codeName" :value="nowData" :placeholder="placeholder" @input="input">
+    <input type="text" class="emfe-imgcode-c-input" :class="codeName" :value="nowData" :placeholder="placeholder" @input="input">
     <img :src="newSrc" alt="图片验证码" class="emfe-imgcode-c-code" @click="click">
   </div>
 </template>
