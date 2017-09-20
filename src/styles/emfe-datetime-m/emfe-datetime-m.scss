@@ -30,7 +30,7 @@
     @include height(500px);
 
     float: left;
-    overflow: scroll;
+    overflow: auto;
     width: calc(100% / 6);
 
     &:nth-of-type(2),

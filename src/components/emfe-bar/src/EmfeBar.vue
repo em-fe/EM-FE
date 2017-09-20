@@ -1,7 +1,7 @@
 <template>
   <div class="emfe-bar" :class="barName">
     <h3 class="emfe-bar-header">{{ title }}</h3>
-    <div class="emfe-bar-iscroll" v-emfe-iscroll="Contant.ISCROLL_CONFIG">
+    <div class="emfe-bar-iscroll">
       <ul class="emfe-bar-list">
         <template v-for="(childrenData, childrenDataIndex) in datas">
           <li class="emfe-bar-item" v-if="!childrenData.children">
