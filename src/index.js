@@ -62,13 +62,13 @@ import EmfeOpations from './components/emfe-opations/index';
 import EmfeCountdown from './components/emfe-countdown/index';
 import EmfeLogin from './components/emfe-login/index';
 import EmfeTitleline from './components/emfe-titleline/index';
+import EmfeIscroll from './components/emfe-iscroll/index';
 // 服务
 import EmfeMessage from './components/emfe-message/index';
 import EmfeFormTest from './components/emfe-formtest/index';
 // 指令
 import emfeDocumentclick from './directives/emfe-documentclick';
 import emfeDocumentfocus from './directives/emfe-documentfocus';
-import emfeIscroll from './directives/emfe-iscroll';
 
 const emfeCpt = {
   EmfeCol: Grid.EmfeCol,
@@ -143,15 +143,14 @@ const emfeCpt = {
   EmfeCountdown,
   EmfeLogin,
   EmfeTitleline,
+  EmfeIscroll,
 };
 
 const emfeDir = {
   emfeDocumentclick,
   emfeDocumentfocus,
-  emfeIscroll,
 };
 
-//, opts = {}
 const install = (Vue) => {
   if (install.installed) return;
 
