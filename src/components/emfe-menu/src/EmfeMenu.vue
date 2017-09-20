@@ -5,7 +5,7 @@
         <emfe-icon class="emfe-menu-main-sidebar" type="cedaohangshouqi" @icon-click="menuToShort" v-if="menuShort"></emfe-icon>
         <emfe-icon class="emfe-menu-main-sidebar" type="cedaohangzhankai" @icon-click="menuToShort" v-else></emfe-icon>
       </button>
-      <div class="emfe-menu-iscroll" v-emfe-iscroll="Contant.ISCROLL_CONFIG">
+      <div class="emfe-menu-iscroll">
         <ul class="emfe-menu-main-list">
           <li class="emfe-menu-main-item" v-for="(data, dataIndex) in datas">
             <a href="javascript:;" class="emfe-menu-main-link" :class="{'emfe-menu-main-link-on': mainIndex === dataIndex}" @click="tochildren(data)" v-if="data.routers">
@@ -28,7 +28,7 @@
     </div>
     <div class="emfe-menu-minor" v-show="childrentatus">
       <h3 class="emfe-menu-minor-header">{{ childrenTitle }}</h3>
-      <div class="emfe-menu-minor-iscroll" v-emfe-iscroll="Contant.ISCROLL_CONFIG">
+      <div class="emfe-menu-minor-iscroll">
         <ul class="emfe-menu-minor-list">
           <template v-for="(childrenData, childrenDataIndex) in childrenDatas">
             <li class="emfe-menu-minor-item" v-if="!childrenData.children">
