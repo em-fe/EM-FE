@@ -53,10 +53,7 @@
       text-align: center;
       line-height: 20px;
       transform: rotate(45deg);
-
-      &:hover {
-        cursor: pointer;
-      }
+      cursor: pointer;
     }
   }
 
@@ -103,10 +100,7 @@
     &-ok {
       background: $brand-color-default;
       color: $background-color-write;
-
-      &:hover {
-        cursor: pointer;
-      }
+      cursor: pointer;
     }
 
     &-cancel {
@@ -114,10 +108,7 @@
 
       color: $text-color-default;
       margin-right: 16px;
-
-      &:hover {
-        cursor: pointer;
-      }
+      cursor: pointer;
     }
   }
 }
