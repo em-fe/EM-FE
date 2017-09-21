@@ -265,7 +265,8 @@ export default {
         widthStep = lChange;
       }
       const heightStep = (this.interceptCanvasHeight * widthStep) / this.interceptCanvasWidth;
-
+      console.log(this.interceptCanvasHeight + heightStep >= this.intercept[1] &&
+        this.interceptCanvasHeight + heightStep <= this.dragHeight - this.interceptTop);
       if (this.interceptCanvasWidth + widthStep >= this.intercept[0] &&
         this.interceptCanvasWidth + widthStep <= this.dragWidth - this.interceptLeft) {
         this.interceptCanvasWidth += widthStep;
