@@ -50,7 +50,7 @@
     </emfe-table>
     <br>
    <p>当表单没有数据的时候，nothingText是提示文字</p>
-    <emfe-table :columns="column1" :data="data10" nothingText="我这里没有数据呀！">
+    <emfe-table :columns="column1" :data="data10" nothingText="尚未收集到数据">
       <emfe-table-head  slot="head" >
       </emfe-table-head>
       <emfe-table-body slot="body"  v-for="(dataList,index) in data10" :ind="index" key="index" :dataList="dataList">
