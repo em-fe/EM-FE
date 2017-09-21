@@ -122,16 +122,6 @@ export default {
           downTop += this.initialValue;
           downLeft += this.initialValue;
         }
-        this.dragEl.forEach((dragElement) => {
-          if (this.direction === 'vertical') {
-            dragElement.style.top = `${downTop}px`;
-          } else if (this.direction === 'horizontal') {
-            dragElement.style.left = `${downLeft}px`;
-          } else {
-            dragElement.style.left = `${downLeft}px`;
-            dragElement.style.top = `${downTop}px`;
-          }
-        });
         // 有可能会变宽高，比如截取器
         this.elWidth = this.dragEl[0].clientWidth;
         this.elHeight = this.dragEl[0].clientHeight;
@@ -168,6 +158,44 @@ export default {
         elTop = this.elTop + disPosY;
       }
 
+      const newMovePos = this.testLimit(elLeft, elTop);
+
+      if (this.moveEle) {
+        if (this.dragEl && this.dragEl.length > 0) {
+          this.dragEl.forEach((dragElement) => {
+            if (this.direction === 'vertical') {
+              dragElement.style.top = `${newMovePos[1]}px`;
+            } else if (this.direction === 'horizontal') {
+              dragElement.style.left = `${newMovePos[0]}px`;
+            } else {
+              dragElement.style.left = `${newMovePos[0]}px`;
+              dragElement.style.top = `${newMovePos[1]}px`;
+            }
+          });
+        } else {
+          this.dragStyle = `left: ${newMovePos[0]}px; top: ${newMovePos[1]}px`;
+          if (this.direction === 'vertical') {
+            this.dragStyle = `top: ${newMovePos[1]}px`;
+          } else if (this.direction === 'horizontal') {
+            this.dragStyle = `left: ${newMovePos[0]}px;`;
+          }
+        }
+      }
+      this.$emit('drag', e, newMovePos[0], newMovePos[1], refPos.oldX - newMovePos[0], refPos.oldY - newMovePos[1]);
+      refPos.oldX = newMovePos[0];
+      refPos.oldY = newMovePos[1];
+
+      e.stopPropagation();
+      return false;
+    },
+    up(e) {
+      document.removeEventListener('mousemove', this.move, false);
+      document.removeEventListener('mouseup', this.up, false);
+      this.$emit('afterDrag', e);
+    },
+    testLimit(left, top) {
+      let elLeft = left;
+      let elTop = top;
       if (this.limit) {
         if (elLeft + this.elWidth > (this.parentWidth - this.borderSize) + this.elCenter) {
           elLeft = this.parentWidth - this.elWidth;
@@ -183,37 +211,7 @@ export default {
         }
       }
 
-      if (this.moveEle) {
-        if (this.dragEl && this.dragEl.length > 0) {
-          this.dragEl.forEach((dragElement) => {
-            if (this.direction === 'vertical') {
-              dragElement.style.top = `${elTop}px`;
-            } else if (this.direction === 'horizontal') {
-              dragElement.style.left = `${elLeft}px`;
-            } else {
-              dragElement.style.left = `${elLeft}px`;
-              dragElement.style.top = `${elTop}px`;
-            }
-          });
-        } else {
-          this.dragStyle = `left: ${elLeft}px; top: ${elTop}px`;
-          if (this.direction === 'vertical') {
-            this.dragStyle = `top: ${elTop}px`;
-          } else if (this.direction === 'horizontal') {
-            this.dragStyle = `left: ${elLeft}px;`;
-          }
-        }
-      }
-      this.$emit('drag', e, elLeft, elTop, refPos.oldX - elLeft, refPos.oldY - elTop);
-      refPos.oldX = elLeft;
-      refPos.oldY = elTop;
-
-      e.stopPropagation();
-    },
-    up(e) {
-      document.removeEventListener('mousemove', this.move, false);
-      document.removeEventListener('mouseup', this.up, false);
-      this.$emit('afterDrag', e);
+      return [elLeft, elTop];
     },
   },
   watch: {
