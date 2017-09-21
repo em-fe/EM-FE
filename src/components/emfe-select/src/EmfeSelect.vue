@@ -1,6 +1,7 @@
 <template>
   <div class="emfe-select" :class="selectName" v-emfe-documentclick="closeFn">
-    <input class="emfe-select-input" type="text" :class="inputName" :value="checkVal" :disabled="newDisabled" readonly :placeholder="selectText" @click="inpcheck">
+    <input class="emfe-select-input" type="text" :class="[inputName, {'emfe-select-input-error': errOk}]" :value="checkVal" :disabled="newDisabled" readonly :placeholder="selectText" @click="inpcheck">
+    <div class="emfe-select-error" :class="addErrorText" v-if="errOk"><slot name="error"></slot></div>
     <div v-if="flagCheck" class="emfe-select-flag">
       <div class="emfe-select-custab" v-if="seleStu==='newList'">
         <input type="text" :placeholder="addText" class="emfe-select-input" v-model="newListVal">
@@ -66,6 +67,10 @@ export default {
       type: String,
       default: '选择标签',
     },
+    errOk: {
+      type: [Boolean],
+      default: false,
+    },
     checkVals: {
       type: Array,
       default() {
@@ -88,6 +93,13 @@ export default {
       return [
         {
           [`${this.className}-select-input`]: !!this.className,
+        },
+      ];
+    },
+    addErrorText() {
+      return [
+        {
+          [`${this.className}-select-error`]: !!this.className,
         },
       ];
     },
