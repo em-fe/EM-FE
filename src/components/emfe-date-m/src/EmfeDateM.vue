@@ -166,6 +166,7 @@ export default {
       }
     },
     resetDays(year, month) {
+      console.log(year, month, 111);
       const dateCountOfLastMonth = getDayCountOfMonth(year - 0, month - 1);
       this.days = [];
       for (let i = 1; i < dateCountOfLastMonth + 1; i++) {

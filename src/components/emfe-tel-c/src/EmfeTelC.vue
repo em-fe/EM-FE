@@ -1,6 +1,6 @@
 <template>
-  <div class="emfe-tel-c" :class="telName" v-emfe-documentclick="close">
-    <div class="emfe-tel-c-prefix" :class="prefixName" @click.stop="toggle">
+  <div class="emfe-tel-c" :class="[telName, {'emfe-tel-c-input-error': errOk}]" v-emfe-documentclick="close">
+    <div class="emfe-tel-c-prefix" :class="[prefixName, {'emfe-tel-c-input-error-right': errOk}]" @click.stop="toggle">
       <span v-if="nowData.type === 1" class="emfe-tel-c-prefix-text" :class="prefixTextName">+{{ nowData.prefix }}</span>
       <span v-if="nowData.type === 2" class="emfe-tel-c-prefix-text" :class="prefixTextName">{{ nowData.text }}</span>
       <ul class="emfe-tel-c-prefix-flag" v-show="flagStatus">
@@ -13,6 +13,7 @@
       </ul>
     </div>
     <input :type="type" class="emfe-tel-c-input" :class="inputName" :placeholder="placeholder" :value="nowData.tel" @input="telChange" @blur="telBlur">
+    <div class="emfe-tel-c-error" :class="addErrorText" v-if="errOk"><slot name="error"></slot></div>
   </div>
 </template>
 <script>
@@ -41,6 +42,10 @@ export default {
     value: {
       type: Object,
       default: () => {},
+    },
+    errOk: {
+      type: Boolean,
+      default: false,
     },
     placeholder: {
       type: String,
@@ -78,6 +83,13 @@ export default {
       return [
         {
           [`${this.className}-tel-input`]: !!this.className,
+        },
+      ];
+    },
+    addErrorText() {
+      return [
+        {
+          [`${this.className}-tel-error`]: !!this.className,
         },
       ];
     },

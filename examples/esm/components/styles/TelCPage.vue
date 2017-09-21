@@ -10,8 +10,12 @@
     <br>
     <br>
     <br>
-    <emfe-tel-c :idDatas="data2" v-model="card" placeholder="请输入证件号" @blur='blur'></emfe-tel-c>
+    <emfe-tel-c :errOk="false" :idDatas="data2" v-model="card" placeholder="请输入证件号" @blur='blur'>
+    </emfe-tel-c>
     {{card}}
+    <emfe-tel-c :errOk="true" :idDatas="data2" v-model="card" placeholder="请输入证件号" @blur='blur'>
+      <div slot="error">请输入证件号</div>
+    </emfe-tel-c>
     <br>
     <br>
     <br>
@@ -60,6 +64,12 @@
           <td>输入框类型</td>
           <td>String</td>
           <td>number</td>
+        </tr>
+        <tr>
+          <td>errOk</td>
+          <td>错误提示</td>
+          <td>Boolean</td>
+          <td>false</td>
         </tr>
       </tbody>
     </table>
