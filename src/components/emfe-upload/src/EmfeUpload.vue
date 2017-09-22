@@ -4,8 +4,8 @@
       <emfe-button :disabled="disabled || !canUpload" v-show="!src" :theme="theme" type="shangchuan">{{ iconText }}</emfe-button>
       <input v-show="!src" class="emfe-upload-file" :class="fileName" :disabled="disabled || !canUpload" type="file" @change="change" ref="upload">
       <div v-show="src" :style="{opacity: canShow ? 1 : 0}" class="emfe-upload-icon-wrap">
-        <div class="emfe-upload-icon-wrap-box" :class="[`emfe-upload-icon-wrap-box-${align}`, imgName]">
-          <img class="emfe-upload-icon-wrap-box-img" :class="[`emfe-upload-img-${align}`]" :src="src" ref="img">
+        <div class="emfe-upload-icon-wrap-box" :class="[`emfe-upload-icon-wrap-box-${align}`, imageName]">
+          <img class="emfe-upload-icon-wrap-box-img" :class="[`emfe-upload-img-${align}`, imgName]" :src="src" ref="img">
         </div>
         <i class="emfe-upload-icon-wrap-close" @click="closeFn"></i>
       </div>
@@ -13,8 +13,8 @@
     <template v-if="type === 'plus'">
       <button v-show="!src" class="emfe-upload-btn" :class="btnName">{{ plusText }}</button>
       <input v-show="!src" class="emfe-upload-file" :class="fileName" :disabled="disabled || !canUpload" type="file" @change="change" ref="uploadPlus">
-      <div v-show="src" class="emfe-upload-plus-box" :class="[`emfe-upload-plus-box-${align}`, imgName]" :style="{opacity: canShow ? 1 : 0}" @click="closePlusFn">
-        <img :class="[`emfe-upload-img-${align}`]" v-show="src" :src="src" ref="img">
+      <div v-show="src" class="emfe-upload-plus-box" :class="[`emfe-upload-plus-box-${align}`, imageName]" :style="{opacity: canShow ? 1 : 0}" @click="closePlusFn">
+        <img :class="[`emfe-upload-img-${align}`, imgName]" v-show="src" :src="src" ref="img">
       </div>
     </template>
     <emfe-modal :show="interceptModal" title="截取器" @close="formCancel" @cancel="formCancel" @ok="formOk" okText="保存" className="form">
@@ -179,11 +179,19 @@ export default {
         },
       ];
     },
-    imgName() {
+    imageName() {
       return [
         [`emfe-upload-${this.type}-image`],
         {
           [`${this.className}-upload-${this.type}-image`]: !!this.className,
+        },
+      ];
+    },
+    imgName() {
+      return [
+        [`emfe-upload-${this.type}-image`],
+        {
+          [`${this.className}-upload-${this.type}-img`]: !!this.className,
         },
       ];
     },
