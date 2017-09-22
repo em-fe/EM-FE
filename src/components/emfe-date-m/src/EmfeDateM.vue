@@ -1,5 +1,5 @@
 <template>
-  <div class="emfe-date-m" v-emfe-documentclick="close">
+  <div class="emfe-date-m" v-emfe-documentclick="close" :class="buttonName">
     <button class="emfe-date-m-btn" v-if="!open && !disabled" @click="toggle" :class="buttonName">
       <span class="emfe-date-m-btn-text" :class="{'emfe-date-m-btn-text-choice': choiced}">{{ date }}</span>
       <!-- 日期 -->
@@ -166,6 +166,7 @@ export default {
       }
     },
     resetDays(year, month) {
+      console.log(year, month, 111);
       const dateCountOfLastMonth = getDayCountOfMonth(year - 0, month - 1);
       this.days = [];
       for (let i = 1; i < dateCountOfLastMonth + 1; i++) {

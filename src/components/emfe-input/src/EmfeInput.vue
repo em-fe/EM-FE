@@ -2,7 +2,7 @@
   <div class="emfe-input" :class="addClass" :style="newStyle">
     <div :class="[classList]">
       <emfe-icon v-if="iconOk" :type="iconType" className="emfe-input-box-icon-el"></emfe-icon>
-      <input :type="type" :placeholder="newPlaceholder" v-bind="$props" :class='addInput' :value="currentValue" v-on:input="changeFn" class="emfe-input-box-input" @blur="blur">
+      <input :type="type" :placeholder="newPlaceholder" v-bind="$props" :maxlength="maxlength" :class='addInput' :value="currentValue" v-on:input="changeFn" class="emfe-input-box-input" @blur="blur">
     </div>
     <div class="emfe-input-box-text" :class="addErrorText" v-if="errOk"><slot name="error"></slot></div>
   </div>
@@ -54,6 +54,10 @@ export default {
     type: {
       type: String,
       default: 'text',
+    },
+    maxlength: {
+      type: [String, Number],
+      default: '',
     },
     change: {
       type: Function,

@@ -10,6 +10,11 @@
               :datas="data1"<br>
               type="checkbox"<br>
 
+    <div style="margin-bottom:10px">
+    </style>默认（有错误提示）</div>
+    <emfe-select :errOk="true" :datas="data1" type="default" @getAllData="getData" selectText="提示文字" @checkedopt="getlist">
+      <div slot="error">错误提示</div>
+    </emfe-select>
 
     <div style="margin:50px 0 10px">
       带新建的多选

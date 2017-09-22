@@ -1,20 +1,30 @@
 <template>
   <div id="telpage">
     <h3>普通使用</h3>
-    <emfe-tel-c :datas="data1" v-model="now" placeholder="电话" @blur='blur'></emfe-tel-c>
+    <emfe-tel-c :telDatas="data1" v-model="now" placeholder="电话" @blur='blur'></emfe-tel-c>
     当前 {{ now }}
     <pre>
-      &lt;emfe-tel-c :datas="data1" v-model="now" placeholder="电话"&gt;&lt;/emfe-tel-c&gt;
+      &lt;emfe-tel-c :telDatas="data1" v-model="now" placeholder="电话"&gt;&lt;/emfe-tel-c&gt;
     </pre>
     <br>
     <br>
     <br>
     <br>
+    <emfe-tel-c :errOk="false" :idDatas="data2" v-model="card" placeholder="请输入证件号" @blur='blur'>
+    </emfe-tel-c>
+    {{card}}
+    <emfe-tel-c :errOk="true" :idDatas="data2" v-model="card" placeholder="请输入证件号" @blur='blur'>
+      <div slot="error">请输入证件号</div>
+    </emfe-tel-c>
+    <br>
+    <br>
+    <br>
+    <br>
     <h3>自定义样式使用</h3>
-    <emfe-tel-c className="demo" :datas="data1" v-model="now" placeholder="电话"></emfe-tel-c>
+    <emfe-tel-c className="demo" :telDatas="data1" v-model="now" placeholder="电话"></emfe-tel-c>
     当前 {{ now }}
     <pre>
-      &lt;emfe-tel-c className="demo" :datas="data1" v-model="now" placeholder="电话"&gt;&lt;/emfe-tel-c&gt;
+      &lt;emfe-tel-c className="demo" :telDatas="data1" v-model="now" placeholder="电话"&gt;&lt;/emfe-tel-c&gt;
     </pre>
     <br>
     <br>
@@ -55,6 +65,12 @@
           <td>String</td>
           <td>number</td>
         </tr>
+        <tr>
+          <td>errOk</td>
+          <td>错误提示</td>
+          <td>Boolean</td>
+          <td>false</td>
+        </tr>
       </tbody>
     </table>
     <h3>注册的方法</h3>
@@ -86,21 +102,41 @@ export default {
   data() {
     return {
       now: {
+        type: 1,
         name: '中国',
         tel: 13800138000,
         prefix: '86',
       },
       data1: [
         {
+          type: 1,
           name: '中国',
           tel: 1123444555,
           prefix: '86',
         },
         {
+          type: 1,
           name: '香港',
           tel: 8888888888,
           prefix: '852',
         },
+      ],
+      card: {
+        type: 2,
+        text: '选择类型',
+        card: '',
+      },
+      data2: [
+        {
+          type: 2,
+          text: '身份证',
+          card: '',
+        },
+        {
+          type: 2,
+          text: '军人证',
+          card: '',
+        }
       ],
     };
   },
