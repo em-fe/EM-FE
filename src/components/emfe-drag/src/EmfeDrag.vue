@@ -111,6 +111,11 @@ export default {
       let downLeft = e.clientX - this.parentLeft;
 
       if (this.dragEl && this.dragEl.length > 0) {
+        // 有可能会变宽高，比如截取器
+        this.elWidth = this.dragEl[0].clientWidth;
+        this.elHeight = this.dragEl[0].clientHeight;
+        const elEleWidth = this.$el.clientWidth;
+        const elEleHeight = this.$el.clientHeight;
         downTop -= this.parentPaddingTop;
         downTop += this.scrollTop;
         downLeft -= this.parentPaddingLeft;
@@ -122,9 +127,27 @@ export default {
           downTop += this.initialValue;
           downLeft += this.initialValue;
         }
-        // 有可能会变宽高，比如截取器
-        this.elWidth = this.dragEl[0].clientWidth;
-        this.elHeight = this.dragEl[0].clientHeight;
+        this.dragEl.forEach((dragElement) => {
+          if (downTop < 0) {
+            downTop = 0;
+          } else if (downTop > elEleHeight - this.elHeight) {
+            downTop = elEleHeight - this.elHeight;
+          }
+          console.log(downLeft, this.elWidth);
+          if (downLeft < 0) {
+            downLeft = 0;
+          } else if (downLeft > elEleWidth - this.elWidth) {
+            downLeft = elEleWidth - this.elWidth;
+          }
+          if (this.direction === 'vertical') {
+            dragElement.style.top = `${downTop}px`;
+          } else if (this.direction === 'horizontal') {
+            dragElement.style.left = `${downLeft}px`;
+          } else {
+            dragElement.style.left = `${downLeft}px`;
+            dragElement.style.top = `${downTop}px`;
+          }
+        });
       } else {
         // 有可能会变宽高，比如截取器
         this.elWidth = this.$el.clientWidth;
