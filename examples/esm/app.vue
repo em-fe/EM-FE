@@ -450,6 +450,16 @@ module.exports = {
                     },
                   },
                 },
+                {
+                  title: '滑动',
+                  icon: 'erweima',
+                  routers: {
+                    path: '/functions/slide',
+                    query: {
+                      main: 4,
+                    },
+                  },
+                },
               ],
             },
             {
@@ -527,16 +537,6 @@ module.exports = {
               routers: {
                 path: '/functions/selectpage',
               }
-            },
-            {
-              title: '滑动',
-              icon: 'erweima',
-              routers: {
-                path: '/functions/slide',
-                query: {
-                  main: 4,
-                },
-              },
             },
           ],
         },

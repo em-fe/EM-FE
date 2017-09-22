@@ -1,4 +1,6 @@
 .#{$prefix}upload {
+  user-select: none;
+
   &-disabled {
     background: $background-color-disable;
   }
