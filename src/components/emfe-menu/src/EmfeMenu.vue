@@ -5,49 +5,54 @@
         <emfe-icon class="emfe-menu-main-sidebar" type="cedaohangshouqi" @icon-click="menuToShort" v-if="menuShort"></emfe-icon>
         <emfe-icon class="emfe-menu-main-sidebar" type="cedaohangzhankai" @icon-click="menuToShort" v-else></emfe-icon>
       </button>
-      <ul class="emfe-menu-main-list">
-        <li class="emfe-menu-main-item" v-for="(data, dataIndex) in datas">
-          <a href="javascript:;" class="emfe-menu-main-link" :class="{'emfe-menu-main-link-on': mainIndex === dataIndex}" @click="tochildren(data)" v-if="data.routers">
-            <emfe-tooltip className="emfe-menu" placement="right" :disable="!menuShort">
-              <emfe-icon class="emfe-menu-main-icon" :type="data.icon" slot="render" @icon-click="tochildren(data)"></emfe-icon>
-              <span slot="tip">{{ data.title }}</span>
-            </emfe-tooltip>
-            <span class="emfe-menu-main-text">{{ data.title }}</span>
-          </a>
-          <a href="javascript:;" class="emfe-menu-main-link" :class="{'emfe-menu-main-link-on': mainIndex === dataIndex}" @click="tochildren(data)" v-else>
-            <emfe-tooltip className="emfe-menu" placement="right" :disable="!menuShort">
-              <emfe-icon class="emfe-menu-main-icon" :type="data.icon" slot="render" @icon-click="tochildren(data)"></emfe-icon>
-              <span slot="tip">{{ data.title }}</span>
-            </emfe-tooltip>
-            <span class="emfe-menu-main-text">{{ data.title }}</span>
-          </a>
-        </li>
-      </ul>
+      <div class="emfe-menu-iscroll">
+        <ul class="emfe-menu-main-list">
+          <li class="emfe-menu-main-item" v-for="(data, dataIndex) in datas">
+            <a href="javascript:;" class="emfe-menu-main-link" :class="{'emfe-menu-main-link-on': mainIndex === dataIndex}" @click="tochildren(data)" v-if="data.routers">
+              <emfe-tooltip className="emfe-menu" placement="right" :disable="!menuShort">
+                <emfe-icon class="emfe-menu-main-icon" :type="data.icon" slot="render" @icon-click="tochildren(data)"></emfe-icon>
+                <span slot="tip">{{ data.title }}</span>
+              </emfe-tooltip>
+              <span class="emfe-menu-main-text">{{ data.title }}</span>
+            </a>
+            <a href="javascript:;" class="emfe-menu-main-link" :class="{'emfe-menu-main-link-on': mainIndex === dataIndex}" @click="tochildren(data)" v-else>
+              <emfe-tooltip className="emfe-menu" placement="right" :disable="!menuShort">
+                <emfe-icon class="emfe-menu-main-icon" :type="data.icon" slot="render" @icon-click="tochildren(data)"></emfe-icon>
+                <span slot="tip">{{ data.title }}</span>
+              </emfe-tooltip>
+              <span class="emfe-menu-main-text">{{ data.title }}</span>
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
     <div class="emfe-menu-minor" v-show="childrentatus">
       <h3 class="emfe-menu-minor-header">{{ childrenTitle }}</h3>
-      <ul class="emfe-menu-minor-list">
-        <template v-for="(childrenData, childrenDataIndex) in childrenDatas">
-          <li class="emfe-menu-minor-item" v-if="!childrenData.children">
-            <router-link :to="childrenData.routers" class="emfe-menu-minor-link">{{ childrenData.title }}</router-link>
-          </li>
-          <li class="emfe-menu-minor-item" :class="{'emfe-menu-minor-item-on': childrenIndex == childrenDataIndex}" v-else>
-            <span href="javascript:;" class="emfe-menu-minor-btn" @click="toogleChild(childrenDataIndex)" >{{ childrenData.title }}</span>
-            <i class="emfe-menu-minor-arrow"></i>
-            <emfe-transition name="gradual">
-              <ul class="emfe-menu-minor-childlist" v-show="childrenIndex == childrenDataIndex">
-                <li class="emfe-menu-minor-childitem" v-for="child in childrenData.children">
-                  <router-link :to="child.routers" class="emfe-menu-minor-childlink">{{ child.title }}</router-link>
-                </li>
-              </ul>
-            </emfe-transition>
-          </li>
-        </template>
-      </ul>
+      <div class="emfe-menu-minor-iscroll">
+        <ul class="emfe-menu-minor-list">
+          <template v-for="(childrenData, childrenDataIndex) in childrenDatas">
+            <li class="emfe-menu-minor-item" v-if="!childrenData.children">
+              <router-link :to="childrenData.routers" class="emfe-menu-minor-link">{{ childrenData.title }}</router-link>
+            </li>
+            <li class="emfe-menu-minor-item" :class="{'emfe-menu-minor-item-on': childrenIndex == childrenDataIndex}" v-else>
+              <span href="javascript:;" class="emfe-menu-minor-btn" @click="toogleChild(childrenDataIndex)" >{{ childrenData.title }}</span>
+              <i class="emfe-menu-minor-arrow"></i>
+              <emfe-transition name="gradual">
+                <ul class="emfe-menu-minor-childlist" v-show="childrenIndex == childrenDataIndex">
+                  <li class="emfe-menu-minor-childitem" v-for="child in childrenData.children">
+                    <router-link :to="child.routers" class="emfe-menu-minor-childlink">{{ child.title }}</router-link>
+                  </li>
+                </ul>
+              </emfe-transition>
+            </li>
+          </template>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
 <script>
+import Contant from '../../../contant';
 import srceen from '../../../tools/screen';
 import O from '../../../tools/o';
 
@@ -58,6 +63,7 @@ export default {
   name: 'EmfeMenu',
   data() {
     return {
+      Contant,
       childrenDatas: [],
       childrenIndex: -1,
       mainIndex: -1,

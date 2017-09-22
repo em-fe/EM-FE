@@ -3,7 +3,7 @@
     <tr class="emfe-box-table-head-tr" :class="classTr">
       <template>
 	      <th class="emfe-box-table-head-tr-th" @click="jump(index)" :class="[classTh, {'emfe-box-table-head-tr-th-checked': checked === index}]" v-for="(item , index) in this.$parent.columns">
-	        <div>{{item.title}}</div>
+	        <div class="emfe-box-table-head-tr-th-div">{{item.title}}</div>
 	      </th>
       </template>
     </tr>
@@ -14,8 +14,8 @@ export default {
   name: 'EmfeTableHead',
   data() {
     return {
-      className: this.$parent.className,
       classAdd: this.$parent.classAdd,
+      border: this.$parent.border,
     };
   },
   props: {
@@ -24,10 +24,12 @@ export default {
       default: -1,
     },
   },
+  created() {
+    console.log(this.border);
+  },
   computed: {
     classHead() {
       return [
-        `${this.className}-table-head`,
         {
           [`${this.$parent.classAdd}-thead`]: !!this.classAdd,
         },
@@ -35,7 +37,6 @@ export default {
     },
     classTr() {
       return [
-        `${this.className}-table-head-tr`,
         {
           [`${this.$parent.classAdd}-thead-tr`]: !!this.classAdd,
         },
@@ -43,9 +44,9 @@ export default {
     },
     classTh() {
       return [
-        `${this.className}-table-head-tr-th`,
         {
           [`${this.$parent.classAdd}-thead-tr-th`]: !!this.classAdd,
+          border: `${this.border}`,
         },
       ];
     },

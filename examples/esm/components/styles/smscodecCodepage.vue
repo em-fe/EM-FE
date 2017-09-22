@@ -9,6 +9,11 @@
     </pre>
     <br>
     <br>
+    <h3>带错误提示用法</h3>
+    <emfe-smscode-c :errOk="true"  className="ddd">
+      <div >请输入验证码1</div>
+    </emfe-smscode-c>
+    <br>
     <br>
     <br>
     <br>
@@ -28,7 +33,7 @@
     点击次数: {{ num }}
     {{ model }}
     <pre>
-      &lt;emfe-smscode-c className="demo" v-model="model" times="2" @click="click"&gt;&lt;/emfe-smscode-c&gt;
+      &lt;emfe-smscode-c className="demo" v-model="model" times="6" @click="click" :timeStart="start" :end="timeEnd"&gt;&lt;/emfe-smscode-c&gt;
     </pre>
     <br>
     <br>

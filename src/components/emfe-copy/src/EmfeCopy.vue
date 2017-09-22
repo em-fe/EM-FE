@@ -1,9 +1,10 @@
 <template>
   <div class="emfe-copy" :class="copyName">
-    <span :class="textName">表单页面：</span>
-    <input :class="valueName" :value="copyValue" ref="copyInput" :readonly="read"/>
+    <span :class="textName">{{text}}：</span>
+    <!-- <input :class="valueName" :value="copyValue" ref="copyInput" :readonly="read"/> -->
+    <span :class="valueName">{{copyValue}}</span>
     <button class="emfe-copy-btn" :class="btnName" @click="copyHandle">
-      <emfe-icon type="fuzhi" :class="iconName" @icon-click="copyHandle"></emfe-icon>
+      <emfe-icon type="fuzhi" class="emfe-copy-btn-icon" :class="iconName" @icon-click="copyHandle"></emfe-icon>
     </button>
   </div>
 </template>
@@ -14,6 +15,10 @@ export default {
     className: String,
     copyValue: String,
     read: [String, Boolean],
+    text: {
+      type: String,
+      default: '表单页面',
+    },
   },
   computed: {
     copyName() {
@@ -34,8 +39,8 @@ export default {
   },
   methods: {
     copyHandle() {
-      const { copyInput } = this.$refs;
-      copyInput.select();
+      // const { copyInput } = this.$refs;
+      // copyInput.select();
       try {
         if (document.execCommand('copy', false, null)) {
           document.execCommand('Copy');
@@ -46,7 +51,7 @@ export default {
       } catch (err) {
         this.$emit('copyFail');
       }
-      copyInput.blur();
+      // copyInput.blur();
     },
   },
 };

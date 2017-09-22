@@ -1,6 +1,13 @@
 <template>
   <div>
     <div class="dataPanelPage">
+      <emfe-datapanel title="总收集量" type="fabu" theme="light" placement="bottom" contentText="1234" companyText="人" iconFlg="true">
+        <div slot="tipText">aaaaaaaaa</div>
+      </emfe-datapanel>
+    </div>
+    <br>
+    <br>
+    <div class="dataPanelPage">
       <emfe-datapanel title="总收集量" type="fabu" contentText="1234" companyText="人" iconFlg="true">
         <div slot="tipText">aaaaaaaaa</div>
       </emfe-datapanel>
@@ -41,6 +48,18 @@
           <td>数据模板的标题</td>
           <td>String</td>
           <td>-</td>
+        </tr>
+        <tr>
+          <td>theme</td>
+          <td>提示框主题</td>
+          <td>String</td>
+          <td>""</td>
+        </tr>
+        <tr>
+          <td>placement</td>
+          <td>提示框位置</td>
+          <td>String</td>
+          <td>""</td>
         </tr>
         <tr>
           <td>contentText</td>

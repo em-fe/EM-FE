@@ -1,5 +1,5 @@
 <template>
-  <div class="emfe-opations" :class="opationsName">
+  <div class="emfe-opations" :class="opationsName" ref="dragBox">
     <template v-for="(item, index) in datas">
       <div class="emfe-opations-hr" v-if="item.hrStatus"></div>
       <div class="emfe-opations-main" :key="index" :style="item.style" ref="hits">
@@ -123,7 +123,9 @@ export default {
       return false;
     },
     move(e) {
-      const { hits } = this.$refs;
+      const { dragBox } = this.$refs;
+      // 因为创建出来的元素 $refs 不更新，并不是自适应的
+      const hits = dragBox.querySelectorAll('.emfe-opations-main');
       const { index, style } = this.datas[this.lastDrag];
       const disPosY = e.pageY - refPos.y;
       style.top = `${this.elTop + disPosY}px`;
@@ -144,15 +146,13 @@ export default {
       document.removeEventListener('mousemove', this.move, false);
       document.removeEventListener('mouseup', this.up, false);
       this.swapData();
-      if (lastHrIndex < this.datas.length && lastHrIndex > -1) {
-        this.datas[lastHrIndex].hrStatus = false;
-      } else {
-        this.lastHrStatus = false;
-      }
-      if (this.lastHit > -1) {
-        this.datas[this.lastHit].style = {};
-      }
-      this.datas[this.lastDrag].hrStatus = false;
+      // 之所以不用 this.datas[lastHrIndex].hrStatus = false
+      // 是因为连续拖拽碰撞，会出问题，有的虚线不隐藏
+      this.datas.forEach((data) => {
+        data.hrStatus = false;
+        data.style = {};
+      });
+      this.lastHrStatus = false;
       this.lastHit = -1;
       this.lastDrag = -1;
       lastHrIndex = -1;
@@ -182,6 +182,7 @@ export default {
         _.exchangeAttrValue(datas[lastDrag], datas[lastHit], 'index');
         _.swap(this.datas, this.lastHit, this.lastDrag);
         _.swap(opationsData, lastHit, lastDrag);
+        this.updataIndex();
         this.$emit('swap', datas[lastDrag], lastHit, lastDrag, opationsData[lastDrag]);
       }
     },
@@ -190,9 +191,13 @@ export default {
         other: false,
         hrStatus: false,
         style: {},
+        noPlus: false,
+        index: index + 1,
       };
       this.datas.splice(index + 1, 0, obj);
       this.opationsData.splice(index + 1, 0, '');
+      // 多次添加的时候 index 永远是点击的那个所以更新下 index
+      this.updataIndex();
       this.$emit('plus', this.datas[index], index);
     },
     minus(index, item) {
@@ -217,11 +222,22 @@ export default {
       this.clickFlg = false;
       this.$emit('otherplus', this.datas[this.datas.length - 1], this.datas.length - 1);
     },
+    updataIndex() {
+      // 多次添加的时候 index 永远是点击的那个所以更新下 index
+      this.datas.forEach((data, dIndex) => {
+        data.index = dIndex;
+      });
+    },
   },
   watch: {
     other(val, oldVal) {
       if (val !== oldVal) {
         this.clickFlg = !val;
+      }
+    },
+    opationsData(val, oldVal) {
+      if (val !== oldVal) {
+        this.handleData();
       }
     },
   },

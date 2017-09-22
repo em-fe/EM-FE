@@ -41,21 +41,13 @@ export default {
       type: Array,
       required: true,
     },
-    margin: {
-      type: Number,
-      default: 0,
-    },
-    cellWidth: {
-      type: Number,
-      default: 200,
-    },
-    cellHeight: {
-      type: Number,
-      default: 200,
-    },
     className: {
       type: String,
       default: '',
+    },
+    swap: {
+      type: Function,
+      default: () => {},
     },
   },
   mounted() {
@@ -135,17 +127,16 @@ export default {
       document.removeEventListener('mousemove', this.move, false);
       document.removeEventListener('mouseup', this.up, false);
       this.swapData();
-      if (lastHrIndex < this.datas.length && lastHrIndex > -1) {
-        this.datas[lastHrIndex].hrStatus = false;
-      } else {
-        this.lastHrStatus = false;
-      }
-      this.datas[this.lastHit > -1 ? this.lastHit : this.lastDrag].style = {};
-      this.datas[this.lastDrag].hrStatus = false;
+      // 之所以不用 this.datas[lastHrIndex].hrStatus = false
+      // 是因为连续拖拽碰撞，会出问题，有的虚线不隐藏
+      this.datas.forEach((data) => {
+        data.hrStatus = false;
+        data.style = {};
+      });
+      this.lastHrStatus = false;
       this.lastHit = -1;
       this.lastDrag = -1;
       lastHrIndex = -1;
-      dragWidth = -1;
       this.$emit('up');
     },
     getHitIndex(hitIndex) {
@@ -173,6 +164,7 @@ export default {
         _.swap(this.datas, this.lastHit, this.lastDrag);
         _.swap(opationsData, lastHit, lastDrag);
         this.$emit('swap', datas[lastDrag], lastHit, lastDrag, opationsData[lastDrag]);
+        this.swap(datas[lastDrag], lastHit, lastDrag, opationsData[lastDrag]);
       }
     },
     plus(index) {

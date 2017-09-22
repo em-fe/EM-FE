@@ -193,25 +193,31 @@ export default {
   },
   mounted() {
     if (this.url) {
+      this.initImg();
+    }
+    this.initIntercept();
+  },
+  methods: {
+    initIntercept() {
+      // 有截取器
+      if (this.intercept.length > 0) {
+        if (this.intercept.length > 1) {
+          this.interceptCanvasWidth = this.intercept[0];
+          this.interceptCanvasHeight = this.intercept[1];
+        } else if (this.intercept.length === 1) {
+          this.interceptCanvasWidth = this.intercept[0];
+          this.interceptCanvasHeight = this.intercept[0];
+        }
+      }
+    },
+    initImg() {
       const imgObject = new Image();
       imgObject.src = this.url;
       imgObject.onload = () => {
         this.src = this.url;
         setTimeout(this.setAlign.bind(this), 0);
       };
-    }
-    // 有截取器
-    if (this.intercept.length > 0) {
-      if (this.intercept.length > 1) {
-        this.interceptCanvasWidth = this.intercept[0];
-        this.interceptCanvasHeight = this.intercept[1];
-      } else if (this.intercept.length === 1) {
-        this.interceptCanvasWidth = this.intercept[0];
-        this.interceptCanvasHeight = this.intercept[0];
-      }
-    }
-  },
-  methods: {
+    },
     openInterceptModal() {
       openMask();
       this.interceptModal = true;
@@ -255,17 +261,27 @@ export default {
     },
     // 角部拖拽改变大小
     pointMoveChangeSize(ev, left, lDir, type) {
+      const cWidth = this.interceptCanvasWidth;
+      const cHeight = this.interceptCanvasHeight;
       let widthStep = -left;
       // 左上 || 左下
       if (type === 'nw' || type === 'sw') {
         const lChange = pointOldLeft - left;
         widthStep = lChange;
       }
-      const heightStep = (this.interceptCanvasHeight * widthStep) / this.interceptCanvasWidth;
-      if (this.interceptCanvasWidth + widthStep >= this.intercept[0] &&
-        this.interceptCanvasWidth + widthStep <= this.interceptWidth) {
+      const heightStep = (cHeight * widthStep) / cWidth;
+      const canWidth = this.intercept[0] < cWidth + widthStep;
+      const canHeight = this.intercept[1] < cHeight + heightStep;
+      // 拖动左边的，x不能超出去，拖动右边的，宽度不能超过去
+      const heng = this.interceptLeft >= 0 && this.interceptLeft + cWidth <= this.dragWidth - 5;
+      const shu = this.interceptLeft >= 0 && this.interceptTop + cHeight <= this.dragHeight - 5;
+
+      if (heng && shu && canWidth && canHeight) {
         this.interceptCanvasWidth += widthStep;
         this.interceptCanvasHeight += heightStep;
+      }
+
+      if (heng && shu) {
         // 左上 || 左下
         if (type === 'nw' || type === 'sw') {
           this.interceptLeft -= widthStep;
@@ -472,6 +488,7 @@ export default {
       }
       this.dragWidth = 'auto';
       this.dragHeight = 400;
+      this.initIntercept();
     },
     canLoad() {
       this.canUpload = true;
@@ -487,6 +504,13 @@ export default {
         this.iconText = '上传中';
       } else {
         this.plusText = '...';
+      }
+    },
+  },
+  watch: {
+    url(val, oldVal) {
+      if (val !== oldVal) {
+        this.initImg();
       }
     },
   },

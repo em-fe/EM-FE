@@ -10,8 +10,13 @@ $bar-top: 64px;
   top: 0;
   bottom: 0;
   z-index: 1;
-  overflow: scroll;
   background: $background-color-write;
+
+  &-iscroll {
+    height: calc(100% - 48px);
+    position: relative;
+    overflow: auto;
+  }
 
   &-header {
     @include border(bottom);

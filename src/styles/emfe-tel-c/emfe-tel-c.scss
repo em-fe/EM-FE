@@ -3,6 +3,7 @@
 
   height: 34px;
   border-radius: $radius-size;
+  position: relative;
 
   &-prefix {
     @include border(right);
@@ -100,5 +101,24 @@
     padding: 0 8px;
     font-size: 16px;
     color: $text-color-default;
+    border-radius: $radius-size;
+
+    &-error {
+      @include border(all, $color-danger);
+
+      &-right {
+        @include border(right, $color-danger);
+      }
+    }
+  }
+
+  &-error {
+    position: absolute;
+    left: 8px;
+    bottom: -15px;
+    font-size: 12px;
+    color: $color-danger;
+    letter-spacing: 1.08px;
+    line-height: 12px;
   }
 }

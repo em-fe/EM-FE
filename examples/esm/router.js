@@ -4,6 +4,18 @@ import VueRouter from 'vue-router';
 const router = new VueRouter({
   routes: [
     {
+      path: '/directives',
+      name: 'directives',
+      children: [
+        {
+          path: '/directives/docclick',
+          name: 'docclick',
+          component: require('./components/directives/Docclick.vue'),
+        },
+      ],
+      component: require('./components/directives/Index.vue'),
+    },
+    {
       path: '/tips',
       name: 'Tips',
       children: [
@@ -236,6 +248,11 @@ const router = new VueRouter({
       path: '/functions',
       name: 'Functions',
       children: [
+        {
+          path: '/functions/iscroll',
+          name: 'iscrollcpt',
+          component: require('./components/functions/Iscroll.vue'),
+        },
         {
           path: '/functions/countdown',
           name: 'countdown',

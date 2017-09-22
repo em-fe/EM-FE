@@ -11,7 +11,7 @@
         <slot name="g" v-if="dataList[list.key].slot==='g'"></slot>
         <slot name="h" v-if="dataList[list.key].slot==='h'"></slot>
         <slot name="i" v-if="dataList[list.key].slot==='i'"></slot>
-        <div v-if="!dataList[list.key].slot">{{dataList[list.key].text}}</div>
+        <div  class="emfe-box-table-tr-td-div" v-if="!dataList[list.key].slot">{{dataList[list.key].text}}</div>
       </td>
     </template>
   </tr>
@@ -25,6 +25,7 @@ export default {
       classAdd: this.$parent.classAdd,
       column: this.$parent.columns,
       data: this.$parent.data,
+      border: this.$parent.border,
       current: 0,
       columnCopy: [],
     };
@@ -54,7 +55,6 @@ export default {
     },
     classTr() {
       return [
-        `${this.className}-table-body-tr`,
         {
           [`${this.$parent.classAdd}-tbody-tr`]: !!this.classAdd,
         },
@@ -62,9 +62,9 @@ export default {
     },
     classTd() {
       return [
-        `${this.className}-table-body-tr-td`,
         {
           [`${this.$parent.classAdd}-tbody-tr-td`]: !!this.classAdd,
+          border: `${this.border}`,
         },
       ];
     },
