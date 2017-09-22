@@ -4,7 +4,7 @@
       <emfe-button :disabled="disabled || !canUpload" v-show="!src" :theme="theme" type="shangchuan">{{ iconText }}</emfe-button>
       <input v-show="!src" class="emfe-upload-file" :class="fileName" :disabled="disabled || !canUpload" type="file" @change="change" ref="upload">
       <div v-show="src" :style="{opacity: canShow ? 1 : 0}" class="emfe-upload-icon-wrap">
-        <div class="emfe-upload-icon-wrap-box" :class="[`emfe-upload-icon-wrap-box-${align}`]">
+        <div class="emfe-upload-icon-wrap-box" :class="[`emfe-upload-icon-wrap-box-${align}`, imgName]">
           <img class="emfe-upload-icon-wrap-box-img" :class="[`emfe-upload-img-${align}`]" :src="src" ref="img">
         </div>
         <i class="emfe-upload-icon-wrap-close" @click="closeFn"></i>
@@ -13,7 +13,7 @@
     <template v-if="type === 'plus'">
       <button v-show="!src" class="emfe-upload-btn" :class="btnName">{{ plusText }}</button>
       <input v-show="!src" class="emfe-upload-file" :class="fileName" :disabled="disabled || !canUpload" type="file" @change="change" ref="uploadPlus">
-      <div v-show="src" class="emfe-upload-plus-box" :class="[`emfe-upload-plus-box-${align}`]" :style="{opacity: canShow ? 1 : 0}" @click="closePlusFn">
+      <div v-show="src" class="emfe-upload-plus-box" :class="[`emfe-upload-plus-box-${align}`, imgName]" :style="{opacity: canShow ? 1 : 0}" @click="closePlusFn">
         <img :class="[`emfe-upload-img-${align}`]" v-show="src" :src="src" ref="img">
       </div>
     </template>
@@ -176,6 +176,14 @@ export default {
         [`emfe-upload-${this.type}-btn`],
         {
           [`${this.className}-upload-${this.type}-btn`]: !!this.className,
+        },
+      ];
+    },
+    imgName() {
+      return [
+        [`emfe-upload-${this.type}-image`],
+        {
+          [`${this.className}-upload-${this.type}-image`]: !!this.className,
         },
       ];
     },
