@@ -195,18 +195,21 @@ export default {
     if (this.url) {
       this.initImg();
     }
-    // 有截取器
-    if (this.intercept.length > 0) {
-      if (this.intercept.length > 1) {
-        this.interceptCanvasWidth = this.intercept[0];
-        this.interceptCanvasHeight = this.intercept[1];
-      } else if (this.intercept.length === 1) {
-        this.interceptCanvasWidth = this.intercept[0];
-        this.interceptCanvasHeight = this.intercept[0];
-      }
-    }
+    this.initIntercept();
   },
   methods: {
+    initIntercept() {
+      // 有截取器
+      if (this.intercept.length > 0) {
+        if (this.intercept.length > 1) {
+          this.interceptCanvasWidth = this.intercept[0];
+          this.interceptCanvasHeight = this.intercept[1];
+        } else if (this.intercept.length === 1) {
+          this.interceptCanvasWidth = this.intercept[0];
+          this.interceptCanvasHeight = this.intercept[0];
+        }
+      }
+    },
     initImg() {
       const imgObject = new Image();
       imgObject.src = this.url;
@@ -269,23 +272,26 @@ export default {
       const heightStep = (cHeight * widthStep) / cWidth;
       const canWidth = this.intercept[0] < cWidth + widthStep;
       const canHeight = this.intercept[1] < cHeight + heightStep;
+      // 拖动左边的，x不能超出去，拖动右边的，宽度不能超过去
+      const heng = this.interceptLeft >= 0 && this.interceptLeft + cWidth <= this.dragWidth - 5;
+      const shu = this.interceptLeft >= 0 && this.interceptTop + cHeight <= this.dragHeight - 5;
 
-      if (canWidth && canHeight) {
+      if (heng && shu && canWidth && canHeight) {
         this.interceptCanvasWidth += widthStep;
         this.interceptCanvasHeight += heightStep;
       }
-      // 拖动左边的，x不能超出去，拖动右边的，宽度不能超过去
-      const heng = this.interceptLeft >= 0 && this.interceptLeft + cWidth <= this.dragWidth;
-      console.log(heng, '+++', this.interceptTop, cHeight, this.dragHeight);
-      // 左上 || 左下
-      if (type === 'nw' || type === 'sw') {
-        this.interceptLeft -= widthStep;
+
+      if (heng && shu) {
+        // 左上 || 左下
+        if (type === 'nw' || type === 'sw') {
+          this.interceptLeft -= widthStep;
+        }
+        // 左上 || 右上
+        if (type === 'nw' || type === 'ne') {
+          this.interceptTop -= heightStep;
+        }
+        pointOldLeft = left;
       }
-      // 左上 || 右上
-      if (type === 'nw' || type === 'ne') {
-        this.interceptTop -= heightStep;
-      }
-      pointOldLeft = left;
     },
     // 左上
     nwPosMove(ev, left, top, lDir) {
@@ -482,6 +488,7 @@ export default {
       }
       this.dragWidth = 'auto';
       this.dragHeight = 400;
+      this.initIntercept();
     },
     canLoad() {
       this.canUpload = true;
