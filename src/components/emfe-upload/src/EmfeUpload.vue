@@ -258,29 +258,34 @@ export default {
     },
     // 角部拖拽改变大小
     pointMoveChangeSize(ev, left, lDir, type) {
+      const cWidth = this.interceptCanvasWidth;
+      const cHeight = this.interceptCanvasHeight;
       let widthStep = -left;
       // 左上 || 左下
       if (type === 'nw' || type === 'sw') {
         const lChange = pointOldLeft - left;
         widthStep = lChange;
       }
-      const heightStep = (this.interceptCanvasHeight * widthStep) / this.interceptCanvasWidth;
-      console.log(this.interceptCanvasHeight + heightStep >= this.intercept[1] &&
-        this.interceptCanvasHeight + heightStep <= this.dragHeight - this.interceptTop);
-      if (this.interceptCanvasWidth + widthStep >= this.intercept[0] &&
-        this.interceptCanvasWidth + widthStep <= this.dragWidth - this.interceptLeft) {
+      const heightStep = (cHeight * widthStep) / cWidth;
+      const canWidth = this.intercept[0] < cWidth + widthStep;
+      const canHeight = this.intercept[1] < cHeight + heightStep;
+
+      if (canWidth && canHeight) {
         this.interceptCanvasWidth += widthStep;
         this.interceptCanvasHeight += heightStep;
-        // 左上 || 左下
-        if (type === 'nw' || type === 'sw') {
-          this.interceptLeft -= widthStep;
-        }
-        // 左上 || 右上
-        if (type === 'nw' || type === 'ne') {
-          this.interceptTop -= heightStep;
-        }
-        pointOldLeft = left;
       }
+      // 拖动左边的，x不能超出去，拖动右边的，宽度不能超过去
+      const heng = this.interceptLeft >= 0 && this.interceptLeft + cWidth <= this.dragWidth;
+      console.log(heng, '+++', this.interceptTop, cHeight, this.dragHeight);
+      // 左上 || 左下
+      if (type === 'nw' || type === 'sw') {
+        this.interceptLeft -= widthStep;
+      }
+      // 左上 || 右上
+      if (type === 'nw' || type === 'ne') {
+        this.interceptTop -= heightStep;
+      }
+      pointOldLeft = left;
     },
     // 左上
     nwPosMove(ev, left, top, lDir) {
