@@ -39,6 +39,20 @@
     <br>
     <br>
     <br>
+    <h3>自定义用法</h3>
+    <emfe-smscode-c className="demo" v-model="model" times="6" @blur="blur" @click="click" :timeStart="start" :end="timeEnd" :errOk="true">
+      <div slot="error">请输入验证码</div>
+    </emfe-smscode-c>
+    <br>
+    点击次数: {{ num }}
+    {{ model }}
+    <pre>
+      &lt;emfe-smscode-c className="demo" v-model="model" times="6" @click="click" :timeStart="start" :end="timeEnd" :errorOk="true"&gt;&lt;/emfe-smscode-c&gt;
+    </pre>
+    <br>
+    <br>
+    <br>
+    <br>
     <h3>API</h3>
     <table style="width: 100%;text-align: center;">
       <thead>
@@ -50,7 +64,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr
           <td>className</td>
           <td>需要修改的样式</td>
           <td>String</td>
@@ -79,6 +93,12 @@
           <td>默认提示文字</td>
           <td>String</td>
           <td>请输入验证码</td>
+        </tr>
+        <tr>
+          <td>errorOk</td>
+          <td>错误提示</td>
+          <td>Boolean</td>
+          <td>false</td>
         </tr>
       </tbody>
     </table>

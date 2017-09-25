@@ -1,6 +1,6 @@
 <template>
-  <div class="emfe-tel" :class="telName" v-emfe-documentclick="close">
-    <div class="emfe-tel-prefix" :class="prefixName" @click.stop="toggle">
+  <div class="emfe-tel" :class="[telName, {'emfe-tel-input-error': errOk}]" v-emfe-documentclick="close">
+    <div class="emfe-tel-prefix" :class="[prefixName, {'emfe-tel-input-error-right': errOk}]" @click.stop="toggle">
       <img class="emfe-tel-prefix-piece" :src="nowData.url" :alt="nowData.name" v-show="nowData.url">
       <span class="emfe-tel-prefix-text" :class="prefixTextName">+{{ nowData.prefix }}</span>
       <ul class="emfe-tel-prefix-flag" v-show="flagStatus">
@@ -12,6 +12,7 @@
       </ul>
     </div>
     <input :type="type" class="emfe-tel-input" :class="inputName" :placeholder="placeholder" :value="nowData.tel" @input="telChange" @blur="telBlur">
+    <div class="emfe-tel-error" :class="addErrorText" v-if="errOk"><slot name="error"></slot></div>
   </div>
 </template>
 <script>
@@ -48,6 +49,10 @@ export default {
       default: 'number',
     },
     className: String,
+    errOk: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     telName() {
@@ -75,6 +80,13 @@ export default {
       return [
         {
           [`${this.className}-tel-input`]: !!this.className,
+        },
+      ];
+    },
+    addErrorText() {
+      return [
+        {
+          [`${this.className}-tel-error`]: !!this.className,
         },
       ];
     },
