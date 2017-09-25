@@ -11,7 +11,8 @@
           <emfe-transition name="gradual">
             <ul class="emfe-bar-c-childlist" v-show="childrenIndex == childrenDataIndex">
               <li class="emfe-bar-c-childitem" v-for="child in childrenData.children">
-                <router-link :to="child.routers" class="emfe-bar-c-childlink" :class="{' emfe-bar-c-childlink-disabled': isDisabled}">{{ child.title }}</router-link>
+                <a :href="child.routers.url" v-if="child.routers.url" class="emfe-bar-c-childlink" :class="{' emfe-bar-c-childlink-disabled': isDisabled}">{{ child.title }}</a>
+                <router-link v-else :to="child.routers" class="emfe-bar-c-childlink" :class="{' emfe-bar-c-childlink-disabled': isDisabled}">{{ child.title }}</router-link>
               </li>
             </ul>
           </emfe-transition>

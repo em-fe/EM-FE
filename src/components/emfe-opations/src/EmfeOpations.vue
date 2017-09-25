@@ -235,10 +235,8 @@ export default {
         this.clickFlg = !val;
       }
     },
-    opationsData(val, oldVal) {
-      if (val !== oldVal) {
-        this.handleData();
-      }
+    opationsData() {
+      this.handleData();
     },
   },
 };

@@ -1,8 +1,8 @@
-.#{$prefix}panel-c {
+.#{$prefix}panel {
   @include border();
   @include clearfix();
 
-  padding: 20px 30px;
+  padding: 20px 5px 20px 30px;
 
   &-logobox {
     width: 85px;
@@ -24,7 +24,7 @@
 
     &-about {
       @include clearfix();
-      @include border(bottom, $border-color, 1px, dashed);
+      @include border(bottom, $button-color-default, 1px, dashed);
 
       padding: 8px 0 20px;
       margin: 0 0 20px;
@@ -33,14 +33,21 @@
         width: 15px;
         height: 15px;
         float: left;
-        margin: 2px 5px 0 0;
+        margin: 0 5px 0 0;
+      }
+
+      &-link {
+        font-size: 12px;
+        line-height: 20px;
+        float: left;
+        margin: 0 0 0 20px;
       }
 
       &-text {
         font-size: 12px;
         color: $text-color-default;
         padding: 0 0 0 20px;
-        line-height: 1;
+        line-height: 18px;
         float: left;
 
         &:first-child {
@@ -55,6 +62,58 @@
         }
       }
     }
+
+    &-member {
+      position: relative;
+      float: left;
+    }
+
+    &-youhui {
+      line-height: 20px;
+      font-size: 12px;
+      width: 78px;
+      background: $btn-danger;
+      position: absolute;
+      left: 0;
+      top: -20px;
+      text-align: center;
+      color: $background-color-write;
+      border-radius: 10px;
+    }
+
+    &-info {
+      &-text {
+        font-size: 12px;
+        color: $text-color-default;
+        line-height: 1;
+        float: left;
+      }
+    }
+  }
+
+  &-orderbox {
+    float: right;
+    display: flex;
+    padding-top: 8px;
+
+    &-item {
+      text-align: center;
+      margin: 0 20px;
+    }
+
+    &-img {
+      display: block;
+      width: 40px;
+      height: 40px;
+      margin: 0 auto;
+    }
+
+    &-text {
+      font-size: 14px;
+      color: $text-color-default;
+      line-height: 1;
+      padding: 20px 0 0;
+    }
   }
 
   &-link {
@@ -66,7 +125,7 @@
   }
 
   &-upload {
-    @include border(all, $border-color, 1px, dashed);
+    @include border(all, $button-color-default, 1px, dashed);
 
     width: 85px;
     height: 85px;
