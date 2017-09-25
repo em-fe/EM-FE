@@ -1,8 +1,8 @@
 <template>
   <div class="emfe-smscode-c" :class="smscodeName">
-    <emfe-input :errOk="errorOk" :iconOk="iconFlg" :iconType="icon" :placeholder="placeholder" className="emfe-smscode-c" :value="nowData" @change="change" @blur="blur" >
+    <emfe-input :errOk="errOk" :iconOk="iconFlg" :iconType="icon" :placeholder="placeholder" className="emfe-smscode-c" :value="nowData" @change="change" @blur="blur" >
       <div slot="error">
-        <slot name="errorText"></slot>
+        <slot name="error"></slot>
       </div>
     </emfe-input>
     <emfe-button-c theme='primary' @click="clickFn" className="emfe-smscode-c">{{ btnText }}</emfe-button-c>
@@ -60,7 +60,7 @@ export default {
       type: Function,
       default: () => {},
     },
-    errorOk: {
+    errOk: {
       type: Boolean,
       default: false,
     },
