@@ -65,9 +65,9 @@ export default {
   data() {
     return {
       checkedNames: ['Jack'],
-      checkVals: ['esfa','2'],
+      checkVals: ['esfa','2','2','2','2', '2', '2', '2'],
       datas: '',
-      data1Checked: ['1', '2'],
+      data1Checked: ['1', '2', '2', '2', '2', '2'],
       data1: [
         {
           name: '1',
@@ -81,6 +81,16 @@ export default {
         },
         {
           name: '3',
+          checked: false,
+          disabled: false,
+        },
+        {
+          name: 'esfa',
+          checked: false,
+          disabled: false,
+        },
+        {
+          name: 'esfa',
           checked: false,
           disabled: false,
         },

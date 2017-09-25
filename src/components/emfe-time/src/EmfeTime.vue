@@ -17,17 +17,17 @@
     <emfe-transition name="fade">
       <div class="emfe-time-box" v-show="status" :class="{'emfe-time-box-position': !open}">
         <div class="emfe-time-main">
-          <div class="emfe-time-item" :class="itemName" v-emfe-iscroll="Contant.ISCROLL_CONFIG">
+          <div class="emfe-time-item" :class="itemName">
             <ul class="emfe-time-list">
               <li class="emfe-time-list-item" v-for="hourLoop in hours" :class="{'emfe-time-list-item-on': hourLoop.num === hour, 'emfe-time-list-item-disable': hourLoop.undo}" @click.stop="choiceHour(hourLoop)">{{ hourLoop.num }}</li>
             </ul>
           </div>
-          <div class="emfe-time-item" :class="itemName" v-emfe-iscroll="Contant.ISCROLL_CONFIG">
+          <div class="emfe-time-item" :class="itemName">
             <ul class="emfe-time-list">
               <li class="emfe-time-list-item" v-for="minuteLoop in minutes" :class="{'emfe-time-list-item-on': minuteLoop.num === minute, 'emfe-time-list-item-disable': minuteLoop.undo}" @click.stop="choiceMinute(minuteLoop)">{{ minuteLoop.num }}</li>
             </ul>
           </div>
-          <div class="emfe-time-item" :class="itemName" v-emfe-iscroll="Contant.ISCROLL_CONFIG">
+          <div class="emfe-time-item" :class="itemName">
             <ul class="emfe-time-list">
               <li class="emfe-time-list-item" v-for="(secondLoop, secondIndex) in seconds" :class="{'emfe-time-list-item-on': secondLoop.num === second, 'emfe-time-list-item-disable': secondLoop.undo}" @click.stop="choiceSecond(secondLoop)">{{ secondLoop.num }}</li>
             </ul>

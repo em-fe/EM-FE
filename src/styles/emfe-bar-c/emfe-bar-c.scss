@@ -8,7 +8,6 @@ $bar-top: 64px;
   border-bottom: none;
   float: left;
   height: 100%;
-  overflow: scroll;
   background: $background-color-main;
   position: absolute;
   bottom: 0;
@@ -18,7 +17,7 @@ $bar-top: 64px;
   &-iscroll {
     height: calc(100% - 48px);
     position: relative;
-    overflow: hidden;
+    overflow: auto;
   }
 
   &-item {
