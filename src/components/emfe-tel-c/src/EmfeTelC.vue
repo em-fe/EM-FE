@@ -12,7 +12,8 @@
         </li>
       </ul>
     </div>
-    <input :type="type" class="emfe-tel-c-input" :class="inputName" :placeholder="placeholder" :value="nowData.tel" @input="telChange" @blur="telBlur">
+    <input v-if="nowData.type === 1" :type="type" class="emfe-tel-c-input" :class="inputName" :placeholder="placeholder" :value="nowData.tel" @input="telChange" @blur="telBlur">
+    <input v-if="nowData.type === 2" :type="type" class="emfe-tel-c-input" :class="inputName" :placeholder="placeholder" :value="nowData.card" @input="telChange" @blur="telBlur">
     <div class="emfe-tel-c-error" :class="addErrorText" v-if="errOk"><slot name="error"></slot></div>
   </div>
 </template>
