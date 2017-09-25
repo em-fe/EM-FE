@@ -1,6 +1,14 @@
 <template>
   <div>
     <emfe-drop className="abc-drop" :opationsData="list"></emfe-drop>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <emfe-button theme="primary" @click="click">点击</emfe-button>
     <pre>
       &lt;emfe-drop className="abc-drop" :opationsData="list"&gt;&lt;/emfe-drop&gt;
     </pre>
@@ -112,38 +120,15 @@ export default {
   name: 'drop-page',
   data() {
     return {
-      list: [
-        {
-          title: 1,
-        },
-        {
-          title: 2,
-        },
-        {
-          title: 3,
-        },
-        {
-          title: 4,
-        },
-        {
-          title: 5,
-        },{
-          title: 6,
-        },
-        {
-          title: 7,
-        },
-        {
-          title: 8,
-        },
-        {
-          title: 9,
-        },
-        {
-          title: 10,
-        },
-      ],
+      list: [],
     };
+  },
+  created() {
+    for (var i = 0; i < 10; i++) {
+      this.list.push({
+        title: i
+      });
+    }
   },
   methods: {
     beforeDrag(e) {
@@ -158,6 +143,11 @@ export default {
     hit() {
       console.log('afterDrag');
     },
+    click() {
+      this.list.push({
+        title: 111,
+      });
+    }
   },
 };
 </script>

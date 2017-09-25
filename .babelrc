@@ -5,6 +5,7 @@
   ],
   "plugins": [
     "transform-runtime",
+    "dynamic-import-webpack"
   ],
   "comments": false,
   "env": {
