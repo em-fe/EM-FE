@@ -62,35 +62,35 @@ export default {
     telName() {
       return [
         {
-          [`${this.className}-tel`]: !!this.className,
+          [`${this.className}-tel-c`]: !!this.className,
         },
       ];
     },
     prefixName() {
       return [
         {
-          [`${this.className}-tel-prefix`]: !!this.className,
+          [`${this.className}-tel-c-prefix`]: !!this.className,
         },
       ];
     },
     prefixTextName() {
       return [
         {
-          [`${this.className}-tel-prefix-text`]: !!this.className,
+          [`${this.className}-tel-c-prefix-text`]: !!this.className,
         },
       ];
     },
     inputName() {
       return [
         {
-          [`${this.className}-tel-input`]: !!this.className,
+          [`${this.className}-tel-c-input`]: !!this.className,
         },
       ];
     },
     addErrorText() {
       return [
         {
-          [`${this.className}-tel-error`]: !!this.className,
+          [`${this.className}-tel-c-error`]: !!this.className,
         },
       ];
     },

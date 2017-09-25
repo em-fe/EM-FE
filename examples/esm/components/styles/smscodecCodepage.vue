@@ -24,11 +24,22 @@
     <br>
     <br>
     <h3>自定义用法</h3>
-    <emfe-smscode-c className="demo" v-model="model" times="6" @blur="blur" @click="click" :timeStart="start" :end="timeEnd"></emfe-smscode-c>
+    <emfe-smscode-c className="demo" v-model="model" times="6" @blur="blur" @click="click" :timeStart="start" :end="timeEnd">
+      <div slot="errorText">请输入验证码</div>
+    </emfe-smscode-c>
     点击次数: {{ num }}
     {{ model }}
     <pre>
       &lt;emfe-smscode-c className="demo" v-model="model" times="6" @click="click" :timeStart="start" :end="timeEnd"&gt;&lt;/emfe-smscode-c&gt;
+    </pre>
+    <emfe-smscode-c className="demo" v-model="model" times="6" @blur="blur" @click="click" :timeStart="start" :end="timeEnd" :errorOk="true">
+      <div slot="errorText">请输入验证码</div>
+    </emfe-smscode-c>
+    <br>
+    点击次数: {{ num }}
+    {{ model }}
+    <pre>
+      &lt;emfe-smscode-c className="demo" v-model="model" times="6" @click="click" :timeStart="start" :end="timeEnd" :errorOk="true"&gt;&lt;/emfe-smscode-c&gt;
     </pre>
     <br>
     <br>
@@ -74,6 +85,12 @@
           <td>默认提示文字</td>
           <td>String</td>
           <td>请输入验证码</td>
+        </tr>
+        <tr>
+          <td>errorOk</td>
+          <td>错误提示</td>
+          <td>Boolean</td>
+          <td>false</td>
         </tr>
       </tbody>
     </table>
