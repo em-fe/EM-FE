@@ -105,7 +105,6 @@ export default {
       this.$emit('input', this.nowData);
     },
     telChange(ev) {
-      console.log(this.nowData);
       if (this.nowData.type === 1) {
         this.nowData.tel = ev.target.value;
       } else {
