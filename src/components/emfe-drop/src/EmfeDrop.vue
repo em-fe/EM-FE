@@ -55,6 +55,7 @@ export default {
   },
   methods: {
     handleData() {
+      this.datas = [];
       this.opationsData.forEach((od, odIndex) => {
         const newOd = {
           title: od.title,
@@ -198,6 +199,11 @@ export default {
       }
       this.clickFlg = false;
       this.$emit('otherplus', this.datas[this.datas.length - 1], this.datas.length - 1);
+    },
+  },
+  watch: {
+    opationsData() {
+      this.handleData();
     },
   },
 };

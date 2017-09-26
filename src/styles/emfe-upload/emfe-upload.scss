@@ -93,7 +93,7 @@
     position: relative;
     width: 160px;
     height: 160px;
-    overflow: hidden;
+    // overflow: hidden;
 
     &-box {
       @include border(all, $border-color, 1px, dashed);

@@ -1,5 +1,5 @@
 /*!
- * EMFE.js v1.0.16
+ * EMFE.js v1.0.19
  * (c) 2014-2017 李梦龙
  * Released under the MIT License.
  */
@@ -39,7 +39,7 @@ var O = {
 var childrenLast = -1; // 记录上一个点击的二级手风琴的索引
 
 var EmfeBar$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-bar",class:_vm.barName},[_c('h3',{staticClass:"emfe-bar-header"},[_vm._v(_vm._s(_vm.title))]),_vm._v(" "),_c('div',{directives:[{name:"emfe-iscroll",rawName:"v-emfe-iscroll",value:(_vm.Contant.ISCROLL_CONFIG),expression:"Contant.ISCROLL_CONFIG"}],staticClass:"emfe-bar-iscroll"},[_c('ul',{staticClass:"emfe-bar-list"},[_vm._l((_vm.datas),function(childrenData,childrenDataIndex){return [(!childrenData.children)?_c('li',{staticClass:"emfe-bar-item"},[_c('router-link',{staticClass:"emfe-bar-link",class:{' emfe-bar-link-disabled': _vm.isDisabled},attrs:{"to":childrenData.routers}},[_vm._v(_vm._s(childrenData.title))])],1):_c('li',{staticClass:"emfe-bar-item",class:{'emfe-bar-item-on': _vm.childrenIndex == childrenDataIndex}},[_c('span',{staticClass:"emfe-bar-btn",class:{' emfe-bar-btn-disabled': _vm.isDisabled},attrs:{"href":"javascript:;"},on:{"click":function($event){_vm.toogleChild(childrenDataIndex);}}},[_vm._v(_vm._s(childrenData.title))]),_vm._v(" "),_c('i',{staticClass:"emfe-bar-arrow"}),_vm._v(" "),_c('emfe-transition',{attrs:{"name":"gradual"}},[_c('ul',{directives:[{name:"show",rawName:"v-show",value:(_vm.childrenIndex == childrenDataIndex),expression:"childrenIndex == childrenDataIndex"}],staticClass:"emfe-bar-childlist"},_vm._l((childrenData.children),function(child){return _c('li',{staticClass:"emfe-bar-childitem"},[_c('router-link',{staticClass:"emfe-bar-childlink",class:{' emfe-bar-childlink-disabled': _vm.isDisabled},attrs:{"to":child.routers}},[_vm._v(_vm._s(child.title))])],1)}))])],1)]})],2)])])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-bar",class:_vm.barName},[_c('h3',{staticClass:"emfe-bar-header"},[_vm._v(_vm._s(_vm.title))]),_vm._v(" "),_c('div',{staticClass:"emfe-bar-iscroll"},[_c('ul',{staticClass:"emfe-bar-list"},[_vm._l((_vm.datas),function(childrenData,childrenDataIndex){return [(!childrenData.children)?_c('li',{staticClass:"emfe-bar-item"},[_c('router-link',{staticClass:"emfe-bar-link",class:{' emfe-bar-link-disabled': _vm.isDisabled},attrs:{"to":childrenData.routers}},[_vm._v(_vm._s(childrenData.title))])],1):_c('li',{staticClass:"emfe-bar-item",class:{'emfe-bar-item-on': _vm.childrenIndex == childrenDataIndex}},[_c('span',{staticClass:"emfe-bar-btn",class:{' emfe-bar-btn-disabled': _vm.isDisabled},attrs:{"href":"javascript:;"},on:{"click":function($event){_vm.toogleChild(childrenDataIndex);}}},[_vm._v(_vm._s(childrenData.title))]),_vm._v(" "),_c('i',{staticClass:"emfe-bar-arrow"}),_vm._v(" "),_c('emfe-transition',{attrs:{"name":"gradual"}},[_c('ul',{directives:[{name:"show",rawName:"v-show",value:(_vm.childrenIndex == childrenDataIndex),expression:"childrenIndex == childrenDataIndex"}],staticClass:"emfe-bar-childlist"},_vm._l((childrenData.children),function(child){return _c('li',{staticClass:"emfe-bar-childitem"},[_c('router-link',{staticClass:"emfe-bar-childlink",class:{' emfe-bar-childlink-disabled': _vm.isDisabled},attrs:{"to":child.routers}},[_vm._v(_vm._s(child.title))])],1)}))])],1)]})],2)])])},
 staticRenderFns: [],
   name: 'EmfeBar',
   data: function data() {
@@ -140,7 +140,7 @@ EmfeBar$1.install = function (Vue$$1) {
 var childrenLast$1 = -1; // 记录上一个点击的二级手风琴的索引
 
 var EmfeBarC$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-bar-c",class:_vm.barName},[_c('ul',{staticClass:"emfe-bar-c-list"},[_vm._l((_vm.datas),function(childrenData,childrenDataIndex){return [(!childrenData.children)?_c('li',{staticClass:"emfe-bar-c-item"},[_c('router-link',{staticClass:"emfe-bar-c-link",class:{' emfe-bar-c-link-disabled': _vm.isDisabled},attrs:{"to":childrenData.routers}},[_vm._v(_vm._s(childrenData.title))])],1):_c('li',{staticClass:"emfe-bar-c-item",class:{'emfe-bar-c-item-on': _vm.childrenIndex == childrenDataIndex}},[_c('span',{staticClass:"emfe-bar-c-btn",class:{' emfe-bar-c-btn-disabled': _vm.isDisabled},attrs:{"href":"javascript:;"},on:{"click":function($event){_vm.toogleChild(childrenDataIndex);}}},[_vm._v(_vm._s(childrenData.title))]),_vm._v(" "),_c('i',{staticClass:"emfe-bar-c-arrow"}),_vm._v(" "),_c('emfe-transition',{attrs:{"name":"gradual"}},[_c('ul',{directives:[{name:"show",rawName:"v-show",value:(_vm.childrenIndex == childrenDataIndex),expression:"childrenIndex == childrenDataIndex"}],staticClass:"emfe-bar-c-childlist"},_vm._l((childrenData.children),function(child){return _c('li',{staticClass:"emfe-bar-c-childitem"},[_c('router-link',{staticClass:"emfe-bar-c-childlink",class:{' emfe-bar-c-childlink-disabled': _vm.isDisabled},attrs:{"to":child.routers}},[_vm._v(_vm._s(child.title))])],1)}))])],1)]})],2)])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-bar-c",class:_vm.barName},[_c('ul',{staticClass:"emfe-bar-c-list"},[_vm._l((_vm.datas),function(childrenData,childrenDataIndex){return [(!childrenData.children)?_c('li',{staticClass:"emfe-bar-c-item"},[_c('router-link',{staticClass:"emfe-bar-c-link",class:{' emfe-bar-c-link-disabled': _vm.isDisabled},attrs:{"to":childrenData.routers}},[_vm._v(_vm._s(childrenData.title))])],1):_c('li',{staticClass:"emfe-bar-c-item",class:{'emfe-bar-c-item-on': _vm.childrenIndex == childrenDataIndex}},[_c('span',{staticClass:"emfe-bar-c-btn",class:{' emfe-bar-c-btn-disabled': _vm.isDisabled},attrs:{"href":"javascript:;"},on:{"click":function($event){_vm.toogleChild(childrenDataIndex);}}},[_vm._v(_vm._s(childrenData.title))]),_vm._v(" "),_c('i',{staticClass:"emfe-bar-c-arrow"}),_vm._v(" "),_c('emfe-transition',{attrs:{"name":"gradual"}},[_c('ul',{directives:[{name:"show",rawName:"v-show",value:(_vm.childrenIndex == childrenDataIndex),expression:"childrenIndex == childrenDataIndex"}],staticClass:"emfe-bar-c-childlist"},_vm._l((childrenData.children),function(child){return _c('li',{staticClass:"emfe-bar-c-childitem"},[(child.routers.url)?_c('a',{staticClass:"emfe-bar-c-childlink",class:{' emfe-bar-c-childlink-disabled': _vm.isDisabled},attrs:{"href":child.routers.url}},[_vm._v(_vm._s(child.title))]):_c('router-link',{staticClass:"emfe-bar-c-childlink",class:{' emfe-bar-c-childlink-disabled': _vm.isDisabled},attrs:{"to":child.routers}},[_vm._v(_vm._s(child.title))])],1)}))])],1)]})],2)])},
 staticRenderFns: [],
   name: 'EmfeBarC',
   data: function data() {
@@ -1010,7 +1010,7 @@ var childrenLast$2 = -1; // 记录上一个点击的二级手风琴的索引
 var screenMd = ''; // 屏幕是否大于992
 
 var EmfeMenu$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"menu",staticClass:"emfe-menu",class:_vm.menuName},[_c('div',{staticClass:"emfe-menu-main"},[_c('button',{staticClass:"emfe-menu-main-header",on:{"click":_vm.menuToShort}},[(_vm.menuShort)?_c('emfe-icon',{staticClass:"emfe-menu-main-sidebar",attrs:{"type":"cedaohangshouqi"},on:{"icon-click":_vm.menuToShort}}):_c('emfe-icon',{staticClass:"emfe-menu-main-sidebar",attrs:{"type":"cedaohangzhankai"},on:{"icon-click":_vm.menuToShort}})],1),_vm._v(" "),_c('div',{directives:[{name:"emfe-iscroll",rawName:"v-emfe-iscroll",value:(_vm.Contant.ISCROLL_CONFIG),expression:"Contant.ISCROLL_CONFIG"}],staticClass:"emfe-menu-iscroll"},[_c('ul',{staticClass:"emfe-menu-main-list"},_vm._l((_vm.datas),function(data,dataIndex){return _c('li',{staticClass:"emfe-menu-main-item"},[(data.routers)?_c('a',{staticClass:"emfe-menu-main-link",class:{'emfe-menu-main-link-on': _vm.mainIndex === dataIndex},attrs:{"href":"javascript:;"},on:{"click":function($event){_vm.tochildren(data);}}},[_c('emfe-tooltip',{attrs:{"className":"emfe-menu","placement":"right","disable":!_vm.menuShort}},[_c('emfe-icon',{staticClass:"emfe-menu-main-icon",attrs:{"type":data.icon},on:{"icon-click":function($event){_vm.tochildren(data);}},slot:"render"}),_vm._v(" "),_c('span',{slot:"tip"},[_vm._v(_vm._s(data.title))])],1),_vm._v(" "),_c('span',{staticClass:"emfe-menu-main-text"},[_vm._v(_vm._s(data.title))])],1):_c('a',{staticClass:"emfe-menu-main-link",class:{'emfe-menu-main-link-on': _vm.mainIndex === dataIndex},attrs:{"href":"javascript:;"},on:{"click":function($event){_vm.tochildren(data);}}},[_c('emfe-tooltip',{attrs:{"className":"emfe-menu","placement":"right","disable":!_vm.menuShort}},[_c('emfe-icon',{staticClass:"emfe-menu-main-icon",attrs:{"type":data.icon},on:{"icon-click":function($event){_vm.tochildren(data);}},slot:"render"}),_vm._v(" "),_c('span',{slot:"tip"},[_vm._v(_vm._s(data.title))])],1),_vm._v(" "),_c('span',{staticClass:"emfe-menu-main-text"},[_vm._v(_vm._s(data.title))])],1)])}))])]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.childrentatus),expression:"childrentatus"}],staticClass:"emfe-menu-minor"},[_c('h3',{staticClass:"emfe-menu-minor-header"},[_vm._v(_vm._s(_vm.childrenTitle))]),_vm._v(" "),_c('div',{directives:[{name:"emfe-iscroll",rawName:"v-emfe-iscroll",value:(_vm.Contant.ISCROLL_CONFIG),expression:"Contant.ISCROLL_CONFIG"}],staticClass:"emfe-menu-minor-iscroll"},[_c('ul',{staticClass:"emfe-menu-minor-list"},[_vm._l((_vm.childrenDatas),function(childrenData,childrenDataIndex){return [(!childrenData.children)?_c('li',{staticClass:"emfe-menu-minor-item"},[_c('router-link',{staticClass:"emfe-menu-minor-link",attrs:{"to":childrenData.routers}},[_vm._v(_vm._s(childrenData.title))])],1):_c('li',{staticClass:"emfe-menu-minor-item",class:{'emfe-menu-minor-item-on': _vm.childrenIndex == childrenDataIndex}},[_c('span',{staticClass:"emfe-menu-minor-btn",attrs:{"href":"javascript:;"},on:{"click":function($event){_vm.toogleChild(childrenDataIndex);}}},[_vm._v(_vm._s(childrenData.title))]),_vm._v(" "),_c('i',{staticClass:"emfe-menu-minor-arrow"}),_vm._v(" "),_c('emfe-transition',{attrs:{"name":"gradual"}},[_c('ul',{directives:[{name:"show",rawName:"v-show",value:(_vm.childrenIndex == childrenDataIndex),expression:"childrenIndex == childrenDataIndex"}],staticClass:"emfe-menu-minor-childlist"},_vm._l((childrenData.children),function(child){return _c('li',{staticClass:"emfe-menu-minor-childitem"},[_c('router-link',{staticClass:"emfe-menu-minor-childlink",attrs:{"to":child.routers}},[_vm._v(_vm._s(child.title))])],1)}))])],1)]})],2)])])])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"menu",staticClass:"emfe-menu",class:_vm.menuName},[_c('div',{staticClass:"emfe-menu-main"},[_c('button',{staticClass:"emfe-menu-main-header",on:{"click":_vm.menuToShort}},[(_vm.menuShort)?_c('emfe-icon',{staticClass:"emfe-menu-main-sidebar",attrs:{"type":"cedaohangshouqi"},on:{"icon-click":_vm.menuToShort}}):_c('emfe-icon',{staticClass:"emfe-menu-main-sidebar",attrs:{"type":"cedaohangzhankai"},on:{"icon-click":_vm.menuToShort}})],1),_vm._v(" "),_c('div',{staticClass:"emfe-menu-iscroll"},[_c('ul',{staticClass:"emfe-menu-main-list"},_vm._l((_vm.datas),function(data,dataIndex){return _c('li',{staticClass:"emfe-menu-main-item"},[(data.routers)?_c('a',{staticClass:"emfe-menu-main-link",class:{'emfe-menu-main-link-on': _vm.mainIndex === dataIndex},attrs:{"href":"javascript:;"},on:{"click":function($event){_vm.tochildren(data);}}},[_c('emfe-tooltip',{attrs:{"className":"emfe-menu","placement":"right","disable":!_vm.menuShort}},[_c('emfe-icon',{staticClass:"emfe-menu-main-icon",attrs:{"type":data.icon},on:{"icon-click":function($event){_vm.tochildren(data);}},slot:"render"}),_vm._v(" "),_c('span',{slot:"tip"},[_vm._v(_vm._s(data.title))])],1),_vm._v(" "),_c('span',{staticClass:"emfe-menu-main-text"},[_vm._v(_vm._s(data.title))])],1):_c('a',{staticClass:"emfe-menu-main-link",class:{'emfe-menu-main-link-on': _vm.mainIndex === dataIndex},attrs:{"href":"javascript:;"},on:{"click":function($event){_vm.tochildren(data);}}},[_c('emfe-tooltip',{attrs:{"className":"emfe-menu","placement":"right","disable":!_vm.menuShort}},[_c('emfe-icon',{staticClass:"emfe-menu-main-icon",attrs:{"type":data.icon},on:{"icon-click":function($event){_vm.tochildren(data);}},slot:"render"}),_vm._v(" "),_c('span',{slot:"tip"},[_vm._v(_vm._s(data.title))])],1),_vm._v(" "),_c('span',{staticClass:"emfe-menu-main-text"},[_vm._v(_vm._s(data.title))])],1)])}))])]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.childrentatus),expression:"childrentatus"}],staticClass:"emfe-menu-minor"},[_c('h3',{staticClass:"emfe-menu-minor-header"},[_vm._v(_vm._s(_vm.childrenTitle))]),_vm._v(" "),_c('div',{staticClass:"emfe-menu-minor-iscroll"},[_c('ul',{staticClass:"emfe-menu-minor-list"},[_vm._l((_vm.childrenDatas),function(childrenData,childrenDataIndex){return [(!childrenData.children)?_c('li',{staticClass:"emfe-menu-minor-item"},[_c('router-link',{staticClass:"emfe-menu-minor-link",attrs:{"to":childrenData.routers}},[_vm._v(_vm._s(childrenData.title))])],1):_c('li',{staticClass:"emfe-menu-minor-item",class:{'emfe-menu-minor-item-on': _vm.childrenIndex == childrenDataIndex}},[_c('span',{staticClass:"emfe-menu-minor-btn",attrs:{"href":"javascript:;"},on:{"click":function($event){_vm.toogleChild(childrenDataIndex);}}},[_vm._v(_vm._s(childrenData.title))]),_vm._v(" "),_c('i',{staticClass:"emfe-menu-minor-arrow"}),_vm._v(" "),_c('emfe-transition',{attrs:{"name":"gradual"}},[_c('ul',{directives:[{name:"show",rawName:"v-show",value:(_vm.childrenIndex == childrenDataIndex),expression:"childrenIndex == childrenDataIndex"}],staticClass:"emfe-menu-minor-childlist"},_vm._l((childrenData.children),function(child){return _c('li',{staticClass:"emfe-menu-minor-childitem"},[_c('router-link',{staticClass:"emfe-menu-minor-childlink",attrs:{"to":child.routers}},[_vm._v(_vm._s(child.title))])],1)}))])],1)]})],2)])])])},
 staticRenderFns: [],
   name: 'EmfeMenu',
   data: function data() {
@@ -1263,13 +1263,17 @@ EmfeFooterC$1.install = function (Vue$$1) {
 };
 
 var EmfeCopy$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-copy",class:_vm.copyName},[_c('span',{class:_vm.textName},[_vm._v("表单页面：")]),_vm._v(" "),_c('input',{ref:"copyInput",class:_vm.valueName,attrs:{"readonly":_vm.read},domProps:{"value":_vm.copyValue}}),_vm._v(" "),_c('button',{staticClass:"emfe-copy-btn",class:_vm.btnName,on:{"click":_vm.copyHandle}},[_c('emfe-icon',{class:_vm.iconName,attrs:{"type":"fuzhi"},on:{"icon-click":_vm.copyHandle}})],1)])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-copy",class:_vm.copyName},[_c('span',{class:_vm.textName},[_vm._v(_vm._s(_vm.text)+"：")]),_vm._v(" "),_c('span',{class:_vm.valueName},[_vm._v(_vm._s(_vm.copyValue))]),_vm._v(" "),_c('button',{staticClass:"emfe-copy-btn",class:_vm.btnName,on:{"click":_vm.copyHandle}},[_c('emfe-icon',{staticClass:"emfe-copy-btn-icon",class:_vm.iconName,attrs:{"type":"fuzhi"},on:{"icon-click":_vm.copyHandle}})],1)])},
 staticRenderFns: [],
   name: 'EmfeCopy',
   props: {
     className: String,
     copyValue: String,
     read: [String, Boolean],
+    text: {
+      type: String,
+      default: '表单页面',
+    },
   },
   computed: {
     copyName: function copyName() {
@@ -1290,9 +1294,8 @@ staticRenderFns: [],
   },
   methods: {
     copyHandle: function copyHandle() {
-      var ref = this.$refs;
-      var copyInput = ref.copyInput;
-      copyInput.select();
+      // const { copyInput } = this.$refs;
+      // copyInput.select();
       try {
         if (document.execCommand('copy', false, null)) {
           document.execCommand('Copy');
@@ -1303,7 +1306,7 @@ staticRenderFns: [],
       } catch (err) {
         this.$emit('copyFail');
       }
-      copyInput.blur();
+      // copyInput.blur();
     },
   },
 };
@@ -1700,18 +1703,21 @@ staticRenderFns: [],
     if (this.url) {
       this.initImg();
     }
-    // 有截取器
-    if (this.intercept.length > 0) {
-      if (this.intercept.length > 1) {
-        this.interceptCanvasWidth = this.intercept[0];
-        this.interceptCanvasHeight = this.intercept[1];
-      } else if (this.intercept.length === 1) {
-        this.interceptCanvasWidth = this.intercept[0];
-        this.interceptCanvasHeight = this.intercept[0];
-      }
-    }
+    this.initIntercept();
   },
   methods: {
+    initIntercept: function initIntercept() {
+      // 有截取器
+      if (this.intercept.length > 0) {
+        if (this.intercept.length > 1) {
+          this.interceptCanvasWidth = this.intercept[0];
+          this.interceptCanvasHeight = this.intercept[1];
+        } else if (this.intercept.length === 1) {
+          this.interceptCanvasWidth = this.intercept[0];
+          this.interceptCanvasHeight = this.intercept[0];
+        }
+      }
+    },
     initImg: function initImg() {
       var this$1 = this;
 
@@ -1770,18 +1776,27 @@ staticRenderFns: [],
     },
     // 角部拖拽改变大小
     pointMoveChangeSize: function pointMoveChangeSize(ev, left, lDir, type) {
+      var cWidth = this.interceptCanvasWidth;
+      var cHeight = this.interceptCanvasHeight;
       var widthStep = -left;
       // 左上 || 左下
       if (type === 'nw' || type === 'sw') {
         var lChange = pointOldLeft - left;
         widthStep = lChange;
       }
-      var heightStep = (this.interceptCanvasHeight * widthStep) / this.interceptCanvasWidth;
+      var heightStep = (cHeight * widthStep) / cWidth;
+      var canWidth = this.intercept[0] < cWidth + widthStep;
+      var canHeight = this.intercept[1] < cHeight + heightStep;
+      // 拖动左边的，x不能超出去，拖动右边的，宽度不能超过去
+      var heng = this.interceptLeft >= 0 && this.interceptLeft + cWidth <= this.dragWidth - 5;
+      var shu = this.interceptLeft >= 0 && this.interceptTop + cHeight <= this.dragHeight - 5;
 
-      if (this.interceptCanvasWidth + widthStep >= this.intercept[0] &&
-        this.interceptCanvasWidth + widthStep <= this.dragWidth - this.interceptLeft) {
+      if (heng && shu && canWidth && canHeight) {
         this.interceptCanvasWidth += widthStep;
         this.interceptCanvasHeight += heightStep;
+      }
+
+      if (heng && shu) {
         // 左上 || 左下
         if (type === 'nw' || type === 'sw') {
           this.interceptLeft -= widthStep;
@@ -1996,6 +2011,7 @@ staticRenderFns: [],
       }
       this.dragWidth = 'auto';
       this.dragHeight = 400;
+      this.initIntercept();
     },
     canLoad: function canLoad() {
       this.canUpload = true;
@@ -2137,6 +2153,11 @@ staticRenderFns: [],
       var downLeft = e.clientX - this.parentLeft;
 
       if (this.dragEl && this.dragEl.length > 0) {
+        // 有可能会变宽高，比如截取器
+        this.elWidth = this.dragEl[0].clientWidth;
+        this.elHeight = this.dragEl[0].clientHeight;
+        var elEleWidth = this.$el.clientWidth;
+        var elEleHeight = this.$el.clientHeight;
         downTop -= this.parentPaddingTop;
         downTop += this.scrollTop;
         downLeft -= this.parentPaddingLeft;
@@ -2149,6 +2170,17 @@ staticRenderFns: [],
           downLeft += this.initialValue;
         }
         this.dragEl.forEach(function (dragElement) {
+          if (downTop < 0) {
+            downTop = 0;
+          } else if (downTop > elEleHeight - this$1.elHeight) {
+            downTop = elEleHeight - this$1.elHeight;
+          }
+          console.log(downLeft, this$1.elWidth);
+          if (downLeft < 0) {
+            downLeft = 0;
+          } else if (downLeft > elEleWidth - this$1.elWidth) {
+            downLeft = elEleWidth - this$1.elWidth;
+          }
           if (this$1.direction === 'vertical') {
             dragElement.style.top = downTop + "px";
           } else if (this$1.direction === 'horizontal') {
@@ -2158,9 +2190,6 @@ staticRenderFns: [],
             dragElement.style.top = downTop + "px";
           }
         });
-        // 有可能会变宽高，比如截取器
-        this.elWidth = this.dragEl[0].clientWidth;
-        this.elHeight = this.dragEl[0].clientHeight;
       } else {
         // 有可能会变宽高，比如截取器
         this.elWidth = this.$el.clientWidth;
@@ -2196,6 +2225,44 @@ staticRenderFns: [],
         elTop = this.elTop + disPosY;
       }
 
+      var newMovePos = this.testLimit(elLeft, elTop);
+
+      if (this.moveEle) {
+        if (this.dragEl && this.dragEl.length > 0) {
+          this.dragEl.forEach(function (dragElement) {
+            if (this$1.direction === 'vertical') {
+              dragElement.style.top = (newMovePos[1]) + "px";
+            } else if (this$1.direction === 'horizontal') {
+              dragElement.style.left = (newMovePos[0]) + "px";
+            } else {
+              dragElement.style.left = (newMovePos[0]) + "px";
+              dragElement.style.top = (newMovePos[1]) + "px";
+            }
+          });
+        } else {
+          this.dragStyle = "left: " + (newMovePos[0]) + "px; top: " + (newMovePos[1]) + "px";
+          if (this.direction === 'vertical') {
+            this.dragStyle = "top: " + (newMovePos[1]) + "px";
+          } else if (this.direction === 'horizontal') {
+            this.dragStyle = "left: " + (newMovePos[0]) + "px;";
+          }
+        }
+      }
+      this.$emit('drag', e, newMovePos[0], newMovePos[1], refPos.oldX - newMovePos[0], refPos.oldY - newMovePos[1]);
+      refPos.oldX = newMovePos[0];
+      refPos.oldY = newMovePos[1];
+
+      e.stopPropagation();
+      return false;
+    },
+    up: function up(e) {
+      document.removeEventListener('mousemove', this.move, false);
+      document.removeEventListener('mouseup', this.up, false);
+      this.$emit('afterDrag', e);
+    },
+    testLimit: function testLimit(left, top) {
+      var elLeft = left;
+      var elTop = top;
       if (this.limit) {
         if (elLeft + this.elWidth > (this.parentWidth - this.borderSize) + this.elCenter) {
           elLeft = this.parentWidth - this.elWidth;
@@ -2211,37 +2278,7 @@ staticRenderFns: [],
         }
       }
 
-      if (this.moveEle) {
-        if (this.dragEl && this.dragEl.length > 0) {
-          this.dragEl.forEach(function (dragElement) {
-            if (this$1.direction === 'vertical') {
-              dragElement.style.top = elTop + "px";
-            } else if (this$1.direction === 'horizontal') {
-              dragElement.style.left = elLeft + "px";
-            } else {
-              dragElement.style.left = elLeft + "px";
-              dragElement.style.top = elTop + "px";
-            }
-          });
-        } else {
-          this.dragStyle = "left: " + elLeft + "px; top: " + elTop + "px";
-          if (this.direction === 'vertical') {
-            this.dragStyle = "top: " + elTop + "px";
-          } else if (this.direction === 'horizontal') {
-            this.dragStyle = "left: " + elLeft + "px;";
-          }
-        }
-      }
-      this.$emit('drag', e, elLeft, elTop, refPos.oldX - elLeft, refPos.oldY - elTop);
-      refPos.oldX = elLeft;
-      refPos.oldY = elTop;
-
-      e.stopPropagation();
-    },
-    up: function up(e) {
-      document.removeEventListener('mousemove', this.move, false);
-      document.removeEventListener('mouseup', this.up, false);
-      this.$emit('afterDrag', e);
+      return [elLeft, elTop];
     },
   },
   watch: {
@@ -2620,7 +2657,7 @@ var prefixCls$3 = 'emfe-input-box';
 var error = 'error';
 
 var EmfeInput$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-input",class:_vm.addClass,style:(_vm.newStyle)},[_c('div',{class:[_vm.classList]},[(_vm.iconOk)?_c('emfe-icon',{attrs:{"type":_vm.iconType,"className":"emfe-input-box-icon-el"}}):_vm._e(),_vm._v(" "),_c('input',_vm._b({staticClass:"emfe-input-box-input",class:_vm.addInput,attrs:{"type":_vm.type,"placeholder":_vm.newPlaceholder},domProps:{"value":_vm.currentValue},on:{"input":_vm.changeFn,"blur":_vm.blur}},'input',_vm.$props,false))],1),_vm._v(" "),(_vm.errOk)?_c('div',{staticClass:"emfe-input-box-text",class:_vm.addErrorText},[_vm._t("error")],2):_vm._e()])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-input",class:_vm.addClass,style:(_vm.newStyle)},[_c('div',{class:[_vm.classList]},[(_vm.iconOk)?_c('emfe-icon',{attrs:{"type":_vm.iconType,"className":"emfe-input-box-icon-el"}}):_vm._e(),_vm._v(" "),_c('input',_vm._b({staticClass:"emfe-input-box-input",class:_vm.addInput,attrs:{"type":_vm.type,"placeholder":_vm.newPlaceholder,"maxlength":_vm.maxlength},domProps:{"value":_vm.currentValue},on:{"input":_vm.changeFn,"blur":_vm.blur}},'input',_vm.$props,false))],1),_vm._v(" "),(_vm.errOk)?_c('div',{staticClass:"emfe-input-box-text",class:_vm.addErrorText},[_vm._t("error")],2):_vm._e()])},
 staticRenderFns: [],
   name: 'input',
   props: {
@@ -2663,6 +2700,10 @@ staticRenderFns: [],
     type: {
       type: String,
       default: 'text',
+    },
+    maxlength: {
+      type: [String, Number],
+      default: '',
     },
     change: {
       type: Function,
@@ -4201,7 +4242,6 @@ staticRenderFns: [],
     resetDays: function resetDays(year, month) {
       var this$1 = this;
 
-      console.log(year, month, 111);
       var dateCountOfLastMonth = getDayCountOfMonth(year - 0, month - 1);
       this.days = [];
       for (var i = 1; i < dateCountOfLastMonth + 1; i++) {
@@ -4309,7 +4349,7 @@ var secondNum = 60;
 // const zero = '00';
 
 var EmfeTime$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"emfe-documentclick",rawName:"v-emfe-documentclick",value:(_vm.close),expression:"close"}],staticClass:"emfe-time",class:_vm.timeName},[(!_vm.open && !_vm.disabled)?_c('button',{staticClass:"emfe-time-btn",on:{"click":_vm.toggle}},[_c('span',{staticClass:"emfe-time-btn-text",class:{'emfe-time-btn-text-choice': _vm.choiced}},[_vm._v(_vm._s(_vm.time))]),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(!_vm.choiced),expression:"!choiced"}],attrs:{"type":"shijian","className":"emfe-time"},on:{"icon-click":_vm.toggle}}),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(_vm.choiced),expression:"choiced"}],attrs:{"type":"shanchu","className":"emfe-time"},on:{"icon-click":_vm.cancel}})],1):_vm._e(),_vm._v(" "),(!_vm.open && _vm.disabled)?_c('button',{staticClass:"emfe-time-btn emfe-time-btn-disabled"},[_c('span',{staticClass:"emfe-time-btn-text"},[_vm._v(_vm._s(_vm.time))]),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(!_vm.choiced),expression:"!choiced"}],attrs:{"type":"shijian","className":"emfe-time"}}),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(_vm.choiced),expression:"choiced"}],attrs:{"type":"shanchu","className":"emfe-time"}})],1):_vm._e(),_vm._v(" "),_c('emfe-transition',{attrs:{"name":"fade"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.status),expression:"status"}],staticClass:"emfe-time-box",class:{'emfe-time-box-position': !_vm.open}},[_c('div',{staticClass:"emfe-time-main"},[_c('div',{directives:[{name:"emfe-iscroll",rawName:"v-emfe-iscroll",value:(_vm.Contant.ISCROLL_CONFIG),expression:"Contant.ISCROLL_CONFIG"}],staticClass:"emfe-time-item",class:_vm.itemName},[_c('ul',{staticClass:"emfe-time-list"},_vm._l((_vm.hours),function(hourLoop){return _c('li',{staticClass:"emfe-time-list-item",class:{'emfe-time-list-item-on': hourLoop.num === _vm.hour, 'emfe-time-list-item-disable': hourLoop.undo},on:{"click":function($event){$event.stopPropagation();_vm.choiceHour(hourLoop);}}},[_vm._v(_vm._s(hourLoop.num))])}))]),_vm._v(" "),_c('div',{directives:[{name:"emfe-iscroll",rawName:"v-emfe-iscroll",value:(_vm.Contant.ISCROLL_CONFIG),expression:"Contant.ISCROLL_CONFIG"}],staticClass:"emfe-time-item",class:_vm.itemName},[_c('ul',{staticClass:"emfe-time-list"},_vm._l((_vm.minutes),function(minuteLoop){return _c('li',{staticClass:"emfe-time-list-item",class:{'emfe-time-list-item-on': minuteLoop.num === _vm.minute, 'emfe-time-list-item-disable': minuteLoop.undo},on:{"click":function($event){$event.stopPropagation();_vm.choiceMinute(minuteLoop);}}},[_vm._v(_vm._s(minuteLoop.num))])}))]),_vm._v(" "),_c('div',{directives:[{name:"emfe-iscroll",rawName:"v-emfe-iscroll",value:(_vm.Contant.ISCROLL_CONFIG),expression:"Contant.ISCROLL_CONFIG"}],staticClass:"emfe-time-item",class:_vm.itemName},[_c('ul',{staticClass:"emfe-time-list"},_vm._l((_vm.seconds),function(secondLoop,secondIndex){return _c('li',{staticClass:"emfe-time-list-item",class:{'emfe-time-list-item-on': secondLoop.num === _vm.second, 'emfe-time-list-item-disable': secondLoop.undo},on:{"click":function($event){$event.stopPropagation();_vm.choiceSecond(secondLoop);}}},[_vm._v(_vm._s(secondLoop.num))])}))])]),_vm._v(" "),(_vm.confirm)?_c('div',{staticClass:"emfe-time-footer"},[_c('button',{staticClass:"emfe-time-ok",on:{"click":function($event){$event.stopPropagation();_vm.ok($event);}}},[_vm._v("确定")])]):_vm._e()])])],1)},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"emfe-documentclick",rawName:"v-emfe-documentclick",value:(_vm.close),expression:"close"}],staticClass:"emfe-time",class:_vm.timeName},[(!_vm.open && !_vm.disabled)?_c('button',{staticClass:"emfe-time-btn",on:{"click":_vm.toggle}},[_c('span',{staticClass:"emfe-time-btn-text",class:{'emfe-time-btn-text-choice': _vm.choiced}},[_vm._v(_vm._s(_vm.time))]),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(!_vm.choiced),expression:"!choiced"}],attrs:{"type":"shijian","className":"emfe-time"},on:{"icon-click":_vm.toggle}}),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(_vm.choiced),expression:"choiced"}],attrs:{"type":"shanchu","className":"emfe-time"},on:{"icon-click":_vm.cancel}})],1):_vm._e(),_vm._v(" "),(!_vm.open && _vm.disabled)?_c('button',{staticClass:"emfe-time-btn emfe-time-btn-disabled"},[_c('span',{staticClass:"emfe-time-btn-text"},[_vm._v(_vm._s(_vm.time))]),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(!_vm.choiced),expression:"!choiced"}],attrs:{"type":"shijian","className":"emfe-time"}}),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(_vm.choiced),expression:"choiced"}],attrs:{"type":"shanchu","className":"emfe-time"}})],1):_vm._e(),_vm._v(" "),_c('emfe-transition',{attrs:{"name":"fade"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.status),expression:"status"}],staticClass:"emfe-time-box",class:{'emfe-time-box-position': !_vm.open}},[_c('div',{staticClass:"emfe-time-main"},[_c('div',{staticClass:"emfe-time-item",class:_vm.itemName},[_c('ul',{staticClass:"emfe-time-list"},_vm._l((_vm.hours),function(hourLoop){return _c('li',{staticClass:"emfe-time-list-item",class:{'emfe-time-list-item-on': hourLoop.num === _vm.hour, 'emfe-time-list-item-disable': hourLoop.undo},on:{"click":function($event){$event.stopPropagation();_vm.choiceHour(hourLoop);}}},[_vm._v(_vm._s(hourLoop.num))])}))]),_vm._v(" "),_c('div',{staticClass:"emfe-time-item",class:_vm.itemName},[_c('ul',{staticClass:"emfe-time-list"},_vm._l((_vm.minutes),function(minuteLoop){return _c('li',{staticClass:"emfe-time-list-item",class:{'emfe-time-list-item-on': minuteLoop.num === _vm.minute, 'emfe-time-list-item-disable': minuteLoop.undo},on:{"click":function($event){$event.stopPropagation();_vm.choiceMinute(minuteLoop);}}},[_vm._v(_vm._s(minuteLoop.num))])}))]),_vm._v(" "),_c('div',{staticClass:"emfe-time-item",class:_vm.itemName},[_c('ul',{staticClass:"emfe-time-list"},_vm._l((_vm.seconds),function(secondLoop,secondIndex){return _c('li',{staticClass:"emfe-time-list-item",class:{'emfe-time-list-item-on': secondLoop.num === _vm.second, 'emfe-time-list-item-disable': secondLoop.undo},on:{"click":function($event){$event.stopPropagation();_vm.choiceSecond(secondLoop);}}},[_vm._v(_vm._s(secondLoop.num))])}))])]),_vm._v(" "),(_vm.confirm)?_c('div',{staticClass:"emfe-time-footer"},[_c('button',{staticClass:"emfe-time-ok",on:{"click":function($event){$event.stopPropagation();_vm.ok($event);}}},[_vm._v("确定")])]):_vm._e()])])],1)},
 staticRenderFns: [],
   name: 'EmfeTime',
   data: function data() {
@@ -4786,7 +4826,7 @@ var timeText = '选择时间';
 var dateText = '选择日期';
 
 var EmfeDatetime$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"emfe-documentclick",rawName:"v-emfe-documentclick",value:(_vm.close),expression:"close"}],staticClass:"emfe-datetime"},[(!_vm.disabled)?_c('button',{staticClass:"emfe-datetime-btn",on:{"click":function($event){$event.stopPropagation();_vm.toggle($event);}}},[_c('span',{staticClass:"emfe-datetime-btn-text",class:{'emfe-datetime-btn-text-choice': _vm.choiced}},[_vm._v(_vm._s(_vm.dateTime))]),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(!_vm.choiced),expression:"!choiced"}],attrs:{"type":"shijian","className":"emfe-datetime"},on:{"icon-click":_vm.toggle}}),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(_vm.choiced),expression:"choiced"}],attrs:{"type":"shanchu","className":"emfe-datetime"},on:{"icon-click":_vm.cancel}})],1):_vm._e(),_vm._v(" "),(_vm.disabled)?_c('button',{staticClass:"emfe-datetime-btn emfe-datetime-btn-disabled"},[_c('span',{staticClass:"emfe-datetime-btn-text"},[_vm._v(_vm._s(_vm.dateTime))]),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(!_vm.choiced),expression:"!choiced"}],attrs:{"type":"shijian","className":"emfe-datetime"}}),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(_vm.choiced),expression:"choiced"}],attrs:{"type":"shanchu","className":"emfe-datetime"}})],1):_vm._e(),_vm._v(" "),_c('emfe-transition',{attrs:{"name":"fade"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.status),expression:"status"}],staticClass:"emfe-datetime-main emfe-datetime-main-position"},[_c('div',{staticClass:"emfe-datetime-type"},[_c('emfe-date',{directives:[{name:"show",rawName:"v-show",value:(_vm.isDate),expression:"isDate"}],ref:"date",attrs:{"format":_vm.formatDate,"open":true,"confirm":false,"disabledDate":_vm.disabledDate},on:{"choice":_vm.choiceDate},model:{value:(_vm.date),callback:function ($$v) {_vm.date=$$v;},expression:"date"}}),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(!_vm.isDate),expression:"!isDate"}],staticClass:"emfe-datetime-time"},[_c('div',{staticClass:"emfe-datetime-time-header"},[_vm._v(_vm._s(_vm.date))]),_vm._v(" "),_c('emfe-time',{ref:"time",attrs:{"className":"emfe-datetime","open":true,"confirm":false,"timeChoices":_vm.timeChoices,"disabledHours":_vm.disabledHours,"disabledMinutes":_vm.disabledMinutes,"disabledSeconds":_vm.disabledSeconds},on:{"choice":_vm.choiceTime},model:{value:(_vm.time),callback:function ($$v) {_vm.time=$$v;},expression:"time"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"emfe-datetime-footer"},[_c('button',{staticClass:"emfe-datetime-settype",class:{'emfe-datetime-settype-disabled': _vm.disabledToggle},on:{"click":_vm.typeToggle}},[_vm._v(_vm._s(_vm.typeText))]),_vm._v(" "),_c('button',{staticClass:"emfe-datetime-ok",on:{"click":function($event){$event.stopPropagation();_vm.ok($event);}}},[_vm._v("确定")])])])])],1)},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"emfe-documentclick",rawName:"v-emfe-documentclick",value:(_vm.close),expression:"close"}],staticClass:"emfe-datetime"},[(!_vm.disabled)?_c('button',{staticClass:"emfe-datetime-btn",on:{"click":function($event){$event.stopPropagation();_vm.toggle($event);}}},[_c('span',{staticClass:"emfe-datetime-btn-text",class:{'emfe-datetime-btn-text-choice': _vm.choiced}},[_vm._v(_vm._s(_vm.dateTime))]),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(!_vm.choiced),expression:"!choiced"}],attrs:{"type":"shijian","className":"emfe-datetime"},on:{"icon-click":_vm.toggle}}),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(_vm.choiced),expression:"choiced"}],attrs:{"type":"shanchu","className":"emfe-datetime"},on:{"icon-click":_vm.cancel}})],1):_vm._e(),_vm._v(" "),(_vm.disabled)?_c('button',{staticClass:"emfe-datetime-btn emfe-datetime-btn-disabled"},[_c('span',{staticClass:"emfe-datetime-btn-text"},[_vm._v(_vm._s(_vm.dateTime))]),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(!_vm.choiced),expression:"!choiced"}],attrs:{"type":"shijian","className":"emfe-datetime"}}),_vm._v(" "),_c('emfe-icon',{directives:[{name:"show",rawName:"v-show",value:(_vm.choiced),expression:"choiced"}],attrs:{"type":"shanchu","className":"emfe-datetime"}})],1):_vm._e(),_vm._v(" "),_c('emfe-transition',{attrs:{"name":"fade"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.status),expression:"status"}],staticClass:"emfe-datetime-main emfe-datetime-main-position",style:(_vm.panelstyle)},[_c('div',{staticClass:"emfe-datetime-type"},[_c('emfe-date',{directives:[{name:"show",rawName:"v-show",value:(_vm.isDate),expression:"isDate"}],ref:"date",attrs:{"format":_vm.formatDate,"open":true,"confirm":false,"disabledDate":_vm.disabledDate},on:{"choice":_vm.choiceDate},model:{value:(_vm.date),callback:function ($$v) {_vm.date=$$v;},expression:"date"}}),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(!_vm.isDate),expression:"!isDate"}],staticClass:"emfe-datetime-time"},[_c('div',{staticClass:"emfe-datetime-time-header"},[_vm._v(_vm._s(_vm.date))]),_vm._v(" "),_c('emfe-time',{ref:"time",attrs:{"className":"emfe-datetime","open":true,"confirm":false,"timeChoices":_vm.timeChoices,"disabledHours":_vm.disabledHours,"disabledMinutes":_vm.disabledMinutes,"disabledSeconds":_vm.disabledSeconds},on:{"choice":_vm.choiceTime},model:{value:(_vm.time),callback:function ($$v) {_vm.time=$$v;},expression:"time"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"emfe-datetime-footer"},[_c('button',{staticClass:"emfe-datetime-settype",class:{'emfe-datetime-settype-disabled': _vm.disabledToggle},on:{"click":_vm.typeToggle}},[_vm._v(_vm._s(_vm.typeText))]),_vm._v(" "),_c('button',{staticClass:"emfe-datetime-ok",on:{"click":function($event){$event.stopPropagation();_vm.ok($event);}}},[_vm._v("确定")])])])])],1)},
 staticRenderFns: [],
   name: 'EmfeDatetime',
   data: function data() {
@@ -4801,6 +4841,10 @@ staticRenderFns: [],
     };
   },
   props: {
+    panelstyle: {
+      type: Object,
+      default: function () {},
+    },
     formatDate: {
       type: String,
       default: '/',
@@ -5966,7 +6010,7 @@ EmfePaginationC$1.install = function (Vue$$1) {
 };
 
 var EmfeSelect$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"emfe-documentclick",rawName:"v-emfe-documentclick",value:(_vm.closeFn),expression:"closeFn"}],staticClass:"emfe-select",class:_vm.selectName},[_c('input',{staticClass:"emfe-select-input",class:[_vm.inputName, {'emfe-select-input-error': _vm.errOk}],attrs:{"type":"text","disabled":_vm.newDisabled,"readonly":"","placeholder":_vm.selectText},domProps:{"value":_vm.checkVal},on:{"click":_vm.inpcheck}}),_vm._v(" "),(_vm.errOk)?_c('div',{staticClass:"emfe-select-error",class:_vm.addErrorText},[_vm._t("error")],2):_vm._e(),_vm._v(" "),(_vm.flagCheck)?_c('div',{staticClass:"emfe-select-flag"},[(_vm.seleStu==='newList')?_c('div',{staticClass:"emfe-select-custab"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.newListVal),expression:"newListVal"}],staticClass:"emfe-select-input",attrs:{"type":"text","placeholder":_vm.addText},domProps:{"value":(_vm.newListVal)},on:{"input":function($event){if($event.target.composing){ return; }_vm.newListVal=$event.target.value;}}}),_vm._v(" "),_c('span',{staticClass:"emfe-select-custab-btn",on:{"click":_vm.newListBtn}},[_vm._v("保存")])]):_vm._e(),_vm._v(" "),_vm._l((_vm.checkList),function(item,itemIndex){return (_vm.type==='checkbox')?_c('label',{key:item.id,staticClass:"emfe-select-label",class:{'emfe-select-label-disabled': item.disabled}},[_c('span',{staticClass:"emfe-select-text"},[_vm._v(_vm._s(item.name))]),_vm._v(" "),_c('div',{staticClass:"emfe-select-checkout-box"},[_c('i',{staticClass:"emfe-select-checkout-inner",class:{'emfe-select-checkout-inner-checked': item.checked}}),_vm._v(" "),_c('input',{key:item.id,staticClass:"emfe-select-checkout-status",attrs:{"disabled":item.disabled,"type":"checkbox"},on:{"change":function($event){_vm.getdata(item);}}})])]):_vm._e()}),_vm._v(" "),_vm._l((_vm.checkList),function(item){return (_vm.type==='default')?_c('label',{staticClass:"emfe-select-label emfe-select-delabel",attrs:{"disabled":item.disabled},on:{"click":function($event){_vm.spanTxt(item);}}},[_c('span',{class:{'emfe-select-label-disabled': item.disabled}},[_vm._v(_vm._s(item.name))])]):_vm._e()}),_vm._v(" "),_vm._l((_vm.checkList),function(item){return (_vm.type==='icon')?_c('div',{staticClass:"emfe-select-label emfe-select-delabel",class:{'disabled': item.disabled},attrs:{"disabled":item.disabled},on:{"click":function($event){_vm.spanTxt(item);}}},[_c('img',{staticClass:"emfe-select-icon",attrs:{"src":item.icon,"alt":item.name}}),_vm._v(" "),_c('span',{staticClass:"emfe-select-icon-piece"},[_vm._v(_vm._s(item.name))]),_vm._v(" "),_c('span',{staticClass:"emfe-select-icon-tel"},[_vm._v(_vm._s(item.tel))])]):_vm._e()})],2):_vm._e()])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"emfe-documentclick",rawName:"v-emfe-documentclick",value:(_vm.closeFn),expression:"closeFn"}],staticClass:"emfe-select",class:_vm.selectName},[_c('input',{staticClass:"emfe-select-input",class:[_vm.inputName, {'emfe-select-input-error': _vm.errOk}],attrs:{"type":"text","disabled":_vm.newDisabled,"readonly":"","placeholder":_vm.selectText},domProps:{"value":_vm.checkVal},on:{"click":_vm.inpcheck}}),_vm._v(" "),(_vm.errOk)?_c('div',{staticClass:"emfe-select-error",class:_vm.addErrorText},[_vm._t("error")],2):_vm._e(),_vm._v(" "),(_vm.flagCheck)?_c('div',{staticClass:"emfe-select-flag"},[(_vm.seleStu==='newList')?_c('div',{staticClass:"emfe-select-custab"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.newListVal),expression:"newListVal"}],staticClass:"emfe-select-input",attrs:{"type":"text","placeholder":_vm.addText},domProps:{"value":(_vm.newListVal)},on:{"input":function($event){if($event.target.composing){ return; }_vm.newListVal=$event.target.value;}}}),_vm._v(" "),_c('span',{staticClass:"emfe-select-custab-btn",on:{"click":_vm.newListBtn}},[_vm._v("保存")])]):_vm._e(),_vm._v(" "),_c('div',{staticClass:"emfe-select-flag-scroll"},[_vm._l((_vm.checkList),function(item,itemIndex){return (_vm.type==='checkbox')?_c('label',{key:item.id,staticClass:"emfe-select-label",class:{'emfe-select-label-disabled': item.disabled}},[_c('span',{staticClass:"emfe-select-text"},[_vm._v(_vm._s(item.name))]),_vm._v(" "),_c('div',{staticClass:"emfe-select-checkout-box"},[_c('i',{staticClass:"emfe-select-checkout-inner",class:{'emfe-select-checkout-inner-checked': item.checked}}),_vm._v(" "),_c('input',{key:item.id,staticClass:"emfe-select-checkout-status",attrs:{"disabled":item.disabled,"type":"checkbox"},on:{"change":function($event){_vm.getdata(item);}}})])]):_vm._e()}),_vm._v(" "),_vm._l((_vm.checkList),function(item){return (_vm.type==='default')?_c('label',{staticClass:"emfe-select-label emfe-select-delabel",attrs:{"disabled":item.disabled},on:{"click":function($event){_vm.spanTxt(item);}}},[_c('span',{class:{'emfe-select-label-disabled': item.disabled}},[_vm._v(_vm._s(item.name))])]):_vm._e()}),_vm._v(" "),_vm._l((_vm.checkList),function(item){return (_vm.type==='icon')?_c('div',{staticClass:"emfe-select-label emfe-select-delabel",class:{'disabled': item.disabled},attrs:{"disabled":item.disabled},on:{"click":function($event){_vm.spanTxt(item);}}},[_c('img',{staticClass:"emfe-select-icon",attrs:{"src":item.icon,"alt":item.name}}),_vm._v(" "),_c('span',{staticClass:"emfe-select-icon-piece"},[_vm._v(_vm._s(item.name))]),_vm._v(" "),_c('span',{staticClass:"emfe-select-icon-tel"},[_vm._v(_vm._s(item.tel))])]):_vm._e()})],2)]):_vm._e()])},
 staticRenderFns: [],
   name: 'Select',
   data: function data() {
@@ -6464,6 +6508,7 @@ staticRenderFns: [],
     handleData: function handleData() {
       var this$1 = this;
 
+      this.datas = [];
       this.opationsData.forEach(function (od, odIndex) {
         var newOd = {
           title: od.title,
@@ -6541,17 +6586,16 @@ staticRenderFns: [],
       document.removeEventListener('mousemove', this.move, false);
       document.removeEventListener('mouseup', this.up, false);
       this.swapData();
-      if (lastHrIndex < this.datas.length && lastHrIndex > -1) {
-        this.datas[lastHrIndex].hrStatus = false;
-      } else {
-        this.lastHrStatus = false;
-      }
-      this.datas[this.lastHit > -1 ? this.lastHit : this.lastDrag].style = {};
-      this.datas[this.lastDrag].hrStatus = false;
+      // 之所以不用 this.datas[lastHrIndex].hrStatus = false
+      // 是因为连续拖拽碰撞，会出问题，有的虚线不隐藏
+      this.datas.forEach(function (data) {
+        data.hrStatus = false;
+        data.style = {};
+      });
+      this.lastHrStatus = false;
       this.lastHit = -1;
       this.lastDrag = -1;
       lastHrIndex = -1;
-      dragWidth = -1;
       this.$emit('up');
     },
     getHitIndex: function getHitIndex(hitIndex) {
@@ -6619,6 +6663,11 @@ staticRenderFns: [],
       this.$emit('otherplus', this.datas[this.datas.length - 1], this.datas.length - 1);
     },
   },
+  watch: {
+    opationsData: function opationsData() {
+      this.handleData();
+    },
+  },
 };
 
 EmfeDrop$1.install = function (Vue$$1) {
@@ -6653,7 +6702,7 @@ staticRenderFns: [],
     },
     nothingText: {
       type: String,
-      default: '暂无数据',
+      default: '尚未收集到数据',
     },
     classAddName: {
       type: String,
@@ -6846,7 +6895,7 @@ EmfeTextarea$1.install = function (Vue$$1) {
 };
 
 var EmfeDatapanel$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-datapanel",class:_vm.datapanelName},[_c('div',{staticClass:"emfe-datapanel-box"},[_c('div',{staticClass:"emfe-datapanel-title"},[_c('span',{staticClass:"emfe-datapanel-title-text"},[_vm._v(_vm._s(_vm.title))]),_vm._v(" "),_c('emfe-tooltip',{attrs:{"styles":_vm.styles,"placement":"right-end"}},[(_vm.iconFlg)?_c('emfe-icon',{attrs:{"type":_vm.type,"className":"emfe-datapanel-mark"},slot:"render"}):_vm._e(),_vm._v(" "),_c('div',{slot:"tip"},[_vm._t("tipText")],2)],1)],1),_vm._v(" "),_c('div',{staticClass:"emfe-datapanel-main"},[_c('span',{staticClass:"emfe-datapanel-main-content"},[_vm._v(_vm._s(_vm.contentText))]),_vm._v(" "),(_vm.companyText)?_c('span',{staticClass:"emfe-datapanel-main-company"},[_vm._v(_vm._s(_vm.companyText))]):_vm._e()])])])},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-datapanel",class:_vm.datapanelName},[_c('div',{staticClass:"emfe-datapanel-box"},[_c('div',{staticClass:"emfe-datapanel-title"},[_c('span',{staticClass:"emfe-datapanel-title-text"},[_vm._v(_vm._s(_vm.title))]),_vm._v(" "),_c('emfe-tooltip',{attrs:{"styles":_vm.styles,"theme":_vm.theme,"placement":_vm.placement}},[(_vm.iconFlg)?_c('emfe-icon',{attrs:{"type":_vm.type,"className":"emfe-datapanel-mark"},slot:"render"}):_vm._e(),_vm._v(" "),_c('div',{slot:"tip"},[_vm._t("tipText")],2)],1)],1),_vm._v(" "),_c('div',{staticClass:"emfe-datapanel-main"},[_c('span',{staticClass:"emfe-datapanel-main-content"},[_vm._v(_vm._s(_vm.contentText))]),_vm._v(" "),(_vm.companyText)?_c('span',{staticClass:"emfe-datapanel-main-company"},[_vm._v(_vm._s(_vm.companyText))]):_vm._e()])])])},
 staticRenderFns: [],
   name: 'EmfeDatapanel',
   props: {
@@ -6868,6 +6917,14 @@ staticRenderFns: [],
     },
     iconFlg: {
       type: [String, Boolean],
+    },
+    theme: {
+      type: String,
+      default: '',
+    },
+    placement: {
+      type: String,
+      default: 'bottom',
     },
     styles: {
       type: Object,
@@ -7078,8 +7135,8 @@ EmfePanel$1.install = function (Vue$$1) {
 };
 
 var EmfePanelC$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-panel-c"},[_c('div',{staticClass:"emfe-panel-c-logobox"},[_c('emfe-upload',{attrs:{"className":"emfe-panel-c","action":_vm.uploadAction},on:{"success":_vm.uploadSuccess}})],1),_vm._v(" "),_c('div',{staticClass:"emfe-panel-c-infobox"},[_c('div',{staticClass:"emfe-panel-c-infobox-about"},[_c('span',{staticClass:"emfe-panel-c-infobox-about-text"},[_vm._v("早上好，李根")]),_vm._v(" "),_c('span',{staticClass:"emfe-panel-c-infobox-about-text"},[_c('img',{staticClass:"emfe-panel-c-infobox-about-img",attrs:{"src":_vm.memberlogo}}),_vm._v("黄金会员")]),_vm._v(" "),_c('span',{staticClass:"emfe-panel-c-infobox-about-text"},[_vm._v("成长值"),_c('em',{staticClass:"emfe-panel-c-infobox-about-text-em"},[_vm._v(_vm._s(_vm.growth))])]),_vm._v(" "),_c('span',{staticClass:"emfe-panel-c-infobox-about-text"},[_vm._v("积分"),_c('em',{staticClass:"emfe-panel-c-infobox-about-text-em"},[_vm._v(_vm._s(_vm.integral))])]),_vm._v(" "),_c('span',{staticClass:"emfe-panel-c-infobox-about-text"},[_vm._v("余额"),_c('em',{staticClass:"emfe-panel-c-infobox-about-text-em"},[_vm._v("￥"+_vm._s(_vm.balance))])])]),_vm._v(" "),_c('div',{staticClass:"emfe-panel-c-infobox-info"},[_c('span',{staticClass:"emfe-panel-c-infobox-about-text"},[_vm._v("账号：+8618618468079")]),_vm._v(" "),_c('emfe-link',{attrs:{"className":"emfe-panel-c","routers":_vm.telRouters}},[_c('emfe-icon',{attrs:{"type":"hint","className":"emfe-panel-c"}})],1),_vm._v(" "),_c('emfe-link',{attrs:{"className":"emfe-panel-c","routers":_vm.infoRouters}},[_c('emfe-icon',{attrs:{"type":"hint","className":"emfe-panel-c"}})],1),_vm._v(" "),_c('emfe-link',{attrs:{"className":"emfe-panel-c","routers":_vm.walletRouters}},[_c('emfe-icon',{attrs:{"type":"hint","className":"emfe-panel-c"}})],1)],1)])])},
-staticRenderFns: [],
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-panel"},[_c('div',{staticClass:"emfe-panel-logobox"},[_c('emfe-upload',{attrs:{"className":"emfe-panel","action":_vm.uploadAction,"url":"https://2img.evente.cn/8b/af/19/a084cd140d003e01c46d449897.jpg?imageView2/2/w/310/h/440/q/80"},on:{"success":_vm.uploadSuccess}})],1),_vm._v(" "),_c('div',{staticClass:"emfe-panel-infobox"},[_c('div',{staticClass:"emfe-panel-infobox-about"},[_c('span',{staticClass:"emfe-panel-infobox-about-text"},[_vm._v("早上好，李根")]),_vm._v(" "),_c('div',{staticClass:"emfe-panel-infobox-member"},[_c('span',{staticClass:"emfe-panel-infobox-about-text"},[_c('img',{staticClass:"emfe-panel-infobox-about-img",attrs:{"src":_vm.memberlogo}}),_vm._v("黄金会员")]),_vm._v(" "),_c('a',{staticClass:"emfe-panel-infobox-youhui"},[_vm._v("开通享优惠")])]),_vm._v(" "),_c('emfe-link',{staticClass:"emfe-panel-infobox-about-link",attrs:{"routers":{}}},[_vm._v("续费")]),_vm._v(" "),_c('span',{staticClass:"emfe-panel-infobox-about-text"},[_vm._v("成长值"),_c('em',{staticClass:"emfe-panel-infobox-about-text-em"},[_vm._v(_vm._s(_vm.growth))])]),_vm._v(" "),_c('span',{staticClass:"emfe-panel-infobox-about-text"},[_vm._v("积分"),_c('em',{staticClass:"emfe-panel-infobox-about-text-em"},[_vm._v(_vm._s(_vm.integral))])])],1),_vm._v(" "),_c('div',{staticClass:"emfe-panel-infobox-info"},[_c('span',{staticClass:"emfe-panel-infobox-info-text"},[_vm._v("账号：+8618618468079")]),_vm._v(" "),_c('emfe-link',{attrs:{"className":"emfe-panel","routers":_vm.telRouters}},[_c('emfe-icon',{attrs:{"type":"shouji1","className":"emfe-panel"}})],1),_vm._v(" "),_c('emfe-link',{attrs:{"className":"emfe-panel","routers":_vm.infoRouters}},[_c('emfe-icon',{attrs:{"type":"weixin1","className":"emfe-panel"}})],1),_vm._v(" "),_c('emfe-link',{attrs:{"className":"emfe-panel","routers":_vm.infoRouters}},[_c('emfe-icon',{attrs:{"type":"weixin1","className":"emfe-panel"}})],1),_vm._v(" "),_c('emfe-link',{attrs:{"className":"emfe-panel","routers":_vm.walletRouters}},[_c('emfe-icon',{attrs:{"type":"zhongzhimima","className":"emfe-panel"}})],1)],1)]),_vm._v(" "),_vm._m(0)])},
+staticRenderFns: [function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-panel-orderbox"},[_c('div',{staticClass:"emfe-panel-orderbox-item"},[_c('img',{staticClass:"emfe-panel-orderbox-img",attrs:{"src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3ppVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDoyNUJCMkMxOTQ2MjA2ODExODIyQUYyNUVGNTQ5RkQ0QyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDowNEYzRTRGQTk0NDAxMUU3OTYyOUU1MTk1MjREMTRFMyIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDowNEYzRTRGOTk0NDAxMUU3OTYyOUU1MTk1MjREMTRFMyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChNYWNpbnRvc2gpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MDE4MDExNzQwNzIwNjgxMTgyMkFDOEUzMDkxMkI1MzMiIHN0UmVmOmRvY3VtZW50SUQ9ImFkb2JlOmRvY2lkOnBob3Rvc2hvcDo4ZmE0ZjBiNi1iMzAxLTExN2EtOWEzYy04MjZkNDUyNjY3YjgiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5h5Ka5AAAE9ElEQVR42sSZa0wcVRTHzxlYRCiKPKrIAk1bRCmuaS0+Il9ahIbYEGK12KiJqZraFImaJmpim8b6QeOrsSWxpuGL2Jb6SEOrWET50qRNt7WpCBUfNcAKVWAh8ihlZa7/c2exFpaluzvAIWeH2Z2d89szd+495z+sBnsoVDOrygxs8uGr4Cvht8HT4fH+Q4bhf8B/hp+GN8HdxpbD5pSTLUgJGotDAQSYE5st8McpKTODM+4iujmH+CanFcgRax3oGyUa6iU1AMaLP5HqPEfk7ejEJ5/AqwDqsRUQYMnYvA6AZzi3OIbvKCRKzgot7X3tpM5/S6q1YQw/YB/e2Q7QvogBAbee2KjiO0tSOL+cKPYGishGB0m5D5JqrkeKzQrj5eO1YQECLBqb3ZR463NG0YtEC7PJVvvrVzK/eY9ooOtD7D0P0H+uGRBwcdjUctaKtVy8lSgmjmbFxkZINbxDqv37o9grB+TIjID+zH3O2QWl/CAyZ0TRrJo5TqrxfVK/HK/D3rrJmTQCfGUPL8ov5cIXZh9OE0SRxJKYEnvKx5OyV043pm1iGXNR0TRnhlg6JmKbbxVsCAiopxI29hhrZnHMBTPE1LHBAMjUQBl8g/NKUih1Cc2bITamsyT8t/MqQGQvE5Pw03xPOc236bnWEbsRWcyU/YmBtplzixzTTsKeH8g8uZ84Psk2EDXUQ8ajb0/9AAxYrRzqXN1m7L3K428+IFlsNzZ84MT6GvhkPx7TyeaM5ZGDdTUTpywhdaKauHRH4IO8HWQeqJT1OsuqSpIyp4Wz21TL16T6O4MfJCzCBDa5xKt1VRLMxn04szXzhzrHUfR14Y1FMClvxyoBvFtKpqC/+uwXxE58ob89tGx1nyfjoR3hpVozHVkpgDmc5Az+a1IXE5ftnPmkl4eQbaxUcYnW/qdbw7+bwYSLliOAaWTD3akunCQ68TFWhRii3EJi19rIThgvJSilyU2SQI7rIx/9LQ3E9z5JXPAsEQrTiM1iSvDPgxz5CZcVY+q4kkG7TAAHyTeSTFGRVcq8+D60TXlXj8FIzHdJXgcFsJuGvcnBSnnVc4Ho8LaQKxzV7wn/2gz3yWu3RGxTXk8eJy+aPjvLH9bzIKe7Qsuqqyz8m65fulZqE8Az9GfbOsouCFKvOay6woYyjOWPWc/7Qe1im7yelru4Sfetc1Wt3P8UyqqlM2fQo5maJIOnsDh74NOux5yYpqsZ6jxr35p8eXj68YliAX20FAvuaJEjUA/WqNbGV7hgY+AvOF1kPOKyN5PB4FsbZVODBsqcqKirdMc/+ve8F6zCoFnA9F9FrbUS3+g+5a6ddz7lPiTaTjWy55nck2xXzfV91PPb/NEhtmr+SibA16Y0TVrIUWaF2fBu6HWfTSqDjq3MSmSvL2BfDMiDNNC1VzXu0h3/nJlWF3aJTvMR4PbPpCxUqt9P1c0Z5IT0gZgiIoUiHn3GWStK5kg8+hJ7669JPPofpMMvv20yil4iWrjUXrgr8ttev/zmC1fAfAzNz25RHSwBM8EGAbMWrWx9Ly6v3BAHwhIwJ0GmaDkCHT8vW2NJwKG2qVi+tATcckwk4Gq8sw03Ze9siOgV8CcAmK7b1Vtux1qdbonhMf7WYexSIBFd6qcakdhsF9EDgE48hlit21brMYTAL/AfMiSCCVmPIc7Av6MwH0P8K8AAFtb5/Oq5D4MAAAAASUVORK5CYII="}}),_vm._v(" "),_c('p',{staticClass:"emfe-panel-orderbox-text"},[_vm._v("待支付（100）")])]),_vm._v(" "),_c('div',{staticClass:"emfe-panel-orderbox-item"},[_c('img',{staticClass:"emfe-panel-orderbox-img",attrs:{"src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3ppVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDoyNUJCMkMxOTQ2MjA2ODExODIyQUYyNUVGNTQ5RkQ0QyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpFOTM5QjZFQjk0NDAxMUU3OTYyOUU1MTk1MjREMTRFMyIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpFOTM5QjZFQTk0NDAxMUU3OTYyOUU1MTk1MjREMTRFMyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChNYWNpbnRvc2gpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MDE4MDExNzQwNzIwNjgxMTgyMkFDOEUzMDkxMkI1MzMiIHN0UmVmOmRvY3VtZW50SUQ9ImFkb2JlOmRvY2lkOnBob3Rvc2hvcDo4ZmE0ZjBiNi1iMzAxLTExN2EtOWEzYy04MjZkNDUyNjY3YjgiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6VLN3EAAAGlElEQVR42ryZC0wUVxSG/zuyoCKCKFoEoVERxb4UiE3F2uI7Wm3SChq1baytL7TVtOnDtIlV0xqxNVGMGlPTRqumNTFGiiKKRPvw2fqi4rMgAlZeFUEFmdv/zuxaEXbZWVluchlmZ3bON+fee+5/zgpZdRNWm572qsZDPPvL7HHsfdjD2P3tt1SzX2e/wH6cPZv9mDZ3p97oYR26uLQlrAASLJyHuexTEBzRQ/R4FugWDdEp3DRka2veWHcXuF0KWUnGkvOQ104B5QXXeGULexpBC1sUkGCdefiCADNEzEhf0W8Y0DnSmtvL8iH/2g+Zm1nLF9jITz4naNljAxIuCUJLE0+P6SLik4G2HfFY7W4V5LFtkGcy6GI9Rfvo8HaPAAnmw8NqBHWfpY1YAHSNQou2fy5B3/c1UFm0jmfzCHrfbUDCtedhu4gcOE6M/ADwbQ+vtNoayMxUyPyTu3mWTMiaZgHtntshohLGi+H0nNYGXm16PWTWN5AXD+/i2WuPelJr4itrxJPx48Ww970PZxC0gbKlbCrbjS4/4r1kBIbOFGrOtfFBqzXaMmzStr48YXKTgEYoEdoabZQX55yrRpuGbTIQMsTx8cNuWiqeGtMFIb2afsCdW9D3LAeKznkGIDTw+RBD3jb+b7LRNsNZsDydvoRnsx4sEnovgkH4kvbGBpuzOKfvXgrcKqGBd7ihBVuDk9zhKgohD6yBGDABIn6SizhJR3z/bh2DeW8umAKHB2eLmBE2l0GYW5YYuwgiaohnHoyMpfdzgdKrru8jA3crmzy1azbPPtHsG/9UArr+4r3bgF8H1/fUVDAAXzR76d9GCGnQ2gdBOhveh2dDzHB1mMq5qPkYqiQ4Ipzd4/ktrxyB/HUT9cvZhhf4QuKZsRAvvEXPBBCwE1esrfkHKhbFVF4QrwATDVXiGRpk9lrIo1shIgbySQsgQnoSwheougF5/TTk2T2QeQehTUzl3JvIhTKanr3fvBfJJMsLXlb+jlWSySO8g+sgT+6AGDqXi2cWhD89ZGtnBvjA7hyq0dDGLYYI6AZ923uELmXc8HXv4SZTnAKMFsHh1uHyT0Ae2QIxeAa91hv63q+4+a9ofKMa5qFzjMkvf17mflQymaIVYKjlsKEAf9nEYY2FCB8APYc71L1qBtpPnWxnPtAGTVOiALLorHsG/JUERagCDDCGxUpTK1qp5F6DuVqvUC1fg/ZSCp8U4mLiR5oi9/Lv7tkwmQLsa15YA6yuMBaICAxl9O8JbcIytY869/aNPCNYi8AwyH+LrWkJ9irU1VgDrK+1b/K+5sup8OFK82WlUpheNxdPfZ17NuruqL9VCrAY1eXWAP0CHmxLzc7V4lzzJQK6GvPU7ZShukz9LVaAebK80BpgxxDDa7Lwz2a9IE/thIiMN2FLciG6x7i3CCtU1oo8BXgCao5YkyYQz42HPL/fSIKaWkQy/zj0jGXGdBCxSZDnMkxx2udF90yUGEzHFWC2kbdaRRw0BWgXCP0Qc577tf9f4MvqPy6APLyBsSwC2uhFkGVXuaOkQyTMaH4/d3iw0GDKVoBHuecVslsXmEkrjbmi7/3SFAiqMfvTXlkMLXk1xPNvMtfIgcxZS4uSHtTce7ZiKctX8+6YjypHUNFslrlZH4uE6c6/5ONH0VrZ8LNO4dCmrYdMXwo9k2I2iNtbSJQpCAguKdGMYU2cZ8DJfas45PUQ/RJdey83Sx02Uw/qDj2Yxox/oYh73dfpKqOeU8IAd7kSO3aFUIHUzx/owExhMr1FJSMv5FDU3iDEPcKHQfQfCdE30bzPrqoNSAUdPdSpYDWqD2RqkHbSi2mURnMMxezsi9lpkAV/NJxzkXEc6lS3Zb88kwH523fQpqxt2nuHNkKe3r2O3pv9KKBKmvK0iSs6O81LvN1uXuYC+5BzQ48mYFmDrM4o5Eg9Rc9caUT/Vm+0adiW+nwHXKO8mJDbUFm0XmataizXvV5dWKXqNBsI90NzlYX58urRXa0G6Sh90KYqIlkpHv0kIgeOaaXiUTrPktwqHj0EabOX32ZqIxYyAPf2Vvltvb38VudpAXMS49ZqVXUwC5gBLVDA3M6tL6OUw6sWxNaWKAGrOu0S2NpOF/1HmSVgq2kqty+jBHxuryoBf8tPPuOiLPVGET1FJdUEDDPS1Sf6QgSFmcVwX3vqUHunqSK60k+bVYmtxYvoLn6GSDTSVvNnCAXvkCpMWlBo/xniBPsBT3+G+E+AAQBdsLunIqg9AwAAAABJRU5ErkJggg=="}}),_vm._v(" "),_c('p',{staticClass:"emfe-panel-orderbox-text"},[_vm._v("待审核")])]),_vm._v(" "),_c('div',{staticClass:"emfe-panel-orderbox-item"},[_c('img',{staticClass:"emfe-panel-orderbox-img",attrs:{"src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3ppVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDoyNUJCMkMxOTQ2MjA2ODExODIyQUYyNUVGNTQ5RkQ0QyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDowNEYzRTRGRTk0NDAxMUU3OTYyOUU1MTk1MjREMTRFMyIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDowNEYzRTRGRDk0NDAxMUU3OTYyOUU1MTk1MjREMTRFMyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChNYWNpbnRvc2gpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MDE4MDExNzQwNzIwNjgxMTgyMkFDOEUzMDkxMkI1MzMiIHN0UmVmOmRvY3VtZW50SUQ9ImFkb2JlOmRvY2lkOnBob3Rvc2hvcDo4ZmE0ZjBiNi1iMzAxLTExN2EtOWEzYy04MjZkNDUyNjY3YjgiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4L1EyWAAAFRklEQVR42syZf0yVVRjHv+fARRQJA1KQC7gp8SMbpbB+0R+iWLTG2ChwRa1amiWyslrrD/sj2lorjc1YSc5NRwlWW1nmIos/ov4AdWiFYrgEbkAJSCKoXH1Pz/O+9zqCe9/73nu5yNmee/be+95zPvd5z3nO83yvUCPn4G/Taooldblkq8hyyG4lSyKLct0ySvYX2WmyI2RNZK1y05falMHmx5vOJfwBJDA7dZvIHkdsSrJIzgYWpUPcbDcmskUaNzovAxcHoIaJsf8UVM9xYKi7hz75hKyGQB3TCkhgcdS9SQDPiqy1ESJzNRCX6p/bB7ugTv4A1d44Tj9gF73zBoEOBg1IcKUQskbcXhgvcsuAyJsQVLs8AtVaD/XrIXKxViFfa24ICJDAwqnbgQWLN8qCl4CFaZjW9k8ntO+3A8O9H9HVZgK9ahmQ4OZR1yBSVzws1r4CRMxDSNr4GFTje1Bdx76hqzKCHPMJ6PLcFyItr0isIc/JMIS0adegDr8P9UfzAboqmexJ6eErH4gluUVi9Yuhh9MJwsBz8Zw8t6kHyXtliEmsl6XbQvdYTR63tv9l4N++x8iL+6YA6qFEyFPy0XfjcctS3JB27gy0z14dot2dQZA6WPiEj98SywtN4VRPG9S3bwNXrwQGED4H4qHXIZLv8Pw5zU3hLFadOFhFVxuve5C8l0JBuFM+WWszi3PaV1shFmVCLM0LiE+daYbqPwlZXGUSJy9A27vBScF8GXmx271JnhdZBaZwvEbQ206L+S5jfQZg+nf72o2xvDVioNPKxkz6HnId/OUEaP7ru44Zx9vcmMDXGH+XxlBdR82Pt6w13JVr7+RJIyuJTbGTmQ9+tgXCnh30PhB2Wn9nW81vYhZmIjbeJPl6VuJr/XS3QWQWQDnagiQUxli+biMmNdS9igFXcsrk+5C/QLuYHrNDBgeoNH0sn01n+jqHAdNFrN1a0C//EJgzPzjAKxehVT/o29HEpIiN3ZGIqFjMuhbFKSgSGTAatrmzD9BginYtKBH6CfkY27seuOb07/AhG4FzLA5h1jJldYJSt86fva+de58CEiZtuvMOaPWUsXBGHmazRua8xK8jDNiH0aE4q6m8SMyEEtJrCEFMAuV31RSQl0DcWWzA7dusw4m7y/VNYqmNDvJrHwN2qCHHckEDWmp8oPvIduiootRpiz4Je1xkFxlw/kSj81y1ooMBj+LvjhKkWUsA1C97oH76eBKRhNxAKdyCJON6cRZk6XYdkr0o7nva/zXb38GvRxiwietWq9tE3PMExMqSKYBTElyGrKT1KsMDi+eO49w18WJqoaLaQWaRUBrBeqJ5y74DhNNZBrscuhrhkiPqVPvhWRMCXSx1lA9q7p9YQxX/FpHzSITpbh4bDn52X2Pwmc/qAzFdT/lZK6G8cJdqbXhB3L/e85PNyIdWu25aPMRjefVe637WdnaT9xyeiqYOKpribnDRRLFJSyfAwf/VxbqQo7QKrXGbeUoeyrKT51ZapRtuSuFOkPUY7t2pnwRU8c9Y09WFatZpagnuU1/KQqX6s+XAjEG6pQ+ak0Ukf8Sjz0XqisIZEo8O0lWpJfFoAqTNJb89JwvoXF24LFTy206X/OYMVMBcBxm2g1UHQ8CMngYBswHqt0MD9HgrJ+owAQG6IFmnrYIt8hlx2wOGBOyrTPVwfOkS8O/fsQS8m97ZSptyIBQiegUX1QSYpJerCRkQnMXwRBGu0mH8kicRnfOnOpbYpl1E9wDq/hsiXy9bjb8hGN5d8nFWyhCn9XQO+BEB/g3xnwADAPimNwO3yoAgAAAAAElFTkSuQmCC"}}),_vm._v(" "),_c('p',{staticClass:"emfe-panel-orderbox-text"},[_vm._v("待发货（100）")])])])}],
   name: 'EmfePanelC',
   data: function data() {
     return {
@@ -7405,7 +7462,7 @@ var otherConstant$1 = (itemMarginBottom / 2) - hrBorderSize$1;
 var lastHrIndex$1 = -1;
 
 var EmfeOpations$1 = {
-render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"emfe-opations",class:_vm.opationsName},[_vm._l((_vm.datas),function(item,index){return [(item.hrStatus)?_c('div',{staticClass:"emfe-opations-hr"}):_vm._e(),_vm._v(" "),_c('div',{key:index,ref:"hits",refInFor:true,staticClass:"emfe-opations-main",style:(item.style)},[_c('i',{staticClass:"emfe-opations-icon emfe-opations-radio"}),_vm._v(" "),_c('emfe-input',{attrs:{"placeholder":item.other && !_vm.clickFlg ? _vm.otherPlaceholder : _vm.dataPlaceholder,"className":"emfe-opations"},model:{value:(_vm.opationsData[index]),callback:function ($$v) {_vm.$set(_vm.opationsData, index, $$v);},expression:"opationsData[index]"}}),_vm._v(" "),_c('i',{directives:[{name:"show",rawName:"v-show",value:(!item.noPlus),expression:"!item.noPlus"}],staticClass:"emfe-opations-icon emfe-opations-plus",class:{'emfe-opations-margin-right': !_vm.minusFlg},on:{"click":function($event){_vm.plus(index);}}}),_vm._v(" "),_c('i',{directives:[{name:"show",rawName:"v-show",value:(_vm.minusFlg),expression:"minusFlg"}],staticClass:"emfe-opations-icon emfe-opations-minus",class:{'emfe-opations-margin-left': item.noPlus},on:{"click":function($event){_vm.minus(index, item);}}}),_vm._v(" "),_c('i',{staticClass:"emfe-opations-icon emfe-opations-drag",on:{"mousedown":function($event){$event.stopPropagation();_vm.down($event, index, item);}}})],1)]}),_vm._v(" "),(_vm.lastHrStatus)?_c('div',{staticClass:"emfe-opations-hr"}):_vm._e(),_vm._v(" "),_c('div',{staticClass:"emfe-opations-operation"},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.clickFlg),expression:"clickFlg"}],staticClass:"emfe-opations-operation-other",on:{"click":_vm.otherPlus}},[_vm._v("其他选项")])])],2)},
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"dragBox",staticClass:"emfe-opations",class:_vm.opationsName},[_vm._l((_vm.datas),function(item,index){return [(item.hrStatus)?_c('div',{staticClass:"emfe-opations-hr"}):_vm._e(),_vm._v(" "),_c('div',{key:index,ref:"hits",refInFor:true,staticClass:"emfe-opations-main",style:(item.style)},[_c('i',{staticClass:"emfe-opations-icon emfe-opations-radio"}),_vm._v(" "),_c('emfe-input',{attrs:{"placeholder":item.other && !_vm.clickFlg ? _vm.otherPlaceholder : _vm.dataPlaceholder,"className":"emfe-opations"},model:{value:(_vm.opationsData[index]),callback:function ($$v) {_vm.$set(_vm.opationsData, index, $$v);},expression:"opationsData[index]"}}),_vm._v(" "),_c('i',{directives:[{name:"show",rawName:"v-show",value:(!item.noPlus),expression:"!item.noPlus"}],staticClass:"emfe-opations-icon emfe-opations-plus",class:{'emfe-opations-margin-right': !_vm.minusFlg},on:{"click":function($event){_vm.plus(index);}}}),_vm._v(" "),_c('i',{directives:[{name:"show",rawName:"v-show",value:(_vm.minusFlg),expression:"minusFlg"}],staticClass:"emfe-opations-icon emfe-opations-minus",class:{'emfe-opations-margin-left': item.noPlus},on:{"click":function($event){_vm.minus(index, item);}}}),_vm._v(" "),_c('i',{staticClass:"emfe-opations-icon emfe-opations-drag",on:{"mousedown":function($event){$event.stopPropagation();_vm.down($event, index, item);}}})],1)]}),_vm._v(" "),(_vm.lastHrStatus)?_c('div',{staticClass:"emfe-opations-hr"}):_vm._e(),_vm._v(" "),_c('div',{staticClass:"emfe-opations-operation"},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.clickFlg),expression:"clickFlg"}],staticClass:"emfe-opations-operation-other",on:{"click":_vm.otherPlus}},[_vm._v("其他选项")])])],2)},
 staticRenderFns: [],
   name: 'EmfeOpations',
   data: function data() {
@@ -7498,7 +7555,9 @@ staticRenderFns: [],
       var this$1 = this;
 
       var ref = this.$refs;
-      var hits = ref.hits;
+      var dragBox = ref.dragBox;
+      // 因为创建出来的元素 $refs 不更新，并不是自适应的
+      var hits = dragBox.querySelectorAll('.emfe-opations-main');
       var ref$1 = this.datas[this.lastDrag];
       var index = ref$1.index;
       var style = ref$1.style;
@@ -7521,15 +7580,13 @@ staticRenderFns: [],
       document.removeEventListener('mousemove', this.move, false);
       document.removeEventListener('mouseup', this.up, false);
       this.swapData();
-      if (lastHrIndex$1 < this.datas.length && lastHrIndex$1 > -1) {
-        this.datas[lastHrIndex$1].hrStatus = false;
-      } else {
-        this.lastHrStatus = false;
-      }
-      if (this.lastHit > -1) {
-        this.datas[this.lastHit].style = {};
-      }
-      this.datas[this.lastDrag].hrStatus = false;
+      // 之所以不用 this.datas[lastHrIndex].hrStatus = false
+      // 是因为连续拖拽碰撞，会出问题，有的虚线不隐藏
+      this.datas.forEach(function (data) {
+        data.hrStatus = false;
+        data.style = {};
+      });
+      this.lastHrStatus = false;
       this.lastHit = -1;
       this.lastDrag = -1;
       lastHrIndex$1 = -1;
@@ -7563,6 +7620,7 @@ staticRenderFns: [],
         _.exchangeAttrValue(datas[lastDrag], datas[lastHit], 'index');
         _.swap(this.datas, this.lastHit, this.lastDrag);
         _.swap(opationsData, lastHit, lastDrag);
+        this.updataIndex();
         this.$emit('swap', datas[lastDrag], lastHit, lastDrag, opationsData[lastDrag]);
       }
     },
@@ -7571,9 +7629,13 @@ staticRenderFns: [],
         other: false,
         hrStatus: false,
         style: {},
+        noPlus: false,
+        index: index + 1,
       };
       this.datas.splice(index + 1, 0, obj);
       this.opationsData.splice(index + 1, 0, '');
+      // 多次添加的时候 index 永远是点击的那个所以更新下 index
+      this.updataIndex();
       this.$emit('plus', this.datas[index], index);
     },
     minus: function minus(index, item) {
@@ -7598,6 +7660,12 @@ staticRenderFns: [],
       this.clickFlg = false;
       this.$emit('otherplus', this.datas[this.datas.length - 1], this.datas.length - 1);
     },
+    updataIndex: function updataIndex() {
+      // 多次添加的时候 index 永远是点击的那个所以更新下 index
+      this.datas.forEach(function (data, dIndex) {
+        data.index = dIndex;
+      });
+    },
   },
   watch: {
     other: function other(val, oldVal) {
@@ -7605,10 +7673,8 @@ staticRenderFns: [],
         this.clickFlg = !val;
       }
     },
-    opationsData: function opationsData(val, oldVal) {
-      if (val !== oldVal) {
-        this.handleData();
-      }
+    opationsData: function opationsData() {
+      this.handleData();
     },
   },
 };
@@ -7959,6 +8025,143 @@ EmfeTitleLine.install = function (Vue$$1) {
   Vue$$1.component(EmfeTitleLine.name, EmfeTitleLine);
 };
 
+/* eslint-disable */
+var EmfeIscroll$1 = {
+render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"scrollView",class:_vm.wrapperClass,style:(_vm.wrapperStyle)},[_c('div',{ref:"scroller",class:_vm.scrollerClass,style:(_vm.scrollerStyle)},[_vm._t("default")],2)])},
+staticRenderFns: [],
+  name: 'EmfeIscroll',
+  props: {
+    options: {
+      type: Object,
+      default: function () {},
+    },
+    wrapperClass: {
+      type: [Array, Object],
+      default: function () {},
+    },
+    wrapperStyle: {
+      type: Object,
+      default: function () {},
+    },
+    scrollerClass: {
+      type: [Array, Object],
+      default: function () {},
+    },
+    scrollerStyle: {
+      type: Object,
+      default: function () {},
+    },
+  },
+  methods: {
+    registPullEvents: function registPullEvents() {
+      var this$1 = this;
+
+      var ref = this;
+      var iscroll = ref.iscroll;
+      iscroll.on('scrollEnd', function (e) {
+        if (iscroll.y <= iscroll.maxScrollY) {
+          this$1.$emit('pullUp', e, iscroll);
+        } else if (iscroll.y >= 0) {
+          this$1.$emit('pullDown', e, iscroll);
+        }
+      });
+    },
+    zoom: function zoom() {
+      var arguments$1 = arguments;
+      var this$1 = this;
+
+      this.$nextTick(function () { return this$1.iscroll.zoom.apply(this$1.iscroll, arguments$1); });
+    },
+    goToPage: function goToPage() {
+      var arguments$1 = arguments;
+      var this$1 = this;
+
+      this.$nextTick(function () { return this$1.iscroll.goToPage.apply(this$1.iscroll, arguments$1); });
+    },
+    next: function next() {
+      var arguments$1 = arguments;
+      var this$1 = this;
+
+      this.$nextTick(function () { return this$1.iscroll.next.apply(this$1.iscroll, arguments$1); });
+    },
+    prev: function prev() {
+      var arguments$1 = arguments;
+      var this$1 = this;
+
+      this.$nextTick(function () { return this$1.iscroll.prev.apply(this$1.iscroll, arguments$1); });
+    },
+    scrollToElement: function scrollToElement() {
+      var arguments$1 = arguments;
+      var this$1 = this;
+
+      this.$nextTick(function () { return this$1.iscroll.scrollToElement.apply(this$1.iscroll, arguments$1); });
+    },
+    scrollBy: function scrollBy() {
+      var arguments$1 = arguments;
+      var this$1 = this;
+
+      this.$nextTick(function () { return this$1.iscroll.scrollBy.apply(this$1.iscroll, arguments$1); });
+    },
+    scrollTo: function scrollTo() {
+      var arguments$1 = arguments;
+      var this$1 = this;
+
+      this.$nextTick(function () { return this$1.iscroll.scrollTo.apply(this$1.iscroll, arguments$1); });
+    },
+    refresh: function refresh() {
+      var arguments$1 = arguments;
+      var this$1 = this;
+
+      this.$nextTick(function () { return this$1.iscroll.refresh.apply(this$1.iscroll, arguments$1); });
+    },
+  },
+  beforeDestroy: function beforeDestroy() {
+    this.iscroll && this.iscroll.destroy();
+    this.iscroll = null;
+  },
+  mounted: function mounted() {
+    var this$1 = this;
+
+    var events = [
+      'beforeScrollStart',
+      'scrollCancel',
+      'scrollStart',
+      'scrollEnd',
+      'scroll',
+      'flick',
+      'zoomStart',
+      'zoomEnd' ];
+    setTimeout(function () {
+      var key;
+      var value;
+      var attributes = this$1.$refs.scrollView.attributes;
+      this$1.$refs.scrollView.scrollTop = 0;
+      for (key in attributes) {
+        value = attributes[key];
+        if (value instanceof global.Attr && value.name.indexOf('data-v-') > -1) {
+          this$1.$refs.scroller.attributes.setNamedItem(document.createAttribute(value.name));
+        }
+      }
+      try {
+        global.location.hash && this$1.iscroll.scrollToElement(global.location.hash, 0);
+      } catch (e) {
+      }
+    }, 0);
+    this.$nextTick(function () {
+      this$1.iscroll = new IScroll(this$1.$refs.scrollView, this$1.options);
+      events.forEach(function (event) {
+        this$1.iscroll.on(event, function () { return this$1.$emit(event, this$1.iscroll); });
+      });
+      this$1.registPullEvents();
+    });
+  },
+};
+/* eslint-disable */
+
+EmfeIscroll$1.install = function (Vue$$1) {
+  Vue$$1.component(EmfeIscroll$1.name, EmfeIscroll$1);
+};
+
 var EmfeFormTest = {
   ip: function ip(val) {
     /* eslint-disable */
@@ -8101,47 +8304,6 @@ var emfeDocumentfocus = {
   },
 };
 
-var emfeIscroll = {
-  inserted: function inserted(el, binding, vnode) {
-    var callBack;
-    var iscrollOptions = binding.value;
-    // 判断输入参数
-    var vtype = binding.value ? O.type(binding.value) : undefined;
-    switch (vtype) {
-      case '[object Array]':
-        callBack = binding.value[0];
-        iscrollOptions = binding.value[1];
-        break;
-      case '[object Function]':
-        callBack = binding.value;
-        break;
-      case '[object Object]':
-        iscrollOptions = binding.value;
-        break;
-      default:
-        break;
-    }
-    // 使用vnode绑定iscroll是为了让iscroll对象能够夸状态传递，避免iscroll重复建立
-    vnode.scroll = new IScroll(el, iscrollOptions);
-    // 如果指令传递函数进来，把iscroll实例传递出去
-    if (callBack) { callBack(vnode.scroll); }
-  },
-  componentUpdated: function componentUpdated(el, binding, vnode, oldVnode) {
-    // 将scroll绑定到新的vnode上
-    vnode.scroll = oldVnode.scroll;
-    // 使用settimeout让refresh跳到事件流结尾，保证refresh时数据已经更新完毕
-    vnode.scroll.refresh();
-  },
-  unbind: function unbind(el, binding, vnode, oldVnode) {
-    /**
-     * 解除绑定时要把iscroll销毁
-     */
-    vnode.scroll = oldVnode.scroll;
-    vnode.scroll.destroy();
-    vnode.scroll = null;
-  },
-};
-
 // 组件
 // 服务
 // 指令
@@ -8218,15 +8380,14 @@ var emfeCpt = {
   EmfeCountdown: EmfeCountdown$1,
   EmfeLogin: EmfeLogin$1,
   EmfeTitleline: EmfeTitleLine,
+  EmfeIscroll: EmfeIscroll$1,
 };
 
 var emfeDir = {
   emfeDocumentclick: emfeDocumentclick,
   emfeDocumentfocus: emfeDocumentfocus,
-  emfeIscroll: emfeIscroll,
 };
 
-//, opts = {}
 var install = function (Vue$$1) {
   if (install.installed) { return; }
 
