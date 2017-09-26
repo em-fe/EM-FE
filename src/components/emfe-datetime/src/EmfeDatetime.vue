@@ -15,7 +15,7 @@
       <emfe-icon type="shanchu" className="emfe-datetime" v-show="choiced"></emfe-icon>
     </button>
     <emfe-transition name="fade">
-      <div class="emfe-datetime-main emfe-datetime-main-position" v-show="status">
+      <div class="emfe-datetime-main emfe-datetime-main-position" v-show="status" :style="panelstyle">
         <div class="emfe-datetime-type">
           <emfe-date :format="formatDate" :open="true" :confirm="false" @choice="choiceDate" v-model="date" ref="date" v-show="isDate" :disabledDate="disabledDate"></emfe-date>
           <div class="emfe-datetime-time" v-show="!isDate">
@@ -53,6 +53,10 @@ export default {
     };
   },
   props: {
+    panelstyle: {
+      type: Object,
+      default: () => {},
+    },
     formatDate: {
       type: String,
       default: '/',

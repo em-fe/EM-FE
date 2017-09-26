@@ -404,3 +404,14 @@
 }
 
 .#{$prefix}icon-shuzi1::before { content: "\e69d"; }
+
+.#{$prefix}icon-bianji1::before { content: "\e69e"; }
+
+.#{$prefix}icon-shouji2::before { content: "\e69f"; }
+
+.#{$prefix}icon-gouwuche::before {
+  content: "\e6a0";
+  color: $brand-c-default;
+}
+
+.#{$prefix}icon-guanli::before { content: "\e6a1"; }

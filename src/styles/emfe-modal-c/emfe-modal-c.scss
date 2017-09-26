@@ -53,6 +53,7 @@
       text-align: center;
       line-height: 20px;
       transform: rotate(45deg);
+      cursor: pointer;
     }
   }
 
@@ -99,6 +100,7 @@
     &-ok {
       background: $brand-c-default;
       color: $background-color-write;
+      cursor: pointer;
     }
 
     &-cancel {
@@ -106,6 +108,7 @@
 
       color: $text-color-default;
       margin-right: 16px;
+      cursor: pointer;
     }
   }
 }

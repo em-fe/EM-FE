@@ -177,6 +177,11 @@
     border-top: none;
     border-radius: $radius-size;
     box-shadow: 0 5px 10px $shadow-color;
+
+    &-scroll {
+      max-height: 160px;
+      overflow: auto;
+    }
   }
 
   &-custab {

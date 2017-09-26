@@ -34,12 +34,6 @@ module.exports = {
                 path: '/directives/docclick',
               },
             },
-            {
-              title: '自定义滚动',
-              routers: {
-                path: '/directives/iscroll',
-              },
-            },
           ],
         },
         {
@@ -456,6 +450,16 @@ module.exports = {
                     },
                   },
                 },
+                {
+                  title: '滑动',
+                  icon: 'erweima',
+                  routers: {
+                    path: '/functions/slide',
+                    query: {
+                      main: 4,
+                    },
+                  },
+                },
               ],
             },
             {
@@ -477,6 +481,12 @@ module.exports = {
               icon: 'erweima',
               routers: {
                 path: '/functions/copy',
+              },
+            },
+            {
+              title: '自定义滚动',
+              routers: {
+                path: '/functions/iscroll',
               },
             },
             {
@@ -528,16 +538,6 @@ module.exports = {
                 path: '/functions/selectpage',
               }
             },
-            {
-              title: '滑动',
-              icon: 'erweima',
-              routers: {
-                path: '/functions/slide',
-                query: {
-                  main: 4,
-                },
-              },
-            },
           ],
         },
       ],
@@ -578,6 +578,29 @@ module.exports = {
 };
 </script>
 <style lang="scss">
+
+
+// 滚动条默认显示样式
+::-webkit-scrollbar-thumb {
+  background-color: rgba(220, 220, 220, 0.3);
+  -webkit-border-radius: 2px;
+}
+
+// 滚动条大小
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+// 滚动框背景样式
+::-webkit-scrollbar-track-piece {
+  background: none;
+  -webkit-border-radius: 0;
+}
+
 .warp {
   border: 1px solid #dcdcdc;
   min-height: 2000px;

@@ -95,6 +95,7 @@ export default {
         ['shenfenxinxi', 'zhongzhimima', 'zhucewanc'],
         ['weichat', 'zhanghuxinxi', 'zhanghaodenglu'],
         ['logo', 'fuzhi', 'shuzi1'],
+        ['bianji1', 'shouji2', 'gouwuche', 'guanli']
       ],
     };
   },

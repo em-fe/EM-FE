@@ -36,7 +36,7 @@ export default {
     },
     nothingText: {
       type: String,
-      default: '暂无数据',
+      default: '尚未收集到数据',
     },
     classAddName: {
       type: String,
