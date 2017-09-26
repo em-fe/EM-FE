@@ -47,7 +47,9 @@
     点击次数: {{ num }}
     {{ model }}
     <pre>
-      &lt;emfe-smscode-c className="demo" v-model="model" times="6" @click="click" :timeStart="start" :end="timeEnd" :errorOk="true"&gt;&lt;/emfe-smscode-c&gt;
+      &lt;emfe-smscode-c className="demo" v-model="model" times="6" @click="click" :timeStart="start" :end="timeEnd" :errOk="true"&gt;
+        &lt;div slot="error"&gt;请输入验证码&lt;/div&gt;
+      &lt;/emfe-smscode-c&gt;
     </pre>
     <br>
     <br>
@@ -95,7 +97,7 @@
           <td>请输入验证码</td>
         </tr>
         <tr>
-          <td>errorOk</td>
+          <td>errOk</td>
           <td>错误提示</td>
           <td>Boolean</td>
           <td>false</td>
