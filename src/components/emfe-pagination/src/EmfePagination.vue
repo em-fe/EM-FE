@@ -13,10 +13,19 @@
 </template>
 <script>
 export default {
-  props: ['pageCount'],
+  props: {
+    pageCount: {
+      type: Number,
+      default: 1,
+    },
+    curPage: {
+      type: Number,
+      default: 1,
+    },
+  },
   data() {
     return {
-      curPage: 1,
+      // curPage: 1,
     };
   },
   computed: {
