@@ -1,11 +1,11 @@
 <template>
-  <div class="icon">
+  <div class="icon" @click="test">
     <h2>EMFE 字体图标</h2>
     <h3>示例</h3>
     <emfe-row gutter="8" v-for="(type, typeIndex) in types" :key="typeIndex">
       <emfe-col span="8" v-for="(iconName, iconIndex) in type" :key="iconIndex">
         <h3>{{ iconName }}</h3>
-        <p><emfe-icon :type="iconName" className="icon-page"></emfe-icon></p>
+        <p><emfe-icon :type="iconName" className="icon-page" :click="iconclick"></emfe-icon></p>
       </emfe-col>
     </emfe-row>
     <h3>API</h3>
@@ -99,7 +99,15 @@ export default {
       ],
     };
   },
-}
+  methods: {
+    iconclick() {
+      console.log(12122);
+    },
+    test() {
+      console.log(9999);
+    },
+  },
+};
 </script>
 <style lang="scss">
 .icon {
