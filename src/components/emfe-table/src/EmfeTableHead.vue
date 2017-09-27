@@ -24,9 +24,6 @@ export default {
       default: -1,
     },
   },
-  created() {
-    console.log(this.border);
-  },
   computed: {
     classHead() {
       return [
