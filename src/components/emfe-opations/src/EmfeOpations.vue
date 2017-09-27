@@ -84,6 +84,7 @@ export default {
   },
   methods: {
     handleData() {
+      this.datas = [];
       this.opationsData.forEach((od, odIndex) => {
         const newOd = {
           style: {},

@@ -1,5 +1,5 @@
 /*!
- * EMFE.js v1.0.19
+ * EMFE.js v1.0.20
  * (c) 2014-2017 李梦龙
  * Released under the MIT License.
  */
@@ -4241,7 +4241,6 @@ staticRenderFns: [],
     resetDays: function resetDays(year, month) {
       var this$1 = this;
 
-      console.log(year, month, 111);
       var dateCountOfLastMonth = getDayCountOfMonth(year - 0, month - 1);
       this.days = [];
       for (var i = 1; i < dateCountOfLastMonth + 1; i++) {
@@ -7513,6 +7512,7 @@ staticRenderFns: [],
     handleData: function handleData() {
       var this$1 = this;
 
+      this.datas = [];
       this.opationsData.forEach(function (od, odIndex) {
         var newOd = {
           style: {},
