@@ -29,18 +29,39 @@
       padding: 8px 0 20px;
       margin: 0 0 20px;
 
+      &-novip {
+        width: 15px;
+        height: 15px;
+        float: left;
+        margin: 2px 10px 0 0;
+      }
+
       &-img {
         width: 15px;
         height: 15px;
         float: left;
-        margin: 0 5px 0 0;
+        margin: 2px 5px 0 0;
       }
 
       &-link {
         font-size: 12px;
         line-height: 20px;
         float: left;
-        margin: 0 0 0 20px;
+        margin: -1px 0 0 20px;
+      }
+
+      &-texts {
+        color: $text-color-default;
+        line-height: 18px;
+        float: left;
+        padding: 0;
+        font-size: 16px;
+
+        &-em {
+          color: $auxiliary-color-danger;
+          padding: 0 0 0 8px;
+          font-style: normal;
+        }
       }
 
       &-text {
@@ -49,11 +70,6 @@
         padding: 0 0 0 20px;
         line-height: 18px;
         float: left;
-
-        &:first-child {
-          padding: 0;
-          font-size: 16px;
-        }
 
         &-em {
           color: $auxiliary-color-danger;
@@ -99,6 +115,7 @@
     &-item {
       text-align: center;
       margin: 0 20px;
+      cursor: pointer;
     }
 
     &-img {
@@ -118,6 +135,7 @@
 
   &-link {
     margin-left: 20px;
+    margin-top: -5px;
     float: left;
     height: 16px;
     width: 16px;
