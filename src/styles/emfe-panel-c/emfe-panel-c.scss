@@ -1,0 +1,163 @@
+.#{$prefix}panel-c {
+  @include border();
+  @include clearfix();
+
+  padding: 20px 5px 20px 30px;
+
+  &-logobox {
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    margin-right: 30px;
+    float: left;
+
+    &-logo {
+      width: 85px;
+      height: 85px;
+      display: block;
+      border-radius: 50%;
+    }
+  }
+
+  &-infobox {
+    float: left;
+
+    &-about {
+      @include clearfix();
+      @include border(bottom, $button-color-default, 1px, dashed);
+
+      padding: 8px 0 20px;
+      margin: 0 0 20px;
+
+      &-novip {
+        width: 15px;
+        height: 15px;
+        float: left;
+        margin: 2px 10px 0 0;
+      }
+
+      &-img {
+        width: 15px;
+        height: 15px;
+        float: left;
+        margin: 2px 5px 0 0;
+      }
+
+      &-link {
+        font-size: 12px;
+        line-height: 20px;
+        float: left;
+        margin: -1px 0 0 20px;
+      }
+
+      &-texts {
+        color: $text-color-default;
+        line-height: 18px;
+        float: left;
+        padding: 0;
+        font-size: 16px;
+
+        &-em {
+          color: $auxiliary-color-danger;
+          padding: 0 0 0 8px;
+          font-style: normal;
+        }
+      }
+
+      &-text {
+        font-size: 12px;
+        color: $text-color-default;
+        padding: 0 0 0 20px;
+        line-height: 18px;
+        float: left;
+
+        &-em {
+          color: $auxiliary-color-danger;
+          padding: 0 0 0 8px;
+          font-style: normal;
+        }
+      }
+    }
+
+    &-member {
+      position: relative;
+      float: left;
+    }
+
+    &-youhui {
+      line-height: 20px;
+      font-size: 12px;
+      width: 78px;
+      background: $btn-danger;
+      position: absolute;
+      left: 0;
+      top: -20px;
+      text-align: center;
+      color: $background-color-write;
+      border-radius: 10px;
+    }
+
+    &-info {
+      &-text {
+        font-size: 12px;
+        color: $text-color-default;
+        line-height: 1;
+        float: left;
+      }
+    }
+  }
+
+  &-orderbox {
+    float: right;
+    display: flex;
+    padding-top: 8px;
+
+    &-item {
+      text-align: center;
+      margin: 0 20px;
+      cursor: pointer;
+    }
+
+    &-img {
+      display: block;
+      width: 40px;
+      height: 40px;
+      margin: 0 auto;
+    }
+
+    &-text {
+      font-size: 14px;
+      color: $text-color-default;
+      line-height: 1;
+      padding: 20px 0 0;
+    }
+  }
+
+  &-link {
+    margin-left: 20px;
+    margin-top: -5px;
+    float: left;
+    height: 16px;
+    width: 16px;
+    color: $text-color-prompt;
+  }
+
+  &-upload {
+    @include border(all, $button-color-default, 1px, dashed);
+
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    margin-right: 30px;
+    float: left;
+
+    &-plus-btn {
+      border: none;
+    }
+
+    & .emfe-upload-plus-box {
+      width: 85px;
+      height: 85px;
+    }
+  }
+}

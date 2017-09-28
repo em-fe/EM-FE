@@ -11,6 +11,16 @@ $menu-top: 64px;
   font-size: 14px;
   z-index: 2;
 
+  &-tooltip {
+    margin: 0 auto;
+  }
+
+  &-iscroll {
+    height: calc(100% - 48px);
+    position: relative;
+    overflow: auto;
+  }
+
   &-main {
     @include box-shadow();
 
@@ -19,8 +29,12 @@ $menu-top: 64px;
     float: left;
     position: relative;
     z-index: 2;
-    overflow: scroll;
     background: $background-color-write;
+
+    &-sidebar {
+      font-size: 30px;
+      line-height: 48px;
+    }
 
     &-header {
       @include border(bottom);
@@ -52,8 +66,8 @@ $menu-top: 64px;
       color: $text-color-Three;
       height: 48px;
       line-height: 48px;
+      // width: calc(100% - 4px);
       width: 100%;
-      display: block;
       display: flex;
       align-items: center;
 
@@ -72,6 +86,11 @@ $menu-top: 64px;
 
         background: $brand-color-select;
         color: $brand-color-default;
+        cursor: default;
+
+        & .emfe-menu-main-icon {
+          color: $brand-color-default;
+        }
       }
     }
 
@@ -80,10 +99,13 @@ $menu-top: 64px;
 
       background: $brand-color-select;
       color: $brand-color-default;
+      cursor: default;
     }
 
     &-icon {
-      padding: 0 10px 0 16px;
+      padding: 0 16px;
+      font-size: 20px;
+      line-height: 48px;
     }
   } // end emfe-menu-main
 
@@ -95,7 +117,13 @@ $menu-top: 64px;
     float: left;
     position: relative;
     z-index: 1;
-    overflow: scroll;
+    background: $background-color-write;
+
+    &-iscroll {
+      height: calc(100% - 64px);
+      position: relative;
+      overflow: auto;
+    }
 
     &-header {
       @include border(bottom);

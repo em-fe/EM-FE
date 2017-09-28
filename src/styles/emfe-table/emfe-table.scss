@@ -8,51 +8,14 @@
     text-align: center;
     background-color: $nothing-color;
     border: 1px solid $border-color;
-    font-size: 18px;
-    letter-spacing: 5px;
+    color: #999;
+    border-top: none;
+    font-size: 14px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
 
-  &-fixed {
-    &-table {
-      width: 100%;
-
-      &-head {
-        &-tr {
-          display: flex;
-          min-height: 48px;
-
-          &-th {
-            display: flex;
-            flex: 1;
-            align-items: center;
-            box-sizing: border-box;
-          }
-        }
-      }
-
-      &-body {
-        &-tr {
-          display: flex;
-          min-height: 48px;
-          margin-top: -1px;
-
-          &-td {
-            display: flex;
-            flex: 1;
-            align-items: center;
-            box-sizing: border-box;
-          }
-        }
-      }
-    }
-  }
-
-  &-overflow {
-    overflow-x: auto;
-  }
-
   &-table {
+    width: 100%;
     border-collapse: collapse;
 
     &-head {
@@ -73,6 +36,14 @@
           color: $thead-text-color;
           letter-spacing: 0;
           line-height: 16px;
+
+          &-checked {
+            background: #f8dbd8;
+          }
+
+          &-div {
+            white-space: nowrap;
+          }
         }
       }
     }
@@ -99,7 +70,19 @@
         color: $title-color;
         letter-spacing: -0.3px;
         line-height: 16px;
+
+        &-checked {
+          background: #ffefed;
+        }
+
+        &-div {
+          white-space: nowrap;
+        }
       }
     }
   }
+}
+
+.border {
+  border: 1px solid $border-color;
 }

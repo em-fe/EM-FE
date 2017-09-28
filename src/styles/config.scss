@@ -10,7 +10,8 @@ $gridColumns: 24 !default;
 // 字体设置
 $ionicons-font-path: './iconfont/fonts';
 $ionicons-font-family: 'Ionicons';
-$ionicons-version: 'vjtjwq';
+$ionicons-font-file: 'iconfont';
+$ionicons-version: '1505957694239';
 // tooltip 颜色
 $tooltip-arrow-size: 5px;
 // 一级菜单宽度，大屏小屏
@@ -94,7 +95,14 @@ $input-disable-color: #f3f3f3;
 // 输入框禁止文字颜色
 $input-disable-text-color: #ccc;
 
-//---------------------------
+//------------ C ---------------
+
+// 品牌主色 默认 / 线框色 筛选标签 / 文字色 全局提示、标签、超链接文字 / 筛选标签色 选中边框 / 复选标签色 默认文字
+$brand-c-default: #fd883b;
+
+$btn-danger: #f66;
+
+//------------ B ---------------
 
 //品牌主色 默认 / 线框色 筛选标签 / 文字色 全局提示、标签、超链接文字 / 筛选标签色 选中边框 / 复选标签色 默认文字
 $brand-color-default: #1996f9;
@@ -188,3 +196,6 @@ $checkout-color-checked: #fffcf7;
 
 //图标色 默认
 $icon-color-default: #8d8d8d;
+
+//登录错误提示
+$login-color-error: #f05229;

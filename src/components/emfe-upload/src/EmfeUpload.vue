@@ -1,40 +1,74 @@
 <template>
   <div class="emfe-upload" :class="uploadName">
     <template v-if="type === 'icon'">
-      <emfe-button :disabled="disabled" v-show="!src" theme="default" className="ddd" type="hint">上传图片</emfe-button>
-      <input v-show="!src" class="emfe-upload-file" :class="fileName" :disabled="disabled" type="file" @change="change" ref="upload">
+      <emfe-button :disabled="disabled || !canUpload" v-show="!src" :theme="theme" type="shangchuan">{{ iconText }}</emfe-button>
+      <input v-show="!src" class="emfe-upload-file" :class="fileName" :disabled="disabled || !canUpload" type="file" @change="change" ref="upload">
       <div v-show="src" :style="{opacity: canShow ? 1 : 0}" class="emfe-upload-icon-wrap">
-        <div class="emfe-upload-icon-wrap-box" :class="[`emfe-upload-icon-wrap-box-${align}`]">
-          <img class="emfe-upload-icon-wrap-box-img" :class="[`emfe-upload-img-${align}`]" :src="src" ref="img">
+        <div class="emfe-upload-icon-wrap-box" :class="[`emfe-upload-icon-wrap-box-${align}`, imageName]">
+          <img class="emfe-upload-icon-wrap-box-img" :class="[`emfe-upload-img-${align}`, imgName]" :src="src" ref="img">
         </div>
         <i class="emfe-upload-icon-wrap-close" @click="closeFn"></i>
       </div>
     </template>
     <template v-if="type === 'plus'">
-      <button v-show="!src" class="emfe-upload-btn" :class="btnName">+</button>
-      <input v-show="!src" class="emfe-upload-file" :class="fileName" :disabled="disabled" type="file" @change="change" ref="uploadPlus">
-      <div v-show="src" class="emfe-upload-plus-box" :class="[`emfe-upload-plus-box-${align}`]" :style="{opacity: canShow ? 1 : 0}" @click="closePlusFn">
-        <img :class="[`emfe-upload-img-${align}`]" v-show="src" :src="src" ref="img">
+      <button v-show="!src" class="emfe-upload-btn" :class="btnName">{{ plusText }}</button>
+      <input v-show="!src" class="emfe-upload-file" :class="fileName" :disabled="disabled || !canUpload" type="file" @change="change" ref="uploadPlus">
+      <div v-show="src" class="emfe-upload-plus-box" :class="[`emfe-upload-plus-box-${align}`, imageName]" :style="{opacity: canShow ? 1 : 0}" @click="closePlusFn">
+        <img :class="[`emfe-upload-img-${align}`, imgName]" v-show="src" :src="src" ref="img">
       </div>
     </template>
+    <emfe-modal :show="interceptModal" title="截取器" @close="formCancel" @cancel="formCancel" @ok="formOk" okText="保存" className="form">
+      <div slot="modal-main" class="emfe-upload-intercept-wrap" :style="{'padding-top': `${dragPaddingTop}px`, 'padding-left': `${dragPaddingLeft}px`}">
+        <emfe-drag class="emfe-upload-intercept-drag" :dragEl="drag1" :style="{ width: `${dragWidth}px`, height: `${dragHeight}px`}" :initialValue="[-interceptCanvasWidth/2, -interceptCanvasHeight/2]" limit="true" @drag="dragPosMove">
+          <img :src="img" class="emfe-upload-intercept-img" :style="{ width: `${dragWidth}px`, height: `${dragHeight}px`}" ref="previewImg">
+          <div class="emfe-upload-intercept" :style="{width: `${interceptCanvasWidth}px`, height: `${interceptCanvasHeight}px`, left: `${interceptLeft}px`, top: `${interceptTop}px`}" ref="drag1">
+            <emfe-drag class="emfe-upload-intercept-point emfe-upload-intercept-point-nw" @drag="nwPosMove" :moveEle="false"></emfe-drag>
+            <emfe-drag class="emfe-upload-intercept-point emfe-upload-intercept-point-ne" @drag="nePosMove" :moveEle="false"></emfe-drag>
+            <emfe-drag class="emfe-upload-intercept-point emfe-upload-intercept-point-sw" @drag="swPosMove" :moveEle="false"></emfe-drag>
+            <emfe-drag class="emfe-upload-intercept-point emfe-upload-intercept-point-se" @drag="sePosMove" :moveEle="false"></emfe-drag>
+          </div>
+        </emfe-drag>
+      </div>
+    </emfe-modal>
   </div>
 </template>
 <script>
 import _ from '../../../tools/lodash';
+import upload from '../../../tools/upload';
+import { openMask, closeMask } from '../../../tools/body';
 import EmfeMessage from '../../emfe-message/index';
 import ajax from './ajax';
 
-let canUpload = true;
+const uploadJpeg = 'image/jpeg';
+let pointOldLeft = 0; // 改变截取器遮罩大小
 
 export default {
   name: 'upload',
   data() {
     return {
+      drag1: [],
+      canUpload: true,
       src: '',
       canShow: false,
       fileList: [],
       tempIndex: 1,
+      img: '',
       align: '',
+      interceptModal: false, // 截取器是否显示
+      interceptWidth: 360, // 截取器的宽
+      interceptHeight: 400, // 截取器的搞
+      interceptLeft: 0, // 截取器的左边距离
+      interceptTop: 0, // 截取器的有边距离
+      interceptCanvasWidth: 360, // 截取器截图的大小
+      interceptCanvasHeight: 400, // 截取器截图的大小
+      dragWidth: 'auto', // 拖拽的宽
+      dragHeight: 400, // 拖拽的高
+      dragPaddingLeft: 0,
+      dragPaddingTop: 0,
+      canvas: null,
+      canvasContext: null,
+      iconText: this.buttonText,
+      plusText: '+',
     };
   },
   props: {
@@ -71,6 +105,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    intercept: {
+      type: Array,
+      default: () => [],
+    },
     format: {
       type: Array,
       default() {
@@ -105,6 +143,18 @@ export default {
       type: Function,
       default: () => {},
     },
+    buttonText: {
+      type: String,
+      default: '上传图片',
+    },
+    theme: {
+      type: String,
+      default: 'default',
+    },
+    fileType: {
+      type: String,
+      default: 'image',
+    },
   },
   computed: {
     uploadName() {
@@ -117,7 +167,7 @@ export default {
           [`${this.className}-upload-${this.type}`]: !!this.className,
         },
         {
-          'emfe-upload-disabled': this.disabled,
+          'emfe-upload-disabled': this.disabled || !this.canUpload,
         },
       ];
     },
@@ -129,6 +179,22 @@ export default {
         },
       ];
     },
+    imageName() {
+      return [
+        [`emfe-upload-${this.type}-image`],
+        {
+          [`${this.className}-upload-${this.type}-image`]: !!this.className,
+        },
+      ];
+    },
+    imgName() {
+      return [
+        [`emfe-upload-${this.type}-image`],
+        {
+          [`${this.className}-upload-${this.type}-img`]: !!this.className,
+        },
+      ];
+    },
     fileName() {
       return [
         [`emfe-upload-${this.type}-file`],
@@ -136,28 +202,137 @@ export default {
           [`${this.className}-upload-${this.type}-file`]: !!this.className,
         },
         {
-          'emfe-upload-file-disabled': this.disabled,
+          'emfe-upload-file-disabled': this.disabled || !this.canUpload,
         },
       ];
     },
   },
   mounted() {
     if (this.url) {
+      this.initImg();
+    }
+    this.initIntercept();
+  },
+  methods: {
+    initIntercept() {
+      // 有截取器
+      if (this.intercept.length > 0) {
+        if (this.intercept.length > 1) {
+          this.interceptCanvasWidth = this.intercept[0];
+          this.interceptCanvasHeight = this.intercept[1];
+        } else if (this.intercept.length === 1) {
+          this.interceptCanvasWidth = this.intercept[0];
+          this.interceptCanvasHeight = this.intercept[0];
+        }
+      }
+    },
+    initImg() {
       const imgObject = new Image();
       imgObject.src = this.url;
       imgObject.onload = () => {
         this.src = this.url;
         setTimeout(this.setAlign.bind(this), 0);
       };
-    }
-  },
-  methods: {
-    setAlign() {
+    },
+    openInterceptModal() {
+      openMask();
+      this.interceptModal = true;
+    },
+    closeInterceptModal() {
+      closeMask();
+      this.interceptModal = false;
+    },
+    formCancel() {
+      this.closeInterceptModal();
+      this.resetInputFile();
+    },
+    formOk() {
+      this.initCanvas();
+    },
+    initCanvas() {
+      const img = new Image();
+      img.src = this.img;
+      img.onload = () => {
+        this.canvas = document.createElement('canvas');
+        this.canvasContext = this.canvas.getContext('2d');
+        this.canvas.width = this.interceptCanvasWidth;
+        this.canvas.height = this.interceptCanvasHeight;
+        this.getImageUrl();
+        this.postHandle(upload(this.clipData, uploadJpeg));
+        this.closeInterceptModal();
+      };
+    },
+    getImageUrl() {
+      const { canvasContext, previewImg } = this;
+      const { clientWidth, clientHeight } = previewImg;
+      const left = this.interceptLeft;
+      const top = this.interceptTop;
+      canvasContext.drawImage(previewImg, -left, -top, clientWidth, clientHeight);
+      this.clipData = this.canvas.toDataURL(uploadJpeg);
+    },
+    // 拖拽大方块改变截图位置
+    dragPosMove(ev, left, top) {
+      this.interceptLeft = left;
+      this.interceptTop = top;
+    },
+    // 角部拖拽改变大小
+    pointMoveChangeSize(ev, left, lDir, type) {
+      const cWidth = this.interceptCanvasWidth;
+      const cHeight = this.interceptCanvasHeight;
+      let widthStep = -left;
+      // 左上 || 左下
+      if (type === 'nw' || type === 'sw') {
+        const lChange = pointOldLeft - left;
+        widthStep = lChange;
+      }
+      const heightStep = (cHeight * widthStep) / cWidth;
+      const canWidth = this.intercept[0] < cWidth + widthStep;
+      const canHeight = this.intercept[1] < cHeight + heightStep;
+      // 拖动左边的，x不能超出去，拖动右边的，宽度不能超过去
+      const heng = this.interceptLeft >= 0 && this.interceptLeft + cWidth <= this.dragWidth - 5;
+      const shu = this.interceptLeft >= 0 && this.interceptTop + cHeight <= this.dragHeight - 5;
+
+      if (heng && shu && canWidth && canHeight) {
+        this.interceptCanvasWidth += widthStep;
+        this.interceptCanvasHeight += heightStep;
+      }
+
+      if (heng && shu) {
+        // 左上 || 左下
+        if (type === 'nw' || type === 'sw') {
+          this.interceptLeft -= widthStep;
+        }
+        // 左上 || 右上
+        if (type === 'nw' || type === 'ne') {
+          this.interceptTop -= heightStep;
+        }
+        pointOldLeft = left;
+      }
+    },
+    // 左上
+    nwPosMove(ev, left, top, lDir) {
+      this.pointMoveChangeSize(ev, left, lDir, 'nw');
+    },
+    // 右上
+    nePosMove(ev, left, top, lDir) {
+      this.pointMoveChangeSize(ev, this.interceptCanvasWidth - left, lDir, 'ne');
+    },
+    // 左下
+    swPosMove(ev, left, top, lDir) {
+      this.pointMoveChangeSize(ev, left, lDir, 'sw');
+    },
+    // 右下
+    sePosMove(ev, left, top, lDir) {
+      this.pointMoveChangeSize(ev, this.interceptCanvasWidth - left, lDir);
+    },
+    setAlign(res) {
       const { clientWidth, clientHeight } = this.$refs.img;
-      if (clientWidth !== 0 && clientHeight !== 0) {
-        if (clientWidth > clientHeight) {
+      const width = res ? res.width : clientWidth;
+      const height = res ? res.height : clientHeight;
+      if (width !== 0 && height !== 0) {
+        if (width > height) {
           this.align = 'horizontal';
-        } else if (clientWidth < clientHeight) {
+        } else if (width < height) {
           this.align = 'vertical';
         } else {
           this.align = 'normal';
@@ -174,9 +349,35 @@ export default {
 
       const postFiles = Array.prototype.slice.call(files);
 
-      postFiles.forEach((file) => {
-        this.postHandle(file);
-      });
+      if (this.intercept.length === 0) {
+        postFiles.forEach((file) => {
+          this.postHandle(file);
+        });
+      } else {
+        const reader = new FileReader();
+        reader.readAsDataURL(postFiles[0]);
+        reader.onload = (readerEvent) => {
+          this.img = readerEvent.target.result;
+          this.openInterceptModal();
+          setTimeout(() => {
+            this.drag1.length = 0;
+            this.drag1.push(this.$refs.drag1);
+            this.previewImg = this.$refs.previewImg;
+            this.dragWidth = this.previewImg.clientWidth;
+            this.dragHeight = this.previewImg.clientHeight;
+            this.dragPaddingLeft = (this.dragWidth - this.interceptWidth) / 2;
+            this.dragPaddingTop = (this.dragHeight - this.interceptHeight) / 2;
+            const imgScale = this.dragHeight / this.dragWidth;
+            // 如果宽度超了
+            if (this.dragWidth > this.interceptWidth) {
+              this.dragWidth = this.interceptWidth;
+              this.dragHeight = imgScale * this.dragWidth;
+              this.dragPaddingLeft = (this.interceptWidth - this.dragWidth) / 2;
+              this.dragPaddingTop = (this.interceptHeight - this.dragHeight) / 2;
+            }
+          }, 0);
+        };
+      }
     },
     postHandle(file) {
       // check format
@@ -198,12 +399,11 @@ export default {
         }
       }
 
-      if (canUpload) {
+      if (this.canUpload) {
         this.handleStart(file);
         this.beforeUpload(file, EmfeMessage);
         this.$emit('beforeUpload', file, EmfeMessage);
-        this.canUpload = false;
-
+        this.canNotLoad();
         ajax({
           headers: this.headers,
           withCredentials: this.withCredentials,
@@ -212,15 +412,13 @@ export default {
           filename: this.name,
           action: this.action,
           onSuccess: (res) => {
-            canUpload = true;
-            if (res.code === 10000) {
+            if (!res.code) {
               this.handleSuccess(res, file);
             } else {
               this.handleError('上传失败', res, file);
             }
           },
           onError: (err, response) => {
-            canUpload = true;
             this.handleError(err, response, file);
           },
         });
@@ -246,7 +444,12 @@ export default {
       if (fileData) {
         fileData.status = 'finished';
         fileData.response = res;
-        this.loadImg(res.data.url, res, fileData);
+        if (this.fileType === 'image') {
+          this.loadImg(res.url, res, fileData);
+        } else {
+          this.canLoad();
+          this.$emit('success', res, fileData, this.fileList, EmfeMessage);
+        }
       }
     },
     handleError(err, response, file) {
@@ -254,6 +457,7 @@ export default {
       const fileList = this.fileList;
 
       fileData.status = 'fail';
+      this.canLoad();
 
       fileList.splice(fileList.indexOf(fileData), 1);
       this.error(err, response, file, EmfeMessage);
@@ -273,24 +477,57 @@ export default {
       img.src = src;
       img.onload = () => {
         this.src = src;
-        setTimeout(this.setAlign.bind(this), 0);
+        setTimeout(this.setAlign.bind(this, res), 0);
+        this.canLoad();
         this.success(res, fileData, this.fileList, EmfeMessage);
         this.$emit('success', res, fileData, this.fileList, EmfeMessage);
       };
     },
     closeFn() {
-      this.$refs.upload.value = '';
       this.closeCommon();
     },
     closePlusFn() {
-      this.$refs.uploadPlus.value = '';
       this.closeCommon();
     },
     closeCommon() {
       this.src = '';
       this.canShow = false;
+      this.resetInputFile();
       this.close(EmfeMessage);
       this.$emit('close', EmfeMessage);
+    },
+    resetInputFile() {
+      if (this.type === 'icon') {
+        this.$refs.upload.value = '';
+      } else {
+        this.$refs.uploadPlus.value = '';
+      }
+      this.dragWidth = 'auto';
+      this.dragHeight = 400;
+      this.initIntercept();
+    },
+    canLoad() {
+      this.canUpload = true;
+      if (this.type === 'icon') {
+        this.iconText = this.buttonText;
+      } else {
+        this.plusText = '+';
+      }
+    },
+    canNotLoad() {
+      this.canUpload = false;
+      if (this.type === 'icon') {
+        this.iconText = '上传中';
+      } else {
+        this.plusText = '...';
+      }
+    },
+  },
+  watch: {
+    url(val, oldVal) {
+      if (val !== oldVal) {
+        this.initImg();
+      }
     },
   },
 };

@@ -1,7 +1,5 @@
 import O from '../../../tools/o';
 
-// https://github.com/ElemeFE/element/blob/dev/packages/upload/src/ajax.js
-
 function getError(action, option, xhr) {
   const msg = `fail to post ${action} ${xhr.status}'`;
   const err = new Error(msg);
@@ -31,15 +29,6 @@ export default function upload(option) {
 
   const xhr = new XMLHttpRequest();
   const action = option.action;
-
-  // if (xhr.upload) {
-  //   xhr.upload.onprogress = function progress(e) {
-  //     if (e.total > 0) {
-  //       e.percent = (e.loaded / e.total) * 100;
-  //     }
-  //     option.onProgress(e);
-  //   };
-  // }
 
   const formData = new FormData();
 
@@ -79,10 +68,5 @@ export default function upload(option) {
     }
   });
 
-  // for (const item in headers) {
-  //   if (O.hOwnProperty(headers, item) && headers[item] !== null) {
-  //     xhr.setRequestHeader(item, headers[item]);
-  //   }
-  // }
   xhr.send(formData);
 }

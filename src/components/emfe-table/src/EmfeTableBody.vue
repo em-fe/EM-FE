@@ -1,7 +1,7 @@
  <template>
   <tr @click="jump(ind)" class="emfe-box-table-tr" :class="classTr">
     <template>
-      <td class="emfe-box-table-tr-td" :class="classTd" :rowspan="dataList[list.key].row ? rowSpan[list.key]:0"  v-for="(list , index) in dataSlice" v-if="!dataList[list.key].hebing">
+      <td class="emfe-box-table-tr-td" :class="[classTd, {'emfe-box-table-tr-td-checked': checked === index}]" :rowspan="dataList[list.key].row ? rowSpan[list.key]:0"  v-for="(list , index) in dataSlice" v-if="!dataList[list.key].hebing">
         <slot name="a" v-if="dataList[list.key].slot==='a'"></slot>
         <slot name="b" v-if="dataList[list.key].slot==='b'"></slot>
         <slot name="c" v-if="dataList[list.key].slot==='c'"></slot>
@@ -11,7 +11,7 @@
         <slot name="g" v-if="dataList[list.key].slot==='g'"></slot>
         <slot name="h" v-if="dataList[list.key].slot==='h'"></slot>
         <slot name="i" v-if="dataList[list.key].slot==='i'"></slot>
-        <div v-if="!dataList[list.key].slot">{{dataList[list.key].text}}</div>
+        <div  class="emfe-box-table-tr-td-div" v-if="!dataList[list.key].slot">{{dataList[list.key].text}}</div>
       </td>
     </template>
   </tr>
@@ -25,6 +25,7 @@ export default {
       classAdd: this.$parent.classAdd,
       column: this.$parent.columns,
       data: this.$parent.data,
+      border: this.$parent.border,
       current: 0,
       columnCopy: [],
     };
@@ -40,6 +41,10 @@ export default {
       type: Number,
       default: 0,
     },
+    checked: {
+      type: Number,
+      default: -1,
+    },
   },
   computed: {
     dataSlice() {
@@ -50,7 +55,6 @@ export default {
     },
     classTr() {
       return [
-        `${this.className}-table-body-tr`,
         {
           [`${this.$parent.classAdd}-tbody-tr`]: !!this.classAdd,
         },
@@ -58,9 +62,9 @@ export default {
     },
     classTd() {
       return [
-        `${this.className}-table-body-tr-td`,
         {
           [`${this.$parent.classAdd}-tbody-tr-td`]: !!this.classAdd,
+          border: `${this.border}`,
         },
       ];
     },

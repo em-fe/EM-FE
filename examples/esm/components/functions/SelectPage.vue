@@ -10,6 +10,11 @@
               :datas="data1"<br>
               type="checkbox"<br>
 
+    <div style="margin-bottom:10px">
+    </style>默认（有错误提示）</div>
+    <emfe-select :errOk="true" :datas="data1" type="default" @getAllData="getData" selectText="提示文字" @checkedopt="getlist">
+      <div slot="error">错误提示</div>
+    </emfe-select>
 
     <div style="margin:50px 0 10px">
       带新建的多选
@@ -60,9 +65,10 @@ export default {
   data() {
     return {
       checkedNames: ['Jack'],
-      checkVals: ['esfa','2'],
+      checkVals: ['esfa','2','2','2','2', '2', '2', '2'],
       datas: '',
       checkeds: [3, 4],
+      data1Checked: ['1', '2', '2', '2', '2', '2'],
       data1: [
         {
           name: '1',
@@ -76,6 +82,16 @@ export default {
         },
         {
           name: '3',
+          checked: false,
+          disabled: false,
+        },
+        {
+          name: 'esfa',
+          checked: false,
+          disabled: false,
+        },
+        {
+          name: 'esfa',
           checked: false,
           disabled: false,
         },

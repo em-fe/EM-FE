@@ -31,10 +31,10 @@
       &lt;/emfe-input&gt;
     </pre>
     <br>
-    <emfe-input :iconOk="true" iconType="site" placeholder="请输入文字！">
+    <emfe-input :iconOk="true" iconType="fabu" placeholder="请输入文字！">
     </emfe-input>
     <pre>
-      &lt;emfe-input :iconOk="true" iconType="site" placeholder="请输入文字！"&gt;
+      &lt;emfe-input :iconOk="true" iconType="fabu" placeholder="请输入文字！"&gt;
       &lt;/emfe-input&gt;
     </pre>
     <br>
@@ -54,6 +54,9 @@
       &lt;/emfe-input&gt;
     </pre>
     <br><br>
+    <emfe-input :maxlength=10  placeholder="请输入文a字！" className="add" v-model="value" @blur="blur">
+    </emfe-input>
+    <div>支持v-model： {{value}}</div>
     <br><br>
     <br><br>
     <h3>API</h3>
@@ -84,6 +87,12 @@
           <td>type是定义输入框类型</td>
           <td>String</td>
           <td>默认为 'text'</td>
+        </tr>
+        <tr>
+          <td>maxlength</td>
+          <td>maxlength是定义输入框最长输入长度</td>
+          <td>NUmber</td>
+          <td>默认为 ''</td>
         </tr>
         <tr>
           <td>disabled</td>

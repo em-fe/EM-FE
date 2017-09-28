@@ -1,5 +1,24 @@
 <template>
   <div class="uploadpage">
+    <h3>截取器</h3>
+    <emfe-upload type="icon" action="http://gateway.inner.evente.cn:8000/public/upload" :intercept="[100, 60]"></emfe-upload>
+    <pre>
+      &lt;emfe-upload type="icon" action="http://gateway.inner.evente.cn:8000/public/upload" :intercept="[100, 60]"&gt;&lt;/emfe-upload&gt;
+    </pre>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <emfe-upload action="http://gateway.inner.evente.cn:8000/public/upload" :intercept="[100, 60]"></emfe-upload>
+    <pre>
+      &lt;emfe-upload action="http://gateway.inner.evente.cn:8000/public/upload" :intercept="[100, 60]"&gt;&lt;/emfe-upload&gt;
+    </pre>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <h3>基本用法</h3>
     <emfe-upload type="icon" action="http://gateway.inner.evente.cn:8000/public/upload"></emfe-upload>
     <br>
@@ -12,7 +31,7 @@
     <br>
     <br>
     <h3>扩展用法</h3>
-    <emfe-upload v-show="!src1" type="icon" action="http://gateway.inner.evente.cn:8000/public/upload" :success="suc"></emfe-upload>
+    <emfe-upload buttonText="上传文件" fileType='file' theme="primary" v-show="!src1" type="icon" action="http://gateway.inner.evente.cn:8000/public/upload?type=1" @success="suc"></emfe-upload>
     <img v-show="src1" :src="src1">
     <pre>
       &lt;emfe-upload v-show="!src1" type="icon" action="http://gateway.inner.evente.cn:8000/public/upload" :success="suc"&gt;&lt;/emfe-upload&gt;
@@ -20,7 +39,7 @@
     </pre>
     <pre>
       suc(data) {
-        this.src1 = data.data.resource_url;
+        this.src1 = data.url;
       },
     </pre>
     <br>
@@ -29,7 +48,7 @@
     <br>
     <br>
     <h3>另一种用法</h3>
-    <emfe-upload action="http://gateway.inner.evente.cn:8000/public/upload"></emfe-upload>
+    <emfe-upload className="bbb" action="http://gateway.inner.evente.cn:8000/public/upload"></emfe-upload>
     <br>
     <pre>
       &lt;emfe-upload action="http://gateway.inner.evente.cn:8000/public/upload"&gt;&lt;/emfe-upload&gt;
@@ -116,7 +135,7 @@
         <tr>
           <td>data</td>
           <td>上传时附带的额外参数</td>
-          <td>String</td>
+          <td>Object</td>
           <td>-</td>
         </tr>
         <tr>
@@ -142,6 +161,24 @@
           <td>自定义的 class 名称。</td>
           <td>String</td>
           <td>-</td>
+        </tr>
+        <tr>
+          <td>buttonText</td>
+          <td>自定义按钮文字。</td>
+          <td>String</td>
+          <td>默认上传图片</td>
+        </tr>
+        <tr>
+          <td>fileType</td>
+          <td>自定义上传文件类型</td>
+          <td>String</td>
+          <td>默认image,</td>
+        </tr>
+        <tr>
+          <td>intercept</td>
+          <td>截取器开关，支持格式 [宽，高]</td>
+          <td>Array</td>
+          <td>默认image,</td>
         </tr>
       </tbody>
     </table>
@@ -195,7 +232,8 @@ export default {
   },
   methods: {
     suc(data) {
-      this.src1 = data.data.url;
+      this.src1 = data.url;
+      console.log(data, 111111);
     },
   },
 };

@@ -1,6 +1,63 @@
 .#{$prefix}upload {
+  user-select: none;
+
   &-disabled {
     background: $background-color-disable;
+  }
+
+  &-intercept {
+    @include border(all, $brand-color-default);
+
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: rgba(0, 0, 0, 0.4);
+
+    &-img {
+      pointer-events: none;
+    }
+
+    &-wrap {
+      height: 400px;
+      overflow: hidden;
+      background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQAQMAAAAlPW0iAAAAA3NCSVQICAjb4U/gAAAABlBMVEXMzMz////TjRV2AAAACXBIWXMAAArrAAAK6wGCiw1aAAAAHHRFWHRTb2Z0d2FyZQBBZG9iZSBGaXJld29ya3MgQ1M26LyyjAAAABFJREFUCJlj+M/AgBVhF/0PAH6/D/HkDxOGAAAAAElFTkSuQmCC');
+      position: relative;
+    }
+
+    &-drag {
+      position: relative;
+    }
+
+    &-point {
+      width: 10px;
+      height: 10px;
+      position: absolute;
+      background: $brand-color-default;
+
+      &-sw {
+        cursor: sw-resize;
+        left: -5px;
+        bottom: -5px;
+      }
+
+      &-se {
+        cursor: se-resize;
+        right: -5px;
+        bottom: -5px;
+      }
+
+      &-nw {
+        cursor: nw-resize;
+        left: -5px;
+        top: -5px;
+      }
+
+      &-ne {
+        cursor: ne-resize;
+        right: -5px;
+        top: -5px;
+      }
+    }
   }
 
   &-img {
@@ -36,7 +93,7 @@
     position: relative;
     width: 160px;
     height: 160px;
-    overflow: hidden;
+    // overflow: hidden;
 
     &-box {
       @include border(all, $border-color, 1px, dashed);

@@ -4,6 +4,18 @@ import VueRouter from 'vue-router';
 const router = new VueRouter({
   routes: [
     {
+      path: '/directives',
+      name: 'directives',
+      children: [
+        {
+          path: '/directives/docclick',
+          name: 'docclick',
+          component: require('./components/directives/Docclick.vue'),
+        },
+      ],
+      component: require('./components/directives/Index.vue'),
+    },
+    {
       path: '/tips',
       name: 'Tips',
       children: [
@@ -45,9 +57,19 @@ const router = new VueRouter({
           component: require('./components/styles/TelPage.vue'),
         },
         {
+          path: '/styles/telc',
+          name: 'telc',
+          component: require('./components/styles/TelCPage.vue'),
+        },
+        {
           path: '/styles/imgCodepage',
           name: 'imgCodepage',
           component: require('./components/styles/ImgCodepage.vue'),
+        },
+        {
+          path: '/styles/imgCodepageC',
+          name: 'imgCodeCpage',
+          component: require('./components/styles/ImgCodeCpage.vue'),
         },
         {
           path: '/styles/smscodeCodepage',
@@ -55,9 +77,19 @@ const router = new VueRouter({
           component: require('./components/styles/SmscodeCodepage.vue'),
         },
         {
+          path: '/styles/smscodecCodepage',
+          name: 'smscodecCodepage',
+          component: require('./components/styles/SmscodecCodepage.vue'),
+        },
+        {
           path: '/styles/panel',
           name: 'panel',
           component: require('./components/styles/PanelPage.vue'),
+        },
+        {
+          path: '/styles/panelc',
+          name: 'panelc',
+          component: require('./components/styles/PanelCPage.vue'),
         },
         {
           path: '/styles/steps',
@@ -65,9 +97,19 @@ const router = new VueRouter({
           component: require('./components/styles/StepsPage.vue'),
         },
         {
+          path: '/styles/stepsc',
+          name: 'stepsc',
+          component: require('./components/styles/StepsCPage.vue'),
+        },
+        {
           path: '/styles/crumbs',
           name: 'crumbspage',
           component: require('./components/styles/CrumbsPage.vue'),
+        },
+        {
+          path: '/styles/crumbsc',
+          name: 'crumbscpage',
+          component: require('./components/styles/CrumbsCPage.vue'),
         },
         {
           path: '/styles/menu',
@@ -80,14 +122,29 @@ const router = new VueRouter({
           component: require('./components/styles/BarPage.vue'),
         },
         {
+          path: '/styles/barc',
+          name: 'barc',
+          component: require('./components/styles/BarCPage.vue'),
+        },
+        {
           path: '/styles/title',
           name: 'title',
           component: require('./components/styles/TitlePage.vue'),
         },
         {
+          path: '/styles/titlec',
+          name: 'titlec',
+          component: require('./components/styles/TitleCPage.vue'),
+        },
+        {
           path: '/styles/button',
           name: 'button',
           component: require('./components/styles/ButtonPage.vue'),
+        },
+        {
+          path: '/styles/buttonc',
+          name: 'buttonc',
+          component: require('./components/styles/ButtonCPage.vue'),
         },
         {
           path: '/styles/switch',
@@ -100,14 +157,29 @@ const router = new VueRouter({
           component: require('./components/styles/RadioPage.vue'),
         },
         {
+          path: '/styles/radioc',
+          name: 'radioc',
+          component: require('./components/styles/RadioCPage.vue'),
+        },
+        {
           path: '/styles/pagination',
           name: 'pagination',
           component: require('./components/styles/PaginationPage.vue'),
         },
         {
+          path: '/styles/paginationc',
+          name: 'paginationc',
+          component: require('./components/styles/PaginationCPage.vue'),
+        },
+        {
           path: '/styles/checkout',
           name: 'checkout',
           component: require('./components/styles/checkoutPage.vue'),
+        },
+        {
+          path: '/styles/checkoutc',
+          name: 'checkoutc',
+          component: require('./components/styles/checkoutCPage.vue'),
         },
         {
           path: '/styles/textarea',
@@ -130,9 +202,19 @@ const router = new VueRouter({
           component: require('./components/styles/HeaderPage.vue'),
         },
         {
+          path: '/styles/headercpage',
+          name: 'headercpage',
+          component: require('./components/styles/HeaderCPage.vue'),
+        },
+        {
           path: '/styles/footerpage',
           name: 'footerpage',
           component: require('./components/styles/FooterPage.vue'),
+        },
+        {
+          path: '/styles/footercpage',
+          name: 'footerpagec',
+          component: require('./components/styles/FooterCPage.vue'),
         },
         {
           path: '/styles/input',
@@ -166,6 +248,11 @@ const router = new VueRouter({
       path: '/functions',
       name: 'Functions',
       children: [
+        {
+          path: '/functions/iscroll',
+          name: 'iscrollcpt',
+          component: require('./components/functions/Iscroll.vue'),
+        },
         {
           path: '/functions/countdown',
           name: 'countdown',
@@ -229,7 +316,17 @@ const router = new VueRouter({
         {
           path: '/functions/modal',
           name: 'modal',
-          component: require('./components/functions/modal.vue'),
+          component: require('./components/functions/ModalPage.vue'),
+        },
+        {
+          path: '/functions/modalc',
+          name: 'modalc',
+          component: require('./components/functions/ModalCPage.vue'),
+        },
+        {
+          path: '/functions/loginmodal',
+          name: 'loginmodal',
+          component: require('./components/functions/loginmodalPage.vue'),
         },
         {
           path: '/functions/upload',

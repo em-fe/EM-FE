@@ -58,21 +58,53 @@ export default {
   data() {
     return {
       types: [
-        ['hint', 'qr', 'hotel'],
-        ['publish', 'list', 'eventelogo'],
-        ['stick', 'statistics', 'account'],
-        ['financial', 'sidebar', 'order'],
-        ['public', 'diadema', 'service'],
-        ['paradise', 'commodity', 'sale'],
-        ['marketing', 'site'],
+        ['erweima', 'fabu', 'shezhi'],
+        ['tishi', 'zhiding', 'zanting'],
+        ['kaishi', 'huodongmingcheng', 'jingtaidit'],
+        ['duoxuan', 'danxuan', 'fengexian'],
+        ['duoxiangxiala', 'chengshi', 'tupzhanshi'],
+        ['tupianshangchuan', 'riqixuanze', 'shuzi'],
+        ['wenbenmiaoshu', 'wenbnekuang', 'xialaxuanxiang'],
+        ['bumen', 'chuanzhen', 'suozaidi'],
+        ['dizhi', 'gongsi', 'chengwei'],
+        ['shenfenzheng', 'shouji', 'qq'],
+        ['shengri', 'touxiang', 'wangzhi'],
+        ['weixin', 'xingming', 'weibo'],
+        ['zhiwei', 'xingbie', 'youxiang'],
+        ['zuoji', 'dizhi1', 'dianhua'],
+        ['bumen1', 'chuanzhen1', 'chengwei1'],
+        ['gongsi1', 'shenfenzheng1', 'shouji1'],
+        ['suozaidi1', 'shengri1', 'touxiang1'],
+        ['weixin1', 'xingming1', 'wangzhi1'],
+        ['weibo1', 'youxiang1', 'xingbie1'],
+        ['zhiwei1', 'qq1', 'copy'],
+        ['shanchu', 'tanchuanguanbi', 'rili'],
+        ['tianjiatupian', 'shijian', 'shangchuan'],
+        ['gengduoziduan', 'cedaohang', 'cedaohangshouqi'],
+        ['biaodantongji', 'cedaohangzhankai', 'caiwubaobiao'],
+        ['dingdanzhongxin', 'huiyuanzhongxin', 'gongzhonghaoxinxiguanli'],
+        ['shangpinguanli', 'leyuan', 'kefu'],
+        ['xiaoshou', 'yanchu', 'zhandianguanli'],
+        ['zhanghuguanli', 'zhujiudian', 'yingxiaozhongxin'],
+        ['huiyuanzhekou', 'huiyuanzhuanshuri', 'mianyunfei'],
+        ['querentouxiang', 'shenjijiangli', 'duobeijifen'],
+        ['shengrizengsong', 'tishixinxizhankai', 'shngrijifen'],
+        ['tishixinxishouqi', 'vip', 'wanshanxinxjiangliji'],
+        ['yaoqingjianglijifen', 'wuquanyi', 'xiaofeijianglijifen'],
+        ['xiugaimima', 'qiyexinxi', 'yanzhengshenfen'],
+        ['shenfenxinxi', 'zhongzhimima', 'zhucewanc'],
+        ['weichat', 'zhanghuxinxi', 'zhanghaodenglu'],
+        ['logo', 'fuzhi', 'shuzi1'],
+        ['bianji1', 'shouji2', 'gouwuche', 'guanli']
       ],
     };
   },
-}
+};
 </script>
 <style lang="scss">
 .icon {
   text-align: center;
+  font-size: 40px;
 
   &-page {
     color: #19efef;

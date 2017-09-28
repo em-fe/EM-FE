@@ -1,20 +1,19 @@
 .#{$prefix}drop {
   width: 100%;
+  position: relative;
 
-  &-drag {
-    position: relative;
-    z-index: 22;
+  &-hr {
+    @include border(all, $border-color, 1px, dashed, true);
 
-    &-no1-drag {
-      width: 200px;
-      height: 200px;
-      background: rgba(133, 10, 0, 0.4);
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 1;
-      -webkit-user-select: none;
-      user-select: none;
-    }
+    flex-wrap: nowrap;
+    flex: 1;
+    height: 100%;
+    margin-left: -1px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    user-select: none;
+    cursor: move;
   }
 }

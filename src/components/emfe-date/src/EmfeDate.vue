@@ -3,19 +3,19 @@
     <button class="emfe-date-btn" @click.stop="toggle" v-if="!open && !disabled">
       <span class="emfe-date-btn-text" :class="{'emfe-date-btn-text-choice': choiced}">{{ date }}</span>
       <!-- 日期 -->
-      <emfe-icon type="hint" className="emfe-date" v-show="!choiced" @icon-click="toggle"></emfe-icon>
+      <emfe-icon type="rili" className="emfe-date" v-show="!choiced" @icon-click="toggle"></emfe-icon>
       <!-- 取消 -->
-      <emfe-icon type="qr" className="emfe-date" v-show="choiced" @icon-click="cancel"></emfe-icon>
+      <emfe-icon type="shanchu" className="emfe-date" v-show="choiced" @icon-click="cancel"></emfe-icon>
     </button>
     <button class="emfe-date-btn emfe-date-btn-disabled" v-if="!open && disabled">
       <span class="emfe-date-btn-text" :class="{'emfe-date-btn-text-choice': choiced}">{{ date }}</span>
       <!-- 日期 -->
-      <emfe-icon type="hint" className="emfe-date" v-show="!choiced"></emfe-icon>
+      <emfe-icon type="rili" className="emfe-date" v-show="!choiced"></emfe-icon>
       <!-- 取消 -->
-      <emfe-icon type="qr" className="emfe-date" v-show="choiced"></emfe-icon>
+      <emfe-icon type="shanchu" className="emfe-date" v-show="choiced"></emfe-icon>
     </button>
     <emfe-transition name="fade">
-      <div class="emfe-date-box" :class="{'emfe-date-box-position': !open}" v-show="status">
+      <div class="emfe-date-box" :class="{'emfe-date-box-position': !open}" v-show="status" :style="panelstyle">
         <div class="emfe-date-header">
           <button class="emfe-date-prevyear" @click.stop="prevYear">&lt;&lt;</button>
           <button class="emfe-date-prevmonth" @click.stop="prevMonth" v-show="currentView === 'date'">&lt;</button>
@@ -89,6 +89,10 @@ export default {
     };
   },
   props: {
+    panelstyle: {
+      type: Object,
+      default: () => {},
+    },
     format: {
       type: String,
       default: '/',

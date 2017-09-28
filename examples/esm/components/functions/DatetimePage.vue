@@ -92,6 +92,12 @@
           <td>Array</td>
           <td>[]</td>
         </tr>
+        <tr>
+          <td>panelstyle</td>
+          <td>自定义面板样式</td>
+          <td>Object</td>
+          <td>-</td>
+        </tr>
       </tbody>
     </table>
     <br>

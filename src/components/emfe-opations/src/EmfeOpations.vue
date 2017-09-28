@@ -1,17 +1,18 @@
 <template>
-  <div class="emfe-opations" :class="opationsName">
+  <div class="emfe-opations" :class="opationsName" ref="dragBox">
     <template v-for="(item, index) in datas">
+      <div class="emfe-opations-hr" v-if="item.hrStatus"></div>
       <div class="emfe-opations-main" :key="index" :style="item.style" ref="hits">
         <i class="emfe-opations-icon emfe-opations-radio"></i>
-        <emfe-input :placeholder="index === datas.length - 1 && !clickFlg ? otherPlaceholder : dataPlaceholder" v-model="opationsData[index]" className="emfe-opations"></emfe-input>
+        <emfe-input :placeholder="item.other && !clickFlg ? otherPlaceholder : dataPlaceholder" v-model="opationsData[index]" className="emfe-opations"></emfe-input>
         <i class="emfe-opations-icon emfe-opations-plus" @click="plus(index)" v-show="!item.noPlus"
         :class="{'emfe-opations-margin-right': !minusFlg}"></i>
-        <i class="emfe-opations-icon emfe-opations-minus" @click="minus(index)" v-show="item.text === otherPlaceholder || minusFlg"
+        <i class="emfe-opations-icon emfe-opations-minus" @click="minus(index, item)" v-show="minusFlg"
         :class="{'emfe-opations-margin-left': item.noPlus}"></i>
-        <i class="emfe-opations-icon emfe-opations-drag" @mousedown.stop="down($event, item)"></i>
+        <i class="emfe-opations-icon emfe-opations-drag" @mousedown.stop="down($event, index, item)"></i>
       </div>
-      <div class="emfe-opations-hr" v-if="item.hrStatus"></div>
     </template>
+    <div class="emfe-opations-hr" v-if="lastHrStatus"></div>
     <div class="emfe-opations-operation">
       <div class="emfe-opations-operation-other" @click="otherPlus" v-show="clickFlg">其他选项</div>
     </div>
@@ -30,9 +31,8 @@ const itemMarginBottom = 16;
 const hrBorderSize = 1;
 // 其他常量
 const otherConstant = (itemMarginBottom / 2) - hrBorderSize;
-
-let lastHit = -1;
-let lastDrag = -1;
+// 上一个虚拟框的索引
+let lastHrIndex = -1;
 
 export default {
   name: 'EmfeOpations',
@@ -40,7 +40,9 @@ export default {
     return {
       clickFlg: !this.other,
       datas: [],
-      hits: [],
+      lastHrStatus: false, // 如果碰到最后一个最后一个分割线显示
+      lastHit: -1,
+      lastDrag: -1,
     };
   },
   props: {
@@ -83,19 +85,15 @@ export default {
   methods: {
     handleData() {
       this.datas = [];
-      this.hits = [];
       this.opationsData.forEach((od, odIndex) => {
         const newOd = {
-          text: od,
+          style: {},
+          hrStatus: false,
+          index: odIndex,
+          other: odIndex === this.opationsData.length - 1,
+          noPlus: this.other && odIndex === this.opationsData.length - 1,
         };
-        newOd.style = {};
-        newOd.hrStatus = false;
-        newOd.index = odIndex;
-        if (this.other && odIndex === this.opationsData.length - 1) {
-          newOd.noPlus = true;
-        }
         this.datas.push(newOd);
-        this.hits.push(false);
       });
     },
     testHit(one, two) {
@@ -109,7 +107,7 @@ export default {
       }
       return hit;
     },
-    down(e, item) {
+    down(e, index, item) {
       this.scrollTop = document.body.scrollTop;
       this.elTop = (e.target.offsetTop - otherConstant);
       refPos.y = e.pageY;
@@ -121,67 +119,90 @@ export default {
         top: `${this.elTop}px`,
       };
       item.hrStatus = true;
-      this.item = item;
-      this.$emit('down', this.item);
+      this.lastDrag = index;
+      this.$emit('down', this.datas[this.lastDrag], this.opationsData[this.lastDrag]);
       return false;
     },
     move(e) {
-      const { hits } = this.$refs;
-      const { index, style } = this.item;
+      const { dragBox } = this.$refs;
+      // 因为创建出来的元素 $refs 不更新，并不是自适应的
+      const hits = dragBox.querySelectorAll('.emfe-opations-main');
+      const { index, style } = this.datas[this.lastDrag];
       const disPosY = e.pageY - refPos.y;
       style.top = `${this.elTop + disPosY}px`;
-
       hits.forEach((hit, hitIndex) => {
         if (hitIndex !== index) {
           const isHit = this.testHit(hits[index], hit);
           if (isHit) {
-            if (!this.hits[hitIndex] && !this.hits[index]) {
-              lastHit = hitIndex;
-              lastDrag = index;
-              this.hits[hitIndex] = true;
-              this.hits[index] = true;
-              this.item.index = hitIndex;
-              this.datas[hitIndex].index = index;
-              _.swap(this.datas, hitIndex, index);
-              _.swap(this.opationsData, hitIndex, index);
-              this.$emit('swap', this.item, hitIndex, index);
-            }
+            this.getHitIndex(hitIndex);
+            this.moveDragHr();
           }
         }
       });
-      // 当刚刚交换的两个元素，不在碰上的时候，允许检测
-      if (lastHit !== -1) {
-        const { offsetTop, clientHeight } = hits[lastHit];
-        if (Math.abs(offsetTop - hits[lastDrag].offsetTop) > clientHeight + 4) {
-          this.hits[lastHit] = false;
-          this.hits[lastDrag] = false;
-        }
-      }
-      this.$emit('move', this.item);
+      this.$emit('move', this.datas[this.lastDrag], this.opationsData[this.lastDrag]);
       e.preventDefault();
       return false;
     },
     up() {
       document.removeEventListener('mousemove', this.move, false);
       document.removeEventListener('mouseup', this.up, false);
-      this.item.style = {};
-      this.item.hrStatus = false;
-      this.item = {};
+      this.swapData();
+      // 之所以不用 this.datas[lastHrIndex].hrStatus = false
+      // 是因为连续拖拽碰撞，会出问题，有的虚线不隐藏
+      this.datas.forEach((data) => {
+        data.hrStatus = false;
+        data.style = {};
+      });
+      this.lastHrStatus = false;
+      this.lastHit = -1;
+      this.lastDrag = -1;
+      lastHrIndex = -1;
       this.$emit('up');
+    },
+    getHitIndex(hitIndex) {
+      this.lastHit = hitIndex;
+    },
+    // 移动拖拽的虚线框
+    moveDragHr() {
+      const hrIndex = this.lastDrag < this.lastHit ? 1 : 0;
+      this.lastHrStatus = false;
+      this.datas[this.lastDrag].hrStatus = false;
+      if (lastHrIndex > -1 && lastHrIndex < this.datas.length) {
+        this.datas[lastHrIndex].hrStatus = false;
+      }
+      lastHrIndex = this.lastHit + hrIndex;
+      if (lastHrIndex < this.datas.length) {
+        this.datas[lastHrIndex].hrStatus = true;
+      } else {
+        this.lastHrStatus = true;
+      }
+    },
+    swapData() {
+      if (this.lastHit > -1) {
+        const { opationsData, datas, lastHit, lastDrag } = this;
+        _.exchangeAttrValue(datas[lastDrag], datas[lastHit], 'index');
+        _.swap(this.datas, this.lastHit, this.lastDrag);
+        _.swap(opationsData, lastHit, lastDrag);
+        this.updataIndex();
+        this.$emit('swap', datas[lastDrag], lastHit, lastDrag, opationsData[lastDrag]);
+      }
     },
     plus(index) {
       const obj = {
-        text: '',
+        other: false,
         hrStatus: false,
         style: {},
+        noPlus: false,
+        index: index + 1,
       };
       this.datas.splice(index + 1, 0, obj);
       this.opationsData.splice(index + 1, 0, '');
-      console.log(this.datas[index], index, 0);
+      // 多次添加的时候 index 永远是点击的那个所以更新下 index
+      this.updataIndex();
       this.$emit('plus', this.datas[index], index);
     },
-    minus(index) {
-      if (!this.clickFlg && index === this.datas.length - 1) {
+    minus(index, item) {
+      if (!this.clickFlg && item.other) {
         this.clickFlg = true;
       }
       this.datas.splice(index, 1);
@@ -190,8 +211,8 @@ export default {
     },
     otherPlus() {
       const obj = {
-        text: '',
         hrStatus: false,
+        other: true,
         style: {},
         noPlus: true,
       };
@@ -202,15 +223,21 @@ export default {
       this.clickFlg = false;
       this.$emit('otherplus', this.datas[this.datas.length - 1], this.datas.length - 1);
     },
+    updataIndex() {
+      // 多次添加的时候 index 永远是点击的那个所以更新下 index
+      this.datas.forEach((data, dIndex) => {
+        data.index = dIndex;
+      });
+    },
   },
   watch: {
-    opationsData() {
-      this.handleData();
-    },
     other(val, oldVal) {
       if (val !== oldVal) {
         this.clickFlg = !val;
       }
+    },
+    opationsData() {
+      this.handleData();
     },
   },
 };

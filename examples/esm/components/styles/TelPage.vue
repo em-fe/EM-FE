@@ -1,7 +1,7 @@
 <template>
   <div id="telpage">
     <h3>普通使用</h3>
-    <emfe-tel :datas="data1" v-model="now" placeholder="电话"></emfe-tel>
+    <emfe-tel :datas="data1" v-model="now" placeholder="电话" @blur='blur'></emfe-tel>
     当前 {{ now }}
     <pre>
       &lt;emfe-tel :datas="data1" v-model="now" placeholder="电话"&gt;&lt;/emfe-tel&gt;
@@ -12,6 +12,20 @@
     <br>
     <h3>自定义样式使用</h3>
     <emfe-tel className="demo" :datas="data1" v-model="now" placeholder="电话"></emfe-tel>
+    <br>
+    当前 {{ now }}
+    <pre>
+      &lt;emfe-tel className="demo" :datas="data1" v-model="now" placeholder="电话"&gt;&lt;/emfe-tel&gt;
+    </pre>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h3>错误样式使用</h3>
+    <emfe-tel className="demo" :datas="data1" v-model="now" placeholder="电话" :errOk="true">
+      <div slot="error">请输入证件号</div>
+    </emfe-tel>
+    <br>
     当前 {{ now }}
     <pre>
       &lt;emfe-tel className="demo" :datas="data1" v-model="now" placeholder="电话"&gt;&lt;/emfe-tel&gt;
@@ -72,6 +86,11 @@
           <td>点击选择前缀</td>
           <td>当前对象</td>
         </tr>
+        <tr>
+          <td>blur</td>
+          <td>失去焦点</td>
+          <td>-</td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -83,24 +102,29 @@ export default {
       now: {
         name: '中国',
         tel: 13800138000,
-        prefix: '+86',
+        prefix: '86',
         url: 'https://static.evente.cn/evente/img/flag/v1/zg.jpg',
       },
       data1: [
         {
           name: '中国',
           tel: 1123444555,
-          prefix: '+86',
+          prefix: '86',
           url: 'https://static.evente.cn/evente/img/flag/v1/zg.jpg',
         },
         {
           name: '香港',
           tel: 8888888888,
-          prefix: '+852',
+          prefix: '852',
           url: 'https://static.evente.cn/evente/img/flag/v1/xg.jpg',
         },
       ],
     };
+  },
+  methods: {
+    blur() {
+      console.log('失去焦点');
+    }, 
   },
 };
 </script>

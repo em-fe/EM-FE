@@ -13,18 +13,18 @@
     <br>
     <br>
     <h3>icon用法</h3>
-    <emfe-smscode icon="hint" v-model="model"></emfe-smscode>
+    <emfe-smscode icon="fabu" v-model="model"></emfe-smscode>
     {{ model }}
     <br>
     <pre>
-      &lt;emfe-smscode icon="hint" v-model="model"&gt;&lt;/emfe-smscode&gt;
+      &lt;emfe-smscode icon="fabu" v-model="model"&gt;&lt;/emfe-smscode&gt;
     </pre>
     <br>
     <br>
     <br>
     <br>
     <h3>自定义用法</h3>
-    <emfe-smscode className="demo" v-model="model" times="6" @blur="blur" @click="click" :timeStart="start" @end="timeEnd"></emfe-smscode>
+    <emfe-smscode className="demo" v-model="model" times="6" @blur="blur" @click="click" :timeStart="start" :end="timeEnd"></emfe-smscode>
     点击次数: {{ num }}
     {{ model }}
     <pre>

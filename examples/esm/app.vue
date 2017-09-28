@@ -14,19 +14,31 @@ module.exports = {
       menus: [
         {
           title: '去百度',
-          icon: 'hotel',
+          icon: 'erweima',
           url: 'http://baidu.com',
         },
         {
           title: '运动组件',
-          icon: 'hotel',
+          icon: 'erweima',
           routers: {
             path: '/transition',
           },
         },
         {
+          title: '指令',
+          icon: 'erweima',
+          children: [
+            {
+              title: '点击body事件',
+              routers: {
+                path: '/directives/docclick',
+              },
+            },
+          ],
+        },
+        {
           title: '提示组件',
-          icon: 'hotel',
+          icon: 'erweima',
           children: [
             {
               title: '文字提示',
@@ -42,7 +54,7 @@ module.exports = {
             },
             {
               title: '图标',
-              icon: 'hotel',
+              icon: 'erweima',
               children: [
                 {
                   title: '字体图标',
@@ -54,7 +66,7 @@ module.exports = {
             },
             {
               title: '展开收起',
-              icon: 'hotel',
+              icon: 'erweima',
               routers: {
                 path: '/tips/hottip',
               },
@@ -63,11 +75,11 @@ module.exports = {
         },
         {
           title: '排版',
-          icon: 'hotel',
+          icon: 'erweima',
           children: [
             {
               title: '表单',
-              icon: 'hotel',
+              icon: 'erweima',
               children: [
                 {
                   title: '多选',
@@ -77,118 +89,188 @@ module.exports = {
                   },
                 },
                 {
+                  title: '多选C',
+                  icon: 'checkout',
+                  routers: {
+                    path: '/styles/checkoutc',
+                  },
+                },
+                {
                   title: 'input输入框',
-                  icon: 'hotel',
+                  icon: 'erweima',
                   routers: {
                     path: '/styles/input',
                   },
                 },
                 {
                   title: '更多输入框',
-                  icon: 'hotel',
+                  icon: 'erweima',
                   routers: {
                     path: '/styles/inputmore',
                   },
                 },
                 {
                   title: '电话组合',
-                  icon: 'hotel',
+                  icon: 'erweima',
                   routers: {
                     path: '/styles/tel',
                   },
                 },
                 {
-                  title: '图片验证码',
+                  title: '电话组合C',
                   icon: 'hotel',
+                  routers: {
+                    path: '/styles/telc',
+                  },
+                },
+                {
+                  title: '图片验证码',
+                  icon: 'erweima',
                   routers: {
                     path: '/styles/imgCodepage',
                   },
                 },
                 {
+                  title: '图片验证码C',
+                  icon: 'erweima',
+                  routers: {
+                    path: '/styles/imgCodepageC',
+                  },
+                },
+                {
                   title: '短信验证码',
-                  icon: 'hotel',
+                  icon: 'erweima',
                   routers: {
                     path: '/styles/smscodeCodepage',
                   },
                 },
                 {
-                  title: '按钮',
+                  title: '短信验证码C',
                   icon: 'hotel',
+                  routers: {
+                    path: '/styles/smscodecCodepage',
+                  },
+                },
+                {
+                  title: '按钮',
+                  icon: 'erweima',
                   routers: {
                     path: '/styles/button',
                   },
                 },
                 {
-                  title: '多行文本',
+                  title: '按钮C',
                   icon: 'hotel',
+                  routers: {
+                    path: '/styles/buttonc',
+                  },
+                },
+                {
+                  title: '多行文本',
+                  icon: 'erweima',
                   routers: {
                     path: '/styles/textarea',
                   },
                 },
                 {
-                  title: 'radio单选框',
-                  icon: 'hotel',
+                  title: '单选',
+                  icon: 'erweima',
                   routers: {
                     path: '/styles/radio',
+                  },
+                },
+                {
+                  title: '单选C',
+                  icon: 'erweima',
+                  routers: {
+                    path: '/styles/radioc',
                   },
                 },
               ],
             },
             {
               title: '全局公共',
-              icon: 'hotel',
+              icon: 'erweima',
               children: [
                 {
                   title: '栅格',
-                  icon: 'hotel',
+                  icon: 'erweima',
                   routers: {
                     path: '/styles/grid',
                   },
                 },
                 {
                   title: '头部',
-                  icon: 'hotel',
+                  icon: 'erweima',
                   routers: {
                     path: '/styles/headerpage',
                   },
                 },
                 {
+                  title: '头部C端',
+                  icon: 'erweima',
+                  routers: {
+                    path: '/styles/headercpage',
+                  },
+                },
+                {
                   title: '底部',
-                  icon: 'hotel',
+                  icon: 'erweima',
                   routers: {
                     path: '/styles/footerpage',
                   },
                 },
                 {
+                  title: '底部c端',
+                  icon: 'erweima',
+                  routers: {
+                    path: '/styles/footercpage',
+                  },
+                },
+                {
                   title: '导航',
-                  icon: 'hotel',
+                  icon: 'erweima',
                   routers: {
                     name: 'menu',
                   },
                 },
                 {
                   title: '二级导航',
-                  icon: 'hotel',
+                  icon: 'erweima',
                   routers: {
                     name: 'bar',
+                  },
+                },
+                {
+                  title: '二级导航c端',
+                  icon: 'erweima',
+                  routers: {
+                    name: 'barc',
                   },
                 },
               ],
             },
             {
               title: '面板',
-              icon: 'hotel',
+              icon: 'erweima',
               children: [
                 {
                   title: '信息面板',
-                  icon: 'hotel',
+                  icon: 'erweima',
                   routers: {
                     path: '/styles/panel',
                   },
                 },
                 {
+                  title: 'c端个人面板',
+                  icon: 'erweima',
+                  routers: {
+                    path: '/styles/panelc',
+                  },
+                },
+                {
                   title: '数据面板',
-                  icon: 'hotel',
+                  icon: 'erweima',
                   routers: {
                     path: '/styles/datapanel',
                   },
@@ -197,63 +279,91 @@ module.exports = {
             },
             {
               title: '分页',
-              icon: 'hotel',
+              icon: 'erweima',
               routers: {
                 path: '/styles/pagination',
               },
             },
             {
+              title: '分页c端',
+              icon: 'erweima',
+              routers: {
+                path: '/styles/paginationc',
+              },
+            },
+            {
               title: '超链',
-              icon: 'hotel',
+              icon: 'erweima',
               routers: {
                 path: '/styles/linkpage',
               },
             },
             {
               title: 'table',
-              icon: 'hotel',
+              icon: 'erweima',
               routers: {
                 path: '/styles/table',
               },
             },
             {
               title: 'tag标签',
-              icon: 'hotel',
+              icon: 'erweima',
               routers: {
                 path: '/styles/tag',
               },
             },
             {
               title: 'Title标题',
-              icon: 'hotel',
+              icon: 'erweima',
               routers: {
                 name: 'title',
               },
             },
             {
+              title: 'Title标题C端',
+              icon: 'erweima',
+              routers: {
+                name: 'titlec',
+              },
+            },
+            {
               title: 'switch开关',
-              icon: 'hotel',
+              icon: 'erweima',
               routers: {
                 path: '/styles/switch',
               },
             },
             {
               title: '进度指引',
-              icon: 'hotel',
+              icon: 'erweima',
               routers: {
                 path: '/styles/steps',
               },
             },
             {
+              title: '进度指引C',
+              icon: 'erweima',
+              routers: {
+                path: '/styles/stepsc',
+              },
+            },
+            {
               title: '面包屑',
-              icon: 'hotel',
+              icon: 'erweima',
               routers: {
                 path: '/styles/crumbs',
               },
             },
             {
+              title: '面包屑c',
+              icon: 'erweima',
+              routers: {
+                path: '/styles/crumbsc',
+              },
+            },
+            {
               title: '二级类目',
-              icon: 'hotel',
+              icon: 'erweima',
               routers: {
                 path: '/styles/edit',
               },
@@ -262,50 +372,50 @@ module.exports = {
         },
         {
           title: '功能组件',
-          icon: 'hotel',
+          icon: 'erweima',
           children: [
             {
               title: '时间日期',
-              icon: 'hotel',
+              icon: 'erweima',
               children: [
                 {
                   title: '日期时间',
-                  icon: 'hotel',
+                  icon: 'erweima',
                   routers: {
                     path: '/functions/datetimepage',
                   },
                 },
                 {
                   title: '日期时间m',
-                  icon: 'hotel',
+                  icon: 'erweima',
                   routers: {
                     path: '/functions/datetimempage',
                   },
                 },
                 {
                   title: '日期',
-                  icon: 'hotel',
+                  icon: 'erweima',
                   routers: {
                     path: '/functions/datepage',
                   },
                 },
                 {
                   title: '日期m',
-                  icon: 'hotel',
+                  icon: 'erweima',
                   routers: {
                     path: '/functions/datempage',
                   },
                 },
                 {
                   title: '时间',
-                  icon: 'hotel',
+                  icon: 'erweima',
                   routers: {
                     path: '/functions/timepage',
                   },
                 },
                 {
                   title: '时间m',
-                  icon: 'hotel',
+                  icon: 'erweima',
                   routers: {
                     path: '/functions/timempage',
                   },
@@ -314,109 +424,119 @@ module.exports = {
             },
             {
               title: '拖拽相关',
-              icon: 'hotel',
+              icon: 'erweima',
               children: [
                 {
                   title: '拖拽',
-                  icon: 'hotel',
+                  icon: 'erweima',
                   routers: {
                     path: '/functions/drag',
                   },
                 },
-                // {
-                //   title: '换位置',
-                //   icon: 'hotel',
-                //   routers: {
-                //     path: '/functions/drop',
-                //   },
-                // },
+                {
+                  title: '换位置',
+                  icon: 'erweima',
+                  routers: {
+                    path: '/functions/drop',
+                  },
+                },
+                {
+                  title: '选项拖拽',
+                  icon: 'erweima',
+                  routers: {
+                    path: '/functions/opations',
+                    query: {
+                      main: 4,
+                    },
+                  },
+                },
+                {
+                  title: '滑动',
+                  icon: 'erweima',
+                  routers: {
+                    path: '/functions/slide',
+                    query: {
+                      main: 4,
+                    },
+                  },
+                },
               ],
             },
             {
               title: '颜色选择器',
-              icon: 'hotel',
+              icon: 'erweima',
               routers: {
                 path: '/functions/color',
               },
             },
             {
               title: '表单验证',
-              icon: 'hotel',
+              icon: 'erweima',
               routers: {
                 path: '/functions/formtest',
               },
             },
             {
               title: '复制',
-              icon: 'hotel',
+              icon: 'erweima',
               routers: {
                 path: '/functions/copy',
               },
             },
             {
+              title: '自定义滚动',
+              routers: {
+                path: '/functions/iscroll',
+              },
+            },
+            {
               title: '倒计时',
-              icon: 'hotel',
+              icon: 'erweima',
               routers: {
                 path: '/functions/countdown',
               },
             },
             {
               title: '上传',
-              icon: 'hotel',
+              icon: 'erweima',
               routers: {
                 path: '/functions/upload',
               },
             },
             {
               title: '数字',
-              icon: 'hotel',
+              icon: 'erweima',
               routers: {
                 path: '/functions/number',
               },
             },
             {
               title: '弹出框',
-              icon: 'hotel',
+              icon: 'erweima',
               routers: {
                 path: '/functions/modal',
               },
             },
             {
-              title: '下拉框',
+              title: '弹出框C',
               icon: 'hotel',
+              routers: {
+                path: '/functions/modalc',
+              },
+            },
+            {
+              title: '登录弹出框',
+              icon: 'erweima',
+              routers: {
+                path: '/functions/loginmodal',
+              },
+            },
+            {
+              title: '下拉框',
+              icon: 'erweima',
               routers: {
                 path: '/functions/selectpage',
               }
-            },
-            {
-              title: 'drop',
-              icon: 'hotel',
-              routers: {
-                path: '/functions/drop',
-                query: {
-                  main: 4,
-                },
-              },
-            },
-            {
-              title: '滑动',
-              icon: 'hotel',
-              routers: {
-                path: '/functions/slide',
-                query: {
-                  main: 4,
-                },
-              },
-            },
-            {
-              title: '选项拖拽',
-              icon: 'hotel',
-              routers: {
-                path: '/functions/opations',
-                query: {
-                  main: 4,
-                },
-              },
             },
           ],
         },
@@ -458,6 +578,29 @@ module.exports = {
 };
 </script>
 <style lang="scss">
+
+
+// 滚动条默认显示样式
+::-webkit-scrollbar-thumb {
+  background-color: rgba(220, 220, 220, 0.3);
+  -webkit-border-radius: 2px;
+}
+
+// 滚动条大小
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+// 滚动框背景样式
+::-webkit-scrollbar-track-piece {
+  background: none;
+  -webkit-border-radius: 0;
+}
+
 .warp {
   border: 1px solid #dcdcdc;
   min-height: 2000px;

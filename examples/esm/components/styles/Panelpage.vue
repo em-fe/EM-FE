@@ -9,7 +9,7 @@
       </div>
     </div>
     <br>
-    <emfe-panel className="add" type="hint" :data="dataList2"></emfe-panel>
+    <emfe-panel className="add" type="fabu" :data="dataList2" @icon-click='iconClick'></emfe-panel>
     <br>
     <br>
     <emfe-panel className="add" :switchType='true' :data="dataList2" @switch-toogle="switchs"></emfe-panel>
@@ -97,6 +97,9 @@ export default {
   methods: {
     switchs(status) {
       console.log(111, status);
+    },
+    iconClick(index) {
+      console.log(index);
     },
   },
 };

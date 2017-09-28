@@ -2,6 +2,16 @@
   <div class="radio-page">
     <h3>简单用法</h3>
     <emfe-radio index="0" className="diy" name="group1" :disabled="true">文字</emfe-radio>
+    <pre>
+      &lt;emfe-radio index="0" className="diy" name="group1" :disabled="true"&gt;文字&lt;/emfe-radio&gt;
+    </pre>
+    <br>
+    <br>
+    <br>
+    <br>
+    <emfe-radio index="aaa0" name="group1" @change="changeaaa">111文字</emfe-radio>
+    <emfe-radio index="aaa1" name="group1" @change="changeaaa">222文字</emfe-radio>
+    {{ aaaindex }}
     <br>
     <br>
     <br>
@@ -124,11 +134,15 @@
       return {
         slideShow: true,
         index: 1,
+        aaaindex: -1,
       };
     },
     methods: {
       change(index) {
         this.index = index;
+      },
+      changeaaa(index) {
+        this.aaaindex = index;
       },
     },
   };

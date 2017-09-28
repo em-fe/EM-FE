@@ -96,7 +96,7 @@ export default {
   password(val) {
     /* eslint-disable */
     //QQ号正则，5至11位
-    const pwdPattern = /^[a-zA-Z0-9._@]{8,20}$/;
+    const pwdPattern = /^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z\d]{8,20}$/;
     /* eslint-disable */
     return pwdPattern.test(val);
   },
@@ -106,5 +106,12 @@ export default {
     const moneyPattern = /(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/;
     /* eslint-disable */
     return moneyPattern.test(val);
+  },
+  childAccount(val) {
+     /* eslint-disable */
+    //子账户正则
+    const childAccountPattern = /^(1[34578][0-9]{9}):(1[34578][0-9]{9})$/;
+    /* eslint-disable */
+    return childAccountPattern.test(val);
   },
 };

@@ -24,13 +24,18 @@ export default {
       default: false,
     },
     value: {
-      type: Boolean,
+      type: [Boolean, String],
       default: false,
+    },
+    interceptor: {
+      type: Boolean,
+      default: true,
     },
   },
   data() {
     return {
       currentValue: this.value,
+      interceptorDefault: this.interceptor,
     };
   },
   computed: {
@@ -55,9 +60,20 @@ export default {
   methods: {
     toggle() {
       if (!this.disabled) {
-        const checked = !this.currentValue;
-        this.currentValue = checked;
-        this.$emit('toggle', checked);
+        if (this.interceptorDefault) {
+          this.changeValue();
+        }
+        this.$emit('toggle', this.currentValue);
+      }
+    },
+    changeValue() {
+      this.currentValue = !this.currentValue;
+    },
+  },
+  watch: {
+    interceptor(val, oldVal) {
+      if (val !== oldVal) {
+        this.changeValue();
       }
     },
   },
