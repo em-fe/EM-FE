@@ -20,8 +20,8 @@
     <br>
     <br>
     <h3>API</h3>
-    <table>
-      <thead style="width:100%;text-align:center;">
+    <table style="width:100%;text-align:center;">
+      <thead>
         <tr>
           <th>属性</th>
           <th>说明</th>
@@ -58,8 +58,23 @@
       </thead>
       <tbody>
         <tr>
-          <td>click</td>
-          <td>点击触发。并且是阻止冒泡。</td>
+          <td>logout</td>
+          <td>点击"退出"触发。并且是阻止冒泡。</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>login</td>
+          <td>点击"登录"触发。并且是阻止冒泡。</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>orderClick</td>
+          <td>点击"我的订单"触发。并且是阻止冒泡。</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>followClick</td>
+          <td>点击"购物车"触发。并且是阻止冒泡。</td>
           <td>-</td>
         </tr>
       </tbody>
