@@ -107,6 +107,7 @@ $bar-top: 64px;
   &-link.router-link-active {
     background: $brand-color-select;
     color: $brand-color-default;
+    cursor: default;
 
     &:active {
       background: $brand-color-select;
