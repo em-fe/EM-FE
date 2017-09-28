@@ -55,7 +55,6 @@ export default {
       this.$emit('followClick');
     },
     login() {
-      this.$router.push({ name: 'PcLogin' });
       this.$emit('login');
     },
   },
