@@ -1,5 +1,5 @@
 <template>
-  <i :class="name" @click.stop="clickFn"></i>
+  <i :class="name" @click="clickFn($event)"></i>
 </template>
 <script>
 const prefixCls = 'emfe-icon';
@@ -16,6 +16,10 @@ export default {
       type: Function,
       default: () => {},
     },
+    stop: {
+      type: Boolean,
+      default: true,
+    },
   },
   computed: {
     name() {
@@ -25,9 +29,12 @@ export default {
     },
   },
   methods: {
-    clickFn() {
+    clickFn(event) {
       this.$emit('icon-click');
       this.click();
+      if (this.stop && event) {
+        event.stopPropagation();
+      }
     },
   },
 };
