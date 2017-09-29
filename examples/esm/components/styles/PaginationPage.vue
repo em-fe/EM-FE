@@ -10,7 +10,7 @@ export default {
   data()  {
     return{
       pageCount: 12,
-      curPage: 5,
+      curPage: 3,
     }
   },
   methods:  {

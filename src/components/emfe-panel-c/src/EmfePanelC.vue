@@ -8,8 +8,8 @@
         <span class="emfe-panel-c-infobox-about-texts">早上好，{{nickName}}</span>
         <div class="emfe-panel-c-infobox-member" v-if="isMember===1">
           <span class="emfe-panel-c-infobox-about-text">
-          <img class="emfe-panel-c-infobox-about-novip" :src="memberlogo" v-if="isVip===2">
-          <img class="emfe-panel-c-infobox-about-img" :src="memberlogo">{{levelName}}</span>
+          <img class="emfe-panel-c-infobox-about-novip" :src="memberlogoNoVip" v-if="isVip===2" @click="renews">
+          <img class="emfe-panel-c-infobox-about-img" :src="memberlogo" @click="freeLevels">{{levelName}}</span>
           <a class="emfe-panel-c-infobox-youhui" v-if="isVip===2">开通享优惠</a>
         </div>
         <template v-if="isMember===1">
@@ -19,7 +19,7 @@
         </template>
       </div>
       <div class="emfe-panel-c-infobox-info">
-        <span class="emfe-panel-c-infobox-info-text">账号：+{{code}}{{phone}}</span>
+        <span class="emfe-panel-c-infobox-info-text">账号：+（{{code}}）{{phone}}</span>
         <emfe-link className="emfe-panel-c" :routers="telRouters">
           <emfe-icon type="shouji1" className="emfe-panel-c"></emfe-icon>
         </emfe-link>
@@ -60,6 +60,10 @@ export default {
   },
   props: {
     memberlogo: {
+      type: String,
+      required: true,
+    },
+    memberlogoNoVip: {
       type: String,
       required: true,
     },
@@ -150,6 +154,9 @@ export default {
     renews() {
       this.$emit('renew');
     },
+    freeLevels(){
+      this.$emit('freeLevel')
+    }
   },
   computed: {
     classList() {
