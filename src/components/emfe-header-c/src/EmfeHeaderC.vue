@@ -5,7 +5,8 @@
         <emfe-icon type="logo" className="emfe-header-c-eye"></emfe-icon>
       </div>
       <div class="emfe-header-c-info">
-        <span class="emfe-header-c-account">活动易首页 你好，
+        <span class="emfe-header-c-account">活动易首页 你好
+          <span v-if="user">，</span>
           <span v-if="loginFlg">{{ user }}</span>
           <emfe-link class="emfe-header-c-logout" :routers="{}" @click="login" v-if="!loginFlg">请登录</emfe-link>  
         </span>
