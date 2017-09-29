@@ -1,7 +1,7 @@
 <template>
   <div class="emfe-panel-c">
     <div class="emfe-panel-c-logobox">
-      <emfe-upload className="emfe-panel-c" :action="uploadAction" @success="uploadSuccess" url="https://2img.evente.cn/8b/af/19/a084cd140d003e01c46d449897.jpg?imageView2/2/w/310/h/440/q/80"></emfe-upload>
+      <emfe-upload className="emfe-panel-c" :action="uploadAction" @success="uploadSuccess" :url="headImg"></emfe-upload>
     </div>
     <div class="emfe-panel-c-infobox">
       <div class="emfe-panel-c-infobox-about">
@@ -59,6 +59,10 @@ export default {
     };
   },
   props: {
+    headImg: {
+      type: String,
+      required: true,
+    },
     memberlogo: {
       type: String,
       required: true,
@@ -154,9 +158,9 @@ export default {
     renews() {
       this.$emit('renew');
     },
-    freeLevels(){
-      this.$emit('freeLevel')
-    }
+    freeLevels() {
+      this.$emit('freeLevel');
+    },
   },
   computed: {
     classList() {
