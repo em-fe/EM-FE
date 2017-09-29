@@ -119,7 +119,8 @@ export default {
           });
         }
       });
-      this.flagCheck = this.checkList.length > 0;
+      // this.flagCheck = this.checkList.length > 0;
+      this.flagCheck = true;
     },
     newListBtn() {
       const newdata = this.newListVal;
