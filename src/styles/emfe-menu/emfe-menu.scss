@@ -86,6 +86,7 @@ $menu-top: 64px;
 
         background: $brand-color-select;
         color: $brand-color-default;
+        cursor: default;
 
         & .emfe-menu-main-icon {
           color: $brand-color-default;
@@ -98,6 +99,7 @@ $menu-top: 64px;
 
       background: $brand-color-select;
       color: $brand-color-default;
+      cursor: default;
     }
 
     &-icon {

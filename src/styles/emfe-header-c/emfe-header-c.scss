@@ -18,6 +18,14 @@ $header-height: 34px;
     padding: 0 0 0 20px;
     float: left;
     height: $header-height;
+
+    &-icon {
+      @include font(68px);
+
+      &::before {
+        color: $brand-c-default;
+      }
+    }
   }
 
   &-sidebar {
