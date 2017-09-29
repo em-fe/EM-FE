@@ -9,7 +9,7 @@
           <span href="javascript:;" class="emfe-bar-c-btn" :class="{' emfe-bar-c-btn-disabled': isDisabled}" @click="toogleChild(childrenDataIndex)" >{{ childrenData.title }}</span>
           <i class="emfe-bar-c-arrow"></i>
           <emfe-transition name="gradual">
-            <ul class="emfe-bar-c-childlist" v-show="childrenIndex == childrenDataIndex">
+            <ul class="emfe-bar-c-childlist" v-show="barStatus[childrenDataIndex]"><!-- childrenIndex == childrenDataIndex -->
               <li class="emfe-bar-c-childitem" v-for="child in childrenData.children">
                 <a :href="child.routers.url" v-if="child.routers.url" class="emfe-bar-c-childlink" :class="{' emfe-bar-c-childlink-disabled': isDisabled}">{{ child.title }}</a>
                 <router-link v-else :to="child.routers" class="emfe-bar-c-childlink" :class="{' emfe-bar-c-childlink-disabled': isDisabled}">{{ child.title }}</router-link>
@@ -32,6 +32,7 @@ export default {
     return {
       childrenIndex: -1,
       isDisabled: this.disabled,
+      barStatus: [],
     };
   },
   props: {
@@ -52,10 +53,16 @@ export default {
       return this.className ? `${this.className}-bar` : '';
     },
   },
-  mounted: function mounted() {
+  mounted() {
     this.testUrl();
+    this.handle();
   },
   methods: {
+    handle() {
+      this.datas.forEach((data) => {
+        this.barStatus.push(true);
+      });
+    },
     testUrl() {
       const { fullPath, name } = this.$route;
 
@@ -66,19 +73,21 @@ export default {
         if (O.hOwnProperty(data, 'children')) {
           data.children.forEach((dataChild) => {
             const inChildFullPath = O.hOwnProperty(dataChild, 'routers') && O.hOwnProperty(dataChild.routers, 'path') && newFullPath.indexOf(dataChild.routers.path) > -1;
-            if (inChildFullPath || name === dataChild.routers.name) {
-              // 打开二级导航的折叠
-              this.toogleChild(dataNum);
-            }
+            // if (inChildFullPath || name === dataChild.routers.name) {
+            //   // 打开二级导航的折叠
+            //   this.toogleChild(dataNum);
+            // }
           });
         }
       });
     },
     toogleChild(itemIndex) {
       if (!this.isDisabled) {
-        const eqLast = itemIndex === childrenLast;
-        this.childrenIndex = eqLast ? -1 : itemIndex;
-        childrenLast = eqLast ? -1 : itemIndex;
+        console.log(this.barStatus[itemIndex]);
+        this.barStatus.splice(itemIndex, 1, !this.barStatus[itemIndex])
+        // const eqLast = itemIndex === childrenLast;
+        // this.childrenIndex = eqLast ? -1 : itemIndex;
+        // childrenLast = eqLast ? -1 : itemIndex;
       }
     },
     tochildren(item) {
