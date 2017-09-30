@@ -24,7 +24,7 @@
 <script>
 import O from '../../../tools/o';
 
-let childrenLast = -1; // 记录上一个点击的二级手风琴的索引
+// let childrenLast = -1; // 记录上一个点击的二级手风琴的索引
 
 export default {
   name: 'EmfeBarC',
@@ -54,12 +54,12 @@ export default {
     },
   },
   mounted() {
-    this.testUrl();
+    // this.testUrl();
     this.handle();
   },
   methods: {
     handle() {
-      this.datas.forEach((data) => {
+      this.datas.forEach(() => {
         this.barStatus.push(true);
       });
     },
@@ -73,10 +73,10 @@ export default {
         if (O.hOwnProperty(data, 'children')) {
           data.children.forEach((dataChild) => {
             const inChildFullPath = O.hOwnProperty(dataChild, 'routers') && O.hOwnProperty(dataChild.routers, 'path') && newFullPath.indexOf(dataChild.routers.path) > -1;
-            // if (inChildFullPath || name === dataChild.routers.name) {
-            //   // 打开二级导航的折叠
-            //   this.toogleChild(dataNum);
-            // }
+            if (inChildFullPath || name === dataChild.routers.name) {
+              // 打开二级导航的折叠
+              this.toogleChild(dataNum);
+            }
           });
         }
       });
@@ -84,7 +84,7 @@ export default {
     toogleChild(itemIndex) {
       if (!this.isDisabled) {
         console.log(this.barStatus[itemIndex]);
-        this.barStatus.splice(itemIndex, 1, !this.barStatus[itemIndex])
+        this.barStatus.splice(itemIndex, 1, !this.barStatus[itemIndex]);
         // const eqLast = itemIndex === childrenLast;
         // this.childrenIndex = eqLast ? -1 : itemIndex;
         // childrenLast = eqLast ? -1 : itemIndex;
@@ -101,11 +101,11 @@ export default {
     },
   },
   watch: {
-    fullpath(val, oldVal) {
-      if (val !== oldVal) {
-        this.testUrl();
-      }
-    },
+    // fullpath(val, oldVal) {
+    //   if (val !== oldVal) {
+    //     this.testUrl();
+    //   }
+    // },
     $route(val, oldVal) {
       if (val.name !== oldVal.name) {
         this.isDisabled = val.path.indexOf(this.disableRex) > -1;
