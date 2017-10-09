@@ -21,6 +21,7 @@ import EmfeTelC from './components/emfe-tel-c/index';
 import EmfeSmscode from './components/emfe-smscode/index';
 import EmfeSmscodeC from './components/emfe-smscode-c/index';
 import EmfeImgcode from './components/emfe-imgcode/index';
+import EmfeImgcodeC from './components/emfe-imgcode-c/index';
 import EmfeSteps from './components/emfe-steps/index';
 import EmfeStepsC from './components/emfe-steps-c/index';
 import EmfeNumber from './components/emfe-number/index';
@@ -61,6 +62,7 @@ import EmfeOpations from './components/emfe-opations/index';
 import EmfeCountdown from './components/emfe-countdown/index';
 import EmfeLogin from './components/emfe-login/index';
 import EmfeTitleline from './components/emfe-titleline/index';
+import EmfeIscroll from './components/emfe-iscroll/index';
 // 服务
 import EmfeMessage from './components/emfe-message/index';
 import EmfeFormTest from './components/emfe-formtest/index';
@@ -96,6 +98,7 @@ const emfeCpt = {
   EmfeSmscode,
   EmfeSmscodeC,
   EmfeImgcode,
+  EmfeImgcodeC,
   EmfeSteps,
   EmfeStepsC,
   EmfeButton: Button.EmfeButton,
@@ -140,6 +143,7 @@ const emfeCpt = {
   EmfeCountdown,
   EmfeLogin,
   EmfeTitleline,
+  EmfeIscroll,
 };
 
 const emfeDir = {
@@ -147,7 +151,6 @@ const emfeDir = {
   emfeDocumentfocus,
 };
 
-//, opts = {}
 const install = (Vue) => {
   if (install.installed) return;
 

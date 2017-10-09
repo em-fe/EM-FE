@@ -1,5 +1,5 @@
 <template>
-  <div class="emfe-date-m" v-emfe-documentclick="close">
+  <div class="emfe-date-m" v-emfe-documentclick="close" :class="dateName">
     <button class="emfe-date-m-btn" v-if="!open && !disabled" @click="toggle" :class="buttonName">
       <span class="emfe-date-m-btn-text" :class="{'emfe-date-m-btn-text-choice': choiced}">{{ date }}</span>
       <!-- 日期 -->
@@ -15,7 +15,7 @@
       <emfe-icon type="shanchu" className="emfe-date-m" v-show="choiced"></emfe-icon>
     </button>
     <emfe-transition name="fade">
-      <div class="emfe-date-m-box" v-show="status" :class="{'emfe-date-m-box-position': !open}">
+      <div class="emfe-date-m-box" v-show="status" :class="{'emfe-date-m-box-position': !open, boxName}">
         <div v-if="confirm" class="emfe-date-m-footer">
           <button class="emfe-date-m-ok" @click.stop="ok">确定</button>
         </div>
@@ -123,10 +123,24 @@ export default {
       }
       return date;
     },
+    dateName() {
+      return [
+        {
+          [`${this.className}-date`]: !!this.className,
+        },
+      ];
+    },
     buttonName() {
       return [
         {
-          [`${this.className}-button`]: !!this.className,
+          [`${this.className}-date-button`]: !!this.className,
+        },
+      ];
+    },
+    boxName() {
+      return [
+        {
+          [`${this.className}-date-box`]: !!this.className,
         },
       ];
     },

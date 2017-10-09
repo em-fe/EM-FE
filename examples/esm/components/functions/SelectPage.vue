@@ -5,18 +5,23 @@
     </style>多选：</div>
 
     <!--  -->
-    <emfe-select :datas="data1" type="checkbox" @getAllData="getData" selectText="提示文字" @checkedopt="getlist"></emfe-select>
+    <emfe-select :datas="data1" type="checkbox" @getAllData="getData" selectText="提示文字" @checkedopt="getlist" @delopt="getlist2"></emfe-select>
     API：自定义属性 :<br>
               :datas="data1"<br>
               type="checkbox"<br>
 
+    <div style="margin-bottom:10px">
+    </style>默认（有错误提示）</div>
+    <emfe-select :errOk="true" :datas="data1" type="default" @getAllData="getData" selectText="提示文字" @checkedopt="getlist">
+      <div slot="error">错误提示</div>
+    </emfe-select>
 
     <div style="margin:50px 0 10px">
       带新建的多选
     </div>
 
     <!--  -->
-    <emfe-select :datas="data1" seleStu="newList" type="checkbox" @addDataCheck="addDataCheck" @checkedopt="getlist" @delopt="getlist2" @getAllData="getData" selectText="提示文字"></emfe-select>
+    <emfe-select :datas="data2" seleStu="newList" type="checkbox" :checkVals="checkeds" @addDataCheck="addDataCheck" @checkedopt="getlist" @delopt="getlist2" @getAllData="getData" selectText="提示文字"></emfe-select>
     API：包含3个配置项和一个方法：<br>
               自定义属性 :<br>
               :datas="data1"<br>
@@ -60,9 +65,10 @@ export default {
   data() {
     return {
       checkedNames: ['Jack'],
-      checkVals: ['esfa','2'],
+      checkVals: ['esfa','2','2','2','2', '2', '2', '2'],
       datas: '',
-      data1Checked: ['1', '2'],
+      checkeds: [3, 4],
+      data1Checked: ['1', '2', '2', '2', '2', '2'],
       data1: [
         {
           name: '1',
@@ -84,6 +90,23 @@ export default {
           checked: false,
           disabled: false,
         },
+        {
+          name: 'esfa',
+          checked: false,
+          disabled: false,
+        },
+        {
+          name: 'esfa',
+          checked: false,
+          disabled: false,
+        },
+      ],
+      data2: [
+        {
+          name: '1',
+          checked: true,
+          disabled: false,
+        }
       ],
       data3: [
         {
@@ -110,7 +133,7 @@ export default {
   },
   methods: {
     addDataCheck(nData) {
-      this.data1.push({
+      this.data2.push({
         name:nData,
         checked: true,
      });

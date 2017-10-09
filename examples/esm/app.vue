@@ -25,6 +25,18 @@ module.exports = {
           },
         },
         {
+          title: '指令',
+          icon: 'erweima',
+          children: [
+            {
+              title: '点击body事件',
+              routers: {
+                path: '/directives/docclick',
+              },
+            },
+          ],
+        },
+        {
           title: '提示组件',
           icon: 'erweima',
           children: [
@@ -116,6 +128,13 @@ module.exports = {
                   icon: 'erweima',
                   routers: {
                     path: '/styles/imgCodepage',
+                  },
+                },
+                {
+                  title: '图片验证码C',
+                  icon: 'erweima',
+                  routers: {
+                    path: '/styles/imgCodepageC',
                   },
                 },
                 {
@@ -414,13 +433,33 @@ module.exports = {
                     path: '/functions/drag',
                   },
                 },
-                // {
-                //   title: '换位置',
-                //   icon: 'erweima',
-                //   routers: {
-                //     path: '/functions/drop',
-                //   },
-                // },
+                {
+                  title: '换位置',
+                  icon: 'erweima',
+                  routers: {
+                    path: '/functions/drop',
+                  },
+                },
+                {
+                  title: '选项拖拽',
+                  icon: 'erweima',
+                  routers: {
+                    path: '/functions/opations',
+                    query: {
+                      main: 4,
+                    },
+                  },
+                },
+                {
+                  title: '滑动',
+                  icon: 'erweima',
+                  routers: {
+                    path: '/functions/slide',
+                    query: {
+                      main: 4,
+                    },
+                  },
+                },
               ],
             },
             {
@@ -442,6 +481,12 @@ module.exports = {
               icon: 'erweima',
               routers: {
                 path: '/functions/copy',
+              },
+            },
+            {
+              title: '自定义滚动',
+              routers: {
+                path: '/functions/iscroll',
               },
             },
             {
@@ -493,36 +538,6 @@ module.exports = {
                 path: '/functions/selectpage',
               }
             },
-            {
-              title: 'drop',
-              icon: 'erweima',
-              routers: {
-                path: '/functions/drop',
-                query: {
-                  main: 4,
-                },
-              },
-            },
-            {
-              title: '滑动',
-              icon: 'erweima',
-              routers: {
-                path: '/functions/slide',
-                query: {
-                  main: 4,
-                },
-              },
-            },
-            {
-              title: '选项拖拽',
-              icon: 'erweima',
-              routers: {
-                path: '/functions/opations',
-                query: {
-                  main: 4,
-                },
-              },
-            },
           ],
         },
       ],
@@ -563,6 +578,29 @@ module.exports = {
 };
 </script>
 <style lang="scss">
+
+
+// 滚动条默认显示样式
+::-webkit-scrollbar-thumb {
+  background-color: rgba(220, 220, 220, 0.3);
+  -webkit-border-radius: 2px;
+}
+
+// 滚动条大小
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+// 滚动框背景样式
+::-webkit-scrollbar-track-piece {
+  background: none;
+  -webkit-border-radius: 0;
+}
+
 .warp {
   border: 1px solid #dcdcdc;
   min-height: 2000px;

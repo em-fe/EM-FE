@@ -42,6 +42,7 @@
 </template>
 <script>
 import TimeTool from '../../../tools/time';
+import Contant from '../../../contant';
 
 const hourNum = 24;
 const minuteNum = 60;
@@ -52,6 +53,7 @@ export default {
   name: 'EmfeTime',
   data() {
     return {
+      Contant,
       hours: [],
       minutes: [],
       seconds: [],

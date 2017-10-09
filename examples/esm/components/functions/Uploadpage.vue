@@ -48,7 +48,7 @@
     <br>
     <br>
     <h3>另一种用法</h3>
-    <emfe-upload action="http://gateway.inner.evente.cn:8000/public/upload"></emfe-upload>
+    <emfe-upload className="bbb" action="http://gateway.inner.evente.cn:8000/public/upload"></emfe-upload>
     <br>
     <pre>
       &lt;emfe-upload action="http://gateway.inner.evente.cn:8000/public/upload"&gt;&lt;/emfe-upload&gt;

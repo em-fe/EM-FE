@@ -28,9 +28,10 @@
 
   &-item {
     float: left;
-    overflow: scroll;
+    overflow: auto;
     height: 90px;
     width: calc(100% / 3);
+    position: relative;
 
     &:nth-of-type(2) {
       @include border(left);

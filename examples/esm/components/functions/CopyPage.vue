@@ -5,7 +5,7 @@
     <h3>示例</h3>
     <br>
     <emfe-copy className="pay" :copyValue="copyData" @copySuccess="copySuc" @copyFail="copyFail"></emfe-copy>
-    <emfe-copy className="list" :copyValue="copyData" @copySuccess="copySuc" @copyFail="copyFail" read="true"></emfe-copy>
+    <emfe-copy className="list" text="邀请码" :copyValue="copyData" @copySuccess="copySuc" @copyFail="copyFail" read="true"></emfe-copy>
     <h3>API</h3>
     <table>
       <thead>
@@ -22,6 +22,12 @@
           <td>复制的内容。</td>
           <td>String</td>
           <td>-</td>
+        </tr>
+        <tr>
+          <td>text</td>
+          <td>文字提示</td>
+          <td>String</td>
+          <td>表单页面</td>
         </tr>
         <tr>
           <td>className(class-name)</td>

@@ -8,12 +8,17 @@ $bar-top: 64px;
   border-bottom: none;
   float: left;
   height: 100%;
-  overflow: scroll;
   background: $background-color-main;
   position: absolute;
   bottom: 0;
   top: 0;
   left: 0;
+
+  &-iscroll {
+    height: calc(100% - 48px);
+    position: relative;
+    overflow: auto;
+  }
 
   &-item {
     position: relative;
@@ -102,6 +107,7 @@ $bar-top: 64px;
   &-link.router-link-active {
     background: $brand-color-select;
     color: $brand-color-default;
+    cursor: default;
 
     &:active {
       background: $brand-color-select;

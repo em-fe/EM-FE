@@ -3,6 +3,7 @@
 
   height: 34px;
   display: flex;
+  position: relative;
 
   &-input {
     flex: 1;
@@ -18,7 +19,7 @@
   }
 
   &-button-c {
-    width: 120px;
+    width: 125px;
     height: 100%;
     cursor: pointer;
     margin-left: 10px;

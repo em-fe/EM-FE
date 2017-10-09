@@ -1,9 +1,9 @@
 <template>
   <div class="emfe-copy" :class="copyName">
-    <span :class="textName">表单页面：</span>
-    <input :class="valueName" :value="copyValue" ref="copyInput" :readonly="read"/>
+    <span :class="textName">{{text}}：</span>
+    <input class="emfe-copy-input" :class="valueName" :value="copyValue" ref="copyInput" :readonly="read"/>
     <button class="emfe-copy-btn" :class="btnName" @click="copyHandle">
-      <emfe-icon type="fuzhi" :class="iconName" @icon-click="copyHandle"></emfe-icon>
+      <emfe-icon type="fuzhi" class="emfe-copy-btn-icon" :class="iconName" @icon-click="copyHandle"></emfe-icon>
     </button>
   </div>
 </template>
@@ -13,7 +13,14 @@ export default {
   props: {
     className: String,
     copyValue: String,
-    read: [String, Boolean],
+    read: {
+      type: [String, Boolean],
+      default: true,
+    },
+    text: {
+      type: String,
+      default: '表单页面',
+    },
   },
   computed: {
     copyName() {

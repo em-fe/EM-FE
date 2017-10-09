@@ -94,11 +94,12 @@ export default {
         ['xiugaimima', 'qiyexinxi', 'yanzhengshenfen'],
         ['shenfenxinxi', 'zhongzhimima', 'zhucewanc'],
         ['weichat', 'zhanghuxinxi', 'zhanghaodenglu'],
-        ['logo'],
+        ['logo', 'fuzhi', 'shuzi1'],
+        ['bianji1', 'shouji2', 'gouwuche', 'guanli']
       ],
     };
   },
-}
+};
 </script>
 <style lang="scss">
 .icon {
