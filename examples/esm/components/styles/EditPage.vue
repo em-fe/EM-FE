@@ -1,6 +1,7 @@
 <template>
   <div>
     <emfe-edit :oneList="oneList" :addOneObj="addOneObj" @addLsit="add" :addTwoObj="addTwoObj"></emfe-edit>
+    {{ oneList }}
     <br>
     <br>
     <br>
@@ -69,22 +70,28 @@ export default {
       oneList: [
         {
           name: '选项1',
+          placeholder: '选项',
           sub_choices: [
             {
+              placeholder: '二级选项',
               name: '二级选项',
             },
             {
+              placeholder: '二级选项',
               name: '二级选项',
             },
           ],
         },
         {
           name: '选项2',
+          placeholder: '选项',
           sub_choices: [
             {
+              placeholder: '二级选项',
               name: '二级选项',
             },
             {
+              placeholder: '二级选项',
               name: '二级选项',
             },
           ],
