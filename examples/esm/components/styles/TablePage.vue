@@ -145,7 +145,7 @@ export default {
   name: 'table-page',
   data() {
     return {
-      cell: 4,
+      cell: 3,
       column1:[
         {
           title: 'icon',
