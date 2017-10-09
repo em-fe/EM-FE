@@ -1,6 +1,6 @@
 <template>
   <div>
-    <emfe-edit :oneList="oneList" :addOneObj="addOneObj" @addLsit="add" onePlacehodler="一级选项" twoPlacehoder="二级选项提示" :addTwoObj="addTwoObj"></emfe-edit>
+    <emfe-edit :oneList="oneList" :addOneObj="addOneObj" @addLsit="add" onePlaceholder="一级选项提示" twoPlaceholder="二级选项提示" :addTwoObj="addTwoObj"></emfe-edit>
     <br>
     <br>
     <br>
