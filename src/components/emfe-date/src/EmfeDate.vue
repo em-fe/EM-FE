@@ -1,6 +1,6 @@
 <template>
   <div class="emfe-date" :class="dateName" v-emfe-documentclick="close">
-    <button class="emfe-date-btn" @click.stop="toggle" v-if="!open && !disabled">
+    <button class="emfe-date-btn" @click="toggle" v-if="!open && !disabled">
       <span class="emfe-date-btn-text" :class="{'emfe-date-btn-text-choice': choiced}">{{ date }}</span>
       <!-- 日期 -->
       <emfe-icon type="rili" className="emfe-date" v-show="!choiced" @icon-click="toggle"></emfe-icon>

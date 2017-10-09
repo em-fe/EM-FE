@@ -2,9 +2,9 @@
   <div class="emfe-copy" :class="copyName">
     <span :class="textName">{{text}}：</span>
     <input class="emfe-copy-input" :class="valueName" :value="copyValue" ref="copyInput" :readonly="read"/>
-    <button class="emfe-copy-btn" :class="btnName" @click="copyHandle">
+    <a class="emfe-copy-btn" :class="btnName" @click="copyHandle" title="复制网址">
       <emfe-icon type="fuzhi" class="emfe-copy-btn-icon" :class="iconName" @icon-click="copyHandle"></emfe-icon>
-    </button>
+    </a>
   </div>
 </template>
 <script>
