@@ -1,7 +1,6 @@
 <template>
   <div>
-    <emfe-edit :oneList="oneList" :addOneObj="addOneObj" @addLsit="add" :addTwoObj="addTwoObj"></emfe-edit>
-    {{ oneList }}
+    <emfe-edit :oneList="oneList" :addOneObj="addOneObj" @addLsit="add" onePlacehodler="一级选项" twoPlacehoder="二级选项提示" :addTwoObj="addTwoObj"></emfe-edit>
     <br>
     <br>
     <br>
@@ -20,6 +19,18 @@
         <tr>
           <td>className</td>
           <td>需要修改的样式</td>
+          <td>String</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>onePlacehodler</td>
+          <td>一级提示</td>
+          <td>String</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>twoPlacehodler</td>
+          <td>二级提示</td>
           <td>String</td>
           <td>-</td>
         </tr>
@@ -70,28 +81,22 @@ export default {
       oneList: [
         {
           name: '选项1',
-          placeholder: '选项',
           sub_choices: [
             {
-              placeholder: '二级选项',
               name: '二级选项',
             },
             {
-              placeholder: '二级选项',
               name: '二级选项',
             },
           ],
         },
         {
           name: '选项2',
-          placeholder: '选项',
           sub_choices: [
             {
-              placeholder: '二级选项',
               name: '二级选项',
             },
             {
-              placeholder: '二级选项',
               name: '二级选项',
             },
           ],
