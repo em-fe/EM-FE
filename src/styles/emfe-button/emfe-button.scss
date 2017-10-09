@@ -35,6 +35,10 @@
       border-color: $background-color-disable;
       cursor: no-drop;
     }
+
+    & > .emfe-button-icon {
+      color: $nothing-color;
+    }
   }
 
   &-group {
