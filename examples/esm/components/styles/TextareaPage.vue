@@ -27,6 +27,44 @@
           <td>String</td>
           <td>-</td>
         </tr>
+        <tr>
+          <td>blur</td>
+          <td>失去焦点</td>
+          <td>Function</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>focus</td>
+          <td>触发焦点</td>
+          <td>Function</td>
+          <td>-</td>
+        </tr>
+      </tbody>
+    </table>
+    <table style="width:100%;text-align:center" class="table">
+      <thead>
+        <tr>
+          <th width="33%">事件名</th>
+          <th width="33%">说明</th>
+          <th width="33%">返回值</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>change</td>
+          <td>input变化触发</td>
+          <td>input的val值</td>
+        </tr>
+        <tr>
+          <td>blur</td>
+          <td>input失去焦点</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>focus</td>
+          <td>input触发焦点</td>
+          <td></td>
+        </tr>
       </tbody>
     </table>
   </div>
