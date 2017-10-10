@@ -5,7 +5,7 @@
         <slot name="error"></slot>
       </div>
     </emfe-input>
-    <emfe-button-c theme='primary' @click="clickFn" className="emfe-smscode-c">{{ btnText }}</emfe-button-c>
+    <emfe-button-c theme='primary' :disabled="disabled" @click="clickFn" className="emfe-smscode-c">{{ btnText }}</emfe-button-c>
   </div>
 </template>
 <script>
@@ -22,6 +22,7 @@ export default {
       allTimes: this.times,
       newDisabled: this.disabled,
       start: '',
+      disabled: false,
     };
   },
   props: {
@@ -104,8 +105,10 @@ export default {
           if (this.allTimes > 1) {
             this.allTimes--;
             this.btnText = `${this.allTimes}秒后重试`;
+            this.disabled = true;
             timer = setTimeout(this.auto.bind(this), 1000);
           } else {
+            this.disabled = false;
             clearTimeout(timer);
             this.resetAuto();
           }
