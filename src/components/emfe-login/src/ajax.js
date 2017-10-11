@@ -24,6 +24,13 @@ function getBody(xhr) {
   }
 }
 
+/* eslint-disable no-bitwise */
+const guidS4 = () => (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+const getGuid = () => (guidS4() + guidS4() + guidS4() +
+guidS4() + guidS4() + guidS4() + guidS4() + guidS4());
+const guid = window.$cookie.get('X-Session-Id') || getGuid();
+window.$cookie.set('X-Session-Id', guid);
+
 export default function upload(option) {
   if (typeof XMLHttpRequest === 'undefined') {
     return;
@@ -58,6 +65,8 @@ export default function upload(option) {
   } else {
     xhr.open('get', action, true);
   }
+
+  xhr.setRequestHeader('X-Session-Id', guid);
 
   const headers = option.headers || {};
 

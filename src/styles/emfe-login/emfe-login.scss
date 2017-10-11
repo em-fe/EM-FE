@@ -73,6 +73,10 @@
       &-two {
         top: 105px;
       }
+
+      &-three {
+        top: 163px;
+      }
     }
   }
 
@@ -106,6 +110,18 @@
 
   &-type {
     text-align: center;
+
+    &-weixin-icon {
+      font-size: 40px;
+    }
+
+    &-account-icon {
+      font-size: 40px;
+
+      &::before {
+        color: $brand-color-default;
+      }
+    }
   }
 
   &-handle {
