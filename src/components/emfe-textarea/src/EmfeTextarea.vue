@@ -1,5 +1,5 @@
 <template>
-  <textarea class="emfe-textarea" :class="textereaName" @input="change" ref="textarea" @blur="blur">{{ value }}</textarea>
+  <textarea class="emfe-textarea" :class="textereaName" @input="changeFn" ref="textarea" @blur="blurFn" @focus="focusFn">{{ value }}</textarea>
 </template>
 <script>
 export default {
@@ -8,6 +8,18 @@ export default {
     className: {
       type: String,
       default: '',
+    },
+    change: {
+      type: Function,
+      default: () => {},
+    },
+    blur: {
+      type: Function,
+      default: () => {},
+    },
+    focus: {
+      type: Function,
+      default: () => {},
     },
     value: String,
   },
@@ -19,11 +31,18 @@ export default {
     },
   },
   methods: {
-    change(val) {
+    changeFn(val) {
       this.$emit('input', val.target.value);
+      this.$emit('change', val.target.value);
+      this.change(val.target.value);
     },
-    blur(val) {
+    blurFn(val) {
       this.$emit('blur', val.target.value);
+      this.blur();
+    },
+    focusFn(val) {
+      this.$emit('focus', val.target.value);
+      this.focus();
     },
   },
   watch: {

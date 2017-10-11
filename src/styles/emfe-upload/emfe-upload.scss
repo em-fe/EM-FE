@@ -62,12 +62,17 @@
 
   &-img {
     &-normal {
-      width: 100%;
+      // width: 100%;
+      display: block;
+      margin: 0 auto;
       height: 100%;
     }
 
     &-horizontal {
       width: 100%;
+      // display: block;
+      // margin: 0 auto;
+      // height: 100%;
     }
 
     &-vertical {
