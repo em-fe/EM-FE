@@ -80,13 +80,13 @@
   }
 
   &-btn {
-    @include border-m(2px, $border-color, top);
-    @include border-m(2px, $border-color, bottom);
     @include height(84px, 84px);
 
     width: 100%;
     cursor: pointer;
     position: relative;
+    border-top: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
 
     &-text {
       @include font(28px);
@@ -105,7 +105,6 @@
   } // end emfe-time-btn
 
   &-footer {
-    @include border-m(2px, $border-color, bottom);
     @include paddingTop(20px);
     @include paddingBottom(20px);
     @include paddingLeft(20px);
@@ -113,6 +112,7 @@
 
     display: flex;
     justify-content: flex-end;
+    border-bottom: 1px solid $border-color;
   }
 
   &-ok {
