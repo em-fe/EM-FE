@@ -41,6 +41,8 @@ import ajax from './ajax';
 
 const uploadJpeg = 'image/jpeg';
 let pointOldLeft = 0; // 改变截取器遮罩大小
+const iconBoxHeight = 70; //icon模式外框的高度
+const iconBoxWidth = 118; //icon模式外框的宽度
 
 export default {
   name: 'upload',
@@ -209,7 +211,7 @@ export default {
   },
   mounted() {
     if (this.url) {
-      this.initImg();
+      this.initImg(this.url);
     }
     this.initIntercept();
   },
@@ -226,13 +228,17 @@ export default {
         }
       }
     },
-    initImg() {
-      const imgObject = new Image();
-      imgObject.src = this.url;
-      imgObject.onload = () => {
-        this.src = this.url;
-        setTimeout(this.setAlign.bind(this), 0);
-      };
+    initImg(val) {
+      if (val) {
+        const imgObject = new Image();
+        imgObject.src = val;
+        imgObject.onload = () => {
+          this.src = this.url;
+          setTimeout(this.setAlign.bind(this), 0);
+        };
+      } else {
+        this.src = '';
+      }
     },
     openInterceptModal() {
       openMask();
@@ -331,7 +337,15 @@ export default {
       const height = res ? res.height : clientHeight;
       if (width !== 0 && height !== 0) {
         if (width > height) {
-          this.align = 'horizontal';
+          if (this.type === 'icon') {
+            const newImgScale = iconBoxWidth / width;
+            // 如果按宽度适配，图片的高度超出线框
+            if (height * newImgScale > iconBoxHeight) {
+              this.align = 'vertical';
+            } else {
+              this.align = 'horizontal';
+            }
+          }
         } else if (width < height) {
           this.align = 'vertical';
         } else {
@@ -526,7 +540,7 @@ export default {
   watch: {
     url(val, oldVal) {
       if (val !== oldVal) {
-        this.initImg();
+        this.initImg(val);
       }
     },
   },
