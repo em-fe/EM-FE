@@ -9,7 +9,7 @@
           <span href="javascript:;" class="emfe-bar-c-btn" :class="{' emfe-bar-c-btn-disabled': isDisabled}" @click="toogleChild(childrenDataIndex)" >{{ childrenData.title }}</span>
           <i class="emfe-bar-c-arrow"></i>
           <emfe-transition name="gradual">
-            <ul class="emfe-bar-c-childlist" v-show="childrenIndex == childrenDataIndex">
+            <ul class="emfe-bar-c-childlist" v-show="barStatus[childrenDataIndex]"><!-- childrenIndex == childrenDataIndex -->
               <li class="emfe-bar-c-childitem" v-for="child in childrenData.children">
                 <a :href="child.routers.url" v-if="child.routers.url" class="emfe-bar-c-childlink" :class="{' emfe-bar-c-childlink-disabled': isDisabled}">{{ child.title }}</a>
                 <router-link v-else :to="child.routers" class="emfe-bar-c-childlink" :class="{' emfe-bar-c-childlink-disabled': isDisabled}">{{ child.title }}</router-link>
@@ -24,7 +24,7 @@
 <script>
 import O from '../../../tools/o';
 
-let childrenLast = -1; // 记录上一个点击的二级手风琴的索引
+// let childrenLast = -1; // 记录上一个点击的二级手风琴的索引
 
 export default {
   name: 'EmfeBarC',
@@ -32,6 +32,7 @@ export default {
     return {
       childrenIndex: -1,
       isDisabled: this.disabled,
+      barStatus: [],
     };
   },
   props: {
@@ -52,10 +53,16 @@ export default {
       return this.className ? `${this.className}-bar` : '';
     },
   },
-  mounted: function mounted() {
-    this.testUrl();
+  mounted() {
+    // this.testUrl();
+    this.handle();
   },
   methods: {
+    handle() {
+      this.datas.forEach(() => {
+        this.barStatus.push(true);
+      });
+    },
     testUrl() {
       const { fullPath, name } = this.$route;
 
@@ -76,9 +83,11 @@ export default {
     },
     toogleChild(itemIndex) {
       if (!this.isDisabled) {
-        const eqLast = itemIndex === childrenLast;
-        this.childrenIndex = eqLast ? -1 : itemIndex;
-        childrenLast = eqLast ? -1 : itemIndex;
+        console.log(this.barStatus[itemIndex]);
+        this.barStatus.splice(itemIndex, 1, !this.barStatus[itemIndex]);
+        // const eqLast = itemIndex === childrenLast;
+        // this.childrenIndex = eqLast ? -1 : itemIndex;
+        // childrenLast = eqLast ? -1 : itemIndex;
       }
     },
     tochildren(item) {
@@ -92,11 +101,11 @@ export default {
     },
   },
   watch: {
-    fullpath(val, oldVal) {
-      if (val !== oldVal) {
-        this.testUrl();
-      }
-    },
+    // fullpath(val, oldVal) {
+    //   if (val !== oldVal) {
+    //     this.testUrl();
+    //   }
+    // },
     $route(val, oldVal) {
       if (val.name !== oldVal.name) {
         this.isDisabled = val.path.indexOf(this.disableRex) > -1;

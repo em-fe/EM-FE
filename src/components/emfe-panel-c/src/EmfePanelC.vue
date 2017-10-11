@@ -1,16 +1,16 @@
 <template>
   <div class="emfe-panel-c">
     <div class="emfe-panel-c-logobox">
-      <emfe-upload className="emfe-panel-c" :action="uploadAction" @success="uploadSuccess" url="https://2img.evente.cn/8b/af/19/a084cd140d003e01c46d449897.jpg?imageView2/2/w/310/h/440/q/80"></emfe-upload>
+      <emfe-upload className="emfe-panel-c" :action="uploadAction" @success="uploadSuccess" :url="headImg"></emfe-upload>
     </div>
     <div class="emfe-panel-c-infobox">
       <div class="emfe-panel-c-infobox-about">
         <span class="emfe-panel-c-infobox-about-texts">早上好，{{nickName}}</span>
         <div class="emfe-panel-c-infobox-member" v-if="isMember===1">
           <span class="emfe-panel-c-infobox-about-text">
-          <img class="emfe-panel-c-infobox-about-novip" :src="memberlogo" v-if="isVip===2">
-          <img class="emfe-panel-c-infobox-about-img" :src="memberlogo">{{levelName}}</span>
-          <a class="emfe-panel-c-infobox-youhui" v-if="isVip===2">开通享优惠</a>
+          <img class="emfe-panel-c-infobox-about-novip" :src="memberlogoNoVip" v-if="isVip===2&&openVip===1" @click="renews">
+          <img class="emfe-panel-c-infobox-about-img" :src="memberlogo" @click="freeLevels">{{levelName}}</span>
+          <a class="emfe-panel-c-infobox-youhui" v-if="isVip===2&&openVip===1">开通享优惠</a>
         </div>
         <template v-if="isMember===1">
           <emfe-link class="emfe-panel-c-infobox-about-link" :routers="{}" v-if="isVip===1" @click="renews">续费</emfe-link>
@@ -19,7 +19,7 @@
         </template>
       </div>
       <div class="emfe-panel-c-infobox-info">
-        <span class="emfe-panel-c-infobox-info-text">账号：+{{code}}{{phone}}</span>
+        <span class="emfe-panel-c-infobox-info-text">账号：+（{{code}}）{{phone}}</span>
         <emfe-link className="emfe-panel-c" :routers="telRouters">
           <emfe-icon type="shouji1" className="emfe-panel-c"></emfe-icon>
         </emfe-link>
@@ -59,7 +59,15 @@ export default {
     };
   },
   props: {
+    headImg: {
+      type: String,
+      required: true,
+    },
     memberlogo: {
+      type: String,
+      required: true,
+    },
+    memberlogoNoVip: {
       type: String,
       required: true,
     },
@@ -84,6 +92,10 @@ export default {
       required: true,
     },
     isVip: {
+      type: Number,
+      required: true,
+    },
+    openVip: {
       type: Number,
       required: true,
     },
@@ -149,6 +161,9 @@ export default {
     },
     renews() {
       this.$emit('renew');
+    },
+    freeLevels() {
+      this.$emit('freeLevel');
     },
   },
   computed: {
