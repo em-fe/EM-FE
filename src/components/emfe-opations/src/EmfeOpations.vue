@@ -8,8 +8,8 @@
         <i class="emfe-opations-icon emfe-opations-plus" @click="plus(index)" v-show="!item.noPlus"
         :class="{'emfe-opations-margin-right': !minusFlg}"></i>
         <i class="emfe-opations-icon emfe-opations-minus" @click="minus(index, item)" v-show="minusFlg"
-        :class="{'emfe-opations-margin-left': item.noPlus}"></i>
-        <i class="emfe-opations-icon emfe-opations-drag" @mousedown.stop="down($event, index, item)"></i>
+        :class="{'emfe-opations-margin-left': item.noPlus, 'emfe-opations-margin-right': item.noPlus}"></i>
+        <i v-show="!item.noPlus" class="emfe-opations-icon emfe-opations-drag" @mousedown.stop="down($event, index, item)"></i>
       </div>
     </template>
     <div class="emfe-opations-hr" v-if="lastHrStatus"></div>

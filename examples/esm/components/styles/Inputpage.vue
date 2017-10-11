@@ -124,6 +124,18 @@
           <td>Boolead,String</td>
           <td>默认为'false'</td>
         </tr>
+        <tr>
+          <td>blur</td>
+          <td>失去焦点</td>
+          <td>Function</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>focus</td>
+          <td>触发焦点</td>
+          <td>Function</td>
+          <td>-</td>
+        </tr>
       </tbody>
     </table>
     <br><br>
@@ -144,6 +156,11 @@
         <tr>
           <td>blur</td>
           <td>input失去焦点</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>focus</td>
+          <td>input触发焦点</td>
           <td></td>
         </tr>
       </tbody>
