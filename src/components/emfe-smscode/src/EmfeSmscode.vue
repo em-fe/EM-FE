@@ -1,7 +1,7 @@
 <template>
   <div class="emfe-smscode" :class="smscodeName">
     <emfe-icon v-if="icon" className="emfe-smscode" :type="icon"></emfe-icon>
-    <input type="number" class="emfe-smscode-input" :class="codeName" :value="nowData" :placeholder="placeholder" @input="input" :disabled="newDisabled" @blur="blur">
+    <input :type="type" class="emfe-smscode-input" :class="codeName" :value="nowData" :placeholder="placeholder" @input="input" :disabled="newDisabled" @blur="blur">
     <button class="emfe-smscode-button" :class="btmName" @click="clickFn">{{ btnText }}</button>
   </div>
 </template>
@@ -35,6 +35,10 @@ export default {
     errorTitle: {
       type: String,
       default: '重试',
+    },
+    type: {
+      type: String,
+      default: 'number',
     },
     value: {
       type: [Number, String],

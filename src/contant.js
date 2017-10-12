@@ -3,7 +3,8 @@ export default {
   ISCROLL_CONFIG: {
     scrollbars: true,
     mouseWheel: true,
-    click: false,
+    click: true,
     preventDefault: true,
+    fadeScrollbars: true,
   },
 };

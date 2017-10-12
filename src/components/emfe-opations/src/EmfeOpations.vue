@@ -4,7 +4,7 @@
       <div class="emfe-opations-hr" v-if="item.hrStatus"></div>
       <div class="emfe-opations-main" :key="index" :style="item.style" ref="hits">
         <i class="emfe-opations-icon emfe-opations-radio"></i>
-        <emfe-input :placeholder="item.other && !clickFlg ? otherPlaceholder : dataPlaceholder" v-model="opationsData[index]" className="emfe-opations"></emfe-input>
+        <emfe-input :placeholder="item.other && !clickFlg ? otherPlaceholder : dataPlaceholder" :value="inputTexts[index]" className="emfe-opations" :change="textChange.bind(this, index)"></emfe-input>
         <i class="emfe-opations-icon emfe-opations-plus" @click="plus(index)" v-show="!item.noPlus"
         :class="{'emfe-opations-margin-right': !minusFlg}"></i>
         <i class="emfe-opations-icon emfe-opations-minus" @click="minus(index, item)" v-show="minusFlg"
@@ -43,6 +43,7 @@ export default {
       lastHrStatus: false, // 如果碰到最后一个最后一个分割线显示
       lastHit: -1,
       lastDrag: -1,
+      inputTexts: [],
     };
   },
   props: {
@@ -85,6 +86,7 @@ export default {
   methods: {
     handleData() {
       this.datas = [];
+      this.inputTexts = [];
       this.opationsData.forEach((od, odIndex) => {
         const newOd = {
           style: {},
@@ -94,6 +96,7 @@ export default {
           noPlus: this.other && odIndex === this.opationsData.length - 1,
         };
         this.datas.push(newOd);
+        this.inputTexts.push(od === this.dataPlaceholder || od === this.otherPlaceholder ? '' : od);
       });
     },
     testHit(one, two) {
@@ -228,6 +231,9 @@ export default {
       this.datas.forEach((data, dIndex) => {
         data.index = dIndex;
       });
+    },
+    textChange(index, val) {
+      this.opationsData.splice(index, 1, val);
     },
   },
   watch: {

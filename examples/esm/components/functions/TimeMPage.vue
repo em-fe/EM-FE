@@ -10,8 +10,8 @@
     <br>
     <br>
     <h3>手机时间组件</h3>
-    {{ aaa }}
-    <emfe-time-m v-model="aaa" exact="minute"></emfe-time-m>
+    {{ bbb }}
+    <emfe-time-m v-model="bbb" exact="minute"></emfe-time-m>
     <br>
     <br>
     <br>
@@ -126,6 +126,7 @@ export default {
   data() {
     return {
       aaa: '',
+      bbb: '',
     };
   },
 }
