@@ -1,6 +1,6 @@
 <template>
   <div class="emfe-inputmore" :class="inputmoreName">
-    <emfe-icon className="emfe-inputmore" v-if="icon" :type="icon"></emfe-icon>
+    <emfe-icon :className="className ? className : 'emfe-inputmore'" v-if="icon" :type="icon"></emfe-icon>
     <input :placeholder="newPlaceholder" :type="type"
     :value="currentValue" class="emfe-inputmore-input" :class="inputName" @input="input">
     <button class="emfe-inputmore-button emfe-inputmore-button-plus"
