@@ -5,5 +5,6 @@ export default {
     mouseWheel: true,
     click: false,
     preventDefault: true,
+    fadeScrollbars: true,
   },
 };

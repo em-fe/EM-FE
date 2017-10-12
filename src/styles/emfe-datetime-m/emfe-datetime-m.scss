@@ -15,7 +15,7 @@
       position: fixed;
       left: 0;
       bottom: 0;
-      z-index: 2;
+      z-index: 99999;
       border-radius: $radius-size;
     }
   }
@@ -30,7 +30,9 @@
     @include height(500px);
 
     float: left;
-    overflow: auto;
+    // overflow: auto;
+    overflow: hidden;
+    position: relative;
     width: calc(100% / 6);
 
     &:nth-of-type(2),
