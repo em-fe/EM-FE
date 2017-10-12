@@ -6,16 +6,17 @@
     <div class="emfe-panel-c-infobox">
       <div class="emfe-panel-c-infobox-about">
         <span class="emfe-panel-c-infobox-about-texts">早上好，{{nickName}}</span>
-        <div class="emfe-panel-c-infobox-member" v-if="isMember===1">
+        <div class="emfe-panel-c-infobox-member" v-if="openMember===1 || openVip===1">
           <span class="emfe-panel-c-infobox-about-text">
           <img class="emfe-panel-c-infobox-about-novip" :src="memberlogoNoVip" v-if="isVip===2&&openVip===1" @click="renews">
-          <img class="emfe-panel-c-infobox-about-img" :src="memberlogo" @click="freeLevels">{{levelName}}</span>
+          <img class="emfe-panel-c-infobox-about-img" v-if='!(openMember===2 &&openVip===1&&isVip===2)' :src="memberlogo" @click="freeLevels">{{levelName}}</span>
           <a class="emfe-panel-c-infobox-youhui" v-if="isVip===2&&openVip===1">开通享优惠</a>
         </div>
-        <template v-if="isMember===1">
-          <emfe-link class="emfe-panel-c-infobox-about-link" :routers="{}" v-if="isVip===1" @click="renews">续费</emfe-link>
-          <span class="emfe-panel-c-infobox-about-text" v-if="isVip===2">成长值<em class="emfe-panel-c-infobox-about-text-em">{{ growth }}</em></span>
-          <span class="emfe-panel-c-infobox-about-text">积分<em class="emfe-panel-c-infobox-about-text-em">{{ integral }}</em></span>
+        <template v-if="openMember===1 || openVip===1">
+          <span class="emfe-panel-c-infobox-about-text" :class="{'emfe-panel-c-infobox-about-overdue': openMember===1&&isguoqi===1}" v-if="isVip===2&&isguoqi===1">{{memberDeadlines}} 已过期</span>
+          <emfe-link class="emfe-panel-c-infobox-about-link" :class="{'emfe-panel-c-infobox-about-renew': openMember===1&&isguoqi===1}" :routers="{}" v-if="isVip===1 || isguoqi===1" @click="renews">续费</emfe-link>
+          <span class="emfe-panel-c-infobox-about-text" v-if="(isVip===2&&openMember===1) || openMember===1">成长值<em class="emfe-panel-c-infobox-about-text-em">{{ growth }}</em></span>
+          <span class="emfe-panel-c-infobox-about-text" v-if="isVip===1 || openMember===1">积分<em class="emfe-panel-c-infobox-about-text-em">{{ integral }}</em></span>
         </template>
       </div>
       <div class="emfe-panel-c-infobox-info">
@@ -91,12 +92,24 @@ export default {
       type: Number,
       required: true,
     },
+    openMemeber: {
+      type: Number,
+      requireed: true,
+    },
     isVip: {
       type: Number,
       required: true,
     },
     openVip: {
       type: Number,
+      required: true,
+    },
+    isguoqi: {
+      type: Number,
+      required: true,
+    },
+    memberDeadline: {
+      type: String,
       required: true,
     },
     growth: {
@@ -194,6 +207,9 @@ export default {
           [`${this.className}-panel-c-box-right`]: !!this.className,
         },
       ];
+    },
+    memberDeadlines() {
+      return this.memberDeadline.slice(0,10);
     },
   },
 };
