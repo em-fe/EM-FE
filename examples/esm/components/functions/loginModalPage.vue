@@ -3,7 +3,7 @@
     <emfe-button @click="loginB">点击B端登录</emfe-button>
     <emfe-login :show='loginShowB' :loginClose="loginCloseB" :action="url" :referrerUrl='referrerUrl' forgotName="Forgotpassword" registerName="Type"></emfe-login>
     <emfe-button @click="loginC">点击C端登录</emfe-button>
-    <emfe-login-c :show='loginShowC' :loginClose="loginCloseC" :action="url" :referrerUrl='referrerUrl' forgotName="Forgotpassword" registerName="Type"></emfe-login-c>
+    <emfe-login-c :show='loginShowC' :loginClose="loginCloseC" :loginAction="url" sendAction='' weixinAction=""></emfe-login-c>
     <br>
     <br>
     <br>
@@ -31,26 +31,38 @@
           <td>-</td>
         </tr>
         <tr>
-          <td>action</td>
-          <td>登录请求的地址（必填）</td>
+          <td>loginAction</td>
+          <td>登录请求的地址（必填）C端</td>
           <td>String</td>
           <td>-</td>
         </tr>
         <tr>
-          <td>referrerUrl</td>
-          <td>登录请求成功后跳转的页面地址（必填）</td>
+          <td>sendAction</td>
+          <td>发送验证码的地址（必填）C端</td>
+          <td>String</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>weixinAction</td>
+          <td>微信登录请求的地址（必填）C端</td>
+          <td>String</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>action</td>
+          <td>登录请求的地址（必填）B端</td>
           <td>String</td>
           <td>-</td>
         </tr>
         <tr>
           <td>forgotName</td>
-          <td>忘记密码跳转地址（必填）</td>
+          <td>忘记密码跳转地址（必填）B端</td>
           <td>String</td>
           <td>-</td>
         </tr>
         <tr>
           <td>registerName</td>
-          <td>注册跳转地址（必填）</td>
+          <td>注册跳转地址（必填）B端</td>
           <td>String</td>
           <td>-</td>
         </tr>
@@ -65,6 +77,22 @@
           <td>需要添加的class样式名</td>
           <td>String</td>
           <td>-</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3>注册的方法</h3>
+    <table style="width: 100%;text-align: center;">
+      <thead>
+        <tr>
+          <th>方法名</th>
+          <th>说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>loginSuccess</td>
+          <td>登录成功之后的操作</td>
+          <td></td>
         </tr>
       </tbody>
     </table>
