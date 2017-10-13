@@ -1,4 +1,4 @@
-.#{$prefix}login {
+.#{$prefix}login-c {
   position: fixed;
   left: 0;
   top: 0;
@@ -102,7 +102,7 @@
     overflow: hidden;
   }
 
-  &-button {
+  &-button-c {
     width: 100%;
     height: 32px;
     font-size: 14px;
@@ -119,7 +119,7 @@
       font-size: 40px;
 
       &::before {
-        color: $brand-color-default;
+        color: $brand-c-default;
       }
     }
   }

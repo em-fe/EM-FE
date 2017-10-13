@@ -8,9 +8,9 @@
         <span class="emfe-panel-c-infobox-about-texts">早上好，{{nickName}}</span>
         <div class="emfe-panel-c-infobox-member" v-if="isMember===1">
           <span class="emfe-panel-c-infobox-about-text">
-          <img class="emfe-panel-c-infobox-about-novip" :src="memberlogoNoVip" v-if="isVip===2" @click="renews">
+          <img class="emfe-panel-c-infobox-about-novip" :src="memberlogoNoVip" v-if="isVip===2&&openVip===1" @click="renews">
           <img class="emfe-panel-c-infobox-about-img" :src="memberlogo" @click="freeLevels">{{levelName}}</span>
-          <a class="emfe-panel-c-infobox-youhui" v-if="isVip===2">开通享优惠</a>
+          <a class="emfe-panel-c-infobox-youhui" v-if="isVip===2&&openVip===1">开通享优惠</a>
         </div>
         <template v-if="isMember===1">
           <emfe-link class="emfe-panel-c-infobox-about-link" :routers="{}" v-if="isVip===1" @click="renews">续费</emfe-link>
@@ -92,6 +92,10 @@ export default {
       required: true,
     },
     isVip: {
+      type: Number,
+      required: true,
+    },
+    openVip: {
       type: Number,
       required: true,
     },
