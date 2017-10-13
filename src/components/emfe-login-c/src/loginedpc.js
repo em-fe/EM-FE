@@ -1,3 +1,4 @@
+/* eslint-disable */
 import jsonp from 'em-jsonp';
 import CONSTANT from '../../../contant';
 
@@ -8,7 +9,7 @@ const afterLogin = (callbackUrl, inow, self, callback) => {
   let data = urlSplit[1];
   data = data.replace(/=/g, '":"').replace(/&/g, '","');
   data = JSON.parse(`{"${data}"}`);
-  jsonp({
+  window.$jsonp({
     url: newUrl,
     data,
     success: (res) => {
