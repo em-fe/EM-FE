@@ -79,6 +79,11 @@
           <td>-</td>
         </tr>
         <tr>
+          <td>integralClick</td>
+          <td>积分如果显示的话，点击"积分"触发。并且是阻止冒泡。</td>
+          <td>-</td>
+        </tr>
+        <tr>
           <td>followClick</td>
           <td>点击"购物车"触发。并且是阻止冒泡。</td>
           <td>-</td>

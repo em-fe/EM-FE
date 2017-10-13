@@ -76,6 +76,7 @@
   },
   "dependencies": {
     "babel-plugin-dynamic-import-webpack": "^1.0.1",
-    "em-cookie": "^1.0.2"
+    "em-cookie": "^1.0.2",
+    "em-jsonp": "^1.0.1"
   }
 }
