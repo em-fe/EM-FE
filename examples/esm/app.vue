@@ -463,6 +463,26 @@ module.exports = {
               ],
             },
             {
+              title: '登录相关',
+              icon: 'login',
+              children: [
+                {
+                  title: '登录弹出框',
+                  icon: 'erweima',
+                  routers: {
+                    path: '/functions/loginmodal',
+                  },
+                },
+                {
+                  title: 'C登录弹出框',
+                  icon: 'erweima',
+                  routers: {
+                    path: '/functions/loginmodalc',
+                  },
+                },
+              ],
+            },
+            {
               title: '颜色选择器',
               icon: 'erweima',
               routers: {
@@ -522,13 +542,6 @@ module.exports = {
               icon: 'hotel',
               routers: {
                 path: '/functions/modalc',
-              },
-            },
-            {
-              title: '登录弹出框',
-              icon: 'erweima',
-              routers: {
-                path: '/functions/loginmodal',
               },
             },
             {

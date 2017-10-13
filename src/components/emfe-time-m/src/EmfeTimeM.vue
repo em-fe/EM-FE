@@ -54,6 +54,7 @@ export default {
   data() {
     return {
       Contant,
+      canSetNow: true,
       hours: [],
       minutes: [],
       seconds: [],
@@ -171,14 +172,6 @@ export default {
       const hourNow = now.getHours();
       const hour = this.hours[hourNow];
       this.hour = hour.undo ? TimeTool.loopChoice(this.hours, hour.num) : hour.num;
-      this.setChoice('hour');
-      this.scrollEle('hour');
-      if (this.exact === 'minute' || this.exact === 'second') {
-        this.scrollEle('minute');
-      }
-      if (this.exact === 'second') {
-        this.scrollEle('second');
-      }
     },
     // 选择完滚动到当前
     // do hour时，hour滚动
@@ -306,7 +299,17 @@ export default {
     toggle() {
       this.status = !this.status;
       this.refreshIscroll();
-      this.setNow();
+      if (this.canSetNow) {
+        this.setNow();
+      }
+      this.setChoice('hour');
+      this.scrollEle('hour');
+      if (this.exact === 'minute' || this.exact === 'second') {
+        this.scrollEle('minute');
+      }
+      if (this.exact === 'second') {
+        this.scrollEle('second');
+      }
     },
     close(e, noClose) {
       if (!this.open) {
@@ -318,11 +321,13 @@ export default {
       }
     },
     ok() {
+      this.canSetNow = false;
       this.close(true);
       this.$emit('ok', this.time);
       this.$emit('input', this.time);
     },
     cancel() {
+      this.canSetNow = true;
       this.choiced = false;
       this.hour = '';
       this.minute = '';

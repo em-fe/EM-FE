@@ -147,7 +147,8 @@ export default {
         this.setStyled = false;
 
         const { reference, popper } = this.$refs;
-        const { scrollLeft, scrollTop, clientWidth, clientHeight } = document.body;
+        const { scrollLeft, scrollTop } = document.body;
+        const { innerWidth, innerHeight } = window;
         const popperPos = popper.getBoundingClientRect();
         const referencePos = reference.getBoundingClientRect();
         const { left, right, top, bottom, width, height } = referencePos;
@@ -227,13 +228,13 @@ export default {
           }
         } else {
           // 如果没有定位，超出 document 高度处理
-          if (popperLeft + popperPos.width > clientWidth) {
+          if (popperLeft + popperPos.width > innerWidth) {
             popperLeft = left - popperPos.width - this.offsetDefault;
           } else if (popperLeft < 0) {
             popperLeft = right + this.offsetDefault;
           }
 
-          if (popperTop + popperPos.height > clientHeight) {
+          if (popperTop + popperPos.height > innerHeight) {
             popperTop = popperTop - height - this.offsetDefault;
           } else if (popperTop < 0) {
             const bottomOffset = /bottom/g.test(this.placement) ? height + this.offsetDefault : 0;
