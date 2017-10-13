@@ -30,12 +30,24 @@ const timeObject = {
     }
     return newTimes;
   },
-  loopChoice: (times) => {
+  loopChoice: (times, pertime) => {
     let newUndo = true;
-    times.every((time) => {
-      newUndo = time.num;
-      return time.undo;
-    });
+    if (pertime) {
+      newUndo = pertime;
+      const perIndex = times.findIndex(time => time.num === pertime);
+      const iNowTime = times[perIndex];
+      if (iNowTime.undo) {
+        times.every((time) => {
+          newUndo = time.num;
+          return time.undo;
+        });
+      }
+    } else {
+      times.every((time) => {
+        newUndo = time.num;
+        return time.undo;
+      });
+    }
     return newUndo;
   },
 };

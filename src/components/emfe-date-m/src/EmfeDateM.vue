@@ -50,6 +50,7 @@ export default {
   data() {
     return {
       Contant,
+      canSetNow: true,
       years: [],
       months: [],
       days: [],
@@ -177,10 +178,11 @@ export default {
       this.year = year.num;
       this.month = month.num;
       this.day = day.num;
+      // 如果当前时间不可选，就选第一个可选的
+      this.year = TimeTool.loopChoice(this.years, this.year);
+      this.month = TimeTool.loopChoice(this.months, this.month);
+      this.day = TimeTool.loopChoice(this.days, this.day);
       this.choiced = true;
-      this.scrollEle('year');
-      this.scrollEle('month');
-      this.scrollEle('day');
     },
     // 选择完滚动到当前
     // do year时，year滚动
@@ -212,6 +214,7 @@ export default {
         this.month = TimeTool.zeroFill(dates[1] - 0);
         this.day = TimeTool.zeroFill(dates[2] - 0);
         this.choiced = true;
+        this.canSetNow = false;
       } else {
         this.year = '';
         this.month = '';
@@ -292,7 +295,12 @@ export default {
     toggle() {
       this.status = !this.status;
       this.refreshIscroll();
-      this.setNow();
+      if (this.canSetNow) {
+        this.setNow();
+      }
+      this.scrollEle('year');
+      this.scrollEle('month');
+      this.scrollEle('day');
     },
     close(e, noClose) {
       if (!this.open) {
@@ -304,11 +312,13 @@ export default {
       }
     },
     ok() {
+      this.canSetNow = false;
       this.close(true);
       this.$emit('ok', this.date);
       this.$emit('input', this.date);
     },
     cancel() {
+      this.canSetNow = true;
       this.choiced = false;
       this.year = '';
       this.month = '';

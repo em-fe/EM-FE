@@ -47,7 +47,7 @@ $menu-top: 64px;
     }
 
     &-list {
-      height: calc(100% - $header-height);
+      height: calc(100% - 48px);
     }
 
     &-item {
