@@ -10,6 +10,7 @@
           <span v-if="loginFlg">{{ user }}</span>
           <emfe-link class="emfe-header-c-logout" :routers="{}" @click="login" v-if="!loginFlg">请登录</emfe-link>  
         </span>
+        <span v-if="integral.state > 0" class="emfe-header-c-account">积分({{integral.value}})</span>
         <emfe-link className="emfe-header-c" :routers="{}" @click="orderClick">我的订单</emfe-link>
         <span>
           <emfe-icon className="emfe-header-c" type="gouwuche"></emfe-icon>
@@ -35,6 +36,10 @@ export default {
     },
     loginFlg: {
       type: Boolean,
+      required: true,
+    },
+    integral: {
+      type: Object,
       required: true,
     },
   },

@@ -42,11 +42,10 @@ const dateText = '选择日期';
 export default {
   name: 'EmfeDatetime',
   data() {
-    const vals = this.value.split(' ');
     return {
-      date: this.value ? vals[0] : '',
-      time: this.value ? vals[1] : timeZero,
-      choiced: !!this.value,
+      date: '',
+      time: timeZero,
+      choiced: false,
       isDate: true,
       typeText: timeText,
       status: false,
@@ -130,7 +129,18 @@ export default {
       return !this.date && this.time === timeZero;
     },
   },
+  mounted() {
+    this.initData(this.value);
+  },
   methods: {
+    initData(dataVal) {
+      if (dataVal && dataVal !== this.placeholder) {
+        const vals = dataVal.split(' ');
+        this.date = dataVal ? vals[0] : '';
+        this.time = dataVal ? vals[1] : timeZero;
+        this.choiced = !!dataVal;
+      }
+    },
     choiceDate() {
       this.choiced = true;
       this.$emit('choice-date', this.dateTime);
@@ -179,10 +189,7 @@ export default {
   watch: {
     value(val, oldVal) {
       if (val !== oldVal) {
-        const vals = this.value.split(' ');
-        this.date = this.value ? vals[0] : '';
-        this.time = this.value ? vals[1] : timeZero;
-        this.choiced = !!this.value;
+        this.initData(val);
       }
     },
   },

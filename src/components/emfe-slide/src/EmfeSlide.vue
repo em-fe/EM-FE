@@ -1,5 +1,6 @@
 <template>
   <div class="emfe-slide" :class="slideName">
+    {{ moveValue }}
     <div class="emfe-slide-main">
       <div class="emfe-slide-describe">{{slideLeft}}</div>
       <div class="emfe-slide-progress">
@@ -58,15 +59,18 @@ export default {
     },
   },
   mounted() {
-    const { slideBar } = this.$refs;
-    this.slideBarWidth = this.slideWidth ? this.slideWidth : slideBar.clientWidth;
-    const slideBarL = ((this.slideBarWidth / this.maxPercent) * this.percent) - 26;
-    this.progress = `left: ${slideBarL}px`;
-    this.movePercent = `${this.percent}%`;
-    this.moveValue = this.percent;
-    this.BarW = this.$children[0].$el.clientWidth;
+    this.initData(this.percent);
   },
   methods: {
+    initData(val) {
+      const { slideBar } = this.$refs;
+      this.slideBarWidth = this.slideWidth ? this.slideWidth : slideBar.clientWidth;
+      const slideBarL = ((this.slideBarWidth / this.maxPercent) * val) - 26;
+      this.progress = `left: ${slideBarL}px`;
+      this.movePercent = `${val}%`;
+      this.moveValue = val;
+      this.BarW = this.$children[0].$el.clientWidth;
+    },
     drag(ev, left) {
       const iLeft = left + (this.BarW / 2);
       const iScale = iLeft / this.slideBarWidth;
@@ -74,6 +78,13 @@ export default {
       this.moveValue = moveLeft;
       this.movePercent = `${moveLeft}%`;
       this.$emit('change', moveLeft);
+    },
+  },
+  watch: {
+    percent(val, oldVal) {
+      if (val !== oldVal) {
+        this.initData(val);
+      }
     },
   },
 };
