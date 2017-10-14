@@ -3,7 +3,7 @@
     <h3 class="emfe-bar-header">{{ title }}</h3>
     <div class="emfe-bar-iscroll">
       <ul class="emfe-bar-list">
-        <template v-for="(childrenData, childrenDataIndex) in datas">
+        <template v-for="(childrenData, childrenDataIndex) in newDatas">
           <li class="emfe-bar-item" v-if="!childrenData.children">
             <router-link :to="childrenData.routers" class="emfe-bar-link" :class="{' emfe-bar-link-disabled': isDisabled}">{{ childrenData.title }}</router-link>
           </li>
@@ -36,6 +36,7 @@ export default {
       Contant,
       childrenIndex: -1,
       isDisabled: this.disabled,
+      newDatas: [],
     };
   },
   props: {
@@ -60,16 +61,20 @@ export default {
       return this.className ? `${this.className}-bar` : '';
     },
   },
-  mounted: function mounted() {
+  mounted() {
+    this.handle(this.datas);
     this.testUrl();
   },
   methods: {
+    handle(val) {
+      this.newDatas = val;
+    },
     testUrl() {
       const { fullPath, name } = this.$route;
 
       const newFullPath = this.fullpath ? this.fullpath : fullPath;
 
-      this.datas.forEach((data, dataNum) => {
+      this.newDatas.forEach((data, dataNum) => {
         // 如果一级导航有子节点
         if (O.hOwnProperty(data, 'children')) {
           data.children.forEach((dataChild) => {
@@ -103,6 +108,11 @@ export default {
     fullpath(val, oldVal) {
       if (val !== oldVal) {
         this.testUrl();
+      }
+    },
+    datas(val, oldVal) {
+      if (val !== oldVal) {
+        this.handle(val);
       }
     },
     $route(val, oldVal) {
