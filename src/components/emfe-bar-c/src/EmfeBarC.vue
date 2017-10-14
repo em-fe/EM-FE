@@ -85,7 +85,6 @@ export default {
     },
     toogleChild(itemIndex) {
       if (!this.isDisabled) {
-        console.log(this.barStatus[itemIndex]);
         this.barStatus.splice(itemIndex, 1, !this.barStatus[itemIndex]);
         // const eqLast = itemIndex === childrenLast;
         // this.childrenIndex = eqLast ? -1 : itemIndex;
