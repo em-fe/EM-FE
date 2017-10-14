@@ -5,7 +5,7 @@
       <emfe-col class="all-menu" span="6">
         <emfe-row :gutter="16" class="all-search">
           <emfe-col span="16">
-            <emfe-input className="all-search" v-model="search" @change="searchChange"></emfe-input>
+            <span @keyup.enter="go"><emfe-input className="all-search" v-model="search" @change="searchChange" @enter="go"></emfe-input></span>
             <ul class="all-search-think">
               <li class="all-search-think-item" v-for="searchResult in searchResults">
                 <emfe-link :routers="searchResult.routers">{{ searchResult.title }}</emfe-link>
@@ -13,7 +13,7 @@
             </ul>
           </emfe-col>
           <emfe-col span="8">
-            <emfe-button theme="primary" className="all-search">搜索</emfe-button>
+            <emfe-button theme="primary" className="all-search" @click="go">搜索</emfe-button>
           </emfe-col>
         </emfe-row>
         <div class="all-menu-content">
@@ -58,13 +58,24 @@ module.exports = {
         const re = new RegExp(val, 'g');
         this.search = val;
         this.searchResults = cpts.filter(cpt => re.test(cpt.title))
+      } else {
+        this.resetSearch();
+      }
+    },
+    resetSearch() {
+      this.searchResults = [];
+      this.search = '';
+    },
+    go() {
+      const { searchResults } = this;
+      if (searchResults.length > 0) {
+        this.$router.push(searchResults[0].routers);
       }
     },
   },
   watch: {
-    $route(val) {
-      this.searchResults = [];
-      this.search = '';
+    $route() {
+      this.resetSearch();
     },
   },
 };
