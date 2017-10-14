@@ -315,7 +315,6 @@ export default {
         this.minute = TimeTool.loopChoice(this.minutes, this.minute);
         this.second = TimeTool.loopChoice(this.seconds, this.second);
         this.choiced = true;
-        console.log(111, this.minute, this.second);
       }
     },
     resetDays(year, month) {
