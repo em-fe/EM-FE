@@ -1,3 +1,4 @@
+import VueCookie from 'em-cookie';
 // 组件
 import EmfeBar from './components/emfe-bar/index';
 import EmfeBarC from './components/emfe-bar-c/index';
@@ -61,6 +62,7 @@ import EmfeEdit from './components/emfe-edit/index';
 import EmfeOpations from './components/emfe-opations/index';
 import EmfeCountdown from './components/emfe-countdown/index';
 import EmfeLogin from './components/emfe-login/index';
+import EmfeLoginC from './components/emfe-login-c/index';
 import EmfeTitleline from './components/emfe-titleline/index';
 import EmfeIscroll from './components/emfe-iscroll/index';
 // 服务
@@ -142,6 +144,7 @@ const emfeCpt = {
   EmfeOpations,
   EmfeCountdown,
   EmfeLogin,
+  EmfeLoginC,
   EmfeTitleline,
   EmfeIscroll,
 };
@@ -164,7 +167,9 @@ const install = (Vue) => {
 
   Vue.prototype.$EmfeMessage = EmfeMessage;
   Vue.prototype.$EmfeFormTest = EmfeFormTest;
+  Vue.use(VueCookie);
 };
+
 
 if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue);

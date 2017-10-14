@@ -15,7 +15,7 @@
       position: fixed;
       left: 0;
       bottom: 0;
-      z-index: 2;
+      z-index: 99999;
       border-radius: $radius-size;
     }
   }
@@ -30,7 +30,9 @@
     @include height(500px);
 
     float: left;
-    overflow: auto;
+    // overflow: auto;
+    overflow: hidden;
+    position: relative;
     width: calc(100% / 3);
 
     &:nth-of-type(2) {
@@ -80,13 +82,13 @@
   }
 
   &-btn {
-    @include border-m(2px, $border-color, top);
-    @include border-m(2px, $border-color, bottom);
     @include height(84px, 84px);
 
     width: 100%;
     cursor: pointer;
     position: relative;
+    border-top: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
 
     &-text {
       @include font(28px);
@@ -97,7 +99,6 @@
       text-align: left;
       display: block;
       color: $text-color;
-      line-height: 1;
 
       &-choice {
         color: $menu-text-color;
@@ -106,7 +107,6 @@
   } // end emfe-time-btn
 
   &-footer {
-    @include border-m(2px, $border-color, bottom);
     @include paddingTop(20px);
     @include paddingBottom(20px);
     @include paddingLeft(20px);
@@ -114,6 +114,7 @@
 
     display: flex;
     justify-content: flex-end;
+    border-bottom: 1px solid $border-color;
   }
 
   &-ok {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <emfe-edit :oneList="oneList" :addOneObj="addOneObj" @addLsit="add" :addTwoObj="addTwoObj"></emfe-edit>
+    <emfe-edit :oneList="oneList" :addOneObj="addOneObj" @addLsit="add" onePlaceholder="一级选项提示" twoPlaceholder="二级选项提示" :addTwoObj="addTwoObj"></emfe-edit>
     <br>
     <br>
     <br>
@@ -19,6 +19,18 @@
         <tr>
           <td>className</td>
           <td>需要修改的样式</td>
+          <td>String</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>onePlacehodler</td>
+          <td>一级提示</td>
+          <td>String</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>twoPlacehodler</td>
+          <td>二级提示</td>
           <td>String</td>
           <td>-</td>
         </tr>

@@ -1,4 +1,4 @@
-.#{$prefix}login {
+.#{$prefix}login-c {
   position: fixed;
   left: 0;
   top: 0;
@@ -64,45 +64,42 @@
     font-size: 14px;
     position: relative;
 
-    &-tips {
-      position: absolute;
-      right: 16px;
-      top: 48px;
-      color: $login-color-error;
-
-      &-two {
-        top: 105px;
-      }
-
-      &-three {
-        top: 163px;
-      }
+    &-tipsText {
+      font-size: 12px;
+      color: $text-color-prompt;
+      margin-bottom: 10px;
     }
   }
 
   &-tel {
-    margin-bottom: 24px;
-    overflow: hidden;
+    height: 32px;
+    margin-bottom: 20px;
 
-    &-prefix-text {
-      font-size: 14px;
+    &-prefix {
+      height: 30px;
+
+      &::before {
+        bottom: 11px;
+      }
+
+      &-text {
+        line-height: 30px;
+      }
     }
 
     &-input {
+      height: 30px;
+      line-height: 32px;
       font-size: 14px;
     }
   }
 
-  &-input {
-    margin-bottom: 24px;
+  &-smscode {
+    height: 32px;
+    margin-bottom: 20px;
   }
 
-  &-imgcode {
-    margin-bottom: 24px;
-    overflow: hidden;
-  }
-
-  &-button {
+  &-button-c {
     width: 100%;
     height: 32px;
     font-size: 14px;
@@ -119,47 +116,7 @@
       font-size: 40px;
 
       &::before {
-        color: $brand-color-default;
-      }
-    }
-  }
-
-  &-handle {
-    @include clearfix();
-
-    margin-top: 16px;
-
-    &-checkout {
-      float: left;
-    }
-
-    &-text {
-      font-size: 14px;
-      color: $text-color-Three;
-    }
-
-    &-link {
-      float: right;
-      line-height: 14px;
-      color: $text-color-Three;
-    }
-
-    &-child-link {
-      float: right;
-      line-height: 14px;
-      color: $text-color-Three;
-      position: relative;
-      margin-right: 10px;
-      padding: 0 10px;
-
-      &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 1px;
-        height: 14px;
-        background: $button-color-default;
+        color: $brand-c-default;
       }
     }
   }

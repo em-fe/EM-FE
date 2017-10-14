@@ -2059,6 +2059,14 @@ elliptic@^6.0.0:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.0"
 
+em-cookie@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/em-cookie/-/em-cookie-1.0.2.tgz#fda588fc440d10f58bb7e19f4bb68a9ff2ef3cf7"
+
+em-jsonp@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/em-jsonp/-/em-jsonp-1.0.2.tgz#b9d421899fb749684867d84685aa500ed7e02bb2"
+
 emojis-list@^2.0.0:
   version "2.1.0"
   resolved "http://registry.npm.taobao.org/emojis-list/download/emojis-list-2.1.0.tgz#4daa4d9db00f9819880c79fa457ae5b09a1fd389"

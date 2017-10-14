@@ -33,6 +33,7 @@ export default {
   name: 'Select',
   data() {
     return {
+      opened: false, // 打开过
       checkList: [],
       flagCheck: false,
       checkVal: this.checkVals,
@@ -78,8 +79,38 @@ export default {
       },
     },
     className: String,
-    getDefData: Function,
-    close: Function,
+    getDefData: {
+      type: Function,
+      default: () => {},
+    },
+    close: {
+      type: Function,
+      default: () => {},
+    },
+    addDataCheck: {
+      type: Function,
+      default: () => {},
+    },
+    addDataRadio: {
+      type: Function,
+      default: () => {},
+    },
+    delopt: {
+      type: Function,
+      default: () => {},
+    },
+    checkedopt: {
+      type: Function,
+      default: () => {},
+    },
+    getAllData: {
+      type: Function,
+      default: () => {},
+    },
+    clickInput: {
+      type: Function,
+      default: () => {},
+    },
   },
   computed: {
     selectName() {
@@ -121,28 +152,32 @@ export default {
       });
       // this.flagCheck = this.checkList.length > 0;
       this.flagCheck = true;
+      this.opened = true;
+      this.clickInput();
+      this.$emit('clickInput');
     },
     newListBtn() {
       const newdata = this.newListVal;
       this.$emit('addDataCheck', newdata, this.datas);
       this.$emit('addDataRadio', newdata, this.datas);
       this.newListVal = '';
+      this.addDataCheck(newdata, this.datas);
+      this.addDataRadio(newdata, this.datas);
     },
     spanTxt(item) {
       if (item.disabled !== 'disabled') {
         this.checkVal = item.name;
         this.flagCheck = false;
         this.$emit('getDefData', this.checkVal, item, this.datas);
-        if (this.getDefData) {
-          this.getDefData(this.checkVal, item, this.datas);
-        }
+        this.getDefData(this.checkVal, item, this.datas);
       }
     },
     closeFn() {
-      this.checkList = [];
-      this.flagCheck = false;
-      if (this.close) {
-        this.close();
+      if (this.opened) {
+        this.opened = false;
+        this.checkList = [];
+        this.flagCheck = false;
+        this.close(this.checkVal);
       }
     },
     getdata(item) {
@@ -157,10 +192,13 @@ export default {
       }
       if (hasItem) {
         this.$emit('delopt', item.name, item, this.datas);
+        this.delopt(item.name, item, this.datas);
       } else {
         this.$emit('checkedopt', item.name, item, this.datas);
+        this.checkedopt(item.name, item, this.datas);
       }
       this.$emit('getAllData', va, item);
+      this.getAllData(va, item);
     },
   },
   watch: {

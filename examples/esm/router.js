@@ -329,6 +329,11 @@ const router = new VueRouter({
           component: require('./components/functions/loginmodalPage.vue'),
         },
         {
+          path: '/functions/loginmodalc',
+          name: 'loginmodalc',
+          component: require('./components/functions/loginmodalCPage.vue'),
+        },
+        {
           path: '/functions/upload',
           name: 'upload',
           component: require('./components/functions/Uploadpage.vue'),
