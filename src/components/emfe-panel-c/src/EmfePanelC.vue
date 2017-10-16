@@ -6,24 +6,26 @@
     <div class="emfe-panel-c-infobox">
       <div class="emfe-panel-c-infobox-about">
         <span class="emfe-panel-c-infobox-about-texts">早上好，{{nickName}}</span>
-        <div class="emfe-panel-c-infobox-member" v-if="openMember===1 || openVip===1">
+        <span class="emfe-panel-c-infobox-about-father">
+          <div class="emfe-panel-c-infobox-member" v-if="openMember===1 || openVip===1">
           <span class="emfe-panel-c-infobox-about-text">
           <img class="emfe-panel-c-infobox-about-novip" :src="memberlogoNoVip" v-if="isVip===2&&openVip===1" @click="renews">
           <img class="emfe-panel-c-infobox-about-img" v-if='!(openMember===2 &&openVip===1&&isVip===2)' :src="memberlogo" @click="freeLevels">{{levelName}}</span>
           <a class="emfe-panel-c-infobox-youhui" v-if="isVip===2&&openVip===1&&timeJudge===''">开通享优惠<i class="emfe-panel-c-infobox-youhui-i"></i></a>
         </div>
         <template v-if="openMember===1 || openVip===1">
-          <span :class="{'emfe-panel-c-infobox-about-overdue': openMember===1&&timeJudge===1}">
-            <span class="emfe-panel-c-infobox-about-text emfe-panel-c-infobox-about-guoqi" :class="{'emfe-panel-c-infobox-about-back': openMember===1&&timeJudge===1}" v-if="isVip===2&&timeJudge===1">{{memberDeadlines}} 已过期</span>
-          <emfe-link class="emfe-panel-c-infobox-about-link" :routers="{}" v-if="isVip===1 || timeJudge===1" @click="renews">续费</emfe-link>
+          <span :class="{'emfe-panel-c-infobox-about-overdue': openMember===1&&openVip===1&&timeJudge===1}">
+            <span class="emfe-panel-c-infobox-about-text emfe-panel-c-infobox-about-guoqi" :class="{'emfe-panel-c-infobox-about-back': openMember===1&&openVip===1&&timeJudge===1}" v-if="isVip===2&&openVip===1&&timeJudge===1">{{memberDeadlines}} 已过期</span>
+          <emfe-link class="emfe-panel-c-infobox-about-link" :routers="{}" v-if="openVip===1&&isVip===1 || timeJudge===1" @click="renews">续费</emfe-link>
           <img class="emfe-panel-c-infobox-about-arrow" v-if="openMember===1&&timeJudge===1" src="data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAABkAAD/4QOLaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjMtYzAxMSA2Ni4xNDU2NjEsIDIwMTIvMDIvMDYtMTQ6NTY6MjcgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bXBNTTpPcmlnaW5hbERvY3VtZW50SUQ9InhtcC5kaWQ6MjVCQjJDMTk0NjIwNjgxMTgyMkFGMjVFRjU0OUZENEMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RDQxRjFGQjhCMDlFMTFFNzgzMUI4QjAwNTQxMUY4NzAiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RDQxRjFGQjdCMDlFMTFFNzgzMUI4QjAwNTQxMUY4NzAiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKE1hY2ludG9zaCkiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxODQ0ODQyNy05NWE0LTRmNTgtYTBjMS1hZmMwN2Q4NWI1MjciIHN0UmVmOmRvY3VtZW50SUQ9ImFkb2JlOmRvY2lkOnBob3Rvc2hvcDo2MTlmMTg1My1jZjg2LTExN2EtOTlmYS1lN2FkMzZkNTFjNzUiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7/7gAOQWRvYmUAZMAAAAAB/9sAhAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAgICAgICAgICAgIDAwMDAwMDAwMDAQEBAQEBAQIBAQICAgECAgMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwP/wAARCAAGAAkDAREAAhEBAxEB/8QAaQABAQAAAAAAAAAAAAAAAAAAAQoBAQEAAAAAAAAAAAAAAAAAAAEIEAABBAECBwAAAAAAAAAAAAAFAQMEBgcAAhEhEhSlZigRAAEDAwIHAAAAAAAAAAAAAAMBAgQAEQUxBkIToxRlByj/2gAMAwEAAhEDEQA/ALAsWizk/CtMn2OyuAMbD6zCVmvYihWEkcOw06kfdInwQpbFGguvLuXswMSNvZ2pznPNcdT/ALIg5OV63x0rMTVi7NFCZYGKZIIY7OJSHALuGsVbryoIhqxNZJGXqlN+z8VE9n5OJhYKS97GnPvIy744gAfwoOOcvbOeiWTnTyka9dIoiWp+NPTPO6fnXx3Xo+mPJ9Cv/9k=" alt="">
           </span>
-          <span class="emfe-panel-c-infobox-about-text" v-if="(isVip===2&&openMember===1) || openMember===1">成长值<em class="emfe-panel-c-infobox-about-text-em">{{ growth }}</em></span>
-          <span class="emfe-panel-c-infobox-about-text" v-if="isVip===1 || openMember===1">积分<em class="emfe-panel-c-infobox-about-text-em">{{ integral }}</em></span>
+          <span class="emfe-panel-c-infobox-about-text" v-if="(openVip===1&&isVip===2&&openMember===1) || openMember===1">成长值<em class="emfe-panel-c-infobox-about-text-em">{{ growth }}</em></span>
+          <span class="emfe-panel-c-infobox-about-text" v-if="openVip===1&&isVip===1 || openMember===1">积分<em class="emfe-panel-c-infobox-about-text-em">{{ integral }}</em></span>
         </template>
+        </span>
       </div>
       <div class="emfe-panel-c-infobox-info">
-        <span class="emfe-panel-c-infobox-info-text">账号：+（{{code}}）{{phone}}</span>
+        <span class="emfe-panel-c-infobox-info-text">账号：+（{{code}}）{{showPhone}}</span>
         <emfe-link className="emfe-panel-c" :routers="telRouters">
           <emfe-icon type="shouji1" className="emfe-panel-c"></emfe-icon>
         </emfe-link>
@@ -207,6 +209,9 @@ export default {
           [`${this.className}-panel-c-box-right`]: !!this.className,
         },
       ];
+    },
+    showPhone() {
+      return this.phone.toString().replace(/^(\d{3})\d{4}(\d+)/, '$1****$2');
     },
     memberDeadlines() {
       return this.memberDeadline.slice(0, 10);
