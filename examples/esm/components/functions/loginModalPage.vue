@@ -3,7 +3,7 @@
     <emfe-button @click="loginB">点击B端登录</emfe-button>
     <emfe-login :show='loginShowB' :loginClose="loginCloseB" :action="url" :referrerUrl='referrerUrl' forgotName="Forgotpassword" registerName="Type"></emfe-login>
     <emfe-button @click="loginC">点击C端登录</emfe-button>
-    <emfe-login-c :show='loginShowC' :loginClose="loginCloseC" :loginAction="url" sendAction='' weixinAction=""></emfe-login-c>
+    <emfe-login-c :show='loginShowC' :orgid="100160" :loginClose="loginCloseC" :loginAction="url" sendAction='' weixinAction=""></emfe-login-c>
     <br>
     <br>
     <br>

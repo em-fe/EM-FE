@@ -6,7 +6,7 @@
         <emfe-row :gutter="16" class="all-search">
           <emfe-col span="16">
             <span @keyup.enter="go"><emfe-input className="all-search" v-model="search" @change="searchChange" @enter="go"></emfe-input></span>
-            <ul class="all-search-think">
+            <ul class="all-search-think" v-show="searchResults.length">
               <li class="all-search-think-item" v-for="searchResult in searchResults">
                 <emfe-link :routers="searchResult.routers">{{ searchResult.title }}</emfe-link>
               </li>
