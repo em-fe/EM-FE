@@ -1,7 +1,7 @@
 <template>
   <div class="emfe-bar-c" :class="barName">
     <ul class="emfe-bar-c-list">
-      <template v-for="(childrenData, childrenDataIndex) in datas">
+      <template v-for="(childrenData, childrenDataIndex) in newDatas">
         <li class="emfe-bar-c-item" v-if="!childrenData.children">
           <router-link :to="childrenData.routers" class="emfe-bar-c-link" :class="{' emfe-bar-c-link-disabled': isDisabled}">{{ childrenData.title }}</router-link>
         </li>
@@ -33,6 +33,7 @@ export default {
       childrenIndex: -1,
       isDisabled: this.disabled,
       barStatus: [],
+      newDatas: [],
     };
   },
   props: {
@@ -55,11 +56,12 @@ export default {
   },
   mounted() {
     // this.testUrl();
-    this.handle();
+    this.handle(this.datas);
   },
   methods: {
-    handle() {
-      this.datas.forEach(() => {
+    handle(val) {
+      this.newDatas = val;
+      this.newDatas.forEach(() => {
         this.barStatus.push(true);
       });
     },
@@ -68,7 +70,7 @@ export default {
 
       const newFullPath = this.fullpath ? this.fullpath : fullPath;
 
-      this.datas.forEach((data, dataNum) => {
+      this.newDatas.forEach((data, dataNum) => {
         // 如果一级导航有子节点
         if (O.hOwnProperty(data, 'children')) {
           data.children.forEach((dataChild) => {
@@ -83,7 +85,6 @@ export default {
     },
     toogleChild(itemIndex) {
       if (!this.isDisabled) {
-        console.log(this.barStatus[itemIndex]);
         this.barStatus.splice(itemIndex, 1, !this.barStatus[itemIndex]);
         // const eqLast = itemIndex === childrenLast;
         // this.childrenIndex = eqLast ? -1 : itemIndex;
@@ -106,6 +107,11 @@ export default {
     //     this.testUrl();
     //   }
     // },
+    datas(val, oldVal) {
+      if (val !== oldVal) {
+        this.handle(val);
+      }
+    },
     $route(val, oldVal) {
       if (val.name !== oldVal.name) {
         this.isDisabled = val.path.indexOf(this.disableRex) > -1;

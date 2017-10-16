@@ -11,7 +11,7 @@
       </div>
     </template>
     <template v-if="type === 'plus'">
-      <button v-show="!src" class="emfe-upload-btn" :class="btnName">{{ plusText }}</button>
+      <span v-show="!src" class="emfe-upload-btn" :class="btnName">{{ plusText }}</span>
       <input v-show="!src" class="emfe-upload-file" :class="fileName" :disabled="disabled || !canUpload" type="file" @change="change" ref="uploadPlus">
       <div v-show="src" class="emfe-upload-plus-box" :class="[`emfe-upload-plus-box-${align}`, imageName]" :style="{opacity: canShow ? 1 : 0}">
         <img :class="[`emfe-upload-img-${align}`, imgName]" v-show="src" :src="src" ref="img">
