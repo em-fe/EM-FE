@@ -23,7 +23,7 @@
         </template>
       </div>
       <div class="emfe-panel-c-infobox-info">
-        <span class="emfe-panel-c-infobox-info-text">账号：+（{{code}}）{{phone}}</span>
+        <span class="emfe-panel-c-infobox-info-text">账号：+（{{code}}）{{showPhone}}</span>
         <emfe-link className="emfe-panel-c" :routers="telRouters">
           <emfe-icon type="shouji1" className="emfe-panel-c"></emfe-icon>
         </emfe-link>
@@ -207,6 +207,9 @@ export default {
           [`${this.className}-panel-c-box-right`]: !!this.className,
         },
       ];
+    },
+    showPhone() {
+      return this.phone.toString().replace(/^(\d{3})\d{4}(\d+)/, '$1****$2');
     },
     memberDeadlines() {
       return this.memberDeadline.slice(0, 10);
