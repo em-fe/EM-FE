@@ -11,6 +11,25 @@
     margin-right: 30px;
     float: left;
 
+    .emfe-upload-plus-btn {
+      line-height: 78px;
+    }
+
+    .emfe-upload-img-vertical {
+      border-radius: 50%;
+    }
+
+    .emfe-upload-plus-box {
+      border-radius: 50%;
+      border: none;
+    }
+
+    .emfe-upload-img-normal {
+      width: 83px;
+      height: 83px;
+      border-radius: 50%;
+    }
+
     &-logo {
       width: 85px;
       height: 85px;
@@ -35,6 +54,10 @@
         float: left;
         margin: 2px 10px 0 0;
         cursor: pointer;
+      }
+
+      &-father {
+        position: relative;
       }
 
       &-img {
@@ -89,8 +112,8 @@
         font-size: 12px;
         width: 165px;
         position: absolute;
-        left: 355px;
-        top: 74px;
+        left: -100px;
+        top: -23px;
         text-align: center;
         color: $background-color-write;
         border-radius: 10px;

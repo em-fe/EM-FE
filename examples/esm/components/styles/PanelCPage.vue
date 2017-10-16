@@ -17,14 +17,14 @@ export default {
       levelName:'钻石会员',
       code:86,
       phone: 15725928061,
-      isMember: 2,
-      openMember: 2,
+      isMember: 1,
+      openMember: 1,
       isVip:2,
-      openVip:2,
+      openVip:1,
       pendingPaymentNum: 59,
       pendingAuditNum: 40,
       pendingShipmentNum: 22,
-      memberDeadline: '',
+      memberDeadline: '2017-07-22 11:04:4',
     };
   },
   methods:{
