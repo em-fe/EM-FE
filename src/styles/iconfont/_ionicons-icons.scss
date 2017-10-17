@@ -415,3 +415,8 @@
 }
 
 .#{$prefix}icon-guanli::before { content: "\e6a1"; }
+
+.#{$prefix}icon-xiangshang::before {
+  content: "\e6a2";
+  color: $brand-color-default;
+}

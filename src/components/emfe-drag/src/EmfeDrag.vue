@@ -133,7 +133,6 @@ export default {
           } else if (downTop > elEleHeight - this.elHeight) {
             downTop = elEleHeight - this.elHeight;
           }
-          console.log(downLeft, this.elWidth);
           if (downLeft < 0) {
             downLeft = 0;
           } else if (downLeft > elEleWidth - this.elWidth) {

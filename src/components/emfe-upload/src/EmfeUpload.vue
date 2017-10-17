@@ -11,10 +11,11 @@
       </div>
     </template>
     <template v-if="type === 'plus'">
-      <button v-show="!src" class="emfe-upload-btn" :class="btnName">{{ plusText }}</button>
+      <span v-show="!src" class="emfe-upload-btn" :class="btnName">{{ plusText }}</span>
       <input v-show="!src" class="emfe-upload-file" :class="fileName" :disabled="disabled || !canUpload" type="file" @change="change" ref="uploadPlus">
-      <div v-show="src" class="emfe-upload-plus-box" :class="[`emfe-upload-plus-box-${align}`, imageName]" :style="{opacity: canShow ? 1 : 0}" @click="closePlusFn">
+      <div v-show="src" class="emfe-upload-plus-box" :class="[`emfe-upload-plus-box-${align}`, imageName]" :style="{opacity: canShow ? 1 : 0}">
         <img :class="[`emfe-upload-img-${align}`, imgName]" v-show="src" :src="src" ref="img">
+        <i class="emfe-upload-plus-close" @click="closePlusFn"></i>
       </div>
     </template>
     <emfe-modal :show="interceptModal" title="截取器" @close="formCancel" @cancel="formCancel" @ok="formOk" okText="保存" className="form">
@@ -41,6 +42,8 @@ import ajax from './ajax';
 
 const uploadJpeg = 'image/jpeg';
 let pointOldLeft = 0; // 改变截取器遮罩大小
+const iconBoxHeight = 70; //icon模式外框的高度
+const iconBoxWidth = 118; //icon模式外框的宽度
 
 export default {
   name: 'upload',
@@ -209,7 +212,7 @@ export default {
   },
   mounted() {
     if (this.url) {
-      this.initImg();
+      this.initImg(this.url);
     }
     this.initIntercept();
   },
@@ -226,13 +229,17 @@ export default {
         }
       }
     },
-    initImg() {
-      const imgObject = new Image();
-      imgObject.src = this.url;
-      imgObject.onload = () => {
-        this.src = this.url;
-        setTimeout(this.setAlign.bind(this), 0);
-      };
+    initImg(val) {
+      if (val) {
+        const imgObject = new Image();
+        imgObject.src = val;
+        imgObject.onload = () => {
+          this.src = this.url;
+          setTimeout(this.setAlign.bind(this), 0);
+        };
+      } else {
+        this.src = '';
+      }
     },
     openInterceptModal() {
       openMask();
@@ -331,7 +338,13 @@ export default {
       const height = res ? res.height : clientHeight;
       if (width !== 0 && height !== 0) {
         if (width > height) {
-          this.align = 'horizontal';
+          const newImgScale = iconBoxWidth / width;
+          // 如果按宽度适配，图片的高度超出线框
+          if (height * newImgScale > iconBoxHeight) {
+            this.align = 'vertical';
+          } else {
+            this.align = 'horizontal';
+          }
         } else if (width < height) {
           this.align = 'vertical';
         } else {
@@ -458,6 +471,7 @@ export default {
 
       fileData.status = 'fail';
       this.canLoad();
+      this.resetInputFile();
 
       fileList.splice(fileList.indexOf(fileData), 1);
       this.error(err, response, file, EmfeMessage);
@@ -526,7 +540,7 @@ export default {
   watch: {
     url(val, oldVal) {
       if (val !== oldVal) {
-        this.initImg();
+        this.initImg(val);
       }
     },
   },

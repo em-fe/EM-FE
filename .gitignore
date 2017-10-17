@@ -3,6 +3,7 @@
 .ipr
 .iws
 *.diff
+.tags*
 *.patch
 *.bak
 .DS_Store
@@ -14,9 +15,11 @@ node_modules/
 *.swp
 *.swo
 *.log
+*.log.*
 *.ini
 examples/dist/
 yarn-error.log
 test/unit/coverage
 .vscode
 $Recycle.Bin
+dist/

@@ -20,21 +20,21 @@
           <button class="emfe-date-m-ok" @click.stop="ok">确定</button>
         </div>
         <div class="emfe-date-m-main">
-          <div class="emfe-date-m-item">
-            <ul class="emfe-date-m-list">
-              <li class="emfe-date-m-list-item" v-for="yearLoop in years" :class="{'emfe-date-m-list-item-on': yearLoop.num === year, 'emfe-date-m-list-item-disable': yearLoop.undo}" @click.stop="choiceYear(yearLoop)">{{ yearLoop.num }}</li>
+          <emfe-iscroll ref="iscroll1" class="emfe-date-m-item" :options="Contant.ISCROLL_CONFIG">
+            <ul id="list1" class="emfe-date-m-list">
+              <li class="emfe-date-m-list-item" v-for="yearLoop in years" :class="{'emfe-date-m-list-item-on': yearLoop.num === year, 'emfe-date-m-list-item-disable': yearLoop.undo}" @click.stop="choiceYear(yearLoop)" v-if="!yearLoop.undo" ref="listItem1">{{ yearLoop.num }}</li>
             </ul>
-          </div>
-          <div class="emfe-date-m-item">
+          </emfe-iscroll>
+          <emfe-iscroll ref="iscroll2" class="emfe-date-m-item" :options="Contant.ISCROLL_CONFIG">
             <ul class="emfe-date-m-list">
-              <li class="emfe-date-m-list-item" v-for="monthLoop in months" :class="{'emfe-date-m-list-item-on': monthLoop.num === month, 'emfe-date-m-list-item-disable': monthLoop.undo}" @click.stop="choiceMonth(monthLoop)">{{ monthLoop.num }}</li>
+              <li class="emfe-date-m-list-item" v-for="monthLoop in months" :class="{'emfe-date-m-list-item-on': monthLoop.num === month, 'emfe-date-m-list-item-disable': monthLoop.undo}" @click.stop="choiceMonth(monthLoop)" v-if="!monthLoop.undo" ref="listItem2">{{ monthLoop.num }}</li>
             </ul>
-          </div>
-          <div class="emfe-date-m-item">
+          </emfe-iscroll>
+          <emfe-iscroll ref="iscroll3" class="emfe-date-m-item" :options="Contant.ISCROLL_CONFIG">
             <ul class="emfe-date-m-list">
-              <li class="emfe-date-m-list-item" v-for="(dayLoop, dayIndex) in days" :class="{'emfe-date-m-list-item-on': dayLoop.num === day, 'emfe-date-m-list-item-disable': dayLoop.undo}" @click.stop="choiceDay(dayLoop)">{{ dayLoop.num }}</li>
+              <li class="emfe-date-m-list-item" v-for="(dayLoop, dayIndex) in days" :class="{'emfe-date-m-list-item-on': dayLoop.num === day, 'emfe-date-m-list-item-disable': dayLoop.undo}" @click.stop="choiceDay(dayLoop)" v-if="!dayLoop.undo" ref="listItem3">{{ dayLoop.num }}</li>
             </ul>
-          </div>
+          </emfe-iscroll>
         </div>
       </div>
     </emfe-transition>
@@ -43,11 +43,14 @@
 <script>
 import { getDayCountOfMonth } from '../../../tools/date';
 import TimeTool from '../../../tools/time';
+import Contant from '../../../contant';
 
 export default {
   name: 'EmfeTimeM',
   data() {
     return {
+      Contant,
+      canSetNow: true,
       years: [],
       months: [],
       days: [],
@@ -146,7 +149,7 @@ export default {
     },
   },
   mounted() {
-    for (let i = this.yearStart; i < this.yearEnd + 1; i++) {
+    for (let i = this.yearEnd; i > this.yearStart - 1; i--) {
       this.years.push(TimeTool.handleConputedDate(i, this.disabledYears));
     }
     for (let i = 1; i < 13; i++) {
@@ -157,6 +160,53 @@ export default {
     this.initData();
   },
   methods: {
+    refreshIscroll() {
+      Object.keys(this.$refs).forEach((iscroll) => {
+        if (this.$refs[iscroll].refresh) {
+          this.$refs[iscroll].refresh();
+        }
+      });
+    },
+    setNow() {
+      const now = new Date();
+      const dayNow = now.getDate();
+      const monthNow = now.getMonth();
+      const yearNow = now.getFullYear();
+      const month = this.months[monthNow];
+      const year = this.years.find(iYear => iYear.num - 0 === yearNow);
+      const day = this.days[dayNow - 1];
+      this.year = year.num;
+      this.month = month.num;
+      this.day = day.num;
+      // 如果当前时间不可选，就选第一个可选的
+      this.year = TimeTool.loopChoice(this.years, this.year);
+      this.month = TimeTool.loopChoice(this.months, this.month);
+      this.day = TimeTool.loopChoice(this.days, this.day);
+      this.choiced = true;
+    },
+    // 选择完滚动到当前
+    // do year时，year滚动
+    scrollEle(doScroll) {
+      const { listItem1, listItem2, listItem3 } = this.$refs;
+
+      const years = this.years.filter(yearData => !yearData.undo);
+      const months = this.months.filter(monthData => !monthData.undo);
+      const days = this.days.filter(dayData => !dayData.undo);
+
+      const yearIndex = years.findIndex(yearData => yearData.num === this.year) - 2;
+      const monthIndex = months.findIndex(monthData => monthData.num === this.month) - 2;
+      const dayIndex = days.findIndex(dayData => dayData.num === this.day) - 2;
+
+      if (listItem1 && doScroll === 'year') {
+        this.$refs.iscroll1.scrollToElement(listItem1[yearIndex < 0 ? 0 : yearIndex]);
+      }
+      if (listItem2 && doScroll === 'month') {
+        this.$refs.iscroll2.scrollToElement(listItem2[monthIndex < 0 ? 0 : monthIndex]);
+      }
+      if (listItem3 && doScroll === 'day') {
+        this.$refs.iscroll3.scrollToElement(listItem3[dayIndex < 0 ? 0 : dayIndex]);
+      }
+    },
     initData() {
       if (this.value && this.value !== this.placeholder) {
         const dates = this.value.split(this.format);
@@ -164,6 +214,7 @@ export default {
         this.month = TimeTool.zeroFill(dates[1] - 0);
         this.day = TimeTool.zeroFill(dates[2] - 0);
         this.choiced = true;
+        this.canSetNow = false;
       } else {
         this.year = '';
         this.month = '';
@@ -186,6 +237,7 @@ export default {
         this.days.push(TimeTool.handleConputedDate(i, this.disabledDays));
       }
       this.setWeekChoice();
+      this.scrollEle('day');
     },
     // 设置日期可选
     setWeekChoice() {
@@ -242,6 +294,13 @@ export default {
     },
     toggle() {
       this.status = !this.status;
+      this.refreshIscroll();
+      if (this.canSetNow) {
+        this.setNow();
+      }
+      this.scrollEle('year');
+      this.scrollEle('month');
+      this.scrollEle('day');
     },
     close(e, noClose) {
       if (!this.open) {
@@ -253,11 +312,13 @@ export default {
       }
     },
     ok() {
+      this.canSetNow = false;
       this.close(true);
       this.$emit('ok', this.date);
       this.$emit('input', this.date);
     },
     cancel() {
+      this.canSetNow = true;
       this.choiced = false;
       this.year = '';
       this.month = '';

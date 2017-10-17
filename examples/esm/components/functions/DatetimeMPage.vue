@@ -14,10 +14,10 @@
     <br>
     <br>
     <br>
-    <p>当前日期： {{ demo1 }}</p>
-    <emfe-datetime-m @ok="demo1ok" @cancel="demo1cancel" @close="demo1close"></emfe-datetime-m>
+    <p>当前日期： {{ demo2 }}</p>
+    <emfe-datetime-m @ok="demo2ok" @cancel="demo2cancel" @close="demo2close"></emfe-datetime-m>
     <pre>
-      &lt;emfe-datetime-m @ok="demo1ok" @cancel="demo1cancel" @close="demo1close"&gt;&lt;/emfe-datetime-m&gt;
+      &lt;emfe-datetime-m @ok="demo2ok" @cancel="demo2cancel" @close="demo2close"&gt;&lt;/emfe-datetime-m&gt;
     </pre>
     <br>
     <br>
@@ -211,6 +211,9 @@ export default {
     },
     demo2ok(date) {
       this.demo2 = date;
+    },
+    demo2close(date) {
+      this.demo2 = '关闭了demo2';
     },
     demo2cancel(date) {
       this.demo2 = '';

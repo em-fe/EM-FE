@@ -1,5 +1,16 @@
 <template>
   <div class="emfe-table-box">
+    <p>点击添加表头 table</p>
+    <div @click="addThead">添加添加添加</div>
+    <div style="width: 100%;overflow-x:auto">
+      <emfe-table :columns="column1" :data="data1" classAddName="add" border="true">
+        <emfe-table-head  slot="head"  @thJump='jumpTh' :checked="cell">
+        </emfe-table-head>
+        <emfe-table-body slot="body" @jump="Jump" v-for="(dataList,index) in data1" :ind="index" key="index" :dataList="dataList" :checked="cell">
+        </emfe-table-body>
+      </emfe-table>
+    </div>
+    <br><br>
     <p>带边框的table</p>
     <div style="width: 100%;overflow-x:auto">
       <emfe-table :columns="column1" :data="data1" classAddName="add" border="true">
@@ -199,8 +210,9 @@ export default {
           address7: {text:'北京市朝阳区芍药居7', row:false},
           address8: {text:'北京市朝阳区芍药居7', row:false},
           address9: {text:'北京市朝阳区芍药居7', row:false},
+          address10: {text:'北京市朝阳区芍药居7', row:false},
         },
-         {
+        {
           name: {text:'王小明', row:false},
           age: {text:'北京市朝阳区芍药居1', row:false},
           address: {text:'1', row:false},
@@ -212,6 +224,7 @@ export default {
           address7: {text:'北京市朝阳区芍药居7', row:false},
           address8: {text:'北京市朝阳区芍药居7', row:false},
           address9: {text:'北京市朝阳区芍药居7', row:false},
+          address10: {text:'北京市朝阳区芍药居7', row:false},
         },
       ],
       columnSlot:[
@@ -350,6 +363,12 @@ export default {
     },
     jumpTh(index) {
       console.log(index);
+    },
+    addThead() {
+      this.column1.push({
+        title: `地址${this.column1.length + 1}`,
+        key: `address${this.column1.length - 2}`,
+      });
     },
   },
 };

@@ -20,36 +20,36 @@
           <button class="emfe-datetime-m-ok" @click.stop="ok">确定</button>
         </div>
         <div class="emfe-datetime-m-main">
-          <div class="emfe-datetime-m-item" :class="itemName">
+          <emfe-iscroll ref="iscroll1" class="emfe-datetime-m-item" :class="itemName" :options="Contant.ISCROLL_CONFIG">
             <ul class="emfe-datetime-m-list">
-              <li class="emfe-datetime-m-list-item" v-for="yearLoop in years" :class="{'emfe-datetime-m-list-item-on': yearLoop.num === year, 'emfe-datetime-m-list-item-disable': yearLoop.undo}" @click.stop="choiceYear(yearLoop)">{{ yearLoop.num }}</li>
+              <li class="emfe-datetime-m-list-item" v-for="yearLoop in years" :class="{'emfe-datetime-m-list-item-on': yearLoop.num === year, 'emfe-datetime-m-list-item-disable': yearLoop.undo}" @click.stop="choiceYear(yearLoop)" v-if="!yearLoop.undo" ref="listItem1">{{ yearLoop.num }}</li>
             </ul>
-          </div>
-          <div class="emfe-datetime-m-item" :class="itemName">
+          </emfe-iscroll>
+          <emfe-iscroll ref="iscroll2" class="emfe-datetime-m-item" :class="itemName" :options="Contant.ISCROLL_CONFIG">
             <ul class="emfe-datetime-m-list">
-              <li class="emfe-datetime-m-list-item" v-for="monthLoop in months" :class="{'emfe-datetime-m-list-item-on': monthLoop.num === month, 'emfe-datetime-m-list-item-disable': monthLoop.undo}" @click.stop="choiceMonth(monthLoop)">{{ monthLoop.num }}</li>
+              <li class="emfe-datetime-m-list-item" v-for="monthLoop in months" :class="{'emfe-datetime-m-list-item-on': monthLoop.num === month, 'emfe-datetime-m-list-item-disable': monthLoop.undo}" @click.stop="choiceMonth(monthLoop)" v-if="!monthLoop.undo" ref="listItem2">{{ monthLoop.num }}</li>
             </ul>
-          </div>
-          <div class="emfe-datetime-m-item" :class="itemName">
+          </emfe-iscroll>
+          <emfe-iscroll ref="iscroll3" class="emfe-datetime-m-item" :class="itemName" :options="Contant.ISCROLL_CONFIG">
             <ul class="emfe-datetime-m-list">
-              <li class="emfe-datetime-m-list-item" v-for="(dayLoop, dayIndex) in days" :class="{'emfe-datetime-m-list-item-on': dayLoop.num === day, 'emfe-datetime-m-list-item-disable': dayLoop.undo}" @click.stop="choiceDay(dayLoop)">{{ dayLoop.num }}</li>
+              <li class="emfe-datetime-m-list-item" v-for="(dayLoop, dayIndex) in days" :class="{'emfe-datetime-m-list-item-on': dayLoop.num === day, 'emfe-datetime-m-list-item-disable': dayLoop.undo}" @click.stop="choiceDay(dayLoop)" v-if="!dayLoop.undo" ref="listItem3">{{ dayLoop.num }}</li>
             </ul>
-          </div>
-          <div class="emfe-datetime-m-item" :class="itemName">
+          </emfe-iscroll>
+          <emfe-iscroll ref="iscroll4" class="emfe-datetime-m-item" :class="itemName" :options="Contant.ISCROLL_CONFIG">
             <ul class="emfe-datetime-m-list">
-              <li class="emfe-datetime-m-list-item" v-for="hourLoop in hours" :class="{'emfe-datetime-m-list-item-on': hourLoop.num === hour, 'emfe-datetime-m-list-item-disable': hourLoop.undo}" @click.stop="choiceHour(hourLoop)">{{ hourLoop.num }}</li>
+              <li class="emfe-datetime-m-list-item" v-for="hourLoop in hours" :class="{'emfe-datetime-m-list-item-on': hourLoop.num === hour, 'emfe-datetime-m-list-item-disable': hourLoop.undo}" @click.stop="choiceHour(hourLoop)" v-if="!hourLoop.undo" ref="listItem4">{{ hourLoop.num }}</li>
             </ul>
-          </div>
-          <div class="emfe-datetime-m-item" :class="itemName" v-if="exact === 'minute' || exact === 'second'">
+          </emfe-iscroll>
+          <emfe-iscroll ref="iscroll5" class="emfe-datetime-m-item" :class="itemName" :options="Contant.ISCROLL_CONFIG" v-if="exact === 'minute' || exact === 'second'">
             <ul class="emfe-datetime-m-list">
-              <li class="emfe-datetime-m-list-item" v-for="minuteLoop in minutes" :class="{'emfe-datetime-m-list-item-on': minuteLoop.num === minute, 'emfe-datetime-m-list-item-disable': minuteLoop.undo}" @click.stop="choiceMinute(minuteLoop)">{{ minuteLoop.num }}</li>
+              <li class="emfe-datetime-m-list-item" v-for="minuteLoop in minutes" :class="{'emfe-datetime-m-list-item-on': minuteLoop.num === minute, 'emfe-datetime-m-list-item-disable': minuteLoop.undo}" @click.stop="choiceMinute(minuteLoop)" v-if="!minuteLoop.undo" ref="listItem5">{{ minuteLoop.num }}</li>
             </ul>
-          </div>
-          <div class="emfe-datetime-m-item" :class="itemName" v-if="exact === 'second'">
+          </emfe-iscroll>
+          <emfe-iscroll ref="iscroll6" class="emfe-datetime-m-item" :class="itemName" :options="Contant.ISCROLL_CONFIG" v-if="exact === 'second'">
             <ul class="emfe-datetime-m-list">
-              <li class="emfe-datetime-m-list-item" v-for="(secondLoop, secondIndex) in seconds" :class="{'emfe-datetime-m-list-item-on': secondLoop.num === second, 'emfe-datetime-m-list-item-disable': secondLoop.undo}" @click.stop="choiceSecond(secondLoop)">{{ secondLoop.num }}</li>
+              <li class="emfe-datetime-m-list-item" v-for="(secondLoop, secondIndex) in seconds" :class="{'emfe-datetime-m-list-item-on': secondLoop.num === second, 'emfe-datetime-m-list-item-disable': secondLoop.undo}" @click.stop="choiceSecond(secondLoop)" v-if="!secondLoop.undo" ref="listItem6">{{ secondLoop.num }}</li>
             </ul>
-          </div>
+          </emfe-iscroll>
         </div>
       </div>
     </emfe-transition>
@@ -59,6 +59,7 @@
 import { getDayCountOfMonth } from '../../../tools/date';
 import _ from '../../../tools/lodash';
 import TimeTool from '../../../tools/time';
+import Contant from '../../../contant';
 
 const hourNum = 24;
 const minuteNum = 60;
@@ -68,6 +69,8 @@ export default {
   name: 'EmfeTimeM',
   data() {
     return {
+      Contant,
+      canSetNow: true, //可以设置当前时间
       years: [],
       months: [],
       days: [],
@@ -191,7 +194,7 @@ export default {
     },
   },
   mounted() {
-    for (let i = this.yearStart; i < this.yearEnd + 1; i++) {
+    for (let i = this.yearEnd; i > this.yearStart - 1; i--) {
       this.years.push(TimeTool.handleConputedDate(i, this.disabledYears));
     }
     for (let i = 1; i < 13; i++) {
@@ -211,6 +214,75 @@ export default {
     this.setTimeChoice();
   },
   methods: {
+    refreshIscroll() {
+      Object.keys(this.$refs).forEach((iscroll) => {
+        if (this.$refs[iscroll].refresh) {
+          this.$refs[iscroll].refresh();
+        }
+      });
+    },
+    setNow() {
+      const now = new Date();
+      const hourNow = now.getHours();
+      const minuteNow = now.getMinutes();
+      const secondNow = now.getSeconds();
+      const dayNow = now.getDate();
+      const monthNow = now.getMonth();
+      const yearNow = now.getFullYear();
+      const hour = this.hours[hourNow];
+      const minute = this.minutes[minuteNow];
+      const second = this.seconds[secondNow];
+      const month = this.months[monthNow];
+      const year = this.years.find(iYear => iYear.num - 0 === yearNow);
+      const day = this.days[dayNow - 1];
+      this.hour = hour.undo ? TimeTool.loopChoice(this.hours, hour.num) : hour.num;
+      this.minute = minute.undo ? TimeTool.loopChoice(this.minutes, minute.num) : minute.num;
+      this.second = second.undo ? TimeTool.loopChoice(this.seconds, second.num) : second.num;
+      this.year = year.num;
+      this.month = month.num;
+      this.day = day.num;
+      this.choiced = true;
+    },
+    // 选择完滚动到当前
+    // do hour时，hour滚动
+    scrollEle(doScroll) {
+      const { listItem1, listItem2, listItem3, listItem4, listItem5, listItem6 } = this.$refs;
+
+      const years = this.years.filter(yearData => !yearData.undo);
+      const months = this.months.filter(monthData => !monthData.undo);
+      const days = this.days.filter(dayData => !dayData.undo);
+
+      const hours = this.hours.filter(hourData => !hourData.undo);
+      const minutes = this.minutes.filter(minuteData => !minuteData.undo);
+      const seconds = this.seconds.filter(secondData => !secondData.undo);
+
+      const yearIndex = years.findIndex(yearData => yearData.num === this.year) - 2;
+      const monthIndex = months.findIndex(monthData => monthData.num === this.month) - 2;
+      const dayIndex = days.findIndex(dayData => dayData.num === this.day) - 2;
+
+      const hourIndex = hours.findIndex(hourData => hourData.num === this.hour) - 2;
+      const minuteIndex = minutes.findIndex(minuteData => minuteData.num === this.minute) - 2;
+      const secondIndex = seconds.findIndex(secondData => secondData.num === this.second) - 2;
+      if (listItem1 && doScroll === 'year') {
+        this.$refs.iscroll1.scrollToElement(listItem1[yearIndex < 0 ? 0 : yearIndex]);
+      }
+      if (listItem2 && doScroll === 'month') {
+        this.$refs.iscroll2.scrollToElement(listItem2[monthIndex < 0 ? 0 : monthIndex]);
+      }
+      if (listItem3 && doScroll === 'day') {
+        this.$refs.iscroll3.scrollToElement(listItem3[dayIndex < 0 ? 0 : dayIndex]);
+      }
+
+      if (listItem4 && doScroll === 'hour') {
+        this.$refs.iscroll4.scrollToElement(listItem4[hourIndex < 0 ? 0 : hourIndex]);
+      }
+      if (listItem5 && doScroll === 'minute') {
+        this.$refs.iscroll5.scrollToElement(listItem5[minuteIndex < 0 ? 0 : minuteIndex]);
+      }
+      if (listItem6 && doScroll === 'second') {
+        this.$refs.iscroll6.scrollToElement(listItem6[secondIndex < 0 ? 0 : secondIndex]);
+      }
+    },
     initData() {
       if (this.value && this.value !== this.placeholder) {
         const vals = this.value.split(' ');
@@ -223,6 +295,7 @@ export default {
         this.minute = TimeTool.zeroFill(times[1] - 0);
         this.second = TimeTool.zeroFill(times[2] - 0);
         this.choiced = true;
+        this.canSetNow = false;
       } else {
         this.year = '';
         this.month = '';
@@ -254,6 +327,7 @@ export default {
         this.day = TimeTool.loopChoice(this.days, this.day);
       }
       this.setWeekChoice();
+      this.scrollEle('day');
     },
     choiceYear(year) {
       if (!year.undo) {
@@ -380,6 +454,21 @@ export default {
     },
     toggle() {
       this.status = !this.status;
+      this.refreshIscroll();
+      if (this.canSetNow) {
+        this.setNow();
+      }
+      // 滚动
+      this.scrollEle('year');
+      this.scrollEle('month');
+      this.scrollEle('day');
+      this.scrollEle('hour');
+      if (this.exact === 'minute' || this.exact === 'second') {
+        this.scrollEle('minute');
+      }
+      if (this.exact === 'second') {
+        this.scrollEle('second');
+      }
     },
     close(e, noClose) {
       if (!this.open) {
@@ -391,11 +480,13 @@ export default {
       }
     },
     ok() {
+      this.canSetNow = false;
       this.close(true);
       this.$emit('ok', this.datetime);
       this.$emit('input', this.datetime);
     },
     cancel() {
+      this.canSetNow = true;
       this.choiced = false;
       this.year = '';
       this.month = '';

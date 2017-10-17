@@ -4,7 +4,7 @@
     <br>
     <br>
     <br>
-    <emfe-header-c user="小北互动" @logout="logout" :orderRouter="{url: 'http://baidu.com'}" :followRouter="{url: 'http://qq.com'}" :loginFlg="true"></emfe-header-c>
+    <emfe-header-c user="小北互动" :integral="integral" @logout="logout" :orderRouter="{url: 'http://baidu.com'}" :followRouter="{url: 'http://qq.com'}" :loginFlg="true"></emfe-header-c>
     <br>
     <br>
     <br>
@@ -14,7 +14,7 @@
     <br>
     <br>
     <br>
-    <br><emfe-header-c @logout="logout" :orderRouter="{url: 'http://baidu.com'}" :followRouter="{url: 'http://qq.com'}" :loginFlg="false"></emfe-header-c>
+    <br><emfe-header-c @logout="logout" :integral="integral2" :orderRouter="{url: 'http://baidu.com'}" :followRouter="{url: 'http://qq.com'}" :loginFlg="false"></emfe-header-c>
     <br>
     <br>
     <br>
@@ -41,6 +41,12 @@
           <td>若已登录，传入用户名(必须传)</td>
           <td>String</td>
           <td>-</td>
+        </tr>
+        <tr>
+          <td>integral</td>
+          <td>integral.state判断是否显示积分 1为显示积分 0为不显示积分，integral.value是积分的值</td>
+          <td>Object</td>
+          <td>必传值</td>
         </tr>
       </tbody>
     </table>
@@ -73,6 +79,11 @@
           <td>-</td>
         </tr>
         <tr>
+          <td>integralClick</td>
+          <td>积分如果显示的话，点击"积分"触发。并且是阻止冒泡。</td>
+          <td>-</td>
+        </tr>
+        <tr>
           <td>followClick</td>
           <td>点击"购物车"触发。并且是阻止冒泡。</td>
           <td>-</td>
@@ -87,6 +98,14 @@ export default {
     return {
       status: '登录中',
       status2: '未登录',
+      integral: {
+        state: 1,
+        value: 999,
+      },
+      integral2: {
+        state: 0,
+        value: 999,
+      },
     };
   },
   methods: {
