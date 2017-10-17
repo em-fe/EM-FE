@@ -7,6 +7,8 @@ export default {
     preventDefault: true,
     fadeScrollbars: true,
   },
+  EVENT_TOKE: 'Authorization',
+  COOKIE_PERFIX_TOKEN: 'Bearer',
   // 请求成功code值
   AJAX_SUCCESS: 10000,
   // 需要强制完善信息的code值
