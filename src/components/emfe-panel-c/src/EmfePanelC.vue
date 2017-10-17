@@ -26,18 +26,15 @@
       </div>
       <div class="emfe-panel-c-infobox-info">
         <span class="emfe-panel-c-infobox-info-text">账号：+（{{code}}）{{showPhone}}</span>
-        <emfe-link className="emfe-panel-c" :routers="telRouters">
+        <!-- <emfe-link className="emfe-panel-c" :routers="telRouters">
           <emfe-icon type="shouji1" className="emfe-panel-c"></emfe-icon>
         </emfe-link>
         <emfe-link className="emfe-panel-c" :routers="infoRouters">
-          <emfe-icon type="weixin1" className="emfe-panel-c"></emfe-icon>
-        </emfe-link>
-        <emfe-link className="emfe-panel-c" :routers="infoRouters">
-          <emfe-icon type="weixin1" className="emfe-panel-c"></emfe-icon>
+          <emfe-icon type="chengwei1" className="emfe-panel-c"></emfe-icon>
         </emfe-link>
         <emfe-link className="emfe-panel-c" :routers="walletRouters">
           <emfe-icon type="zhongzhimima" className="emfe-panel-c"></emfe-icon>
-        </emfe-link>
+        </emfe-link> -->
       </div>
     </div>
     <div class="emfe-panel-c-orderbox">
@@ -163,7 +160,7 @@ export default {
       this.$emit('icon-click', index);
     },
     uploadSuccess(res) {
-      console.log(res);
+      this.$emit('uploadSuccess', res);
     },
     pendingPays() {
       this.$emit('pendingPay');
