@@ -25,6 +25,7 @@ import EmfeImgcode from './components/emfe-imgcode/index';
 import EmfeImgcodeC from './components/emfe-imgcode-c/index';
 import EmfeSteps from './components/emfe-steps/index';
 import EmfeStepsC from './components/emfe-steps-c/index';
+import EmfeStepsB from './components/emfe-steps-b/index';
 import EmfeNumber from './components/emfe-number/index';
 import EmfeDate from './components/emfe-date/index';
 import EmfeDateM from './components/emfe-date-m/index';
@@ -103,6 +104,7 @@ const emfeCpt = {
   EmfeImgcodeC,
   EmfeSteps,
   EmfeStepsC,
+  EmfeStepsB,
   EmfeButton: Button.EmfeButton,
   EmfeButtonGroup: Button.EmfeButtonGroup,
   EmfeButtonC: ButtonC.EmfeButtonC,

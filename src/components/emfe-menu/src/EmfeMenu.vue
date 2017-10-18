@@ -7,7 +7,11 @@
       </button>
       <div class="emfe-menu-iscroll">
         <ul class="emfe-menu-main-list">
+<<<<<<< HEAD
+          <li class="emfe-menu-main-item" v-for="(data, dataIndex) in datas" :key="dataIndex">
+=======
           <li class="emfe-menu-main-item" v-for="(data, dataIndex) in newDatas">
+>>>>>>> up/dev
             <a href="javascript:;" class="emfe-menu-main-link" :class="{'emfe-menu-main-link-on': mainIndex === dataIndex}" @click="tochildren(data)" v-if="data.routers">
               <emfe-tooltip className="emfe-menu" placement="right" :disable="!menuShort">
                 <emfe-icon class="emfe-menu-main-icon" :type="data.icon" slot="render" @icon-click="tochildren(data)"></emfe-icon>
@@ -31,15 +35,15 @@
       <div class="emfe-menu-minor-iscroll">
         <ul class="emfe-menu-minor-list">
           <template v-for="(childrenData, childrenDataIndex) in childrenDatas">
-            <li class="emfe-menu-minor-item" v-if="!childrenData.children">
+            <li class="emfe-menu-minor-item" v-if="!childrenData.children" :key="childrenDataIndex">
               <router-link :to="childrenData.routers" class="emfe-menu-minor-link">{{ childrenData.title }}</router-link>
             </li>
-            <li class="emfe-menu-minor-item" :class="{'emfe-menu-minor-item-on': childrenIndex == childrenDataIndex}" v-else>
+            <li class="emfe-menu-minor-item" :class="{'emfe-menu-minor-item-on': childrenIndex == childrenDataIndex}" v-else :key="childrenDataIndex">
               <span href="javascript:;" class="emfe-menu-minor-btn" @click="toogleChild(childrenDataIndex)" >{{ childrenData.title }}</span>
               <i class="emfe-menu-minor-arrow"></i>
               <emfe-transition name="gradual">
                 <ul class="emfe-menu-minor-childlist" v-show="childrenIndex == childrenDataIndex">
-                  <li class="emfe-menu-minor-childitem" v-for="child in childrenData.children">
+                  <li class="emfe-menu-minor-childitem" v-for="(child, childindex) in childrenData.children" :key="childindex">
                     <router-link :to="child.routers" class="emfe-menu-minor-childlink">{{ child.title }}</router-link>
                   </li>
                 </ul>

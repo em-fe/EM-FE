@@ -102,6 +102,11 @@ const router = new VueRouter({
           component: require('./components/styles/StepsCPage.vue'),
         },
         {
+          path: '/styles/stepsb',
+          name: 'stepsb',
+          component: require('./components/styles/StepsBPage.vue'),
+        },
+        {
           path: '/styles/crumbs',
           name: 'crumbspage',
           component: require('./components/styles/CrumbsPage.vue'),

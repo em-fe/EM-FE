@@ -6,7 +6,7 @@
       <emfe-table :columns="column1" :data="data1" classAddName="add" border="true">
         <emfe-table-head  slot="head"  @thJump='jumpTh' :checked="cell">
         </emfe-table-head>
-        <emfe-table-body slot="body" @jump="Jump" v-for="(dataList,index) in data1" :ind="index" key="index" :dataList="dataList" :checked="cell">
+        <emfe-table-body slot="body" @jump="Jump" v-for="(dataList,index) in data1" :ind="index" :key="index" :dataList="dataList" :checked="cell">
         </emfe-table-body>
       </emfe-table>
     </div>
@@ -16,7 +16,7 @@
       <emfe-table :columns="column1" :data="data1" classAddName="add" border="true">
         <emfe-table-head  slot="head"  @thJump='jumpTh' :checked="cell">
         </emfe-table-head>
-        <emfe-table-body slot="body" @jump="Jump" v-for="(dataList,index) in data1" :ind="index" key="index" :dataList="dataList" :checked="cell">
+        <emfe-table-body slot="body" @jump="Jump" v-for="(dataList,index) in data1" :ind="index" :key="index" :dataList="dataList" :checked="cell">
         </emfe-table-body>
       </emfe-table>
     </div>
@@ -26,7 +26,7 @@
       <emfe-table :columns="column1":data="data1">
         <emfe-table-head  slot="head"  @thJump='jumpTh' :checked="cell">
         </emfe-table-head>
-        <emfe-table-body slot="body" @jump="Jump" v-for="(dataList,index) in data1" :ind="index" key="index" :dataList="dataList" :checked="cell">
+        <emfe-table-body slot="body" @jump="Jump" v-for="(dataList,index) in data1" :ind="index" :key="index" :dataList="dataList" :checked="cell">
         </emfe-table-body>
       </emfe-table>
     </div>
@@ -35,7 +35,7 @@
     <emfe-table :columns="columnSlot" classAddName="add" :data="dataSlot">
       <emfe-table-head  slot="head"  @thJump='jumpTh' :checked="cell">
       </emfe-table-head>
-      <emfe-table-body slot="body" @jump="Jump" v-for="(dataList,index) in dataSlot" :ind="index" key="index" :dataList="dataList" :checked="cell">
+      <emfe-table-body slot="body" @jump="Jump" v-for="(dataList,index) in dataSlot" :ind="index" :key="index" :dataList="dataList" :checked="cell">
         <div slot="a">
           <emfe-checkout color="#1996F9" :title="dataList.name.text">
           </emfe-checkout>
@@ -56,7 +56,7 @@
     <emfe-table :columns="column1" :data="data2">
       <emfe-table-head  slot="head" >
       </emfe-table-head>
-      <emfe-table-body slot="body"  v-for="(dataList,index) in data2" :ind="index" key="index" :dataList="dataList">
+      <emfe-table-body slot="body"  v-for="(dataList,index) in data2" :ind="index" :key="index" :dataList="dataList">
       </emfe-table-body>
     </emfe-table>
     <br>
@@ -64,7 +64,7 @@
     <emfe-table :columns="column1" :data="data10" nothingText="尚未收集到数据">
       <emfe-table-head  slot="head" >
       </emfe-table-head>
-      <emfe-table-body slot="body"  v-for="(dataList,index) in data10" :ind="index" key="index" :dataList="dataList">
+      <emfe-table-body slot="body"  v-for="(dataList,index) in data10" :ind="index" :key="index" :dataList="dataList">
       </emfe-table-body>
     </emfe-table>
     <h3>API</h3>
