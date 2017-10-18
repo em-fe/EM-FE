@@ -7,11 +7,7 @@
       </button>
       <div class="emfe-menu-iscroll">
         <ul class="emfe-menu-main-list">
-<<<<<<< HEAD
-          <li class="emfe-menu-main-item" v-for="(data, dataIndex) in datas" :key="dataIndex">
-=======
-          <li class="emfe-menu-main-item" v-for="(data, dataIndex) in newDatas">
->>>>>>> up/dev
+          <li class="emfe-menu-main-item" v-for="(data, dataIndex) in newDatas" :key="dataIndex">
             <a href="javascript:;" class="emfe-menu-main-link" :class="{'emfe-menu-main-link-on': mainIndex === dataIndex}" @click="tochildren(data)" v-if="data.routers">
               <emfe-tooltip className="emfe-menu" placement="right" :disable="!menuShort">
                 <emfe-icon class="emfe-menu-main-icon" :type="data.icon" slot="render" @icon-click="tochildren(data)"></emfe-icon>
