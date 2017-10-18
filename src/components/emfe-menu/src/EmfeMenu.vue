@@ -110,9 +110,12 @@ export default {
       }
     };
 
-    resizeHandle();
-
-    window.addEventListener('resize', resizeHandle);
+    this.datas.forEach((item) => {
+      if (O.hOwnProperty(item, 'children')) {
+        resizeHandle();
+        window.addEventListener('resize', resizeHandle);
+      }
+    });
   },
   methods: {
     handle(val) {
