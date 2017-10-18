@@ -1,6 +1,6 @@
 {
   "name": "em-fe",
-  "version": "1.0.20",
+  "version": "1.0.24",
   "description": "快速开发产品的UI库",
   "main": "dist/emfe.js",
   "files": [
@@ -10,7 +10,8 @@
   "scripts": {
     "start": "webpack-dev-server --open --inline --hot --compress --history-api-fallback --port 8081 --config build/webpack.config.js",
     "build": "node build/build.js && npm run build:css",
-    "build:css": "./node_modules/.bin/gulp build --gulpfile build/gulpfile.js"
+    "build:css": "./node_modules/.bin/gulp build --gulpfile build/gulpfile.js",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -76,6 +77,6 @@
   "dependencies": {
     "babel-plugin-dynamic-import-webpack": "^1.0.1",
     "em-cookie": "^1.0.2",
-    "em-jsonp": "^1.0.1"
+    "em-jsonp": "^1.0.3"
   }
 }

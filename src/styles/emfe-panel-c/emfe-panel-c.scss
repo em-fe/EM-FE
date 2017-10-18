@@ -11,6 +11,31 @@
     margin-right: 30px;
     float: left;
 
+    .emfe-upload-plus-btn {
+      line-height: 78px;
+    }
+
+    .emfe-upload-img-vertical {
+      border-radius: 50%;
+    }
+
+    .emfe-upload-plus-box {
+      border-radius: 50%;
+      border: none;
+    }
+
+    .emfe-upload-img-normal {
+      width: 83px;
+      height: 83px;
+      border-radius: 50%;
+    }
+
+    .emfe-upload-plus-image {
+      border-radius: 50%;
+      width: 100%;
+      height: 100%;
+    }
+
     &-logo {
       width: 85px;
       height: 85px;
@@ -35,6 +60,10 @@
         float: left;
         margin: 2px 10px 0 0;
         cursor: pointer;
+      }
+
+      &-father {
+        position: relative;
       }
 
       &-img {
@@ -79,6 +108,33 @@
           font-style: normal;
         }
       }
+
+      &-guoqi {
+        color: $btn-danger;
+      }
+
+      &-overdue {
+        line-height: 20px;
+        font-size: 12px;
+        width: 165px;
+        position: absolute;
+        left: -100px;
+        top: -23px;
+        text-align: center;
+        color: $background-color-write;
+        border-radius: 10px;
+        border: 1px solid $color-warning;
+      }
+
+      &-back {
+        padding-left: 5px;
+      }
+
+      &-arrow {
+        position: absolute;
+        left: 15px;
+        top: 19px;
+      }
     }
 
     &-member {
@@ -92,11 +148,21 @@
       width: 78px;
       background: $btn-danger;
       position: absolute;
-      left: 0;
+      left: 10px;
       top: -20px;
       text-align: center;
       color: $background-color-write;
       border-radius: 10px;
+
+      &-i {
+        width: 0;
+        height: 0;
+        position: absolute;
+        left: 15px;
+        top: 15px;
+        border-top: 10px solid $btn-danger;
+        border-right: 10px solid transparent;
+      }
     }
 
     &-info {

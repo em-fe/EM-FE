@@ -1,8 +1,7 @@
 <template>
   <div>
-    <emfe-button @click="loginB">点击B端登录</emfe-button>
-    <emfe-login :show='loginShowB' :loginClose="loginCloseB" :action="url" :referrerUrl='referrerUrl' forgotName="Forgotpassword" registerName="Type"></emfe-login>
     <emfe-button @click="loginC">点击C端登录</emfe-button>
+    <emfe-login-c :show='loginShowC' :orgid="100160" :loginClose="loginCloseC" :loginAction="url" sendAction="" weixinAction=""></emfe-login-c>
     <br>
     <br>
     <br>
@@ -30,38 +29,26 @@
           <td>-</td>
         </tr>
         <tr>
-          <td>loginAction</td>
-          <td>登录请求的地址（必填）C端</td>
-          <td>String</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>sendAction</td>
-          <td>发送验证码的地址（必填）C端</td>
-          <td>String</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>weixinAction</td>
-          <td>微信登录请求的地址（必填）C端</td>
-          <td>String</td>
-          <td>-</td>
-        </tr>
-        <tr>
           <td>action</td>
-          <td>登录请求的地址（必填）B端</td>
+          <td>登录请求的地址（必填）</td>
+          <td>String</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>referrerUrl</td>
+          <td>登录请求成功后跳转的页面地址（必填）</td>
           <td>String</td>
           <td>-</td>
         </tr>
         <tr>
           <td>forgotName</td>
-          <td>忘记密码跳转地址（必填）B端</td>
+          <td>忘记密码跳转地址（必填）</td>
           <td>String</td>
           <td>-</td>
         </tr>
         <tr>
           <td>registerName</td>
-          <td>注册跳转地址（必填）B端</td>
+          <td>注册跳转地址（必填）</td>
           <td>String</td>
           <td>-</td>
         </tr>
@@ -79,22 +66,6 @@
         </tr>
       </tbody>
     </table>
-    <h3>注册的方法</h3>
-    <table style="width: 100%;text-align: center;">
-      <thead>
-        <tr>
-          <th>方法名</th>
-          <th>说明</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>loginSuccess</td>
-          <td>登录成功之后的操作</td>
-          <td></td>
-        </tr>
-      </tbody>
-    </table>
   </div>
 </template>
 <script>
@@ -103,6 +74,7 @@ export default {
   data() {
     return {
       loginShowB: false,
+      loginShowC: false,
       url: 'http://gateway.inner.evente.cn:8000/member/org/login',
       referrerUrl: 'https://www.baidu.com/',
     };
@@ -111,8 +83,14 @@ export default {
     loginB() {
       this.loginShowB = true;
     },
+    loginC() {
+      this.loginShowC = true;
+    },
     loginCloseB(val) {
       this.loginShowB = val;
+    },
+    loginCloseC(val) {
+      this.loginShowC = val;
     },
   },
 };

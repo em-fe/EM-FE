@@ -70,6 +70,7 @@ export default {
   data() {
     return {
       Contant,
+      canSetNow: true, //可以设置当前时间
       years: [],
       months: [],
       days: [],
@@ -241,17 +242,6 @@ export default {
       this.month = month.num;
       this.day = day.num;
       this.choiced = true;
-      // 滚动
-      this.scrollEle('year');
-      this.scrollEle('month');
-      this.scrollEle('day');
-      this.scrollEle('hour');
-      if (this.exact === 'minute' || this.exact === 'second') {
-        this.scrollEle('minute');
-      }
-      if (this.exact === 'second') {
-        this.scrollEle('second');
-      }
     },
     // 选择完滚动到当前
     // do hour时，hour滚动
@@ -305,6 +295,7 @@ export default {
         this.minute = TimeTool.zeroFill(times[1] - 0);
         this.second = TimeTool.zeroFill(times[2] - 0);
         this.choiced = true;
+        this.canSetNow = false;
       } else {
         this.year = '';
         this.month = '';
@@ -324,7 +315,6 @@ export default {
         this.minute = TimeTool.loopChoice(this.minutes, this.minute);
         this.second = TimeTool.loopChoice(this.seconds, this.second);
         this.choiced = true;
-        console.log(111, this.minute, this.second);
       }
     },
     resetDays(year, month) {
@@ -465,7 +455,20 @@ export default {
     toggle() {
       this.status = !this.status;
       this.refreshIscroll();
-      this.setNow();
+      if (this.canSetNow) {
+        this.setNow();
+      }
+      // 滚动
+      this.scrollEle('year');
+      this.scrollEle('month');
+      this.scrollEle('day');
+      this.scrollEle('hour');
+      if (this.exact === 'minute' || this.exact === 'second') {
+        this.scrollEle('minute');
+      }
+      if (this.exact === 'second') {
+        this.scrollEle('second');
+      }
     },
     close(e, noClose) {
       if (!this.open) {
@@ -477,11 +480,13 @@ export default {
       }
     },
     ok() {
+      this.canSetNow = false;
       this.close(true);
       this.$emit('ok', this.datetime);
       this.$emit('input', this.datetime);
     },
     cancel() {
+      this.canSetNow = true;
       this.choiced = false;
       this.year = '';
       this.month = '';

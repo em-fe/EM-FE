@@ -122,6 +122,20 @@
 
       width: 100%;
       height: 100%;
+      font-size: 60px;
+      display: block;
+      line-height: 150px;
+      text-align: center;
+    }
+
+    &-close {
+      width: 35px;
+      height: 35px;
+      cursor: pointer;
+      right: -16px;
+      top: -13px;
+      position: absolute;
+      background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACMAAAAjCAYAAAAe2bNZAAAAAXNSR0IArs4c6QAABVpJREFUWAmVVV1oFFcUPuNmE7P5WdPENGkabRTFh0astIHWYB4kGiUmWXEimJYKKoKmlLT0wbwWgg9SCr74Yh8EH2ylfVIkKlgKGhWCsPiiEKJWsxh3G+1ustmdmdt7bvaMZ+7ObNIDd8853/n75t6ZuwasXIyVp/pmCl+UgcsNWC7OWq3YDCRValipGE5eLh44tEC7KO7X0A+jx3Zjv5pmWV8m01UmxEeGYbTIhFnLcV79bVnjG2/e/JcKggb74W7zQlD3qSfhxj89Pa21lZWjq2x7CFpbF2HdujC0tKyG16/zkEhk4dGjKlFePrGQzX5XdfXqQ9mAdoA09SQdhKutx8F8rZI+rtBiT4/p9PenxfnzCyKVEr6SzQpx/botDh7M2LHYz6ZphrC20AP78N5kS9grFOBakZBpoVws9rXYu1eIp099ORSBSOrUqYwTi/0p68uwh1z0YHwG2h7Rg+i7RLL79vUK05wXiUTRzJKAZQl8AGtg4Jzst2JCOhmXyF+dnXXOwEBKPH5ccm5gEHdocDD9dvfuLzRC+kz19J4tkg4mkRgd0eg3RkdHGDZtImxJJ5Nenzwdr6gAOH68srqm5ieZUkSAyjCGO8CHU8wtCkciX0FvbzUFlHYcgNOnAS5c8MBw9y7AsWMgvyov3tW1CvL5TyZ27XrPG/DORjJcODEjvnNnE1hWC7S38xz5NskyJHPjxjtCSOTMGYCTJwGamrz54TAY27fPfxwO98iA+6DepKWXSscoGRrC4SaIRvMyoVJPgrY2gLExgNFRgJkZgAcPAIaHAbq7i1IV0NwckZ9Ts7Sxv+/dou8MNVKEKsrKGqGuziawSG/YAGCaAHfuAGzdGkwEC+vry+VN/b606GFRo5D2vMAEujqVyyWMZBLvB3/Bo7l4EeDwYYAnT94dmV+2vJ0t236hhWiWgvHb5+IJTqbTLza+eVMu3xt5oFoqvSN0NDt2LL1H2O3oUd5T2WJ6OrvoOM+kgzNw+R4VBfHIcBdwaliu1XJFbNOcFBMT3mvEtoUYHhZifNyLT00JceSIEDMzXjyTEc7+/YtjW7bUF/qWS41zcB7OJQ6uwclgsiKT6u4+IUZG3nq7Sy+fL4IU4IdfupRbPHDgD9kzUujrSwYJ+Im7hT+8fPmb3OI5uH3bxVSBfmzURcfxErxyJR+fnf2RUkpp2iK+M3hMFXLhJ1092dX1ufqTjMf9dyMInZsT4tChbHLPnm+xj1wld0bG3WNCUkSIk6mSeM1EZ2en09e3IO7dc4Jme/Dnz9Wf5Fxf35isr5ULyeDD4UNi/6J3hnZFxpSQT8SQHK2QJNT+2dq1l422tlpjaKgatm1buo0LxUpNTYG4dm0Bbt2yE/Pz338wPn5Z4vL/w3fR0StNw6kd+aSJiKu/XL8+cnbz5sH6NWtOhCyrDRoactDY6EAqZcgVErlcJm1Zv/8yPX12JB5PBZBAckiAlppPQ5Ujf9BHQY0ESBMZ7hvn2tsbP41GP2wIhZrTQiSfZbOv+u/fn5J1OIQG8l3hOBFBrYQP5xjitHRSRIjiVEeaDyEiRIII8hyqU5cOOtiYhNtBmN6MfD7Mz8Z+lEu9XY03IIpOQPf9clSh/KHmpPluEMY1ryMbtSAy6OgE0NcxzOOCQ1D4sCBbz1OF/Ef79+MhNcADFBwcxolywpwcpnNi5KPWRdXxRpig+xyjGGqyeRxtIsNtIsQxtLn4ksEEPogKOEY2acrhmkiRxhi3/XJ9B2Ni0CAd132s1YfqPuaQeGJ+zSixVAxzSsU9Q6ihpotySjVcbqDWe8VuEQmqXI4M5aH+P7m8Du1AAjzxP2aBG0DOv/RHAAAAAElFTkSuQmCC) no-repeat;
     }
   } // end emfe-upload-plus
 

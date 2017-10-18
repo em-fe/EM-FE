@@ -2,7 +2,7 @@
   <div class="emfe-inputmore" :class="inputmoreName">
     <emfe-icon :className="className ? className : 'emfe-inputmore'" v-if="icon" :type="icon"></emfe-icon>
     <input :placeholder="newPlaceholder" :type="type"
-    :value="currentValue" class="emfe-inputmore-input" :class="inputName" @input="input">
+    :value="currentValue" class="emfe-inputmore-input" :class="inputName" @input="input" @focus="focus = true" @blur="focus = false">
     <button class="emfe-inputmore-button emfe-inputmore-button-plus"
     :class="addName" @click="plus"></button>
     <button class="emfe-inputmore-button emfe-inputmore-button-reduce" :class="reduceName" @click="reduce"></button>
@@ -14,6 +14,7 @@ export default {
   data() {
     return {
       currentValue: this.value,
+      focus: false,
       newPlaceholder: this.placeholder,
       group: this.$parent.isGroup, // 如果是组合
     };
@@ -40,6 +41,7 @@ export default {
       return [
         {
           [`${this.className}-inputmore`]: !!this.className,
+          'emfe-inputmore-foucs': this.focus,
         },
       ];
     },

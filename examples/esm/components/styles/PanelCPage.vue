@@ -1,6 +1,6 @@
 <template>
   <div>
-    <emfe-panel-c :headImg="headImg" :memberlogo="memberlogo" :memberlogoNoVip="memberlogoNoVip" :growth="growth" :integral="integral" :balance="balance" :telRouters="{}" :infoRouters="{}" :walletRouters="{}" uploadAction="http://gateway.inner.evente.cn:8000/public/upload" :nickName='nickname' :levelName="levelName" :code="code" :phone="phone" :isMember="isMember" :isVip="isVip" :openVip="openVip" :pendingPaymentNum="pendingPaymentNum" :pendingAuditNum="pendingAuditNum" :pendingShipmentNum="pendingShipmentNum" @pendingPay="pendingPay" @pendingAudit="pendingAudit" @pendingShipment="pendingShipment" @renew="renew" @freeLevel="freeLevel"></emfe-panel-c>
+    <emfe-panel-c :memberDeadline="memberDeadline" :headImg="headImg" :memberlogo="memberlogo" :memberlogoNoVip="memberlogoNoVip" :growth="growth" :integral="integral" :balance="balance" :telRouters="{}" :infoRouters="{}" :walletRouters="{}" uploadAction="http://gateway.inner.evente.cn:8000/public/upload" :nickName='nickname' :levelName="levelName" :code="code" :phone="phone" :isMember="isMember" :openMember="openMember" :isVip="isVip" :openVip="openVip" :pendingPaymentNum="pendingPaymentNum" :pendingAuditNum="pendingAuditNum" :pendingShipmentNum="pendingShipmentNum" @pendingPay="pendingPay" @pendingAudit="pendingAudit" @pendingShipment="pendingShipment" @renew="renew" @freeLevel="freeLevel" @uploadSuccess="uploadSuccess"></emfe-panel-c>
   </div>
 </template>
 <script>
@@ -18,11 +18,13 @@ export default {
       code:86,
       phone: 15725928061,
       isMember: 1,
-      isVip:1,
+      openMember: 1,
+      isVip:2,
       openVip:1,
       pendingPaymentNum: 59,
       pendingAuditNum: 40,
       pendingShipmentNum: 22,
+      memberDeadline: '2017-07-22 11:04:4',
     };
   },
   methods:{
@@ -40,6 +42,9 @@ export default {
     },
     freeLevel(){
       alert('我是会员');
+    },
+    uploadSuccess(res){
+      console.log(res);
     },
   },
 };

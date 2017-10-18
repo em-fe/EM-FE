@@ -102,6 +102,11 @@ const router = new VueRouter({
           component: require('./components/styles/StepsCPage.vue'),
         },
         {
+          path: '/styles/stepsb',
+          name: 'stepsb',
+          component: require('./components/styles/StepsBPage.vue'),
+        },
+        {
           path: '/styles/crumbs',
           name: 'crumbspage',
           component: require('./components/styles/CrumbsPage.vue'),
@@ -327,6 +332,11 @@ const router = new VueRouter({
           path: '/functions/loginmodal',
           name: 'loginmodal',
           component: require('./components/functions/loginmodalPage.vue'),
+        },
+        {
+          path: '/functions/loginmodalc',
+          name: 'loginmodalc',
+          component: require('./components/functions/loginmodalCPage.vue'),
         },
         {
           path: '/functions/upload',

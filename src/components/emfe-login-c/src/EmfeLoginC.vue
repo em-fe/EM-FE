@@ -84,6 +84,10 @@ export default {
       type: [Boolean, String],
       default: false,
     },
+    orgid: {
+      type: Number,
+      required: true,
+    },
     loginAction: {
       type: String,
       required: true,
@@ -113,7 +117,7 @@ export default {
     },
   },
   created() {
-    this.loginData.org_id = this.$route.query.org_id;
+    this.loginData.org_id = this.orgid;
   },
   methods: {
     close() {

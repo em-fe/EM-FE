@@ -29,12 +29,11 @@
 import _ from '../../../tools/lodash';
 import O from '../../../tools/o';
 
-let opened = false; // 打开过
-
 export default {
   name: 'Select',
   data() {
     return {
+      opened: false, // 打开过
       checkList: [],
       flagCheck: false,
       checkVal: this.checkVals,
@@ -153,7 +152,7 @@ export default {
       });
       // this.flagCheck = this.checkList.length > 0;
       this.flagCheck = true;
-      opened = true;
+      this.opened = true;
       this.clickInput();
       this.$emit('clickInput');
     },
@@ -174,10 +173,11 @@ export default {
       }
     },
     closeFn() {
-      if (opened) {
+      if (this.opened) {
+        this.opened = false;
         this.checkList = [];
         this.flagCheck = false;
-        this.close();
+        this.close(this.checkVal);
       }
     },
     getdata(item) {
