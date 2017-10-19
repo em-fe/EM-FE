@@ -1,6 +1,6 @@
-/**
- * Created by aresn on 16/6/20.
- */
+// 兼容 ie
+import 'es6-promise/auto';
+
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import App from './app.vue';
