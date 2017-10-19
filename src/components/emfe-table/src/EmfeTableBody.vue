@@ -11,7 +11,7 @@
         <slot name="g" v-if="dataList[list.key].slot==='g'"></slot>
         <slot name="h" v-if="dataList[list.key].slot==='h'"></slot>
         <slot name="i" v-if="dataList[list.key].slot==='i'"></slot>
-        <div  class="emfe-box-table-tr-td-div" v-if="!dataList[list.key].slot">{{dataList[list.key].text}}</div>
+        <div  class="emfe-box-table-tr-td-div" v-if="!dataList[list.key].slot" v-html="dataList[list.key].text"></div>
       </td>
     </template>
   </tr>

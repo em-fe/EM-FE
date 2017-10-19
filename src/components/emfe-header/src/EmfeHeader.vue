@@ -4,7 +4,10 @@
       <img :src="logo" height="100%">
     </div>
     <div class="emfe-header-info">
-      <span class="emfe-header-account">活动易首页 你好，{{ user }}</span>
+      <div class="emfe-header-account">
+        <span>活动易</span><emfe-link :routers="{}" @click="goHome">首页</emfe-link>
+        <span>&nbsp;你好，{{ user }}</span>
+      </div>
       <emfe-link :routers="{}" @click="logout">退出账号</emfe-link>
     </div>
   </header>
@@ -25,6 +28,9 @@ export default {
   methods: {
     logout() {
       this.$emit('logout');
+    },
+    goHome() {
+      window.open('https://www.evente.cn/');
     },
   },
 };

@@ -16,6 +16,11 @@
 
     &::before {
       color: $icon-color-default;
+
+    &:hover {
+      &::before {
+        color: $brand-color-hover;
+      }
     }
   }
 
@@ -27,6 +32,16 @@
       background: $background-color-disable;
       border-color: $background-color-disable;
       cursor: no-drop;
+    }
+
+    &:hover {
+      & > .emfe-button-icon {
+        color: $brand-color-hover;
+
+        &::before {
+          color: $brand-color-hover;
+        }
+      }
     }
   }
 
@@ -42,6 +57,16 @@
 
     & > .emfe-button-icon {
       color: $nothing-color;
+    }
+
+    &:hover {
+      & > .emfe-button-icon {
+        color: $background-color-write;
+
+        &::before {
+          color: $background-color-write;
+        }
+      }
     }
   }
 
