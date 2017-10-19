@@ -313,7 +313,7 @@ export default [
   {
     title: '选项拖拽 opations',
     routers: {
-      path: '/functions/ ',
+      path: '/functions/opations',
     },
   },
   {
