@@ -1,0 +1,69 @@
+.#{$prefix}steps-b {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  &-text {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    &-item {
+      width: 100px;
+      text-align: center;
+    }
+  }
+
+  &-main {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 35px;
+    margin-bottom: 10px;
+
+    &-flex {
+      flex: 1;
+      display: flex;
+      align-items: center;
+    }
+
+    &-item-text {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      line-height: 30px;
+      text-align: center;
+      color: $text-color-prompt;
+      font-size: 14px;
+
+      @include border(all, $text-color-prompt);
+    }
+
+    &-item-now {
+      color: $background-color-write;
+      background: $auxiliary-color-success;
+
+      @include border(all, $auxiliary-color-success);
+    }
+
+    &-item-line {
+      flex: 1;
+      height: 1px;
+      background: $text-color-prompt;
+
+      &-active {
+        background: $auxiliary-color-success;
+      }
+    }
+  }
+
+  &-icon {
+    font-size: 32px;
+
+    &::before {
+      color: $auxiliary-color-success;
+    }
+  }
+}
