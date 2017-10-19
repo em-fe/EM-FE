@@ -14,6 +14,9 @@
   &-icon {
     color: $icon-color-default;
 
+    &::before {
+      color: $icon-color-default;
+
     &:hover {
       &::before {
         color: $brand-color-hover;
