@@ -255,7 +255,7 @@ const router = new VueRouter({
       children: [
         {
           path: '/functions/iscroll',
-          name: 'iscrollcpt',
+          name: 'iscroll',
           component: require('./components/functions/Iscroll.vue'),
         },
         {
