@@ -17,9 +17,10 @@
     &::before {
       color: $icon-color-default;
 
-    &:hover {
-      &::before {
-        color: $brand-color-hover;
+      &:hover {
+        &::before {
+          color: $brand-color-hover;
+        }
       }
     }
   }
