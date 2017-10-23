@@ -1,8 +1,13 @@
 <template>
-  <div class="emfe-smscode" :class="smscodeName">
-    <emfe-icon v-if="icon" className="emfe-smscode" :type="icon"></emfe-icon>
-    <input :type="type" class="emfe-smscode-input" :class="codeName" :value="nowData" :placeholder="placeholder" @input="input" :disabled="newDisabled" @blur="blur">
-    <button class="emfe-smscode-button" :class="btmName" @click="clickFn">{{ btnText }}</button>
+  <div>
+    <div class="emfe-smscode" :class="[smscodeName, {'emfe-smscode-input-error': errOk}]">
+      <emfe-icon v-if="icon" className="emfe-smscode" :type="icon"></emfe-icon>
+      <input :type="type" class="emfe-smscode-input" :class="codeName" :value="nowData" :placeholder="placeholder" @input="input" :disabled="newDisabled" @blur="blur">
+      <button class="emfe-smscode-button" :class="btmName" @click="clickFn">{{ btnText }}</button>
+    </div>
+    <div v-if="errOk" class="emfe-smscode-error">
+      <slot name="error"></slot>
+    </div>
   </div>
 </template>
 <script>
@@ -56,6 +61,10 @@ export default {
     end: {
       type: Function,
       default: () => {},
+    },
+    errOk: {
+      type: Boolean,
+      default: false,
     },
   },
   computed: {
