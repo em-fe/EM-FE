@@ -75,6 +75,7 @@ function genConfig (opts) {
     format: opts.format,
     banner: banner,
     moduleName: 'emfe',
+    useStrict: false,
     plugins: [
       replace({
         __VERSION__: version

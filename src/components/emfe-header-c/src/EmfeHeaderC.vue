@@ -2,11 +2,10 @@
   <header class="emfe-header-c">
     <div class="emfe-header-c-main">
       <div class="emfe-header-c-eye">
-        <emfe-icon type="logo" className="emfe-header-c-eye"></emfe-icon>
+        <img :src="imgLogo" class="emfe-header-c-eye-img">
       </div>
       <div class="emfe-header-c-info">
-        <span class="emfe-header-c-account">活动易首页 你好
-          <span v-if="user">，</span>
+        <span class="emfe-header-c-account">你好，
           <span v-if="loginFlg">{{ user }}</span>
           <emfe-link class="emfe-header-c-logout" :routers="{}" @click="login" v-if="!loginFlg">请登录</emfe-link>  
         </span>
@@ -25,6 +24,9 @@
 export default {
   name: 'EmfeHeaderC',
   props: {
+    imgLogo: {
+      type: String,
+    },
     user: {
       type: String,
     },
@@ -42,6 +44,10 @@ export default {
       type: Object,
       required: true,
     },
+    // shoppingNumber: {
+    //   type: Number,
+    //   required: true,
+    // },
   },
   watch: {
     loginFlg(val, oldVal) {

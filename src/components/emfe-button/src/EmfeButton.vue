@@ -1,6 +1,6 @@
 <template>
   <button :disabled="disabled" @click.stop="change" :class="buttonName">
-   <emfe-icon v-if="type" :type="type" class="emfe-button-icon"></emfe-icon>
+   <emfe-icon v-if="type" :type="type" class="emfe-button-icon" :class="iconName"></emfe-icon>
     <span class="emfe-button-text" :class="textName">
       <slot></slot>
     </span>
@@ -52,6 +52,14 @@ export default {
           [`emfe-button-${this.theme}`]: !!this.theme,
           [`${this.className}-button${btnName}`]: !!this.className,
           [`emfe-button${group}-on`]: !!this.status,
+        },
+      ];
+    },
+    iconName() {
+      return [
+        {
+          [`emfe-button-${this.theme}-icon`]: !!this.theme,
+          [`${this.className}-button-icon`]: !!this.className,
         },
       ];
     },

@@ -239,6 +239,12 @@ export default [
     },
   },
   {
+    title: '进度指引B stepsb',
+    routers: {
+      path: '/styles/stepsb',
+    },
+  },
+  {
     title: '进度指引C stepsc',
     routers: {
       path: '/styles/stepsc',
@@ -313,7 +319,7 @@ export default [
   {
     title: '选项拖拽 opations',
     routers: {
-      path: '/functions/ ',
+      path: '/functions/opations',
     },
   },
   {

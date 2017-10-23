@@ -102,6 +102,11 @@ const router = new VueRouter({
           component: require('./components/styles/StepsCPage.vue'),
         },
         {
+          path: '/styles/stepsb',
+          name: 'stepsb',
+          component: require('./components/styles/StepsBPage.vue'),
+        },
+        {
           path: '/styles/crumbs',
           name: 'crumbspage',
           component: require('./components/styles/CrumbsPage.vue'),
@@ -250,7 +255,7 @@ const router = new VueRouter({
       children: [
         {
           path: '/functions/iscroll',
-          name: 'iscrollcpt',
+          name: 'iscroll',
           component: require('./components/functions/Iscroll.vue'),
         },
         {

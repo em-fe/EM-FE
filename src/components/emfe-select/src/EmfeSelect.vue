@@ -15,8 +15,8 @@
             <input class="emfe-select-checkout-status" :disabled="item.disabled" type="checkbox" :key="item.id" @change="getdata(item)">
           </div>
         </label>
-        <label v-for="item in checkList" class="emfe-select-label emfe-select-delabel" @click="spanTxt(item)" :disabled="item.disabled" v-if="type==='default'"><span :class="{'emfe-select-label-disabled': item.disabled}">{{ item.name }}</span></label>
-        <div v-for="item in checkList" class="emfe-select-label emfe-select-delabel" @click="spanTxt(item)" :disabled="item.disabled" v-if="type==='icon'" :class="{'disabled': item.disabled}">
+        <label v-for="(item, checkind) in checkList" :key="checkind" class="emfe-select-label emfe-select-delabel" @click="spanTxt(item)" :disabled="item.disabled" v-if="type==='default'"><span :class="{'emfe-select-label-disabled': item.disabled}">{{ item.name }}</span></label>
+        <div v-for="(item, checkindex) in checkList" :key="checkindex" class="emfe-select-label emfe-select-delabel" @click="spanTxt(item)" :disabled="item.disabled" v-if="type==='icon'" :class="{'disabled': item.disabled}">
           <img class="emfe-select-icon" :src="item.icon" :alt="item.name">
           <span class="emfe-select-icon-piece">{{ item.name}}</span>
           <span class="emfe-select-icon-tel">{{ item.tel }}</span>
@@ -65,7 +65,7 @@ export default {
       default: '添加标签',
     },
     selectText: {
-      type: String,
+      type: [String, Number],
       default: '选择标签',
     },
     errOk: {
