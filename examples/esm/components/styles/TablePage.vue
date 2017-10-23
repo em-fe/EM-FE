@@ -329,7 +329,7 @@ export default {
       data10: [],
       data2: [
         {
-          name: {text:'王小明11', row:false},
+          name: {text:'王小明11', row:false, required: true,},
           age: {text:'北京市朝阳区芍药居1', row:false},
           address: {text:'北京市朝阳区芍药居2', row:false},
           address2: {text:'北京市朝阳区芍药居2', row:true},

@@ -77,6 +77,10 @@
 
         &-div {
           white-space: nowrap;
+
+          &-required {
+            color: $auxiliary-color-danger;
+          }
         }
       }
     }
