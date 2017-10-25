@@ -10,6 +10,7 @@
 <script>
 import TimeTool from '../../../tools/time';
 
+let timer0 = null;
 let timer = null;
 
 export default {
@@ -46,17 +47,24 @@ export default {
   },
   created() {
     this.handleTime();
-    setTimeout(this.handleTime, 1000);
+    timer0 = setTimeout(this.handleTime, 1000);
   },
   methods: {
     handleTime() {
-      this.newTime = new Date(this.time);
+      const times = this.time.split(' ');
+      const oneDay = times[0];
+      const oneTime = times[1];
+      const aDay2 = oneDay.split('-');
+      const aTime2 = oneTime.split(':');
+      this.newTime = new Date(aDay2[0], aDay2[1] - 1, aDay2[2], aTime2[0], aTime2[1], aTime2[2]);
       const now = new Date();
       const newTimeMsec = this.newTime.getTime();
       const nowMsec = now.getTime();
       this.step = newTimeMsec - nowMsec;
-      if (!this.step) {
+      if (this.step <= 0) {
         clearTimeout(timer);
+        clearTimeout(timer0);
+        this.step = 0;
         this.$emit('end');
         this.end();
       } else {
