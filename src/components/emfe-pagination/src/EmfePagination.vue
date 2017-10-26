@@ -18,14 +18,14 @@ export default {
       type: Number,
       default: 1,
     },
-    curPage: {
+    curPageDef: {
       type: Number,
       default: 1,
     },
   },
   data() {
     return {
-      // curPage: 1,
+      curPage: this.curPageDef,
     };
   },
   computed: {
