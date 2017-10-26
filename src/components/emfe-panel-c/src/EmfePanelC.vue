@@ -5,7 +5,7 @@
     </div>
     <div class="emfe-panel-c-infobox">
       <div class="emfe-panel-c-infobox-about">
-        <span class="emfe-panel-c-infobox-about-texts">早上好，{{showNickName}}</span>
+        <span class="emfe-panel-c-infobox-about-texts">{{greeting}}，{{showNickName}}</span>
         <span class="emfe-panel-c-infobox-about-father">
           <div class="emfe-panel-c-infobox-member" v-if="openMember===1 || openVip===1">
           <span class="emfe-panel-c-infobox-about-text">
@@ -229,6 +229,18 @@ export default {
         return `${this.nickName.substring(5, 0)}...`;
       }
       return this.nickName;
+    },
+    greeting() {
+      const myDate = new Date();
+      let myhours = myDate.getHours();
+      if (myhours >= 0 & myhours < 12) {
+        return '早上好';
+      } else if (myhours >= 12 && myhours < 13) {
+        return '中午好';
+      } else if (myhours >= 13 && myhours < 18) {
+        return '下午好';
+      }
+      return '晚上好';
     },
   },
 };
