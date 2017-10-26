@@ -5,6 +5,10 @@
       <input type="checkbox" class="emfe-checkout-status" :checked="checkoutStatus" @click.stop="click" @change="alocked" :name="name" :disabled="disable" v-if="stop">
       <input type="checkbox" class="emfe-checkout-status" :checked="checkoutStatus" @change="alocked" :name="name" :disabled="disable" v-else>
       <span class="emfe-checkout-text" :class="textName">{{ newtitle }}</span>
+      <emfe-tooltip theme="light" placement="bottom" v-if="tip">
+        <emfe-icon type="tishi" slot="render"></emfe-icon>
+        <div slot="tip" v-html="tip"></div>
+      </emfe-tooltip>
     </label>
     <div class="emfe-checkout-slide" v-if="slideShow">
       <transition name="fade">
@@ -36,6 +40,10 @@ export default {
     value: {
       type: Boolean,
       default: false,
+    },
+    tip: {
+      type: String,
+      default: '',
     },
     className: String,
     disable: {
@@ -75,6 +83,7 @@ export default {
       return [
         {
           [`${this.className}-text`]: !!this.className,
+          'emfe-checkout-text-notip': !this.tip,
         },
       ];
     },
