@@ -211,6 +211,7 @@ export default {
           address8: {text:'北京市朝阳区芍药居7', row:false},
           address9: {text:'北京市朝阳区芍药居7', row:false},
           address10: {text:'北京市朝阳区芍药居7', row:false},
+          disabled: true,
         },
         {
           name: {text:'王小明', row:false},

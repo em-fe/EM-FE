@@ -83,6 +83,10 @@
           }
         }
       }
+
+      &-disabled {
+        background-color: $background-color-main !important;
+      }
     }
   }
 }
