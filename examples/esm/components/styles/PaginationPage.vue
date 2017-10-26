@@ -1,6 +1,6 @@
 <template>
   <div class="page-demo">
-    <emfe-pagination :pageCount="pageCount" :curPage="curPage" @togglePage="togglePage($event)"></emfe-pagination>
+    <emfe-pagination :pageCount="pageCount" :curPageDef="curPage" @togglePage="togglePage($event)"></emfe-pagination>
   </div>
 </template>
 
