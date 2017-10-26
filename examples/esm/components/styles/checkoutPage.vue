@@ -6,7 +6,7 @@
     {{ initChecked }}
     <emfe-checkout className="diy" :title="title" @checked="checked">
     </emfe-checkout>
-    <emfe-checkout className="div" title="这是一个带颜色的标题">
+    <emfe-checkout className="div" tip="这是颜色标题的提示" title="这是一个带颜色的标题">
     </emfe-checkout>
     <emfe-checkout :disable="true" title="禁用">
     </emfe-checkout>
@@ -85,6 +85,12 @@
           <td>是否阻止冒泡</td>
           <td>Boolean</td>
           <td>true</td>
+        </tr>
+        <tr>
+          <td>tip</td>
+          <td>问号提示</td>
+          <td>String</td>
+          <td>-</td>
         </tr>
       </tbody>
     </table>
