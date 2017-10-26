@@ -272,7 +272,7 @@ export default {
           age: {text:'北京市朝阳区芍药居1', row:false},
           address: {text:'1', row:false},
           address2: {text:'北京市朝阳区芍药居3', row:false},
-          address3: {slot: 'a', row:false},
+          address3: {slot: 'a', text:'北京市朝阳区芍药居3', row:false},
           address4: {slot: 'b', row:false},
           address5: {text:'北京市朝阳区芍药居4', row:false},
           address6: {text:'北京市朝阳区芍药居7', row:false},

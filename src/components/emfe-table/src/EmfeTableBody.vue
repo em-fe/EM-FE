@@ -11,9 +11,12 @@
         <slot name="g" v-if="dataList[list.key].slot==='g'"></slot>
         <slot name="h" v-if="dataList[list.key].slot==='h'"></slot>
         <slot name="i" v-if="dataList[list.key].slot==='i'"></slot>
-        <div  class="emfe-box-table-tr-td-div" v-if="!dataList[list.key].slot">
-          <span v-if="dataList[list.key].required" class="emfe-box-table-tr-td-div-required">*</span>
-          {{dataList[list.key].text}}
+        <div v-if='!dataList[list.key].slot'>
+          <div class="emfe-box-table-tr-td-div" v-if="dataList[list.key].required">
+            <span v-if="dataList[list.key].required" class="emfe-box-table-tr-td-div-required">*</span>
+            {{dataList[list.key].text}}
+          </div>
+          <div v-else class="emfe-box-table-tr-td-div" v-html="dataList[list.key].text"></div>
         </div>
       </td>
     </template>
