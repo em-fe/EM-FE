@@ -6,6 +6,11 @@
     display: block;
   }
 
+  &-popper {
+    width: 208px;
+    white-space: normal;
+  }
+
   &-inner {
     @include border();
 
