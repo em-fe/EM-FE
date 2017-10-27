@@ -71,5 +71,10 @@ export default {
       }
     },
   },
+  watch: {
+    pageCount(val) {
+      this.curPageOn = this.curPage;
+    },
+  },
 };
 </script>
