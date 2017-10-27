@@ -2059,9 +2059,9 @@ elliptic@^6.0.0:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.0"
 
-em-cookie@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/em-cookie/-/em-cookie-1.0.2.tgz#fda588fc440d10f58bb7e19f4bb68a9ff2ef3cf7"
+em-cookie@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/em-cookie/-/em-cookie-1.0.4.tgz#caa1dcc980dd141de2b61d0afc1dda9a4303e628"
 
 em-jsonp@^1.0.3:
   version "1.0.3"
