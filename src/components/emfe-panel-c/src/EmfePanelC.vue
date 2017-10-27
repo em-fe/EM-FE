@@ -233,7 +233,7 @@ export default {
     greeting() {
       const myDate = new Date();
       const myhours = myDate.getHours();
-      if (myhours >= 0 & myhours < 12) {
+      if (myhours >= 0 && myhours < 12) {
         return '早上好';
       } else if (myhours >= 12 && myhours < 13) {
         return '中午好';
