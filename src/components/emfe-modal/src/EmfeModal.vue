@@ -9,7 +9,7 @@
       <div class="emfe-modal-main" :class="mainName">
         <slot name="modal-main"></slot>
       </div>
-      <div class="emfe-modal-footer">
+      <div class="emfe-modal-footer" v-if="footerFlg">
         <div class="emfe-modal-btn emfe-modal-btn-cancel" @click="cancel" v-if="cancelFlg">{{cancelText}}</div>
         <div class="emfe-modal-btn emfe-modal-btn-ok" @click="ok" v-if="okFlg">{{okText}}</div>
       </div>
@@ -19,6 +19,11 @@
 <script>
 export default {
   name: 'EmfeModal',
+  data() {
+    return {
+      footerFlg: true,
+    };
+  },
   props: {
     show: {
       type: Boolean,
@@ -49,6 +54,11 @@ export default {
       type: [String, Boolean],
       default: true,
     },
+  },
+  created() {
+    if (!this.cancelFlg && !this.okFlg) {
+      this.footerFlg = false;
+    }
   },
   computed: {
     mainName() {
