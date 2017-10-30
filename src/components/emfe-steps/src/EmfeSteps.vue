@@ -1,7 +1,7 @@
 <template>
   <div class="emfe-steps" :class="stepsName">
     <div class="emfe-steps-line">
-      <div :class="{'emfe-steps-item-first': dataIndex === 0, 'emfe-steps-item-last': dataIndex === datas.length - 1, 'emfe-steps-item': dataIndex !== datas.length - 1 && dataIndex !== 0}" v-for="(data, dataIndex) in datas">
+      <div :class="{'emfe-steps-item-first': dataIndex === 0, 'emfe-steps-item-last': dataIndex === datas.length - 1, 'emfe-steps-item': dataIndex !== datas.length - 1 && dataIndex !== 0}" v-for="(data, dataIndex) in datas" :key="dataIndex">
         <template v-if="dataIndex === 0">
           <template v-if="dataIndex === active">
             <emfe-icon className="emfe-steps-item-first-on" :type="data.icon"></emfe-icon>
