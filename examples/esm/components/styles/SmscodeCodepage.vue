@@ -1,9 +1,8 @@
 <template>
   <div class="smscodeCodepage">
     <h3>普通用法</h3>
-    <emfe-smscode v-model="model"></emfe-smscode>
+    <emfe-smscode v-model="model" @click="click" :timeStart="start" @end="timeEnd"></emfe-smscode>
     当前： {{ model }}
-
     <pre>
       &lt;emfe-smscode v-model="model"&gt;&lt;/emfe-smscode&gt;
     </pre>
