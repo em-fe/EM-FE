@@ -1,7 +1,7 @@
 <template>
   <header class="emfe-header">
     <div class="emfe-header-eye">
-      <img :src="logo" height="100%" @click="goHome">
+      <img class="emfe-header-eye-img" :src="logo" height="100%" @click="goHome">
     </div>
     <div class="emfe-header-info">
       <div class="emfe-header-account">
