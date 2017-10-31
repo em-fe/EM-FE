@@ -50,6 +50,16 @@
           <td>点击触发。并且是阻止冒泡。</td>
           <td>-</td>
         </tr>
+        <tr>
+          <td>goIndex</td>
+          <td>点击'控制台首页'触发。并且是阻止冒泡。跳转到控制台首页</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>goAccount</td>
+          <td>点击用户名触发。并且是阻止冒泡。跳转到账户管理页面</td>
+          <td>-</td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -69,6 +79,9 @@ export default {
 };
 </script>
 <style>
+.header-page .emfe-header{
+  width: 50%;
+}
 .red {
   color: #f00;
 }
