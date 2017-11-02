@@ -5,10 +5,10 @@
     </div>
     <div class="emfe-header-info">
       <div class="emfe-header-account">
-        <emfe-link :routers="{}" @click="goIndex">控制台首页</emfe-link>
-        <span>&nbsp;你好，<span class="emfe-header-account-text" @click="goAccount">{{ user }}</span></span>
+        <span class="emfe-header-info-text" @click="goIndex">控制台首页</span>
+        <span class="emfe-header-info-hello">&nbsp;你好，<span class="emfe-header-info-text" @click="goAccount">{{ user }}</span></span>
       </div>
-      <emfe-link :routers="{}" @click="logout">退出账号</emfe-link>
+      <span class="emfe-header-info-text" @click="logout">退出账号</span>
     </div>
   </header>
 </template>
