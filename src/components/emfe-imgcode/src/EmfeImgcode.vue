@@ -1,6 +1,6 @@
 <template>
   <div class="emfe-imgcode" :class="imgcodeName">
-    <input type="text" class="emfe-imgcode-input" :class="codeName" :value="nowData" :placeholder="placeholder" @input="input">
+    <input type="text" class="emfe-imgcode-input" :class="codeName" :value="nowData" :placeholder="placeholder" @input="input" @blur="blur">
     <img :src="newSrc" alt="图片验证码" class="emfe-imgcode-code" @click="click">
   </div>
 </template>
@@ -52,6 +52,9 @@ export default {
     },
     click() {
       this.$emit('click');
+    },
+    blur() {
+      this.$emit('blur');
     },
   },
   watch: {
