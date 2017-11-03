@@ -62,6 +62,10 @@ export default {
     };
   },
   props: {
+    enabledDate: {
+      type: Array,
+      default: () => [],
+    },
     format: {
       type: String,
       default: '/',
@@ -124,6 +128,7 @@ export default {
       if (this.choiced) {
         date = `${this.year}${this.format}${this.month}${this.format}${this.day}`;
       }
+      console.log(date, 'date');
       return date;
     },
     dateName() {
@@ -149,23 +154,18 @@ export default {
     },
   },
   mounted() {
-    for (let i = this.yearEnd; i > this.yearStart - 1; i--) {
-      this.years.push(TimeTool.handleConputedDate(i, this.disabledYears));
-    }
-    for (let i = 1; i < 13; i++) {
-      this.months.push(TimeTool.handleConputedDate(i, this.disabledMonths));
-    }
     this.resetDays();
-
     this.initData();
   },
   methods: {
     refreshIscroll() {
-      Object.keys(this.$refs).forEach((iscroll) => {
-        if (this.$refs[iscroll].refresh) {
-          this.$refs[iscroll].refresh();
-        }
-      });
+      setTimeout(() => {
+        Object.keys(this.$refs).forEach((iscroll) => {
+          if (this.$refs[iscroll].refresh) {
+            this.$refs[iscroll].refresh();
+          }
+        });
+      }, 0);
     },
     setNow() {
       const now = new Date();
@@ -198,16 +198,23 @@ export default {
       const dayIndex = days.findIndex(dayData => dayData.num === this.day) - 2;
 
       if (listItem1 && doScroll === 'year') {
-        this.$refs.iscroll1.scrollToElement(listItem1[yearIndex < 0 ? 0 : yearIndex]);
+        setTimeout(() => {
+          this.$refs.iscroll1.scrollToElement(listItem1[yearIndex < 0 ? 0 : yearIndex]);
+        }, 0);
       }
       if (listItem2 && doScroll === 'month') {
-        this.$refs.iscroll2.scrollToElement(listItem2[monthIndex < 0 ? 0 : monthIndex]);
+        setTimeout(() => {
+          this.$refs.iscroll2.scrollToElement(listItem2[monthIndex < 0 ? 0 : monthIndex]);
+        }, 0);
       }
       if (listItem3 && doScroll === 'day') {
-        this.$refs.iscroll3.scrollToElement(listItem3[dayIndex < 0 ? 0 : dayIndex]);
+        setTimeout(() => {
+          this.$refs.iscroll3.scrollToElement(listItem3[dayIndex < 0 ? 0 : dayIndex]);
+        }, 0);
       }
     },
     initData() {
+      console.log(this.choiced, 3388);
       if (this.value && this.value !== this.placeholder) {
         const dates = this.value.split(this.format);
         this.year = TimeTool.zeroFill(dates[0] - 0);
@@ -230,14 +237,55 @@ export default {
         this.choiced = true;
       }
     },
-    resetDays(year, month) {
-      const dateCountOfLastMonth = getDayCountOfMonth(year - 0, month - 1);
+    splitEnabledDate() {
+      if (this.enabledDate.length > 1) {
+        const startDate = this.enabledDate[0].split('/');
+        const endDate = this.enabledDate[1].split('/');
+        return {
+          startDate: {
+            year: startDate[0] - 0,
+            month: startDate[1] - 0,
+            day: startDate[2] - 0,
+          },
+          endDate: {
+            year: endDate[0] - 0,
+            month: endDate[1] - 0,
+            day: endDate[2] - 0,
+          },
+        };
+      }
+      return {
+        startDate: {
+          year: this.yearStart,
+          month: 13,
+          day: getDayCountOfMonth(),
+        },
+        endDate: {
+          year: this.yearEnd,
+          month: 13,
+          day: getDayCountOfMonth(),
+        },
+      };
+    },
+    resetDays() {
+      const enabledDate = this.splitEnabledDate();
+      this.years = [];
+      console.log(JSON.stringify(enabledDate));
+      for (let i = this.yearEnd; i > this.yearStart - 1; i--) {
+        this.years.push(TimeTool.handleConputedDate(i, this.disabledYears, 'year', enabledDate, this, this.enabledDate.length > 1));
+      }
+
+      this.months = [];
+      for (let i = 1; i < 13; i++) {
+        this.months.push(TimeTool.handleConputedDate(i, this.disabledMonths, 'month', enabledDate, this, this.enabledDate.length > 1));
+      }
+
+      const dateCountOfLastMonth = getDayCountOfMonth(this.year - 0, this.month - 1);
       this.days = [];
       for (let i = 1; i < dateCountOfLastMonth + 1; i++) {
-        this.days.push(TimeTool.handleConputedDate(i, this.disabledDays));
+        this.days.push(TimeTool.handleConputedDate(i, this.disabledDays, 'day', enabledDate, this, this.enabledDate.length > 1));
       }
       this.setWeekChoice();
-      this.scrollEle('day');
     },
     // 设置日期可选
     setWeekChoice() {
@@ -257,31 +305,57 @@ export default {
           }
         });
       }
+
+      const enabledDate = this.splitEnabledDate();
+      const startMonth = enabledDate.startDate.month;
+      const endMonth = enabledDate.endDate.month;
+      const newYear = this.year - 0;
+      const newMonth = this.month - 0;
+      const startYear = enabledDate.startDate.year;
+      const endYear = enabledDate.endDate.year;
+      const startDate = enabledDate.startDate.day;
+      const endDate = enabledDate.endDate.day;
+
       this.days.forEach((tday) => {
         const nowYear = this.year ? this.year : year;
         const nowMonth = this.month ? this.month : month;
         const nowDate = new Date(`${nowYear}/${nowMonth}/${tday.num}`);
         const nowWeek = nowDate.getDay() + 1;
         tday.undo = !this.weekChoices.every(wc => wc !== nowWeek);
+        if (newYear === startYear && newMonth === startMonth) { // 如果等于开始
+          tday.undo = tday.num < startDate;
+        } else if (newYear === endYear && newMonth === endMonth) {
+          tday.undo = tday.num > endDate;
+        }
       });
       this.day = TimeTool.loopChoice(this.days, this.day);
+      this.$emit('input', this.date);
     },
     choiceYear(year) {
       if (!year.undo) {
         this.setChoice();
         this.year = year.num;
-        this.resetDays(this.year, this.month);
-        this.$emit('choice', this.date);
-        this.$emit('input', this.date);
+        this.resetDays();
+        setTimeout(() => {
+          this.month = TimeTool.loopChoice(this.months, this.month);
+          this.refreshIscroll();
+          this.scrollAll();
+          this.$emit('choice', this.date);
+          this.$emit('input', this.date);
+        }, 0);
       }
     },
     choiceMonth(month) {
       if (!month.undo) {
         this.setChoice();
         this.month = month.num;
-        this.resetDays(this.year, this.month);
-        this.$emit('choice', this.date);
-        this.$emit('input', this.date);
+        this.resetDays();
+        setTimeout(() => {
+          this.refreshIscroll();
+          this.scrollAll();
+          this.$emit('choice', this.date);
+          this.$emit('input', this.date);
+        }, 0);
       }
     },
     choiceDay(day) {
@@ -294,10 +368,20 @@ export default {
     },
     toggle() {
       this.status = !this.status;
-      this.refreshIscroll();
       if (this.canSetNow) {
         this.setNow();
+        this.resetDays();
+        console.log(this.year, this.month, this.day);
       }
+      setTimeout(() => {
+        this.month = TimeTool.loopChoice(this.months, this.month);
+        this.day = TimeTool.loopChoice(this.days, this.day);
+        this.refreshIscroll();
+        this.scrollAll();
+        console.log(12, this.year, this.month, this.day);
+      });
+    },
+    scrollAll() {
       this.scrollEle('year');
       this.scrollEle('month');
       this.scrollEle('day');
@@ -331,6 +415,7 @@ export default {
     value(val, oldVal) {
       if (val !== oldVal) {
         this.initData();
+        this.resetDays();
       }
     },
   },

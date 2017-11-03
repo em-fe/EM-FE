@@ -5,6 +5,11 @@
     <emfe-date-m v-model="aaa"></emfe-date-m>
     <br>
     <br>
+    <h3>手机限定可选范围组件</h3>
+    {{ aaa }}
+    <emfe-date-m v-model="aaa" :enabledDate="['2018/12/18', '2019/02/15']"></emfe-date-m>
+    <br>
+    <br>
     <h3>固定宽度示例</h3>
     <br>
     <br>
@@ -142,7 +147,12 @@
           <td>Array</td>
           <td>[]</td>
         </tr>
-
+        <tr>
+          <td>enabledDate</td>
+          <td>限定可选范围, 必须是 2019/02/15 格式</td>
+          <td>Array</td>
+          <td>[]</td>
+        </tr>
       </tbody>
     </table>
     <br>
