@@ -1,14 +1,14 @@
 <template>
   <header class="emfe-header">
     <div class="emfe-header-eye">
-      <img :src="logo" height="100%">
+      <img class="emfe-header-eye-img" :src="logo" height="100%" @click="goHome">
     </div>
     <div class="emfe-header-info">
       <div class="emfe-header-account">
-        <emfe-link :routers="{}" @click="goHome">活动易首页</emfe-link>
-        <span>&nbsp;你好，{{ user }}</span>
+        <span class="emfe-header-info-text" @click="goIndex">控制台首页</span>
+        <span class="emfe-header-info-hello">&nbsp;你好，<span class="emfe-header-info-text" @click="goAccount">{{ user }}</span></span>
       </div>
-      <emfe-link :routers="{}" @click="logout">退出账号</emfe-link>
+      <span class="emfe-header-info-text" @click="logout">退出账号</span>
     </div>
   </header>
 </template>
@@ -28,6 +28,12 @@ export default {
   methods: {
     logout() {
       this.$emit('logout');
+    },
+    goIndex() {
+      this.$emit('goIndex');
+    },
+    goAccount() {
+      this.$emit('goAccount');
     },
     goHome() {
       window.open('https://www.evente.cn/');

@@ -1,6 +1,6 @@
 {
   "name": "em-fe",
-  "version": "1.0.27",
+  "version": "1.0.29",
   "description": "快速开发产品的UI库",
   "main": "dist/emfe.js",
   "files": [
@@ -9,7 +9,10 @@
   ],
   "scripts": {
     "start": "webpack-dev-server --open --inline --hot --compress --history-api-fallback --port 8081 --config build/webpack.config.js",
-    "build": "node build/build.js && npm run build:css",
+    "build0": "node build/build.js && npm run build:css",
+    "build": "npm run dist:dev && npm run dist:prod && npm run build:css",
+    "dist:prod": "webpack --config build/webpack.dist.prod.config.js",
+    "dist:dev": "webpack --config build/webpack.dist.dev.config.js",
     "build:css": "./node_modules/.bin/gulp build --gulpfile build/gulpfile.js",
     "prepublishOnly": "npm run build"
   },
@@ -74,7 +77,8 @@
     "vue-router": "^2.6.0",
     "vuex": "^2.3.1",
     "webpack": "^3.0.0",
-    "webpack-dev-server": "^2.5.0"
+    "webpack-dev-server": "^2.5.0",
+    "webpack-merge": "^4.1.0"
   },
   "dependencies": {
     "babel-plugin-dynamic-import-webpack": "^1.0.1",
