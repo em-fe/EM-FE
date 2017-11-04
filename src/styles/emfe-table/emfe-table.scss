@@ -79,6 +79,10 @@
           white-space: nowrap;
         }
       }
+
+      &-disabled {
+        background-color: $input-disable-color !important;
+      }
     }
   }
 }
