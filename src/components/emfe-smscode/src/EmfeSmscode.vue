@@ -1,8 +1,11 @@
 <template>
-  <div class="emfe-smscode" :class="smscodeName">
+  <div class="emfe-smscode" :class="[smscodeName, {'emfe-smscode-input-error': errOk}]">
     <emfe-icon v-if="icon" className="emfe-smscode" :type="icon"></emfe-icon>
-    <input :type="type" class="emfe-smscode-input" :class="codeName" :value="nowData" :placeholder="placeholder" @input="input" :disabled="newDisabled" @blur="blur">
+    <input :type="type" :maxlength="maxlength" class="emfe-smscode-input" :class="codeName" :value="nowData" :placeholder="placeholder" @input="input" :disabled="newDisabled" @blur="blur">
     <button class="emfe-smscode-button" :class="btmName" @click="clickFn">{{ btnText }}</button>
+    <div v-if="errOk" class="emfe-smscode-error">
+      <slot name="error"></slot>
+    </div>
   </div>
 </template>
 <script>
@@ -19,6 +22,7 @@ export default {
       allTimes: this.times,
       newDisabled: this.disabled,
       start: '',
+      disableds: false,
     };
   },
   props: {
@@ -40,6 +44,10 @@ export default {
       type: String,
       default: 'number',
     },
+    maxlength: {
+      type: Number,
+      default: Infinity,
+    },
     value: {
       type: [Number, String],
     },
@@ -53,9 +61,17 @@ export default {
       default: false,
     },
     click: Function,
+    change: {
+      type: Function,
+      default: () => {},
+    },
     end: {
       type: Function,
       default: () => {},
+    },
+    errOk: {
+      type: Boolean,
+      default: false,
     },
   },
   computed: {
@@ -79,15 +95,17 @@ export default {
       return [
         {
           [`${this.className}-smscode-button`]: !!this.className,
+          [`${this.className}-smscode-button-disableds`]: !!this.className && this.disableds,
         },
       ];
     },
   },
+  mounted() {
+    this.start = this.timeStart;
+  },
   methods: {
     resetAuto() {
-      this.btnText = this.errorTitle;
-      this.allTimes = this.times;
-      go = true;
+      this.resetCode();
       this.$emit('end', false);
       this.end(false);
     },
@@ -97,6 +115,7 @@ export default {
           if (this.allTimes > 1) {
             this.allTimes--;
             this.btnText = `${this.allTimes}秒后重试`;
+            this.disableds = true;
             timer = setTimeout(this.auto.bind(this), 1000);
           } else {
             clearTimeout(timer);
@@ -108,6 +127,7 @@ export default {
     input(ev) {
       const val = ev.target.value;
       this.$emit('change', val);
+      this.change(val);
       this.$emit('input', val);
     },
     clickFn() {
@@ -115,13 +135,21 @@ export default {
         go = false;
         this.auto();
         this.$emit('click');
-      }
-      if (this.click) {
-        this.click();
+        if (this.click) {
+          this.click();
+        }
+      } else { // 过于频繁之后恢复可点
+        go = true;
       }
     },
     blur() {
       this.$emit('blur');
+    },
+    resetCode() {
+      this.disableds = false;
+      this.btnText = this.title;
+      this.allTimes = this.times;
+      go = true;
     },
   },
   watch: {
@@ -143,6 +171,9 @@ export default {
     timeStart(val, oldVal) {
       if (val !== oldVal) {
         this.start = val;
+        this.resetCode();
+        // 有时候不好用，根儿手机点击完了不换倒计时
+        this.auto();
       }
     },
   },

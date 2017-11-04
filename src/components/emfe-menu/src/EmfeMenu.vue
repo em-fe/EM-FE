@@ -7,7 +7,7 @@
       </button>
       <div class="emfe-menu-iscroll">
         <ul class="emfe-menu-main-list">
-          <li class="emfe-menu-main-item" v-for="(data, dataIndex) in newDatas">
+          <li class="emfe-menu-main-item" v-for="(data, dataIndex) in newDatas" :key="dataIndex">
             <a href="javascript:;" class="emfe-menu-main-link" :class="{'emfe-menu-main-link-on': mainIndex === dataIndex}" @click="tochildren(data)" v-if="data.routers">
               <emfe-tooltip className="emfe-menu" placement="right" :disable="!menuShort">
                 <emfe-icon class="emfe-menu-main-icon" :type="data.icon" slot="render" @icon-click="tochildren(data)"></emfe-icon>
@@ -31,16 +31,18 @@
       <div class="emfe-menu-minor-iscroll">
         <ul class="emfe-menu-minor-list">
           <template v-for="(childrenData, childrenDataIndex) in childrenDatas">
-            <li class="emfe-menu-minor-item" v-if="!childrenData.children">
-              <router-link :to="childrenData.routers" class="emfe-menu-minor-link">{{ childrenData.title }}</router-link>
+            <li class="emfe-menu-minor-item" v-if="!childrenData.children" :key="childrenDataIndex">
+              <router-link :to="childrenData.routers" class="emfe-menu-minor-link" v-if="childrenData.routers">{{ childrenData.title }}</router-link>
+              <a class="emfe-menu-minor-link" :href="childrenData.url" target="_blank" v-else>{{ childrenData.title }}</a>
             </li>
-            <li class="emfe-menu-minor-item" :class="{'emfe-menu-minor-item-on': childrenIndex == childrenDataIndex}" v-else>
+            <li class="emfe-menu-minor-item" :class="{'emfe-menu-minor-item-on': childrenIndex == childrenDataIndex}" v-else :key="childrenDataIndex">
               <span href="javascript:;" class="emfe-menu-minor-btn" @click="toogleChild(childrenDataIndex)" >{{ childrenData.title }}</span>
               <i class="emfe-menu-minor-arrow"></i>
               <emfe-transition name="gradual">
                 <ul class="emfe-menu-minor-childlist" v-show="childrenIndex == childrenDataIndex">
-                  <li class="emfe-menu-minor-childitem" v-for="child in childrenData.children">
-                    <router-link :to="child.routers" class="emfe-menu-minor-childlink">{{ child.title }}</router-link>
+                  <li class="emfe-menu-minor-childitem" v-for="(child, childindex) in childrenData.children" :key="childindex">
+                    <router-link :to="child.routers" class="emfe-menu-minor-childlink" v-if="child.routers">{{ child.title }}</router-link>
+                    <a class="emfe-menu-minor-childlink" :href="child.url" target="_blank" v-else>{{ child.title }}</a>
                   </li>
                 </ul>
               </emfe-transition>
@@ -107,8 +109,14 @@ export default {
     };
 
     resizeHandle();
-
     window.addEventListener('resize', resizeHandle);
+
+    // this.datas.forEach((item) => {
+    //   if (O.hOwnProperty(item, 'children')) {
+    //     resizeHandle();
+    //     window.addEventListener('resize', resizeHandle);
+    //   }
+    // });
   },
   methods: {
     handle(val) {
@@ -118,7 +126,6 @@ export default {
       const { fullPath, name } = this.$route;
       let item = {};
       let itemIndex = -1;
-
       const newFullPath = this.fullpath ? this.fullpath : fullPath;
 
       this.newDatas.forEach((data, dataNum) => {
@@ -138,7 +145,7 @@ export default {
                   itemIndex = dataNum;
                 }
               });
-            } else if (inChildFullPath || name === dataChild.routers.name) {
+            } else if (inChildFullPath || (O.hOwnProperty(dataChild, 'routers') && name === O.hOwnProperty(dataChild.routers, 'name'))) {
               item = data;
               itemIndex = dataNum;
             }

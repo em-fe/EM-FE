@@ -3,7 +3,6 @@
     <emfe-button @click="loginB">点击B端登录</emfe-button>
     <emfe-login :show='loginShowB' :loginClose="loginCloseB" :action="url" :referrerUrl='referrerUrl' forgotName="Forgotpassword" registerName="Type"></emfe-login>
     <emfe-button @click="loginC">点击C端登录</emfe-button>
-    <emfe-login-c :show='loginShowC' :orgid="100160" :loginClose="loginCloseC" :loginAction="url" sendAction='' weixinAction=""></emfe-login-c>
     <br>
     <br>
     <br>
@@ -104,7 +103,6 @@ export default {
   data() {
     return {
       loginShowB: false,
-      loginShowC: false,
       url: 'http://gateway.inner.evente.cn:8000/member/org/login',
       referrerUrl: 'https://www.baidu.com/',
     };
@@ -113,14 +111,8 @@ export default {
     loginB() {
       this.loginShowB = true;
     },
-    loginC() {
-      this.loginShowC = true;
-    },
     loginCloseB(val) {
       this.loginShowB = val;
-    },
-    loginCloseC(val) {
-      this.loginShowC = val;
     },
   },
 };

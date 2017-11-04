@@ -1,6 +1,6 @@
 <template>
   <div class="title-page">
-    <emfe-title className="aa">标题文本</emfe-title>
+    <emfe-title className="aa" tip="标题文本的提示">标题文本</emfe-title>
     <pre>
       <code>
         <span>&lt;</span><span>emfe-title</span> <span>className</span><span>=</span><span>"aa"</span> <span>&gt;</span>标题文字<span>&lt;/emfe-title&gt;</span>
@@ -22,6 +22,12 @@
         <tr>
           <td>className(class-name)</td>
           <td>自定义的 class 名称。</td>
+          <td>String</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>tip</td>
+          <td>问号提示</td>
           <td>String</td>
           <td>-</td>
         </tr>

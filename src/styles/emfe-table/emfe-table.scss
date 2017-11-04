@@ -11,7 +11,6 @@
     color: #999;
     border-top: none;
     font-size: 14px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
 
   &-table {
@@ -77,11 +76,15 @@
 
         &-div {
           white-space: nowrap;
+
+          &-required {
+            color: $auxiliary-color-danger;
+          }
         }
       }
 
       &-disabled {
-        background-color: $input-disable-color !important;
+        background-color: $background-color-main !important;
       }
     }
   }

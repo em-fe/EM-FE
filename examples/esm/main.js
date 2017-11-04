@@ -1,11 +1,10 @@
-/**
- * Created by aresn on 16/6/20.
- */
+// 兼容 ie
+import 'es6-promise/auto';
+
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import App from './app.vue';
 import router from './router';
-import IScroll from 'iscroll';
 // 开发版
 import emfe from '../../src/index';
 import '../../src/styles/emfe.scss';
@@ -15,7 +14,7 @@ import '../../src/styles/emfe.scss';
 // import '../../dist/css/emfe.css';
 
 Vue.use(VueRouter);
-Vue.use(emfe, IScroll);
+Vue.use(emfe);
 // 开启debug模式
 Vue.config.debug = true;
 

@@ -6,7 +6,7 @@
       <emfe-table :columns="column1" :data="data1" classAddName="add" border="true">
         <emfe-table-head  slot="head"  @thJump='jumpTh' :checked="cell">
         </emfe-table-head>
-        <emfe-table-body slot="body" @jump="Jump" v-for="(dataList,index) in data1" :ind="index" key="index" :dataList="dataList" :checked="cell">
+        <emfe-table-body slot="body" @jump="Jump" v-for="(dataList,index) in data1" :ind="index" :key="index" :dataList="dataList" :checked="cell">
         </emfe-table-body>
       </emfe-table>
     </div>
@@ -16,7 +16,7 @@
       <emfe-table :columns="column1" :data="data1" classAddName="add" border="true">
         <emfe-table-head  slot="head"  @thJump='jumpTh' :checked="cell">
         </emfe-table-head>
-        <emfe-table-body slot="body" @jump="Jump" v-for="(dataList,index) in data1" :ind="index" key="index" :dataList="dataList" :checked="cell">
+        <emfe-table-body slot="body" @jump="Jump" v-for="(dataList,index) in data1" :ind="index" :key="index" :dataList="dataList" :checked="cell">
         </emfe-table-body>
       </emfe-table>
     </div>
@@ -26,7 +26,7 @@
       <emfe-table :columns="column1":data="data1">
         <emfe-table-head  slot="head"  @thJump='jumpTh' :checked="cell">
         </emfe-table-head>
-        <emfe-table-body slot="body" @jump="Jump" v-for="(dataList,index) in data1" :ind="index" key="index" :dataList="dataList" :checked="cell">
+        <emfe-table-body slot="body" @jump="Jump" v-for="(dataList,index) in data1" :ind="index" :key="index" :dataList="dataList" :checked="cell">
         </emfe-table-body>
       </emfe-table>
     </div>
@@ -35,7 +35,7 @@
     <emfe-table :columns="columnSlot" classAddName="add" :data="dataSlot">
       <emfe-table-head  slot="head"  @thJump='jumpTh' :checked="cell">
       </emfe-table-head>
-      <emfe-table-body slot="body" @jump="Jump" v-for="(dataList,index) in dataSlot" :ind="index" key="index" :dataList="dataList" :checked="cell">
+      <emfe-table-body slot="body" @jump="Jump" v-for="(dataList,index) in dataSlot" :ind="index" :key="index" :dataList="dataList" :checked="cell">
         <div slot="a">
           <emfe-checkout color="#1996F9" :title="dataList.name.text">
           </emfe-checkout>
@@ -56,7 +56,7 @@
     <emfe-table :columns="column1" :data="data2">
       <emfe-table-head  slot="head" >
       </emfe-table-head>
-      <emfe-table-body slot="body"  v-for="(dataList,index) in data2" :ind="index" key="index" :dataList="dataList">
+      <emfe-table-body slot="body"  v-for="(dataList,index) in data2" :ind="index" :key="index" :dataList="dataList">
       </emfe-table-body>
     </emfe-table>
     <br>
@@ -64,7 +64,7 @@
     <emfe-table :columns="column1" :data="data10" nothingText="尚未收集到数据">
       <emfe-table-head  slot="head" >
       </emfe-table-head>
-      <emfe-table-body slot="body"  v-for="(dataList,index) in data10" :ind="index" key="index" :dataList="dataList">
+      <emfe-table-body slot="body"  v-for="(dataList,index) in data10" :ind="index" :key="index" :dataList="dataList">
       </emfe-table-body>
     </emfe-table>
     <h3>API</h3>
@@ -211,6 +211,7 @@ export default {
           address8: {text:'北京市朝阳区芍药居7', row:false},
           address9: {text:'北京市朝阳区芍药居7', row:false},
           address10: {text:'北京市朝阳区芍药居7', row:false},
+          disabled: true,
         },
         {
           name: {text:'王小明', row:false},
@@ -271,7 +272,7 @@ export default {
           age: {text:'北京市朝阳区芍药居1', row:false},
           address: {text:'1', row:false},
           address2: {text:'北京市朝阳区芍药居3', row:false},
-          address3: {slot: 'a', row:false},
+          address3: {slot: 'a', text:'北京市朝阳区芍药居3', row:false},
           address4: {slot: 'b', row:false},
           address5: {text:'北京市朝阳区芍药居4', row:false},
           address6: {text:'北京市朝阳区芍药居7', row:false},
@@ -330,7 +331,7 @@ export default {
       data10: [],
       data2: [
         {
-          name: {text:'王小明11', row:false},
+          name: {text:'王小明11', row:false, required: true,},
           age: {text:'北京市朝阳区芍药居1', row:false},
           address: {text:'北京市朝阳区芍药居2', row:false},
           address2: {text:'北京市朝阳区芍药居2', row:true},

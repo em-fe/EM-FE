@@ -6,6 +6,14 @@
   border-radius: $radius-size;
   position: relative;
 
+  &-error {
+    color: $auxiliary-color-danger;
+    font-size: 12px;
+    position: absolute;
+    bottom: -18px;
+    left: 8px;
+  }
+
   &-icon {
     position: absolute;
     top: 50%;

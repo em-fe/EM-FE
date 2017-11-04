@@ -1,9 +1,8 @@
 <template>
   <div class="smscodeCodepage">
     <h3>普通用法</h3>
-    <emfe-smscode v-model="model"></emfe-smscode>
+    <emfe-smscode v-model="model" @click="click" :timeStart="start" @end="timeEnd"></emfe-smscode>
     当前： {{ model }}
-
     <pre>
       &lt;emfe-smscode v-model="model"&gt;&lt;/emfe-smscode&gt;
     </pre>
@@ -24,7 +23,9 @@
     <br>
     <br>
     <h3>自定义用法</h3>
-    <emfe-smscode className="demo" v-model="model" times="6" @blur="blur" @click="click" :timeStart="start" :end="timeEnd"></emfe-smscode>
+    <emfe-smscode className="demo" v-model="model" times="6" @blur="blur" @click="click" :timeStart="start" :end="timeEnd" :errOk="true">
+      <div slot="error">这是错误提示</div>
+    </emfe-smscode>
     点击次数: {{ num }}
     {{ model }}
     <pre>

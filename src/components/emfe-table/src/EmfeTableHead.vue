@@ -2,7 +2,7 @@
   <thead class="emfe-box-table-head" :class="classHead">
     <tr class="emfe-box-table-head-tr" :class="classTr">
       <template>
-	      <th class="emfe-box-table-head-tr-th" @click="jump(index)" :class="[classTh, {'emfe-box-table-head-tr-th-checked': checked === index}]" v-for="(item , index) in this.$parent.columns">
+	      <th class="emfe-box-table-head-tr-th" @click="jump(index)" :class="[classTh, {'emfe-box-table-head-tr-th-checked': checked === index}]" :key="index" v-for="(item , index) in this.$parent.columns">
 	        <div class="emfe-box-table-head-tr-th-div">{{item.title}}</div>
 	      </th>
       </template>

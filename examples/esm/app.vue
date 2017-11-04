@@ -7,7 +7,7 @@
           <emfe-col span="16">
             <span @keyup.enter="go"><emfe-input className="all-search" v-model="search" @change="searchChange" @enter="go"></emfe-input></span>
             <ul class="all-search-think" v-show="searchResults.length">
-              <li class="all-search-think-item" v-for="searchResult in searchResults">
+              <li class="all-search-think-item" v-for="(searchResult, index) in searchResults" :key="index">
                 <emfe-link :routers="searchResult.routers">{{ searchResult.title }}</emfe-link>
               </li>
             </ul>
@@ -17,9 +17,9 @@
           </emfe-col>
         </emfe-row>
         <div class="all-menu-content">
-          <dl class="all-menu-one" v-for="data in datas">
+          <dl class="all-menu-one" v-for="(data, dataIndex) in datas" :key="dataIndex">
             <dt class="all-menu-one-title">{{ data.title }}</dt>
-            <dd class="all-menu-one-item" v-for="menu in data.menus">
+            <dd class="all-menu-one-item" v-for="(menu, menuIndex) in data.menus" :key="menuIndex">
               <emfe-link :routers="menu.routers" class="all-menu-link">{{ menu.title }}</emfe-link>
             </dd>
           </dl>

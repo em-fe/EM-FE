@@ -12,6 +12,15 @@ $header-height: 34px;
     margin: 0 auto;
     width: 1040px;
     height: $header-height;
+
+    a {
+      text-decoration: none;
+      color: #343436;
+
+      &:hover {
+        color: #fd883b;
+      }
+    }
   }
 
   &-eye {
@@ -19,12 +28,9 @@ $header-height: 34px;
     float: left;
     height: $header-height;
 
-    &-icon {
-      @include font(68px);
-
-      &::before {
-        color: $brand-c-default;
-      }
+    &-img {
+      height: 25px;
+      margin-top: 7px;
     }
   }
 
@@ -52,7 +58,6 @@ $header-height: 34px;
 
   &-link {
     font-size: 12px !important;
-    color: $thead-text-color !important;
     margin-right: 34px;
   }
 

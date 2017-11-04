@@ -1,10 +1,10 @@
 <template>
   <div class="emfe-steps-c" :class="stepscName">
     <div class="emfe-steps-c-text">
-      <p class="emfe-steps-c-text-item" v-for="item in datas.stepsText">{{item.text}}</p>
+      <p class="emfe-steps-c-text-item" v-for="(item, index) in datas.stepsText" :key="index">{{item.text}}</p>
     </div>
     <div class="emfe-steps-c-main">
-      <div v-for="i in datas.allStepsNums" 
+      <div v-for="i in datas.allStepsNums" :key="i"
            class="emfe-steps-c-main-item"
            :class="{'emfe-steps-c-main-flex': i !== datas.allStepsNums}">
         <p class="emfe-steps-c-main-item-text"
@@ -20,7 +20,7 @@
 </template>
 <script>
 export default {
-  name: 'EmfeSteps',
+  name: 'EmfeStepsC',
   props: {
     datas: {
       type: Object,

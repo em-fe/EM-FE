@@ -1,7 +1,7 @@
  <template>
-  <tr @click="jump(ind)" class="emfe-box-table-tr"  :class="[classTr, {'emfe-box-table-tr-disabled': dataList.disabled}]">
+  <tr @click="jump(ind)" class="emfe-box-table-tr" :class="[classTr, {'emfe-box-table-tr-disabled': dataList.disabled}]">
     <template>
-      <td class="emfe-box-table-tr-td" :class="[classTd, {'emfe-box-table-tr-td-checked': checked === index}]" :rowspan="dataList[list.key].row ? rowSpan[list.key]:0"  v-for="(list , index) in dataSlice" v-if="!dataList[list.key].hebing">
+      <td class="emfe-box-table-tr-td" :class="[classTd, {'emfe-box-table-tr-td-checked': checked === index}]" :rowspan="dataList[list.key].row ? rowSpan[list.key]:0"  v-for="(list , index) in dataSlice" :key="index" v-if="!dataList[list.key].hebing">
         <slot name="a" v-if="dataList[list.key].slot==='a'"></slot>
         <slot name="b" v-if="dataList[list.key].slot==='b'"></slot>
         <slot name="c" v-if="dataList[list.key].slot==='c'"></slot>
@@ -11,7 +11,13 @@
         <slot name="g" v-if="dataList[list.key].slot==='g'"></slot>
         <slot name="h" v-if="dataList[list.key].slot==='h'"></slot>
         <slot name="i" v-if="dataList[list.key].slot==='i'"></slot>
-        <div  class="emfe-box-table-tr-td-div" v-if="!dataList[list.key].slot">{{dataList[list.key].text}}</div>
+        <div v-if='!dataList[list.key].slot'>
+          <div class="emfe-box-table-tr-td-div" v-if="dataList[list.key].required">
+            <span v-if="dataList[list.key].required" class="emfe-box-table-tr-td-div-required">*</span>
+            {{dataList[list.key].text}}
+          </div>
+          <div v-else class="emfe-box-table-tr-td-div" v-html="dataList[list.key].text"></div>
+        </div>
       </td>
     </template>
   </tr>
