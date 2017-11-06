@@ -13,6 +13,7 @@
       <div class="emfe-datapanel-main">
         <span class="emfe-datapanel-main-content">{{contentText}}</span>
         <span class="emfe-datapanel-main-company" v-if="companyText">{{companyText}}</span>
+        <span class="emfe-datapanel-main-link" @click="link" v-if='linkText'>{{linkText}}</span>
       </div>
     </div>
   </div>
@@ -58,6 +59,10 @@ export default {
       type: String,
       default: 'set',
     },
+    linkText: {
+      type: String,
+      default: '',
+    },
   },
   computed: {
     datapanelName() {
@@ -66,6 +71,11 @@ export default {
           [`${this.className}-datapanel`]: !!this.className,
         },
       ];
+    },
+  },
+  methods: {
+    link() {
+      this.$emit('link');
     },
   },
 };

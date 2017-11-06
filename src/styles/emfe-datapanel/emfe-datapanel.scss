@@ -38,6 +38,16 @@
       color: $text-color-default;
       margin-left: 8px;
     }
+
+    &-link {
+      display: block;
+      margin-left: 8px;
+      color: #1996f9;
+      cursor: pointer;
+      position: relative;
+      top: 3px;
+      font-size: 14px;
+    }
   }
 
   &-mark-icon {

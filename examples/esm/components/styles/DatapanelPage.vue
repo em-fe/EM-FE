@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="dataPanelPage">
-      <emfe-datapanel title="总收集量" type="fabu" theme="light" placement="bottom" contentText="1234" companyText="人" iconFlg="true">
+      <emfe-datapanel @link='link' linkText='查看详情' title="总收集量" type="fabu" theme="light" placement="bottom" contentText="1234" companyText="人" iconFlg="true">
         <div slot="tipText">aaaaaaaaa</div>
       </emfe-datapanel>
     </div>
@@ -85,6 +85,18 @@
           <td>Boolean</td>
           <td>-</td>
         </tr>
+        <tr>
+          <td>linkText</td>
+          <td>跳转text</td>
+          <td>String</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>link</td>
+          <td>点击linkText跳转</td>
+          <td></td>
+          <td>-</td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -92,6 +104,11 @@
 <script>
 export default {
   name: 'datapanelPage',
+  methods: {
+    link() {
+      console.log(0);
+    },
+  },
 }
 </script>
 <style>
