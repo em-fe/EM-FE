@@ -209,6 +209,7 @@ export default {
     datas(val, oldVal) {
       if (val !== oldVal) {
         this.handle(val);
+        this.testUrl();
       }
     },
   },
