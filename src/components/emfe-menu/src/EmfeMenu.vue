@@ -138,7 +138,7 @@ export default {
             if (O.hOwnProperty(dataChild, 'children')) {
               dataChild.children.forEach((dataGrandson) => {
                 const inGrandsonFullPath = O.hOwnProperty(dataGrandson, 'routers') && O.hOwnProperty(dataGrandson.routers, 'path') && newFullPath.indexOf(dataGrandson.routers.path) > -1;
-                if (inGrandsonFullPath || name === dataGrandson.routers.name) {
+                if (inGrandsonFullPath || (O.hOwnProperty(dataGrandson, 'routers') && name === O.hOwnProperty(dataGrandson.routers, 'name'))) {
                   // 打开二级导航的折叠
                   this.toogleChild(dataChildIndex);
                   item = data;
