@@ -3,7 +3,7 @@
     <div class="emfe-datapanel-box">
       <div class="emfe-datapanel-title">
         <span class="emfe-datapanel-title-text">{{title}}</span>
-        <emfe-tooltip :styles="styles" :theme="theme" :placement="placement">
+        <emfe-tooltip class="emfe-datapanel-tooltip" :styles="styles" :theme="theme" :placement="placement">
           <emfe-icon v-if="iconFlg" :type="type" slot="render" className="emfe-datapanel-mark"></emfe-icon>
           <div slot="tip">
             <slot name="tipText"></slot>

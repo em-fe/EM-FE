@@ -15,7 +15,13 @@
       font-size: 14px;
       line-height: 16px;
       color: $text-color-default;
+      float: left;
+      vertical-align: middle;
     }
+  }
+
+  &-tooltip {
+    vertical-align: middle;
   }
 
   &-main {
