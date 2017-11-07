@@ -4,6 +4,7 @@
 
     position: relative;
     display: block;
+    z-index: 2;
   }
 
   &-popper {
@@ -70,7 +71,7 @@
   &-slide {
     width: 100%;
     margin-left: 8px;
-    overflow: -hidden;
+    position: relative;
 
     &-wrap {
       width: 100%;

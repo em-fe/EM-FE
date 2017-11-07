@@ -34,6 +34,13 @@ $menu-top: 64px;
     &-sidebar {
       font-size: 30px;
       line-height: 48px;
+      margin-left: 14px;
+
+      &2 {
+        font-size: 30px;
+        line-height: 48px;
+        transform: rotate(90deg) translate3d(6px, 9px, 0);
+      }
     }
 
     &-header {
