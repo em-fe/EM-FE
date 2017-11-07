@@ -95,7 +95,13 @@ export default {
         ['shenfenxinxi', 'zhongzhimima', 'zhucewanc'],
         ['weichat', 'zhanghuxinxi', 'zhanghaodenglu'],
         ['logo', 'fuzhi', 'shuzi1'],
-        ['bianji1', 'shouji2', 'gouwuche', 'guanli', 'xiangshang']
+        ['bianji1', 'shouji2', 'gouwuche', 'guanli', 'xiangshang'],
+        ['fufeihuiyuan', 'haopingxuanzhong', 'chuangjianshangpin'], ['jianlifenxiao', 'huodongqiandao', 'fabuhuodong'], ['juhuihuodong', 'shoukuanjiesuan', 'shujushouji'],
+        ['kucunguanli', 'huiyibaoming', 'renyuanzhaomu'], ['wenjuantiaocha', 'toupiaopingxuan'],
+        ['yijianfankui', 'yongyouhuiyuan', ],
+        ['wanzhuanjifen', 'yanpiaohexiao',],
+        ['zaixiankaoshi', 'yonghuchuzhi',],
+        ['zhanlanxinxidengji', 'yunfeiguanli']
       ],
     };
   },
