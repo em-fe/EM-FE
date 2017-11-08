@@ -5,6 +5,7 @@
   line-height: 64px;
   background: $background-color-write;
   width: 100%;
+  border-bottom: 1px solid $button-color-default;
 
   &-left {
     float: left;

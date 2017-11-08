@@ -3,7 +3,7 @@
     <div class="emfe-datapanel-box">
       <div class="emfe-datapanel-title">
         <span class="emfe-datapanel-title-text">{{title}}</span>
-        <emfe-tooltip :styles="styles" :theme="theme" :placement="placement">
+        <emfe-tooltip class="emfe-datapanel-tooltip" :styles="styles" :theme="theme" :placement="placement">
           <emfe-icon v-if="iconFlg" :type="type" slot="render" className="emfe-datapanel-mark"></emfe-icon>
           <div slot="tip">
             <slot name="tipText"></slot>
@@ -13,6 +13,7 @@
       <div class="emfe-datapanel-main">
         <span class="emfe-datapanel-main-content">{{contentText}}</span>
         <span class="emfe-datapanel-main-company" v-if="companyText">{{companyText}}</span>
+        <span class="emfe-datapanel-main-link" @click="link" v-if='linkText'>{{linkText}}</span>
       </div>
     </div>
   </div>
@@ -58,6 +59,10 @@ export default {
       type: String,
       default: 'set',
     },
+    linkText: {
+      type: String,
+      default: '',
+    },
   },
   computed: {
     datapanelName() {
@@ -66,6 +71,11 @@ export default {
           [`${this.className}-datapanel`]: !!this.className,
         },
       ];
+    },
+  },
+  methods: {
+    link() {
+      this.$emit('link');
     },
   },
 };

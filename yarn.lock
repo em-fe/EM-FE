@@ -2059,9 +2059,9 @@ elliptic@^6.0.0:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.0"
 
-em-cookie@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/em-cookie/-/em-cookie-1.0.4.tgz#caa1dcc980dd141de2b61d0afc1dda9a4303e628"
+em-cookie@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/em-cookie/-/em-cookie-1.0.6.tgz#bbc77f85f83402b9452f728e04d8490d38c99c62"
 
 em-jsonp@^1.0.3:
   version "1.0.3"
@@ -7259,9 +7259,9 @@ webpack-dev-server@^2.5.0:
     webpack-dev-middleware "^1.11.0"
     yargs "^6.0.0"
 
-webpack-merge@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/webpack-merge/-/webpack-merge-4.1.0.tgz#6ad72223b3e0b837e531e4597c199f909361511e"
+webpack-merge@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/webpack-merge/-/webpack-merge-4.1.1.tgz#f1197a0a973e69c6fbeeb6d658219aa8c0c13555"
   dependencies:
     lodash "^4.17.4"
 

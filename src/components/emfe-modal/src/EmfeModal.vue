@@ -54,6 +54,10 @@ export default {
       type: [String, Boolean],
       default: true,
     },
+    tip: {
+      type: Boolean,
+      default: false,
+    },
   },
   created() {
     if (!this.cancelFlg && !this.okFlg) {
@@ -65,6 +69,7 @@ export default {
       return [
         {
           [`${this.className}-modal-main`]: !!this.className,
+          'emfe-modal-main-tip': this.tip,
         },
       ];
     },

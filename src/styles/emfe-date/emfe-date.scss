@@ -7,7 +7,7 @@ $header-height: 32px;
 
   &-box {
     width: 100%;
-    background: $nothing-color;
+    background: $background-color-write;
 
     &-position {
       @include border();
@@ -289,6 +289,7 @@ $header-height: 32px;
     line-height: 32px;
     cursor: pointer;
     border-radius: $radius-size;
+    background: $background-color-write;
 
     &:hover {
       @include border(all, $btn-hover-color);

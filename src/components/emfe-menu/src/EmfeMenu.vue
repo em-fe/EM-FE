@@ -2,7 +2,7 @@
   <div class="emfe-menu" :class="menuName" ref="menu">
     <div class="emfe-menu-main">
       <button class="emfe-menu-main-header" @click="menuToShort">
-        <emfe-icon class="emfe-menu-main-sidebar" type="cedaohangshouqi" @icon-click="menuToShort" v-if="menuShort"></emfe-icon>
+        <emfe-icon class="emfe-menu-main-sidebar2" type="cedaohangzhankai" @icon-click="menuToShort" v-if="menuShort"></emfe-icon>
         <emfe-icon class="emfe-menu-main-sidebar" type="cedaohangzhankai" @icon-click="menuToShort" v-else></emfe-icon>
       </button>
       <div class="emfe-menu-iscroll">
@@ -138,7 +138,7 @@ export default {
             if (O.hOwnProperty(dataChild, 'children')) {
               dataChild.children.forEach((dataGrandson) => {
                 const inGrandsonFullPath = O.hOwnProperty(dataGrandson, 'routers') && O.hOwnProperty(dataGrandson.routers, 'path') && newFullPath.indexOf(dataGrandson.routers.path) > -1;
-                if (inGrandsonFullPath || name === dataGrandson.routers.name) {
+                if (inGrandsonFullPath || (O.hOwnProperty(dataGrandson, 'routers') && name === O.hOwnProperty(dataGrandson.routers, 'name'))) {
                   // 打开二级导航的折叠
                   this.toogleChild(dataChildIndex);
                   item = data;
@@ -209,6 +209,7 @@ export default {
     datas(val, oldVal) {
       if (val !== oldVal) {
         this.handle(val);
+        this.testUrl();
       }
     },
   },

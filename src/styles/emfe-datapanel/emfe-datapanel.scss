@@ -15,7 +15,13 @@
       font-size: 14px;
       line-height: 16px;
       color: $text-color-default;
+      float: left;
+      vertical-align: middle;
     }
+  }
+
+  &-tooltip {
+    vertical-align: middle;
   }
 
   &-main {
@@ -37,6 +43,16 @@
       display: block;
       color: $text-color-default;
       margin-left: 8px;
+    }
+
+    &-link {
+      display: block;
+      margin-left: 8px;
+      color: #1996f9;
+      cursor: pointer;
+      position: relative;
+      top: 3px;
+      font-size: 14px;
     }
   }
 
