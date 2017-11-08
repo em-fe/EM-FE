@@ -1,5 +1,5 @@
  <template>
-  <tr @click="jump(ind)" class="emfe-box-table-tr" :class="[classTr, {'emfe-box-table-tr-disabled': dataList.disabled}]">
+  <tr @click="jump(ind)" class="emfe-box-table-tr" :class="[classTr, unHover, {'emfe-box-table-tr-disabled': dataList.disabled}]">
     <template>
       <td class="emfe-box-table-tr-td" :class="[classTd, {'emfe-box-table-tr-td-checked': checked === index}]" :rowspan="dataList[list.key].row ? rowSpan[list.key]:0"  v-for="(list , index) in dataSlice" :key="index" v-if="!dataList[list.key].hebing">
         <slot name="a" v-if="dataList[list.key].slot==='a'"></slot>
@@ -58,6 +58,13 @@ export default {
         return this.column.slice(1, this.column.length);
       }
       return this.column;
+    },
+    unHover() {
+      return [
+        {
+          'emfe-box-table-tr-hover': !!this.$parent.hover,
+        },
+      ];
     },
     classTr() {
       return [

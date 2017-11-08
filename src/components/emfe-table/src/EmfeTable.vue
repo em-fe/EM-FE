@@ -18,6 +18,10 @@ export default {
     };
   },
   props: {
+    hover: {
+      type: [String, Boolean],
+      default: false,
+    },
     border: {
       type: String,
       default: '',
@@ -50,4 +54,3 @@ export default {
   },
 };
 </script>
-

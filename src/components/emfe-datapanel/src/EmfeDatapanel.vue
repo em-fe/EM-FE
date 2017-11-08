@@ -43,7 +43,7 @@ export default {
     },
     theme: {
       type: String,
-      default: '',
+      default: 'dark',
     },
     placement: {
       type: String,
