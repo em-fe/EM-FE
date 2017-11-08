@@ -8,12 +8,11 @@
     text-align: center;
     color: $text-color-default;
     padding: 0 5px;
-    height: 36px;
-    line-height: 36px;
     float: left;
     margin-left: 5px;
     cursor: pointer;
     font-size: 12px;
+    height: 32px;
 
     &:nth-of-type(1) {
       margin-left: 0;
@@ -32,6 +31,7 @@
       background-color: $background-active-color;
       color: $background-color-write;
       border: none;
+      line-height: 34px;
     }
 
     &-on:hover {
