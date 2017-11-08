@@ -37,13 +37,15 @@ $header-height: 64px;
 
     &-text {
       cursor: pointer;
+      color: $title-color;
 
       &:hover {
-        color: #50affa;
+        color: $btn-hover-color;
       }
     }
 
     &-hello {
+      color: $title-color;
       margin: 0 10px;
     }
   }

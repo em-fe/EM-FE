@@ -60,6 +60,15 @@
       </emfe-table-body>
     </emfe-table>
     <br>
+    <br><br>
+      <p>表格需要hover时传入hover：true，默认false</p>
+     <emfe-table :columns="column1" :data="data2" :hover="true">
+       <emfe-table-head  slot="head" >
+       </emfe-table-head>
+       <emfe-table-body slot="body"  v-for="(dataList,index) in data2" :ind="index" :key="index" :dataList="dataList">
+       </emfe-table-body>
+     </emfe-table>
+     <br>
    <p>当表单没有数据的时候，nothingText是提示文字</p>
     <emfe-table :columns="column1" :data="data10" nothingText="尚未收集到数据">
       <emfe-table-head  slot="head" >
@@ -125,6 +134,12 @@
           <td>带边框的表格</td>
           <td>String</td>
           <td>默认''</td>
+        </tr>
+        <tr height="100px">
+          <td>hover</td>
+          <td>只有表格需要hover的时候在传true，不需要可以不传</td>
+          <td>String, Boolean</td>
+          <td>默认'false'</td>
         </tr>
       </tbody>
     </table>
