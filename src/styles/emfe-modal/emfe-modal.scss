@@ -63,6 +63,15 @@
     color: $text-color-default;
     font-size: 14px;
 
+    &-tip {
+      width: 100%;
+      color: $text-color-default;
+      font-size: 14px;
+      padding: 40px;
+      line-height: 1.5;
+      text-align: center;
+    }
+
     &-prompt {
       text-align: center;
       margin-top: 24px;
