@@ -2,7 +2,7 @@
   <div class="emfe-copy" :class="copyName">
     <span :class="textName">{{text}}：</span>
     <input class="emfe-copy-input" :class="valueName" :value="copyValue" ref="copyInput" :readonly="read"/>
-    <a class="emfe-copy-btn" :class="btnName" @click="copyHandle" title="复制网址">
+    <a class="emfe-copy-btn" :class="btnName" @click="copyHandle" :title="title">
       <emfe-icon type="fuzhi" class="emfe-copy-btn-icon" :class="iconName" @icon-click="copyHandle"></emfe-icon>
     </a>
   </div>
@@ -20,6 +20,10 @@ export default {
     text: {
       type: String,
       default: '表单页面',
+    },
+    title: {
+      type: String,
+      default: '复制网址',
     },
   },
   computed: {
