@@ -1,6 +1,8 @@
 <template>
   <div>
-    <button @click="formBtn">我是表单弹出框，点我呀！</button>
+    <h2>emfe-modal 基本方法</h2>
+    <br>
+    <button @click="formBtn" style="color:red;">我是表单弹出框，点我呀！</button>
     <emfe-modal :show="formShow" :title="copyTitle" :width="width" @close="formClose" @cancel="formCancel" @ok="formOk" okText="保存" className="form">
       <div slot="modal-main">
         <div class="emfe-modal-main-input">
@@ -9,12 +11,64 @@
         </div>
       </div>
     </emfe-modal>
-    <button @click="promptBtn">我是提示弹出框，点我呀！</button>
-    <emfe-modal :show="promptShow" :title="deteleTitle" @close="promptClose" @cancel="promptCancel" @ok="promptOk" :cancelFlg="cancelFlg" okText="立即设置">
-        <div slot="modal-main" class="emfe-modal-main-prompt">
-          确认删除表单数据？
+    <pre>
+      &lt;emfe-modal :show="formShow" :title="copyTitle" :width="width" @close="formClose" @cancel="formCancel" @ok="formOk" okText="保存" className="form"&gt;
+        &lt;div slot="modal-main"&gt;
+          &lt;div class="emfe-modal-main-input"&gt;
+            &lt;h6 class="emfe-modal-main-input-title"&gt;标题&lt;/h6&gt;
+            &lt;emfe-input placeholder="表单标题"&gt;&lt;/emfe-input&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/emfe-modal&gt;
+    </pre>
+    <pre>
+      formShow: false,
+      copyTitle: '复制表单',
+      width: 691,
+    </pre>
+    <pre>
+      formClose() {
+        this.formShow = false;
+      },
+      formCancel() {
+        this.formShow = false;
+      },
+      formOk() {
+        this.formShow = false;
+      },
+    </pre>
+    <h2>emfe-modal 简单提示</h2>
+    <br>
+    <button @click="promptBtn" style="color:red;">我是提示弹出框，点我呀！</button>
+    <br>
+    <emfe-modal :show="promptShow" :title="deteleTitle" @close="promptClose" @cancel="promptCancel" @ok="promptOk" :cancelFlg="cancelFlg" okText="关闭" :tip="true">
+        <div slot="modal-main">
+          这是一段很长的提示，他真的很长很长很长。确认删除表单数据？
         </div>
     </emfe-modal>
+    <pre>
+      &lt;emfe-modal :show="promptShow" :title="deteleTitle" @close="promptClose" @cancel="promptCancel" @ok="promptOk" :cancelFlg="cancelFlg" okText="关闭" :tip="true"&gt;
+          &lt;div slot="modal-main"&gt;
+            这是一段很长的提示，他真的很长很长很长。确认删除表单数据？
+          &lt;/div&gt;
+      &lt;/emfe-modal&gt;
+    </pre>
+    <pre>
+      promptShow: false,
+      cancelFlg: false,
+      deteleTitle: '删除确认',
+    </pre>
+    <pre>
+      promptClose() {
+        this.promptShow = false;
+      },
+      promptCancel() {
+        this.promptShow = false;
+      },
+      promptOk() {
+        this.promptShow = false;
+      },
+    </pre>
     <br>
     <br>
     <br>
@@ -78,6 +132,12 @@
           <td>是否显示取消按钮</td>
           <td>Boolean</td>
           <td>true</td>
+        </tr>
+        <tr>
+          <td>tip</td>
+          <td>内容是否只是一行提示文字</td>
+          <td>Boolean</td>
+          <td>false</td>
         </tr>
       </tbody>
     </table>

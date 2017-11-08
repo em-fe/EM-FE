@@ -114,7 +114,9 @@ export default {
       }, `emfe-tooltip-${this.theme}-popper`];
     },
     arrowPlacement() {
-      return [`emfe-tooltip-${this.theme}-arrow`, `emfe-tooltip-arrow-${this.placement}`, `emfe-tooltip-${this.theme}-arrow-${this.placement}`];
+      return [`emfe-tooltip-${this.theme}-arrow`, `emfe-tooltip-arrow-${this.placement}`, `emfe-tooltip-${this.theme}-arrow-${this.placement}`, {
+        [`${this.className}-arrow`]: !!this.className,
+      }];
     },
   },
   created() {
