@@ -172,7 +172,7 @@
 
   &-delabel {
     padding: 0 10px;
-    color: #333;
+    color: $text-color-default;
   }
 
   &-text {
@@ -183,7 +183,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    color: #333;
+    color: $text-color-default;
   }
 
   &-flag {
