@@ -31,7 +31,7 @@
 }
 
 .switch-checked {
-  background: #4cbd63;
+  background: $auxiliary-color-success;
 
   > .emfe-switch-inner {
     color: $nothing-color;
@@ -54,12 +54,12 @@
 }
 
 .switch-disabled {
-  color: #fff;
-  background: #f5f5f5;
-  border-color: #f5f5f5;
+  color: $background-color-write;
+  background: $background-color-disable;
+  border-color: $background-color-disable;
   cursor: no-drop;
 
   > .emfe-switch-inner {
-    color: #d8d8d8;
+    color: $text-color-disable;
   }
 }
