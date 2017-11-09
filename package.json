@@ -1,6 +1,6 @@
 {
   "name": "em-fe",
-  "version": "1.0.34",
+  "version": "1.0.35",
   "description": "快速开发产品的UI库",
   "main": "dist/emfe.js",
   "files": [
@@ -83,7 +83,7 @@
   "dependencies": {
     "babel-plugin-dynamic-import-webpack": "^1.0.1",
     "em-cookie": "^1.0.6",
-    "em-jsonp": "^1.0.3",
-    "em-underline": "^1.0.8"
+    "em-jsonp": "^1.0.4",
+    "em-underline": "^1.0.10"
   }
 }
