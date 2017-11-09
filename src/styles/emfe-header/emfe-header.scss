@@ -6,7 +6,7 @@ $header-height: 64px;
   @include border(bottom);
 
   height: $header-height;
-  background: #fff;
+  background: $background-color-write;
   // position: relative;
   z-index: 2;
   position: fixed;
@@ -37,13 +37,15 @@ $header-height: 64px;
 
     &-text {
       cursor: pointer;
+      color: $title-color;
 
       &:hover {
-        color: #50affa;
+        color: $btn-hover-color;
       }
     }
 
     &-hello {
+      color: $title-color;
       margin: 0 10px;
     }
   }

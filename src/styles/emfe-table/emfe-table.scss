@@ -8,7 +8,7 @@
     text-align: center;
     background-color: $nothing-color;
     border: 1px solid $border-color;
-    color: #999;
+    color: $text-color-prompt;
     border-top: none;
     font-size: 14px;
   }
@@ -57,8 +57,10 @@
         background-color: $background-color-even;
       }
 
-      &:hover {
-        background-color: $tr-hover-color;
+      &-hover {
+        &:hover {
+          background-color: $tr-hover-color;
+        }
       }
 
       &-td {
@@ -76,6 +78,7 @@
 
         &-div {
           white-space: nowrap;
+          color: $text-color-default;
 
           &-required {
             color: $auxiliary-color-danger;

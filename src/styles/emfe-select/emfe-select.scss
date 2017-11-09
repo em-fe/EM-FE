@@ -34,6 +34,16 @@
     letter-spacing: 1px;
     line-height: 14px;
     transition: border 0.2s ease-in-out;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 20px;
+
+    &::-webkit-input-placeholder {
+      color: $text-color;
+      letter-spacing: 1.08px;
+      line-height: 16px;
+      font-size: 14px;
+    }
 
     &-error {
       @include border(all,$color-danger);
@@ -162,6 +172,7 @@
 
   &-delabel {
     padding: 0 10px;
+    color: $text-color-default;
   }
 
   &-text {
@@ -171,7 +182,8 @@
     max-width: 76%;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space:  nowrap;
+    white-space: nowrap;
+    color: $text-color-default;
   }
 
   &-flag {

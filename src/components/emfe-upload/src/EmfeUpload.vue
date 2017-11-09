@@ -39,6 +39,7 @@ import upload from '../../../tools/upload';
 import { openMask, closeMask } from '../../../tools/body';
 import EmfeMessage from '../../emfe-message/index';
 import ajax from './ajax';
+import CONSTANT from '../../../contant';
 
 const uploadJpeg = 'image/jpeg';
 let pointOldLeft = 0; // 改变截取器遮罩大小
@@ -425,8 +426,8 @@ export default {
           filename: this.name,
           action: this.action,
           onSuccess: (res) => {
-            if (!res.code) {
-              this.handleSuccess(res, file);
+            if (res.code === CONSTANT.AJAX_SUCCESS) {
+              this.handleSuccess(res.data, file);
             } else {
               this.handleError('上传失败', res, file);
             }
