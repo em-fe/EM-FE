@@ -105,7 +105,7 @@ export default {
   },
   methods: {
     alocked(e) {
-      const checked = this.checkedForever ? true : e.target.checked;
+      const checked = this.checkedForever ? false : e.target.checked;
       this.setValue(checked);
       this.$emit('input', this.checkoutStatus);
       this.$emit('checked', this.checkoutStatus, this.title, this.index);
