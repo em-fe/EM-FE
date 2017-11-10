@@ -38,6 +38,7 @@
 </template>
 <script>
 import ajax from './ajax';
+import CONSTANT from '../../../contant';
 
 export default {
   name: 'EmfeLogin',
@@ -139,7 +140,7 @@ export default {
         type: 'GET',
         action: this.imgAction,
         onSuccess: (res) => {
-          if (res.code === 10000) {
+          if (res.code === CONSTANT.AJAX_SUCCESS) {
             this.imgSrc = res.data;
           }
         },
@@ -184,7 +185,7 @@ export default {
           data: JSON.stringify(this.data),
           action: this.action,
           onSuccess: (res) => {
-            if (res.code === 10000) {
+            if (res.code === CONSTANT.AJAX_SUCCESS) {
               window.location.href = this.referrerUrl;
               const Rtoken = res.data.token;
               const autoData = `Bearer ${Rtoken}`;

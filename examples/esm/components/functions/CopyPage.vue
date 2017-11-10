@@ -4,7 +4,7 @@
     <br>
     <h3>示例</h3>
     <br>
-    <emfe-copy className="pay" :copyValue="copyData" @copySuccess="copySuc" @copyFail="copyFail"></emfe-copy>
+    <emfe-copy className="pay" title="复制邀请码" :copyValue="copyData" @copySuccess="copySuc" @copyFail="copyFail"></emfe-copy>
     <emfe-copy className="list" text="邀请码" :copyValue="copyData" @copySuccess="copySuc" @copyFail="copyFail" read="true"></emfe-copy>
     <h3>API</h3>
     <table>

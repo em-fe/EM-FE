@@ -16,7 +16,7 @@ $input-size: $handle-size - 14;
     height: 148px;
     overflow: hidden;
     border-radius: $radius-size;
-    background: #fff;
+    background: $background-color-write;
     user-select: none;
     padding: 8px;
     position: absolute;
@@ -27,7 +27,7 @@ $input-size: $handle-size - 14;
   &-drag {
     @include border();
 
-    background: linear-gradient(transparent, #000), linear-gradient(to right, #fff, rgba(255, 255, 255, 0));
+    background: linear-gradient(transparent, #000), linear-gradient(to right, $background-color-write, rgba(255, 255, 255, 0));
     width: 130px;
     height: 130px;
     overflow: hidden;
@@ -89,7 +89,7 @@ $input-size: $handle-size - 14;
     height: 8px;
     top: -4px;
     left: -4px;
-    box-shadow: 0 0 0 1px #fff, 0 0 0 2px #000;
+    box-shadow: 0 0 0 1px $background-color-write, 0 0 0 2px #000;
     border-radius: $radius-size;
   }
 
@@ -99,7 +99,7 @@ $input-size: $handle-size - 14;
     height: 18px;
     width: $handle-size;
     overflow: hidden;
-    background: #fff;
+    background: $background-color-write;
     color: $title-color;
     font-size: 12px;
     border-radius: $radius-size;
