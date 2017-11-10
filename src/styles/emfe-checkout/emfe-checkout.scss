@@ -30,6 +30,10 @@
       @include border(all, $border-on-color);
 
       background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAICAYAAADA+m62AAAAAXNSR0IArs4c6QAAAIRJREFUGBl9kE0KgzAUhCOCqBF6BRc9Rg/jHbxkqejOCnqObrowfiMJCv48+JK8N5MJxJibcs4l8IVHfOVDTNFGeEIJxjDM1oNf6HNo4Od3K1MFKt1UL9MHNpMXaoYzvGFvaumtf2RNiBgM8IcJlNTBZgpuhi9QKVlJRdAOO2IPqtOfWADjgJGjYN/vtgAAAABJRU5ErkJggg==) $background-active-color no-repeat center center;
+
+      &-disabled {
+        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAICAYAAADA+m62AAAAAXNSR0IArs4c6QAAAIRJREFUGBl9kE0KgzAUhCOCqBF6BRc9Rg/jHbxkqejOCnqObrowfiMJCv48+JK8N5MJxJibcs4l8IVHfOVDTNFGeEIJxjDM1oNf6HNo4Od3K1MFKt1UL9MHNpMXaoYzvGFvaumtf2RNiBgM8IcJlNTBZgpuhi9QKVlJRdAOO2IPqtOfWADjgJGjYN/vtgAAAABJRU5ErkJggg==) $background-color-disable no-repeat center center;
+      }
     }
 
     &-disable {

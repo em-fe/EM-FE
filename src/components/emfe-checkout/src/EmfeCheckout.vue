@@ -75,7 +75,7 @@ export default {
     checkedName() {
       return [
         {
-          'emfe-checkout-inner-checked': this.checkedForever,
+          'emfe-checkout-inner-checked-disabled': this.checkedForever,
         },
       ];
     },
