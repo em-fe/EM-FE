@@ -24,11 +24,15 @@
     <br>
     <br>
     <br>
+    <emfe-checkout className="" title="选中后不可点击" :checkedForever="true"></emfe-checkout>
+    <br>
+    <br>
+    <br>
     反选 {{ allChecked }}
     <br>
     <div>
-      <emfe-checkout className="diy" title="反选" inline="true" v-model="allChecked"  @checked="noChecked()"></emfe-checkout>
-      <emfe-checkout className="diy" :title="item.title" inline="true" v-for="(item, index) in allDatas" :key="index" v-model="item.checked"></emfe-checkout>
+      <emfe-checkout className="" title="反选" inline="true" v-model="allChecked"  @checked="noChecked()"></emfe-checkout>
+      <emfe-checkout className="" :title="item.title" inline="true" v-for="(item, index) in allDatas" :key="index" v-model="item.checked"></emfe-checkout>
     </div>
     <br>
     <br>
@@ -91,6 +95,12 @@
           <td>问号提示</td>
           <td>String</td>
           <td>-</td>
+        </tr>
+        <tr>
+          <td>checkedForever</td>
+          <td>选中后不变状态</td>
+          <td>Boolean</td>
+          <td>false</td>
         </tr>
       </tbody>
     </table>
@@ -159,9 +169,9 @@ export default {
 <style>
 .div-text {
   color: #1996F9;
-  margin: 8px 0;
 }
-.diy-text {
+.diy-checkout,
+.div-checkout {
   margin: 8px 0;
 }
 </style>

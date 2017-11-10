@@ -3,6 +3,10 @@
     <i class="emfe-radio-img" :class="{'emfe-radio-img-checked': status, 'emfe-radio-img-disabled': disabled}"></i>
     <input :class="inputClass" type="radio" @change="changeFn" :name="name" :disabled="disabled" class="emfe-radio-input">
     <span :class='textClass' class="emfe-radio-text"><slot></slot></span>
+    <emfe-tooltip className="emfe-radio" theme="light" :placement="placement" v-if="tip">
+      <emfe-icon type="tishi" slot="render" className="emfe-radio-tip"></emfe-icon>
+      <div slot="tip" v-html="tip"></div>
+    </emfe-tooltip>
     <div class="emfe-radio-slide" v-if="slideShow">
       <transition name="fade">
         <div class="emfe-radio-slide-wrap" v-show="status">
@@ -45,6 +49,14 @@
       },
       inline: String,
       change: Function,
+      tip: {
+        type: String,
+        default: '',
+      },
+      placement: {
+        type: String,
+        default: 'bottom',
+      },
     },
     computed: {
       labelClass() {
@@ -60,7 +72,12 @@
         return this.className ? `${this.className}-radio-input` : '';
       },
       textClass() {
-        return this.className ? `${this.className}-radio-input-text` : '';
+        return [
+          {
+            [`${this.className}-radio-input-text`]: !!this.className,
+            'emfe-radio-text-notip': !this.tip,
+          },
+        ];
       },
     },
     methods: {

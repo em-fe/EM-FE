@@ -1,7 +1,7 @@
 <template>
   <div class="emfe-checkout" :class="checkoutName">
-    <label class="emfe-checkout-box">
-      <i class="emfe-checkout-inner" :class="innerName"></i>
+    <label class="emfe-checkout-box" :class="{'emfe-checkout-box-forever': checkedForever}">
+      <i class="emfe-checkout-inner" :class="[innerName, checkedName]"></i>
       <input type="checkbox" class="emfe-checkout-status" :checked="checkoutStatus" @click.stop="click" @change="alocked" :name="name" :disabled="disable" v-if="stop">
       <input type="checkbox" class="emfe-checkout-status" :checked="checkoutStatus" @change="alocked" :name="name" :disabled="disable" v-else>
       <span class="emfe-checkout-text" :class="textName">{{ newtitle }}</span>
@@ -59,12 +59,23 @@ export default {
     change: Function,
     index: [Number, String],
     name: String,
+    checkedForever: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     innerName() {
       return [
         {
           'emfe-checkout-inner-disable': this.disable, 'emfe-checkout-inner-checked': this.checkoutStatus,
+        },
+      ];
+    },
+    checkedName() {
+      return [
+        {
+          'emfe-checkout-inner-checked': this.checkedForever,
         },
       ];
     },
@@ -94,7 +105,8 @@ export default {
   },
   methods: {
     alocked(e) {
-      this.setValue(e.target.checked);
+      const checked = this.checkedForever ? true : e.target.checked;
+      this.setValue(checked);
       this.$emit('input', this.checkoutStatus);
       this.$emit('checked', this.checkoutStatus, this.title, this.index);
       if (this.change) {

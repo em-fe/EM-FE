@@ -5,6 +5,11 @@
     position: relative;
     display: block;
     z-index: 2;
+    cursor: pointer;
+
+    &-forever {
+      cursor: no-drop;
+    }
   }
 
   &-popper {
@@ -49,17 +54,17 @@
   &-text {
     font-size: 14px;
     color: $text-color-default;
-    float: left;
     line-height: 16px;
-    margin-left: 8px;
     word-wrap: break-word;
     display: inline-block;
     vertical-align: middle;
     padding-right: 4px;
+    float: left;
+    margin-left: 8px;
 
     &-notip {
-      padding-right: 0;
       width: calc(100% - 24px);
+      padding-right: 0;
     }
   }
 
