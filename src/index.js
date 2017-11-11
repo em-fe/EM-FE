@@ -66,6 +66,7 @@ import EmfeLogin from './components/emfe-login/index';
 import EmfeLoginC from './components/emfe-login-c/index';
 import EmfeTitleline from './components/emfe-titleline/index';
 import EmfeIscroll from './components/emfe-iscroll/index';
+import EmfeChangecount from './components/emfe-changecount/index';
 // 服务
 import EmfeMessage from './components/emfe-message/index';
 import EmfeFormTest from './components/emfe-formtest/index';
@@ -149,6 +150,7 @@ const emfeCpt = {
   EmfeLoginC,
   EmfeTitleline,
   EmfeIscroll,
+  EmfeChangecount,
 };
 
 const emfeDir = {

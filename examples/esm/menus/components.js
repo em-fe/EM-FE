@@ -400,4 +400,10 @@ export default [
       path: '/functions/selectpage',
     }
   },
+  {
+    title: '数组滚动 changecount',
+    routers: {
+      path: '/functions/changecount',
+    },
+  },
 ];

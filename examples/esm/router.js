@@ -349,6 +349,11 @@ const router = new VueRouter({
           component: require('./components/functions/SelectPage.vue'),
         },
         {
+          path: '/functions/changecount',
+          name: 'changecount',
+          component: require('./components/functions/ChangecountPage.vue'),
+        },
+        {
           path: '/functions/drop',
           name: 'drop',
           component: require('./components/functions/DropPage.vue'),
