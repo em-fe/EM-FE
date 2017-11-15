@@ -101,7 +101,8 @@ export default {
         ['yijianfankui', 'yongyouhuiyuan', ],
         ['wanzhuanjifen', 'yanpiaohexiao',],
         ['zaixiankaoshi', 'yonghuchuzhi',],
-        ['zhanlanxinxidengji', 'yunfeiguanli']
+        ['zhanlanxinxidengji', 'yunfeiguanli'],
+        ['gengduo'],
       ],
     };
   },
