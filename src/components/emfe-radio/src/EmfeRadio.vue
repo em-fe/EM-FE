@@ -27,7 +27,13 @@
       const base5 = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAQCAYAAADwMZRfAAABfUlEQVQ4jX3Uv0uXURQG8M/3tQb7DpFDQ5FhJIJTEATREISGCa4tJqGLRkkQBE3RWDRFEYEWUX+CYRQtitBUDUGQglJR0KJLuRjYcM/Vyzd7n+ncH+c5zznvc9/G5kOt6MQEBtGDNnzFK0zjQ2tCVcRtuIX3EY+jA00MYRkv8ATtJUmjUPIMR3AeP/7Rl9DEo7jXj/VSyWRIP1tDAL8xgk+4X7bTgZu4kJlxEE+xil+YxbGC7GoUPJ5JRqShLcWF/XiLi9gXLZzDQk6KYvdwOZOcwUxR5QYO7dBKE3eL9UzkqnAYn4vDvh0IMk5jd8Qrkh0aFTawqyaxDhvYrPAN3cXBm5qkuUiELnwntTMvuTPjThC3Yh3Xi/VQkKokkw3gaBz+xMnYX5O88RKn8C7utEuf+QHbjp3EsDTt7JU6TElPYywrIblvEa9xoCZ5D56jF1fyZvkAR6WhfsRtnMDekN6La5Ih/0g22FLc+M+v4JLk0q6o/iVUPrY9ly38BWpZTo1+XZ+/AAAAAElFTkSuQmCC';
       return {
         status: this.statu,
-        backgUrl: [base1, base2, base3, base4, base5],
+        backgUrl: {
+          bule: base1,
+          purple: base2,
+          green: base3,
+          lightBlue: base4,
+          orange: base5,
+        },
       };
     },
     props: {
@@ -64,8 +70,8 @@
         default: 'bottom',
       },
       styleIndex: {
-        type: [Number, String],
-        default: 0,
+        type: String,
+        default: 'bule',
       },
     },
     computed: {

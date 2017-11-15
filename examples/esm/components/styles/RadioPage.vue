@@ -14,8 +14,8 @@
     <br>
     <br>
     <br>
-    <emfe-radio :styleIndex="1" index="aaa0" name="group1" @change="changeaaa">111文字</emfe-radio>
-    <emfe-radio :styleIndex="1" index="aaa1" name="group1" @change="changeaaa">222文字</emfe-radio>
+    <emfe-radio styleIndex="orange" index="aaa0" name="group1" @change="changeaaa">111文字</emfe-radio>
+    <emfe-radio styleIndex="orange" index="aaa1" name="group1" @change="changeaaa">222文字</emfe-radio>
     {{ aaaindex }}
     <br>
     <br>
@@ -117,8 +117,8 @@
         </tr>
         <tr>
           <td>styleIndex</td>
-          <td>控制选中图片颜色，传数值0， 1， 2即可</td>
-          <td>Number,String</td>
+          <td>控制选中图片颜色，purple: 紫色，green：绿色，lightBlue： 浅蓝色，orange： 橙色</td>
+          <td>String</td>
           <td>default 为 蓝色</td>
         </tr>
       </tbody>
