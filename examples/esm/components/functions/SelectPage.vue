@@ -57,6 +57,18 @@
     <h2 style="margin-top:50px">1.不可点击的数据添加上一条 disabled: 'disabled' 的字段，可点的字段不加；</h2>
     <h2>2.selectText配置项里写提示文字 不填写即默认的‘选择标签’</h2>
 
+    <div style="margin:50px 0 10px">
+      普通提示下拉框
+    </div>
+
+    <!--  -->
+    <emfe-select :datas="data3" type="default" @getDefData="getData" tip="提示文字"></emfe-select>
+    API：包含2个配置项：<br>
+              自定义属性 :<br>
+              :datas="data3"<br>
+              type="default"<br>
+              tip="提示文字"<br>
+              placement="right"<br>
   </div>
 </template>
 <script>
