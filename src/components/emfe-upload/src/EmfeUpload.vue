@@ -371,25 +371,41 @@ export default {
         const reader = new FileReader();
         reader.readAsDataURL(postFiles[0]);
         reader.onload = (readerEvent) => {
-          this.img = readerEvent.target.result;
-          this.openInterceptModal();
-          setTimeout(() => {
-            this.drag1.length = 0;
-            this.drag1.push(this.$refs.drag1);
-            this.previewImg = this.$refs.previewImg;
-            this.dragWidth = this.previewImg.clientWidth;
-            this.dragHeight = this.previewImg.clientHeight;
-            this.dragPaddingLeft = (this.dragWidth - this.interceptWidth) / 2;
-            this.dragPaddingTop = (this.dragHeight - this.interceptHeight) / 2;
-            const imgScale = this.dragHeight / this.dragWidth;
-            // 如果宽度超了
-            if (this.dragWidth > this.interceptWidth) {
-              this.dragWidth = this.interceptWidth;
-              this.dragHeight = imgScale * this.dragWidth;
-              this.dragPaddingLeft = (this.interceptWidth - this.dragWidth) / 2;
-              this.dragPaddingTop = (this.interceptHeight - this.dragHeight) / 2;
-            }
-          }, 0);
+          const myImage = new Image();
+          myImage.src = readerEvent.target.result;
+
+          myImage.onload = () => {
+            this.openInterceptModal();
+            this.img = readerEvent.target.result;
+            setTimeout(() => {
+              this.drag1.length = 0;
+              this.drag1.push(this.$refs.drag1);
+              this.previewImg = this.$refs.previewImg;
+              this.dragWidth = this.previewImg.clientWidth;
+              this.dragHeight = this.previewImg.clientHeight;
+              this.dragPaddingLeft = (this.dragWidth - this.interceptWidth) / 2;
+              this.dragPaddingTop = (this.dragHeight - this.interceptHeight) / 2;
+              const imgScale = this.dragHeight / this.dragWidth;
+              // 如果宽度超了
+              if (this.dragWidth > this.interceptWidth) {
+                this.dragWidth = this.interceptWidth;
+                this.dragHeight = imgScale * this.dragWidth;
+                this.dragPaddingLeft = (this.interceptWidth - this.dragWidth) / 2;
+                this.dragPaddingTop = (this.interceptHeight - this.dragHeight) / 2;
+              }
+              // 如果框框超出去了
+              const interceptCanvasScale = this.interceptCanvasWidth / this.interceptCanvasHeight;
+              if (this.dragWidth < this.interceptCanvasWidth) {
+                this.interceptCanvasWidth = this.dragWidth;
+                this.interceptCanvasHeight = interceptCanvasScale / this.interceptCanvasWidth;
+              }
+
+              if (this.dragHeight < this.interceptCanvasHeight) {
+                this.interceptCanvasHeight = this.dragHeight;
+                this.interceptCanvasWidth = interceptCanvasScale / this.interceptCanvasHeight;
+              }
+            }, 0);
+          };
         };
       }
     },
