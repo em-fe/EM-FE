@@ -1,6 +1,6 @@
 <template>
-  <div :class="{'emfe-select-selectBox': tip}">
-    <div class="emfe-select" :class="[selectName, {'emfe-select-selectBox-tipSelect': tip}]" v-emfe-documentclick="closeFn">
+  <div :class="[selectName, {'emfe-select-selectBox': tip}]">
+    <div class="emfe-select" :class="{'emfe-select-selectBox-tipSelect': tip}" v-emfe-documentclick="closeFn">
       <input class="emfe-select-input" type="text" :class="[inputName, {'emfe-select-input-error': errOk}]" :value="checkVal" :disabled="newDisabled" readonly :placeholder="selectText" @click="inpcheck">
       <div class="emfe-select-error" :class="addErrorText" v-if="errOk"><slot name="error"></slot></div>
       <div v-if="flagCheck" class="emfe-select-flag">
