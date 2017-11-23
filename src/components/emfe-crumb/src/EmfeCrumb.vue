@@ -1,10 +1,10 @@
 <template>
-  <div class="emfe-crumb">
-    <div class="emfe-crumb-left">
+  <div class="emfe-crumb" :class="crumbName">
+    <div class="emfe-crumb-left" :class="leftName">
       <emfe-link :className="linkName" :routers="routers" @click="click">{{ linkText }}</emfe-link>
-      <span class="emfe-crumb-left-txt" v-if="title">{{ title }}</span>
+      <span class="emfe-crumb-left-txt" :class="txtName" v-if="title">{{ title }}</span>
     </div>
-    <div class="emfe-crumb-right">
+    <div class="emfe-crumb-right" :class="rightName">
       <slot></slot>
     </div>
   </div>
@@ -26,8 +26,21 @@ export default {
       type: String,
       required: true,
     },
+    className: String,
   },
   computed: {
+    crumbName() {
+      return this.className ? `${this.className}-crumb` : '';
+    },
+    leftName() {
+      return this.className ? `${this.className}-crumb-left` : '';
+    },
+    txtName() {
+      return this.className ? `${this.className}-crumb-left-txt` : '';
+    },
+    rightName() {
+      return this.className ? `${this.className}-crumb-right` : '';
+    },
     linkName() {
       return this.title ? 'emfe-crumb-title' : 'emfe-crumb';
     },
