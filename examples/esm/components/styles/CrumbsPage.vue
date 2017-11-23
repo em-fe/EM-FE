@@ -2,7 +2,7 @@
   <div class="crumb-page">
     <h2>面包屑导航组件：</h2><br>
     <div class="demo1">
-      <emfe-crumb :routers="{}" @click="clickNoLink" :linkText="clicked"></emfe-crumb>
+      <emfe-crumb className="test" :routers="{}" @click="clickNoLink" :linkText="clicked"></emfe-crumb>
       <br>
       <br>
       <br>
@@ -48,6 +48,12 @@
           <tr>
             <td>title</td>
             <td>链接右边的标题。必须</td>
+            <td>String</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>className(class-name)</td>
+            <td>自定义的 class 名称。</td>
             <td>String</td>
             <td>-</td>
           </tr>
