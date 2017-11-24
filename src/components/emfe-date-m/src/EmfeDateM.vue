@@ -128,7 +128,6 @@ export default {
       if (this.choiced) {
         date = `${this.year}${this.format}${this.month}${this.format}${this.day}`;
       }
-      console.log(date, 'date');
       return date;
     },
     dateName() {
@@ -214,7 +213,6 @@ export default {
       }
     },
     initData() {
-      console.log(this.choiced, 3388);
       if (this.value && this.value !== this.placeholder) {
         const dates = this.value.split(this.format);
         this.year = TimeTool.zeroFill(dates[0] - 0);
@@ -270,7 +268,6 @@ export default {
     resetDays() {
       const enabledDate = this.splitEnabledDate();
       this.years = [];
-      console.log(JSON.stringify(enabledDate));
       for (let i = this.yearEnd; i > this.yearStart - 1; i--) {
         this.years.push(TimeTool.handleConputedDate(i, this.disabledYears, 'year', enabledDate, this, this.enabledDate.length > 1));
       }
@@ -371,14 +368,12 @@ export default {
       if (this.canSetNow) {
         this.setNow();
         this.resetDays();
-        console.log(this.year, this.month, this.day);
       }
       setTimeout(() => {
         this.month = TimeTool.loopChoice(this.months, this.month);
         this.day = TimeTool.loopChoice(this.days, this.day);
         this.refreshIscroll();
         this.scrollAll();
-        console.log(12, this.year, this.month, this.day);
       });
     },
     scrollAll() {
