@@ -9,8 +9,13 @@
     <br>
     <br>
     <br>
-    <emfe-radio index="aaa0" name="group1" @change="changeaaa">111文字</emfe-radio>
-    <emfe-radio index="aaa1" name="group1" @change="changeaaa">222文字</emfe-radio>
+    <emfe-radio index="0" className="" name="group1" :disabled="false" tip="这是按钮的提示">这是单选按钮</emfe-radio>
+    <br>
+    <br>
+    <br>
+    <br>
+    <emfe-radio styleIndex="orange" index="aaa0" name="group1" @change="changeaaa">111文字</emfe-radio>
+    <emfe-radio styleIndex="orange" index="aaa1" name="group1" @change="changeaaa">222文字</emfe-radio>
     {{ aaaindex }}
     <br>
     <br>
@@ -36,7 +41,7 @@
           </emfe-radio-group>
         </div>
       </emfe-radio>
-      <emfe-radio index="2" name="groupSlide1" :statu="index === 2" @change="change" :slideShow="slideShow">文字
+      <emfe-radio index="2" name="groupSlide1" :statu="index === 2" @change="change" :slideShow="slideShow" tip="这是单选的提示">文字
         <div slot="slide">
           <emfe-radio-group>
             <emfe-radio index="0" name="groupSlide2-1" :statu="index === 0" @change="change">每台电脑/手机限填一次</emfe-radio>
@@ -103,6 +108,18 @@
           <td>“禁止”状态添加disabled</td>
           <td>Boolean</td>
           <td>-</td>
+        </tr>
+        <tr>
+          <td>tip</td>
+          <td>问号提示</td>
+          <td>String</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>styleIndex</td>
+          <td>控制选中图片颜色，purple: 紫色，green：绿色，lightBlue： 浅蓝色，orange： 橙色</td>
+          <td>String</td>
+          <td>default 为 蓝色</td>
         </tr>
       </tbody>
     </table>

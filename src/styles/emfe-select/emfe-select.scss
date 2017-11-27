@@ -20,6 +20,19 @@
     right: 8px;
   }
 
+  &-selectBox {
+    display: flex;
+    align-items: center;
+
+    &-tipSelect {
+      width: 240px;
+    }
+  }
+
+  &-tooltip {
+    margin-left: 8px;
+  }
+
   &-input {
     @include border(all);
 
