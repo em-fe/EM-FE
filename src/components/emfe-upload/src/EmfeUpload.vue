@@ -280,7 +280,6 @@ export default {
     },
     // 拖拽大方块改变截图位置
     dragPosMove(ev, left, top) {
-      console.log(left, top);
       this.interceptLeft = left;
       this.interceptTop = top;
     },
