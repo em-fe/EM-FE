@@ -89,9 +89,11 @@ export function getElementLeft(element){
 
 export function getElementTop(element){
   var actualTop = element.offsetTop;
+  console.log('actualTop0', element.offsetTop);
   var current = element.offsetParent;
   while (current !== null){
     actualTop += current.offsetTop;
+    console.log('actualTop11', current.offsetParent, current.offsetTop);
     current = current.offsetParent;
   }
   return actualTop;

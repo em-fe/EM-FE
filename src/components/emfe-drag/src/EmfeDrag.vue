@@ -6,6 +6,7 @@
 <script>
 import { getStyle, getElementLeft, getElementTop } from '../../../tools/assist';
 import _ from '../../../tools/lodash';
+import ie from '../../../tools/ie';
 
 // 记录位置 x,y
 const refPos = {
@@ -62,6 +63,10 @@ export default {
       type: Boolean,
       default: true,
     },
+    padding: {
+      type: Array,
+      default: () => [0, 0],
+    },
   },
   computed: {
     dragName() {
@@ -85,6 +90,7 @@ export default {
         this.parent = this.dragEl[0].parentNode;
         this.parentLeft = getElementLeft(this.parent);
         this.parentTop = getElementTop(this.parent);
+        console.log(this.parentTop, 'this.parentTop');
         this.parentWidth = this.parent.clientWidth;
         this.parentHeight = this.parent.clientHeight;
         this.elWidth = this.dragEl[0].clientWidth;
@@ -106,27 +112,45 @@ export default {
       refPos.y = e.pageY;
       document.addEventListener('mousemove', this.move, false);
       document.addEventListener('mouseup', this.up, false);
-
+      console.log(e.clientY, this.parentTop, 'this.parentTop');
       let downTop = e.clientY - this.parentTop;
       let downLeft = e.clientX - this.parentLeft;
 
+      console.log(downTop, 'if');
+      console.log((!-[1,]), 'ie', this.padding);
+      console.log('end if');
+      // ie 360兼容模式， qq兼容模式，外加 padding 不识别，导致框向下
+      if (ie()) {
+        downTop -= this.padding[1];
+        downLeft -= this.padding[0];
+      }
+
+
       if (this.dragEl && this.dragEl.length > 0) {
+        this.parentPaddingTop = parseInt(getStyle(this.parent, 'paddingTop'), 10);
+        this.parentPaddingLeft = parseInt(getStyle(this.parent, 'paddingLeft'), 10);
         // 有可能会变宽高，比如截取器
         this.elWidth = this.dragEl[0].clientWidth;
         this.elHeight = this.dragEl[0].clientHeight;
         const elEleWidth = this.$el.clientWidth;
+        console.log(this.$el, 'this.$el');
+        console.log(this.elHeight, this.$el.clientHeight, 'height');
         const elEleHeight = this.$el.clientHeight;
         downTop -= this.parentPaddingTop;
         downTop += this.scrollTop;
+        console.log(this.parentPaddingTop, this.scrollTop, 'this.scrollTop');
         downLeft -= this.parentPaddingLeft;
         downLeft += this.scrollLeft;
         if (Array.isArray(this.initialValue)) {
+          console.log(downTop, this.initialValue[1], 'isArray');
           downTop += this.initialValue[1];
           downLeft += this.initialValue[0];
         } else {
+          console.log(downTop, this.initialValue, 'no isArray');
           downTop += this.initialValue;
           downLeft += this.initialValue;
         }
+        console.log(downTop, elEleHeight - this.elHeight, 'downTop before foreach');
         this.dragEl.forEach((dragElement) => {
           if (downTop < 0) {
             downTop = 0;
@@ -152,11 +176,14 @@ export default {
         this.elWidth = this.$el.clientWidth;
         this.elHeight = this.$el.clientHeight;
       }
+      console.log(downTop, 'downTop');
       this.$emit('beforeDrag', e, downLeft, downTop);
     },
     move(e) {
       const disPosX = e.pageX - refPos.x;
       const disPosY = e.pageY - refPos.y;
+
+      console.log(refPos.y, 'refPos.y');
 
       let elLeft = 0;
       let elTop = 0;
@@ -179,6 +206,13 @@ export default {
         elLeft = this.elLeft + disPosX;
         elTop = this.elTop + disPosY;
       }
+
+      if (ie()) {
+        elTop -= this.padding[1];
+        elLeft -= this.padding[0];
+        this.parentHeight = this.parent.clientHeight;
+      }
+      console.log(this.parentHeight, this.parent.clientHeight, 'parentHeight');
 
       const newMovePos = this.testLimit(elLeft, elTop);
 
@@ -206,6 +240,9 @@ export default {
       this.$emit('drag', e, newMovePos[0], newMovePos[1], refPos.oldX - newMovePos[0], refPos.oldY - newMovePos[1]);
       refPos.oldX = newMovePos[0];
       refPos.oldY = newMovePos[1];
+
+      console.log(refPos.oldY,
+      'refPos.oldY');
 
       e.stopPropagation();
       return false;

@@ -20,7 +20,7 @@
     </template>
     <emfe-modal :show="interceptModal" title="截取器" @close="formCancel" @cancel="formCancel" @ok="formOk" okText="保存" className="form">
       <div slot="modal-main" class="emfe-upload-intercept-wrap" :style="{'padding-top': `${dragPaddingTop}px`, 'padding-left': `${dragPaddingLeft}px`}">
-        <emfe-drag class="emfe-upload-intercept-drag" :dragEl="drag1" :style="{ width: `${dragWidth}px`, height: `${dragHeight}px`}" :initialValue="[-interceptCanvasWidth/2, -interceptCanvasHeight/2]" limit="true" @drag="dragPosMove">
+        <emfe-drag class="emfe-upload-intercept-drag" :dragEl="drag1" :style="{ width: `${dragWidth}px`, height: `${dragHeight}px`}" :initialValue="[-interceptCanvasWidth/2, -interceptCanvasHeight/2]" limit="true" @drag="dragPosMove" :padding="[dragPaddingLeft, dragPaddingTop]">
           <img :src="img" class="emfe-upload-intercept-img" :style="{ width: `${dragWidth}px`, height: `${dragHeight}px`}" ref="previewImg">
           <div class="emfe-upload-intercept" :style="{width: `${interceptCanvasWidth}px`, height: `${interceptCanvasHeight}px`, left: `${interceptLeft}px`, top: `${interceptTop}px`}" ref="drag1">
             <emfe-drag class="emfe-upload-intercept-point emfe-upload-intercept-point-nw" @drag="nwPosMove" :moveEle="false"></emfe-drag>
@@ -280,6 +280,7 @@ export default {
     },
     // 拖拽大方块改变截图位置
     dragPosMove(ev, left, top) {
+      console.log(left, top);
       this.interceptLeft = left;
       this.interceptTop = top;
     },
