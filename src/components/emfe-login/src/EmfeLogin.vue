@@ -241,7 +241,6 @@ export default {
           style: '',
           href: '',
         });
-        console.log(obj);
       }
     },
   },
