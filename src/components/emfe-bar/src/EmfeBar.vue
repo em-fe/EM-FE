@@ -8,8 +8,8 @@
             <router-link :to="childrenData.routers" class="emfe-bar-link" :class="{' emfe-bar-link-disabled': isDisabled}">{{ childrenData.title }}</router-link>
           </li>
           <li class="emfe-bar-item" :class="{'emfe-bar-item-on': childrenIndex == childrenDataIndex}" v-else>
-            <span href="javascript:;" class="emfe-bar-btn" :class="{' emfe-bar-btn-disabled': isDisabled}" @click="toogleChild(childrenDataIndex)" >{{ childrenData.title }}</span>
-            <i class="emfe-bar-arrow"></i>
+            <span href="javascript:;" class="emfe-bar-btn" :class="{' emfe-bar-btn-disabled': isDisabled}" @click="toogleChild(childrenDataIndex)">{{ childrenData.title }}</span>
+            <i class="emfe-bar-arrow" @click="toogleChild(childrenDataIndex)"></i>
             <emfe-transition name="gradual">
               <ul class="emfe-bar-childlist" v-show="childrenIndex == childrenDataIndex">
                 <li class="emfe-bar-childitem" v-for="child in childrenData.children">

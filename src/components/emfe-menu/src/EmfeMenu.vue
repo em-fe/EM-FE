@@ -36,8 +36,8 @@
               <a class="emfe-menu-minor-link" :href="childrenData.url" target="_blank" v-else>{{ childrenData.title }}</a>
             </li>
             <li class="emfe-menu-minor-item" :class="{'emfe-menu-minor-item-on': childrenIndex == childrenDataIndex}" v-else :key="childrenDataIndex">
-              <span href="javascript:;" class="emfe-menu-minor-btn" @click="toogleChild(childrenDataIndex)" >{{ childrenData.title }}</span>
-              <i class="emfe-menu-minor-arrow"></i>
+              <span href="javascript:;" class="emfe-menu-minor-btn" @click="toogleChild(childrenDataIndex)">{{ childrenData.title }}</span>
+              <i class="emfe-menu-minor-arrow" @click="toogleChild(childrenDataIndex)"></i>
               <emfe-transition name="gradual">
                 <ul class="emfe-menu-minor-childlist" v-show="childrenIndex == childrenDataIndex">
                   <li class="emfe-menu-minor-childitem" v-for="(child, childindex) in childrenData.children" :key="childindex">
