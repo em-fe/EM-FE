@@ -127,6 +127,12 @@
           <td>0</td>
         </tr>
         <tr>
+          <td>padding</td>
+          <td>拖拽元素附加的内边距[left, top]</td>
+          <td>Array</td>
+          <td>[0, 0]</td>
+        </tr>
+        <tr>
           <td>className(class-name)</td>
           <td>自定义的 class 名称。</td>
           <td>String</td>

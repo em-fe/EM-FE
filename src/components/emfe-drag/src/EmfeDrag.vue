@@ -6,6 +6,7 @@
 <script>
 import { getStyle, getElementLeft, getElementTop } from '../../../tools/assist';
 import _ from '../../../tools/lodash';
+import ie from '../../../tools/ie';
 
 // 记录位置 x,y
 const refPos = {
@@ -62,6 +63,10 @@ export default {
       type: Boolean,
       default: true,
     },
+    padding: {
+      type: Array,
+      default: () => [0, 0],
+    },
   },
   computed: {
     dragName() {
@@ -85,6 +90,7 @@ export default {
         this.parent = this.dragEl[0].parentNode;
         this.parentLeft = getElementLeft(this.parent);
         this.parentTop = getElementTop(this.parent);
+
         this.parentWidth = this.parent.clientWidth;
         this.parentHeight = this.parent.clientHeight;
         this.elWidth = this.dragEl[0].clientWidth;
@@ -110,7 +116,16 @@ export default {
       let downTop = e.clientY - this.parentTop;
       let downLeft = e.clientX - this.parentLeft;
 
+      // ie 360兼容模式， qq兼容模式，外加 padding 不识别，导致框向下
+      if (ie()) {
+        downTop -= this.padding[1];
+        downLeft -= this.padding[0];
+      }
+
+
       if (this.dragEl && this.dragEl.length > 0) {
+        this.parentPaddingTop = parseInt(getStyle(this.parent, 'paddingTop'), 10);
+        this.parentPaddingLeft = parseInt(getStyle(this.parent, 'paddingLeft'), 10);
         // 有可能会变宽高，比如截取器
         this.elWidth = this.dragEl[0].clientWidth;
         this.elHeight = this.dragEl[0].clientHeight;
@@ -127,6 +142,7 @@ export default {
           downTop += this.initialValue;
           downLeft += this.initialValue;
         }
+
         this.dragEl.forEach((dragElement) => {
           if (downTop < 0) {
             downTop = 0;
@@ -152,6 +168,7 @@ export default {
         this.elWidth = this.$el.clientWidth;
         this.elHeight = this.$el.clientHeight;
       }
+
       this.$emit('beforeDrag', e, downLeft, downTop);
     },
     move(e) {
@@ -178,6 +195,12 @@ export default {
       } else {
         elLeft = this.elLeft + disPosX;
         elTop = this.elTop + disPosY;
+      }
+
+      if (ie()) {
+        elTop -= this.padding[1];
+        elLeft -= this.padding[0];
+        this.parentHeight = this.parent.clientHeight;
       }
 
       const newMovePos = this.testLimit(elLeft, elTop);
