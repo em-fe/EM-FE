@@ -56,9 +56,14 @@ a {
   text-decoration: none;
 }
 
-input {
+input,
+optgroup,
+select,
+textarea {
   font-family: 'Microsoft YaHei', 'PingFangSC', 'Helvetica', sans-serif, 'Arial' !important;
+}
 
+input {
   &:focus {
     outline: none;
   }
