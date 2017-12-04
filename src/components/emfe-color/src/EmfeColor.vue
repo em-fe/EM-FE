@@ -167,11 +167,13 @@ export default {
   methods: {
     beforeDragSB(e, left, top) {
       const sb = Color.getSB(this, left, top);
+      console.log(JSON.stringify(sb));
       this.hsb.s = sb.s;
       this.hsb.b = sb.b;
       this.$emit('change', this.hex);
     },
     dragSB(e, left, top) {
+      console.log(left, 'left');
       this.beforeDragSB(e, left, top);
     },
     beforeDragH(e, left, top) {

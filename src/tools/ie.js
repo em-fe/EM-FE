@@ -1,3 +1,1 @@
-export default () => {
-  return !!window.ActiveXObject || "ActiveXObject" in window;
-};
+export default () => !!window.ActiveXObject || 'ActiveXObject' in window;
