@@ -2063,13 +2063,13 @@ em-cookie@^1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/em-cookie/-/em-cookie-1.0.6.tgz#bbc77f85f83402b9452f728e04d8490d38c99c62"
 
-em-jsonp@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/em-jsonp/-/em-jsonp-1.0.3.tgz#2d8847c4eb703c6691b9c6a445cfbccd03ea2b9e"
+em-jsonp@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/em-jsonp/-/em-jsonp-1.0.4.tgz#589d25b3079730e64faf225cf5336eae8aa72e0c"
 
-em-underline@^1.0.8:
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/em-underline/-/em-underline-1.0.8.tgz#25f4cb8ab3fc7570536ac290fcbfef0e0a5410f2"
+em-underline@^1.0.10:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/em-underline/-/em-underline-1.1.0.tgz#991fb4d1734cee7643a54dc3e31d6aabf33b7a81"
 
 emojis-list@^2.0.0:
   version "2.1.0"
