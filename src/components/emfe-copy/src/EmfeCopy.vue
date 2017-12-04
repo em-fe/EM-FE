@@ -1,6 +1,6 @@
 <template>
   <div class="emfe-copy" :class="copyName">
-    <span :class="textName">{{text}}：</span>
+    <span :class="textName" v-if="text">{{text}}</span>
     <input class="emfe-copy-input" :class="valueName" :value="copyValue" ref="copyInput" :readonly="read"/>
     <a class="emfe-copy-btn" :class="btnName" @click="copyHandle" :title="title">
       <emfe-icon type="fuzhi" class="emfe-copy-btn-icon" :class="iconName" @icon-click="copyHandle"></emfe-icon>
@@ -19,7 +19,7 @@ export default {
     },
     text: {
       type: String,
-      default: '表单页面',
+      default: '表单页面：',
     },
     title: {
       type: String,
