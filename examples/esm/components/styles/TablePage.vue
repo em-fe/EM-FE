@@ -173,7 +173,7 @@ export default {
   name: 'table-page',
   data() {
     return {
-      cell: 4,
+      cell: 3,
       column1:[
         {
           title: 'icon22',
@@ -294,6 +294,7 @@ export default {
           address7: {text:'北京市朝阳区芍药居7', row:false},
           address8: {text:'北京市朝阳区芍药居7', row:false},
           address9: {text:'北京市朝阳区芍药居7', row:false},
+          disabled: true,
         },
       ],
       column2:[
