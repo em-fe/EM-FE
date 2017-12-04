@@ -232,7 +232,8 @@ export default {
     toggleType() {
       this.weixin = !this.weixin;
       if (this.weixin) {
-        const obj = new window.WxLogin({
+        /* eslint-disable no-new */
+        new window.WxLogin({
           id: 'login_weixin',
           appid: 'wx0fc7f448c3ed4e4e',
           scope: 'snsapi_login',
