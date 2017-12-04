@@ -44,7 +44,7 @@
       </thead>
       <tbody>
         <tr>
-          <td>click</td>
+          <td>click(icon-click 依然能用)</td>
           <td>点击触发。并且是阻止冒泡。</td>
           <td>-</td>
         </tr>

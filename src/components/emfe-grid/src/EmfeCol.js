@@ -86,7 +86,9 @@ export default {
       }
     });
 
-    classList.push(`${this.className}-col`);
+    if (this.className) {
+      classList.push(`${this.className}-col`);
+    }
 
     return h(this.tag, {
       class: [prefixCls, classList],

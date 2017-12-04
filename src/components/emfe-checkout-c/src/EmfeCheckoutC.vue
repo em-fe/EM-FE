@@ -44,7 +44,10 @@ export default {
     },
     title: String,
     inline: String,
-    change: Function,
+    change: {
+      type: Function,
+      default: () => {},
+    },
     index: [Number, String],
     name: String,
   },
@@ -84,9 +87,8 @@ export default {
       this.setValue(e.target.checked);
       this.$emit('input', this.checkoutStatus);
       this.$emit('checked', this.checkoutStatus, this.title, this.index);
-      if (this.change) {
-        this.change(this.checkoutStatus, this.title, this.index);
-      }
+      this.$emit('change', this.checkoutStatus, this.title, this.index);
+      this.change(this.checkoutStatus, this.title, this.index);
     },
     setValue(checked = this.value) {
       this.checkoutStatus = checked;

@@ -217,6 +217,7 @@ export default {
         this.hour = hour.num;
         this.setTimeChoice();
         this.$emit('choice', this.time);
+        this.$emit('change', this.time);
         this.$emit('input', this.time);
       }
     },
@@ -226,6 +227,7 @@ export default {
         this.minute = minute.num;
         this.setTimeChoice();
         this.$emit('choice', this.time);
+        this.$emit('change', this.time);
         this.$emit('input', this.time);
       }
     },
@@ -235,6 +237,7 @@ export default {
         this.second = second.num;
         this.setTimeChoice();
         this.$emit('choice', this.time);
+        this.$emit('change', this.time);
         this.$emit('input', this.time);
       }
     },

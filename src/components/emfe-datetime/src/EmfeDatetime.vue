@@ -143,10 +143,12 @@ export default {
     },
     choiceDate() {
       this.choiced = true;
+      this.$emit('change', this.dateTime);
       this.$emit('choice-date', this.dateTime);
     },
     choiceTime() {
       this.choiced = true;
+      this.$emit('change', this.dateTime);
       this.$emit('choice-time', this.dateTime);
     },
     cancel() {

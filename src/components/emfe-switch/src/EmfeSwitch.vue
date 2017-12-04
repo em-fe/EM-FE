@@ -64,6 +64,7 @@ export default {
           this.changeValue();
         }
         this.$emit('toggle', this.currentValue);
+        this.$emit('change', this.currentValue);
       }
     },
     changeValue() {

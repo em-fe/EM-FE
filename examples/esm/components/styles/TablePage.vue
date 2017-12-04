@@ -154,14 +154,9 @@
       </thead>
       <tbody>
         <tr>
-          <td>jump事件</td>
-          <td>点击tr出发，返回值为tr的index</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>thJump事件</td>
-          <td>点击thead触发，返回值为当前th的index</td>
-          <td>-</td>
+          <td>click (jump | thJump 依然能用)</td>
+          <td>点击 tr|th 触发</td>
+          <td>当前索引</td>
         </tr>
       </tbody>
     </table>

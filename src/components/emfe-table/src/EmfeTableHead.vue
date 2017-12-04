@@ -51,6 +51,7 @@ export default {
   methods: {
     jump(index) {
       this.$emit('thJump', index);
+      this.$emit('click', index);
     },
   },
 };

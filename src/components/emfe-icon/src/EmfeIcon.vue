@@ -31,6 +31,7 @@ export default {
   methods: {
     clickFn(event) {
       this.$emit('icon-click');
+      this.$emit('click');
       this.click();
       if (this.stop && event) {
         event.stopPropagation();

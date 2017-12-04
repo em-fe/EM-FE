@@ -102,6 +102,12 @@
           <td>Boolean</td>
           <td>false</td>
         </tr>
+        <tr>
+          <td>change</td>
+          <td>点击多选框触发</td>
+          <td>Function</td>
+          <td>function(){}</td>
+        </tr>
       </tbody>
     </table>
     <h3>注册的方法</h3>
@@ -115,7 +121,7 @@
       </thead>
       <tbody>
         <tr>
-          <td>checked</td>
+          <td>change(checked 依然能用)</td>
           <td>点击多选框触发</td>
           <td>返回选中状态 | 选中的title</td>
         </tr>

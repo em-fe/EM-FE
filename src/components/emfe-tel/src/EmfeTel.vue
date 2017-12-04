@@ -106,6 +106,7 @@ export default {
       this.nowData = item;
       this.flagStatus = false;
       this.$emit('choice', this.nowData);
+      this.$emit('change', this.nowData);
       this.$emit('input', this.nowData);
     },
     telChange(ev) {
