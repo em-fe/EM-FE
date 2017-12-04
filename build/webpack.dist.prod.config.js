@@ -32,7 +32,7 @@ module.exports = merge(webpackBaseConfig, {
     },
     plugins: [
         // 注入内容
-        new webpack.BannerPlugin('@ auther 李梦龙\n@ version '+ pkg.version +'\n@ time '+ oAllTime),
+        new webpack.BannerPlugin('@ name '+ pkg.name +'\n@ version '+ pkg.version +'\n@ time '+ oAllTime),
         // @todo
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': '"production"'
