@@ -3,7 +3,7 @@
     <div class="emfe-tel-prefix" :class="[prefixName, {'emfe-tel-input-error-right': errOk}]" @click.stop="toggle">
       <img class="emfe-tel-prefix-piece" :src="nowData.url" :alt="nowData.name" v-show="nowData.url">
       <span class="emfe-tel-prefix-text" :class="prefixTextName">+{{ nowData.prefix }}</span>
-      <ul class="emfe-tel-prefix-flag" v-show="flagStatus">
+      <ul class="emfe-tel-prefix-flag" :class="prefixFlagName" v-show="flagStatus" >
         <li class="emfe-tel-prefix-label" v-for="data in datas" @click.stop="choice(data)">
           <img :src="data.url" :alt="data.name" class="emfe-tel-prefix-icon">
           <span class="emfe-tel-prefix-icon-piece">{{ data.name }}</span>
@@ -87,6 +87,13 @@ export default {
       return [
         {
           [`${this.className}-tel-error`]: !!this.className,
+        },
+      ];
+    },
+    prefixFlagName() {
+      return [
+        {
+          [`${this.className}-tel-prefix-flag`]: !!this.className,
         },
       ];
     },

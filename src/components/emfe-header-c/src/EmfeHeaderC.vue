@@ -7,7 +7,7 @@
       <div class="emfe-header-c-info">
         <span class="emfe-header-c-account">你好，
           <span v-if="loginFlg">{{ user }}</span>
-          <emfe-link class="emfe-header-c-logout" :routers="{}" @click="login" v-if="!loginFlg">请登录</emfe-link>  
+          <emfe-link class="emfe-header-c-logout" :routers="{}" @click="login" v-if="!loginFlg">请登录</emfe-link>
         </span>
         <emfe-link  v-if="integral.state > 0" className="emfe-header-c" :routers="{}" @click="integralClick">积分({{integral.value}})</emfe-link>
         <emfe-link className="emfe-header-c" :routers="{}" @click="orderClick">我的订单</emfe-link>
