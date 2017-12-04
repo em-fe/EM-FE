@@ -89,6 +89,10 @@ export default {
       type: Function,
       default: () => {},
     },
+    change: {
+      type: Function,
+      default: () => {},
+    },
     close: {
       type: Function,
       default: () => {},
@@ -98,6 +102,10 @@ export default {
       default: () => {},
     },
     addDataRadio: {
+      type: Function,
+      default: () => {},
+    },
+    add: {
       type: Function,
       default: () => {},
     },
@@ -114,6 +122,10 @@ export default {
       default: () => {},
     },
     clickInput: {
+      type: Function,
+      default: () => {},
+    },
+    click: {
       type: Function,
       default: () => {},
     },
@@ -168,22 +180,28 @@ export default {
       this.flagCheck = true;
       this.opened = true;
       this.clickInput();
+      this.click();
       this.$emit('clickInput');
+      this.$emit('click');
     },
     newListBtn() {
       const newdata = this.newListVal;
       this.$emit('addDataCheck', newdata, this.datas);
       this.$emit('addDataRadio', newdata, this.datas);
+      this.$emit('add', newdata, this.datas);
       this.newListVal = '';
       this.addDataCheck(newdata, this.datas);
       this.addDataRadio(newdata, this.datas);
+      this.add(newdata, this.datas);
     },
     spanTxt(item) {
       if (item.disabled !== 'disabled') {
         this.checkVal = item.name;
         this.flagCheck = false;
         this.$emit('getDefData', this.checkVal, item, this.datas);
+        this.$emit('change', this.checkVal, item, this.datas);
         this.getDefData(this.checkVal, item, this.datas);
+        this.change(this.checkVal, item, this.datas);
       }
     },
     closeFn() {
@@ -211,8 +229,10 @@ export default {
         this.$emit('checkedopt', item.name, item, this.datas);
         this.checkedopt(item.name, item, this.datas);
       }
-      this.$emit('getAllData', va, item);
-      this.getAllData(va, item);
+      this.$emit('getAllData', va, item, this.datas);
+      this.getAllData(va, item, this.datas);
+      this.$emit('change', va, item, this.datas);
+      this.change(va, item, this.datas);
     },
   },
   watch: {

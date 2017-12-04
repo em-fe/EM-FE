@@ -101,6 +101,7 @@ export default {
   methods: {
     jump(i) {
       this.$emit('jump', i);
+      this.$emit('click', i);
     },
   },
 };

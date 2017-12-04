@@ -70,32 +70,38 @@
         <tr>
           <td>disabled</td>
           <td>disabled为 ‘true’时input输入框禁用，disabled为‘false’时input输入框可用</td>
-          <td>Boolead,String</td>
-          <td>默认为'fasle'</td>
+          <td>Boolean,String</td>
+          <td>false</td>
         </tr>
         <tr>
           <td>active</td>
           <td>active为默认激活状态</td>
-          <td>Boolead,String</td>
-          <td>默认为'fasle'</td>
+          <td>Boolean,String</td>
+          <td>fasle</td>
         </tr>
         <tr>
           <td>index</td>
           <td>子组件索引</td>
-          <td>Boolead,String</td>
+          <td>String, Number</td>
           <td>必填</td>
         </tr>
         <tr>
           <td>type</td>
           <td>type 是icon图标的类型</td>
           <td>String</td>
-          <td>默认为''</td>
+          <td>''</td>
         </tr>
         <tr>
           <td>skin</td>
-          <td>筛选标签两种皮肤状态。</td>
+          <td>筛选标签两种皮肤状态。(yellow|blue)</td>
           <td>String</td>
           <td>-</td>
+        </tr>
+        <tr>
+          <td>click</td>
+          <td>点击事件</td>
+          <td>Function</td>
+          <td>function(){}</td>
         </tr>
       </tbody>
     </table>
@@ -110,9 +116,9 @@
       </thead>
       <tbody>
         <tr>
-          <td>tag</td>
-          <td>点击tag，返回当前tag的索引值和标签激活状态</td>
-          <td>Number</td>
+          <td>click(tag 依然能用)</td>
+          <td>点击事件</td>
+          <td>当前tag的索引值和标签激活状态</td>
         </tr>
       </tbody>
     </table>

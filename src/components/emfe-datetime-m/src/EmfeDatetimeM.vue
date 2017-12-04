@@ -335,6 +335,7 @@ export default {
         this.year = year.num;
         this.resetDays(this.year, this.month);
         this.$emit('choice-date', this.datetime);
+        this.$emit('change', this.datetime);
         this.$emit('input', this.datetime);
       }
     },
@@ -344,6 +345,7 @@ export default {
         this.month = month.num;
         this.resetDays(this.year, this.month);
         this.$emit('choice-date', this.datetime);
+        this.$emit('change', this.datetime);
         this.$emit('input', this.datetime);
       }
     },
@@ -352,6 +354,7 @@ export default {
         this.setChoice();
         this.day = day.num;
         this.$emit('choice-date', this.datetime);
+        this.$emit('change', this.datetime);
         this.$emit('input', this.datetime);
       }
     },
@@ -431,6 +434,7 @@ export default {
         this.hour = hour.num;
         this.setTimeChoice();
         this.$emit('choice-time', this.datetime);
+        this.$emit('change', this.datetime);
         this.$emit('input', this.datetime);
       }
     },
@@ -440,6 +444,7 @@ export default {
         this.minute = minute.num;
         this.setTimeChoice();
         this.$emit('choice-time', this.datetime);
+        this.$emit('change', this.datetime);
         this.$emit('input', this.datetime);
       }
     },
@@ -449,6 +454,7 @@ export default {
         this.second = second.num;
         this.setTimeChoice();
         this.$emit('choice-time', this.datetime);
+        this.$emit('change', this.datetime);
         this.$emit('input', this.datetime);
       }
     },

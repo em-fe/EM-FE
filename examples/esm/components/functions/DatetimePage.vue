@@ -115,29 +115,34 @@
       </thead>
       <tbody>
         <tr>
+          <td>choice</td>
+          <td>选中触发</td>
+          <td>日期时间</td>
+        </tr>
+        <tr>
           <td>choice-date</td>
           <td>选中日期触发</td>
-          <td>日期</td>
+          <td>日期时间</td>
         </tr>
         <tr>
           <td>choice-time</td>
           <td>选中时间触发</td>
-          <td>日期</td>
+          <td>日期时间</td>
         </tr>
         <tr>
           <td>ok</td>
           <td>确定触发</td>
-          <td>日期</td>
+          <td>日期时间</td>
         </tr>
         <tr>
           <td>close</td>
           <td>关闭触发</td>
-          <td>日期</td>
+          <td>日期时间</td>
         </tr>
         <tr>
           <td>cancel</td>
           <td>关闭触发</td>
-          <td>日期</td>
+          <td>日期时间</td>
         </tr>
       </tbody>
     </table>

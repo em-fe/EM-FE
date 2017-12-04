@@ -338,6 +338,7 @@ export default {
           this.refreshIscroll();
           this.scrollAll();
           this.$emit('choice', this.date);
+          this.$emit('change', this.date);
           this.$emit('input', this.date);
         }, 0);
       }
@@ -351,6 +352,7 @@ export default {
           this.refreshIscroll();
           this.scrollAll();
           this.$emit('choice', this.date);
+          this.$emit('change', this.date);
           this.$emit('input', this.date);
         }, 0);
       }
@@ -360,6 +362,7 @@ export default {
         this.setChoice();
         this.day = day.num;
         this.$emit('choice', this.date);
+        this.$emit('change', this.date);
         this.$emit('input', this.date);
       }
     },

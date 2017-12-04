@@ -98,7 +98,7 @@
       </thead>
       <tbody>
         <tr>
-          <td>choice</td>
+          <td>change(choice 依然能用)</td>
           <td>选中日期触发</td>
           <td>日期</td>
         </tr>

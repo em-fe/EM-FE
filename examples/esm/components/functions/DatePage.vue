@@ -124,7 +124,7 @@
       </thead>
       <tbody>
         <tr>
-          <td>choice</td>
+          <td>change(choice 依然能用)</td>
           <td>选中日期触发</td>
           <td>日期</td>
         </tr>
@@ -159,7 +159,6 @@ export default {
       demo5: '',
       demo6: '2017/08/09',
       demo4opts: (date) => {
-        console.log(date, date.valueOf(), 1);
         return date && date.valueOf() < Date.now() - 86400000;
       },
     };

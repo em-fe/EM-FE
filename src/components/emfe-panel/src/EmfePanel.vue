@@ -39,9 +39,11 @@ export default {
   methods: {
     toggle(status) {
       this.$emit('switch-toogle', status);
+      this.$emit('change', status);
     },
     iconClick(index) {
       this.$emit('icon-click', index);
+      this.$emit('click', index);
     },
   },
   computed: {

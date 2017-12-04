@@ -58,6 +58,7 @@ export default {
   methods: {
     page(indexPage) {
       this.$emit('togglePage', indexPage);
+      this.$emit('change', indexPage);
       this.curPageOn = indexPage;
     },
     prevPage() {

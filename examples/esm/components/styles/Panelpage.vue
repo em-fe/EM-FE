@@ -62,12 +62,12 @@
       </thead>
       <tbody>
         <tr>
-          <td>switchs</td>
+          <td>change(switchs 依然能用)</td>
           <td>点击switch，返回switch的状态</td>
           <td>true or false</td>
         </tr>
         <tr>
-          <td>icon-click</td>
+          <td>click(icon-click 依然能用)</td>
           <td>点击icon触发</td>
           <td>-</td>
         </tr>

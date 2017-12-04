@@ -51,11 +51,14 @@ export default {
         if (document.execCommand('copy', false, null)) {
           document.execCommand('Copy');
           this.$emit('copySuccess');
+          this.$emit('success');
         } else {
           this.$emit('copyFail');
+          this.$emit('error');
         }
       } catch (err) {
         this.$emit('copyFail');
+        this.$emit('error');
       }
       copyInput.blur();
     },

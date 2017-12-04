@@ -26,6 +26,10 @@ export default {
       type: [String, Number],
       required: true,
     },
+    click: {
+      type: Function,
+      default: () => {},
+    },
   },
   data() {
     return {
@@ -56,6 +60,8 @@ export default {
       }
       this.$parent.getIndex(this.index);
       this.$emit('tag', this.index, this.activeOk);
+      this.$emit('click', this.index, this.activeOk);
+      this.click(this.index, this.activeOk);
     },
   },
   watch: {

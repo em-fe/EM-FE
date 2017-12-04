@@ -277,6 +277,7 @@ export default {
         // 如果有确定按钮
         if (!this.confirm) {
           this.$emit('choice', this.date);
+          this.$emit('change', this.date);
         } else {
           this.ok();
         }

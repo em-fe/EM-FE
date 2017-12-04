@@ -114,7 +114,7 @@
       </thead>
       <tbody>
         <tr>
-          <td>toggle</td>
+          <td>change(toggle 依然能用)</td>
           <td>
             默认开关是false（关闭）状态，<br>
             点击时会切换到true（开启）状态，<br>

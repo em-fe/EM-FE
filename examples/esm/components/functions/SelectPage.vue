@@ -69,6 +69,174 @@
               type="default"<br>
               tip="提示文字"<br>
               placement="right"<br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <br><br>
+    <h3>API</h3>
+    <table style="width:100%;text-align:center" class="table">
+      <thead>
+        <tr>
+          <th width="25%">属性</th>
+          <th width="30%">说明</th>
+          <th width="20%">类型</th>
+          <th width="25%">默认值</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>className</td>
+          <td>自定义的 class 名称。</td>
+          <td>String</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>type</td>
+          <td>下拉框类型(checkbox|default|icon)</td>
+          <td>String</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>seleStu</td>
+          <td>有没有新建</td>
+          <td>String</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>addText</td>
+          <td>添加标签提示文案</td>
+          <td>String</td>
+          <td>添加标签</td>
+        </tr>
+        <tr>
+          <td>checkVals</td>
+          <td>默认显示</td>
+          <td>Array</td>
+          <td>[]</td>
+        </tr>
+        <tr>
+          <td>errOk</td>
+          <td>是否报错</td>
+          <td>Boolean</td>
+          <td>false</td>
+        </tr>
+        <tr>
+          <td>selectText</td>
+          <td>下拉框提示文案</td>
+          <td>String</td>
+          <td>选择标签</td>
+        </tr>
+        <tr>
+          <td>datas</td>
+          <td>数据</td>
+          <td>Array</td>
+          <td>必须</td>
+        </tr>
+        <tr>
+          <td>disabled</td>
+          <td>是否可用</td>
+          <td>Boolean</td>
+          <td>false</td>
+        </tr>
+        <tr>
+          <td>click(clickInput)</td>
+          <td>点击下拉框事件</td>
+          <td>Function</td>
+          <td>function(){}</td>
+        </tr>
+        <tr>
+          <td>add[addDataCheck(多选添加)|addDataRadio(单选添加) 依然能用]</td>
+          <td>添加数据</td>
+          <td>Function</td>
+          <td>function(){}</td>
+        </tr>
+        <tr>
+          <td>change[getDefData(选中下拉选项) 依然能用]</td>
+          <td>选中下拉选项</td>
+          <td>Function</td>
+          <td>function(){}</td>
+        </tr>
+        <tr>
+          <td>getDefData</td>
+          <td>选中下拉选项(type = icon|default)</td>
+          <td>Function</td>
+          <td>function(){}</td>
+        </tr>
+        <tr>
+          <td>getAllData</td>
+          <td>选中下拉选项(type = checkbox)</td>
+          <td>Function</td>
+          <td>function(){}</td>
+        </tr>
+        <tr>
+          <td>checkedopt</td>
+          <td>多选情况选中</td>
+          <td>Function</td>
+          <td>function(){}</td>
+        </tr>
+        <tr>
+          <td>delopt</td>
+          <td>多选情况 不选中</td>
+          <td>Function</td>
+          <td>function(){}</td>
+        </tr>
+        <tr>
+          <td>close</td>
+          <td>关闭时触发</td>
+          <td>Function</td>
+          <td>function(){}</td>
+        </tr>
+      </tbody>
+    </table>
+    <br><br>
+    <table style="width:100%;text-align:center" class="table">
+      <thead>
+        <tr>
+          <th width="33%">事件名</th>
+          <th width="33%">说明</th>
+          <th width="33%">返回值</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>click (clickInput 依然能用)</td>
+          <td>点击下拉框事件</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>add[addDataCheck(多选添加)|addDataRadio(单选添加) 依然能用]</td>
+          <td>添加数据</td>
+          <td>[新添加的值，所有数据]</td>
+        </tr>
+        <tr>
+          <td>getDefData</td>
+          <td>选中下拉选项(type = icon|default)</td>
+          <td>[当前选中值，选中的数据，所有数据]</td>
+        </tr>
+        <tr>
+          <td>getAllData</td>
+          <td>选中下拉选项(type = checkbox)</td>
+          <td>[当前选中值，选中的数据，所有数据]</td>
+        </tr>
+        <tr>
+          <td>change[getDefData(选中下拉选项)|getAllData(选择触发) 依然能用]</td>
+          <td>选中下拉选项</td>
+          <td>[当前选中值，所有数据]</td>
+        </tr>
+        <tr>
+          <td>checkedopt</td>
+          <td>多选情况选中</td>
+          <td>[当前选中值，当前数据，所有数据]</td>
+        </tr>
+        <tr>
+          <td>delopt</td>
+          <td>多选情况 不选中</td>
+          <td>[当前选中值，当前数据，所有数据]</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 <script>

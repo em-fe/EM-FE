@@ -82,7 +82,7 @@
       </thead>
       <tbody>
         <tr>
-          <td>choice</td>
+          <td>change(choice 依然能用)</td>
           <td>点击选择前缀</td>
           <td>当前对象</td>
         </tr>
@@ -124,7 +124,7 @@ export default {
   methods: {
     blur() {
       console.log('失去焦点');
-    }, 
+    },
   },
 };
 </script>

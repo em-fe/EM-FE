@@ -49,12 +49,12 @@
       </thead>
       <tbody>
         <tr>
-          <td>copySuccess</td>
+          <td>success (copySuccess 依然能用)</td>
           <td>复制成功触发</td>
           <td>-</td>
         </tr>
         <tr>
-          <td>copyFail</td>
+          <td>error (copyFail 依然能用)</td>
           <td>复制失败触发</td>
           <td>-</td>
         </tr>
