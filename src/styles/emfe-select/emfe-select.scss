@@ -205,7 +205,7 @@
     top: 32px;
     left: 0;
     background-color: $nothing-color;
-    z-index: 2;
+    z-index: 3; // 3 修复表单层级问题  http://form.evente.cn/1000039
     font-size: 12px;
     padding: 3px 0;
     border-top: none;
