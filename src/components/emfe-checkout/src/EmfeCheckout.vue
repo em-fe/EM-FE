@@ -2,8 +2,8 @@
   <div class="emfe-checkout" :class="checkoutName">
     <label class="emfe-checkout-box" :class="{'emfe-checkout-box-forever': checkedForever}">
       <i class="emfe-checkout-inner" :class="[innerName, checkedName]"></i>
-      <input type="checkbox" class="emfe-checkout-status" :checked="checkoutStatus" @click.stop="click" @change="alocked" :name="name" :disabled="disable" v-if="stop">
-      <input type="checkbox" class="emfe-checkout-status" :checked="checkoutStatus" @change="alocked" :name="name" :disabled="disable" v-else>
+      <input type="checkbox" class="emfe-checkout-status" :class="{'emfe-checkout-box-forever': checkedForever}" :checked="checkoutStatus" @click.stop="click" @change="alocked" :name="name" :disabled="disable" v-if="stop">
+      <input type="checkbox" class="emfe-checkout-status" :class="{'emfe-checkout-box-forever': checkedForever}" :checked="checkoutStatus" @change="alocked" :name="name" :disabled="disable" v-else>
       <span class="emfe-checkout-text" :class="textName">{{ newtitle }}</span>
       <emfe-tooltip className="emfe-checkout" theme="light" :placement="placement" v-if="tip">
         <emfe-icon type="tishi" slot="render"></emfe-icon>
