@@ -169,8 +169,24 @@ const install = (Vue) => {
     Vue.directive(key, emfeDir[key]);
   });
 
-  Vue.prototype.$EmfeMessage = EmfeMessage;
-  Vue.prototype.$EmfeFormTest = EmfeFormTest;
+  if (!Vue.prototype.$EmfeMessage) {
+    Object.defineProperties(Vue.prototype, {
+      $EmfeMessage: {
+        get() {
+          return EmfeMessage;
+        },
+      },
+    });
+  }
+  if (!Vue.prototype.$EmfeFormTest) {
+    Object.defineProperties(Vue.prototype, {
+      $EmfeFormTest: {
+        get() {
+          return EmfeFormTest;
+        },
+      },
+    });
+  }
   Vue.use(VueCookie);
 };
 
