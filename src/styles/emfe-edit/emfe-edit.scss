@@ -79,6 +79,7 @@
         line-height: 32px;
         text-align: center;
         color: $icon-color-default;
+        cursor: pointer;
 
         @include border(left);
       }
@@ -100,6 +101,7 @@
       text-align: center;
       line-height: 13px;
       color: $icon-color-default;
+      cursor: pointer;
 
       @include border(all, $icon-color-default);
     }
