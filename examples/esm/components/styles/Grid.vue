@@ -21,10 +21,10 @@
     <emfe-row type="flex">
       <emfe-col :span="12">
         <emfe-row className="row2">
-          <emfe-col span="12">
+          <emfe-col :xl="2" :lg="3" :md="6" :ms="12" :xs="12" span="12">
             <div>col-12</div>
           </emfe-col>
-          <emfe-col span="12">
+          <emfe-col :xl="2" :lg="3" :md="6" :ms="12" :xs="12" span="12">
             <div class="blue">col-12</div>
           </emfe-col>
         </emfe-row>
