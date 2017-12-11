@@ -23,10 +23,24 @@
         <emfe-drag class="emfe-upload-intercept-drag" :dragEl="drag1" :style="{ width: `${dragWidth}px`, height: `${dragHeight}px`}" :initialValue="[-interceptCanvasWidth/2, -interceptCanvasHeight/2]" limit="true" @drag="dragPosMove" :padding="[dragPaddingLeft, dragPaddingTop]">
           <img :src="img" class="emfe-upload-intercept-img" :style="{ width: `${dragWidth}px`, height: `${dragHeight}px`}" ref="previewImg">
           <div class="emfe-upload-intercept" :style="{width: `${interceptCanvasWidth}px`, height: `${interceptCanvasHeight}px`, left: `${interceptLeft}px`, top: `${interceptTop}px`}" ref="drag1">
+            <!-- 左上 -->
             <emfe-drag class="emfe-upload-intercept-point emfe-upload-intercept-point-nw" @drag="nwPosMove" @afterDrag="upDot" :moveEle="false"></emfe-drag>
+            <!-- 右上 -->
             <emfe-drag class="emfe-upload-intercept-point emfe-upload-intercept-point-ne" @drag="nePosMove" @afterDrag="upDot" :moveEle="false"></emfe-drag>
+            <!-- 左下 -->
             <emfe-drag class="emfe-upload-intercept-point emfe-upload-intercept-point-sw" @drag="swPosMove" @afterDrag="upDot" :moveEle="false"></emfe-drag>
+            <!-- 右下 -->
             <emfe-drag class="emfe-upload-intercept-point emfe-upload-intercept-point-se" @drag="sePosMove" @afterDrag="upDot" :moveEle="false"></emfe-drag>
+            <!-- 右下 -->
+            <emfe-drag class="emfe-upload-intercept-point emfe-upload-intercept-point-se" @drag="sePosMove" @afterDrag="upDot" :moveEle="false"></emfe-drag>
+            <!-- 上 -->
+            <emfe-drag class="emfe-upload-intercept-point emfe-upload-intercept-point-top" @drag="topPosMove" @afterDrag="upDot" :moveEle="false" v-if="!interceptSync"></emfe-drag>
+            <!-- 右 -->
+            <emfe-drag class="emfe-upload-intercept-point emfe-upload-intercept-point-right" @drag="rightPosMove" @afterDrag="upDot" :moveEle="false" v-if="!interceptSync"></emfe-drag>
+            <!-- 下 -->
+            <emfe-drag class="emfe-upload-intercept-point emfe-upload-intercept-point-bottom" @drag="bottomPosMove" @afterDrag="upDot" :moveEle="false" v-if="!interceptSync"></emfe-drag>
+            <!-- 左 -->
+            <emfe-drag class="emfe-upload-intercept-point emfe-upload-intercept-point-left" @drag="leftPosMove" @afterDrag="upDot" :moveEle="false" v-if="!interceptSync"></emfe-drag>
           </div>
         </emfe-drag>
       </div>
@@ -274,6 +288,10 @@ export default {
         this.getImageUrl();
         this.postHandle(upload(this.clipData, uploadJpeg));
         this.closeInterceptModal();
+
+        // const { clientWidth, clienHegiht } = this.$refs.previewImg;
+        // this.interceptLeft = clientWidth / 2;
+        // this.interceptTop = clienHegiht / 2;
       };
     },
     getImageUrl() {
@@ -298,8 +316,41 @@ export default {
       const cHeight = this.interceptCanvasHeight;
       let widthStep = -left;
       let heightStep = -top;
-      // 左下
-      if (type === 'sw') {
+      // 下
+      if (type === 'top') { // 左上
+        const lChangeTop = 5 + mouseTop;
+        heightStep = nenwTopOld - lChangeTop;
+        nenwTopOld = lChangeTop;
+        // 第二次改变的时候，修复恢复原位
+        if (firstDot) {
+          firstDot = false;
+          heightStep = lChangeTop > 0 ? 1 : -1;
+        }
+      } else if (type === 'right') { // 如果是右
+        const lChange = left - (cWidth - 5);
+        widthStep = lChange;
+        // 第二次改变的时候，修复恢复原位
+        if (firstDot) {
+          firstDot = false;
+          widthStep = lChange > 0 ? 1 : -1;
+        }
+      } else if (type === 'bottom') {
+        const lChangeTop = top - (cHeight - 5);
+        heightStep = lChangeTop;
+        // 第二次改变的时候，修复恢复原位
+        if (firstDot) {
+          firstDot = false;
+          heightStep = lChangeTop > 0 ? 1 : -1;
+        }
+      } else if (type === 'left') { // 左
+        const lChange = pointOldLeft - left;
+        widthStep = lChange;
+        // 第二次改变的时候，修复恢复原位
+        if (firstDot) {
+          firstDot = false;
+          widthStep = lChange > 0 ? 1 : -1;
+        }
+      } else if (type === 'sw') { // 左下
         const lChange = pointOldLeft - left;
         const lChangeTop = top - (cHeight - 5);
         widthStep = lChange;
@@ -343,7 +394,7 @@ export default {
       const heng = mouseLeft + this.interceptLeft <= this.dragWidth - 5;
       const shu = mouseTop + this.interceptTop <= this.dragHeight - 5;
 
-      if (heng && canWidth && (this.interceptLeft > 2.5 || type === 'se')) {
+      if (heng && canWidth && (this.interceptLeft > 2.5 || type === 'se' || type === 'right')) {
         this.interceptCanvasWidth += widthStep;
       }
       if (shu && canHeight && (this.interceptLeft > 2.5 || type === 'se')) {
@@ -351,7 +402,7 @@ export default {
       }
       // 改变左边位置
       // 左上 || 左下
-      if (canWidth && (type === 'nw' || type === 'sw')) {
+      if (canWidth && (type === 'nw' || type === 'sw' || type === 'left')) {
         this.interceptLeft -= widthStep;
         if (this.interceptLeft < 5) {
           this.interceptLeft = 2.5;
@@ -359,7 +410,7 @@ export default {
         pointOldLeft = left;
       }
       // 左上 || 右上
-      if (canHeight && (type === 'nw' || type === 'ne')) {
+      if (canHeight && (type === 'nw' || type === 'ne' || type === 'top')) {
         this.interceptTop -= heightStep;
       }
     },
@@ -382,6 +433,22 @@ export default {
     // 右下
     sePosMove(ev, left, top, lDir) {
       this.pointMoveChangeSize(ev, this.interceptCanvasWidth - left, left, this.interceptCanvasHeight - top, top, lDir, 'se');
+    },
+    // 上
+    topPosMove(ev, left, top, lDir) {
+      this.pointMoveChangeSize(ev, left, left, top, top, lDir, 'top');
+    },
+    // 右
+    rightPosMove(ev, left, top, lDir) {
+      this.pointMoveChangeSize(ev, left, left, top, top, lDir, 'right');
+    },
+    // 下
+    bottomPosMove(ev, left, top, lDir) {
+      this.pointMoveChangeSize(ev, left, left, top, top, lDir, 'bottom');
+    },
+    // 左
+    leftPosMove(ev, left, top, lDir) {
+      this.pointMoveChangeSize(ev, left, left, top, top, lDir, 'left');
     },
     setAlign(res) {
       const { clientWidth, clientHeight } = this.$refs.img;
@@ -454,6 +521,9 @@ export default {
                 this.interceptCanvasHeight = this.dragHeight;
                 this.interceptCanvasWidth = interceptCanvasScale / this.interceptCanvasHeight;
               }
+              // 展示图片，截图的框框初始化在中间
+              this.interceptLeft = (this.dragWidth - this.intercept[0]) / 2;
+              this.interceptTop = (this.dragHeight - this.intercept[1]) / 2;
             }, 0);
           };
         };
