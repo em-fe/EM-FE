@@ -1,18 +1,23 @@
 <template>
   <div class="uploadpage">
     <h3>截取器</h3>
-    <emfe-upload type="icon" action="http://gateway.inner.evente.cn:8000/public/upload" :intercept="[100, 60]"></emfe-upload>
+    <emfe-upload type="icon" action="https://www.easy-mock.com/mock/5a2e29ed89d2205cbfe7a459/emfe/upload" :intercept="[100, 60]" :interceptSync="false"></emfe-upload>
     <pre>
-      &lt;emfe-upload type="icon" action="http://gateway.inner.evente.cn:8000/public/upload" :intercept="[100, 60]"&gt;&lt;/emfe-upload&gt;
+      &lt;emfe-upload type="icon" action="https://www.easy-mock.com/mock/5a2e29ed89d2205cbfe7a459/emfe/upload" :intercept="[100, 60]" :interceptSync="false"&gt;&lt;/emfe-upload&gt;
+    </pre>
+    <h3>截取器(等比缩放)</h3>
+    <emfe-upload type="icon" action="https://www.easy-mock.com/mock/5a2e29ed89d2205cbfe7a459/emfe/upload" :intercept="[100, 60]"></emfe-upload>
+    <pre>
+      &lt;emfe-upload type="icon" action="https://www.easy-mock.com/mock/5a2e29ed89d2205cbfe7a459/emfe/upload" :intercept="[100, 60]"&gt;&lt;/emfe-upload&gt;
     </pre>
     <br>
     <br>
     <br>
     <br>
     <br>
-    <emfe-upload action="http://gateway.inner.evente.cn:8000/public/upload" :intercept="[100, 60]"></emfe-upload>
+    <emfe-upload action="https://www.easy-mock.com/mock/5a2e29ed89d2205cbfe7a459/emfe/upload" :intercept="[100, 60]"></emfe-upload>
     <pre>
-      &lt;emfe-upload action="http://gateway.inner.evente.cn:8000/public/upload" :intercept="[100, 60]"&gt;&lt;/emfe-upload&gt;
+      &lt;emfe-upload action="https://www.easy-mock.com/mock/5a2e29ed89d2205cbfe7a459/emfe/upload" :intercept="[100, 60]"&gt;&lt;/emfe-upload&gt;
     </pre>
     <br>
     <br>
@@ -20,10 +25,10 @@
     <br>
     <br>
     <h3>基本用法</h3>
-    <emfe-upload type="icon" action="http://gateway.inner.evente.cn:8000/public/upload"></emfe-upload>
+    <emfe-upload type="icon" action="https://www.easy-mock.com/mock/5a2e29ed89d2205cbfe7a459/emfe/upload"></emfe-upload>
     <br>
     <pre>
-      &lt;emfe-upload type="icon" action="http://gateway.inner.evente.cn:8000/public/upload"&gt;&lt;/emfe-upload&gt;
+      &lt;emfe-upload type="icon" action="https://www.easy-mock.com/mock/5a2e29ed89d2205cbfe7a459/emfe/upload"&gt;&lt;/emfe-upload&gt;
     </pre>
     <br>
     <br>
@@ -31,10 +36,10 @@
     <br>
     <br>
     <h3>扩展用法</h3>
-    <emfe-upload buttonText="上传文件" fileType='file' theme="primary" v-show="!src1" type="icon" action="http://gateway.inner.evente.cn:8000/public/upload?type=1" @success="suc"></emfe-upload>
+    <emfe-upload buttonText="上传文件" fileType='file' theme="primary" v-show="!src1" type="icon" action="https://www.easy-mock.com/mock/5a2e29ed89d2205cbfe7a459/emfe/upload?type=1" @success="suc"></emfe-upload>
     <img v-show="src1" :src="src1">
     <pre>
-      &lt;emfe-upload v-show="!src1" type="icon" action="http://gateway.inner.evente.cn:8000/public/upload" :success="suc"&gt;&lt;/emfe-upload&gt;
+      &lt;emfe-upload v-show="!src1" type="icon" action="https://www.easy-mock.com/mock/5a2e29ed89d2205cbfe7a459/emfe/upload" :success="suc"&gt;&lt;/emfe-upload&gt;
       &lt;img v-show="src1" :src="src1"&gt;
     </pre>
     <pre>
@@ -48,10 +53,10 @@
     <br>
     <br>
     <h3>另一种用法</h3>
-    <emfe-upload className="bbb" action="http://gateway.inner.evente.cn:8000/public/upload"></emfe-upload>
+    <emfe-upload className="bbb" action="https://www.easy-mock.com/mock/5a2e29ed89d2205cbfe7a459/emfe/upload"></emfe-upload>
     <br>
     <pre>
-      &lt;emfe-upload action="http://gateway.inner.evente.cn:8000/public/upload"&gt;&lt;/emfe-upload&gt;
+      &lt;emfe-upload action="https://www.easy-mock.com/mock/5a2e29ed89d2205cbfe7a459/emfe/upload"&gt;&lt;/emfe-upload&gt;
     </pre>
     <br>
     <br>
@@ -59,10 +64,10 @@
     <br>
     <br>
     <h3>禁用1</h3>
-    <emfe-upload type="icon" action="http://gateway.inner.evente.cn:8000/public/upload" :disabled="true"></emfe-upload>
+    <emfe-upload type="icon" action="https://www.easy-mock.com/mock/5a2e29ed89d2205cbfe7a459/emfe/upload" :disabled="true"></emfe-upload>
     <br>
     <pre>
-      &lt;emfe-upload type="icon" action="http://gateway.inner.evente.cn:8000/public/upload" :disabled="true"&gt;&lt;/emfe-upload&gt;
+      &lt;emfe-upload type="icon" action="https://www.easy-mock.com/mock/5a2e29ed89d2205cbfe7a459/emfe/upload" :disabled="true"&gt;&lt;/emfe-upload&gt;
     </pre>
     <br>
     <br>
@@ -70,9 +75,9 @@
     <br>
     <br>
     <h3>禁用2</h3>
-    <emfe-upload action="http://gateway.inner.evente.cn:8000/public/upload" :disabled="true"></emfe-upload>
+    <emfe-upload action="https://www.easy-mock.com/mock/5a2e29ed89d2205cbfe7a459/emfe/upload" :disabled="true"></emfe-upload>
     <pre>
-      &lt;emfe-upload action="http://gateway.inner.evente.cn:8000/public/upload" :disabled="true"&gt;&lt;/emfe-upload&gt;
+      &lt;emfe-upload action="https://www.easy-mock.com/mock/5a2e29ed89d2205cbfe7a459/emfe/upload" :disabled="true"&gt;&lt;/emfe-upload&gt;
     </pre>
     <br>
     <br>
@@ -80,15 +85,15 @@
     <br>
     <br>
     <h3>有图片用法</h3>
-    <emfe-upload url="http://www.mikecrm.com/ugc_2_a/pub/50/50oz53d92h8otumu6y7hy9h8lhtodabj/form/image/wMTAYnnFTntzhGluIt8R405Wdy6tAnY6.png" action="http://gateway.inner.evente.cn:8000/public/upload"></emfe-upload>
-    <emfe-upload url="http://moshtest.qiniudn.com/b5/49/1f/e8054ae706682549b921e78755.jpg" action="http://gateway.inner.evente.cn:8000/public/upload"></emfe-upload>
-    <emfe-upload url="http://www.mikecrm.com/ugc_2_a/pub/50/50oz53d92h8otumu6y7hy9h8lhtodabj/form/image/wMTAYnnFTntzhGluIt8R405Wdy6tAnY6.png" type="icon" action="http://gateway.inner.evente.cn:8000/public/upload"></emfe-upload>
-    <emfe-upload url="http://moshtest.qiniudn.com/b5/49/1f/e8054ae706682549b921e78755.jpg" type="icon" action="http://gateway.inner.evente.cn:8000/public/upload"></emfe-upload>
+    <emfe-upload url="http://www.mikecrm.com/ugc_2_a/pub/50/50oz53d92h8otumu6y7hy9h8lhtodabj/form/image/wMTAYnnFTntzhGluIt8R405Wdy6tAnY6.png" action="https://www.easy-mock.com/mock/5a2e29ed89d2205cbfe7a459/emfe/upload"></emfe-upload>
+    <emfe-upload url="http://moshtest.qiniudn.com/b5/49/1f/e8054ae706682549b921e78755.jpg" action="https://www.easy-mock.com/mock/5a2e29ed89d2205cbfe7a459/emfe/upload"></emfe-upload>
+    <emfe-upload url="http://www.mikecrm.com/ugc_2_a/pub/50/50oz53d92h8otumu6y7hy9h8lhtodabj/form/image/wMTAYnnFTntzhGluIt8R405Wdy6tAnY6.png" type="icon" action="https://www.easy-mock.com/mock/5a2e29ed89d2205cbfe7a459/emfe/upload"></emfe-upload>
+    <emfe-upload url="http://moshtest.qiniudn.com/b5/49/1f/e8054ae706682549b921e78755.jpg" type="icon" action="https://www.easy-mock.com/mock/5a2e29ed89d2205cbfe7a459/emfe/upload"></emfe-upload>
     <!-- http://moshtest.qiniudn.com/b5/49/1f/e8054ae706682549b921e78755.jpg -->
     <!-- http://www.mikecrm.com/ugc_2_a/pub/50/50oz53d92h8otumu6y7hy9h8lhtodabj/form/image/7LMA6ZFB8x0KyifVY86NdXqdbFQpjVEq.png -->
     <br>
     <pre>
-      &lt;emfe-upload url="http://moshtest.qiniudn.com/b5/49/1f/e8054ae706682549b921e78755.jpg" type="icon" action="http://gateway.inner.evente.cn:8000/public/upload"&gt;&lt;/emfe-upload&gt;
+      &lt;emfe-upload url="http://moshtest.qiniudn.com/b5/49/1f/e8054ae706682549b921e78755.jpg" type="icon" action="https://www.easy-mock.com/mock/5a2e29ed89d2205cbfe7a459/emfe/upload"&gt;&lt;/emfe-upload&gt;
     </pre>
     <br>
     <br>
@@ -178,7 +183,13 @@
           <td>intercept</td>
           <td>截取器开关，支持格式 [宽，高]</td>
           <td>Array</td>
-          <td>默认image,</td>
+          <td>[]</td>
+        </tr>
+        <tr>
+          <td>interceptSync</td>
+          <td>截取器改变是否等比截图大小</td>
+          <td>Boolean</td>
+          <td>true</td>
         </tr>
       </tbody>
     </table>
