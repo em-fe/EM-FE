@@ -9,7 +9,7 @@
 
 body {
   margin: 0;
-  font-family: 'Microsoft YaHei', 'PingFangSC', 'Helvetica', sans-serif, 'Arial';
+  font-family: 'Microsoft YaHei', 'PingFangSC', 'Helvetica', 'Arial', sans-serif;
 }
 
 h1,
@@ -41,7 +41,7 @@ button {
   background: none;
   margin: 0;
   padding: 0;
-  font-family: 'Microsoft YaHei', 'PingFangSC', 'Helvetica', sans-serif, 'Arial' !important;
+  font-family: 'Microsoft YaHei', 'PingFangSC', 'Helvetica', 'Arial', sans-serif !important;
 
   &:focus {
     outline: none;
@@ -60,7 +60,7 @@ input,
 optgroup,
 select,
 textarea {
-  font-family: 'Microsoft YaHei', 'PingFangSC', 'Helvetica', sans-serif, 'Arial' !important;
+  font-family: 'Microsoft YaHei', 'PingFangSC', 'Helvetica', 'Arial', sans-serif !important;
 }
 
 input {

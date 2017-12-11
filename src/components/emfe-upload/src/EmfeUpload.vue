@@ -43,6 +43,7 @@ import CONSTANT from '../../../contant';
 
 const uploadJpeg = 'image/jpeg';
 let pointOldLeft = 0; // 改变截取器遮罩大小
+let nenwTopOld = 0; // 改变截取器遮罩大小， 只用于 右上角在不等比的时候
 const iconBoxHeight = 70; //icon模式外框的高度
 const iconBoxWidth = 118; //icon模式外框的宽度
 let firstDot = false; // 是否是第一次用点改变大小
@@ -113,6 +114,10 @@ export default {
     intercept: {
       type: Array,
       default: () => [],
+    },
+    interceptSync: { // 是否等比缩放
+      type: Boolean,
+      default: true,
     },
     format: {
       type: Array,
@@ -288,45 +293,74 @@ export default {
       }
     },
     // 角部拖拽改变大小
-    pointMoveChangeSize(ev, left, mouseLeft, mouseTop, lDir, type) {
+    pointMoveChangeSize(ev, left, mouseLeft, top, mouseTop, lDir, type) {
       const cWidth = this.interceptCanvasWidth;
       const cHeight = this.interceptCanvasHeight;
       let widthStep = -left;
-      // 左上 || 左下
-      if (type === 'nw' || type === 'sw') {
+      let heightStep = -top;
+      // 左下
+      if (type === 'sw') {
         const lChange = pointOldLeft - left;
+        const lChangeTop = top - (cHeight - 5);
         widthStep = lChange;
+        heightStep = lChangeTop;
         // 第二次改变的时候，修复恢复原位
         if (firstDot) {
           firstDot = false;
           widthStep = lChange > 0 ? 1 : -1;
+          heightStep = lChangeTop > 0 ? 1 : -1;
+        }
+      } else if (type === 'nw') { // 左上
+        const lChange = pointOldLeft - left;
+        widthStep = lChange;
+        const lChangeTop = 5 + mouseTop;
+        heightStep = nenwTopOld - lChangeTop;
+        nenwTopOld = lChangeTop;
+        // 第二次改变的时候，修复恢复原位
+        if (firstDot) {
+          firstDot = false;
+          widthStep = lChange > 0 ? 1 : -1;
+          heightStep = lChangeTop > 0 ? 1 : -1;
+        }
+      } else if (type === 'ne') { // 如果是右上
+        const lChangeTop = 5 + mouseTop;
+        heightStep = nenwTopOld - lChangeTop;
+        nenwTopOld = lChangeTop;
+        // 第二次改变的时候，修复恢复原位
+        if (firstDot) {
+          firstDot = false;
+          heightStep = lChangeTop > 0 ? 1 : -1;
         }
       }
-      const heightStep = (cHeight * widthStep) / cWidth;
+      // 如果等比， 高度直接等比缩放
+      if (this.interceptSync) {
+        heightStep = (cHeight * widthStep) / cWidth;
+      }
+
       const canWidth = this.intercept[0] < cWidth + widthStep;
       const canHeight = this.intercept[1] < cHeight + heightStep;
       // 拖动左边的，x不能超出去，拖动右边的，宽度不能超过去
       const heng = mouseLeft + this.interceptLeft <= this.dragWidth - 5;
       const shu = mouseTop + this.interceptTop <= this.dragHeight - 5;
 
-      if (heng && shu && canWidth && canHeight && this.interceptLeft > 2.5) {
+      if (heng && canWidth && (this.interceptLeft > 2.5 || type === 'se')) {
         this.interceptCanvasWidth += widthStep;
+      }
+      if (shu && canHeight && (this.interceptLeft > 2.5 || type === 'se')) {
         this.interceptCanvasHeight += heightStep;
       }
       // 改变左边位置
-      if (canWidth && canHeight) {
-        // 左上 || 左下
-        if ((type === 'nw' || type === 'sw')) {
-          this.interceptLeft -= widthStep;
-          if (this.interceptLeft < 5) {
-            this.interceptLeft = 2.5;
-          }
-        }
-        // 左上 || 右上
-        if ((type === 'nw' || type === 'ne')) {
-          this.interceptTop -= heightStep;
+      // 左上 || 左下
+      if (canWidth && (type === 'nw' || type === 'sw')) {
+        this.interceptLeft -= widthStep;
+        if (this.interceptLeft < 5) {
+          this.interceptLeft = 2.5;
         }
         pointOldLeft = left;
+      }
+      // 左上 || 右上
+      if (canHeight && (type === 'nw' || type === 'ne')) {
+        this.interceptTop -= heightStep;
       }
     },
     // 点抬起
@@ -335,19 +369,19 @@ export default {
     },
     // 左上
     nwPosMove(ev, left, top, lDir) {
-      this.pointMoveChangeSize(ev, left, left, top, lDir, 'nw');
+      this.pointMoveChangeSize(ev, left, left, top, top, lDir, 'nw');
     },
     // 右上
     nePosMove(ev, left, top, lDir) {
-      this.pointMoveChangeSize(ev, this.interceptCanvasWidth - left, left, top, lDir, 'ne');
+      this.pointMoveChangeSize(ev, this.interceptCanvasWidth - left, left, this.interceptCanvasHeight - top, top, lDir, 'ne');
     },
     // 左下
     swPosMove(ev, left, top, lDir) {
-      this.pointMoveChangeSize(ev, left, left, top, lDir, 'sw');
+      this.pointMoveChangeSize(ev, left, left, top, top, lDir, 'sw');
     },
     // 右下
     sePosMove(ev, left, top, lDir) {
-      this.pointMoveChangeSize(ev, this.interceptCanvasWidth - left, left, top, lDir);
+      this.pointMoveChangeSize(ev, this.interceptCanvasWidth - left, left, this.interceptCanvasHeight - top, top, lDir, 'se');
     },
     setAlign(res) {
       const { clientWidth, clientHeight } = this.$refs.img;
