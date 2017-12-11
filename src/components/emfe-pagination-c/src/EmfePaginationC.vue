@@ -3,9 +3,9 @@
     <ul>
       <li class="emfe-pagination-c-item" :class="{disabled: curPageOn == 1}" @click="prevPage" v-if="pageCount > 1">上一页</li>
       <li class="emfe-pagination-c-item" :class="{'emfe-pagination-c-item-on': curPageOn == 1}" @click="page(1)">1</li>
-      <li class="emfe-pagination-c-item" v-show="curPageOn > 5 && pageCount > 10">...</li>
+      <li class="emfe-pagination-c-item" v-show="curPageOn > 5 && pageCount > 6">...</li>
       <li class="emfe-pagination-c-item" :class="{'emfe-pagination-c-item-on': curPageOn == index+offset}" v-for="(item,index) in middlePages" @click="page(index+offset)">{{index+offset}}</li>
-      <li class="emfe-pagination-c-item" v-show="curPageOn < bigLimit && pageCount > 10">...</li>
+      <li class="emfe-pagination-c-item" v-show="curPageOn < bigLimit && pageCount > 6">...</li>
       <li class="emfe-pagination-c-item" :class="{'emfe-pagination-c-item-on': curPageOn == pageCount}" @click="page(pageCount)" v-if="pageCount > 1">{{pageCount}}</li>
       <li class="emfe-pagination-c-item" :class="{disabled: curPageOn == pageCount}" @click="nextPage" v-if="pageCount > 1">下一页</li>
     </ul>
@@ -33,7 +33,7 @@ export default {
       let num;
       if (this.pageCount <= 2) {
         num = 0;
-      } else if (this.pageCount > 2 && this.pageCount <= 10) {
+      } else if (this.pageCount > 2 && this.pageCount <= 6) {
         num = this.pageCount - 2;
       } else {
         num = this.curPageOn > 999 ? 2 : 5;
