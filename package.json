@@ -74,7 +74,7 @@
     "stylelint-webpack-plugin": "^0.7.1",
     "uglify-js": "^3.0.18",
     "url-loader": "^0.5.9",
-    "vue": "^2.3.4",
+    "vue": "2.3.4",
     "vue-loader": "^12.2.1",
     "vue-router": "^2.6.0",
     "vuex": "^2.3.1",
@@ -86,6 +86,7 @@
     "babel-plugin-dynamic-import-webpack": "^1.0.1",
     "em-cookie": "^1.0.6",
     "em-jsonp": "^1.0.4",
-    "em-underline": "^1.0.10"
+    "em-underline": "^1.0.10",
+    "vue-template-compiler": "2.3.4"
   }
 }
