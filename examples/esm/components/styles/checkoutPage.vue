@@ -156,7 +156,13 @@ export default {
   },
   computed: {
     allChecked() {
-      return this.allDatas.every((data) => data.checked);
+      this.allDatas.every((data) => {
+        if (this.allDatas.length === 0) {
+          return false;
+        } else {
+          return data.checked;
+        }
+      });
     },
   },
   methods: {
