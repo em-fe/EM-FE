@@ -9,8 +9,8 @@ export default {
   name:  'pageDemo',
   data()  {
     return{
-      pageCount: 12,
-      curPage: 3,
+      pageCount: 18,
+      curPage: 1,
     }
   },
   methods:  {

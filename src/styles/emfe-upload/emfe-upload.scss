@@ -57,6 +57,34 @@
         right: -5px;
         top: -5px;
       }
+
+      &-top {
+        cursor: n-resize;
+        right: 50%;
+        top: -5px;
+        transform: translate(50%, 0);
+      }
+
+      &-bottom {
+        cursor: s-resize;
+        right: 50%;
+        bottom: -5px;
+        transform: translate(50%, 0);
+      }
+
+      &-right {
+        cursor: e-resize;
+        right: -5px;
+        top: 50%;
+        transform: translate(0, -50%);
+      }
+
+      &-left {
+        cursor: w-resize;
+        left: -5px;
+        top: 50%;
+        transform: translate(0, -50%);
+      }
     }
   }
 
