@@ -173,7 +173,7 @@ export default {
         this.start = val;
         this.resetCode();
         // 有时候不好用，根儿手机点击完了不换倒计时
-        this.auto();
+        // this.auto();
       }
     },
   },
