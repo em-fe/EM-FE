@@ -1,9 +1,9 @@
 <template>
   <div class="smscodeCodepage">
     <h3>普通用法</h3>
-    <emfe-smscode v-model="model" @click="click" :timeStart="start" @end="timeEnd"></emfe-smscode>
-    当前： {{ model }}
-    <pre>
+    <emfe-smscode v-model="model1" times="22" @click="click1" :timeStart="start1" :end="timeEnd1"></emfe-smscode>
+    当前： {{ model1 }}
+    <!-- <pre>
       &lt;emfe-smscode v-model="model"&gt;&lt;/emfe-smscode&gt;
     </pre>
     <br>
@@ -12,24 +12,24 @@
     <br>
     <br>
     <h3>icon用法</h3>
-    <emfe-smscode icon="fabu" v-model="model"></emfe-smscode>
+    <emfe-smscode icon="fabu" :timeStart="start" @end="timeEnd" v-model="model"></emfe-smscode>
     {{ model }}
     <br>
     <pre>
       &lt;emfe-smscode icon="fabu" v-model="model"&gt;&lt;/emfe-smscode&gt;
-    </pre>
+    </pre> -->
     <br>
     <br>
     <br>
     <br>
     <h3>自定义用法</h3>
-    <emfe-smscode className="demo" v-model="model" times="6" @blur="blur" @click="click" :timeStart="start" :end="timeEnd" :errOk="true">
+    <emfe-smscode className="demo" v-model="model" times="6" @click="click" :timeStart="start" :end="timeEnd" :errOk="true">
       <div slot="error">这是错误提示</div>
     </emfe-smscode>
     点击次数: {{ num }}
     {{ model }}
     <pre>
-      &lt;emfe-smscode className="demo" v-model="model" times="2" @click="click"&gt;&lt;/emfe-smscode&gt;
+      &lt;emfe-smscode className="demo" v-model="model" times="6" @click="click"&gt;&lt;/emfe-smscode&gt;
     </pre>
     <br>
     <br>
@@ -76,6 +76,12 @@
           <td>String</td>
           <td>请输入验证码</td>
         </tr>
+        <tr>
+          <td>icon</td>
+          <td>icon 的类型</td>
+          <td>String</td>
+          <td>-</td>
+        </tr>
       </tbody>
     </table>
     <h3>注册的方法</h3>
@@ -113,14 +119,21 @@ export default {
   data() {
     return {
       model: 111111,
+      model1: 2222,
       num: 0,
       start: false,
+      start1: false,
     };
   },
   watch: {
     start(val, oldVal) {
       if (val !== oldVal) {
         this.start = val;
+      }
+    },
+    start1(val, oldVal) {
+      if (val !== oldVal) {
+        this.start1 = val;
       }
     },
   },
@@ -132,8 +145,11 @@ export default {
     timeEnd(val) {
       this.start = val;
     },
-    blur() {
-
+    click1() {
+      this.start1 = true;
+    },
+    timeEnd1(val) {
+      this.start1 = val;
     },
   },
 };
