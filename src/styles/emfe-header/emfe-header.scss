@@ -2,7 +2,6 @@ $header-height: 64px;
 
 .#{$prefix}header {
   @include clearfix();
-  @include box-shadow(y);
   @include border(bottom);
 
   height: $header-height;
