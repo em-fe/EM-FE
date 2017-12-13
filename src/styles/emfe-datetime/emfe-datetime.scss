@@ -73,6 +73,10 @@
       text-align: left;
       display: block;
       color: $text-color;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      height: 32px;
 
       &-choice {
         color: $menu-text-color;
