@@ -7,11 +7,11 @@
           <li class="emfe-bar-item" v-if="!childrenData.children">
             <router-link :to="childrenData.routers" class="emfe-bar-link" :class="{' emfe-bar-link-disabled': isDisabled}">{{ childrenData.title }}</router-link>
           </li>
-          <li class="emfe-bar-item" :class="{'emfe-bar-item-on': childrenIndex == childrenDataIndex}" v-else>
+          <li class="emfe-bar-item" :class="{'emfe-bar-item-on': accordion ? childrenIndex == childrenDataIndex : minorStatus[childrenDataIndex]}" v-else>
             <span href="javascript:;" class="emfe-bar-btn" :class="{' emfe-bar-btn-disabled': isDisabled}" @click="toogleChild(childrenDataIndex)">{{ childrenData.title }}</span>
             <i class="emfe-bar-arrow" @click="toogleChild(childrenDataIndex)"></i>
             <emfe-transition name="gradual">
-              <ul class="emfe-bar-childlist" v-show="childrenIndex == childrenDataIndex">
+              <ul class="emfe-bar-childlist" v-show="accordion ? childrenIndex == childrenDataIndex : minorStatus[childrenDataIndex]">
                 <li class="emfe-bar-childitem" v-for="child in childrenData.children">
                   <router-link :to="child.routers" class="emfe-bar-childlink" :class="{' emfe-bar-childlink-disabled': isDisabled}">{{ child.title }}</router-link>
                 </li>
@@ -37,6 +37,7 @@ export default {
       childrenIndex: -1,
       isDisabled: this.disabled,
       newDatas: [],
+      minorStatus: [], // 二级展开收起状态
     };
   },
   props: {
@@ -55,6 +56,10 @@ export default {
     className: String,
     disabled: Boolean,
     disableRex: String,
+    accordion: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     barName() {
@@ -68,6 +73,15 @@ export default {
   methods: {
     handle(val) {
       this.newDatas = val;
+      // 添加不是手风琴效果的二级展开状态
+      this.minorStatus = [];
+      val.forEach((data) => {
+        if (data.children) {
+          data.children.forEach(() => {
+            this.minorStatus.push(false);
+          });
+        }
+      });
     },
     testUrl() {
       const { fullPath, name } = this.$route;
@@ -92,6 +106,8 @@ export default {
         const eqLast = itemIndex === childrenLast;
         this.childrenIndex = eqLast ? -1 : itemIndex;
         childrenLast = eqLast ? -1 : itemIndex;
+
+        this.minorStatus.splice(itemIndex, 1, !this.minorStatus[itemIndex]);
       }
     },
     tochildren(item) {
