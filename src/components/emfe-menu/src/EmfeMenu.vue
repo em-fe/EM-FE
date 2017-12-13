@@ -2,8 +2,8 @@
   <div class="emfe-menu" :class="menuName" ref="menu">
     <div class="emfe-menu-main">
       <button class="emfe-menu-main-header" @click="menuToShort">
-        <emfe-icon class="emfe-menu-main-sidebar2" type="cedaohangzhankai" @icon-click="menuToShort" v-if="menuShort"></emfe-icon>
-        <emfe-icon class="emfe-menu-main-sidebar" type="cedaohangzhankai" @icon-click="menuToShort" v-else></emfe-icon>
+        <emfe-icon class="emfe-menu-main-sidebar" type="cedaohangzhankai" @icon-click="menuToShort" v-if="menuShort"></emfe-icon>
+        <emfe-icon class="emfe-menu-main-sidebar2" type="cedaohangzhankai" @icon-click="menuToShort" v-else></emfe-icon>
       </button>
       <div class="emfe-menu-iscroll">
         <ul class="emfe-menu-main-list">
