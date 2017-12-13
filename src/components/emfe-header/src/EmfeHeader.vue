@@ -3,9 +3,11 @@
     <div class="emfe-header-eye">
       <img class="emfe-header-eye-img" :src="logo" height="100%" @click="goHome">
     </div>
+    <div class="emfe-header-controller">
+      <span class="emfe-header-info-text" @click="goIndex">控制台首页</span>
+    </div>
     <div class="emfe-header-info">
       <div class="emfe-header-account">
-        <span class="emfe-header-info-text" @click="goIndex">控制台首页</span>
         <span class="emfe-header-info-hello">&nbsp;你好，<span class="emfe-header-info-text" @click="goAccount">{{ user }}</span></span>
       </div>
       <span class="emfe-header-info-text" @click="logout">退出账号</span>
