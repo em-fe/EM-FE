@@ -163,7 +163,7 @@ export default {
       if (itemIndex > -1) {
         this.mainIndex = itemIndex;
         // 添加不是手风琴效果的二级展开状态
-        item.children.forEach((child) => {
+        item.children.forEach(() => {
           this.minorStatus.push(false);
         });
         this.menuMainClick(item);
