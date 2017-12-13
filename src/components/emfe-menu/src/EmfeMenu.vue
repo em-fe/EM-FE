@@ -35,11 +35,11 @@
               <router-link :to="childrenData.routers" class="emfe-menu-minor-link" v-if="!childrenData.url">{{ childrenData.title }}</router-link>
               <a class="emfe-menu-minor-link" :href="childrenData.url" target="_blank" v-else>{{ childrenData.title }}</a>
             </li>
-            <li class="emfe-menu-minor-item" :class="{'emfe-menu-minor-item-on': childrenIndex == childrenDataIndex}" v-else :key="childrenDataIndex">
+            <li class="emfe-menu-minor-item" :class="{'emfe-menu-minor-item-on': accordion ? childrenIndex == childrenDataIndex : minorStatus[childrenDataIndex]}" v-else :key="childrenDataIndex">
               <span href="javascript:;" class="emfe-menu-minor-btn" @click="toogleChild(childrenDataIndex)">{{ childrenData.title }}</span>
               <i class="emfe-menu-minor-arrow" @click="toogleChild(childrenDataIndex)"></i>
               <emfe-transition name="gradual">
-                <ul class="emfe-menu-minor-childlist" v-show="childrenIndex == childrenDataIndex">
+                <ul class="emfe-menu-minor-childlist" v-show="accordion ? childrenIndex == childrenDataIndex : minorStatus[childrenDataIndex]">
                   <li class="emfe-menu-minor-childitem" v-for="(child, childindex) in childrenData.children" :key="childindex">
                     <router-link :to="child.routers" class="emfe-menu-minor-childlink" v-if="!child.url">{{ child.title }}</router-link>
                     <a class="emfe-menu-minor-childlink" :class="{'router-link-exact-active router-link-active': activeUrl === child.url}" :href="child.url" target="_blank" v-else>{{ child.title }}</a>
@@ -74,6 +74,7 @@ export default {
       menuShort: false,
       childrentatus: false, // 记录二级是否打开
       activeUrl: '',
+      minorStatus: [], // 二级展开收起状态
     };
   },
   props: {
@@ -85,6 +86,10 @@ export default {
     fullpath: {
       type: String,
       default: '',
+    },
+    accordion: {
+      type: Boolean,
+      default: false,
     },
   },
   computed: {
@@ -157,6 +162,10 @@ export default {
       });
       if (itemIndex > -1) {
         this.mainIndex = itemIndex;
+        // 添加不是手风琴效果的二级展开状态
+        item.children.forEach(() => {
+          this.minorStatus.push(false);
+        });
         this.menuMainClick(item);
       }
       this.activeUrl = window.location.href;
@@ -165,6 +174,8 @@ export default {
       const eqLast = itemIndex === childrenLast;
       this.childrenIndex = eqLast ? -1 : itemIndex;
       childrenLast = eqLast ? -1 : itemIndex;
+
+      this.minorStatus.splice(itemIndex, 1, !this.minorStatus[itemIndex]);
     },
     tochildren(item) {
       if (O.hOwnProperty(item, 'routers') || O.hOwnProperty(item, 'url')) {
