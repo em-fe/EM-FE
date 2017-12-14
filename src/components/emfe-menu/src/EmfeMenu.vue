@@ -134,10 +134,10 @@ export default {
       let itemIndex = -1;
       const newFullPath = this.fullpath ? this.fullpath : fullPath;
       // 添加二级展开状态
-      this.newDatas.forEach((data, dataNum) => {
+      this.newDatas.forEach((data) => {
         // 如果一级导航有子节点
         if (O.hOwnProperty(data, 'children')) {
-          data.children.forEach((dataChild, dataChildIndex) => {
+          data.children.forEach((dataChild) => {
             // 如果二级导航有子节点
             if (O.hOwnProperty(dataChild, 'children')) {
               dataChild.children.forEach(() => {
@@ -160,7 +160,6 @@ export default {
                 const inGrandsonFullPath = O.hOwnProperty(dataGrandson, 'routers') && O.hOwnProperty(dataGrandson.routers, 'path') && newFullPath.indexOf(dataGrandson.routers.path) > -1;
                 if (inGrandsonFullPath || (O.hOwnProperty(dataGrandson, 'routers') && name === O.hOwnProperty(dataGrandson.routers, 'name'))) {
                   // 打开二级导航的折叠
-                  console.log(dataChildIndex, 'dataChildIndex');
                   this.toogleChild(dataChildIndex);
                   item = data;
                   itemIndex = dataNum;
@@ -191,7 +190,6 @@ export default {
       childrenLast = eqLast ? -1 : itemIndex;
 
       this.minorStatus.splice(itemIndex, 1, !this.minorStatus[itemIndex]);
-      console.log(this.minorStatus, 'this.minorStatus');
     },
     tochildren(item) {
       if (O.hOwnProperty(item, 'routers') || O.hOwnProperty(item, 'url')) {
