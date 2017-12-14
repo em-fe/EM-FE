@@ -133,7 +133,21 @@ export default {
       let item = {};
       let itemIndex = -1;
       const newFullPath = this.fullpath ? this.fullpath : fullPath;
-
+      // 添加二级展开状态
+      this.newDatas.forEach((data, dataNum) => {
+        // 如果一级导航有子节点
+        if (O.hOwnProperty(data, 'children')) {
+          data.children.forEach((dataChild, dataChildIndex) => {
+            // 如果二级导航有子节点
+            if (O.hOwnProperty(dataChild, 'children')) {
+              dataChild.children.forEach(() => {
+                this.minorStatus.push(false);
+              });
+            }
+          });
+        }
+      });
+      // 真正的一级子节点的判断，二级子节点的判断，一级二级选中状态的判断
       this.newDatas.forEach((data, dataNum) => {
         const newDataFullPath = O.hOwnProperty(data, 'routers') && O.hOwnProperty(data.routers, 'path') && newFullPath.indexOf(data.routers.path) > -1;
         // 如果一级导航有子节点
@@ -146,6 +160,7 @@ export default {
                 const inGrandsonFullPath = O.hOwnProperty(dataGrandson, 'routers') && O.hOwnProperty(dataGrandson.routers, 'path') && newFullPath.indexOf(dataGrandson.routers.path) > -1;
                 if (inGrandsonFullPath || (O.hOwnProperty(dataGrandson, 'routers') && name === O.hOwnProperty(dataGrandson.routers, 'name'))) {
                   // 打开二级导航的折叠
+                  console.log(dataChildIndex, 'dataChildIndex');
                   this.toogleChild(dataChildIndex);
                   item = data;
                   itemIndex = dataNum;
@@ -163,9 +178,9 @@ export default {
       if (itemIndex > -1) {
         this.mainIndex = itemIndex;
         // 添加不是手风琴效果的二级展开状态
-        item.children.forEach(() => {
-          this.minorStatus.push(false);
-        });
+        // item.children.forEach(() => {
+        //   this.minorStatus.push(false);
+        // });
         this.menuMainClick(item);
       }
       this.activeUrl = window.location.href;
@@ -176,6 +191,7 @@ export default {
       childrenLast = eqLast ? -1 : itemIndex;
 
       this.minorStatus.splice(itemIndex, 1, !this.minorStatus[itemIndex]);
+      console.log(this.minorStatus, 'this.minorStatus');
     },
     tochildren(item) {
       if (O.hOwnProperty(item, 'routers') || O.hOwnProperty(item, 'url')) {
