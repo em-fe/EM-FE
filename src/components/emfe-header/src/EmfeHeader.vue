@@ -1,5 +1,5 @@
 <template>
-  <header class="emfe-header">
+  <header class="emfe-header" :class="headerName">
     <div class="emfe-header-eye">
       <img class="emfe-header-eye-img" :src="logo" height="100%" @click="goHome">
     </div>
@@ -25,6 +25,16 @@ export default {
     user: {
       type: String,
       required: true,
+    },
+    className: String,
+  },
+  computed: {
+    headerName() {
+      return [
+        {
+          [`${this.className}-header`]: !!this.className,
+        },
+      ];
     },
   },
   methods: {
