@@ -50,6 +50,7 @@
 <script>
 import _ from '../../../tools/lodash';
 import upload from '../../../tools/upload';
+import { getElementLeft, getElementTop } from '../../../tools/assist';
 import { openMask, closeMask } from '../../../tools/body';
 import EmfeMessage from '../../emfe-message/index';
 import ajax from './ajax';
@@ -394,24 +395,62 @@ export default {
       const heng = mouseLeft + this.interceptLeft <= this.dragWidth - 5;
       const shu = mouseTop + this.interceptTop <= this.dragHeight - 5;
 
-      if (heng && canWidth && (this.interceptLeft > 2.5 || type === 'se' || type === 'right')) {
-        this.interceptCanvasWidth += widthStep;
+      if (this.interceptSync) { // 如果等比
+        if (heng && shu && canWidth && canHeight &&
+          getElementLeft(this.$refs.previewImg) < ev.clientX - 3 &&
+          getElementTop(this.$refs.previewImg) < ev.clientY - 3) {
+          this.interceptCanvasWidth += widthStep;
+          this.interceptCanvasHeight += heightStep;
+        }
+      } else {
+        if (heng && canWidth && (this.interceptLeft > 2.5 || type === 'se' || type === 'right')) {
+          this.interceptCanvasWidth += widthStep;
+        }
+        if (shu && canHeight && (this.interceptLeft > 2.5 || type === 'se') && this.interceptTop > 0) {
+          this.interceptCanvasHeight += heightStep;
+        }
       }
-      if (shu && canHeight && (this.interceptLeft > 2.5 || type === 'se')) {
-        this.interceptCanvasHeight += heightStep;
-      }
+
       // 改变左边位置
       // 左上 || 左下
-      if (canWidth && (type === 'nw' || type === 'sw' || type === 'left')) {
-        this.interceptLeft -= widthStep;
-        if (this.interceptLeft < 5) {
-          this.interceptLeft = 2.5;
+      if (this.interceptSync) {
+        if (heng && shu &&
+          getElementLeft(this.$refs.previewImg) < ev.clientX - 3 &&
+          getElementTop(this.$refs.previewImg) < ev.clientY - 3 &&
+          canWidth && canHeight) {
+          // 左上 || 左下
+          if ((type === 'nw' || type === 'sw')) {
+            this.interceptLeft -= widthStep;
+            if (this.interceptLeft < 5) {
+              this.interceptLeft = 2.5;
+            }
+          }
+          // 左上 || 右上
+          if ((type === 'nw' || type === 'ne')) {
+            this.interceptTop -= heightStep;
+            if (this.interceptTop < 5) {
+              this.interceptTop = 2.5;
+            }
+          }
+          pointOldLeft = left;
         }
-        pointOldLeft = left;
-      }
-      // 左上 || 右上
-      if (canHeight && (type === 'nw' || type === 'ne' || type === 'top')) {
-        this.interceptTop -= heightStep;
+      } else {
+        if (canWidth &&
+          (type === 'nw' || type === 'sw' || type === 'left')) {
+          this.interceptLeft -= widthStep;
+          if (this.interceptLeft < 5) {
+            this.interceptLeft = 2.5;
+          }
+          pointOldLeft = left;
+        }
+        // 左上 || 右上
+        if (
+          canHeight &&
+          (type === 'nw' || type === 'ne' || type === 'top') &&
+          (this.interceptLeft > 2.5 || type === 'se') &&
+          this.interceptTop > 2.5) {
+          this.interceptTop -= heightStep;
+        }
       }
     },
     // 点抬起
