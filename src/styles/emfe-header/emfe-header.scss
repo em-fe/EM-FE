@@ -12,14 +12,12 @@ $header-height: 64px;
   width: 100%;
 
   &-eye {
-    padding: 16px 0 16px 32px;
+    padding: 14px 0 14px 32px;
     float: left;
     height: $header-height;
 
     &-img {
       cursor: pointer;
-      width: 90px;
-      height: 32px;
     }
   }
 
