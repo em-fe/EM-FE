@@ -128,6 +128,8 @@ const emfeCpt = {
   EmfeDatetimeM,
   EmfePagination,
   EmfePaginationC,
+  EmfePage: EmfePagination,
+  EmfePageC: EmfePaginationC,
   EmfeSelect,
   EmfeCheckout,
   EmfeCheckoutC,

@@ -141,6 +141,12 @@
           <td>String, Boolean</td>
           <td>默认'false'</td>
         </tr>
+        <tr height="100px">
+          <td>color</td>
+          <td>修改表格文字颜色，传需要的颜色的值，不需要可以不传</td>
+          <td>String</td>
+          <td>-</td>
+        </tr>
       </tbody>
     </table>
      <br><br>
@@ -209,7 +215,7 @@ export default {
       ],
       data1: [
         {
-          name: {text:'王小明', row:false},
+          name: {text:'王小明', row:false, color: '#f0f'},
           age: {text:'北京市朝阳区芍药居1', row:false},
           address: {text:'1', row:false},
           address2: {text:'北京市朝阳区芍药居3北京市朝阳区芍药居3北京市朝阳区芍药居3北京市朝阳区芍药居3北京市朝阳区芍药居3北京市朝阳区芍药居3', row:false},
