@@ -16,7 +16,7 @@
             <span v-if="dataList[list.key].required" class="emfe-box-table-tr-td-div-required">*</span>
             <span v-html="dataList[list.key].text"></span>
           </div>
-          <div v-else class="emfe-box-table-tr-td-div" v-html="dataList[list.key].text"></div>
+          <div v-else :style="{'color': dataList[list.key].color}" class="emfe-box-table-tr-td-div" v-html="dataList[list.key].text"></div>
         </div>
       </td>
     </template>

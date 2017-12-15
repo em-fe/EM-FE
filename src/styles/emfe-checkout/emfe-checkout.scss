@@ -1,9 +1,13 @@
 .#{$prefix}checkout {
+  &-wrap {
+    display: flex;
+  }
+
   &-box {
     @include clearfix();
 
     position: relative;
-    display: block;
+    display: inline-block;
     z-index: 2;
     cursor: pointer;
 
