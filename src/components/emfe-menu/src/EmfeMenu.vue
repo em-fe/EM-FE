@@ -133,7 +133,21 @@ export default {
       let item = {};
       let itemIndex = -1;
       const newFullPath = this.fullpath ? this.fullpath : fullPath;
-
+      // 添加二级展开状态
+      this.newDatas.forEach((data) => {
+        // 如果一级导航有子节点
+        if (O.hOwnProperty(data, 'children')) {
+          data.children.forEach((dataChild) => {
+            // 如果二级导航有子节点
+            if (O.hOwnProperty(dataChild, 'children')) {
+              dataChild.children.forEach(() => {
+                this.minorStatus.push(false);
+              });
+            }
+          });
+        }
+      });
+      // 真正的一级子节点的判断，二级子节点的判断，一级二级选中状态的判断
       this.newDatas.forEach((data, dataNum) => {
         const newDataFullPath = O.hOwnProperty(data, 'routers') && O.hOwnProperty(data.routers, 'path') && newFullPath.indexOf(data.routers.path) > -1;
         // 如果一级导航有子节点
@@ -163,9 +177,9 @@ export default {
       if (itemIndex > -1) {
         this.mainIndex = itemIndex;
         // 添加不是手风琴效果的二级展开状态
-        item.children.forEach(() => {
-          this.minorStatus.push(false);
-        });
+        // item.children.forEach(() => {
+        //   this.minorStatus.push(false);
+        // });
         this.menuMainClick(item);
       }
       this.activeUrl = window.location.href;

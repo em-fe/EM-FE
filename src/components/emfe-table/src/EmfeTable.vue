@@ -1,5 +1,5 @@
 <template>
-  <div class="emfe-box">
+  <div class="emfe-box" :class="[classAddBox]">
     <table v-if="columns.length" class="emfe-box-table" :class="[classAdd]">
       <slot name="head"></slot>
       <tbody>
@@ -46,10 +46,14 @@ export default {
       type: String,
       default: '',
     },
+    className: String,
   },
   computed: {
+    classAddBox() {
+      return this.classAddName || this.className ? `${this.classAddName || this.className}-box` : '';
+    },
     classAdd() {
-      return this.classAddName ? `${this.classAddName}-table` : '';
+      return this.classAddName || this.className ? `${this.classAddName || this.className}-table` : '';
     },
   },
 };

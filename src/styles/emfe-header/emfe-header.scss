@@ -12,20 +12,18 @@ $header-height: 64px;
   width: 100%;
 
   &-eye {
-    padding: 16px 0 16px 32px;
+    padding: 17px 0 17px 20px;
     float: left;
     height: $header-height;
 
     &-img {
       cursor: pointer;
-      width: 90px;
-      height: 32px;
     }
   }
 
   &-controller {
     float: left;
-    padding: 0 32px;
+    padding: 0 32px 0 44px;
     font-size: 14px;
     line-height: $header-height;
   }
