@@ -5,7 +5,8 @@
       <ul class="emfe-bar-list">
         <template v-for="(childrenData, childrenDataIndex) in newDatas">
           <li class="emfe-bar-item" v-if="!childrenData.children">
-            <router-link :to="childrenData.routers" class="emfe-bar-link" :class="{' emfe-bar-link-disabled': isDisabled}">{{ childrenData.title }}</router-link>
+            <router-link :to="childrenData.routers" class="emfe-bar-link" :class="{' emfe-bar-link-disabled': isDisabled}" v-if="!childrenData.url">{{ childrenData.title }}</router-link>
+            <a class="emfe-bar-link" :href="childrenData.url" target="_blank" v-else>{{ childrenData.title }}</a>
           </li>
           <li class="emfe-bar-item" :class="{'emfe-bar-item-on': accordion ? childrenIndex == childrenDataIndex : minorStatus[childrenDataIndex]}" v-else>
             <span href="javascript:;" class="emfe-bar-btn" :class="{' emfe-bar-btn-disabled': isDisabled}" @click="toogleChild(childrenDataIndex)">{{ childrenData.title }}</span>
@@ -13,7 +14,8 @@
             <emfe-transition name="gradual">
               <ul class="emfe-bar-childlist" v-show="accordion ? childrenIndex == childrenDataIndex : minorStatus[childrenDataIndex]">
                 <li class="emfe-bar-childitem" v-for="child in childrenData.children">
-                  <router-link :to="child.routers" class="emfe-bar-childlink" :class="{' emfe-bar-childlink-disabled': isDisabled}">{{ child.title }}</router-link>
+                  <router-link :to="child.routers" class="emfe-bar-childlink" :class="{' emfe-bar-childlink-disabled': isDisabled}" v-if="!child.url">{{ child.title }}</router-link>
+                  <a class="emfe-bar-childlink" :class="{'router-link-exact-active router-link-active': activeUrl === child.url}" :href="child.url" target="_blank" v-else>{{ child.title }}</a>
                 </li>
               </ul>
             </emfe-transition>
@@ -37,6 +39,7 @@ export default {
       childrenIndex: -1,
       isDisabled: this.disabled,
       newDatas: [],
+      activeUrl: '',
       minorStatus: [], // 二级展开收起状态
     };
   },
@@ -93,13 +96,15 @@ export default {
         if (O.hOwnProperty(data, 'children')) {
           data.children.forEach((dataChild) => {
             const inChildFullPath = O.hOwnProperty(dataChild, 'routers') && O.hOwnProperty(dataChild.routers, 'path') && newFullPath.indexOf(dataChild.routers.path) > -1;
-            if (inChildFullPath || name === dataChild.routers.name) {
+            if (inChildFullPath || (
+              O.hOwnProperty(dataChild, 'routers') && O.hOwnProperty(dataChild.routers, 'name') && name === dataChild.routers.name)) {
               // 打开二级导航的折叠
               this.toogleChild(dataNum);
             }
           });
         }
       });
+      this.activeUrl = window.location.href;
     },
     toogleChild(itemIndex) {
       if (!this.isDisabled) {

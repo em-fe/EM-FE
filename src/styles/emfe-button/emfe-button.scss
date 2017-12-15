@@ -58,6 +58,10 @@
 
     & > .emfe-button-icon {
       color: $nothing-color;
+
+      &::before {
+        color: $nothing-color;
+      }
     }
 
     &:hover {
