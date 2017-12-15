@@ -21,6 +21,7 @@ export default {
       validator(value) {
         return _.has(value, ['default', 'primary']);
       },
+      default: 'default',
     },
     className: {
       type: String,
