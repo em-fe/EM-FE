@@ -1,6 +1,6 @@
 <template>
   <div class="emfe-menu" :class="menuName" ref="menu">
-    <div class="emfe-menu-main">
+    <div class="emfe-menu-main" :class="mainName">
       <button class="emfe-menu-main-header" @click="menuToShort">
         <emfe-icon class="emfe-menu-main-sidebar" type="cedaohangzhankai" @icon-click="menuToShort" v-if="menuShort"></emfe-icon>
         <emfe-icon class="emfe-menu-main-sidebar2" type="cedaohangzhankai" @icon-click="menuToShort" v-else></emfe-icon>
@@ -98,6 +98,13 @@ export default {
         {
           'emfe-menu-on': this.menuShort,
           [`${this.className}-menu`]: !!this.className,
+        },
+      ];
+    },
+    mainName() {
+      return [
+        {
+          [`${this.className}-main`]: !!this.className,
         },
       ];
     },
