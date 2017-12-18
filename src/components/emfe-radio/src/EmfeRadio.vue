@@ -81,6 +81,7 @@
           {
             [`${this.className}-radio`]: !!this.className,
             'emfe-radio-inline': this.inline,
+            'emfe-radio-disabled': this.disabled,
           },
         ];
       },
