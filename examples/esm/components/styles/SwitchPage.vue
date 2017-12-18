@@ -158,8 +158,12 @@ export default {
       this.closeModal();
     },
     modalOk() {
-      this.interceptor = !this.interceptor;
+      this.interceptor = true;
       this.closeModal();
+
+      setTimeout(() => {
+        this.interceptor = false;
+      }, 201);
     },
   },
 };

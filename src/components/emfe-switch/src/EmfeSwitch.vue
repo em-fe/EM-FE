@@ -73,7 +73,7 @@ export default {
   },
   watch: {
     interceptor(val, oldVal) {
-      if (val !== oldVal) {
+      if (val !== oldVal && val) {
         this.changeValue();
       }
     },
