@@ -4,7 +4,7 @@
       <input class="emfe-select-input" type="text" :class="[inputName, {'emfe-select-input-error': errOk}]" :value="checkVal" :disabled="newDisabled" readonly :placeholder="selectText" @click="inpcheck">
       <div class="emfe-select-error" :class="addErrorText" v-if="errOk"><slot name="error"></slot></div>
       <div v-if="flagCheck" class="emfe-select-flag">
-        <div class="emfe-select-custab" v-if="seleStu==='newList'">
+        <div class="emfe-select-custab" v-if="seleStu==='newList' || news">
           <input type="text" :placeholder="addText" class="emfe-select-input" v-model="newListVal">
           <span class="emfe-select-custab-btn" @click="newListBtn">保存</span>
         </div>
@@ -53,11 +53,13 @@ export default {
       validator(value) {
         return _.has(value, ['default', 'checkbox', 'icon']);
       },
+      default: 'default',
     },
     seleStu: {
       type: String,
       default: '',
     },
+    news: Boolean, // 1.3.0 支持
     disabled: {
       type: Boolean,
       default: false,
@@ -105,7 +107,7 @@ export default {
       type: Function,
       default: () => {},
     },
-    add: {
+    add: { // 1.3.0 支持
       type: Function,
       default: () => {},
     },

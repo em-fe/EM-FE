@@ -2,7 +2,7 @@
   <div class="page-select">
     <h2>下拉框：</h2>
     <div style="margin-bottom:10px">
-    </style>多选：</div>
+    多选：</div>
 
     <!--  -->
     <emfe-select :datas="data1" type="checkbox" @getAllData="getData" selectText="提示文字" @checkedopt="getlist" @delopt="getlist2"></emfe-select>
@@ -10,8 +10,7 @@
               :datas="data1"<br>
               type="checkbox"<br>
 
-    <div style="margin-bottom:10px">
-    </style>默认（有错误提示）</div>
+    <div style="margin-bottom:10px">默认（有错误提示）</div>
     <emfe-select :errOk="true" :datas="data1" type="default" @getAllData="getData" selectText="提示文字" @checkedopt="getlist">
       <div slot="error">错误提示</div>
     </emfe-select>
@@ -21,7 +20,7 @@
     </div>
 
     <!--  -->
-    <emfe-select :datas="data2" seleStu="newList" type="checkbox" :checkVals="checkeds" @addDataCheck="addDataCheck" @checkedopt="getlist" @delopt="getlist2" @getAllData="getData" selectText="提示文字"></emfe-select>
+    <emfe-select :datas="data2" type="checkbox" :checkVals="checkeds" news @addDataCheck="addDataCheck" @checkedopt="getlist" @delopt="getlist2" @getAllData="getData" selectText="提示文字"></emfe-select>
     API：包含3个配置项和一个方法：<br>
               自定义属性 :<br>
               :datas="data1"<br>
