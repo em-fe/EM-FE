@@ -1,15 +1,17 @@
 <template>
   <div class="emfe-checkout" :class="checkoutName">
-    <label class="emfe-checkout-box" :class="{'emfe-checkout-box-forever': checkedForever}">
-      <i class="emfe-checkout-inner" :class="[innerName, checkedName]"></i>
-      <input type="checkbox" class="emfe-checkout-status" :class="{'emfe-checkout-box-forever': checkedForever}" :checked="checkoutStatus" @click.stop="click" @change="alocked" :name="name" :disabled="disable" v-if="stop">
-      <input type="checkbox" class="emfe-checkout-status" :class="{'emfe-checkout-box-forever': checkedForever}" :checked="checkoutStatus" @change="alocked" :name="name" :disabled="disable" v-else>
-      <span class="emfe-checkout-text" :class="textName">{{ newtitle }}</span>
+    <div class="emfe-checkout-wrap">
+      <label class="emfe-checkout-box" :class="{'emfe-checkout-box-forever': checkedForever || disable || disabled}">
+        <i class="emfe-checkout-inner" :class="[innerName, checkedName]"></i>
+        <input type="checkbox" class="emfe-checkout-status" :class="{'emfe-checkout-box-forever': checkedForever || disable || disabled}" :checked="checkoutStatus" @click.stop="click" @change="alocked" :name="name" :disabled="disable ||disabled" v-if="stop">
+        <input type="checkbox" class="emfe-checkout-status" :class="{'emfe-checkout-box-forever': checkedForever || disable || disabled}" :checked="checkoutStatus" @change="alocked" :name="name" :disabled="disable ||disabled" v-else>
+        <span class="emfe-checkout-text" :class="textName">{{ newtitle }}</span>
+      </label>
       <emfe-tooltip className="emfe-checkout" theme="light" :placement="placement" v-if="tip">
         <emfe-icon type="tishi" slot="render"></emfe-icon>
         <div slot="tip" v-html="tip"></div>
       </emfe-tooltip>
-    </label>
+    </div>
     <div class="emfe-checkout-slide" v-if="slideShow">
       <transition name="fade">
         <div class="emfe-checkout-slide-wrap" v-show="checkoutStatus" :class="openName">
@@ -54,6 +56,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
     title: String,
     inline: String,
     change: {
@@ -71,14 +77,14 @@ export default {
     innerName() {
       return [
         {
-          'emfe-checkout-inner-disable': this.disable, 'emfe-checkout-inner-checked': this.checkoutStatus,
+          'emfe-checkout-inner-disable': this.disable || this.disabled, 'emfe-checkout-inner-checked': this.checkoutStatus,
         },
       ];
     },
     checkedName() {
       return [
         {
-          'emfe-checkout-inner-checked-disabled': this.checkedForever,
+          'emfe-checkout-inner-checked-disabled': this.checkedForever || this.disable || this.disabled,
         },
       ];
     },
@@ -108,7 +114,9 @@ export default {
   },
   methods: {
     alocked(e) {
-      const checked = this.checkedForever ? false : e.target.checked;
+      const checked = this.checkedForever ||
+      this.disable ||
+      this.disabled ? false : e.target.checked;
       this.setValue(checked);
       this.$emit('input', this.checkoutStatus);
       this.$emit('checked', this.checkoutStatus, this.title, this.index);

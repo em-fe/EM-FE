@@ -61,8 +61,8 @@
           <td>false</td>
         </tr>
         <tr>
-          <td>disable</td>
-          <td>是否禁用此多选框</td>
+          <td>disable|disabled</td>
+          <td>是否禁用此多选框.1.3.0开始支持 disabled</td>
           <td>boolean</td>
           <td>false</td>
         </tr>

@@ -20,13 +20,14 @@ export default {
   props: {
     logo: {
       type: String,
-      required: true,
+      default: 'https://static2.evente.cn/static/img/logo2017.png',
     },
     user: {
       type: String,
       required: true,
     },
     className: String,
+    home: Function,
   },
   computed: {
     headerName() {
@@ -48,7 +49,12 @@ export default {
       this.$emit('goAccount');
     },
     goHome() {
-      window.open('https://www.evente.cn/');
+      if (this.home) {
+        this.home();
+      } else {
+        window.open('https://www.evente.cn/');
+        this.$emit('goHome');
+      }
     },
   },
 };
