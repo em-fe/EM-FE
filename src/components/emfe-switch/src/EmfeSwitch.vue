@@ -15,10 +15,6 @@ export default {
       type: String,
       default: '',
     },
-    type: {
-      type: String,
-      default: '',
-    },
     disabled: {
       type: Boolean,
       default: false,
@@ -69,6 +65,7 @@ export default {
     },
     changeValue() {
       this.currentValue = !this.currentValue;
+      this.$emit('input', this.currentValue);
     },
   },
   watch: {
