@@ -50,6 +50,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     padding-right: 20px;
+    cursor: pointer;
 
     &::-webkit-input-placeholder {
       color: $text-color;
