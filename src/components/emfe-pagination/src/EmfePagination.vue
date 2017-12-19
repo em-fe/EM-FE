@@ -3,9 +3,9 @@
     <ul>
       <li class="emfe-pagination-item" :class="{disabled: curPageOn == 1}" @click="prevPage" v-if="pageCount > 1">上一页</li>
       <li class="emfe-pagination-item" :class="{'emfe-pagination-item-on': curPageOn == 1}" @click="page(1)">1</li>
-      <li class="emfe-pagination-item" v-show="curPageOn > 5 && pageCount > 6">...</li>
+      <li class="emfe-pagination-item" v-show="curPageOn > 5 && pageCount > 6  && bigLimit != 4" >...</li>
       <li class="emfe-pagination-item" :class="{'emfe-pagination-item-on': curPageOn == index+offset}" v-for="(item,index) in middlePages" @click="page(index+offset)">{{index+offset}}</li>
-      <li class="emfe-pagination-item" v-show="curPageOn < bigLimit && pageCount > 6">...</li>
+      <li class="emfe-pagination-item" v-show="curPageOn <= bigLimit && pageCount > 6  && bigLimit != 4">...</li>
       <li class="emfe-pagination-item" :class="{'emfe-pagination-item-on': curPageOn == pageCount}" @click="page(pageCount)" v-if="pageCount > 1">{{pageCount}}</li>
       <li class="emfe-pagination-item" :class="{disabled: curPageOn == pageCount}" @click="nextPage" v-if="pageCount > 1">下一页</li>
     </ul>
@@ -45,10 +45,20 @@ export default {
     },
     offset() {
       let curNum;
+      let m;
+      let n = this.pageCount - this.curPageOn;
+      if (n === 1 || n === 0) {
+        n = 2;
+      }
+      if (this.bigLimit === 3) {
+        m = 1;
+      } else {
+        m = 2;
+      }
       if (this.curPageOn <= 5) {
         curNum = 2;
       } else if (this.curPageOn >= this.bigLimit) {
-        curNum = this.bigLimit - 2;
+        curNum = this.bigLimit > 5 ? this.bigLimit - n : this.bigLimit - m;
       } else {
         curNum = this.middlePages > 5 ? this.curPageOn - 3 : this.curPageOn - 2;
       }
