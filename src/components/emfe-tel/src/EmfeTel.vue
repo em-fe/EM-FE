@@ -5,8 +5,8 @@
       <span class="emfe-tel-prefix-text" :class="prefixTextName">+{{ nowData.prefix }}</span>
       <ul class="emfe-tel-prefix-flag" :class="prefixFlagName" v-show="flagStatus" >
         <li class="emfe-tel-prefix-label" v-for="data in datas" @click.stop="choice(data)">
-          <img :src="data.url" :alt="data.name" class="emfe-tel-prefix-icon">
-          <span class="emfe-tel-prefix-icon-piece">{{ data.name }}</span>
+          <img :src="data.url" :alt="data.name" class="emfe-tel-prefix-icon" v-show="data.url">
+          <span class="emfe-tel-prefix-icon-piece" :class="{'emfe-tel-prefix-icon-piece-padding': !data.url}">{{ data.name }}</span>
           <span class="emfe-tel-prefix-icon-tel">+{{ data.prefix }}</span>
         </li>
       </ul>
