@@ -1,9 +1,9 @@
 <template>
-  <thead class="emfe-box-table-head" :class="classHead">
-    <tr class="emfe-box-table-head-tr" :class="classTr">
+  <thead class="emfe-table-head" :class="classHead">
+    <tr class="emfe-table-head-tr" :class="classTr">
       <template>
-	      <th class="emfe-box-table-head-tr-th" @click="jump(index)" :class="[classTh, {'emfe-box-table-head-tr-th-checked': checked === index}]" :key="index" v-for="(item , index) in this.$parent.columns">
-	        <div class="emfe-box-table-head-tr-th-div">{{item.title}}</div>
+	      <th class="emfe-table-head-tr-th" @click="jump(index)" :class="[classTh, {'emfe-table-head-tr-th-checked': checked === index}]" :key="index" v-for="(item , index) in this.$parent.columns">
+	        <div class="emfe-table-head-tr-th-div">{{item.title}}</div>
 	      </th>
       </template>
     </tr>
@@ -14,7 +14,7 @@ export default {
   name: 'EmfeTableHead',
   data() {
     return {
-      classAdd: this.$parent.classAdd,
+      tableName: this.$parent.tableName,
       border: this.$parent.border,
     };
   },
@@ -28,22 +28,22 @@ export default {
     classHead() {
       return [
         {
-          [`${this.$parent.classAdd}-thead`]: !!this.classAdd,
+          [`${this.$parent.tableName}-thead`]: !!this.tableName,
         },
       ];
     },
     classTr() {
       return [
         {
-          [`${this.$parent.classAdd}-thead-tr`]: !!this.classAdd,
+          [`${this.$parent.tableName}-thead-tr`]: !!this.tableName,
         },
       ];
     },
     classTh() {
       return [
         {
-          [`${this.$parent.classAdd}-thead-tr-th`]: !!this.classAdd,
-          border: `${this.border}`,
+          [`${this.$parent.tableName}-thead-tr-th`]: !!this.tableName,
+          'emfe-table-border': !!this.border,
         },
       ];
     },

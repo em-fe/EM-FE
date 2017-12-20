@@ -1,7 +1,7 @@
  <template>
-  <tr @click="jump(ind)" class="emfe-box-table-tr" :class="[classTr, unHover, {'emfe-box-table-tr-disabled': dataList.disabled}]">
+  <tr @click="jump(ind)" class="emfe-table-tr" :class="[classTr, unHover, {'emfe-table-tr-disabled': dataList.disabled}]">
     <template>
-      <td class="emfe-box-table-tr-td" :class="[classTd, {'emfe-box-table-tr-td-checked': checked === index}]" :rowspan="dataList[list.key].row ? rowSpan[list.key]: ''"  v-for="(list , index) in dataSlice" :key="index" v-if="!dataList[list.key].hebing">
+      <td class="emfe-table-tr-td" :class="[classTd, {'emfe-table-tr-td-checked': checked === index}]" :rowspan="dataList[list.key].row ? rowSpan[list.key]: ''"  v-for="(list , index) in dataSlice" :key="index" v-if="!dataList[list.key].hebing">
         <slot name="a" v-if="dataList[list.key].slot==='a'"></slot>
         <slot name="b" v-if="dataList[list.key].slot==='b'"></slot>
         <slot name="c" v-if="dataList[list.key].slot==='c'"></slot>
@@ -12,11 +12,11 @@
         <slot name="h" v-if="dataList[list.key].slot==='h'"></slot>
         <slot name="i" v-if="dataList[list.key].slot==='i'"></slot>
         <div v-if='!dataList[list.key].slot'>
-          <div class="emfe-box-table-tr-td-div" v-if="dataList[list.key].required">
-            <span v-if="dataList[list.key].required" class="emfe-box-table-tr-td-div-required">*</span>
+          <div class="emfe-table-tr-td-div" :class="divName" v-if="dataList[list.key].required">
+            <span v-if="dataList[list.key].required" class="emfe-table-tr-td-div-required" :class="requiredName">*</span>
             <span v-html="dataList[list.key].text"></span>
           </div>
-          <div v-else :style="{'color': dataList[list.key].color}" class="emfe-box-table-tr-td-div" v-html="dataList[list.key].text"></div>
+          <div v-else :style="{'color': dataList[list.key].color}" class="emfe-table-tr-td-div" :class="divName" v-html="dataList[list.key].text"></div>
         </div>
       </td>
     </template>
@@ -27,8 +27,7 @@ export default {
   name: 'EmfeTableBody',
   data() {
     return {
-      className: this.$parent.className,
-      classAdd: this.$parent.classAdd,
+      tableName: this.$parent.tableName,
       column: this.$parent.columns,
       data: this.$parent.data,
       border: this.$parent.border,
@@ -62,22 +61,36 @@ export default {
     unHover() {
       return [
         {
-          'emfe-box-table-tr-hover': !!this.$parent.hover,
+          'emfe-table-tr-hover': !!this.$parent.hover,
         },
       ];
     },
     classTr() {
       return [
         {
-          [`${this.$parent.classAdd}-tbody-tr`]: !!this.classAdd,
+          [`${this.$parent.tableName}-tbody-tr`]: !!this.tableName,
         },
       ];
     },
     classTd() {
       return [
         {
-          [`${this.$parent.classAdd}-tbody-tr-td`]: !!this.classAdd,
-          border: `${this.border}`,
+          [`${this.$parent.tableName}-tbody-tr-td`]: !!this.tableName,
+          'emfe-table-border': !!this.border,
+        },
+      ];
+    },
+    divName() {
+      return [
+        {
+          [`${this.$parent.tableName}-tr-td-div`]: !!this.tableName,
+        },
+      ];
+    },
+    requiredName() {
+      return [
+        {
+          [`${this.$parent.tableName}-table-tr-td-div-required`]: !!this.tableName,
         },
       ];
     },
