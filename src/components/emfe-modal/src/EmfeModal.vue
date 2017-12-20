@@ -10,7 +10,7 @@
         <slot name="modal-main"></slot>
       </div>
       <div class="emfe-modal-footer" v-if="footerFlg">
-        <div class="emfe-modal-btn emfe-modal-btn-cancel" @click="cancel" v-if="cancelFlg">{{cancelText}}</div>
+        <div class="emfe-modal-btn emfe-modal-btn-cancel" @click="cancel" v-if="cancelFlg" :class="{'emfe-modal-btn-cancel-margin': !okFlg}">{{cancelText}}</div>
         <div class="emfe-modal-btn emfe-modal-btn-ok" @click="ok" v-if="okFlg">{{okText}}</div>
       </div>
     </div>

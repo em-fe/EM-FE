@@ -118,6 +118,10 @@
       color: $text-color-default;
       margin-right: 16px;
       cursor: pointer;
+
+      &-margin {
+        margin-right: 0;
+      }
     }
   }
 }
