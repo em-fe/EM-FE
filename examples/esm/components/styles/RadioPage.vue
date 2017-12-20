@@ -1,15 +1,15 @@
 <template>
   <div class="radio-page">
     <h3>简单用法</h3>
-    <emfe-radio index="0" className="diy" name="group1" :disabled="true">文字</emfe-radio>
+    <emfe-radio index="0" name="group2" :disabled="true">文字</emfe-radio>
     <pre>
-      &lt;emfe-radio index="0" className="diy" name="group1" :disabled="true"&gt;文字&lt;/emfe-radio&gt;
+      &lt;emfe-radio index="0" name="group2" :disabled="true"&gt;文字&lt;/emfe-radio&gt;
     </pre>
     <br>
     <br>
     <br>
     <br>
-    <emfe-radio index="0" className="" name="group1" :disabled="false" tip="这是按钮的提示">这是单选按钮</emfe-radio>
+    <emfe-radio index="1" name="group1" tip="这是按钮的提示">这是单选按钮</emfe-radio>
     <br>
     <br>
     <br>
