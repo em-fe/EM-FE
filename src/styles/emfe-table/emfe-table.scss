@@ -1,5 +1,10 @@
-.#{$prefix}box {
+.#{$prefix}table {
   width: 100%;
+  border-collapse: collapse;
+
+  &-box {
+    width: 100%;
+  }
 
   &-nothing {
     width: 100%;
@@ -11,88 +16,91 @@
     color: $text-color-prompt;
     border-top: none;
     font-size: 14px;
+
+    &-td {
+      padding: 0 !important;
+    }
   }
 
-  &-table {
+  &-head {
     width: 100%;
-    border-collapse: collapse;
-
-    &-head {
-      width: 100%;
-
-      &-tr {
-        min-height: 48px;
-        height: 48px;
-        width: 100%;
-        background-color: $background-color-title;
-        border: 1px solid $border-color;
-
-        &-th {
-          box-sizing: border-box;
-          padding: 0 12px;
-          text-align: left;
-          font-size: 14px;
-          color: $text-color-prompt;
-          letter-spacing: 0;
-          line-height: 16px;
-
-          &-checked {
-            background: #f8dbd8;
-          }
-
-          &-div {
-            white-space: nowrap;
-          }
-        }
-      }
-    }
 
     &-tr {
       min-height: 48px;
       height: 48px;
-      background-color: $nothing-color;
+      width: 100%;
+      background-color: $background-color-title;
       border: 1px solid $border-color;
 
-      &:nth-child(2n) {
-        background-color: $background-color-even;
-      }
-
-      &-hover {
-        &:hover {
-          background-color: $tr-hover-color;
-        }
-      }
-
-      &-td {
+      &-th {
         box-sizing: border-box;
         padding: 0 12px;
         text-align: left;
         font-size: 14px;
-        color: $title-color;
-        letter-spacing: -0.3px;
+        color: $text-color-prompt;
+        letter-spacing: 0;
         line-height: 16px;
 
         &-checked {
-          background: #ffefed;
+          background: #f8dbd8;
         }
 
         &-div {
           white-space: nowrap;
-          color: $text-color-default;
-
-          &-required {
-            color: $auxiliary-color-danger;
-          }
         }
-      }
-
-      &-disabled {
-        background-color: $background-color-main !important;
       }
     }
   }
-}
 
-.border {
-  border: 1px solid $border-color;
+  &-tr {
+    min-height: 48px;
+    height: 48px;
+    background-color: $nothing-color;
+    border: 1px solid $border-color;
+
+    &:nth-child(2n) {
+      background-color: $background-color-even;
+    }
+
+    &-hover {
+      &:hover {
+        background-color: $tr-hover-color;
+      }
+    }
+
+    &-td {
+      box-sizing: border-box;
+      padding: 0 12px;
+      text-align: left;
+      font-size: 14px;
+      color: $title-color;
+      letter-spacing: -0.3px;
+      line-height: 16px;
+
+      &-checked {
+        background: #ffefed;
+      }
+
+      &-div {
+        white-space: nowrap;
+        color: $text-color-default;
+
+        &-required {
+          color: $auxiliary-color-danger;
+        }
+      }
+    }
+
+    &-disabled {
+      background-color: $background-color-main !important;
+
+      &:hover {
+        background-color: $tr-hover-color !important;
+      }
+    }
+  }
+
+  &-border {
+    border: 1px solid $border-color;
+  }
 }

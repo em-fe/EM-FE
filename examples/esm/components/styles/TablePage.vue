@@ -1,5 +1,5 @@
 <template>
-  <div class="emfe-table-box">
+  <div class="table-page">
     <p>点击添加表头 table</p>
     <div @click="addThead">添加添加添加</div>
     <div style="width: 100%;overflow-x:auto">
@@ -391,9 +391,3 @@ export default {
   },
 };
 </script>
-<style>
-  .emfe-table-box{
-    width: 1500px;
-    height: 1500px;
-  }
-</style>

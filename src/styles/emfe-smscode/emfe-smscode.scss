@@ -38,6 +38,13 @@
     &-icon {
       padding: 0 8px 0 32px;
     }
+
+    &[disabled] {
+      background-color: $input-disable-color;
+      opacity: 1;
+      cursor: not-allowed;
+      color: $input-disable-text-color;
+    }
   }
 
   &-button {
@@ -60,6 +67,16 @@
     &:active {
       background: $brand-color-click;
       color: $background-color-write;
+    }
+
+    &:disabled {
+      color: $text-color-disable;
+      background: $background-color-disable;
+      border-color: $background-color-disable;
+
+      @include border(left);
+
+      cursor: no-drop;
     }
   }
 }
