@@ -101,6 +101,9 @@
     }
 
     &-disabled {
+      background: $input-disable-color;
+      cursor: not-allowed;
+
       &:hover {
         @include border();
       }
