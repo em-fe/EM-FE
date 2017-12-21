@@ -26,7 +26,7 @@ $menu-top: 56px;
     @include border(right);
 
     width: $menu-md-width;
-    height: calc(100% - $menu-top);
+    height: calc(100% - 56px);
     float: left;
     position: relative;
     z-index: 2;
@@ -129,7 +129,7 @@ $menu-top: 56px;
     background: $background-color-write;
 
     &-iscroll {
-      height: calc(100% - 64px);
+      height: calc(100% - 56px);
       position: relative;
       overflow: auto;
     }
