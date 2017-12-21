@@ -88,6 +88,10 @@
       &-piece {
         float: left;
         padding-left: 32px;
+
+        &-padding {
+          padding-left: 0;
+        }
       }
 
       &-tel {
