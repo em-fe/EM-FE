@@ -192,7 +192,9 @@ export default {
       const hourIsEnd = hour === endTime[0];
       if (this.minutes.length > 1) {
         this.minutes.forEach((min) => {
-          min.undo = (hourIsStart && min.num < startTime[1]) || (hourIsEnd && min.num > endTime[1]);
+          min.undo = min.undo ||
+                    (hourIsStart && min.num < startTime[1]) ||
+                    (hourIsEnd && min.num > endTime[1]);
         });
         this.minutes.forEach((min) => {
           if (!min.undo) {
@@ -207,7 +209,7 @@ export default {
         this.seconds.forEach((sec) => {
           const before = hourIsStart && minuteIsStart && sec.num < startTime[2];
           const after = hourIsEnd && minuteIsEnd && sec.num > endTime[2];
-          sec.undo = before || after;
+          sec.undo = sec.undo || before || after;
         });
       }
     },
@@ -263,8 +265,8 @@ export default {
       this.hour = '';
       this.minute = '';
       this.second = '';
-      this.$emit('cancel', this.time);
-      this.$emit('input', this.time);
+      this.$emit('cancel', '');
+      this.$emit('input', '');
     },
   },
   watch: {

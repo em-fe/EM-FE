@@ -1,5 +1,6 @@
 $header-height: 48px;
-$menu-top: 64px;
+$minor-height: 40px;
+$menu-top: 56px;
 
 .#{$prefix}menu {
   @include clearfix();
@@ -110,16 +111,17 @@ $menu-top: 64px;
     }
 
     &-icon {
-      padding: 0 12px 0 16px;
-      font-size: 20px;
+      font-size: 18px;
       line-height: 48px;
+      width: 48px;
+      text-align: center;
     }
   } // end emfe-menu-main
 
   &-minor {
     @include border(right);
 
-    width: 120px;
+    width: 112px;
     height: calc(100% - 64px);
     float: left;
     position: relative;
@@ -136,8 +138,8 @@ $menu-top: 64px;
       @include border(bottom);
 
       width: 100%;
-      height: $menu-top;
-      line-height: $menu-top;
+      height: $minor-height;
+      line-height: $minor-height;
       font-size: 14px;
       color: $text-color-default;
       padding-left: 24px;
@@ -216,7 +218,7 @@ $menu-top: 64px;
       color: $text-color-Three1;
       height: 48px;
       line-height: 48px;
-      padding-left: 32px;
+      padding-left: 40px;
       width: 100%;
       display: block;
 
@@ -258,6 +260,10 @@ $menu-top: 64px;
 
     .emfe-menu-main-icon {
       padding: 0 11px 0 6px;
+    }
+
+    .emfe-menu-main-sidebar {
+      margin-left: -5px;
     }
   } // end emfe-menu-on
 }
