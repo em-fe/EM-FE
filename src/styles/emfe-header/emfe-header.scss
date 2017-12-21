@@ -1,4 +1,4 @@
-$header-height: 64px;
+$header-height: 56px;
 
 .#{$prefix}header {
   @include clearfix();
@@ -12,7 +12,7 @@ $header-height: 64px;
   width: 100%;
 
   &-eye {
-    padding: 17px 0 17px 20px;
+    padding: 13px 0 13px 20px;
     float: left;
     height: $header-height;
 
@@ -23,7 +23,7 @@ $header-height: 64px;
 
   &-controller {
     float: left;
-    padding: 0 32px 0 44px;
+    padding: 0 32px 0 41px;
     font-size: 14px;
     line-height: $header-height;
   }
