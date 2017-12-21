@@ -98,30 +98,7 @@
     justify-content: center;
   }
 
-  &-btn {
-    width: auto;
-    padding: 0 24px;
-    text-align: center;
-    line-height: 32px;
-    font-size: 14px;
-    border-radius: 4px;
-
-    &-ok {
-      background: $brand-color-default;
-      color: $background-color-write;
-      cursor: pointer;
-    }
-
-    &-cancel {
-      @include border();
-
-      color: $text-color-default;
-      margin-right: 16px;
-      cursor: pointer;
-
-      &-margin {
-        margin-right: 0;
-      }
-    }
+  &-button {
+    margin-right: 16px;
   }
 }
