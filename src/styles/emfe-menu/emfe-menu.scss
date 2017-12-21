@@ -26,7 +26,7 @@ $menu-top: 56px;
     @include border(right);
 
     width: $menu-md-width;
-    height: calc(100% - 64px);
+    height: calc(100% - $menu-top);
     float: left;
     position: relative;
     z-index: 2;
