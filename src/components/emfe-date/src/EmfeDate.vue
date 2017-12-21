@@ -276,10 +276,9 @@ export default {
         this.$emit('input', this.date);
         // 如果有确定按钮
         if (!this.confirm) {
+          this.ok();
           this.$emit('choice', this.date);
           this.$emit('change', this.date);
-        } else {
-          this.ok();
         }
       }
     },
@@ -308,8 +307,8 @@ export default {
     },
     cancel() {
       this.date = this.placeholder;
-      this.$emit('input', this.date);
-      this.$emit('cancel', this.date);
+      this.$emit('input', '');
+      this.$emit('cancel', '');
     },
   },
   watch: {
