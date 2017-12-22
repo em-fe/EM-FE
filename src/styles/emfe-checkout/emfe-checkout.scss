@@ -7,7 +7,6 @@
     @include clearfix();
 
     position: relative;
-    display: inline-block;
     z-index: 2;
     cursor: pointer;
 
@@ -62,6 +61,7 @@
   }
 
   &-text {
+    width: calc(100% - 24px);
     font-size: 14px;
     color: $text-color-default;
     line-height: 16px;
