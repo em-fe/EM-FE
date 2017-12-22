@@ -28,7 +28,7 @@
 
   &-item {
     float: left;
-    overflow: auto;
+    overflow: hidden;
     height: 90px;
     width: calc(100% / 3);
     position: relative;
