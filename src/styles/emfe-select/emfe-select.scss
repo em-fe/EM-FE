@@ -11,13 +11,27 @@
     width: 0;
     height: 0;
     position: absolute;
-
-    @include arrow(top);
-    @include arrowColor(top);
-
     margin-bottom: -3px;
-    bottom: 50%;
-    right: 8px;
+  }
+
+  &-top {
+    &::after {
+      @include arrow(bottom);
+      @include arrowColor(bottom);
+
+      top: 40%;
+      right: 8px;
+    }
+  }
+
+  &-bottom {
+    &::after {
+      @include arrow(top);
+      @include arrowColor(top);
+
+      bottom: 50%;
+      right: 8px;
+    }
   }
 
   &-selectBox {
@@ -203,7 +217,6 @@
   &-flag {
     position: absolute;
     width: 100%;
-    top: 32px;
     left: 0;
     background-color: $nothing-color;
     z-index: 3; // 3 修复表单层级问题  http://form.evente.cn/1000039
@@ -212,6 +225,16 @@
     border-top: none;
     border-radius: $radius-size;
     box-shadow: 0 5px 10px $shadow-color;
+
+    &-top {
+      bottom: 32px;
+      box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    &-bottom {
+      top: 32px;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    }
 
     &-scroll {
       max-height: 160px;
