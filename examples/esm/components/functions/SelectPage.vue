@@ -51,8 +51,17 @@
               自定义属性 :<br>
               :datas="data4"<br>
               type="icon"<br>
-    <!-- / -->
-
+    <!-- top -->
+    <br>
+    <br>
+    转换方向
+    <emfe-select :datas="data3" direction="top"></emfe-select>
+    API：包含2个配置项：<br>
+              自定义属性 :<br>
+              :datas="data3"<br>
+              type="default"<br>
+  <!-- / -->
+  <br>
     <h2 style="margin-top:50px">1.不可点击的数据添加上一条 disabled: 'disabled' 的字段，可点的字段不加；</h2>
     <h2>2.selectText配置项里写提示文字 不填写即默认的‘选择标签’</h2>
 

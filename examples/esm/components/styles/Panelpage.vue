@@ -82,24 +82,25 @@ export default {
     return {
       dataList:[
         {text: '累计消费次数', cont: '24次', switchOk:false},
-        {text: '累计消费金额', cont: '￥20300.00', switchOk:false},
-        {text: '平均消费1', cont: '￥210.00', switchOk:false},
+        {text: '累计消费次数', cont: '24次', switchOk:false},
+        {text: '累计消费金额', cont: '￥20300.00', switchOk: true, switchType: true},
+        {text: '平均消费1', cont: '￥210.00', switchOk: true, switchType: false},
       ],
       dataList2:[
         {text: '累计消费次数', cont: '24次', switchOk:false},
         {text: '累计消费金额', cont: '￥20300.00', switchOk:false},
         {text: '平均消费1', cont: '￥210.00', switchOk:false},
-        {text: '累计消费次数2', cont: '￥210.00', switchOk:false},
+        {text: '累计消费次数2', cont: '￥210.00', switchOk:true},
         {text: '累计消费金额1', cont: '￥210.00', switchOk:true},
       ],
     };
   },
   methods: {
-    switchs(status) {
-      console.log(111, status);
+    switchs(status, index, item) {
+      console.log('switchs', status,index, item);
     },
-    iconClick(index) {
-      console.log(index);
+    iconClick(index, item) {
+      console.log('icon', index, item);
     },
   },
 };
