@@ -3,9 +3,9 @@
     <div class="emfe-datapanel-box">
       <div class="emfe-datapanel-title">
         <span class="emfe-datapanel-title-text">{{title}}</span>
-        <emfe-tooltip class="emfe-datapanel-tooltip" :styles="styles" :theme="theme" :placement="placement">
-          <emfe-icon v-if="iconFlg" :type="type" slot="render" className="emfe-datapanel-mark"></emfe-icon>
-          <div slot="tip">
+        <emfe-tooltip className="emfe-datapanel" :styles="styles" :theme="theme" :placement="placement" v-if="icon || iconFlg" :type="icon || type">
+          <emfe-icon v-if="icon || iconFlg" :type="icon || type" slot="render" className="emfe-datapanel-mark"></emfe-icon>
+          <div class="emfe-datapanel-tip" :class="tipName" slot="tip">
             <slot name="tipText"></slot>
           </div>
         </emfe-tooltip>
@@ -41,6 +41,7 @@ export default {
     iconFlg: {
       type: [String, Boolean],
     },
+    icon: String,
     theme: {
       type: String,
       default: 'dark',
@@ -69,6 +70,13 @@ export default {
       return [
         {
           [`${this.className}-datapanel`]: !!this.className,
+        },
+      ];
+    },
+    tipName() {
+      return [
+        {
+          [`${this.className}-tip`]: !!this.className,
         },
       ];
     },

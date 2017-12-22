@@ -4,10 +4,10 @@
       <div class="emfe-opations-hr" v-if="item.hrStatus"></div>
       <div class="emfe-opations-main" :key="index" :style="item.style" ref="hits">
         <i class="emfe-opations-icon emfe-opations-radio"></i>
-        <emfe-input :placeholder="item.other && !clickFlg ? otherPlaceholder : dataPlaceholder" :value="inputTexts[index]" className="emfe-opations" :change="textChange.bind(this, index)"></emfe-input>
+        <emfe-input :placeholder="item.other && !clickFlg ? otherPlaceholder : dataPlaceholder" v-model="inputTexts[index]" className="emfe-opations" :change="textChange.bind(this, index)"></emfe-input>
         <i class="emfe-opations-icon emfe-opations-plus" @click="plus(index)" v-show="!item.noPlus"
         :class="{'emfe-opations-margin-right': !minusFlg}"></i>
-        <i class="emfe-opations-icon emfe-opations-minus" @click="minus(index, item)" v-show="minusFlg"
+        <i class="emfe-opations-icon emfe-opations-minus" @click="minus(index, item)" v-show="item.other ? otherMin : minusFlg"
         :class="{'emfe-opations-margin-left': item.noPlus, 'emfe-opations-margin-right': item.noPlus}"></i>
         <i v-show="!item.noPlus" class="emfe-opations-icon emfe-opations-drag" @mousedown.stop="down($event, index, item)"></i>
       </div>
@@ -38,12 +38,14 @@ export default {
   name: 'EmfeOpations',
   data() {
     return {
+      opationsData: [],
       clickFlg: !this.other,
       datas: [],
       lastHrStatus: false, // 如果碰到最后一个最后一个分割线显示
       lastHit: -1,
       lastDrag: -1,
       inputTexts: [],
+      otherMin: this.other,
     };
   },
   props: {
@@ -59,10 +61,14 @@ export default {
       type: String,
       default: '其他',
     },
-    opationsData: {
+    value: {
       type: Array,
       required: true,
     },
+    // opationsData: {
+    //   type: Array,
+    //   required: true,
+    // },
     other: {
       type: Boolean,
       default: true,
@@ -81,19 +87,24 @@ export default {
     },
   },
   mounted() {
-    this.handleData();
+    this.handleData(this.value);
   },
   methods: {
-    handleData() {
+    handleData(val) {
       this.datas = [];
       this.inputTexts = [];
+      this.opationsData = val.slice();
       this.opationsData.forEach((od, odIndex) => {
+        const other = !this.clickFlg &&
+        this.other &&
+        odIndex === this.opationsData.length - 1;
+
         const newOd = {
           style: {},
           hrStatus: false,
           index: odIndex,
-          other: odIndex === this.opationsData.length - 1,
-          noPlus: this.other && odIndex === this.opationsData.length - 1,
+          other,
+          noPlus: other,
         };
         this.datas.push(newOd);
         this.inputTexts.push(od === this.dataPlaceholder || od === this.otherPlaceholder ? '' : od);
@@ -199,9 +210,11 @@ export default {
         index: index + 1,
       };
       this.datas.splice(index + 1, 0, obj);
+      this.inputTexts.splice(index + 1, 0, '');
       this.opationsData.splice(index + 1, 0, '');
       // 多次添加的时候 index 永远是点击的那个所以更新下 index
       this.updataIndex();
+      this.$emit('input', this.opationsData);
       this.$emit('plus', this.datas[index], index);
     },
     minus(index, item) {
@@ -209,7 +222,9 @@ export default {
         this.clickFlg = true;
       }
       this.datas.splice(index, 1);
+      this.inputTexts.splice(index, 1);
       this.opationsData.splice(index, 1);
+      this.$emit('input', this.opationsData);
       this.$emit('minus', this.datas[index], index);
     },
     otherPlus() {
@@ -221,6 +236,7 @@ export default {
       };
       if (this.clickFlg) {
         this.datas.splice(this.datas.length, 0, obj);
+        this.inputTexts.splice(this.datas.length, 0, '');
         this.opationsData.splice(this.datas.length, 0, '');
       }
       this.clickFlg = false;
@@ -234,6 +250,7 @@ export default {
     },
     textChange(index, val) {
       this.opationsData.splice(index, 1, val);
+      this.$emit('input', this.opationsData);
     },
   },
   watch: {
@@ -242,9 +259,15 @@ export default {
         this.clickFlg = !val;
       }
     },
-    opationsData() {
-      this.handleData();
+    value(val, oldVal) {
+      if (val !== oldVal) {
+        // 使用的时候，有时候一开始没有，后来会变化
+        this.handleData(val);
+      }
     },
+    // opationsData() {
+    //   this.handleData();
+    // },
   },
 };
 </script>
