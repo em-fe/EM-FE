@@ -1,6 +1,7 @@
 $header-height: 48px;
 $minor-height: 40px;
 $menu-top: 56px;
+$height: calc(100% - 56px);
 
 .#{$prefix}menu {
   @include clearfix();
@@ -26,7 +27,7 @@ $menu-top: 56px;
     @include border(right);
 
     width: $menu-md-width;
-    height: calc(100% - 56px);
+    height: $height;
     float: left;
     position: relative;
     z-index: 2;
@@ -122,14 +123,14 @@ $menu-top: 56px;
     @include border(right);
 
     width: 112px;
-    height: calc(100% - 64px);
+    height: $height;
     float: left;
     position: relative;
     z-index: 1;
     background: $background-color-write;
 
     &-iscroll {
-      height: calc(100% - 56px);
+      height: $height;
       position: relative;
       overflow: auto;
     }

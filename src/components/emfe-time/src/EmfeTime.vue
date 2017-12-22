@@ -17,21 +17,21 @@
     <emfe-transition name="fade">
       <div class="emfe-time-box" v-show="status" :class="{'emfe-time-box-position': !open}">
         <div class="emfe-time-main">
-          <div class="emfe-time-item" :class="itemName">
+          <emfe-iscroll ref="iscroll1" class="emfe-time-item" :style="{ width: exact === 'hour' ? '100%' : ( exact === 'minute' ? '50%' : '33.33333%' ) }" :class="itemName" :options="Contant.ISCROLL_CONFIG">
             <ul class="emfe-time-list">
-              <li class="emfe-time-list-item" v-for="hourLoop in hours" :class="{'emfe-time-list-item-on': hourLoop.num === hour, 'emfe-time-list-item-disable': hourLoop.undo}" @click.stop="choiceHour(hourLoop)">{{ hourLoop.num }}</li>
+              <li class="emfe-time-list-item" v-for="hourLoop in hours" :class="{'emfe-time-list-item-on': hourLoop.num === hour, 'emfe-time-list-item-disable': hourLoop.undo}" @click.stop="choiceHour(hourLoop)" v-if="invisibleDisable || !hourLoop.undo" ref="listItem1">{{ hourLoop.num }}</li>
             </ul>
-          </div>
-          <div class="emfe-time-item" :class="itemName">
+          </emfe-iscroll>
+          <emfe-iscroll ref="iscroll2" class="emfe-time-item" :class="itemName" :style="{ width: exact === 'minute' ? '50%' : '33.33333%' }" :options="Contant.ISCROLL_CONFIG" v-if="exact === 'minute' || exact === 'second'">
             <ul class="emfe-time-list">
-              <li class="emfe-time-list-item" v-for="minuteLoop in minutes" :class="{'emfe-time-list-item-on': minuteLoop.num === minute, 'emfe-time-list-item-disable': minuteLoop.undo}" @click.stop="choiceMinute(minuteLoop)">{{ minuteLoop.num }}</li>
+              <li class="emfe-time-list-item" v-for="minuteLoop in minutes" :class="{'emfe-time-list-item-on': minuteLoop.num === minute, 'emfe-time-list-item-disable': minuteLoop.undo}" @click.stop="choiceMinute(minuteLoop)" v-if="invisibleDisable || !minuteLoop.undo" ref="listItem2">{{ minuteLoop.num }}</li>
             </ul>
-          </div>
-          <div class="emfe-time-item" :class="itemName">
+          </emfe-iscroll>
+          <emfe-iscroll ref="iscroll3" class="emfe-time-item" :class="itemName" :options="Contant.ISCROLL_CONFIG" v-if="exact === 'second'">
             <ul class="emfe-time-list">
-              <li class="emfe-time-list-item" v-for="(secondLoop, secondIndex) in seconds" :class="{'emfe-time-list-item-on': secondLoop.num === second, 'emfe-time-list-item-disable': secondLoop.undo}" @click.stop="choiceSecond(secondLoop)">{{ secondLoop.num }}</li>
+              <li class="emfe-time-list-item" v-for="(secondLoop, secondIndex) in seconds" :class="{'emfe-time-list-item-on': secondLoop.num === second, 'emfe-time-list-item-disable': secondLoop.undo}" @click.stop="choiceSecond(secondLoop)" v-if="invisibleDisable || !secondLoop.undo" ref="listItem3">{{ secondLoop.num }}</li>
             </ul>
-          </div>
+          </emfe-iscroll>
         </div>
         <div v-if="confirm" class="emfe-time-footer">
           <button class="emfe-time-ok" @click.stop="ok">确定</button>
@@ -42,6 +42,7 @@
 </template>
 <script>
 import TimeTool from '../../../tools/time';
+import _ from '../../../tools/lodash';
 import Contant from '../../../contant';
 
 const hourNum = 24;
@@ -54,6 +55,7 @@ export default {
   data() {
     return {
       Contant,
+      canSetNow: true,
       hours: [],
       minutes: [],
       seconds: [],
@@ -79,6 +81,12 @@ export default {
       type: String,
       default: '',
     },
+    exact: {
+      validator(value) {
+        return _.has(value, ['hour', 'minute', 'second']);
+      },
+      default: 'second',
+    },
     confirm: {
       type: Boolean,
       default: true,
@@ -92,6 +100,7 @@ export default {
       type: Boolean,
       default: false,
     },
+    invisibleDisable: Boolean, // 设置不可选时间是否可见
     // 禁用小时
     disabledHours: {
       type: Array,
@@ -122,12 +131,19 @@ export default {
         {
           [`${this.className}-item`]: !!this.className,
         },
+        [`emfe-time-item-${this.exact}`],
       ];
     },
     time() {
       let time = this.placeholder;
       if (this.choiced) {
-        time = `${this.hour}:${this.minute}:${this.second}`;
+        if (this.exact === 'hour') {
+          time = `${this.hour}`;
+        } else if (this.exact === 'minute') {
+          time = `${this.hour}:${this.minute}`;
+        } else {
+          time = `${this.hour}:${this.minute}:${this.second}`;
+        }
       }
       return time;
     },
@@ -146,6 +162,44 @@ export default {
     this.setTimeChoice();
   },
   methods: {
+    refreshIscroll() {
+      Object.keys(this.$refs).forEach((iscroll) => {
+        if (this.$refs[iscroll].refresh) {
+          this.$refs[iscroll].refresh();
+        }
+      });
+    },
+    setNow() {
+      const now = new Date();
+      const hourNow = now.getHours();
+      const hour = this.hours[hourNow];
+      this.hour = hour.undo ? TimeTool.loopChoice(this.hours, hour.num) : hour.num;
+    },
+    // 选择完滚动到当前
+    // do hour时，hour滚动
+    scrollEle(doScroll) {
+      const { listItem1, listItem2, listItem3 } = this.$refs;
+
+      const hours = this.hours.filter(hourData => !hourData.undo);
+      const minutes = this.minutes.filter(minuteData => !minuteData.undo);
+      const seconds = this.seconds.filter(secondData => !secondData.undo);
+
+      const hourIndex = hours.findIndex(hourData => hourData.num === this.hour) - 2;
+      const minuteIndex = minutes.findIndex(minuteData => minuteData.num === this.minute) - 2;
+      const secondIndex = seconds.findIndex(secondData => secondData.num === this.second) - 2;
+
+      if (listItem1 && doScroll === 'hour') {
+        this.$refs.iscroll1.scrollToElement(listItem1[hourIndex < 0 ? 0 : hourIndex]);
+      }
+
+      if (listItem2 && doScroll === 'minute') {
+        this.$refs.iscroll2.scrollToElement(listItem2[minuteIndex < 0 ? 0 : minuteIndex]);
+      }
+
+      if (listItem3 && doScroll === 'second') {
+        this.$refs.iscroll3.scrollToElement(listItem3[secondIndex < 0 ? 0 : secondIndex]);
+      }
+    },
     initData() {
       if (this.value && this.value !== this.placeholder) {
         const vals = this.value.split(':');
@@ -160,11 +214,17 @@ export default {
         this.choiced = false;
       }
     },
-    setChoice() {
+    setChoice(noSetTime) {
       if (!this.choiced) {
-        this.hour = TimeTool.loopChoice(this.hours, this.hour);
-        this.minute = TimeTool.loopChoice(this.minutes, this.minute);
-        this.second = TimeTool.loopChoice(this.seconds, this.second);
+        if (noSetTime !== 'hour') {
+          this.hour = TimeTool.loopChoice(this.hours, this.hour);
+        }
+        if (noSetTime !== 'minute') {
+          this.minute = TimeTool.loopChoice(this.minutes, this.minute);
+        }
+        if (noSetTime !== 'second') {
+          this.second = TimeTool.loopChoice(this.seconds, this.second);
+        }
         this.choiced = true;
       }
     },
@@ -245,6 +305,18 @@ export default {
     },
     toggle() {
       this.status = !this.status;
+      this.refreshIscroll();
+      if (this.canSetNow) {
+        this.setNow();
+      }
+      this.setChoice('hour');
+      this.scrollEle('hour');
+      if (this.exact === 'minute' || this.exact === 'second') {
+        this.scrollEle('minute');
+      }
+      if (this.exact === 'second') {
+        this.scrollEle('second');
+      }
     },
     close(e, noClose) {
       if (!this.open) {
@@ -256,11 +328,13 @@ export default {
       }
     },
     ok() {
+      this.canSetNow = false;
       this.close(true);
       this.$emit('ok', this.time);
       this.$emit('input', this.time);
     },
     cancel() {
+      this.canSetNow = true;
       this.choiced = false;
       this.hour = '';
       this.minute = '';
