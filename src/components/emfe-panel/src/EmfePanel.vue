@@ -4,8 +4,8 @@
       <div class="emfe-panel-box-left" :class="leftName">{{item.text}}</div>
       <div class="emfe-panel-box-right" :class="rightName">
         <span class="emfe-panel-box-right-text">{{item.cont}}</span>
-        <emfe-icon v-if="!!type" :type="type" className="emfe-panel-box" @icon-click="iconClick(index)"></emfe-icon>
-        <emfe-switch class="emfe-panel-box-switch" :value="switchType" v-if="item.switchOk" @toggle="toggle">
+        <emfe-icon v-if="!!item.type || !!type" :type="item.type || type" className="emfe-panel-box" @icon-click="iconClick(index, item)"></emfe-icon>
+        <emfe-switch class="emfe-panel-box-switch" :value="item.switchState || item.switchType || switchState || switchType" v-if="item.switchOk || switchOk" :change="toggle.bind(this, index, item)">
           <span slot="open">ON</span>
           <span slot="close">OFF</span>
         </emfe-switch>
@@ -31,19 +31,27 @@ export default {
       type: String,
       default: '',
     },
+    switchOk: {
+      type: [String, Boolean],
+      default: false,
+    },
     switchType: {
+      type: Boolean,
+      default: false,
+    },
+    switchState: {
       type: Boolean,
       default: false,
     },
   },
   methods: {
-    toggle(status) {
-      this.$emit('switch-toogle', status);
-      this.$emit('change', status);
+    toggle(index, item, status) {
+      this.$emit('switch-toogle', status, index, item);
+      this.$emit('change', status, index, item);
     },
-    iconClick(index) {
-      this.$emit('icon-click', index);
-      this.$emit('click', index);
+    iconClick(index, item) {
+      this.$emit('icon-click', index, item);
+      this.$emit('click', index, item);
     },
   },
   computed: {

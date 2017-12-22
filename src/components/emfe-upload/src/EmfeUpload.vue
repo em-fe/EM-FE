@@ -405,7 +405,8 @@ export default {
         if (heng && canWidth && (this.interceptLeft > 2.5 || type === 'se' || type === 'right')) {
           this.interceptCanvasWidth += widthStep;
         }
-        if (shu && canHeight && (this.interceptLeft > 2.5 || type === 'se') && this.interceptTop > 0) {
+
+        if (shu && canHeight && (this.interceptLeft > 2.5 || type === 'se') && this.interceptTop >= 0) {
           this.interceptCanvasHeight += heightStep;
         }
       }

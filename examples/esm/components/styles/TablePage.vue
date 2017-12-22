@@ -2,34 +2,28 @@
   <div class="table-page">
     <p>点击添加表头 table</p>
     <div @click="addThead">添加添加添加</div>
-    <div style="width: 100%;overflow-x:auto">
-      <emfe-table :columns="column1" :data="data1" classAddName="add" border="true">
-        <emfe-table-head  slot="head"  @thJump='jumpTh' :checked="cell">
-        </emfe-table-head>
-        <emfe-table-body slot="body" @jump="Jump" v-for="(dataList,index) in data1" :ind="index" :key="index" :dataList="dataList" :checked="cell">
-        </emfe-table-body>
-      </emfe-table>
-    </div>
+    <emfe-table :columns="column1" :data="data1" classAddName="add" border="true">
+      <emfe-table-head  slot="head"  @thJump='jumpTh' :checked="cell">
+      </emfe-table-head>
+      <emfe-table-body slot="body" @jump="Jump" v-for="(dataList,index) in data1" :ind="index" :key="index" :dataList="dataList" :checked="cell">
+      </emfe-table-body>
+    </emfe-table>
     <br><br>
     <p>带边框的table</p>
-    <div style="width: 100%;overflow-x:auto">
-      <emfe-table :columns="column1" :data="data1" classAddName="add" border="true">
-        <emfe-table-head  slot="head"  @thJump='jumpTh' :checked="cell">
-        </emfe-table-head>
-        <emfe-table-body slot="body" @jump="Jump" v-for="(dataList,index) in data1" :ind="index" :key="index" :dataList="dataList" :checked="cell">
-        </emfe-table-body>
-      </emfe-table>
-    </div>
+    <emfe-table :columns="column1" :data="data1" classAddName="add" border="true">
+      <emfe-table-head  slot="head"  @thJump='jumpTh' :checked="cell">
+      </emfe-table-head>
+      <emfe-table-body slot="body" @jump="Jump" v-for="(dataList,index) in data1" :ind="index" :key="index" :dataList="dataList" :checked="cell">
+      </emfe-table-body>
+    </emfe-table>
     <br><br>
     <p>自适应table</p>
-    <div style="width: 100%;overflow-x:auto">
-      <emfe-table :columns="column1":data="data1">
-        <emfe-table-head  slot="head"  @thJump='jumpTh' :checked="cell">
-        </emfe-table-head>
-        <emfe-table-body slot="body" @jump="Jump" v-for="(dataList,index) in data1" :ind="index" :key="index" :dataList="dataList" :checked="cell">
-        </emfe-table-body>
-      </emfe-table>
-    </div>
+    <emfe-table :columns="column1":data="data1">
+      <emfe-table-head  slot="head"  @thJump='jumpTh' :checked="cell">
+      </emfe-table-head>
+      <emfe-table-body slot="body" @jump="Jump" v-for="(dataList,index) in data1" :ind="index" :key="index" :dataList="dataList" :checked="cell">
+      </emfe-table-body>
+    </emfe-table>
     <br><br>
     <p>如果你希望传入多个slot，需要把数据里的slot设置为a-i，插入的slot对应a-i</p>
     <emfe-table :columns="columnSlot" classAddName="add" :data="dataSlot">

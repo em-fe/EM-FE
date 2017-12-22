@@ -27,6 +27,10 @@ export default {
       type: Boolean,
       default: true,
     },
+    change: {
+      type: Function,
+      default: () => {},
+    },
   },
   data() {
     return {
@@ -61,6 +65,7 @@ export default {
         }
         this.$emit('toggle', this.currentValue);
         this.$emit('change', this.currentValue);
+        this.change(this.currentValue);
       }
     },
     changeValue() {

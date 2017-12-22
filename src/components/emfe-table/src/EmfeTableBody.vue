@@ -70,6 +70,7 @@ export default {
         {
           [`${this.$parent.tableName}-tbody-tr`]: !!this.tableName,
         },
+        'emfe-table-border-bottom',
       ];
     },
     classTd() {

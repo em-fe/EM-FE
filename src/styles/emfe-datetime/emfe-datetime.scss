@@ -59,6 +59,9 @@
     }
 
     &-disabled {
+      background: $input-disable-color;
+      cursor: not-allowed;
+
       &:hover {
         @include border();
       }
@@ -127,6 +130,14 @@
     color: $btn-color;
     cursor: pointer;
 
+    &:hover {
+      color: $btn-hover-color;
+    }
+
+    &:active {
+      color: $btn-active-color;
+    }
+
     &-disabled {
       color: $text-color-disable;
       cursor: no-drop;
@@ -138,14 +149,6 @@
       &:active {
         color: $text-color-disable;
       }
-    }
-
-    &:hover {
-      color: $btn-hover-color;
-    }
-
-    &:active {
-      color: $btn-active-color;
     }
   }
 }
