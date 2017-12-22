@@ -1,6 +1,6 @@
 <template>
   <div class="emfe-checkout" :class="checkoutName">
-    <div class="emfe-checkout-wrap">
+    <div :class="{'emfe-checkout-wrap': tip}">
       <label class="emfe-checkout-box" :class="{'emfe-checkout-box-forever': checkedForever || disable || disabled}">
         <i class="emfe-checkout-inner" :class="[innerName, checkedName]"></i>
         <input type="checkbox" class="emfe-checkout-status" :class="{'emfe-checkout-box-forever': checkedForever || disable || disabled}" :checked="checkoutStatus" @click.stop="click" @change="alocked" :name="name" :disabled="disable ||disabled" v-if="stop">
