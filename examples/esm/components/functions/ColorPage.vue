@@ -4,9 +4,7 @@
     选中的颜色是：{{ color }} {{ status }}
     <br>
     <br>
-    <emfe-color className="my" :value="color" @ok="ok" @cancel="cancel" @change="change">
-      <button class="color-page-btn">打开</button>
-    </emfe-color>
+    <emfe-color className="my" v-model="color"></emfe-color>
     <br>
     <br>
     <h3>API</h3>
