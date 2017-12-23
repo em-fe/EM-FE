@@ -1,8 +1,7 @@
 <template>
   <div class="emfe-hottip">
-  <!-- <div v-bind:class="[isActive ? activeClass : '', errorClass]"> -->
-    <a class="emfe-hottip-btn" href="javascript:;" @click="change">
-      <i class="emfe-icon-financial icon-page-icon" :class="{'emfe-hottip-deg' : showInfo}"></i>
+    <a class="emfe-hottip-btn" href="javascript:;">
+      <emfe-icon type="tishixinxizhankai" :class="{'emfe-hottip-deg' : showInfo}" @click="change"></emfe-icon>
     </a>
     <div v-show="showInfo">
       <slot name="no1" ></slot>
