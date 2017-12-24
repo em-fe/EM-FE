@@ -1,6 +1,9 @@
 <template>
   <div class="page-select">
     <h2>下拉框：</h2>
+    <emfe-select :datas="radio"></emfe-select>
+    <br>
+    <br>
     <div style="margin-bottom:10px">
     多选：</div>
 
@@ -252,6 +255,20 @@ export default {
   name: 'pageSelect',
   data() {
     return {
+      radio: [
+        {
+          name: '可用',
+          disabled: false,
+        },
+        {
+          name: '可用',
+          disabled: false,
+        },
+        {
+          name: '禁用',
+          disabled: true,
+        },
+      ],
       checkedNames: ['Jack'],
       checkVals: ['esfa','2','2','2','2', '2', '2', '2'],
       datas: '',

@@ -1,4 +1,8 @@
 .#{$prefix}checkout {
+  &-icon {
+    display: block;
+  }
+
   &-wrap {
     display: flex;
   }

@@ -203,7 +203,7 @@ export default {
       this.add(newdata, this.datas);
     },
     spanTxt(item) {
-      if (item.disabled !== 'disabled') {
+      if (item.disabled !== 'disabled' && !item.disabled) {
         this.checkVal = item.name;
         this.flagCheck = false;
         this.$emit('getDefData', this.checkVal, item, this.datas);
