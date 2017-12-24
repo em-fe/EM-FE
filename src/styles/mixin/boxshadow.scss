@@ -1,9 +1,0 @@
-@mixin box-shadow($direction: x) {
-  @if $direction == x {
-    box-shadow: 4px 0 8px $shadow-color;
-  }
-
-  @else {
-    box-shadow: 0 4px 8px $shadow-color;
-  }
-}

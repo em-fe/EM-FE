@@ -1,9 +1,0 @@
-@mixin tooltipBackgroundThemes($theme: dark) {
-  @if $theme == light {
-    background: $background-color-write;
-  }
-
-  @else {
-    background: $mask-color;
-  }
-}
