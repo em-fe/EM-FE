@@ -8,7 +8,7 @@
         <span class="emfe-checkout-text" :class="textName">{{ newtitle }}</span>
       </label>
       <emfe-tooltip className="emfe-checkout" theme="light" :placement="placement" v-if="tip">
-        <emfe-icon type="tishi" slot="render"></emfe-icon>
+        <emfe-icon className="emfe-checkout" type="tishi" slot="render"></emfe-icon>
         <div slot="tip" v-html="tip"></div>
       </emfe-tooltip>
     </div>
