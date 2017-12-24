@@ -124,7 +124,7 @@ $input-size: $handle-size - 14;
     @include border();
 
     height: 20px;
-    line-height: 20px;
+    // line-height: 20px;
     background: $background-color;
     text-align: center;
     color: $title-color;

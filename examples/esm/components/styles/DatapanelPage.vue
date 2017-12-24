@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="dataPanelPage">
-      <emfe-datapanel @link='link' linkText='查看详情' title="总收集量" type="fabu" theme="light" placement="bottom" contentText="1234" companyText="人" iconFlg="true">
-        <div slot="tipText">aaaaaaaaa</div>
+      <emfe-datapanel @link='link' linkText='查看详情' title="总收集量" type="fabu" theme="light" placement="bottom" contentText="1234" companyText="人" iconFlg="true" className="a">
+        <div slot="tipText">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
       </emfe-datapanel>
     </div>
     <br>

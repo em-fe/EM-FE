@@ -114,7 +114,6 @@ export default {
         return {};
       },
     },
-    handleDatas: Object,
     data: {
       type: Object,
     },
@@ -406,7 +405,8 @@ export default {
         if (heng && canWidth && (this.interceptLeft > 2.5 || type === 'se' || type === 'right')) {
           this.interceptCanvasWidth += widthStep;
         }
-        if (shu && canHeight && (this.interceptLeft > 2.5 || type === 'se') && this.interceptTop > 0) {
+
+        if (shu && canHeight && (this.interceptLeft > 2.5 || type === 'se') && this.interceptTop >= 0) {
           this.interceptCanvasHeight += heightStep;
         }
       }
@@ -637,6 +637,7 @@ export default {
           this.loadImg(res.url, res, fileData);
         } else {
           this.canLoad();
+          this.success(res, fileData, this.fileList, EmfeMessage);
           this.$emit('success', res, fileData, this.fileList, EmfeMessage);
         }
       }

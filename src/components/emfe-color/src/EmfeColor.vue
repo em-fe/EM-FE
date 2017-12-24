@@ -1,7 +1,7 @@
 <template>
   <div class="emfe-color" :class="colorName">
-    <div class="emfe-color-btn" ref="btn" :class="btnName" @click.stop="toggle">
-      <slot></slot>
+    <div class="emfe-color-btn" ref="btn" :class="btnName">
+      <emfe-button @click="toggle">{{ btnText }}</emfe-button>
     </div>
     <div class="emfe-color-box" :class="boxName" ref="colorbox" v-show="colorStatus" :style="colorBoxStyle">
       <emfe-drag :className="colorDrag" limit="true" :dragEl="colorMove" :style="rgbStyle" :initialValue="-6" :borderSize="2" limitPosition="center" @drag="dragSB" @beforeDrag="beforeDragSB">
@@ -34,7 +34,7 @@
           <p class="emfe-color-title">#</p>
           <input type="tel" maxlength="6" size="6" class="emfe-color-inp" v-model="hex" @input="hexChange">
         </div>
-        <button class="emfe-color-sub" :class="subName" v-once @click.stop="ok">{{ btnText }}</button>
+        <button class="emfe-color-sub" :class="subName" v-once @click.stop="ok">{{ subText }}</button>
       </div>
     </div>
   </div>
@@ -72,6 +72,10 @@ export default {
       default: 'ff0000',
     },
     btnText: {
+      type: String,
+      default: '打开',
+    },
+    subText: {
       type: String,
       default: '确定',
     },
@@ -170,6 +174,7 @@ export default {
       this.hsb.s = sb.s;
       this.hsb.b = sb.b;
       this.$emit('change', this.hex);
+      this.$emit('input', this.hex);
     },
     dragSB(e, left, top) {
       this.beforeDragSB(e, left, top);
@@ -178,6 +183,7 @@ export default {
       this.hsb.h = Color.getH(this, top);
       this.hsbBackground.h = Color.getH(this, top);
       this.$emit('change', this.hex);
+      this.$emit('input', this.hex);
     },
     dragH(e, left, top) {
       this.beforeDragH(e, left, top);
@@ -223,7 +229,7 @@ export default {
     },
     cancel() {
       this.close();
-      this.$emit('cancel', this.hex);
+      this.$emit('close', this.hex);
     },
     close() {
       this.colorStatus = false;

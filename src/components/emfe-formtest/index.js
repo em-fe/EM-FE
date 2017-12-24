@@ -40,13 +40,6 @@ export default {
     /* eslint-disable */
     return numPattern.test(val);
   },
-  num(val) {
-    /* eslint-disable */
-    //数字
-    const numPattern = /^-?\d*\.?\d+$/;
-    /* eslint-disable */
-    return numPattern.test(val);
-  },
   numInt(val) {
     /* eslint-disable */
     //数字

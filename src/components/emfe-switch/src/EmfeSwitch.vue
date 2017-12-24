@@ -15,10 +15,6 @@ export default {
       type: String,
       default: '',
     },
-    type: {
-      type: String,
-      default: '',
-    },
     disabled: {
       type: Boolean,
       default: false,
@@ -30,6 +26,10 @@ export default {
     interceptor: {
       type: Boolean,
       default: true,
+    },
+    change: {
+      type: Function,
+      default: () => {},
     },
   },
   data() {
@@ -65,10 +65,12 @@ export default {
         }
         this.$emit('toggle', this.currentValue);
         this.$emit('change', this.currentValue);
+        this.change(this.currentValue);
       }
     },
     changeValue() {
       this.currentValue = !this.currentValue;
+      this.$emit('input', this.currentValue);
     },
   },
   watch: {

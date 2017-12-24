@@ -1,5 +1,5 @@
 <template>
-  <footer class="emfe-footer">{{ content }}</footer>
+  <footer class="emfe-footer" :class="footerName">{{ content }}</footer>
 </template>
 <script>
 export default {
@@ -8,6 +8,16 @@ export default {
     content: {
       type: String,
       required: true,
+    },
+    className: String,
+  },
+  computed: {
+    footerName() {
+      return [
+        {
+          [`${this.className}-footer`]: !!this.className,
+        },
+      ];
     },
   },
 };

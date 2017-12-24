@@ -300,6 +300,9 @@ $header-height: 32px;
     }
 
     &-disabled {
+      background: $input-disable-color;
+      cursor: not-allowed;
+
       &:hover {
         @include border();
       }

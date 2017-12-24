@@ -158,7 +158,7 @@
         <tr>
           <td>format</td>
           <td>支持的文件类型，format 是识别文件的后缀名</td>
-          <td>Number</td>
+          <td>Array</td>
           <td>-</td>
         </tr>
         <tr>

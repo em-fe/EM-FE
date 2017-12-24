@@ -1,12 +1,17 @@
 <template>
-  <div class="emfe-box" :class="[classAddBox]">
-    <table v-if="columns.length" class="emfe-box-table" :class="[classAdd]">
+  <div class="emfe-table-box" :class="[boxName]">
+    <table v-if="columns.length" class="emfe-table" :class="[tableName]">
       <slot name="head"></slot>
-      <tbody>
-        <slot name="body"></slot>
+      <tbody :class="tbodyName">
+        <tr v-if="!data.length">
+          <td class="emfe-table-tr-td emfe-table-nothing-td" :colspan="columns.length">
+            <div class="emfe-table-nothing">{{nothingText}}</div>
+          </td>
+        </tr>
+        <slot name="body" else></slot>
       </tbody>
     </table>
-    <div class="emfe-box-nothing" v-if="!data.length">{{nothingText}}</div>
+    <!-- <div class="emfe-table-nothing" v-if="!data.length">{{nothingText}}</div> -->
   </div>
 </template>
 <script>
@@ -23,8 +28,8 @@ export default {
       default: false,
     },
     border: {
-      type: String,
-      default: '',
+      type: [String, Boolean],
+      default: false,
     },
     columns: {
       type: Array,
@@ -49,11 +54,14 @@ export default {
     className: String,
   },
   computed: {
-    classAddBox() {
+    boxName() {
       return this.classAddName || this.className ? `${this.classAddName || this.className}-box` : '';
     },
-    classAdd() {
+    tableName() {
       return this.classAddName || this.className ? `${this.classAddName || this.className}-table` : '';
+    },
+    tbodyName() {
+      return this.classAddName || this.className ? `${this.classAddName || this.className}-table-tbody` : '';
     },
   },
 };
