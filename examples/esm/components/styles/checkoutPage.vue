@@ -1,8 +1,8 @@
  <template>
   <div>
     <h4>填写设置</h4>
-    <emfe-checkout className="diy" title="双向数据绑定，默认选中项" v-model="initChecked">
-    </emfe-checkout>
+    <emfe-checkout className="diy" title="双向数据绑定，默认选中项" v-model="initChecked"></emfe-checkout>
+    <emfe-checkout title="另一种形式" theme="right"></emfe-checkout>
     {{ initChecked }}
     <emfe-checkout className="diy" :title="title" @checked="checked">
     </emfe-checkout>
