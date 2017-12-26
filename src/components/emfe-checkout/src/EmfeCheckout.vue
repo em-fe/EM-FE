@@ -1,7 +1,7 @@
 <template>
   <div class="emfe-checkout" :class="checkoutName">
     <div :class="{'emfe-checkout-wrap': tip}">
-      <label class="emfe-checkout-box" :class="{'emfe-checkout-box-forever': checkedForever || disable || disabled}">
+      <label class="emfe-checkout-box" :class="boxName">
         <i class="emfe-checkout-inner" :class="[innerName, checkedName]"></i>
         <input type="checkbox" class="emfe-checkout-status" :class="{'emfe-checkout-box-forever': checkedForever || disable || disabled, 'emfe-checkout-status-right': this.theme === 'right'}" :checked="checkoutStatus" @click.stop="click" @change="alocked" :name="name" :disabled="disable ||disabled" v-if="stop">
         <input type="checkbox" class="emfe-checkout-status" :class="{'emfe-checkout-box-forever': checkedForever || disable || disabled, 'emfe-checkout-status-right': this.theme === 'right'}" :checked="checkoutStatus" @change="alocked" :name="name" :disabled="disable ||disabled" v-else>
@@ -101,6 +101,14 @@ export default {
         {
           [`${this.className}-checkout`]: !!this.className,
           'emfe-checkout-inline': this.inline,
+        },
+      ];
+    },
+    boxName() {
+      return [
+        {
+          [`${this.className}-checkout-box`]: !!this.className,
+          'emfe-checkout-box-forever': this.checkedForever || this.disable || this.disabled,
         },
       ];
     },

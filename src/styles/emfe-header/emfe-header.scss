@@ -21,11 +21,21 @@ $header-height: 56px;
     }
   }
 
-  &-controller {
-    float: left;
-    padding: 0 32px 0 41px;
+  &-index {
+    float: right;
+    padding: 0 8px;
     font-size: 14px;
     line-height: $header-height;
+  }
+
+  &-controller {
+    float: left;
+    padding: 28px 32px 0 8px;
+    font-size: 14px;
+
+    &-text {
+      color: $title-color;
+    }
   }
 
   &-sidebar {
