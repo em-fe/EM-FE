@@ -4,7 +4,7 @@
       <img class="emfe-header-eye-img" :src="logo" height="100%" @click="goHome">
     </div>
     <div class="emfe-header-controller">
-      <span class="emfe-header-controller-text">连接人与现场</span>
+      <span class="emfe-header-controller-text">专注数据的娱乐电商平台</span>
     </div>
     <div class="emfe-header-info">
       <div class="emfe-header-index">

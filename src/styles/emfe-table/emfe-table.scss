@@ -36,7 +36,7 @@
 
       &-th {
         box-sizing: border-box;
-        padding: 0 12px;
+        padding: 0 16px;
         text-align: left;
         font-size: 14px;
         color: $text-color-prompt;
@@ -71,7 +71,7 @@
 
     &-td {
       box-sizing: border-box;
-      padding: 0 12px;
+      padding: 0 16px;
       text-align: left;
       font-size: 14px;
       color: $title-color;
@@ -85,6 +85,8 @@
       &-div {
         white-space: nowrap;
         color: $text-color-default;
+        padding: 8px 0;
+        line-height: 1.5;
 
         &-required {
           color: $auxiliary-color-danger;
