@@ -218,9 +218,6 @@ export default {
         this.month = this.today.getMonth();
       } else {
         // 如果 v-modal 为空的时候，时间选择为空
-        this.year = '';
-        this.month = '';
-        this.day = '';
         this.date = '';
       }
     },
