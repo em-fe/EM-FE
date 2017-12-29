@@ -185,8 +185,8 @@ export default {
         }
       });
       // this.flagCheck = this.checkList.length > 0;
-      this.flagCheck = true;
-      this.opened = true;
+      this.flagCheck = !this.flagCheck;
+      this.opened = !this.opened;
       this.clickInput();
       this.click();
       this.$emit('clickInput');

@@ -23,7 +23,7 @@ export default {
   props: {
     logo: {
       type: String,
-      default: 'https://static2.evente.cn/static/img/logo2017.png',
+      default: 'https://static2.evente.cn/static/img/logo2017.svg',
     },
     user: {
       type: String,
