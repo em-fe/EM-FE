@@ -3,7 +3,7 @@
     <table v-if="columns.length" class="emfe-table" :class="[tableName]">
       <slot name="head"></slot>
       <tbody :class="tbodyName">
-        <tr v-if="!data.length">
+        <tr v-if="!data.length || nothingStatus">
           <td class="emfe-table-tr-td emfe-table-nothing-td" :colspan="columns.length">
             <div class="emfe-table-nothing">{{nothingText}}</div>
           </td>
@@ -43,9 +43,10 @@ export default {
         return [];
       },
     },
+    nothingStatus: Boolean,
     nothingText: {
       type: String,
-      default: '尚未收集到数据',
+      default: '暂无数据',
     },
     classAddName: {
       type: String,
