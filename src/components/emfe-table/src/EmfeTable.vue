@@ -43,7 +43,7 @@ export default {
         return [];
       },
     },
-    nothingStatus: Boolean,
+    nothingStatus: Boolean, // 1.6.0 新增
     nothingText: {
       type: String,
       default: '暂无数据',
