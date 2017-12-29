@@ -201,12 +201,12 @@ export default {
     },
   },
   mounted() {
-    this.initData();
+    this.initData(this.value);
   },
   methods: {
-    initData() {
-      if (this.value && this.value !== this.placeholder) {
-        const vals = this.value.split(this.format);
+    initData(value) {
+      if (value && value !== this.placeholder) {
+        const vals = value.split(this.format);
         this.year = vals[0];
         this.month = vals[1] - 1;
         this.day = vals[2] - 0;
@@ -216,6 +216,12 @@ export default {
       } else if (this.today && !this.year) {
         this.year = this.today.getFullYear();
         this.month = this.today.getMonth();
+      } else {
+        // 如果 v-modal 为空的时候，时间选择为空
+        this.year = '';
+        this.month = '';
+        this.day = '';
+        this.date = '';
       }
     },
     resetDate() {
@@ -316,7 +322,7 @@ export default {
   watch: {
     value(val, oldVal) {
       if (val !== oldVal) {
-        this.initData();
+        this.initData(val);
       }
     },
   },
