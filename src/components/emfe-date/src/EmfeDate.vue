@@ -197,7 +197,7 @@ export default {
       return years;
     },
     choiced() {
-      return this.date !== this.placeholder;
+      return this.date && this.date !== this.placeholder;
     },
   },
   mounted() {
