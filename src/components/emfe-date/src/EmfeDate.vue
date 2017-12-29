@@ -295,12 +295,14 @@ export default {
     },
     ok() {
       this.close(true);
-      this.$emit('ok', this.date);
+      this.$emit('ok', this.date === this.placeholder ? '' : this.date);
+      this.$emit('input', this.date === this.placeholder ? '' : this.date);
     },
     close(e, noClose) {
       if (!this.open) {
         if (!noClose && this.status) {
-          this.$emit('close', this.date);
+          this.$emit('close', this.date === this.placeholder ? '' : this.date);
+          this.$emit('input', this.date === this.placeholder ? '' : this.date);
         }
         this.status = false;
       }

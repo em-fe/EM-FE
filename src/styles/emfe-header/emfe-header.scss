@@ -30,11 +30,23 @@ $header-height: 56px;
 
   &-controller {
     float: left;
-    padding: 28px 32px 0 8px;
+    padding: 0 32px 0 16px;
     font-size: 14px;
+    line-height: 56px;
 
     &-text {
-      color: $title-color;
+      color: $thead-text-color;
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: -8px;
+        top: 2px;
+        width: 1px;
+        height: 16px;
+        background: $button-color-default;
+      }
     }
   }
 

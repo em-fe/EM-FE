@@ -321,8 +321,8 @@ export default {
     close(e, noClose) {
       if (!this.open) {
         if (!noClose && this.status) {
-          this.$emit('close', this.time);
-          this.$emit('input', this.time);
+          this.$emit('close', this.time === this.placeholder ? '' : this.time);
+          this.$emit('input', this.time === this.placeholder ? '' : this.time);
         }
         this.status = false;
       }
@@ -330,8 +330,8 @@ export default {
     ok() {
       this.canSetNow = false;
       this.close(true);
-      this.$emit('ok', this.time);
-      this.$emit('input', this.time);
+      this.$emit('ok', this.time === this.placeholder ? '' : this.time);
+      this.$emit('input', this.time === this.placeholder ? '' : this.time);
     },
     cancel() {
       this.canSetNow = true;

@@ -177,14 +177,14 @@ export default {
     },
     ok() {
       this.close(true);
-      this.$emit('ok', this.dateTime);
-      this.$emit('input', this.dateTime);
+      this.$emit('ok', this.dateTime === this.placeholder ? '' : this.dateTime);
+      this.$emit('input', this.dateTime === this.placeholder ? '' : this.dateTime);
     },
     close(e, noClose) {
       if (!this.open) {
         if (!noClose && this.status) {
-          this.$emit('close', this.dateTime);
-          this.$emit('input', this.dateTime);
+          this.$emit('close', this.dateTime === this.placeholder ? '' : this.dateTime);
+          this.$emit('input', this.dateTime === this.placeholder ? '' : this.dateTime);
         }
         this.status = false;
       }
