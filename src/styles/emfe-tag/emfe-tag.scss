@@ -5,7 +5,11 @@
   line-height: 32px;
   padding: 0 24px;
   font-size: 14px;
-  margin-right: 4px;
+  margin-right: 8px;
+
+  &-parent {
+    font-size: 0;
+  }
 
   &-default {
     background: $switch-color-default;
