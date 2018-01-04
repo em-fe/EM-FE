@@ -24,7 +24,7 @@ export default {
       pendingPaymentNum: 59,
       pendingAuditNum: 40,
       pendingShipmentNum: 22,
-      memberDeadline: '2019-07-22 11:04:4',
+      memberDeadline: '2018-02-4 01:04:4',
     };
   },
   methods:{
