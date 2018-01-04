@@ -1,7 +1,7 @@
 <template>
   <div :class="[selectName, {'emfe-select-selectBox': tip}]">
     <div class="emfe-select" :class="[{'emfe-select-selectBox-tipSelect': tip}, `emfe-select-${direction}`]" v-emfe-documentclick="closeFn">
-      <input class="emfe-select-input" type="text" :class="[inputName, {'emfe-select-input-error': errOk}]" :value="checkVal" :disabled="newDisabled || !this.datas.length" readonly :placeholder="selectText" @click="inpcheck">
+      <input class="emfe-select-input" type="text" :class="[inputName, {'emfe-select-input-error': errOk}]" :value="checkVal" :disabled="newDisabled || (!this.datas.length && seleStu!=='newList')" readonly :placeholder="selectText" @click="inpcheck">
       <div class="emfe-select-error" :class="addErrorText" v-if="errOk"><slot name="error"></slot></div>
       <div v-if="flagCheck" class="emfe-select-flag" :class="`emfe-select-flag-${direction}`">
         <div class="emfe-select-custab" v-if="seleStu==='newList' || news">

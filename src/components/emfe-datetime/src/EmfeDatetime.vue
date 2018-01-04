@@ -11,8 +11,8 @@
       <span class="emfe-datetime-btn-text">{{ dateTime }}</span>
       <!-- 日期 -->
       <emfe-icon type="shijian" className="emfe-datetime" v-show="!choiced"></emfe-icon>
-      <!-- 取消 -->
-      <emfe-icon type="shanchu" className="emfe-datetime" v-show="choiced"></emfe-icon>
+      <!-- 取消 disabled 的时候不显示 -->
+      <!-- <emfe-icon type="shanchu" className="emfe-datetime" v-show="choiced"></emfe-icon> -->
     </button>
     <emfe-transition name="fade">
       <div class="emfe-datetime-main emfe-datetime-main-position" v-show="status" :style="panelstyle">
