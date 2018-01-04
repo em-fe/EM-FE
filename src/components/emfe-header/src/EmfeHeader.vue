@@ -4,9 +4,12 @@
       <img class="emfe-header-eye-img" :src="logo" height="100%" @click="goHome">
     </div>
     <div class="emfe-header-controller">
-      <span class="emfe-header-info-text" @click="goIndex">控制台首页</span>
+      <span class="emfe-header-controller-text">专注数据的娱乐电商平台</span>
     </div>
     <div class="emfe-header-info">
+      <div class="emfe-header-index">
+        <span class="emfe-header-info-text" @click="goIndex">控制台首页</span>
+      </div>
       <div class="emfe-header-account">
         <span class="emfe-header-info-hello">&nbsp;你好，<span class="emfe-header-info-text" @click="goAccount">{{ user }}</span></span>
       </div>
@@ -20,7 +23,7 @@ export default {
   props: {
     logo: {
       type: String,
-      default: 'https://static2.evente.cn/static/img/logo2017.png',
+      default: 'https://static2.evente.cn/static/img/logo2017.svg',
     },
     user: {
       type: String,

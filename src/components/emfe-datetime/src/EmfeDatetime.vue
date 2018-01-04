@@ -11,8 +11,8 @@
       <span class="emfe-datetime-btn-text">{{ dateTime }}</span>
       <!-- 日期 -->
       <emfe-icon type="shijian" className="emfe-datetime" v-show="!choiced"></emfe-icon>
-      <!-- 取消 -->
-      <emfe-icon type="shanchu" className="emfe-datetime" v-show="choiced"></emfe-icon>
+      <!-- 取消 disabled 的时候不显示 -->
+      <!-- <emfe-icon type="shanchu" className="emfe-datetime" v-show="choiced"></emfe-icon> -->
     </button>
     <emfe-transition name="fade">
       <div class="emfe-datetime-main emfe-datetime-main-position" v-show="status" :style="panelstyle">
@@ -20,7 +20,7 @@
           <emfe-date :format="formatDate" :open="true" :confirm="false" @choice="choiceDate" v-model="date" ref="date" v-show="isDate" :disabledDate="disabledDate"></emfe-date>
           <div class="emfe-datetime-time" v-show="!isDate">
             <div class="emfe-datetime-time-header">{{ date }}</div>
-            <emfe-time className="emfe-datetime" :open="true" :confirm="false" @choice="choiceTime" v-model="time" ref="time" :timeChoices="timeChoices" :disabledHours="disabledHours" :disabledMinutes="disabledMinutes" :disabledSeconds="disabledSeconds"></emfe-time>
+            <emfe-time className="emfe-datetime" :invisibleDisable="invisibleDisable" :open="true" :confirm="false" @choice="choiceTime" v-model="time" ref="time" :exact="exact" :timeChoices="timeChoices" :disabledHours="disabledHours" :disabledMinutes="disabledMinutes" :disabledSeconds="disabledSeconds"></emfe-time>
           </div>
         </div>
         <div class="emfe-datetime-footer">
@@ -33,6 +33,7 @@
 </template>
 <script>
 import { initTimeDate } from '../../../tools/date';
+import _ from '../../../tools/lodash';
 
 const zero = '00';
 const timeZero = `${zero}:${zero}:${zero}`;
@@ -69,10 +70,7 @@ export default {
       type: String,
       default: '',
     },
-    disabled: {
-      type: Boolean,
-      type: false,
-    },
+    disabled: Boolean,
     // 参数
     disabledDate: {
       type: Function,
@@ -88,6 +86,7 @@ export default {
       type: String,
       default: '00:00:00|23:59:59',
     },
+    invisibleDisable: Boolean, // 设置不可选时间是否可见
     // 禁用分钟
     disabledMinutes: {
       type: Array,
@@ -98,6 +97,12 @@ export default {
       type: Array,
       default: () => [],
     },
+    exact: {
+      validator(value) {
+        return _.has(value, ['hour', 'minute', 'second']);
+      },
+      default: 'second',
+    },
   },
   computed: {
     dateTime() {
@@ -105,6 +110,14 @@ export default {
 
       if (this.date && this.date !== this.placeholder) {
         if (!this.$refs.date || this.date !== this.$refs.date.placeholder) {
+          if (this.time === timeZero) {
+            if (this.exact === 'hour') {
+              this.time = zero;
+            }
+            if (this.exact === 'minute') {
+              this.time = `${zero}:${zero}`;
+            }
+          }
           newDateTime = `${this.date} ${this.time}`;
         }
       }
@@ -156,22 +169,22 @@ export default {
       this.time = timeZero;
       this.choiced = false;
       // 让日期组件恢复初始状态
-      this.$refs.date.cancel();
+      // this.$refs.date.cancel();
       // 让日期组件恢复初始状态
-      this.$refs.time.cancel();
-      this.$emit('cancel', this.dateTime);
-      this.$emit('input', this.dateTime);
+      // this.$refs.time.cancel();
+      this.$emit('cancel', '');
+      this.$emit('input', '');
     },
     ok() {
       this.close(true);
-      this.$emit('ok', this.dateTime);
-      this.$emit('input', this.dateTime);
+      this.$emit('ok', this.dateTime === this.placeholder ? '' : this.dateTime);
+      this.$emit('input', this.dateTime === this.placeholder ? '' : this.dateTime);
     },
     close(e, noClose) {
       if (!this.open) {
         if (!noClose && this.status) {
-          this.$emit('close', this.dateTime);
-          this.$emit('input', this.dateTime);
+          this.$emit('close', this.dateTime === this.placeholder ? '' : this.dateTime);
+          this.$emit('input', this.dateTime === this.placeholder ? '' : this.dateTime);
         }
         this.status = false;
       }
@@ -180,6 +193,16 @@ export default {
       if (!this.disabledToggle) {
         this.typeText = this.isDate ? dateText : timeText;
         this.isDate = !this.isDate;
+
+        const { time } = this.$refs;
+        time.refreshIscroll();
+        time.scrollEle('hour');
+        if (this.exact === 'minute' || this.exact === 'second') {
+          time.scrollEle('minute');
+        }
+        if (this.exact === 'second') {
+          time.scrollEle('second');
+        }
       }
     },
     toggle() {

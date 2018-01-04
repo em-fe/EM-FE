@@ -1,15 +1,19 @@
 <template>
   <div class="emfe-hottip">
-  <!-- <div v-bind:class="[isActive ? activeClass : '', errorClass]"> -->
-    <a class="emfe-hottip-btn" href="javascript:;" @click="change">
-      <i class="emfe-icon-financial icon-page-icon" :class="{'emfe-hottip-deg' : showInfo}"></i>
-    </a>
-    <div v-show="showInfo">
-      <slot name="no1" ></slot>
-    </div>
-    <div v-show="!showInfo">
-      <slot name="no2" ></slot>
-    </div>
+    <template v-if="open">
+      <a class="emfe-hottip-btn" href="javascript:;">
+        <emfe-icon type="tishixinxizhankai" :class="{'emfe-hottip-deg' : showInfo}" @click="change"></emfe-icon>
+      </a>
+      <div v-show="showInfo">
+        <slot name="no1" ></slot>
+      </div>
+      <div v-show="!showInfo">
+        <slot name="no2" ></slot>
+      </div>
+    </template>
+    <template v-else>
+      <slot></slot>
+    </template>
   </div>
 </template>
 <script>
@@ -19,6 +23,12 @@ export default {
     return {
       showInfo: false,
     };
+  },
+  props: {
+    open: {
+      type: Boolean,
+      default: false,
+    },
   },
   methods: {
     change() {

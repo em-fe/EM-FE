@@ -7,6 +7,12 @@
     text-align: left;
   }
 
+  &-tip {
+    width: 200px;
+    word-wrap: break-word;
+    white-space: normal;
+  }
+
   &-title {
     width: 100%;
     position: relative;
@@ -15,7 +21,7 @@
       font-size: 14px;
       line-height: 16px;
       color: $text-color-default;
-      float: left;
+      display: inline-block;
       vertical-align: middle;
     }
   }
@@ -51,8 +57,8 @@
       color: $brand-color-default;
       cursor: pointer;
       position: relative;
-      top: 3px;
       font-size: 14px;
+      line-height: 1;
     }
   }
 

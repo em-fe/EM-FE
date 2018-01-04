@@ -62,3 +62,8 @@
 2. 确定安装完依赖`npm install`之后，运行`npm run build`，手动打开`examples/iife/index.html`
 
 两者区别，一个是开发环境，一个是生产环境。
+
+## CDN
+
+- [jsdelivr](https://cdn.jsdelivr.net/npm/em-fe@latest/dist/)
+- [unpkg](https://unpkg.com/em-fe@1.4.0/dist/)

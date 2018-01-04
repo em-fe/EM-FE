@@ -7,6 +7,14 @@
     <emfe-datetime @ok="demo1ok" @cancel="demo1cancel" @close="demo1close"></emfe-datetime>
     <br>
     <br>
+    <h3>禁用</h3>
+    <br>
+    <br>
+    <div style="width: 300px;">
+      <emfe-datetime value="2012/12/12 10:10:10" :disabled="true"></emfe-datetime>
+    </div>
+    <br>
+    <br>
     <h3>固定宽度示例</h3>
     <br>
     <br>

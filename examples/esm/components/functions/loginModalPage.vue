@@ -2,7 +2,6 @@
   <div>
     <emfe-button @click="loginB">点击B端登录</emfe-button>
     <emfe-login :show='loginShowB' :loginClose="loginCloseB" :action="url" :referrerUrl='referrerUrl' forgotName="Forgotpassword" registerName="Type"></emfe-login>
-    <emfe-button @click="loginC">点击C端登录</emfe-button>
     <br>
     <br>
     <br>

@@ -1,14 +1,14 @@
 <template>
   <div class="emfe-checkout" :class="checkoutName">
-    <div class="emfe-checkout-wrap">
-      <label class="emfe-checkout-box" :class="{'emfe-checkout-box-forever': checkedForever || disable || disabled}">
+    <div :class="{'emfe-checkout-wrap': tip}">
+      <label class="emfe-checkout-box" :class="boxName">
         <i class="emfe-checkout-inner" :class="[innerName, checkedName]"></i>
-        <input type="checkbox" class="emfe-checkout-status" :class="{'emfe-checkout-box-forever': checkedForever || disable || disabled}" :checked="checkoutStatus" @click.stop="click" @change="alocked" :name="name" :disabled="disable ||disabled" v-if="stop">
-        <input type="checkbox" class="emfe-checkout-status" :class="{'emfe-checkout-box-forever': checkedForever || disable || disabled}" :checked="checkoutStatus" @change="alocked" :name="name" :disabled="disable ||disabled" v-else>
+        <input type="checkbox" class="emfe-checkout-status" :class="{'emfe-checkout-box-forever': checkedForever || disable || disabled, 'emfe-checkout-status-right': this.theme === 'right'}" :checked="checkoutStatus" @click.stop="click" @change="alocked" :name="name" :disabled="disable ||disabled" v-if="stop">
+        <input type="checkbox" class="emfe-checkout-status" :class="{'emfe-checkout-box-forever': checkedForever || disable || disabled, 'emfe-checkout-status-right': this.theme === 'right'}" :checked="checkoutStatus" @change="alocked" :name="name" :disabled="disable ||disabled" v-else>
         <span class="emfe-checkout-text" :class="textName">{{ newtitle }}</span>
       </label>
       <emfe-tooltip className="emfe-checkout" theme="light" :placement="placement" v-if="tip">
-        <emfe-icon type="tishi" slot="render"></emfe-icon>
+        <emfe-icon className="emfe-checkout" type="tishi" slot="render"></emfe-icon>
         <div slot="tip" v-html="tip"></div>
       </emfe-tooltip>
     </div>
@@ -22,6 +22,8 @@
   </div>
 </template>
 <script>
+import _ from '../../../tools/lodash';
+
 export default {
   name: 'EmfeCheckout',
   data() {
@@ -31,6 +33,12 @@ export default {
     };
   },
   props: {
+    theme: {
+      validator(value) {
+        return _.has(value, ['left', 'right']);
+      },
+      default: 'left',
+    },
     slideShow: {
       type: Boolean,
       default: false,
@@ -77,7 +85,7 @@ export default {
     innerName() {
       return [
         {
-          'emfe-checkout-inner-disable': this.disable || this.disabled, 'emfe-checkout-inner-checked': this.checkoutStatus,
+          'emfe-checkout-inner-disable': this.disable || this.disabled, 'emfe-checkout-inner-checked': this.checkoutStatus, 'emfe-checkout-inner-right': this.theme === 'right',
         },
       ];
     },
@@ -96,6 +104,14 @@ export default {
         },
       ];
     },
+    boxName() {
+      return [
+        {
+          [`${this.className}-checkout-box`]: !!this.className,
+          'emfe-checkout-box-forever': this.checkedForever || this.disable || this.disabled,
+        },
+      ];
+    },
     openName() {
       return [
         {
@@ -108,6 +124,7 @@ export default {
         {
           [`${this.className}-text`]: !!this.className,
           'emfe-checkout-text-notip': !this.tip,
+          'emfe-checkout-text-right': this.theme === 'right',
         },
       ];
     },

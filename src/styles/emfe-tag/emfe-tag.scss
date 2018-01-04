@@ -7,6 +7,10 @@
   font-size: 14px;
   margin-right: 8px;
 
+  &-parent {
+    font-size: 0;
+  }
+
   &-default {
     background: $switch-color-default;
     color: $title-color;

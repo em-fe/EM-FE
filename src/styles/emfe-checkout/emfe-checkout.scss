@@ -1,4 +1,8 @@
 .#{$prefix}checkout {
+  &-icon {
+    display: block;
+  }
+
   &-wrap {
     display: flex;
   }
@@ -7,9 +11,9 @@
     @include clearfix();
 
     position: relative;
-    display: inline-block;
     z-index: 2;
     cursor: pointer;
+    display: block;
 
     &-forever {
       cursor: no-drop;
@@ -47,6 +51,10 @@
 
       background: $background-color-disable;
     }
+
+    &-right {
+      float: right;
+    }
   }
 
   &-status {
@@ -59,9 +67,15 @@
     opacity: 0;
     filter: alpha(opacity=0);
     margin: 0;
+
+    &-right {
+      left: auto;
+      right: 0;
+    }
   }
 
   &-text {
+    width: calc(100% - 24px);
     font-size: 14px;
     color: $text-color-default;
     line-height: 16px;
@@ -75,6 +89,11 @@
     &-notip {
       // width: calc(100% - 24px);
       padding-right: 0;
+    }
+
+    &-right {
+      margin-left: 0;
+      margin-right: 8px;
     }
   }
 

@@ -197,16 +197,16 @@ export default {
       return years;
     },
     choiced() {
-      return this.date !== this.placeholder;
+      return this.date && this.date !== this.placeholder;
     },
   },
   mounted() {
-    this.initData();
+    this.initData(this.value);
   },
   methods: {
-    initData() {
-      if (this.value && this.value !== this.placeholder) {
-        const vals = this.value.split(this.format);
+    initData(value) {
+      if (value && value !== this.placeholder) {
+        const vals = value.split(this.format);
         this.year = vals[0];
         this.month = vals[1] - 1;
         this.day = vals[2] - 0;
@@ -216,6 +216,9 @@ export default {
       } else if (this.today && !this.year) {
         this.year = this.today.getFullYear();
         this.month = this.today.getMonth();
+      } else {
+        // 如果 v-modal 为空的时候，时间选择为空
+        this.date = '';
       }
     },
     resetDate() {
@@ -276,10 +279,9 @@ export default {
         this.$emit('input', this.date);
         // 如果有确定按钮
         if (!this.confirm) {
+          this.ok();
           this.$emit('choice', this.date);
           this.$emit('change', this.date);
-        } else {
-          this.ok();
         }
       }
     },
@@ -296,26 +298,28 @@ export default {
     },
     ok() {
       this.close(true);
-      this.$emit('ok', this.date);
+      this.$emit('ok', this.date === this.placeholder ? '' : this.date);
+      this.$emit('input', this.date === this.placeholder ? '' : this.date);
     },
     close(e, noClose) {
       if (!this.open) {
         if (!noClose && this.status) {
-          this.$emit('close', this.date);
+          this.$emit('close', this.date === this.placeholder ? '' : this.date);
+          this.$emit('input', this.date === this.placeholder ? '' : this.date);
         }
         this.status = false;
       }
     },
     cancel() {
       this.date = this.placeholder;
-      this.$emit('input', this.date);
-      this.$emit('cancel', this.date);
+      this.$emit('input', '');
+      this.$emit('cancel', '');
     },
   },
   watch: {
     value(val, oldVal) {
       if (val !== oldVal) {
-        this.initData();
+        this.initData(val);
       }
     },
   },

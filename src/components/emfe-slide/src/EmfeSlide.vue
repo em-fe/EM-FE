@@ -1,6 +1,5 @@
 <template>
   <div class="emfe-slide" :class="slideName">
-    {{ moveValue }}
     <div class="emfe-slide-main">
       <div class="emfe-slide-describe">{{slideLeft}}</div>
       <div class="emfe-slide-progress">

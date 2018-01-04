@@ -1,14 +1,14 @@
 <template>
   <div :class="[selectName, {'emfe-select-selectBox': tip}]">
-    <div class="emfe-select" :class="{'emfe-select-selectBox-tipSelect': tip}" v-emfe-documentclick="closeFn">
-      <input class="emfe-select-input" type="text" :class="[inputName, {'emfe-select-input-error': errOk}]" :value="checkVal" :disabled="newDisabled" readonly :placeholder="selectText" @click="inpcheck">
+    <div class="emfe-select" :class="[{'emfe-select-selectBox-tipSelect': tip}, `emfe-select-${direction}`]" v-emfe-documentclick="closeFn">
+      <input class="emfe-select-input" type="text" :class="[inputName, {'emfe-select-input-error': errOk}]" :value="checkVal" :disabled="newDisabled || (!this.datas.length && seleStu!=='newList')" readonly :placeholder="selectText" @click="inpcheck">
       <div class="emfe-select-error" :class="addErrorText" v-if="errOk"><slot name="error"></slot></div>
-      <div v-if="flagCheck" class="emfe-select-flag">
+      <div v-if="flagCheck" class="emfe-select-flag" :class="`emfe-select-flag-${direction}`">
         <div class="emfe-select-custab" v-if="seleStu==='newList' || news">
           <input type="text" :placeholder="addText" class="emfe-select-input" v-model="newListVal">
           <span class="emfe-select-custab-btn" @click="newListBtn">保存</span>
         </div>
-        <div class="emfe-select-flag-scroll">
+        <div :class="{'emfe-select-flag-scroll': checkList.length > 5}">
           <label v-for="(item, itemIndex) in checkList" :class="{'emfe-select-label-disabled': item.disabled}" class="emfe-select-label" v-if="type==='checkbox'" :key="item.id">
             <span class="emfe-select-text">{{ item.name }}</span>
             <div class="emfe-select-checkout-box">
@@ -87,6 +87,12 @@ export default {
       },
     },
     className: String,
+    direction: {
+      validator(value) {
+        return _.has(value, ['top', 'bottom']);
+      },
+      default: 'bottom',
+    },
     getDefData: {
       type: Function,
       default: () => {},
@@ -179,8 +185,8 @@ export default {
         }
       });
       // this.flagCheck = this.checkList.length > 0;
-      this.flagCheck = true;
-      this.opened = true;
+      this.flagCheck = !this.flagCheck;
+      this.opened = !this.opened;
       this.clickInput();
       this.click();
       this.$emit('clickInput');
@@ -197,7 +203,7 @@ export default {
       this.add(newdata, this.datas);
     },
     spanTxt(item) {
-      if (item.disabled !== 'disabled') {
+      if (item.disabled !== 'disabled' && !item.disabled) {
         this.checkVal = item.name;
         this.flagCheck = false;
         this.$emit('getDefData', this.checkVal, item, this.datas);

@@ -1,6 +1,6 @@
 <template>
   <div class="emfe-opations-page">
-    <emfe-opations :opationsData="opationsData" :other="hasOther"></emfe-opations>
+    <emfe-opations v-model="opationsData" :other="hasOther"></emfe-opations>
     <br>
     <pre>
       &lt;emfe-opations :opationsData="opationsData" :other="hasOther"&gt;&lt;/emfe-opations&gt;

@@ -71,6 +71,7 @@ export default {
     plus() {
       const fixNum = this.toFix();
       if (!this.plusdisable) {
+        this.num = this.num - 0;
         const oldNum = this.num;
         this.num += this.step;
         this.num = this.num.toFixed(fixNum) - 0;
@@ -81,6 +82,7 @@ export default {
     reduce() {
       const fixNum = this.toFix();
       if (!this.reducedisable) {
+        this.num = this.num - 0;
         const oldNum = this.num;
         this.num -= this.step;
         this.num = this.num.toFixed(fixNum) - 0;
