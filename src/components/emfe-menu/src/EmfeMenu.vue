@@ -175,6 +175,22 @@ export default {
             } else if (inChildFullPath || (O.hOwnProperty(dataChild, 'routers') && name === O.hOwnProperty(dataChild.routers, 'name'))) {
               item = data;
               itemIndex = dataNum;
+            } else if (O.hOwnProperty(data, 'children')) {
+              // 营销中心，当前无权限，但是跳到帮助介绍页面。
+              // 如果一级导航有子级
+              data.children.forEach((otherDataChild, otherDataChildIndex) => {
+                // 如果二级导航有子节点
+                if (O.hOwnProperty(otherDataChild, 'children')) {
+                  otherDataChild.children.forEach((dataGrandson) => {
+                    if (O.hOwnProperty(dataGrandson, 'url') && dataGrandson.url.indexOf(newFullPath) > -1) {
+                      // 打开二级导航的折叠
+                      this.toogleChild(otherDataChildIndex);
+                      item = data;
+                      itemIndex = dataNum;
+                    }
+                  });
+                }
+              });
             }
           });
         } else if (O.hOwnProperty(data, 'routers') && (newDataFullPath || name === data.routers.name)) {

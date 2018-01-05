@@ -59,9 +59,10 @@ export default {
         return [];
       },
     },
+    nothingStatus: Boolean, // 1.6.0 新增
     nothingText: {
       type: String,
-      default: '尚未收集到数据',
+      default: '暂无数据',
     },
     classAddName: {
       type: String,

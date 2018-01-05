@@ -11,8 +11,8 @@
       <span class="emfe-datetime-btn-text">{{ dateTime }}</span>
       <!-- 日期 -->
       <emfe-icon type="shijian" className="emfe-datetime" v-show="!choiced"></emfe-icon>
-      <!-- 取消 -->
-      <emfe-icon type="shanchu" className="emfe-datetime" v-show="choiced"></emfe-icon>
+      <!-- 取消 disabled 的时候不显示 -->
+      <!-- <emfe-icon type="shanchu" className="emfe-datetime" v-show="choiced"></emfe-icon> -->
     </button>
     <emfe-transition name="fade">
       <div class="emfe-datetime-main emfe-datetime-main-position" v-show="status" :style="panelstyle">
@@ -177,14 +177,14 @@ export default {
     },
     ok() {
       this.close(true);
-      this.$emit('ok', this.dateTime);
-      this.$emit('input', this.dateTime);
+      this.$emit('ok', this.dateTime === this.placeholder ? '' : this.dateTime);
+      this.$emit('input', this.dateTime === this.placeholder ? '' : this.dateTime);
     },
     close(e, noClose) {
       if (!this.open) {
         if (!noClose && this.status) {
-          this.$emit('close', this.dateTime);
-          this.$emit('input', this.dateTime);
+          this.$emit('close', this.dateTime === this.placeholder ? '' : this.dateTime);
+          this.$emit('input', this.dateTime === this.placeholder ? '' : this.dateTime);
         }
         this.status = false;
       }
