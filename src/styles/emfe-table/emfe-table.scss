@@ -7,6 +7,7 @@
 
     width: 100%;
     overflow: auto;
+    position: relative;
   }
 
   &-nothing {
@@ -114,6 +115,77 @@
 
     &:last-child {
       border-bottom: none;
+    }
+  }
+
+  &-fixbox {
+    width: 100px;
+    position: absolute;
+    top: 0;
+    background: $background-color-write;
+
+    &-right {
+      right: 0;
+
+      &-item-name {
+        @include border(left);
+
+        border-right: 0;
+      }
+    }
+
+    &-left {
+      left: 0;
+
+      &-item-name {
+        @include border(right);
+
+        border-left: 0;
+      }
+    }
+
+    &-item {
+      &-title {
+        height: 48px;
+        background: $background-color-title;
+
+        &-name {
+          padding: 0 16px;
+          text-align: center;
+          font-size: 14px;
+          line-height: 48px;
+          box-sizing: border-box;
+          color: $text-color-prompt;
+
+          @include border(bottom);
+        }
+      }
+
+      &-main {
+        &-name {
+          height: 49px;
+          color: $brand-color-default;
+          padding: 0 16px;
+          font-size: 14px;
+          line-height: 48px;
+          box-sizing: border-box;
+
+          @include border(bottom);
+
+          &:last-child {
+            border-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+
+  &-tablebox {
+    overflow: auto;
+    width: calc(100% - 100px);
+
+    &-left {
+      margin-left: 100px;
     }
   }
 }
