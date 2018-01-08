@@ -219,7 +219,7 @@ export default {
           `${myDate.getFullYear()}-${(myDate.getMonth() + 1)}-${myDate.getDate()} ${myDate.getHours()}:${myDate.getMinutes()}:${myDate.getSeconds()}`;
       if (this.memberDeadline === '') {
         return '';
-      } else if (this.memberDeadline !== '' && endTime > this.memberDeadline) {
+      } else if (this.memberDeadline !== '' && new Date(endTime).getTime() > new Date(this.memberDeadline).getTime()) {
         return 1;
       }
       return 2;
