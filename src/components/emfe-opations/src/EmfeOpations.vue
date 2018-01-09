@@ -257,6 +257,7 @@ export default {
     other(val, oldVal) {
       if (val !== oldVal) {
         this.clickFlg = !val;
+        this.otherMin = val;
       }
     },
     value(val, oldVal) {
