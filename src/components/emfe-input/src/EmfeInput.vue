@@ -13,7 +13,7 @@ const prefixCls = 'emfe-input-box';
 const error = 'error';
 
 export default {
-  name: 'input',
+  name: 'emfe-input',
   props: {
     value: {
       type: [String, Number],
