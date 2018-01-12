@@ -70,6 +70,26 @@
       <emfe-table-body slot="body"  v-for="(dataList,index) in data10" :ind="index" :key="index" :dataList="dataList">
       </emfe-table-body>
     </emfe-table>
+    <br><br>
+    <br><br>
+    <p>右边固定栏</p>
+    <emfe-table :columns="column1" :data="data1" classAddName="add" border="true" flex="right" :flexColumns="flexColumn">
+      <emfe-table-head  slot="head"  @thJump='jumpTh' :checked="cell">
+      </emfe-table-head>
+      <emfe-table-body slot="body" @jump="Jump" v-for="(dataList,index) in data1" :ind="index" :key="index" :dataList="dataList">
+      </emfe-table-body>
+    </emfe-table>
+    <br><br>
+    <br><br>
+    <p>左边固定栏</p>
+    <emfe-table :columns="column1" :data="data1" classAddName="add" border="true" flex="left" :flexColumns="flexColumn">
+      <emfe-table-head  slot="head"  @thJump='jumpTh' :checked="cell">
+      </emfe-table-head>
+      <emfe-table-body slot="body" @jump="Jump" v-for="(dataList,index) in data1" :ind="index" :key="index" :dataList="dataList">
+      </emfe-table-body>
+    </emfe-table>
+    <br><br>
+    <br><br>
     <h3>API</h3>
     <table style="width:100%;text-align:center" class="table">
       <thead>
@@ -365,6 +385,22 @@ export default {
           address7: {text:'北京市朝阳区芍药居2', row:false},
           address8: {text:'北京市朝阳区芍药居7', row:false},
           address9: {text:'北京市朝阳区芍药居7', row:false},
+        },
+      ],
+      flexColumn:[
+        {
+          title: '操作',
+          key: 'operation',
+          opation: [
+            {
+              name: '查看详情',
+              disabled: true,
+            },
+            {
+              name: '查看详情',
+              disabled: false,
+            },
+          ],
         },
       ],
     };
