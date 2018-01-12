@@ -62,17 +62,21 @@
       openMember===1)&& !((openVip===1&&isVip===2&&openMember===1) ||
       openMember===1&&isVip===2)) }">
       <span class="emfe-panel-c-others-text">
-        <img src="data:image/gif;base64,R0lGODlhDwALAMQAACTv4SXW6SXF7yin+STn5CP+3CXM7STf5ie09CP43ibc6CjN7Se+8Sis+CjU6ifG7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEHABAALAAAAAAPAAsAAAVQoEIQkDOeqJIUxXKwcPys7VsQLAGwB+2yj1ljV1BAVr9CAoEIwCDHgsHGaDQQNgBxygo8GgZcISq1EQINAk3N4rIStjbNHYMJAgeSCYVyhAAAOw==" class="emfe-panel-c-others-text-img">
+        <img @click="couponClick"
+                src="data:image/gif;base64,R0lGODlhDwALAMQAACTv4SXW6SXF7yin+STn5CP+3CXM7STf5ie09CP43ibc6CjN7Se+8Sis+CjU6ifG7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEHABAALAAAAAAPAAsAAAVQoEIQkDOeqJIUxXKwcPys7VsQLAGwB+2yj1ljV1BAVr9CAoEIwCDHgsHGaDQQNgBxygo8GgZcISq1EQINAk3N4rIStjbNHYMJAgeSCYVyhAAAOw==" class="emfe-panel-c-others-text-img">
         优惠卷<em class="emfe-panel-c-others-text-em">：{{ couponNum }}张</em></span>
       <span class="emfe-panel-c-others-text" v-if="openVip===1&&isVip===1 || openMember===1">
-        <img src="data:image/gif;base64,R0lGODlhDgAOAMQAAJmlrDKh7vipbnGkxcqnjCGg+bmml1Wj196of/+paoWluManjiGh+ECi5Sih9eaoeq+mntSnhd2ogDyh6Eai4fapcFij1bSmmoGku////wAAAAAAAAAAAAAAAAAAAAAAACH5BAEHABkALAAAAAAOAA4AAAVeYCZmACIICDCOg5C8sDCwcEIQ9Zy5r9BMvISAVFMUCphgKWGwOI5Hh+WSQLwiDgY0GqkxtVvqy/qibBswCQA22QZgKp7jAIFYGD3R4PWo9RM6GS1eCRWBIwASJ2orIQA7" class="emfe-panel-c-others-text-img">
+        <img @click="integalClick"
+             src="data:image/gif;base64,R0lGODlhDgAOAMQAAJmlrDKh7vipbnGkxcqnjCGg+bmml1Wj196of/+paoWluManjiGh+ECi5Sih9eaoeq+mntSnhd2ogDyh6Eai4fapcFij1bSmmoGku////wAAAAAAAAAAAAAAAAAAAAAAACH5BAEHABkALAAAAAAOAA4AAAVeYCZmACIICDCOg5C8sDCwcEIQ9Zy5r9BMvISAVFMUCphgKWGwOI5Hh+WSQLwiDgY0GqkxtVvqy/qibBswCQA22QZgKp7jAIFYGD3R4PWo9RM6GS1eCRWBIwASJ2orIQA7" class="emfe-panel-c-others-text-img">
         积&nbsp;&nbsp;&nbsp;分<em class="emfe-panel-c-others-text-em">：{{ integral }}</em></span>
       <span class="emfe-panel-c-others-text">
-        <img src="data:image/gif;base64,R0lGODlhDQAOAMQAAE2m3vq4d5CttrOxoeG2hiGh+XGqyM20ku+3fauwpjOj7sazllqn12epz9a1jZyur+a2g/+5dLyynJWutHqrw6Wvqve4ed61jMKymVKm3Daj7P///wAAAAAAAAAAAAAAACH5BAEHABsALAAAAAANAA4AAAVe4CYyhBUhjqiqTuRWa8zMsSqYriXEh+u7B5XEBSFEHMaIZNPwLTQVBcbXWPgclAKl5VrgIhNGgTHxfSMCQCEj+EF8hERhkIxAHr+AIPB7bHo/P0EiBhIQJhYQEgYiIQA7" class="emfe-panel-c-others-text-img">
+        <img @click="balanceClick"
+             src="data:image/gif;base64,R0lGODlhDQAOAMQAAE2m3vq4d5CttrOxoeG2hiGh+XGqyM20ku+3fauwpjOj7sazllqn12epz9a1jZyur+a2g/+5dLyynJWutHqrw6Wvqve4ed61jMKymVKm3Daj7P///wAAAAAAAAAAAAAAACH5BAEHABsALAAAAAANAA4AAAVe4CYyhBUhjqiqTuRWa8zMsSqYriXEh+u7B5XEBSFEHMaIZNPwLTQVBcbXWPgclAKl5VrgIhNGgTHxfSMCQCEj+EF8hERhkIxAHr+AIPB7bHo/P0EiBhIQJhYQEgYiIQA7" class="emfe-panel-c-others-text-img">
         &nbsp;余&nbsp;&nbsp;&nbsp;额<em class="emfe-panel-c-others-text-em">：￥{{ balance }}</em></span>
       <span class="emfe-panel-c-others-text" v-if="(openVip===1&&isVip===2&&openMember===1) ||
       openMember===1&&isVip===2">
-        <img src="data:image/gif;base64,R0lGODlhDQAOAMQAACD4hSG52CDxjiDioyHJwyDqmCH/hCD1iiG/0SHLwSDtkyDomiG90yHbrCG33CDEyv///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEHABAALAAAAAANAA4AAAU5IAGMCGSe5qgmZqMyqhocMaDUOADlsWAOKpfqgIIgDofFYvAopnxOFAAaTSmqJ0ABm9pytVzH1BkCADs=" class="emfe-panel-c-others-text-img">
+        <img @click="growthClick"
+             src="data:image/gif;base64,R0lGODlhDQAOAMQAACD4hSG52CDxjiDioyHJwyDqmCH/hCD1iiG/0SHLwSDtkyDomiG90yHbrCG33CDEyv///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEHABAALAAAAAANAA4AAAU5IAGMCGSe5qgmZqMyqhocMaDUOADlsWAOKpfqgIIgDofFYvAopnxOFAAaTSmqJ0ABm9pytVzH1BkCADs=" class="emfe-panel-c-others-text-img">
         成长值<em class="emfe-panel-c-others-text-em">：{{ growth }}</em></span>
     </div>
   </div>
@@ -208,6 +212,18 @@ export default {
     },
     freeLevels() {
       this.$emit('freeLevel');
+    },
+    couponClick() {
+      this.$emit('couponClick');
+    },
+    integalClick() {
+      this.$emit('integalClick');
+    },
+    balanceClick() {
+      this.$emit('balanceClick');
+    },
+    growthClick() {
+      this.$emit('growthClick');
     },
   },
   computed: {

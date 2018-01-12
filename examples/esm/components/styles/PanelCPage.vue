@@ -4,7 +4,8 @@
                   :memberlogoNoVip="memberlogoNoVip" :growth="growth" :integral="integral" :balance="balance"
                   :couponNum="couponNum"
                   :telRouters="{}" :infoRouters="{}" :walletRouters="{}"
-                  uploadAction="https://www.easy-mock.com/mock/5a2e29ed89d2205cbfe7a459/emfe/upload" :nickName='nickname' :levelName="levelName" :code="code" :phone="phone" :isMember="isMember" :openMember="openMember" :isVip="isVip" :openVip="openVip" :pendingPaymentNum="pendingPaymentNum" :pendingReceiveNum="pendingReceiveNum" :pendingAuditNum="pendingAuditNum" :pendingShipmentNum="pendingShipmentNum" @pendingPay="pendingPay" @pendingAudit="pendingAudit" @pendingShipment="pendingShipment" @renew="renew" @freeLevel="freeLevel" @uploadSuccess="uploadSuccess"></emfe-panel-c>
+                  uploadAction="https://www.easy-mock.com/mock/5a2e29ed89d2205cbfe7a459/emfe/upload" :nickName='nickname' :levelName="levelName" :code="code" :phone="phone" :isMember="isMember" :openMember="openMember" :isVip="isVip" :openVip="openVip" :pendingPaymentNum="pendingPaymentNum" :pendingReceiveNum="pendingReceiveNum" :pendingAuditNum="pendingAuditNum" :pendingShipmentNum="pendingShipmentNum" @pendingPay="pendingPay" @pendingAudit="pendingAudit" @pendingShipment="pendingShipment" @renew="renew" @freeLevel="freeLevel" @uploadSuccess="uploadSuccess"
+    @couponClick="couponClick" @integalClick="integalClick" @balanceClick="balanceClick" @growthClick="growthClick"></emfe-panel-c>
   </div>
 </template>
 <script>
@@ -51,6 +52,18 @@ export default {
     },
     uploadSuccess(res){
       console.log(res);
+    },
+    couponClick(){
+      alert('我是优惠卷')
+    },
+    integalClick(){
+      alert('我是积分')
+    },
+    balanceClick(){
+      alert('我是余额')
+    },
+    growthClick(){
+      alert('我是成长值')
     },
   },
 };

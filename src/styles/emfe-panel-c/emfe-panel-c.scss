@@ -3,7 +3,7 @@
 
   height: 141px;
   padding: 22px 0;
-  border-top: 1px solid #4eb6fe;
+  border-top: 1px solid  rgba(255, 255, 255, 0.22);
   background-color: #26a5fd;
 
   &-logobox {
@@ -55,7 +55,7 @@
   &-infobox {
     float: left;
     margin-top: 6px;
-    border-right: 1px solid #4fb6fd;
+    border-right: 1px solid rgba(255, 255, 255, 0.22);
 
     &-about {
       @include clearfix();
@@ -137,12 +137,13 @@
         border-radius: 5px;
 
         &-i {
+          @include border(top, $background-color-write, 10px);
+
           width: 0;
           height: 0;
           position: absolute;
           left: 114px;
           top: 19px;
-          border-top: 10px solid #e6f5ff;
           border-left: 10px solid transparent;
         }
       }
@@ -172,12 +173,13 @@
       border-radius: 5px;
 
       &-i {
+        @include border(top, $background-color-write, 10px);
+
         width: 0;
         height: 0;
         position: absolute;
         left: 114px;
         top: 19px;
-        border-top: 10px solid #e6f5ff;
         border-left: 10px solid transparent;
       }
     }
@@ -228,7 +230,7 @@
     height: 80px;
     margin-top: 6px;
     float: left;
-    background-color: #4fb6fd;
+    background-color: rgba(255, 255, 255, 0.22);
   }
 
   &-others {
@@ -247,6 +249,7 @@
       text-align: center;
 
       &-img {
+        cursor: pointer;
         margin-top: -3px;
         vertical-align: middle;
       }
