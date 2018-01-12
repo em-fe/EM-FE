@@ -1,6 +1,10 @@
 <template>
   <div>
-    <emfe-panel-c :memberDeadline="memberDeadline" :headImg="headImg" :memberlogo="memberlogo" :memberlogoNoVip="memberlogoNoVip" :growth="growth" :integral="integral" :balance="balance" :telRouters="{}" :infoRouters="{}" :walletRouters="{}" uploadAction="https://www.easy-mock.com/mock/5a2e29ed89d2205cbfe7a459/emfe/upload" :nickName='nickname' :levelName="levelName" :code="code" :phone="phone" :isMember="isMember" :openMember="openMember" :isVip="isVip" :openVip="openVip" :pendingPaymentNum="pendingPaymentNum" :pendingAuditNum="pendingAuditNum" :pendingShipmentNum="pendingShipmentNum" @pendingPay="pendingPay" @pendingAudit="pendingAudit" @pendingShipment="pendingShipment" @renew="renew" @freeLevel="freeLevel" @uploadSuccess="uploadSuccess"></emfe-panel-c>
+    <emfe-panel-c :memberDeadline="memberDeadline" :headImg="headImg" :memberlogo="memberlogo"
+                  :memberlogoNoVip="memberlogoNoVip" :growth="growth" :integral="integral" :balance="balance"
+                  :couponNum="couponNum"
+                  :telRouters="{}" :infoRouters="{}" :walletRouters="{}"
+                  uploadAction="https://www.easy-mock.com/mock/5a2e29ed89d2205cbfe7a459/emfe/upload" :nickName='nickname' :levelName="levelName" :code="code" :phone="phone" :isMember="isMember" :openMember="openMember" :isVip="isVip" :openVip="openVip" :pendingPaymentNum="pendingPaymentNum" :pendingReceiveNum="pendingReceiveNum" :pendingAuditNum="pendingAuditNum" :pendingShipmentNum="pendingShipmentNum" @pendingPay="pendingPay" @pendingAudit="pendingAudit" @pendingShipment="pendingShipment" @renew="renew" @freeLevel="freeLevel" @uploadSuccess="uploadSuccess"></emfe-panel-c>
   </div>
 </template>
 <script>
@@ -12,19 +16,21 @@ export default {
       memberlogoNoVip: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAALCAMAAACXmSduAAAAS1BMVEUAAAD9iDv9iDv9iDv9iDv9iDv9iDv9iDv9iDv9iDv9iDv9iDv9iDv9iDv9iDv9iDv9iDv9iDv9iDv9iDv9iDv9iDv9iDv9iDv9iDvGclxWAAAAGHRSTlMAGRAFJgpfRTzvfWxOLPXm4MG+m4xWMyE8SFU/AAAAYElEQVQI10VOVxaAMAiD7tbWPbj/SaXRp/kgjOQFAmyLzdKHIB3DO5lJJJyHyMgY9WSUvTIrQWkKU8Vh1epokUys3Qx5IN4cRRiw9j0zdyE9i3gl+ABbkL//H/lUk0F3Ay3bBmB7mqqqAAAAAElFTkSuQmCC',
       growth: 10,
       integral: 212,
+      couponNum: 22,
       balance: 1000,
-      nickname:'李根ssssssssssssssssssss',
+      nickname:'李根大帅哥00',
       levelName:'钻石会员',
       code:86,
       phone: 15725928061,
       isMember: 1,
       openMember: 1,
-      isVip:1,
+      isVip:2,
       openVip:1,
       pendingPaymentNum: 59,
+      pendingReceiveNum: 66,
       pendingAuditNum: 40,
       pendingShipmentNum: 22,
-      memberDeadline: '2018-02-4 01:04:4',
+      memberDeadline: '2016-02-04 01:04:4',
     };
   },
   methods:{
