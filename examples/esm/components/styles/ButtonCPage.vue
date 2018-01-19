@@ -16,14 +16,26 @@
       </code>
     </pre>
     <br>
-    <emfe-button-c theme="primary" className="ddd" :disabled="false">黄底</emfe-button-c>
-    <emfe-button-c theme="primary" :disabled="true">黄底禁用</emfe-button-c>
+    <emfe-button-c theme="primary" className="ddd" :disabled="false">蓝底</emfe-button-c>
+    <emfe-button-c theme="primary" :disabled="true">蓝底禁用</emfe-button-c>
     <pre>
       <code>
-        <span>&lt;</span><span>emfe-button-c</span> <span> theme="primary"</span> <span>className</span><span>=</span><span>"ddd"</span> <span>:disabled</span><span>=</span><span>"false"</span><span>&gt;</span>黄底<span>&lt;/emfe-button-c&gt;</span>
+        <span>&lt;</span><span>emfe-button-c</span> <span> theme="primary"</span> <span>className</span><span>=</span><span>"ddd"</span> <span>:disabled</span><span>=</span><span>"false"</span><span>&gt;</span>蓝底<span>&lt;/emfe-button-c&gt;</span>
       </code>
       <code>
-        <span>&lt;</span><span>emfe-button-c</span> <span> theme="primary"</span> <span>:disabled</span><span>=</span><span>"true"</span><span>&gt;</span>黄底禁用<span>&lt;/emfe-button-c&gt;</span>
+        <span>&lt;</span><span>emfe-button-c</span> <span> theme="primary"</span> <span>:disabled</span><span>=</span><span>"true"</span><span>&gt;</span>蓝底禁用<span>&lt;/emfe-button-c&gt;</span>
+      </code>
+    </pre>
+    <br>
+    <br>
+    <emfe-button-c theme="secondary" className="ddd" :disabled="false">红底</emfe-button-c>
+    <emfe-button-c theme="secondary" :disabled="true">红底禁用</emfe-button-c>
+    <pre>
+      <code>
+        <span>&lt;</span><span>emfe-button-c</span> <span> theme="secondary"</span> <span>className</span><span>=</span><span>"ddd"</span> <span>:disabled</span><span>=</span><span>"false"</span><span>&gt;</span>红底<span>&lt;/emfe-button-c&gt;</span>
+      </code>
+      <code>
+        <span>&lt;</span><span>emfe-button-c</span> <span> theme="secondary"</span> <span>:disabled</span><span>=</span><span>"true"</span><span>&gt;</span>红底禁用<span>&lt;/emfe-button-c&gt;</span>
       </code>
     </pre>
     <br>
