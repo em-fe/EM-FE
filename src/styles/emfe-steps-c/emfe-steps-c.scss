@@ -5,14 +5,63 @@
   justify-content: center;
   flex-direction: column;
 
+  &-top {
+    margin-bottom: 15px;
+  }
+
+  &-bottom {
+    margin-top: 15px;
+  }
+
   &-text {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    margin-bottom: 15px;
 
-    &-item {
+    &-top {
       width: 100px;
       text-align: center;
+      font-size: 14px;
+      line-height: 14px;
+    }
+
+    &-item {
+      width: 80px;
+      display: flex;
+      justify-content: flex-end;
+
+      &-bottom {
+        width: 62px;
+        font-size: 14px;
+        line-height: 14px;
+      }
+    }
+
+    &-bottom {
+      &-name {
+        color: $text-color-default;
+
+        &-not {
+          color: $text-color-prompt;
+        }
+      }
+
+      &-describe {
+        font-size: 12px;
+        line-height: 12px;
+        color: $text-color-Three;
+        margin-top: 10px;
+
+        &-item {
+          display: block;
+          margin-bottom: 5px;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
     }
   }
 
@@ -21,7 +70,14 @@
     display: flex;
     justify-content: space-between;
     padding: 0 35px;
-    margin-top: 10px;
+
+    &-top {
+      padding: 0 35px;
+    }
+
+    &-bottom {
+      padding: 0 28px;
+    }
 
     &-flex {
       flex: 1;
@@ -35,26 +91,26 @@
       border-radius: 50%;
       line-height: 22px;
       text-align: center;
-      color: $text-color-prompt;
+      color: $input-disable-text-color;
       font-size: 12px;
 
-      @include border(all, $text-color-prompt);
+      @include border(all, $input-disable-text-color);
     }
 
     &-item-now {
       color: $background-color-write;
-      background: $brand-c-default;
+      background: $C-brand-color-default;
 
-      @include border(all, $brand-c-default);
+      @include border(all, $C-brand-color-default);
     }
 
     &-item-line {
       flex: 1;
       height: 1px;
-      background: $text-color-prompt;
+      background: $input-disable-text-color;
 
       &-active {
-        background: $brand-c-default;
+        background: $C-brand-color-default;
       }
     }
   }
@@ -63,7 +119,7 @@
     font-size: 25px;
 
     &::before {
-      color: $brand-c-default;
+      color: $C-brand-color-default;
     }
   }
 }

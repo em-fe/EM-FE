@@ -19,6 +19,7 @@
           },
         ],
         allStepsNums: 3,
+        textPosition: 'top',
       },
     </pre>
     <br>
@@ -37,6 +38,43 @@
     <emfe-steps-c className="demo" :datas="stepsData" :active="3"></emfe-steps-c>
     <pre>
       &lt;emfe-steps-c className="demo" :datas="stepsData" :active="3"&gt;&lt;/emfe-steps-c&gt;
+    </pre>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h3>文字在下</h3>
+    <emfe-steps-c className="demo" :datas="stepsData2" :active="3"></emfe-steps-c>
+    <pre>
+      &lt;emfe-steps-c className="demo" :datas="stepsData" :active="3"&gt;&lt;/emfe-steps-c&gt;
+    </pre>
+    <pre>
+      stepsData2: {
+        stepsText: [
+          {
+            text: '提交订单',
+            describe: ['2018-12-18', '13:14:00'],
+          },
+          {
+            text: '已支付',
+            describe: ['2018-12-18', '13:14:00'],
+          },
+          {
+            text: '已发货',
+            describe: ['2018-12-18', '13:14:00'],
+          },
+          {
+            text: '待收货',
+            describe: ['2018-12-18', '13:14:00'],
+          },
+          {
+            text: '已完成',
+            describe: ['2018-12-18', '13:14:00'],
+          },
+        ],
+        allStepsNums: 5,
+        textPosition: 'bottom',
+      },
     </pre>
     <br>
     <br>
@@ -93,6 +131,32 @@ export default {
           },
         ],
         allStepsNums: 3,
+        textPosition: 'top',
+      },
+      stepsData2: {
+        stepsText: [
+          {
+            text: '提交订单',
+            describe: ['2018-12-18', '13:14:00'],
+          },
+          {
+            text: '已支付',
+            describe: ['2018-12-18', '13:14:00'],
+          },
+          {
+            text: '已发货',
+            describe: ['2018-12-18', '13:14:00'],
+          },
+          {
+            text: '待收货',
+            describe: ['2018-12-18', '13:14:00'],
+          },
+          {
+            text: '已完成',
+          },
+        ],
+        allStepsNums: 5,
+        textPosition: 'bottom',
       },
     };
   },

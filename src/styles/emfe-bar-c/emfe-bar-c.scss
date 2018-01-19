@@ -2,13 +2,11 @@ $header-height: 36px;
 $bar-top: 64px;
 
 .#{$prefix}bar-c {
-  @include border(right);
-
-  width: 120px;
-  border-bottom: none;
-  float: left;
+  width: 170px;
   height: 100%;
-  background: $background-color-main;
+  padding: 0 28px;
+  background: $background-color-write;
+  float: left;
   position: absolute;
   bottom: 0;
   top: 0;
@@ -41,21 +39,17 @@ $bar-top: 64px;
     transition: transform 0.4s;
     transform: translateY(11px) rotate(-135deg);
     position: absolute;
-    top: 0;
-    right: 9px;
+    top: 4px;
+    right: 0;
   }
 
   &-btn {
-    @include border(bottom);
-
-    color: $text-color-default;
-    background: $background-color-open;
-    height: 36px;
-    line-height: 36px;
     width: 100%;
+    line-height: 16px;
+    font-size: 16px;
+    text-align: center;
+    color: $text-color-default;
     display: block;
-    padding-left: 30px;
-    font-size: 12px;
     cursor: pointer;
 
     &-disabled {
@@ -66,16 +60,13 @@ $bar-top: 64px;
   }
 
   &-link {
-    @include border(bottom);
-
+    font-size: 16px;
+    line-height: 16px;
+    text-align: center;
     color: $text-color-Three;
     background: $background-color-write;
-    height: 36px;
-    line-height: 36px;
-    font-size: 12px;
     width: 100%;
     display: block;
-    padding-left: 30px;
 
     &:hover {
       background: $brand-color-select;
@@ -115,23 +106,36 @@ $bar-top: 64px;
     }
   }
 
+  &-parentbox {
+    width: 100%;
+    padding: 13px 0;
+    position: relative;
+
+    @include border(bottom);
+  }
+
+  &-icon {
+    position: absolute;
+    font-size: 14px;
+
+    &-light {
+      color: $C-brand-color-default;
+
+      &::before {
+        color: $C-brand-color-default;
+      }
+    }
+  }
+
+  &-childlist {
+    width: 100%;
+  }
+
   &-childitem {
-    height: 36px;
+    padding: 13px 6px;
     width: 100%;
     display: block;
     background: $background-color-write;
-  }
-
-  &-childlink {
-    @include border(bottom);
-
-    color: $text-color-prompt;
-    font-size: 12px;
-    height: 36px;
-    line-height: 36px;
-    padding-left: 40px;
-    width: 100%;
-    display: block;
 
     &:hover {
       background: $button-color-default;
@@ -139,13 +143,22 @@ $bar-top: 64px;
     }
   }
 
+  &-childlink {
+    font-size: 14px;
+    line-height: 14px;
+    text-align: center;
+    color: $text-color-prompt;
+    width: 100%;
+    display: block;
+  }
+
   &-childlink.router-link-active {
     background: none;
-    color: $brand-c-default;
+    color: $C-brand-color-default;
 
     &:hover {
       background: none;
-      color: $brand-c-default;
+      color: $C-brand-color-default;
     }
   }
 } // end emfe-menu-bar

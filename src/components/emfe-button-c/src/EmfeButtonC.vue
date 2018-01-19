@@ -19,7 +19,7 @@ export default {
   props: {
     theme: {
       validator(value) {
-        return _.has(value, ['default', 'primary']);
+        return _.has(value, ['default', 'primary', 'secondary']);
       },
     },
     className: {

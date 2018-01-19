@@ -65,14 +65,50 @@ export default {
       bars: [
         {
           title: '提示组件',
-          icon: 'hotel',
+          icon: 'huiyuanzhongxin',
           routers: {
             path: '/tips/message',
           },
         },
         {
           title: '提示组件',
-          icon: 'hotel',
+          icon: 'huiyuanzhongxin',
+          children: [
+            {
+              title: '文字提示',
+              routers: {
+                path: '/tips/tooltippage',
+              },
+            },
+            {
+              title: '全局提示',
+              routers: {
+                path: '/tips/message',
+              },
+            },
+          ],
+        },
+        {
+          title: '提示组件',
+          icon: 'huiyuanzhongxin',
+          children: [
+            {
+              title: '文字提示',
+              routers: {
+                path: '/tips/tooltippage',
+              },
+            },
+            {
+              title: '全局提示',
+              routers: {
+                path: '/tips/message',
+              },
+            },
+          ],
+        },
+        {
+          title: '提示组件',
+          icon: 'huiyuanzhongxin',
           children: [
             {
               title: '文字提示',
