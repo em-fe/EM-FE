@@ -22,6 +22,8 @@ $bar-top: 64px;
     position: relative;
 
     &-on {
+      color: $C-brand-color-default;
+
       .emfe-bar-c-arrow {
         transform: translateY(16px) rotate(45deg);
       }
