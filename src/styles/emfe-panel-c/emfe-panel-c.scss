@@ -203,21 +203,26 @@
 
     &-item {
       text-align: center;
-      margin-right: 15px;
+      margin: 0 15px;
       cursor: pointer;
 
       &:first-child {
-        margin-left: 15px;
+        margin-left: 30px;
+      }
+
+      &:last-child {
+        margin-right: 30px;
       }
     }
 
     &-img {
       display: block;
-      width: 60px;
+      width: 62px;
       margin: 0 auto;
     }
 
     &-text {
+      min-width: 72px;
       font-size: 14px;
       color: $background-color-write;
       line-height: 1;
@@ -234,7 +239,7 @@
   }
 
   &-others {
-    width: 250px;
+    width: 300px;
     height: 88px;
     float: right;
     background-color: #37abfc;
@@ -242,15 +247,16 @@
     &-text {
       font-size: 12px;
       color: $background-color-write;
-      width: 125px;
+      width: 150px;
       height: 44px;
       line-height: 44px;
       float: left;
-      text-align: center;
+      //text-align: center;
 
       &-img {
         cursor: pointer;
         margin-top: -3px;
+        margin-left: 19px;
         vertical-align: middle;
       }
 
