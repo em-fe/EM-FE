@@ -121,11 +121,10 @@ $bar-top: 64px;
     font-size: 14px;
 
     &-light {
-      color: $C-brand-color-default;
-
-      &::before {
-        color: $C-brand-color-default;
-      }
+      // color: $C-brand-color-default;
+      // &::before {
+      //   color: $C-brand-color-default;
+      // }
     }
   }
 
