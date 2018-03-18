@@ -2,7 +2,7 @@
   <div class="emfe-input" :class="addClass" :style="newStyle">
     <div :class="[classList]">
       <emfe-icon v-if="iconOk" :type="iconType" className="emfe-input-box-icon-el"></emfe-icon>
-      <input :type="type" :placeholder="newPlaceholder" v-bind="$props" :maxlength="maxlength" :class='addInput' :value="currentValue" v-on:input="changeFn($event)" class="emfe-input-box-input" @blur="blurFn" @focus="focusFn">
+      <input :type="type" :placeholder="newPlaceholder" v-bind="$props" :maxlength="maxlength" :class='addInput' :value="currentValue" v-on:input="changeFn($event)" class="emfe-input-box-input" @blur="blurFn" @focus="focusFn" @keyup="keyUp">
     </div>
     <div class="emfe-input-box-text" :class="addErrorText" v-if="errOk"><slot name="error"></slot></div>
   </div>
@@ -128,6 +128,9 @@ export default {
     focusFn() {
       this.$emit('focus');
       this.focus();
+    },
+    keyUp() {
+      this.$emit('keyup');
     },
   },
   watch: {

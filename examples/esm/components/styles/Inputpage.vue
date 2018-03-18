@@ -1,6 +1,6 @@
 <template>
   <div class="inputpage">
-  	<emfe-input placeholder="请输入文a字！" className="add" v-model="value" @blur="blur">
+  	<emfe-input placeholder="请输入文a字！" className="add" v-model="value" @blur="blur" @keyup="keyUp">
     </emfe-input>
     <div>支持v-model： {{value}}</div>
     <pre>
@@ -181,6 +181,9 @@ export default {
     },
     blur() {
       console.log('失去焦点');
+    },
+    keyUp() {
+      console.log('keyup');
     },
   },
 };
