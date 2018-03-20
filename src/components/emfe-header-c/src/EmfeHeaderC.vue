@@ -1,9 +1,9 @@
 <template>
   <header class="emfe-header-c">
     <div class="emfe-header-c-main">
-      <div class="emfe-header-c-eye">
-        <img :src="imgLogo" class="emfe-header-c-eye-img">
-      </div>
+      <!--<div class="emfe-header-c-eye">-->
+        <!--<img :src="imgLogo" class="emfe-header-c-eye-img">-->
+      <!--</div>-->
       <div class="emfe-header-c-info">
         <span class="emfe-header-c-account">你好，
           <span v-if="loginFlg">{{ user }}</span>
@@ -24,9 +24,6 @@
 export default {
   name: 'EmfeHeaderC',
   props: {
-    imgLogo: {
-      type: String,
-    },
     user: {
       type: String,
     },
