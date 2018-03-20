@@ -3,13 +3,19 @@
     <ul class="emfe-bar-c-list">
       <template v-for="(childrenData, childrenDataIndex) in newDatas">
         <li class="emfe-bar-c-item" v-if="!childrenData.children">
-          <router-link :to="childrenData.routers" class="emfe-bar-c-link" :class="{' emfe-bar-c-link-disabled': isDisabled}">{{ childrenData.title }}</router-link>
+          <div class="emfe-bar-c-parentbox">
+            <emfe-icon :type="childrenData.icon" className="emfe-bar-c" :class="{'emfe-bar-c-icon-light': childrenDataIndex == childrenIconIndex}"></emfe-icon>
+            <router-link :to="childrenData.routers" class="emfe-bar-c-link" :class="{' emfe-bar-c-link-disabled': isDisabled}">{{ childrenData.title }}</router-link>
+          </div>
         </li>
         <li class="emfe-bar-c-item" :class="{'emfe-bar-c-item-on': childrenIndex == childrenDataIndex}" v-else>
-          <span href="javascript:;" class="emfe-bar-c-btn" :class="{' emfe-bar-c-btn-disabled': isDisabled}" @click="toogleChild(childrenDataIndex)" >{{ childrenData.title }}</span>
-          <i class="emfe-bar-c-arrow"></i>
+          <div class="emfe-bar-c-parentbox">
+            <emfe-icon :type="childrenData.icon" className="emfe-bar-c" :class="{'emfe-bar-c-icon-light': childrenDataIndex == childrenIconIndex}"></emfe-icon>
+            <span href="javascript:;" class="emfe-bar-c-btn" :class="{' emfe-bar-c-btn-disabled': isDisabled}" @click="toogleChild(childrenDataIndex)" >{{ childrenData.title }}</span>
+            <i class="emfe-bar-c-arrow"></i>
+          </div>
           <emfe-transition name="gradual">
-            <ul class="emfe-bar-c-childlist" v-show="barStatus[childrenDataIndex]"><!-- childrenIndex == childrenDataIndex -->
+            <ul class="emfe-bar-c-childlist" v-show="childrenIndex == childrenDataIndex"><!-- childrenIndex == childrenDataIndex -->
               <li class="emfe-bar-c-childitem" v-for="child in childrenData.children">
                 <a :href="child.routers.url" v-if="child.routers.url" class="emfe-bar-c-childlink" :class="{' emfe-bar-c-childlink-disabled': isDisabled}">{{ child.title }}</a>
                 <router-link v-else :to="child.routers" class="emfe-bar-c-childlink" :class="{' emfe-bar-c-childlink-disabled': isDisabled}">{{ child.title }}</router-link>
@@ -24,7 +30,7 @@
 <script>
 import O from '../../../tools/o';
 
-// let childrenLast = -1; // 记录上一个点击的二级手风琴的索引
+let childrenLast = -1; // 记录上一个点击的二级手风琴的索引
 
 export default {
   name: 'EmfeBarC',
@@ -34,6 +40,7 @@ export default {
       isDisabled: this.disabled,
       barStatus: [],
       newDatas: [],
+      childrenIconIndex: -1,
     };
   },
   props: {
@@ -55,8 +62,8 @@ export default {
     },
   },
   mounted() {
-    // this.testUrl();
     this.handle(this.datas);
+    this.testUrl();
   },
   methods: {
     handle(val) {
@@ -77,6 +84,7 @@ export default {
             const inChildFullPath = O.hOwnProperty(dataChild, 'routers') && O.hOwnProperty(dataChild.routers, 'path') && newFullPath.indexOf(dataChild.routers.path) > -1;
             if (inChildFullPath || name === dataChild.routers.name) {
               // 打开二级导航的折叠
+              this.childrenIconIndex = dataNum;
               this.toogleChild(dataNum);
             }
           });
@@ -86,9 +94,9 @@ export default {
     toogleChild(itemIndex) {
       if (!this.isDisabled) {
         this.barStatus.splice(itemIndex, 1, !this.barStatus[itemIndex]);
-        // const eqLast = itemIndex === childrenLast;
-        // this.childrenIndex = eqLast ? -1 : itemIndex;
-        // childrenLast = eqLast ? -1 : itemIndex;
+        const eqLast = itemIndex === childrenLast;
+        this.childrenIndex = eqLast ? -1 : itemIndex;
+        childrenLast = eqLast ? -1 : itemIndex;
       }
     },
     tochildren(item) {
@@ -102,11 +110,11 @@ export default {
     },
   },
   watch: {
-    // fullpath(val, oldVal) {
-    //   if (val !== oldVal) {
-    //     this.testUrl();
-    //   }
-    // },
+    fullpath(val, oldVal) {
+      if (val !== oldVal) {
+        this.testUrl();
+      }
+    },
     datas(val, oldVal) {
       if (val !== oldVal) {
         this.handle(val);

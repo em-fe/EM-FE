@@ -1,15 +1,11 @@
 .#{$prefix}title-c {
-  @include border(bottom,$border-color, 1px, dashed);
-
   padding: 13px 0;
+  background-color: $nothing-color;
 
   &-panel {
-    @include border(left,$brand-c-default,5px);
-
     color: $title-color;
-    letter-spacing: 1.08px;
     line-height: 24px;
     font-size: 14px;
-    padding-left: 8px;
+    padding-left: 20px;
   }
 }
