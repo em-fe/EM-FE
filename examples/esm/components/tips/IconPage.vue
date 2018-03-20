@@ -103,7 +103,7 @@ export default {
         ['zaixiankaoshi', 'yonghuchuzhi',],
         ['zhanlanxinxidengji', 'yunfeiguanli'],
         ['gengduo'],
-        ['shuaxin', 'yiwancheng'],
+        ['shuaxin', 'yiwancheng', 'shuju'],
       ],
     };
   },
