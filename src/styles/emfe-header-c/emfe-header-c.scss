@@ -1,7 +1,6 @@
 $header-height: 34px;
 
 .emfe-header-c {
-  width: 1100px;
   height: 35px;
   background: $background-color-write;
   position: relative;
@@ -10,7 +9,7 @@ $header-height: 34px;
 
   &-main {
     margin: 0 auto;
-    width: 1040px;
+    width: 1100px;
     height: $header-height;
 
     a {
