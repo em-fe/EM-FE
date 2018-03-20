@@ -22,7 +22,7 @@ $bar-top: 64px;
     position: relative;
 
     &-on {
-      color: $C-brand-color-default;
+      color: $c-brand-color-default;
 
       .emfe-bar-c-arrow {
         transform: translateY(16px) rotate(45deg);
@@ -121,9 +121,9 @@ $bar-top: 64px;
     font-size: 14px;
 
     &-light {
-      // color: $C-brand-color-default;
+      // color: $c-brand-color-default;
       // &::before {
-      //   color: $C-brand-color-default;
+      //   color: $c-brand-color-default;
       // }
     }
   }
@@ -155,11 +155,11 @@ $bar-top: 64px;
 
   &-childlink.router-link-active {
     background: none;
-    color: $C-brand-color-default;
+    color: $c-brand-color-default;
 
     &:hover {
       background: none;
-      color: $C-brand-color-default;
+      color: $c-brand-color-default;
     }
   }
 } // end emfe-menu-bar
