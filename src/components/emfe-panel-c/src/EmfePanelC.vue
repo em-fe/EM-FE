@@ -64,20 +64,20 @@
       <span class="emfe-panel-c-others-text">
         <img @click="couponClick"
                 src="data:image/gif;base64,R0lGODlhDwALAMQAACTv4SXW6SXF7yin+STn5CP+3CXM7STf5ie09CP43ibc6CjN7Se+8Sis+CjU6ifG7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEHABAALAAAAAAPAAsAAAVQoEIQkDOeqJIUxXKwcPys7VsQLAGwB+2yj1ljV1BAVr9CAoEIwCDHgsHGaDQQNgBxygo8GgZcISq1EQINAk3N4rIStjbNHYMJAgeSCYVyhAAAOw==" class="emfe-panel-c-others-text-img">
-        优惠卷<em class="emfe-panel-c-others-text-em">：{{ couponNum }}张</em></span>
+        优惠券<em class="emfe-panel-c-others-text-em">: {{ couponNums }}张</em></span>
       <span class="emfe-panel-c-others-text" v-if="openVip===1&&isVip===1 || openMember===1">
         <img @click="integalClick"
              src="data:image/gif;base64,R0lGODlhDgAOAMQAAJmlrDKh7vipbnGkxcqnjCGg+bmml1Wj196of/+paoWluManjiGh+ECi5Sih9eaoeq+mntSnhd2ogDyh6Eai4fapcFij1bSmmoGku////wAAAAAAAAAAAAAAAAAAAAAAACH5BAEHABkALAAAAAAOAA4AAAVeYCZmACIICDCOg5C8sDCwcEIQ9Zy5r9BMvISAVFMUCphgKWGwOI5Hh+WSQLwiDgY0GqkxtVvqy/qibBswCQA22QZgKp7jAIFYGD3R4PWo9RM6GS1eCRWBIwASJ2orIQA7" class="emfe-panel-c-others-text-img">
-        积&nbsp;&nbsp;&nbsp;分<em class="emfe-panel-c-others-text-em">：{{ integral }}</em></span>
+        积&nbsp;&nbsp;&nbsp;分<em class="emfe-panel-c-others-text-em">: {{ integrals }}</em></span>
       <span class="emfe-panel-c-others-text">
         <img @click="balanceClick"
              src="data:image/gif;base64,R0lGODlhDQAOAMQAAE2m3vq4d5CttrOxoeG2hiGh+XGqyM20ku+3fauwpjOj7sazllqn12epz9a1jZyur+a2g/+5dLyynJWutHqrw6Wvqve4ed61jMKymVKm3Daj7P///wAAAAAAAAAAAAAAACH5BAEHABsALAAAAAANAA4AAAVe4CYyhBUhjqiqTuRWa8zMsSqYriXEh+u7B5XEBSFEHMaIZNPwLTQVBcbXWPgclAKl5VrgIhNGgTHxfSMCQCEj+EF8hERhkIxAHr+AIPB7bHo/P0EiBhIQJhYQEgYiIQA7" class="emfe-panel-c-others-text-img">
-        &nbsp;余&nbsp;&nbsp;&nbsp;额<em class="emfe-panel-c-others-text-em">：￥{{ balance }}</em></span>
+        &nbsp;余&nbsp;&nbsp;&nbsp;额<em class="emfe-panel-c-others-text-em">: ￥{{ balances }}</em></span>
       <span class="emfe-panel-c-others-text" v-if="(openVip===1&&isVip===2&&openMember===1) ||
       openMember===1&&isVip===2">
         <img @click="growthClick"
              src="data:image/gif;base64,R0lGODlhDQAOAMQAACD4hSG52CDxjiDioyHJwyDqmCH/hCD1iiG/0SHLwSDtkyDomiG90yHbrCG33CDEyv///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEHABAALAAAAAANAA4AAAU5IAGMCGSe5qgmZqMyqhocMaDUOADlsWAOKpfqgIIgDofFYvAopnxOFAAaTSmqJ0ABm9pytVzH1BkCADs=" class="emfe-panel-c-others-text-img">
-        成长值<em class="emfe-panel-c-others-text-em">：{{ growth }}</em></span>
+        成长值<em class="emfe-panel-c-others-text-em">: {{ growths }}</em></span>
     </div>
   </div>
 </template>
@@ -292,6 +292,58 @@ export default {
         return '下午好';
       }
       return '晚上好';
+    },
+    couponNums() {
+      const a = (this.couponNum.toString()).indexOf('.');
+      if (a !== -1) {
+        if ((this.couponNum.toString()).split('.')[0].length >= 5) {
+          return `${(Math.round(this.couponNum) * 0.001).toFixed(1)}k`;
+        }
+        return this.couponNum;
+      }
+      if ((this.couponNum.toString()).length >= 5) {
+        return `${(this.couponNum) * 0.001}k`;
+      }
+      return this.couponNum;
+    },
+    integrals() {
+      const a = (this.integral.toString()).indexOf('.');
+      if (a !== -1) {
+        if ((this.integral.toString()).split('.')[0].length >= 5) {
+          return `${(Math.round(this.integral) * 0.001).toFixed(1)}k`;
+        }
+        return this.integral;
+      }
+      if ((this.integral.toString()).length >= 5) {
+        return `${(this.integral) * 0.001}k`;
+      }
+      return this.integral;
+    },
+    balances() {
+      const a = (this.balance.toString()).indexOf('.');
+      if (a !== -1) {
+        if ((this.balance.toString()).split('.')[0].length >= 5) {
+          return `${(Math.round(this.balance) * 0.001).toFixed(1)}k`;
+        }
+        return this.balance;
+      }
+      if ((this.balance.toString()).length >= 5) {
+        return `${(this.balance) * 0.001}k`;
+      }
+      return this.balance;
+    },
+    growths() {
+      const a = (this.growth.toString()).indexOf('.');
+      if (a !== -1) {
+        if ((this.growth.toString()).split('.')[0].length >= 5) {
+          return `${(Math.round(this.growth) * 0.001).toFixed(1)}k`;
+        }
+        return this.growth;
+      }
+      if ((this.growth.toString()).length >= 5) {
+        return `${(this.growth) * 0.001}k`;
+      }
+      return this.growth;
     },
   },
 };
