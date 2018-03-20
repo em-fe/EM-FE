@@ -1,5 +1,5 @@
 <template>
-  <div :class="classNames">
+  <div class="emfe-tag-parent" :class="classNames">
     <slot></slot>
   </div>
 </template>

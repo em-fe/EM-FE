@@ -93,6 +93,7 @@
           {
             [`${this.className}-radio-input-text`]: !!this.className,
             'emfe-radio-text-notip': !this.tip,
+            [`${this.className}-radio-input-text-checked`]: !!this.className && this.status,
           },
         ];
       },

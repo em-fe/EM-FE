@@ -1,6 +1,6 @@
 <template>
   <footer class="emfe-footer-c">
-    <img class="emfe-footer-c-logo" :src="logo">
+    <img v-if="logo" class="emfe-footer-c-logo" :src="logo">
     <p class="emfe-footer-c-text">{{ content }}</p>
   </footer>
 </template>
@@ -14,7 +14,7 @@ export default {
     },
     logo: {
       type: String,
-      required: true,
+      defalut: '',
     },
   },
 };

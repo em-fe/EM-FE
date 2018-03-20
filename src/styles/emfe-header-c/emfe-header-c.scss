@@ -1,16 +1,15 @@
 $header-height: 34px;
 
 .emfe-header-c {
-  @include border(bottom);
-
   height: 35px;
   background: $background-color-write;
   position: relative;
   z-index: 2;
+  border-bottom: 1px solid  rgba(255, 255, 255, 0.22);
 
   &-main {
     margin: 0 auto;
-    width: 1040px;
+    width: 1100px;
     height: $header-height;
 
     a {
@@ -29,7 +28,7 @@ $header-height: 34px;
     height: $header-height;
 
     &-img {
-      height: 25px;
+      height: 20px;
       margin-top: 7px;
     }
   }
@@ -42,7 +41,7 @@ $header-height: 34px;
 
   &-info {
     float: right;
-    padding: 0 32px;
+    padding: 0 0 0 32px;
     font-size: 12px;
     line-height: $header-height;
     display: flex;

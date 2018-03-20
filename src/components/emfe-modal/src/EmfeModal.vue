@@ -33,7 +33,10 @@ export default {
       type: Number,
       default: 440,
     },
-    title: String,
+    title: {
+      type: String,
+      default: '提示',
+    },
     className: {
       type: String,
       default: '',

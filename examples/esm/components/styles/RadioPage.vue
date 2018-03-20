@@ -164,3 +164,8 @@
     },
   };
 </script>
+<style media="screen">
+  .diy-radio-input-text-checked {
+    color: #f00;
+  }
+</style>

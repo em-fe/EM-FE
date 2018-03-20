@@ -138,7 +138,7 @@ $background-color-open: #f9f9fb;
 $background-color-main: #f4f4f4;
 
 //背景色 禁用
-$background-color-disable: #f5f5f5;
+$background-color-disable: #f4f4f4;
 
 //背景色 列表内容（单数行）/ 文字色 标签选中、填充色
 $background-color-write: #fff;
@@ -199,3 +199,38 @@ $icon-color-default: #8d8d8d;
 
 //登录错误提示
 $login-color-error: #f05229;
+
+// --------------------------------- C 端 新增颜色 --------------------------------
+
+//主题蓝色 默认
+$c-brand-color-default: #0297fe;
+
+//主题底色背景灰色 默认
+$c-brand-background-default: #f0f2f5;
+
+//列表灰色背景
+$c-list-color-background: #f9f9f9;
+
+//按钮橘色背景
+$c-button-color-orange: #fc5b08;
+
+//按钮绿色背景
+$c-button-color-green: #56d686;
+
+//按钮蓝色 滑过
+$c-button-color-hover: #158ee1;
+
+//按钮红色 可用于支付、购买、结算等
+$c-button-color-pay: #ff5a1a;
+
+//按钮红色 可用于支付、购买、结算等 滑过
+$c-button-color-payhover: #e55219;
+
+//描边线/边框 灰色默认
+$c-line-color-detault: #e5e5e5;
+
+//字体颜色 红色
+$c-font-color-red: #ff4949;
+
+//字体蓝色 滑过
+$c-font-color-hover: #7cc0ff;

@@ -16,7 +16,7 @@
   }
 
   &-default {
-    @include button-colors($text-color-default, $brand-c-default, $brand-c-default, $button-color-default, $brand-c-default, $brand-c-default);
+    @include button-colors($text-color-default, $c-brand-color-default, $c-brand-color-default, $button-color-default, $c-brand-color-default, $c-brand-color-default);
 
     &:disabled {
       color: $text-color-disable;
@@ -27,7 +27,18 @@
   }
 
   &-primary {
-    @include button-backgrounds($brand-c-default, $brand-c-default, $brand-c-default);
+    @include button-backgrounds($c-brand-color-default, $c-button-color-hover, $c-brand-color-default);
+
+    &:disabled {
+      color: $text-color-disable;
+      background: $background-color-disable;
+      border-color: $background-color-disable;
+      cursor: no-drop;
+    }
+  }
+
+  &-secondary {
+    @include button-backgrounds($c-button-color-pay, $c-button-color-payhover, $c-button-color-pay);
 
     &:disabled {
       color: $text-color-disable;
@@ -43,7 +54,7 @@
     &-button {
       @extend .#{$prefix}button;
 
-      @include button-colors($title-color, $brand-c-default, $brand-c-default, $border-color, $brand-c-default, $brand-c-default);
+      @include button-colors($title-color, $c-brand-color-default, $c-brand-color-default, $border-color, $c-brand-color-default, $c-brand-color-default);
 
       float: left;
       padding: 8px;
@@ -59,8 +70,8 @@
 
       &-on {
         color: $nothing-color;
-        background: $brand-c-default;
-        border-color: $brand-c-default;
+        background: $c-brand-color-default;
+        border-color: $c-brand-color-default;
         // z-index: 2;
 
         &:hover {
