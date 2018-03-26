@@ -13,7 +13,7 @@
             <span class="emfe-select-text">{{ item.name }}</span>
             <div class="emfe-select-checkout-box">
               <i class="emfe-select-checkout-inner" :class="{'emfe-select-checkout-inner-checked': item.checked}"></i>
-              <input class="emfe-select-checkout-status" :disabled="item.disabled" type="checkbox" :key="item.id" @change="getdata(item)">
+              <input class="emfe-select-checkout-status" :disabled="item.disabled" type="checkbox" :key="item.id" @change="getdata(item, itemIndex)">
             </div>
           </label>
           <label v-for="(item, checkind) in checkList" :title="item.name" :key="checkind" class="emfe-select-label emfe-select-delabel" @click="spanTxt(item, checkind)" :disabled="item.disabled" v-if="type==='default'"><span class="emfe-select-label-text" :class="{'emfe-select-label-disabled': item.disabled}">{{ item.name }}</span></label>
@@ -207,9 +207,9 @@ export default {
         this.checkVal = item.name;
         this.flagCheck = false;
         this.$emit('getDefData', this.checkVal, index, item, this.datas);
-        this.$emit('change', this.checkVal, item, this.datas);
-        this.getDefData(this.checkVal,  index, item, this.datas);
-        this.change(this.checkVal, item, this.datas);
+        this.$emit('change', this.checkVal, index, item, this.datas);
+        this.getDefData(this.checkVal, index, item, this.datas);
+        this.change(this.checkVal, index, item, this.datas);
       }
     },
     closeFn() {
@@ -220,7 +220,7 @@ export default {
         this.close(this.checkVal);
       }
     },
-    getdata(item) {
+    getdata(item, index) {
       const va = this.checkVal;
       const iNow = va.indexOf(item.name);
       const hasItem = iNow !== -1;
@@ -240,7 +240,7 @@ export default {
       this.$emit('getAllData', va, item, this.datas);
       this.getAllData(va, item, this.datas);
       this.$emit('change', va, item, this.datas);
-      this.change(va, item, this.datas);
+      this.change(va, index, item, this.datas);
     },
   },
   watch: {
