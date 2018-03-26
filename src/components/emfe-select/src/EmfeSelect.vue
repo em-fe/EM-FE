@@ -231,15 +231,15 @@ export default {
         this.checkVals.push(item.name);
       }
       if (hasItem) {
-        this.$emit('delopt', item.name, item, this.datas);
-        this.delopt(item.name, item, this.datas);
+        this.$emit('delopt', item.name, index, item, this.datas);
+        this.delopt(item.name, index, item, this.datas);
       } else {
-        this.$emit('checkedopt', item.name, item, this.datas);
-        this.checkedopt(item.name, item, this.datas);
+        this.$emit('checkedopt', item.name, ,index item, this.datas);
+        this.checkedopt(item.name, index, item, this.datas);
       }
-      this.$emit('getAllData', va, item, this.datas);
-      this.getAllData(va, item, this.datas);
-      this.$emit('change', va, item, this.datas);
+      this.$emit('getAllData', va, index, item, this.datas);
+      this.getAllData(va, index, item, this.datas);
+      this.$emit('change', va, index, item, this.datas);
       this.change(va, index, item, this.datas);
     },
   },
