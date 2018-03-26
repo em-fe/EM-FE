@@ -234,7 +234,7 @@ export default {
         this.$emit('delopt', item.name, index, item, this.datas);
         this.delopt(item.name, index, item, this.datas);
       } else {
-        this.$emit('checkedopt', item.name, ,index item, this.datas);
+        this.$emit('checkedopt', item.name, index, item, this.datas);
         this.checkedopt(item.name, index, item, this.datas);
       }
       this.$emit('getAllData', va, index, item, this.datas);
