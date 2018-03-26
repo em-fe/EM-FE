@@ -13,11 +13,11 @@
             <span class="emfe-select-text">{{ item.name }}</span>
             <div class="emfe-select-checkout-box">
               <i class="emfe-select-checkout-inner" :class="{'emfe-select-checkout-inner-checked': item.checked}"></i>
-              <input class="emfe-select-checkout-status" :disabled="item.disabled" type="checkbox" :key="item.id" @change="getdata(item)">
+              <input class="emfe-select-checkout-status" :disabled="item.disabled" type="checkbox" :key="item.id" @change="getdata(item, itemIndex)">
             </div>
           </label>
-          <label v-for="(item, checkind) in checkList" :title="item.name" :key="checkind" class="emfe-select-label emfe-select-delabel" @click="spanTxt(item)" :disabled="item.disabled" v-if="type==='default'"><span class="emfe-select-label-text" :class="{'emfe-select-label-disabled': item.disabled}">{{ item.name }}</span></label>
-          <div v-for="(item, checkindex) in checkList" :key="checkindex" class="emfe-select-label emfe-select-delabel" @click="spanTxt(item)" :disabled="item.disabled" v-if="type==='icon'" :class="{'disabled': item.disabled}">
+          <label v-for="(item, checkind) in checkList" :title="item.name" :key="checkind" class="emfe-select-label emfe-select-delabel" @click="spanTxt(item, checkind)" :disabled="item.disabled" v-if="type==='default'"><span class="emfe-select-label-text" :class="{'emfe-select-label-disabled': item.disabled}">{{ item.name }}</span></label>
+          <div v-for="(item, checkindex) in checkList" :key="checkindex" class="emfe-select-label emfe-select-delabel" @click="spanTxt(item, checkindex)" :disabled="item.disabled" v-if="type==='icon'" :class="{'disabled': item.disabled}">
             <img class="emfe-select-icon" :src="item.icon" :alt="item.name">
             <span class="emfe-select-icon-piece">{{ item.name}}</span>
             <span class="emfe-select-icon-tel">{{ item.tel }}</span>
@@ -202,14 +202,14 @@ export default {
       this.addDataRadio(newdata, this.datas);
       this.add(newdata, this.datas);
     },
-    spanTxt(item) {
+    spanTxt(item, index) {
       if (item.disabled !== 'disabled' && !item.disabled) {
         this.checkVal = item.name;
         this.flagCheck = false;
-        this.$emit('getDefData', this.checkVal, item, this.datas);
-        this.$emit('change', this.checkVal, item, this.datas);
-        this.getDefData(this.checkVal, item, this.datas);
-        this.change(this.checkVal, item, this.datas);
+        this.$emit('getDefData', this.checkVal, index, item, this.datas);
+        this.$emit('change', this.checkVal, index, item, this.datas);
+        this.getDefData(this.checkVal, index, item, this.datas);
+        this.change(this.checkVal, index, item, this.datas);
       }
     },
     closeFn() {
@@ -220,7 +220,7 @@ export default {
         this.close(this.checkVal);
       }
     },
-    getdata(item) {
+    getdata(item, index) {
       const va = this.checkVal;
       const iNow = va.indexOf(item.name);
       const hasItem = iNow !== -1;
@@ -231,16 +231,16 @@ export default {
         this.checkVals.push(item.name);
       }
       if (hasItem) {
-        this.$emit('delopt', item.name, item, this.datas);
-        this.delopt(item.name, item, this.datas);
+        this.$emit('delopt', item.name, index, item, this.datas);
+        this.delopt(item.name, index, item, this.datas);
       } else {
-        this.$emit('checkedopt', item.name, item, this.datas);
-        this.checkedopt(item.name, item, this.datas);
+        this.$emit('checkedopt', item.name, ,index item, this.datas);
+        this.checkedopt(item.name, index, item, this.datas);
       }
-      this.$emit('getAllData', va, item, this.datas);
-      this.getAllData(va, item, this.datas);
-      this.$emit('change', va, item, this.datas);
-      this.change(va, item, this.datas);
+      this.$emit('getAllData', va, index, item, this.datas);
+      this.getAllData(va, index, item, this.datas);
+      this.$emit('change', va, index, item, this.datas);
+      this.change(va, index, item, this.datas);
     },
   },
   watch: {
