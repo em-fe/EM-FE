@@ -206,10 +206,10 @@ export default {
       if (item.disabled !== 'disabled' && !item.disabled) {
         this.checkVal = item.name;
         this.flagCheck = false;
-        this.$emit('getDefData', this.checkVal, index, item, this.datas);
-        this.$emit('change', this.checkVal, index, item, this.datas);
-        this.getDefData(this.checkVal, index, item, this.datas);
-        this.change(this.checkVal, index, item, this.datas);
+        this.$emit('getDefData', this.checkVal, item, this.datas, index);
+        this.$emit('change', this.checkVal, item, this.datas, index);
+        this.getDefData(this.checkVal, item, this.datas, index);
+        this.change(this.checkVal, item, this.datas, index);
       }
     },
     closeFn() {
@@ -231,16 +231,16 @@ export default {
         this.checkVals.push(item.name);
       }
       if (hasItem) {
-        this.$emit('delopt', item.name, index, item, this.datas);
-        this.delopt(item.name, index, item, this.datas);
+        this.$emit('delopt', item.name, item, this.datas, index);
+        this.delopt(item.name, item, this.datas, index);
       } else {
-        this.$emit('checkedopt', item.name, index, item, this.datas);
-        this.checkedopt(item.name, index, item, this.datas);
+        this.$emit('checkedopt', item.name, item, this.datas, index);
+        this.checkedopt(item.name, item, this.datas, index);
       }
-      this.$emit('getAllData', va, index, item, this.datas);
-      this.getAllData(va, index, item, this.datas);
-      this.$emit('change', va, index, item, this.datas);
-      this.change(va, index, item, this.datas);
+      this.$emit('getAllData', va, item, this.datas, index);
+      this.getAllData(va, item, this.datas, index);
+      this.$emit('change', va, item, this.datas, index);
+      this.change(va, item, this.datas, index);
     },
   },
   watch: {
