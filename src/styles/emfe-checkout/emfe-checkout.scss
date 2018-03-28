@@ -75,7 +75,8 @@
   }
 
   &-text {
-    width: calc(100% - 24px);
+    //safari浏览器中文本样式会跑到下一行
+    //width: calc(100% - 24px);
     font-size: 14px;
     color: $text-color-default;
     line-height: 16px;
