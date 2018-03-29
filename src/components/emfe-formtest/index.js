@@ -22,7 +22,7 @@ export default {
   phone(val) {
     /* eslint-disable */
     //手机号
-    const phonePattern = /^1[34578]\d{9}$/;
+    const phonePattern = /^1[345789]\d{9}$/;
     /* eslint-disable */
     return phonePattern.test(val);
   },
