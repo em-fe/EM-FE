@@ -1,4 +1,4 @@
-$header-height: 32px;
+$header-height: 36px;
 
 .#{$prefix}date {
   font-size: 12px;
@@ -17,7 +17,6 @@ $header-height: 32px;
       left: 0;
       top: 40px;
       z-index: 2;
-      border-radius: $radius-size;
     }
   } // end emfe-date-box
 
@@ -285,10 +284,9 @@ $header-height: 32px;
     @include border();
 
     width: 100%;
-    height: 32px;
-    line-height: 32px;
+    height: $header-height;
+    line-height: $header-height;
     cursor: pointer;
-    border-radius: $radius-size;
     background: $background-color-write;
 
     &:hover {
@@ -320,7 +318,8 @@ $header-height: 32px;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      height: 32px;
+      height: $header-height - 4;
+      line-height: $header-height - 4;
 
       &-choice {
         color: $menu-text-color;
@@ -332,8 +331,8 @@ $header-height: 32px;
     position: absolute;
     right: 8px;
     top: 0;
-    line-height: 32px;
-    height: 32px;
+    line-height: $header-height;
+    height: $header-height;
   }
 
   &-footer {

@@ -7,13 +7,13 @@
     min-width: 36px;
     text-align: center;
     color: $text-color-default;
-    padding: 0 5px;
+    padding: 0 10px;
     float: left;
     margin-left: 5px;
     cursor: pointer;
     font-size: 12px;
-    height: 32px;
-    line-height: 28px;
+    height: 36px;
+    line-height: 30px;
 
     &:nth-of-type(1) {
       margin-left: 0;
@@ -32,7 +32,7 @@
       background-color: $background-active-color;
       color: $background-color-write;
       border: none;
-      line-height: 30px;
+      line-height: 32px;
     }
 
     &-on:hover {
