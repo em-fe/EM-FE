@@ -2,7 +2,7 @@
   @include border();
 
   line-height: 14px;
-  padding: 8px 24px;
+  padding: 10px 24px;
   border-radius: $radius-size;
   text-align: center;
   font-size: 14px;
@@ -12,10 +12,10 @@
   display: inline-block;
 
   &-icon {
-    color: $icon-color-default;
+    color: $brand-color-default;
 
     &::before {
-      color: $icon-color-default;
+      color: $brand-color-default;
     }
 
     &:hover {
@@ -26,7 +26,7 @@
   }
 
   &-default {
-    @include button-colors($text-color-default, $brand-color-hover, $brand-color-click, $button-color-default, $brand-color-hover, $brand-color-click);
+    @include button-colors($brand-color-default, $brand-color-hover, $brand-color-click, $brand-color-default, $brand-color-hover, $brand-color-click);
 
     &:disabled {
       color: $text-color-disable;
@@ -37,7 +37,7 @@
 
     &:hover {
       & > .emfe-button-icon {
-        color: $brand-color-hover;
+        color: $brand-color-default;
 
         &::before {
           color: $brand-color-hover;
@@ -84,7 +84,7 @@
       @include button-colors($title-color, $btn-hover-color, $btn-active-color, $border-color, $btn-hover-color, $btn-active-color);
 
       float: left;
-      padding: 8px;
+      padding: 10px;
       border-radius: 0;
       margin-right: -1px;
       position: relative;

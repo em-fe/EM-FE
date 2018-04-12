@@ -18,7 +18,7 @@ $tooltip-arrow-size: 5px;
 $menu-md-width: 128px;
 $menu-sm-width: 56px;
 // 圆角尺寸
-$radius-size: 4px;
+$radius-size: 3px;
 
 //遮罩层的颜色
 $mask-color: rgba(0, 0, 0, 0.3);
@@ -30,13 +30,13 @@ $shadow-color: rgba(0, 0, 0, 0.1);
 $nothing-color: #fff;
 
 // 边框默认颜色
-$border-color: #dcdcdc;
+$border-color: #dbdbdb;
 
 // 边框选中颜色
 $border-on-color: #1996f9;
 
 // 字体图标的颜色
-$icon-color: #8d8d8d;
+$icon-color: #999;
 
 // 标题的颜色
 $title-color: #333;
@@ -195,7 +195,7 @@ $checkout-color-hovered: #f1cb8d;
 $checkout-color-checked: #fffcf7;
 
 //图标色 默认
-$icon-color-default: #8d8d8d;
+$icon-color-default: #999;
 
 //登录错误提示
 $login-color-error: #f05229;
