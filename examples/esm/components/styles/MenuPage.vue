@@ -1,6 +1,7 @@
 <template>
   <div class="menu-page">
     <h3>API</h3>
+    <emfe-menu :header="{name: '主控制台', icon: 'erweima', router: { name: 'tag'}}" :datas="menus"></emfe-menu>
     <table>
       <thead>
         <tr>
@@ -53,5 +54,32 @@
 <script>
 export default {
   name: "MenuPage",
+  data() {
+    return {
+      menus: [
+        [
+          {
+            name: '我的活动',
+            icon: 'erweima',
+            router: {
+              name: 'tooltippage'
+            }
+          },
+          {
+            name: '我的商品',
+            icon: 'erweima',
+            path: 'https://router.vuejs.org/zh-cn/api/router-link.html'
+          }
+        ]
+      ],
+      header: {
+        name: '主控制台',
+        router: {
+          name: 'tag',
+        },
+        icon: 'erweima',
+      },
+    };
+  },
 };
 </script>
