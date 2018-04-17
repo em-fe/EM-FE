@@ -22,7 +22,7 @@ export default {
   phone(val) {
     /* eslint-disable */
     //手机号
-    const phonePattern = /^1[34578]\d{9}$/;
+    const phonePattern = /^1[345789]\d{9}$/;
     /* eslint-disable */
     return phonePattern.test(val);
   },
@@ -103,7 +103,7 @@ export default {
   childAccount(val) {
      /* eslint-disable */
     //子账户正则
-    const childAccountPattern = /^(1[34578][0-9]{9}):(1[34578][0-9]{9})$/;
+    const childAccountPattern = /^(1[345789][0-9]{9}):(1[345789][0-9]{9})$/;
     /* eslint-disable */
     return childAccountPattern.test(val);
   },
