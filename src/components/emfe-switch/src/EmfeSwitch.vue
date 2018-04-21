@@ -79,6 +79,12 @@ export default {
         this.changeValue();
       }
     },
+    // 修复外部控制 v-mode 值，不改变
+    value(val, oldVal) {
+      if (val !== oldVal && val) {
+        this.currentValue = val;
+      }
+    },
   },
 };
 </script>
