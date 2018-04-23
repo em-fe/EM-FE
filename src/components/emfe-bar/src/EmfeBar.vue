@@ -1,6 +1,6 @@
 <template>
   <div class="emfe-bar" :class="barName">
-    <h3 class="emfe-bar-header">{{ title }}</h3>
+    <h3 class="emfe-bar-header" @click="headerClick($event)">{{ title }}</h3>
     <div class="emfe-bar-iscroll">
       <ul class="emfe-bar-list">
         <template v-for="(childrenData, childrenDataIndex) in newDatas">
@@ -119,6 +119,9 @@ export default {
       if (O.hOwnProperty(item, 'url')) {
         window.open(item.url);
       }
+    },
+    headerClick(event) {
+      this.$emit('click', event);
     },
   },
   watch: {
