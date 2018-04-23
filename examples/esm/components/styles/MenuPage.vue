@@ -70,6 +70,20 @@ export default {
             icon: 'erweima',
             path: 'https://router.vuejs.org/zh-cn/api/router-link.html'
           }
+        ],
+        [
+          {
+            name: '我的活动',
+            icon: 'erweima',
+            router: {
+              name: 'tooltippage'
+            }
+          },
+          {
+            name: '我的商品',
+            icon: 'erweima',
+            path: 'https://router.vuejs.org/zh-cn/api/router-link.html'
+          }
         ]
       ],
       header: {

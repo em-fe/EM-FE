@@ -1,10 +1,10 @@
 <template>
   <div class="barpage">
-    <emfe-bar :datas="bars" :header="header" className="page"></emfe-bar>
+    <emfe-bar :datas="bars" :title="title" className="page" fullpath="/"></emfe-bar>
     <br>
     <br>
     <br>
-    <!-- <emfe-bar :datas="bars" :header="header" className="page" fullpath="/" :disabled="true"></emfe-bar> -->
+    <emfe-bar :datas="bars" :title="title" className="page" fullpath="/" :disabled="true"></emfe-bar>
     <br>
     <br>
     <br>
@@ -64,22 +64,32 @@ export default {
   name: "barpage",
   data() {
     return {
-      header: {
-        name: '例子',
-        routers: {
-          name: 'tag',
-        },
-      },
+      title: '例子',
       bars: [
         {
-          name: '提示2',
+          title: '提示组件',
+          icon: 'hotel',
           routers: {
-            name: 'docclick',
+            path: '/tips/message',
           },
         },
         {
-          name: '提示1',
-          path: 'https://vuefe.cn/v2/guide/list.html',
+          title: '提示组件',
+          icon: 'hotel',
+          children: [
+            {
+              title: '文字提示',
+              routers: {
+                path: '/tips/tooltippage',
+              },
+            },
+            {
+              title: '全局提示',
+              routers: {
+                path: '/tips/message',
+              },
+            },
+          ],
         },
       ],
     }
