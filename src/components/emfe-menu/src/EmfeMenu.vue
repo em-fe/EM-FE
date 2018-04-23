@@ -3,7 +3,7 @@
     <h3 class="emfe-menu-header">
       <router-link :to="header.router" class="emfe-menu-header-link" exact-active-class="emfe-menu-header-on">
         <emfe-icon className="emfe-menu" :type="header.icon" />
-        <span class="emfe-menu-text">{{header.name}}</span>
+        <span class="emfe-menu-header-text">{{header.name}}</span>
       </router-link>
     </h3>
     <ul class="emfe-menu-list" v-for="(menu, menuIndex) in datas" :key="menuIndex">
