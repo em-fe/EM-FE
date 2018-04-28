@@ -13,11 +13,13 @@
     <ul class="emfe-menu-list" v-for="(menu, menuIndex) in datas" :key="menuIndex">
       <template v-for="item in menu">
         <router-link v-if="item.router" class="emfe-menu-list-li" :to="item.router" tag="li" exact-active-class="emfe-menu-list-li-on">
-          <emfe-icon className="emfe-menu" :type="item.icon" />
+          <img v-if="item.icon === 'yingxiaogongju'" src="./yingxiao.svg" alt="">
+          <emfe-icon v-else className="emfe-menu" :type="item.icon" />
           <span class="emfe-menu-text">{{item.name}}</span>
         </router-link>
         <li v-else class="emfe-menu-list-li" exact-active-class="emfe-menu-list-li-on" @click="goToPath(item)">
-          <emfe-icon className="emfe-menu" :type="item.icon" />
+          <img v-if="item.icon === 'yingxiaogongju'" src="./yingxiao.svg" alt="">
+          <emfe-icon v-else className="emfe-menu" :type="item.icon" />
           <span class="emfe-menu-text">{{item.name}}</span>
         </li>
       </template>
