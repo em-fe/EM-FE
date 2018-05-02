@@ -368,6 +368,11 @@ const router = new VueRouter({
           name: 'opations',
           component: require('./components/functions/OpationsPage.vue'),
         },
+        {
+          path: '/functions/swiper',
+          name: 'swiper',
+          component: require('./components/functions/SwiperPage.vue'),
+        },
       ],
       component: require('./components/functions/Index.vue'),
     },

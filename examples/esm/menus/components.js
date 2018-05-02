@@ -406,4 +406,10 @@ export default [
       path: '/functions/changecount',
     },
   },
+  {
+    title: '轮播 swiper',
+    routers: {
+      path: '/functions/swiper',
+    },
+  },
 ];
