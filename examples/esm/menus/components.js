@@ -137,6 +137,12 @@ export default [
     },
   },
   {
+    title: '轻活动头部 headeractive',
+    routers: {
+      path: '/styles/headeractivepage',
+    },
+  },
+  {
     title: '底部 footer',
     routers: {
       path: '/styles/footerpage',
