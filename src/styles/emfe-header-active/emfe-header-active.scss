@@ -51,6 +51,10 @@ $header-height: 70px;
     font-size: 14px !important;
     margin-right: 40px;
     color: #666;
+
+    &:hover {
+      text-decoration: none;
+    }
   }
 
   &-icon {
@@ -60,11 +64,19 @@ $header-height: 70px;
   &-logout {
     font-size: 14px !important;
     margin-left: 40px;
+
+    &:hover {
+      text-decoration: none;
+    }
   }
 
   &-login {
     font-size: 14px !important;
     color: #1996f9;
+
+    &:hover {
+      text-decoration: none;
+    }
   }
 
   &-button {
