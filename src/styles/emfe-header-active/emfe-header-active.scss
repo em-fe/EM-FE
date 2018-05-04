@@ -1,0 +1,90 @@
+$header-height: 70px;
+
+.emfe-header-active {
+  height: $header-height;
+  line-height: $header-height;
+  background: #fff;
+  position: relative;
+  z-index: 2;
+  border-bottom: 1px solid  #e5e5e5;
+
+  &-main {
+    margin: 0 auto;
+    width: 1100px;
+    height: $header-height;
+  }
+
+  &-eye {
+    float: left;
+    height: $header-height;
+
+    &-img {
+      height: 27px;
+      margin-top: 20px;
+    }
+  }
+
+  &-sidebar {
+    padding-left: 12px;
+    font-size: 14px;
+    color: $text-color;
+  }
+
+  &-info {
+    float: right;
+    padding: 0 0 0 32px;
+    font-size: 14px;
+    line-height: $header-height;
+    display: flex;
+  }
+
+  &-account {
+    padding-right: 40px;
+    color: #666;
+  }
+
+  &-signout {
+    padding-left: 12px;
+  }
+
+  &-link {
+    font-size: 14px !important;
+    margin-right: 40px;
+    color: #666;
+  }
+
+  &-icon {
+    color: $brand-c-default;
+  }
+
+  &-logout {
+    font-size: 14px !important;
+    margin-left: 40px;
+  }
+
+  &-login {
+    font-size: 14px !important;
+    color: #1996f9;
+  }
+
+  &-button {
+    width: 140px;
+    height: 40px;
+    border-radius: 0;
+    margin-top: 15px;
+  }
+
+  &-erweima {
+    text-align: center;
+
+    &-img {
+      width: 86px;
+      height: 86px;
+    }
+
+    &-text {
+      font-size: 12px;
+      color: #999;
+    }
+  }
+}

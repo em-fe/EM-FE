@@ -212,6 +212,11 @@ const router = new VueRouter({
           component: require('./components/styles/HeaderCPage.vue'),
         },
         {
+          path: '/styles/headeractivepage',
+          name: 'headeractivepage',
+          component: require('./components/styles/HeaderActivePage.vue'),
+        },
+        {
           path: '/styles/footerpage',
           name: 'footerpage',
           component: require('./components/styles/FooterPage.vue'),
