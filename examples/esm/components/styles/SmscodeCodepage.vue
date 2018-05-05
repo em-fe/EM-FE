@@ -109,6 +109,11 @@
           <td>文本框失去焦点</td>
           <td></td>
         </tr>
+        <tr>
+          <td>focus</td>
+          <td>文本框获取焦点</td>
+          <td></td>
+        </tr>
       </tbody>
     </table>
   </div>

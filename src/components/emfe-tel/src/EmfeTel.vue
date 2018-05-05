@@ -11,7 +11,7 @@
         </li>
       </ul>
     </div>
-    <input :type="type" class="emfe-tel-input" :class="inputName" :placeholder="placeholder" :value="nowData.tel" @input="telChange" @blur="telBlur">
+    <input :type="type" class="emfe-tel-input" :class="inputName" :placeholder="placeholder" :value="nowData.tel" @input="telChange" @blur="telBlur" @focus="telFocus">
     <div class="emfe-tel-error" :class="addErrorText" v-if="errOk"><slot name="error"></slot></div>
   </div>
 </template>
@@ -118,6 +118,9 @@ export default {
     },
     telBlur() {
       this.$emit('blur');
+    },
+    telFocus() {
+      this.$emit('focus');
     },
   },
   watch: {
