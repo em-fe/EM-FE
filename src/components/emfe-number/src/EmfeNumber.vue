@@ -41,6 +41,10 @@ export default {
       type: Boolean,
       default: true,
     },
+    isClick: {
+      type: Boolean,
+      default: true,
+    },
     className: String,
   },
   computed: {
@@ -69,25 +73,31 @@ export default {
       return fixNum;
     },
     plus() {
-      const fixNum = this.toFix();
-      if (!this.plusdisable) {
-        this.num = this.num - 0;
-        const oldNum = this.num;
-        this.num += this.step;
-        this.num = this.num.toFixed(fixNum) - 0;
-        this.$emit('change', this.num, oldNum);
-        this.$emit('input', this.num);
+      if (this.isClick) {
+        const fixNum = this.toFix();
+        if (!this.plusdisable) {
+          this.num = this.num - 0;
+          const oldNum = this.num;
+          this.num += this.step;
+          this.num = this.num.toFixed(fixNum) - 0;
+          this.$emit('change', this.num, oldNum);
+          this.$emit('input', this.num);
+          this.$emit('plus');
+        }
       }
     },
     reduce() {
-      const fixNum = this.toFix();
-      if (!this.reducedisable) {
-        this.num = this.num - 0;
-        const oldNum = this.num;
-        this.num -= this.step;
-        this.num = this.num.toFixed(fixNum) - 0;
-        this.$emit('change', this.num, oldNum);
-        this.$emit('input', this.num);
+      if (this.isClick) {
+        const fixNum = this.toFix();
+        if (!this.reducedisable) {
+          this.num = this.num - 0;
+          const oldNum = this.num;
+          this.num -= this.step;
+          this.num = this.num.toFixed(fixNum) - 0;
+          this.$emit('change', this.num, oldNum);
+          this.$emit('input', this.num);
+          this.$emit('reduce');
+        }
       }
     },
     input(ev) {
@@ -109,6 +119,9 @@ export default {
       if (val !== oldVal) {
         this.num = val;
       }
+    },
+    isClick(val) {
+      this.isClick = val;
     },
   },
 };
