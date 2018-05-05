@@ -16,6 +16,10 @@
       letter-spacing: 1px;
       line-height: 18px;
       transition: border 0.2s ease-in-out;
+      // 自动填充
+      &:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0px 1000px white inset;
+      }
 
       &:focus {
         @include border(all,$btn-color);
