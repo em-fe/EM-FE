@@ -52,7 +52,7 @@ export default {
     const { href } = window.location;
     this.datas.forEach((data, dataIndex) => {
       data.forEach((menu, menuIndex) => {
-        if(href.indexOf(menu.path) > -1) {
+        if (href.indexOf(menu.path) > -1) {
           this.indexs.push(dataIndex, menuIndex);
         }
       });
