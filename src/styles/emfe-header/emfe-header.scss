@@ -37,8 +37,7 @@ $header-height: 56px;
     &-text {
       color: $thead-text-color;
       position: relative;
-      font-size: 10px;
-      transform: scale(0.8);
+      font-size: 12px;
       transform-origin: left center;
       display: block;
 
@@ -48,7 +47,7 @@ $header-height: 56px;
         left: -10px;
         top: 22px;
         width: 1px;
-        height: 12px;
+        height: 14px;
         background: $button-color-default;
       }
     }
