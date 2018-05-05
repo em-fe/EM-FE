@@ -4,14 +4,6 @@ $menu-top: 56px;
 $height: calc(100% - 56px);
 
 .#{$prefix}menu {
-  // @include clearfix();
-
-  // position: fixed;
-  // top: $menu-top;
-  // left: 0;
-  // height: 100%;
-  // font-size: 14px;
-  // z-index: 2;
   overflow: hidden;
   padding-top: 56px;
   font-size: 12px;
@@ -36,6 +28,7 @@ $height: calc(100% - 56px);
     margin-bottom: 20px;
     text-align: center;
     background: #5a5a5a;
+    cursor: pointer;
 
     &-link {
       line-height: 18px;

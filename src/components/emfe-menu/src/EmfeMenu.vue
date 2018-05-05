@@ -11,13 +11,13 @@
       </div>
     </h3>
     <ul class="emfe-menu-list" v-for="(menu, menuIndex) in datas" :key="menuIndex">
-      <template v-for="item in menu">
+      <template v-for="(item, itemIndex) in menu">
         <router-link v-if="item.router" class="emfe-menu-list-li" :to="item.router" tag="li" exact-active-class="emfe-menu-list-li-on">
           <img v-if="item.icon === 'yingxiaogongju'" src="./yingxiao.svg" alt="">
           <emfe-icon v-else className="emfe-menu" :type="item.icon" />
           <span class="emfe-menu-text">{{item.name}}</span>
         </router-link>
-        <li v-else class="emfe-menu-list-li" exact-active-class="emfe-menu-list-li-on" @click="goToPath(item)">
+        <li v-else class="emfe-menu-list-li" :class="{'emfe-menu-list-li-on': indexs.length == 2 && menuIndex === indexs[0] && itemIndex === indexs[1]}" @click="goToPath(item)">
           <img v-if="item.icon === 'yingxiaogongju'" src="./yingxiao.svg" alt="">
           <emfe-icon v-else className="emfe-menu" :type="item.icon" />
           <span class="emfe-menu-text">{{item.name}}</span>
@@ -35,6 +35,7 @@ export default {
   data() {
     return {
       Contant,
+      indexs: [],
     };
   },
   props: {
@@ -46,6 +47,16 @@ export default {
     header: {
       type: Object,
     },
+  },
+  mounted() {
+    const { href } = window.location;
+    this.datas.forEach((data, dataIndex) => {
+      data.forEach((menu, menuIndex) => {
+        if(href.indexOf(menu.path) > -1) {
+          this.indexs.push(dataIndex, menuIndex);
+        }
+      });
+    });
   },
   methods: {
     goToPath(item) {
