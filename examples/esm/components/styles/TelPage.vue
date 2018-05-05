@@ -1,7 +1,7 @@
 <template>
   <div id="telpage">
     <h3>普通使用</h3>
-    <emfe-tel :datas="data1" v-model="now" placeholder="电话" @blur='blur'></emfe-tel>
+    <emfe-tel :datas="data1" v-model="now" placeholder="电话" @blur='blur' @focus='focus'></emfe-tel>
     当前 {{ now }}
     <pre>
       &lt;emfe-tel :datas="data1" v-model="now" placeholder="电话"&gt;&lt;/emfe-tel&gt;
@@ -91,6 +91,11 @@
           <td>失去焦点</td>
           <td>-</td>
         </tr>
+        <tr>
+          <td>focus</td>
+          <td>获取焦点</td>
+          <td>-</td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -124,6 +129,9 @@ export default {
   methods: {
     blur() {
       console.log('失去焦点');
+    },
+    focus() {
+      console.log('获取焦点');
     },
   },
 };
