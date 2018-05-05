@@ -13,7 +13,7 @@
     cursor: pointer;
     font-size: 12px;
     height: 36px;
-    line-height: 30px;
+    line-height: 34px;
 
     &:nth-of-type(1) {
       margin-left: 0;
@@ -32,7 +32,7 @@
       background-color: $background-active-color;
       color: $background-color-write;
       border: none;
-      line-height: 32px;
+      line-height: 34px;
     }
 
     &-on:hover {

@@ -68,6 +68,7 @@ import EmfeTitleline from './components/emfe-titleline/index';
 import EmfeIscroll from './components/emfe-iscroll/index';
 import EmfeChangecount from './components/emfe-changecount/index';
 import EmfeSwiper from './components/emfe-swiper/index';
+import EmfeHeaderActive from './components/emfe-header-active/index';
 // 服务
 import EmfeMessage from './components/emfe-message/index';
 import EmfeFormTest from './components/emfe-formtest/index';
@@ -155,6 +156,7 @@ const emfeCpt = {
   EmfeIscroll,
   EmfeChangecount,
   EmfeSwiper,
+  EmfeHeaderActive,
 };
 
 const emfeDir = {
