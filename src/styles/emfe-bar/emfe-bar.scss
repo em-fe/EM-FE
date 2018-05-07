@@ -2,8 +2,6 @@ $header-height: 42px;
 $bar-top: 64px;
 
 .#{$prefix}bar {
-  @include border(right);
-
   width: 112px;
   height: 100%;
   position: absolute;
@@ -11,6 +9,7 @@ $bar-top: 64px;
   bottom: 0;
   z-index: 1;
   background: $background-color-write;
+  font-size: 12px;
 
   &-iscroll {
     height: calc(100% - 48px);
@@ -25,8 +24,8 @@ $bar-top: 64px;
     font-size: 14px;
     color: $text-color-default;
     padding-left: 24px;
-    background: #ededed;
-    margin-bottom: 20px;
+    border-right: 1px solid $bar-border-color;
+    border-bottom: 1px solid $bar-border-color;
   }
 
   &-item {
@@ -105,13 +104,13 @@ $bar-top: 64px;
   }
 
   &-link.router-link-active {
-    background: $brand-color-select;
-    color: $brand-color-default;
+    background: $bar-on-bg;
+    color: $title-color;
     cursor: default;
 
     &:active {
-      background: $brand-color-select;
-      color: $brand-color-click;
+      background: $bar-on-bg;
+      color: $title-color;
     }
   }
 
@@ -130,12 +129,10 @@ $bar-top: 64px;
     display: block;
 
     &:hover {
-      background: $brand-color-select;
       color: $brand-color-hover;
     }
 
     &:active {
-      background: $brand-color-select;
       color: $brand-color-click;
     }
 
@@ -150,24 +147,24 @@ $bar-top: 64px;
       }
 
       &:active {
-        background: none;
-        color: $text-color-disable;
+        background: $brand-color-select;
+        color: $brand-color-default;
       }
     }
   }
 
   &-childlink.router-link-active {
-    background: $brand-color-select;
-    color: $brand-color-default;
+    background: $menu-on-bg;
+    color: $title-color;
 
     &:hover {
-      background: $brand-color-select;
-      color: $brand-color-hover;
+      background: $menu-on-bg;
+      color: $title-color;
     }
 
     &:active {
-      background: $brand-color-select;
-      color: $brand-color-click;
+      background: $menu-on-bg;
+      color: $title-color;
     }
   }
 } // end emfe-menu-bar
