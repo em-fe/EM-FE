@@ -143,6 +143,10 @@
       &-vertical {
         text-align: center;
       }
+
+      &-disabled {
+        cursor: not-allowed !important;
+      }
     }
 
     &-btn {
