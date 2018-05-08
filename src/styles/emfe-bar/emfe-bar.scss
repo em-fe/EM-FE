@@ -44,10 +44,10 @@ $bar-top: 64px;
     height: 0;
     border-color: transparent;
     border-style: solid;
-    border-width: 6px 6px 0;
+    border-width: 6px 5px 0;
     border-top-color: $icon-color;
     top: 21px;
-    left: 7px;
+    left: 10px;
     transition: transform 0.4s;
     transform: rotate(-90deg);
   }
@@ -58,7 +58,7 @@ $bar-top: 64px;
     line-height: 48px;
     width: 100%;
     display: block;
-    padding-left: 24px;
+    padding-left: 32px;
     cursor: pointer;
 
     &-disabled {
@@ -74,7 +74,7 @@ $bar-top: 64px;
     line-height: 48px;
     width: 100%;
     display: block;
-    padding-left: 24px;
+    padding-left: 32px;
 
     &:hover {
       background: $brand-color-select;
@@ -124,7 +124,7 @@ $bar-top: 64px;
     color: $text-color-Three;
     height: 48px;
     line-height: 48px;
-    padding-left: 32px;
+    padding-left: 40px;
     width: 100%;
     display: block;
 
