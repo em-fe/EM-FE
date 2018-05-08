@@ -28,7 +28,18 @@
     <br>
     当前 {{ now }}
     <pre>
-      &lt;emfe-tel className="demo" :datas="data1" v-model="now" placeholder="电话"&gt;&lt;/emfe-tel&gt;
+      &lt;emfe-tel className="demo" :datas="data1" v-model="now" placeholder="电话" :errOk="true"&gt;&lt;/emfe-tel&gt;
+    </pre>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h3>禁止样式使用</h3>
+    <emfe-tel className="demo" :datas="data1" v-model="now" placeholder="电话" :disabled="true"></emfe-tel>
+    <br>
+    当前 {{ now }}
+    <pre>
+      &lt;emfe-tel className="demo" :datas="data1" v-model="now" placeholder="电话" :disabled="true"&gt;&lt;/emfe-tel&gt;
     </pre>
     <br>
     <br>
@@ -68,6 +79,12 @@
           <td>输入框类型</td>
           <td>String</td>
           <td>number</td>
+        </tr>
+        <tr>
+          <td>disabled</td>
+          <td>是否禁止使用</td>
+          <td>Boolean</td>
+          <td>false</td>
         </tr>
       </tbody>
     </table>

@@ -13,9 +13,9 @@
     <template v-if="type === 'plus'">
       <span v-show="!src" class="emfe-upload-btn" :class="btnName">{{ plusText }}</span>
       <input v-show="!src" class="emfe-upload-file" :class="fileName" :disabled="disabled || !canUpload" type="file" @change="change" ref="uploadPlus">
-      <div v-show="src" class="emfe-upload-plus-box" :class="[`emfe-upload-plus-box-${align}`, imageName]" :style="{opacity: canShow ? 1 : 0}">
+      <div v-show="src" class="emfe-upload-plus-box" :class="[`emfe-upload-plus-box-${align}`, imageName, {'emfe-upload-plus-box-disabled': disabled}]" :style="{opacity: canShow ? 1 : 0}">
         <img :class="[`emfe-upload-img-${align}`, imgName]" v-show="src" :src="src" ref="img">
-        <i class="emfe-upload-plus-close" @click="closePlusFn"></i>
+        <i :class="['emfe-upload-plus-close', {'emfe-upload-plus-box-disabled': disabled}]" @click="closePlusFn"></i>
       </div>
     </template>
     <emfe-modal :show="interceptModal" title="截取器" @close="formCancel" @cancel="formCancel" @ok="formOk" okText="保存" className="form">
@@ -678,7 +678,9 @@ export default {
       this.closeCommon();
     },
     closePlusFn() {
-      this.closeCommon();
+      if (!this.disabled) {
+        this.closeCommon();
+      }
     },
     closeCommon() {
       this.src = '';
