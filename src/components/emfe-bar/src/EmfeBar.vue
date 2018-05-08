@@ -105,7 +105,8 @@ export default {
       this.activeUrl = window.location.href;
     },
     toogleChild(itemIndex) {
-      if (!this.isDisabled) {
+      // this.minorStatus[itemIndex] 修复 营销调用 2 次问题
+      if (!this.isDisabled && !this.minorStatus[itemIndex]) {
         const eqLast = itemIndex === childrenLast;
         this.childrenIndex = eqLast ? -1 : itemIndex;
         childrenLast = eqLast ? -1 : itemIndex;

@@ -1,6 +1,6 @@
 <template>
   <div class="emfe-menu" ref="menu">
-    <h3 class="emfe-menu-header">
+    <h3 class="emfe-menu-header" :class="{'emfe-menu-header-on': indexs[0] === 'header'}">
       <router-link v-if="header.router" :to="header.router" class="emfe-menu-header-link" exact-active-class="emfe-menu-header-on">
         <emfe-icon className="emfe-menu" :type="header.icon" />
         <span class="emfe-menu-header-text">{{header.name}}</span>
@@ -49,20 +49,34 @@ export default {
     },
   },
   mounted() {
-    const { href } = window.location;
-    this.datas.forEach((data, dataIndex) => {
-      data.forEach((menu, menuIndex) => {
-        if (href.indexOf(menu.path) > -1) {
-          this.indexs.push(dataIndex, menuIndex);
-        }
-      });
-    });
+    this.testUrl(this.datas);
   },
   methods: {
+    testUrl(val) {
+      const { href } = window.location;
+      val.forEach((data, dataIndex) => {
+        data.forEach((menu, menuIndex) => {
+          if (href.indexOf(menu.path) > -1) {
+            this.indexs.push(dataIndex, menuIndex);
+          }
+        });
+      });
+      // 比对头部
+      console.log(O.hOwnProperty(this.header, 'path') , href, this.header.path, href.indexOf(this.header.path) > -1);
+      if (O.hOwnProperty(this.header, 'path') && href.indexOf(this.header.path) > -1) {
+        this.indexs.push('header');
+      }
+    },
     goToPath(item) {
       if (O.hOwnProperty(item, 'path')) {
         window.location.href = item.path;
       }
+    },
+  },
+  watch: {
+    datas(val) {
+      console.log(val);
+      this.testUrl(val);
     },
   },
 };
