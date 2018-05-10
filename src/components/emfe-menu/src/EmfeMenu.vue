@@ -62,7 +62,6 @@ export default {
         });
       });
       // 比对头部
-      console.log(O.hOwnProperty(this.header, 'path'), href, this.header.path, href.indexOf(this.header.path) > -1);
       if (O.hOwnProperty(this.header, 'path') && href.indexOf(this.header.path) > -1) {
         this.indexs.push('header');
       }
@@ -75,7 +74,6 @@ export default {
   },
   watch: {
     datas(val) {
-      console.log(val);
       this.testUrl(val);
     },
   },
