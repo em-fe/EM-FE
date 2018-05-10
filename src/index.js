@@ -9,6 +9,7 @@ import EmfeTransition from './components/emfe-transition/index';
 import EmfeMenu from './components/emfe-menu/index';
 import EmfeHeader from './components/emfe-header/index';
 import EmfeHeaderC from './components/emfe-header-c/index';
+import EmfeHeaderCNew from './components/emfe-header-c-new/index';
 import EmfeFooter from './components/emfe-footer/index';
 import EmfeFooterC from './components/emfe-footer-c/index';
 import EmfeCopy from './components/emfe-copy/index';
@@ -89,6 +90,7 @@ const emfeCpt = {
   EmfeMenu,
   EmfeHeader,
   EmfeHeaderC,
+  EmfeHeaderCNew,
   EmfeFooter,
   EmfeFooterC,
   EmfeCopy,
