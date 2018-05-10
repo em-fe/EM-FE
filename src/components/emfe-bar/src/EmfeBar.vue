@@ -71,7 +71,8 @@ export default {
   },
   mounted() {
     this.handle(this.datas);
-    this.testUrl();
+    // 营销 B 端调用两次问题
+    // this.testUrl();
   },
   methods: {
     handle(val) {
@@ -105,8 +106,8 @@ export default {
       this.activeUrl = window.location.href;
     },
     toogleChild(itemIndex) {
-      // this.minorStatus[itemIndex] 修复 营销调用 2 次问题
-      if (!this.isDisabled && !this.minorStatus[itemIndex]) {
+      if (!this.isDisabled) {
+        this.canTestUrl = false; // 刷新新页面触发一次就行
         const eqLast = itemIndex === childrenLast;
         this.childrenIndex = eqLast ? -1 : itemIndex;
         childrenLast = eqLast ? -1 : itemIndex;
