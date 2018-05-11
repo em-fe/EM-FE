@@ -1,7 +1,8 @@
 <template>
   <div class="emfe-upload" :class="uploadName">
     <template v-if="type === 'icon'">
-      <emfe-button :disabled="disabled || !canUpload" v-show="!src" :theme="theme" type="shangchuan">{{ iconText }}</emfe-button>
+      <emfe-button :disabled="disabled || !canUpload" v-show="!src" :theme="theme" type="shangchuan" :className="iconName">{{
+          iconText }}</emfe-button>
       <input v-show="!src" class="emfe-upload-file" :class="fileName" :disabled="disabled || !canUpload" type="file" @change="change" ref="upload">
       <div v-show="src" :style="{opacity: canShow ? 1 : 0}" class="emfe-upload-icon-wrap">
         <div class="emfe-upload-icon-wrap-box" :class="[`emfe-upload-icon-wrap-box-${align}`, imageName]">
@@ -193,7 +194,13 @@ export default {
         {
           'emfe-upload-disabled': this.disabled || !this.canUpload,
         },
+        {
+          [`${this.className}-upload-disabled`]: (this.disabled || !this.canUpload) && !!this.className,
+        },
       ];
+    },
+    iconName() {
+      return this.className ? `${this.className}-upload-icon-btn` : '';
     },
     btnName() {
       return [
@@ -712,7 +719,7 @@ export default {
       if (this.type === 'icon') {
         this.iconText = '上传中';
       } else {
-        this.plusText = '...';
+        this.plusText = '···';
       }
     },
   },
