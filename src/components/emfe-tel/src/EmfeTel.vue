@@ -58,9 +58,6 @@ export default {
       default: false,
     },
   },
-  created() {
-    // console.log(this.disabled, 'disabled');
-  },
   computed: {
     telName() {
       return [
