@@ -193,6 +193,9 @@ export default {
         {
           'emfe-upload-disabled': this.disabled || !this.canUpload,
         },
+        {
+          [`${this.className}-upload-disabled`]: (this.disabled || !this.canUpload) && !!this.className,
+        },
       ];
     },
     btnName() {
