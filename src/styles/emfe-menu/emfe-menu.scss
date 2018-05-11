@@ -16,7 +16,7 @@ $height: calc(100% - 56px);
   }
 
   &-text {
-    opacity: 0.45;
+    opacity: 0.6;
     color: #fff;
     margin-left: 8px;
     font-size: 12px;
@@ -27,8 +27,15 @@ $height: calc(100% - 56px);
     padding: 12px 20px;
     margin-bottom: 20px;
     text-align: center;
-    background: #5a5a5a;
     cursor: pointer;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.2);
+
+      & .emfe-menu-text {
+        opacity: 1;
+      }
+    }
 
     &-link {
       line-height: 18px;
@@ -38,17 +45,34 @@ $height: calc(100% - 56px);
     }
 
     &-text {
+      opacity: 0.6;
       color: #fff;
       margin-left: 8px;
       font-size: 12px;
     }
 
-    &:hover,
+    &:active,
     &-on {
-      background: rgba(255, 255, 255, 0.2);
+      background: $menu-on-bg;
 
-      & .emfe-menu-text {
+      &:hover {
+        background: $menu-on-bg;
+
+        & .emfe-menu-text {
+          opacity: 1;
+          color: $title-color;
+        }
+      }
+
+      & .emfe-menu-header-text {
         opacity: 1;
+        color: $title-color;
+      }
+
+      & .emfe-menu-icon {
+        &::before {
+          color: $title-color;
+        }
       }
     }
   }
@@ -62,18 +86,48 @@ $height: calc(100% - 56px);
 
     &-li {
       height: 42px;
-      padding: 0 20px;
+      padding: 0 19px 0 20px;
       display: flex;
       align-items: center;
       justify-content: left;
       cursor: pointer;
 
-      &:hover,
-      &-on {
+      &:hover {
         background: rgba(255, 255, 255, 0.2);
 
         & .emfe-menu-text {
           opacity: 1;
+        }
+      }
+
+      &:active,
+      &-on {
+        background: $menu-on-bg;
+
+        &:hover {
+          background: $menu-on-bg;
+
+          & .emfe-menu-text {
+            opacity: 1;
+            color: $title-color;
+          }
+
+          & .emfe-menu-icon {
+            &::before {
+              color: $title-color;
+            }
+          }
+        }
+
+        & .emfe-menu-text {
+          opacity: 1;
+          color: $title-color;
+        }
+
+        & .emfe-menu-icon {
+          &::before {
+            color: $title-color;
+          }
         }
       }
     }

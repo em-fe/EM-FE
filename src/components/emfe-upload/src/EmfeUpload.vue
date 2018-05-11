@@ -193,6 +193,9 @@ export default {
         {
           'emfe-upload-disabled': this.disabled || !this.canUpload,
         },
+        {
+          [`${this.className}-upload-disabled`]: (this.disabled || !this.canUpload) && !!this.className,
+        },
       ];
     },
     btnName() {
@@ -712,7 +715,7 @@ export default {
       if (this.type === 'icon') {
         this.iconText = '上传中';
       } else {
-        this.plusText = '...';
+        this.plusText = '···';
       }
     },
   },

@@ -137,6 +137,12 @@ export default [
     },
   },
   {
+    title: '新版C端头部 headercnew',
+    routers: {
+      path: '/styles/headercnewpage',
+    },
+  },
+  {
     title: '轻活动头部 headeractive',
     routers: {
       path: '/styles/headeractivepage',
