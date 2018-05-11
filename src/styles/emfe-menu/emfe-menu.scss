@@ -6,25 +6,24 @@ $height: calc(100% - 56px);
 .#{$prefix}menu {
   overflow: hidden;
   padding-top: 56px;
-  font-size: 12px;
+  font-size: 14px;
   background: #373737;
-  width: 110px;
+  width: 96px;
 
   &-icon::before {
     color: #fff;
-    font-size: 12px;
+    font-size: 14px;
   }
 
   &-text {
     opacity: 0.6;
     color: #fff;
-    margin-left: 8px;
-    font-size: 12px;
+    margin-left: 10px;
+    font-size: 14px;
   }
 
   &-header {
     height: 42px;
-    padding: 12px 20px;
     margin-bottom: 20px;
     text-align: center;
     cursor: pointer;
@@ -38,17 +37,18 @@ $height: calc(100% - 56px);
     }
 
     &-link {
+      height: 100%;
       line-height: 18px;
       display: flex;
       align-items: center;
-      justify-content: left;
+      justify-content: center;
     }
 
     &-text {
       opacity: 0.6;
       color: #fff;
-      margin-left: 8px;
-      font-size: 12px;
+      margin-left: 10px;
+      font-size: 14px;
     }
 
     &:active,
@@ -88,9 +88,14 @@ $height: calc(100% - 56px);
       height: 42px;
       padding: 0 19px 0 20px;
       display: flex;
+      font-size: 14px;
       align-items: center;
       justify-content: left;
       cursor: pointer;
+
+      &-img {
+        height: 16px;
+      }
 
       &:hover {
         background: rgba(255, 255, 255, 0.2);
