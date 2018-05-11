@@ -297,6 +297,10 @@
       color: $text-color-prompt;
     }
 
+    .emfe-upload-disabled {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
     &-upload {
       @include border(all, $button-color-default, 1px, dashed);
 
@@ -308,6 +312,9 @@
 
       &-plus-btn {
         border: none;
+        background-color: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        color: #fff;
       }
 
       & .emfe-upload-plus-box {

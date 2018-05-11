@@ -712,7 +712,7 @@ export default {
       if (this.type === 'icon') {
         this.iconText = '上传中';
       } else {
-        this.plusText = '...';
+        this.plusText = '···';
       }
     },
   },
