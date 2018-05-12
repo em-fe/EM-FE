@@ -11,14 +11,14 @@ $gridColumns: 24 !default;
 $ionicons-font-path: './iconfont/fonts';
 $ionicons-font-family: 'Ionicons';
 $ionicons-font-file: 'iconfont';
-$ionicons-version: '1513157876478';
+$ionicons-version: '1524885285002';
 // tooltip 颜色
 $tooltip-arrow-size: 5px;
 // 一级菜单宽度，大屏小屏
 $menu-md-width: 128px;
 $menu-sm-width: 56px;
 // 圆角尺寸
-$radius-size: 4px;
+$radius-size: 3px;
 
 //遮罩层的颜色
 $mask-color: rgba(0, 0, 0, 0.3);
@@ -30,13 +30,13 @@ $shadow-color: rgba(0, 0, 0, 0.1);
 $nothing-color: #fff;
 
 // 边框默认颜色
-$border-color: #dcdcdc;
+$border-color: #dbdbdb;
 
 // 边框选中颜色
 $border-on-color: #1996f9;
 
 // 字体图标的颜色
-$icon-color: #8d8d8d;
+$icon-color: #999;
 
 // 标题的颜色
 $title-color: #333;
@@ -195,7 +195,7 @@ $checkout-color-hovered: #f1cb8d;
 $checkout-color-checked: #fffcf7;
 
 //图标色 默认
-$icon-color-default: #8d8d8d;
+$icon-color-default: #999;
 
 //登录错误提示
 $login-color-error: #f05229;
@@ -234,3 +234,10 @@ $c-font-color-red: #ff4949;
 
 //字体蓝色 滑过
 $c-font-color-hover: #7cc0ff;
+
+// bar 边框颜色
+$bar-border-color: #e8e8e8;
+$bar-on-bg: #f0f0f0;
+
+// menu
+$menu-on-bg: #f0f0f0;

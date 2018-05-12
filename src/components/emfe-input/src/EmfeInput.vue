@@ -116,7 +116,7 @@ export default {
     changeFn(evt) {
       const val = evt.target.value;
       if (val === this.currentValue) return;
-      this.currentValue = val;
+      this.currentValue = val.trim();
       this.change(this.currentValue);
       this.$emit('change', this.currentValue);
       this.$emit('input', this.currentValue);

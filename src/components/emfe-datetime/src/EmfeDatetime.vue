@@ -4,9 +4,9 @@
       <span class="emfe-datetime-btn-text" :class="{'emfe-datetime-btn-text-choice': choiced}">{{ dateTime }}</span>
       <!-- 日期 -->
       <emfe-icon type="shijian" className="emfe-datetime" v-show="!choiced" @icon-click="toggle"></emfe-icon>
-      <!-- 取消 -->
-      <emfe-icon type="shanchu" className="emfe-datetime" v-show="choiced" @icon-click="cancel"></emfe-icon>
     </button>
+    <!-- 取消 -->
+    <emfe-icon type="shanchu" className="emfe-datetime" v-show="choiced" @icon-click="cancel"></emfe-icon>
     <button class="emfe-datetime-btn emfe-datetime-btn-disabled" v-if="disabled">
       <span class="emfe-datetime-btn-text">{{ dateTime }}</span>
       <!-- 日期 -->

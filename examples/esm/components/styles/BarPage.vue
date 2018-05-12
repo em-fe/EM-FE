@@ -1,6 +1,6 @@
 <template>
   <div class="barpage">
-    <emfe-bar :datas="bars" :title="title" className="page" fullpath="/"></emfe-bar>
+    <emfe-bar :datas="bars" :title="title" className="page" fullpath="/" @click="barHeaderClick"></emfe-bar>
     <br>
     <br>
     <br>
@@ -93,8 +93,16 @@ export default {
         },
       ],
     }
-  }
-}
+  },
+  methods: {
+    barHeaderClick(event) {
+      console.log('event', event);
+      this.$router.push({
+        name: 'tag'
+      })
+    },
+  },
+};
 </script>
 <style>
 .page-bar {
