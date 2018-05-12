@@ -5,10 +5,10 @@
         <img :src="src" class="emfe-header-active-eye-img">
       </div>
       <div class="emfe-header-active-info">
-        <span class="emfe-header-active-account">你好，
+        <!-- <span class="emfe-header-active-account">你好，
           <span v-if="loginFlg">{{ user }}</span>
           <emfe-link class="emfe-header-active-login" :routers="{}" @click="login" v-if="!loginFlg">请登录</emfe-link>
-        </span>
+        </span> -->
         <emfe-link className="emfe-header-active" :routers="{}" @click="myRegis">我的报名</emfe-link>
         <emfe-link className="emfe-header-active" :routers="{}" @click="organizer">主办方管理</emfe-link>
         <emfe-tooltip style="position:relative;" :styles="{'left': '-28px','top': '50px', 'position': 'absolute'}" theme="light" placement="bottom">
