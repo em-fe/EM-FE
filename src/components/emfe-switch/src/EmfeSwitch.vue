@@ -31,6 +31,7 @@ export default {
       type: Function,
       default: () => {},
     },
+    modelChange: Boolean, // 为了兼容老版的 修复外部控制 v-model 不变的问题，但是与店铺冲突，所以加此属性兼容老板
   },
   data() {
     return {
@@ -81,7 +82,7 @@ export default {
     },
     // 修复外部控制 v-mode 值，不改变
     value(val, oldVal) {
-      if (val !== oldVal && val) {
+      if (val !== oldVal && (val || this.modelChange)) {
         this.currentValue = val;
       }
     },

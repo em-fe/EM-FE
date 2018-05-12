@@ -1,7 +1,8 @@
 <template>
-  <label :class="[{'emfe-radio-checked': status},labelClass]" class="emfe-radio clearfix">
+  <!-- 去掉 label 解决店铺显示隐藏之后无效的问题 -->
+  <div :class="[{'emfe-radio-checked': status},labelClass]" class="emfe-radio clearfix" @click="changeFn">
     <i class="emfe-radio-img" :style="baseStyle" :class="{'emfe-radio-img-checked': status, 'emfe-radio-img-disabled': disabled}"></i>
-    <input :class="inputClass" type="radio" @change="changeFn" :name="name" :disabled="disabled" class="emfe-radio-input">
+    <input :class="inputClass" type="radio" :name="name" :disabled="disabled" class="emfe-radio-input" @change="changeFn">
     <span :class='textClass' class="emfe-radio-text"><slot></slot></span>
     <emfe-tooltip className="emfe-radio" theme="light" :placement="placement" v-if="tip">
       <emfe-icon type="tishi" slot="render" className="emfe-radio-tip"></emfe-icon>
@@ -14,7 +15,7 @@
         </div>
       </transition>
     </div>
-  </label>
+  </div>
 </template>
 <script>
   export default {
@@ -109,6 +110,7 @@
     },
     methods: {
       changeFn() {
+        console.log(1111);
         let index = 0;
         this.$parent.$children.forEach((element) => {
           element.status = this.index === element.index;
