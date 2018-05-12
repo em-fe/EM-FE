@@ -137,6 +137,18 @@ export default [
     },
   },
   {
+    title: '新版C端头部 headercnew',
+    routers: {
+      path: '/styles/headercnewpage',
+    },
+  },
+  {
+    title: '轻活动头部 headeractive',
+    routers: {
+      path: '/styles/headeractivepage',
+    },
+  },
+  {
     title: '底部 footer',
     routers: {
       path: '/styles/footerpage',
@@ -404,6 +416,12 @@ export default [
     title: '数组滚动 changecount',
     routers: {
       path: '/functions/changecount',
+    },
+  },
+  {
+    title: '轮播 swiper',
+    routers: {
+      path: '/functions/swiper',
     },
   },
 ];

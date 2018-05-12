@@ -1,7 +1,7 @@
 <template>
   <div class="emfe-smscode" :class="[smscodeName, {'emfe-smscode-input-error': errOk}]">
     <emfe-icon v-if="icon" className="emfe-smscode" :type="icon"></emfe-icon>
-    <input :type="type" :maxlength="maxlength" class="emfe-smscode-input" :class="codeName" :value="nowData" :placeholder="placeholder" @input="input" :disabled="newDisabled" @blur="blur">
+    <input :type="type" :maxlength="maxlength" class="emfe-smscode-input" :class="codeName" :value="nowData" :placeholder="placeholder" @input="input" :disabled="newDisabled" @blur="blur" @focus="focus">
     <button class="emfe-smscode-button" :class="btmName" :disabled="newDisabled" @click="clickFn">{{ btnText }}</button>
     <div v-if="errOk" class="emfe-smscode-error">
       <slot name="error"></slot>
@@ -70,6 +70,10 @@ export default {
       default: () => {},
     },
     errOk: {
+      type: Boolean,
+      default: false,
+    },
+    goauto: {
       type: Boolean,
       default: false,
     },
@@ -145,6 +149,9 @@ export default {
     blur() {
       this.$emit('blur');
     },
+    focus() {
+      this.$emit('focus');
+    },
     resetCode() {
       this.disableds = false;
       this.btnText = this.title;
@@ -173,7 +180,9 @@ export default {
         this.start = val;
         this.resetCode();
         // 有时候不好用，根儿手机点击完了不换倒计时
-        // this.auto();
+        if (this.goauto) {
+          this.auto();
+        }
       }
     },
   },

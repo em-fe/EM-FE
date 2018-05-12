@@ -117,6 +117,13 @@
         @include border(right, $color-danger);
       }
     }
+
+    &-disabled {
+      background-color: #f3f3f3;
+      opacity: 1;
+      cursor: not-allowed;
+      color: #ccc;
+    }
   }
 
   &-error {

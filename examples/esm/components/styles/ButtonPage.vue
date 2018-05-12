@@ -27,7 +27,7 @@
       </code>
     </pre>
     <br>
-    <emfe-button theme="default" type="dizhi1">带有图标</emfe-button>
+    <emfe-button theme="default" type="dizhi1" className="sss">带有图标</emfe-button>
     <emfe-button theme="default" type="site" :disabled="true">带有图标禁用</emfe-button>
     <pre>
       <code>

@@ -9,6 +9,7 @@ import EmfeTransition from './components/emfe-transition/index';
 import EmfeMenu from './components/emfe-menu/index';
 import EmfeHeader from './components/emfe-header/index';
 import EmfeHeaderC from './components/emfe-header-c/index';
+import EmfeHeaderCNew from './components/emfe-header-c-new/index';
 import EmfeFooter from './components/emfe-footer/index';
 import EmfeFooterC from './components/emfe-footer-c/index';
 import EmfeCopy from './components/emfe-copy/index';
@@ -67,6 +68,8 @@ import EmfeLoginC from './components/emfe-login-c/index';
 import EmfeTitleline from './components/emfe-titleline/index';
 import EmfeIscroll from './components/emfe-iscroll/index';
 import EmfeChangecount from './components/emfe-changecount/index';
+import EmfeSwiper from './components/emfe-swiper/index';
+import EmfeHeaderActive from './components/emfe-header-active/index';
 // 服务
 import EmfeMessage from './components/emfe-message/index';
 import EmfeFormTest from './components/emfe-formtest/index';
@@ -87,6 +90,7 @@ const emfeCpt = {
   EmfeMenu,
   EmfeHeader,
   EmfeHeaderC,
+  EmfeHeaderCNew,
   EmfeFooter,
   EmfeFooterC,
   EmfeCopy,
@@ -153,6 +157,8 @@ const emfeCpt = {
   EmfeTitleline,
   EmfeIscroll,
   EmfeChangecount,
+  EmfeSwiper,
+  EmfeHeaderActive,
 };
 
 const emfeDir = {
