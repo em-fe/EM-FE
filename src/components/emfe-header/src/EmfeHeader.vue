@@ -9,7 +9,7 @@
     <div class="emfe-header-info">
       <div class="emfe-header-index">
         <!-- <span class="emfe-header-info-text" @click="goIndex">控制台首页</span> -->
-        <emfe-button theme="primary" @click="goIndex">快速发布活动</emfe-button>
+        <emfe-button theme="primary" @click="goIndex">发活动</emfe-button>
       </div>
       <div class="emfe-header-account">
         <span class="emfe-header-info-hello">&nbsp;你好，<span class="emfe-header-info-text" @click="goAccount">{{ user }}</span></span>
