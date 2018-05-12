@@ -1,6 +1,6 @@
 <template>
   <div class="emfe-tel" :class="[telName, {'emfe-tel-input-error': errOk}]" v-emfe-documentclick="close">
-    <div class="emfe-tel-prefix" :class="[prefixName, {'emfe-tel-input-error-right': errOk}]" @click.stop="toggle">
+    <div class="emfe-tel-prefix" :class="[prefixName, {'emfe-tel-input-error-right': errOk, 'emfe-tel-input-disabled': disabled}]" @click.stop="toggle">
       <img class="emfe-tel-prefix-piece" :src="nowData.url" :alt="nowData.name" v-show="nowData.url">
       <span class="emfe-tel-prefix-text" :class="prefixTextName">+{{ nowData.prefix }}</span>
       <ul class="emfe-tel-prefix-flag" :class="prefixFlagName" v-show="flagStatus" >
@@ -11,7 +11,7 @@
         </li>
       </ul>
     </div>
-    <input :type="type" class="emfe-tel-input" :class="inputName" :placeholder="placeholder" :value="nowData.tel" @input="telChange" @blur="telBlur">
+    <input :type="type" class="emfe-tel-input" :class="[inputName, {'emfe-tel-input-disabled': disabled}]" :placeholder="placeholder" :value="nowData.tel" :disabled="disabled" @input="telChange" @blur="telBlur" @focus="telFocus">
     <div class="emfe-tel-error" :class="addErrorText" v-if="errOk"><slot name="error"></slot></div>
   </div>
 </template>
@@ -50,6 +50,10 @@ export default {
     },
     className: String,
     errOk: {
+      type: Boolean,
+      default: false,
+    },
+    disabled: {
       type: Boolean,
       default: false,
     },
@@ -100,7 +104,9 @@ export default {
   },
   methods: {
     toggle() {
-      this.flagStatus = true;
+      if (!this.disabled) {
+        this.flagStatus = true;
+      }
     },
     choice(item) {
       this.nowData = item;
@@ -118,6 +124,9 @@ export default {
     },
     telBlur() {
       this.$emit('blur');
+    },
+    telFocus() {
+      this.$emit('focus');
     },
   },
   watch: {

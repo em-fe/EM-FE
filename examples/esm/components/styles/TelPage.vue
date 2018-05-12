@@ -1,7 +1,7 @@
 <template>
   <div id="telpage">
     <h3>普通使用</h3>
-    <emfe-tel :datas="data1" v-model="now" placeholder="电话" @blur='blur'></emfe-tel>
+    <emfe-tel :datas="data1" v-model="now" placeholder="电话" @blur='blur' @focus='focus'></emfe-tel>
     当前 {{ now }}
     <pre>
       &lt;emfe-tel :datas="data1" v-model="now" placeholder="电话"&gt;&lt;/emfe-tel&gt;
@@ -28,7 +28,18 @@
     <br>
     当前 {{ now }}
     <pre>
-      &lt;emfe-tel className="demo" :datas="data1" v-model="now" placeholder="电话"&gt;&lt;/emfe-tel&gt;
+      &lt;emfe-tel className="demo" :datas="data1" v-model="now" placeholder="电话" :errOk="true"&gt;&lt;/emfe-tel&gt;
+    </pre>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h3>禁止样式使用</h3>
+    <emfe-tel className="demo" :datas="data1" v-model="now" placeholder="电话" :disabled="true"></emfe-tel>
+    <br>
+    当前 {{ now }}
+    <pre>
+      &lt;emfe-tel className="demo" :datas="data1" v-model="now" placeholder="电话" :disabled="true"&gt;&lt;/emfe-tel&gt;
     </pre>
     <br>
     <br>
@@ -69,6 +80,12 @@
           <td>String</td>
           <td>number</td>
         </tr>
+        <tr>
+          <td>disabled</td>
+          <td>是否禁止使用</td>
+          <td>Boolean</td>
+          <td>false</td>
+        </tr>
       </tbody>
     </table>
     <h3>注册的方法</h3>
@@ -89,6 +106,11 @@
         <tr>
           <td>blur</td>
           <td>失去焦点</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>focus</td>
+          <td>获取焦点</td>
           <td>-</td>
         </tr>
       </tbody>
@@ -124,6 +146,9 @@ export default {
   methods: {
     blur() {
       console.log('失去焦点');
+    },
+    focus() {
+      console.log('获取焦点');
     },
   },
 };

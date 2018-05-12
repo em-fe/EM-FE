@@ -1,7 +1,8 @@
 <template>
   <div class="emfe-upload" :class="uploadName">
     <template v-if="type === 'icon'">
-      <emfe-button :disabled="disabled || !canUpload" v-show="!src" :theme="theme" type="shangchuan">{{ iconText }}</emfe-button>
+      <emfe-button :disabled="disabled || !canUpload" v-show="!src" :theme="theme" type="shangchuan" :className="iconName">{{
+          iconText }}</emfe-button>
       <input v-show="!src" class="emfe-upload-file" :class="fileName" :disabled="disabled || !canUpload" type="file" @change="change" ref="upload">
       <div v-show="src" :style="{opacity: canShow ? 1 : 0}" class="emfe-upload-icon-wrap">
         <div class="emfe-upload-icon-wrap-box" :class="[`emfe-upload-icon-wrap-box-${align}`, imageName]">
@@ -13,9 +14,9 @@
     <template v-if="type === 'plus'">
       <span v-show="!src" class="emfe-upload-btn" :class="btnName">{{ plusText }}</span>
       <input v-show="!src" class="emfe-upload-file" :class="fileName" :disabled="disabled || !canUpload" type="file" @change="change" ref="uploadPlus">
-      <div v-show="src" class="emfe-upload-plus-box" :class="[`emfe-upload-plus-box-${align}`, imageName]" :style="{opacity: canShow ? 1 : 0}">
+      <div v-show="src" class="emfe-upload-plus-box" :class="[`emfe-upload-plus-box-${align}`, imageName, {'emfe-upload-plus-box-disabled': disabled}]" :style="{opacity: canShow ? 1 : 0}">
         <img :class="[`emfe-upload-img-${align}`, imgName]" v-show="src" :src="src" ref="img">
-        <i class="emfe-upload-plus-close" @click="closePlusFn"></i>
+        <i :class="['emfe-upload-plus-close', {'emfe-upload-plus-box-disabled': disabled}]" @click="closePlusFn"></i>
       </div>
     </template>
     <emfe-modal :show="interceptModal" title="截取器" @close="formCancel" @cancel="formCancel" @ok="formOk" okText="保存" className="form">
@@ -193,7 +194,13 @@ export default {
         {
           'emfe-upload-disabled': this.disabled || !this.canUpload,
         },
+        {
+          [`${this.className}-upload-disabled`]: (this.disabled || !this.canUpload) && !!this.className,
+        },
       ];
+    },
+    iconName() {
+      return this.className ? `${this.className}-upload-icon-btn` : '';
     },
     btnName() {
       return [
@@ -678,7 +685,9 @@ export default {
       this.closeCommon();
     },
     closePlusFn() {
-      this.closeCommon();
+      if (!this.disabled) {
+        this.closeCommon();
+      }
     },
     closeCommon() {
       this.src = '';
@@ -710,7 +719,7 @@ export default {
       if (this.type === 'icon') {
         this.iconText = '上传中';
       } else {
-        this.plusText = '...';
+        this.plusText = '···';
       }
     },
   },

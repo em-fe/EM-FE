@@ -1,13 +1,13 @@
 .#{$prefix}number {
   @include border();
 
-  height: 34px;
+  height: 32px;
   width: 100%;
 
   &-plus,
   &-reduce {
     width: 32px;
-    height: 32px;
+    height: 30px;
     position: relative;
     cursor: pointer;
 
@@ -90,8 +90,8 @@
   &-val,
   &-unit {
     outline: none;
-    line-height: 32px;
-    height: 32px;
+    line-height: 30px;
+    height: 30px;
     font-size: 14px;
     float: left;
     width: 50%;

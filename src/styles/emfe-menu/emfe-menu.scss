@@ -4,267 +4,137 @@ $menu-top: 56px;
 $height: calc(100% - 56px);
 
 .#{$prefix}menu {
-  @include clearfix();
-
-  position: fixed;
-  top: $menu-top;
-  left: 0;
-  height: 100%;
+  overflow: hidden;
+  padding-top: 56px;
   font-size: 14px;
-  z-index: 2;
+  background: #373737;
+  width: 96px;
 
-  &-tooltip {
-    margin: 0 auto;
+  &-icon::before {
+    color: #fff;
+    font-size: 14px;
   }
 
-  &-iscroll {
-    height: calc(100% - 48px);
-    position: relative;
-    overflow: auto;
+  &-text {
+    opacity: 0.6;
+    color: #fff;
+    margin-left: 10px;
+    font-size: 14px;
   }
 
-  &-main {
-    @include border(right);
+  &-header {
+    height: 42px;
+    margin-bottom: 20px;
+    text-align: center;
+    cursor: pointer;
 
-    width: $menu-md-width;
-    height: $height;
-    float: left;
-    position: relative;
-    z-index: 2;
-    background: $background-color-write;
+    &:hover {
+      background: rgba(255, 255, 255, 0.2);
 
-    &-sidebar {
-      font-size: 30px;
-      line-height: 48px;
-
-      &2 {
-        font-size: 30px;
-        line-height: 48px;
-        transform: rotate(90deg) translate3d(6px, 9px, 0);
-        margin-left: 14px;
+      & .emfe-menu-text {
+        opacity: 1;
       }
     }
 
-    &-header {
-      @include border(bottom);
-
-      width: 100%;
-      height: $header-height;
-      line-height: $header-height;
-      padding: 0 20px;
-      cursor: pointer;
-    }
-
-    &-list {
-      height: calc(100% - 48px);
-    }
-
-    &-item {
-      height: 48px;
+    &-link {
+      height: 100%;
+      line-height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     &-text {
-      width: 80px;
-      height: 48px;
-      overflow: hidden;
-    }
-
-    &-link {
-      @include border(left, $background-color-write, 4px);
-
-      color: $text-color-Three1;
-      height: 48px;
-      line-height: 48px;
-      // width: calc(100% - 4px);
-      width: 100%;
-      display: flex;
-      align-items: center;
-
-      &:hover {
-        background: $brand-color-select;
-        color: $brand-color-hover;
-      }
-
-      &:active {
-        background: $brand-color-select;
-        color: $brand-color-click;
-      }
-
-      &-on {
-        @include border(left, $brand-color-default, 4px);
-
-        background: $brand-color-select;
-        color: $brand-color-default;
-        cursor: default;
-
-        & .emfe-menu-main-icon {
-          color: $brand-color-default;
-        }
-      }
-    }
-
-    &-link.router-link-active {
-      @include border(left, $brand-color-default, 4px);
-
-      background: $brand-color-select;
-      color: $brand-color-default;
-      cursor: default;
-    }
-
-    &-icon {
-      font-size: 18px;
-      line-height: 48px;
-      width: 48px;
-      text-align: center;
-    }
-  } // end emfe-menu-main
-
-  &-minor {
-    @include border(right);
-
-    width: 112px;
-    height: $height;
-    float: left;
-    position: relative;
-    z-index: 1;
-    background: $background-color-write;
-
-    &-iscroll {
-      height: $height;
-      position: relative;
-      overflow: auto;
-    }
-
-    &-header {
-      @include border(bottom);
-
-      width: 100%;
-      height: $minor-height;
-      line-height: $minor-height;
+      opacity: 0.6;
+      color: #fff;
+      margin-left: 10px;
       font-size: 14px;
-      color: $text-color-default;
-      padding-left: 24px;
     }
 
-    &-item {
-      position: relative;
+    &:active,
+    &-on {
+      background: $menu-on-bg;
 
-      &-on {
-        .emfe-menu-minor-arrow {
-          transform: rotate(0deg);
+      &:hover {
+        background: $menu-on-bg;
+
+        & .emfe-menu-text {
+          opacity: 1;
+          color: $title-color;
+        }
+      }
+
+      & .emfe-menu-header-text {
+        opacity: 1;
+        color: $title-color;
+      }
+
+      & .emfe-menu-icon {
+        &::before {
+          color: $title-color;
         }
       }
     }
+  }
 
-    &-arrow {
-      position: absolute;
-      width: 0;
-      height: 0;
-      border-color: transparent;
-      border-style: solid;
-      border-width: 6px 6px 0;
-      border-top-color: $icon-color;
-      top: 21px;
-      left: 13px;
-      transition: transform 0.4s;
-      transform: rotate(-90deg);
+  &-list {
+    padding-bottom: 20px;
+
+    &:last-child {
+      padding-bottom: 0;
     }
 
-    &-btn {
-      color: $text-color-default;
-      height: 48px;
-      line-height: 48px;
-      width: 100%;
-      display: block;
-      padding-left: 32px;
+    &-li {
+      height: 42px;
+      padding: 0 19px 0 20px;
+      display: flex;
+      font-size: 14px;
+      align-items: center;
+      justify-content: left;
       cursor: pointer;
-    }
 
-    &-link {
-      color: $text-color-Three1;
-      height: 48px;
-      line-height: 48px;
-      width: 100%;
-      display: block;
-      padding-left: 32px;
+      &-img {
+        height: 16px;
+      }
 
       &:hover {
-        background: $brand-color-select;
-        color: $brand-color-default;
+        background: rgba(255, 255, 255, 0.2);
+
+        & .emfe-menu-text {
+          opacity: 1;
+        }
       }
 
-      &:active {
-        background: $brand-color-select;
-        color: $brand-color-click;
+      &:active,
+      &-on {
+        background: $menu-on-bg;
+
+        &:hover {
+          background: $menu-on-bg;
+
+          & .emfe-menu-text {
+            opacity: 1;
+            color: $title-color;
+          }
+
+          & .emfe-menu-icon {
+            &::before {
+              color: $title-color;
+            }
+          }
+        }
+
+        & .emfe-menu-text {
+          opacity: 1;
+          color: $title-color;
+        }
+
+        & .emfe-menu-icon {
+          &::before {
+            color: $title-color;
+          }
+        }
       }
     }
-
-    &-link.router-link-active {
-      background: $brand-color-select;
-      color: $brand-color-default;
-
-      &:active {
-        background: $brand-color-select;
-        color: $brand-color-click;
-      }
-    }
-
-    &-childitem {
-      height: 48px;
-      width: 100%;
-      display: block;
-    }
-
-    &-childlink {
-      color: $text-color-Three1;
-      height: 48px;
-      line-height: 48px;
-      padding-left: 40px;
-      width: 100%;
-      display: block;
-
-      &:hover {
-        background: $brand-color-select;
-        color: $brand-color-hover;
-      }
-
-      &:active {
-        background: $brand-color-select;
-        color: $brand-color-click;
-      }
-    }
-
-    &-childlink.router-link-active {
-      background: $brand-color-select;
-      color: $brand-color-default;
-
-      &:hover {
-        background: $brand-color-select;
-        color: $brand-color-hover;
-      }
-
-      &:active {
-        background: $brand-color-select;
-        color: $brand-color-click;
-      }
-    }
-  } // end emfe-menu-minor
-
-  &-on {
-    .emfe-menu-main {
-      width: $menu-sm-width;
-    }
-
-    .emfe-menu-main-text {
-      display: none;
-    }
-
-    .emfe-menu-main-icon {
-      padding: 0 11px 0 6px;
-    }
-
-    .emfe-menu-main-sidebar {
-      margin-left: -5px;
-    }
-  } // end emfe-menu-on
+  }
 }

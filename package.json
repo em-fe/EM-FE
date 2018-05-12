@@ -1,6 +1,6 @@
 {
   "name": "em-fe",
-  "version": "1.6.1",
+  "version": "2.0.0",
   "description": "快速开发产品的UI库",
   "main": "dist/emfe.js",
   "unpkg": "dist/emfe.js",
@@ -80,7 +80,8 @@
     "vuex": "^2.3.1",
     "webpack": "^3.0.0",
     "webpack-dev-server": "^2.5.0",
-    "webpack-merge": "^4.1.1"
+    "webpack-merge": "^4.1.1",
+    "better-scroll": "^1.10.2"
   },
   "dependencies": {
     "babel-plugin-dynamic-import-webpack": "^1.0.1",

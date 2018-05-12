@@ -1,6 +1,6 @@
 <template>
   <div class="emfe-bar" :class="barName">
-    <h3 class="emfe-bar-header">{{ title }}</h3>
+    <h3 class="emfe-bar-header" @click="headerClick($event)">{{ title }}</h3>
     <div class="emfe-bar-iscroll">
       <ul class="emfe-bar-list">
         <template v-for="(childrenData, childrenDataIndex) in newDatas">
@@ -71,7 +71,8 @@ export default {
   },
   mounted() {
     this.handle(this.datas);
-    this.testUrl();
+    // 营销 B 端调用两次问题
+    // this.testUrl();
   },
   methods: {
     handle(val) {
@@ -88,9 +89,7 @@ export default {
     },
     testUrl() {
       const { fullPath, name } = this.$route;
-
       const newFullPath = this.fullpath ? this.fullpath : fullPath;
-
       this.newDatas.forEach((data, dataNum) => {
         // 如果一级导航有子节点
         if (O.hOwnProperty(data, 'children')) {
@@ -108,10 +107,10 @@ export default {
     },
     toogleChild(itemIndex) {
       if (!this.isDisabled) {
+        this.canTestUrl = false; // 刷新新页面触发一次就行
         const eqLast = itemIndex === childrenLast;
         this.childrenIndex = eqLast ? -1 : itemIndex;
         childrenLast = eqLast ? -1 : itemIndex;
-
         this.minorStatus.splice(itemIndex, 1, !this.minorStatus[itemIndex]);
       }
     },
@@ -119,10 +118,12 @@ export default {
       if (O.hOwnProperty(item, 'routers')) {
         this.$router.push(item.routers);
       }
-
       if (O.hOwnProperty(item, 'url')) {
         window.open(item.url);
       }
+    },
+    headerClick(event) {
+      this.$emit('click', event);
     },
   },
   watch: {

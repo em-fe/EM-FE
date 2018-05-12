@@ -1,134 +1,178 @@
 .#{$prefix}panel-c {
-  @include clearfix();
+  width: 100%;
+  background: -webkit-linear-gradient(104deg, #0896f8, #2aa6fd, #2aa6fd, #0297fe);
+  background: -o-linear-gradient(104deg, #0896f8, #2aa6fd, #2aa6fd, #0297fe);
+  background: -moz-linear-gradient(104deg, #0896f8, #2aa6fd, #2aa6fd, #0297fe);
+  background: linear-gradient(104deg, #0896f8, #2aa6fd, #2aa6fd, #0297fe);
 
-  height: 141px;
-  padding: 22px 0;
-  background-color: #26a5fd;
+  &-main {
+    @include clearfix();
 
-  &-logobox {
-    width: 84px;
-    height: 84px;
-    border-radius: 50%;
-    margin: 3px 19px 0 0;
-    float: left;
+    margin: 0 auto;
+    width: 1100px;
+    height: 141px;
+    padding: 22px 0;
 
-    .emfe-panel-c-upload-plus-image {
-      position: relative;
-      left: -1px;
-      top: -1px;
-    }
-
-    .emfe-upload-plus-btn {
-      line-height: 78px;
-    }
-
-    .emfe-upload-img-vertical {
+    &-logobox {
+      width: 84px;
+      height: 84px;
       border-radius: 50%;
-    }
+      margin: 3px 19px 0 0;
+      float: left;
 
-    .emfe-upload-plus-box {
-      border-radius: 50%;
-      border: none;
-    }
-
-    .emfe-upload-img-normal {
-      width: 85px;
-      height: 85px;
-      border-radius: 50%;
-    }
-
-    .emfe-upload-plus-image {
-      border-radius: 50%;
-      width: 100%;
-      height: 100%;
-    }
-
-    &-logo {
-      width: 85px;
-      height: 85px;
-      display: block;
-      border-radius: 50%;
-    }
-  }
-
-  &-infobox {
-    float: left;
-    margin-top: 6px;
-    border-right: 1px solid rgba(255, 255, 255, 0.22);
-
-    &-about {
-      @include clearfix();
-
-      margin: 13px 0 20px;
-
-      &-novip {
-        width: 15px;
-        height: 15px;
-        float: left;
-        margin: 2px 5px 0 0;
-        cursor: pointer;
-      }
-
-      &-father {
+      .emfe-panel-c-main-upload-plus-image {
         position: relative;
+        left: -1px;
+        top: -1px;
       }
 
-      &-img {
-        width: 15px;
-        height: 15px;
-        float: left;
-        margin: 2px 0;
-        cursor: pointer;
+      .emfe-upload-plus-btn {
+        line-height: 78px;
       }
 
-      &-link {
-        font-size: 12px;
-        line-height: 20px;
-        color: $background-color-write;
-        float: left;
-        margin: -1px 8px 0 10px;
-        text-decoration: underline;
+      .emfe-upload-img-vertical {
+        border-radius: 50%;
+      }
 
-        &:hover,
-        &:active {
-          color: $background-color-write;
+      .emfe-upload-plus-box {
+        border-radius: 50%;
+        border: none;
+      }
+
+      .emfe-upload-img-normal {
+        width: 85px;
+        height: 85px;
+        border-radius: 50%;
+      }
+
+      .emfe-upload-plus-image {
+        border-radius: 50%;
+        width: 100%;
+        height: 100%;
+      }
+
+      &-logo {
+        width: 85px;
+        height: 85px;
+        display: block;
+        border-radius: 50%;
+      }
+    }
+
+    &-infobox {
+      float: left;
+      margin-top: 6px;
+      border-right: 1px solid rgba(255, 255, 255, 0.22);
+
+      &-about {
+        @include clearfix();
+
+        margin: 13px 0 20px;
+
+        &-novip {
+          width: 15px;
+          height: 15px;
+          float: left;
+          margin: 2px 5px 0 0;
+          cursor: pointer;
         }
-      }
 
-      &-texts {
-        color: $background-color-write;
-        width: 134px;
-        line-height: 18px;
-        float: left;
-        padding: 0;
-        font-size: 14px;
+        &-father {
+          position: relative;
+        }
 
-        &-i {
+        &-img {
+          width: 15px;
+          height: 15px;
+          float: left;
+          margin: 2px 0;
+          cursor: pointer;
+        }
+
+        &-link {
           font-size: 12px;
-          font-style: normal;
+          line-height: 20px;
+          color: $background-color-write;
+          float: left;
+          margin: -1px 8px 0 10px;
+          text-decoration: underline;
+
+          &:hover,
+          &:active {
+            color: $background-color-write;
+          }
+        }
+
+        &-texts {
+          color: $background-color-write;
+          width: 134px;
+          line-height: 18px;
+          float: left;
+          padding: 0;
+          font-size: 14px;
+
+          &-i {
+            font-size: 12px;
+            font-style: normal;
+          }
+        }
+
+        &-text {
+          font-size: 12px;
+          color: $background-color-write;
+          padding: 0 0 0 10px;
+          line-height: 18px;
+          float: left;
+
+          &-em {
+            color: $auxiliary-color-danger;
+            padding: 0 0 0 8px;
+            font-style: normal;
+          }
+        }
+
+        &-overdue {
+          width: 155px;
+          line-height: 23px;
+          font-size: 14px;
+          position: absolute;
+          left: -152px;
+          top: -30px;
+          text-align: center;
+          color: $brand-c-default;
+          background: $background-color-write;
+          border-radius: 5px;
+
+          &-i {
+            @include border(top, $background-color-write, 10px);
+
+            width: 0;
+            height: 0;
+            position: absolute;
+            left: 114px;
+            top: 19px;
+            border-left: 10px solid transparent;
+          }
+        }
+
+        &-arrow {
+          position: absolute;
+          left: 15px;
+          top: 19px;
         }
       }
 
-      &-text {
-        font-size: 12px;
-        color: $background-color-write;
-        padding: 0 0 0 10px;
-        line-height: 18px;
+      &-member {
+        position: relative;
         float: left;
-
-        &-em {
-          color: $auxiliary-color-danger;
-          padding: 0 0 0 8px;
-          font-style: normal;
-        }
       }
 
-      &-overdue {
+      &-youhui {
         width: 155px;
         line-height: 23px;
         font-size: 14px;
         position: absolute;
-        left: -152px;
+        left: -108px;
         top: -30px;
         text-align: center;
         color: $brand-c-default;
@@ -147,157 +191,136 @@
         }
       }
 
-      &-arrow {
-        position: absolute;
-        left: 15px;
-        top: 19px;
+      &-info {
+        @include clearfix();
+
+        &-text {
+          font-size: 14px;
+          color: $background-color-write;
+          line-height: 1;
+          float: left;
+          margin: 0 62px 14px 0;
+        }
       }
     }
 
-    &-member {
-      position: relative;
+    &-orderbox {
       float: left;
-    }
+      display: flex;
 
-    &-youhui {
-      width: 155px;
-      line-height: 23px;
-      font-size: 14px;
-      position: absolute;
-      left: -108px;
-      top: -30px;
-      text-align: center;
-      color: $brand-c-default;
-      background: $background-color-write;
-      border-radius: 5px;
+      &-item {
+        text-align: center;
+        margin: 0 15px;
+        cursor: pointer;
 
-      &-i {
-        @include border(top, $background-color-write, 10px);
+        &:first-child {
+          margin-left: 30px;
+        }
 
-        width: 0;
-        height: 0;
-        position: absolute;
-        left: 114px;
-        top: 19px;
-        border-left: 10px solid transparent;
+        &:last-child {
+          margin-right: 30px;
+        }
       }
-    }
 
-    &-info {
-      @include clearfix();
+      &-img {
+        display: block;
+        width: 62px;
+        margin: 0 auto;
+      }
 
       &-text {
+        min-width: 72px;
         font-size: 14px;
         color: $background-color-write;
         line-height: 1;
-        float: left;
-        margin: 0 62px 14px 0;
-      }
-    }
-  }
-
-  &-orderbox {
-    float: left;
-    display: flex;
-
-    &-item {
-      text-align: center;
-      margin: 0 15px;
-      cursor: pointer;
-
-      &:first-child {
-        margin-left: 30px;
-      }
-
-      &:last-child {
-        margin-right: 30px;
+        padding: 12px 0 0;
       }
     }
 
-    &-img {
-      display: block;
-      width: 62px;
-      margin: 0 auto;
-    }
-
-    &-text {
-      min-width: 72px;
-      font-size: 14px;
-      color: $background-color-write;
-      line-height: 1;
-      padding: 12px 0 0;
-    }
-  }
-
-  &-border {
-    width: 1px;
-    height: 80px;
-    margin-top: 6px;
-    float: left;
-    background-color: rgba(255, 255, 255, 0.22);
-  }
-
-  &-others {
-    width: 300px;
-    height: 88px;
-    float: right;
-    background-color: #37abfc;
-
-    &-text {
-      font-size: 12px;
-      color: $background-color-write;
-      width: 150px;
-      height: 44px;
-      line-height: 44px;
+    &-border {
+      width: 1px;
+      height: 80px;
+      margin-top: 6px;
       float: left;
-      //text-align: center;
-
-      &-img {
-        cursor: pointer;
-        margin-top: -3px;
-        margin-left: 19px;
-        vertical-align: middle;
-      }
-
-      &-em {
-        padding: 0 0 0 8px;
-        font-style: normal;
-      }
+      background-color: rgba(255, 255, 255, 0.22);
     }
-  }
 
-  &-othersTwo {
-    .emfe-panel-c-others-text {
+    &-others {
+      width: 300px;
       height: 88px;
-      line-height: 88px;
+      padding: 20px 0 18px;
+      float: right;
+      background-color: #37abfc;
+
+      &-text {
+        font-size: 12px;
+        color: $background-color-write;
+        width: 150px;
+        float: left;
+        margin-bottom: 20px;
+
+        &:nth-child(3),
+        &:nth-child(4) {
+          margin-bottom: 0;
+        }
+
+        &-img {
+          cursor: pointer;
+          margin-top: -3px;
+          margin-left: 19px;
+          margin-right: 3px;
+          vertical-align: middle;
+        }
+
+        &-em {
+          padding: 0 0 0 8px;
+          font-style: normal;
+        }
+      }
     }
-  }
 
-  &-link {
-    margin-left: 20px;
-    margin-top: -5px;
-    float: left;
-    height: 16px;
-    width: 16px;
-    color: $text-color-prompt;
-  }
+    &-othersTwo {
+      padding: 0;
 
-  &-upload {
-    @include border(all, $button-color-default, 1px, dashed);
-
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    margin-right: 12px;
-    float: left;
-
-    &-plus-btn {
-      border: none;
+      .emfe-panel-c-main-others-text {
+        height: 88px;
+        line-height: 88px;
+      }
     }
 
-    & .emfe-upload-plus-box {
+    &-link {
+      margin-left: 20px;
+      margin-top: -5px;
+      float: left;
+      height: 16px;
+      width: 16px;
+      color: $text-color-prompt;
+    }
+
+    &-upload-disabled {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    &-upload {
+      @include border(all, $button-color-default, 1px, dashed);
+
       width: 90px;
       height: 90px;
+      border-radius: 50%;
+      margin-right: 12px;
+      float: left;
+
+      &-plus-btn {
+        border: none;
+        background-color: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        color: #fff;
+      }
+
+      & .emfe-upload-plus-box {
+        width: 90px;
+        height: 90px;
+      }
     }
   }
 }
