@@ -32,9 +32,9 @@ export default {
   },
   methods: {
     changeFn(val) {
-      this.$emit('input', val.target.value);
-      this.$emit('change', val.target.value);
-      this.change(val.target.value);
+      this.$emit('input', val.target.value.trim());
+      this.$emit('change', val.target.value.trim());
+      this.change(val.target.value.trim());
     },
     blurFn(val) {
       this.$emit('blur', val.target.value);
