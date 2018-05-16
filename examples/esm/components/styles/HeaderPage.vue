@@ -33,6 +33,12 @@
           <td>String</td>
           <td>-</td>
         </tr>
+        <tr>
+          <td>showMask</td>
+          <td>是展示弹窗还是 emit出方法</td>
+          <td>Boolean</td>
+          <td>default true</td>
+        </tr>
       </tbody>
     </table>
     <h3>注册的方法</h3>
@@ -58,6 +64,16 @@
         <tr>
           <td>goAccount</td>
           <td>点击用户名触发。并且是阻止冒泡。跳转到账户管理页面</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>goEvente</td>
+          <td>点击弹窗的演唱赛事触发。并且是阻止冒泡。</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>goLight</td>
+          <td>点击弹窗的演唱轻活动。并且是阻止冒泡。</td>
           <td>-</td>
         </tr>
       </tbody>
