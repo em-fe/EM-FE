@@ -1,0 +1,83 @@
+.#{$prefix}button-c {
+  @include border();
+
+  line-height: 14px;
+  padding: 8px 24px;
+  border-radius: $radius-size;
+  text-align: center;
+  font-size: 14px;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: color 0.1s linear, background-color 0.1s linear, border 0.1s linear;
+  display: inline-block;
+
+  &-icon {
+    color: $icon-color-default;
+  }
+
+  &-default {
+    @include button-colors($text-color-default, $c-brand-color-default, $c-brand-color-default, $button-color-default, $c-brand-color-default, $c-brand-color-default);
+
+    &:disabled {
+      color: $text-color-disable;
+      background: $background-color-disable;
+      border-color: $background-color-disable;
+      cursor: no-drop;
+    }
+  }
+
+  &-primary {
+    @include button-backgrounds($c-brand-color-default, $c-button-color-hover, $c-brand-color-default);
+
+    &:disabled {
+      color: $text-color-disable;
+      background: $background-color-disable;
+      border-color: $background-color-disable;
+      cursor: no-drop;
+    }
+  }
+
+  &-secondary {
+    @include button-backgrounds($c-button-color-pay, $c-button-color-payhover, $c-button-color-pay);
+
+    &:disabled {
+      color: $text-color-disable;
+      background: $background-color-disable;
+      border-color: $background-color-disable;
+      cursor: no-drop;
+    }
+  }
+
+  &-group {
+    overflow: hidden;
+
+    &-button {
+      @extend .#{$prefix}button;
+
+      @include button-colors($title-color, $c-brand-color-default, $c-brand-color-default, $border-color, $c-brand-color-default, $c-brand-color-default);
+
+      float: left;
+      padding: 8px;
+      border-radius: 0;
+      margin-right: -1px;
+      position: relative;
+      z-index: 1;
+
+      &:hover {
+        z-index: 2;
+        transition: color 0.1s linear, background-color 0.1s linear, border 0.1s linear, z-index 0.1s linear;
+      }
+
+      &-on {
+        color: $nothing-color;
+        background: $c-brand-color-default;
+        border-color: $c-brand-color-default;
+        // z-index: 2;
+
+        &:hover {
+          color: $nothing-color;
+        }
+      }
+    }
+  }
+}

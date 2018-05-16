@@ -1,0 +1,124 @@
+.#{$prefix}tel-c {
+  @include border();
+
+  height: 34px;
+  border-radius: $radius-size;
+  position: relative;
+
+  &-prefix {
+    @include border(right);
+
+    width: 20%;
+    height: 32px;
+    position: relative;
+    cursor: pointer;
+    float: left;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-color: transparent;
+      border-style: solid;
+
+      @include arrow(top);
+      @include arrowColor(top);
+
+      bottom: 13px;
+      right: 8px;
+    }
+
+    &-piece {
+      float: left;
+      width: 24px;
+      height: 16px;
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      margin-top: -8px;
+    }
+
+    &-text {
+      float: right;
+      padding: 0 30px 0 0;
+      font-size: 16px;
+      color: $text-color-Three;
+      line-height: 34px;
+    }
+
+    &-flag {
+      position: absolute;
+      width: 100%;
+      top: 32px;
+      left: 0;
+      background-color: $nothing-color;
+      z-index: 2;
+      font-size: 12px;
+      padding: 3px 0;
+      border-top: none;
+      border-radius: $radius-size;
+      box-shadow: 0 5px 10px $shadow-color;
+    }
+
+    &-label {
+      @include clearfix();
+
+      height: 32px;
+      cursor: pointer;
+      line-height: 32px;
+      display: block;
+      padding: 0 8px;
+      position: relative;
+
+      &:hover {
+        background: $background-on-color;
+      }
+    }
+
+    &-icon {
+      width: 24px;
+      height: 16px;
+      margin: -8px 0 0;
+      position: absolute;
+      top: 50%;
+      left: 8px;
+
+      &-tel {
+        float: right;
+        width: 100%;
+        text-align: center;
+      }
+    }
+  }
+
+  &-input {
+    float: left;
+    width: 80%;
+    border: none;
+    height: 32px;
+    line-height: 32px;
+    padding: 0 8px;
+    font-size: 16px;
+    color: $text-color-default;
+    border-radius: $radius-size;
+
+    &-error {
+      @include border(all, $color-danger);
+
+      &-right {
+        @include border(right, $color-danger);
+      }
+    }
+  }
+
+  &-error {
+    position: absolute;
+    left: 8px;
+    bottom: -15px;
+    font-size: 12px;
+    color: $color-danger;
+    letter-spacing: 1.08px;
+    line-height: 12px;
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "presets": [
+    ["env", { "modules": false }],
+    "stage-2",
+    "es2015"
+  ],
+  "plugins": [
+    "transform-runtime",
+    ["transform-strict-mode", {
+      "strict": false
+    }],
+    "dynamic-import-webpack"
+  ],
+  "comments": false,
+  "env": {
+    "test": {
+      "presets": ["env", "stage-2"],
+      "plugins": [ "istanbul" ]
+    }
+  }
+}

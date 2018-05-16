@@ -1,0 +1,193 @@
+.#{$prefix}table {
+  width: 100%;
+  border-collapse: collapse;
+
+  &-box {
+    @include border();
+
+    width: 100%;
+    overflow: auto;
+    position: relative;
+  }
+
+  &-nothing {
+    width: 100%;
+    height: 48px;
+    line-height: 48px;
+    text-align: center;
+    background-color: $nothing-color;
+    color: $text-color-prompt;
+    font-size: 14px;
+
+    &-td {
+      padding: 0 !important;
+    }
+  }
+
+  &-head {
+    width: 100%;
+
+    &-tr {
+      @include border(bottom);
+
+      min-height: 48px;
+      height: 48px;
+      width: 100%;
+      background-color: $background-color-title;
+
+      &-th {
+        box-sizing: border-box;
+        padding: 0 10px;
+        text-align: left;
+        font-size: 14px;
+        color: $text-color-prompt;
+        letter-spacing: 0;
+        line-height: 16px;
+
+        &-checked {
+          background: #f8dbd8;
+        }
+
+        &-div {
+          white-space: nowrap;
+        }
+      }
+    }
+  }
+
+  &-tr {
+    min-height: 48px;
+    height: 48px;
+    background-color: $nothing-color;
+
+    &:nth-child(2n) {
+      background-color: $background-color-even;
+    }
+
+    &-hover {
+      &:hover {
+        background-color: $tr-hover-color;
+      }
+    }
+
+    &-td {
+      box-sizing: border-box;
+      padding: 0 10px;
+      text-align: left;
+      font-size: 14px;
+      color: $title-color;
+      letter-spacing: -0.3px;
+      line-height: 16px;
+
+      &-checked {
+        background: #ffefed;
+      }
+
+      &-div {
+        white-space: nowrap;
+        color: $text-color-default;
+        padding: 8px 0;
+        line-height: 1.5;
+
+        &-required {
+          color: $auxiliary-color-danger;
+        }
+      }
+    }
+
+    &-disabled {
+      background-color: $background-color-main !important;
+
+      &:hover {
+        background-color: $tr-hover-color !important;
+      }
+    }
+  }
+
+  &-border {
+    border-right: 1px solid $border-color;
+
+    &:last-child {
+      border-right: none;
+    }
+  }
+
+  &-border-bottom {
+    border-bottom: 1px solid $border-color;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &-fixbox {
+    width: 100px;
+    position: absolute;
+    top: 0;
+    background: $background-color-write;
+
+    &-right {
+      right: 0;
+
+      &-item-name {
+        @include border(left);
+
+        border-right: 0;
+      }
+    }
+
+    &-left {
+      left: 0;
+
+      &-item-name {
+        @include border(right);
+
+        border-left: 0;
+      }
+    }
+
+    &-item {
+      &-title {
+        height: 48px;
+        background: $background-color-title;
+
+        &-name {
+          padding: 0 10px;
+          text-align: center;
+          font-size: 14px;
+          line-height: 48px;
+          box-sizing: border-box;
+          color: $text-color-prompt;
+
+          @include border(bottom);
+        }
+      }
+
+      &-main {
+        &-name {
+          height: 49px;
+          color: $brand-color-default;
+          padding: 0 10px;
+          font-size: 14px;
+          line-height: 48px;
+          box-sizing: border-box;
+
+          @include border(bottom);
+
+          &:last-child {
+            border-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+
+  &-tablebox {
+    overflow: auto;
+    width: calc(100% - 100px);
+
+    &-left {
+      margin-left: 100px;
+    }
+  }
+}

@@ -1,0 +1,148 @@
+$button-icon-size: 15px;
+$button-line-size: 2px;
+
+.#{$prefix}inputmore {
+  @include border();
+
+  width: 100%;
+  height: 32px;
+  border-radius: $radius-size;
+  position: relative;
+
+  &-foucs {
+    @include border(all,$btn-color);
+  }
+
+  &-group-icon {
+    font-size: 14px;
+    position: absolute;
+    left: 7px;
+    top: 50%;
+    margin: -7px 0 0;
+    color: $icon-color-default;
+  }
+
+  &-icon {
+    font-size: 14px;
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    margin: -8px 0 0;
+    color: $icon-color-default;
+  }
+
+  &-input {
+    border: none;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 8px;
+    font-size: 14px;
+    color: $text-color-default;
+    border-radius: $radius-size;
+    width: calc(100% - 60px);
+    float: left;
+
+    &-icon {
+      padding: 0 8px 0 32px;
+    }
+  }
+
+  &-button {
+    @include border(left);
+
+    width: $button-icon-size * 2;
+    height: $button-icon-size * 2;
+    float: left;
+    position: relative;
+    cursor: pointer;
+
+    &:hover {
+      &::before {
+        background: $brand-color-hover;
+      }
+    }
+
+    &:active {
+      &::before {
+        background: $brand-color-click;
+      }
+    }
+
+    &::before {
+      content: '';
+      height: $button-line-size;
+      width: $button-icon-size;
+      background: $brand-color-default;
+      position: absolute;
+      left: $button-icon-size / 2;
+      top: 50%;
+      margin: -$button-line-size / 2 0 0;
+    }
+
+    &-reduce {
+      &-disabled {
+        &::before {
+          background: $background-color-disable;
+        }
+
+        &:hover {
+          &::before {
+            background: $background-color-disable;
+          }
+        }
+
+        &:active {
+          &::before {
+            background: $background-color-disable;
+          }
+        }
+      }
+    }
+
+    &-plus {
+      &::after {
+        content: '';
+        height: $button-icon-size;
+        width: $button-line-size;
+        background: $brand-color-default;
+        position: absolute;
+        top: $button-icon-size / 2;
+        left: 50%;
+        margin: 0 0 0 0 -$button-line-size / 2;
+      }
+
+      &:hover {
+        &::after {
+          background: $brand-color-hover;
+        }
+      }
+
+      &:active {
+        &::after {
+          background: $brand-color-click;
+        }
+      }
+
+      &-disabled {
+        &::before,
+        &::after {
+          background: $background-color-disable;
+        }
+
+        &:hover {
+          &::before,
+          &::after {
+            background: $background-color-disable;
+          }
+        }
+
+        &:active {
+          &::before,
+          &::after {
+            background: $background-color-disable;
+          }
+        }
+      }
+    } // end emfe-inputmore-button-plus
+  }
+}

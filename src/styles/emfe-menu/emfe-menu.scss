@@ -1,0 +1,140 @@
+$header-height: 48px;
+$minor-height: 40px;
+$menu-top: 56px;
+$height: calc(100% - 56px);
+
+.#{$prefix}menu {
+  overflow: hidden;
+  padding-top: 56px;
+  font-size: 14px;
+  background: #373737;
+  width: 96px;
+
+  &-icon::before {
+    color: #fff;
+    font-size: 14px;
+  }
+
+  &-text {
+    opacity: 0.6;
+    color: #fff;
+    margin-left: 10px;
+    font-size: 14px;
+  }
+
+  &-header {
+    height: 42px;
+    margin-bottom: 20px;
+    text-align: center;
+    cursor: pointer;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.2);
+
+      & .emfe-menu-text {
+        opacity: 1;
+      }
+    }
+
+    &-link {
+      height: 100%;
+      line-height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &-text {
+      opacity: 0.6;
+      color: #fff;
+      margin-left: 10px;
+      font-size: 14px;
+    }
+
+    &:active,
+    &-on {
+      background: $menu-on-bg;
+
+      &:hover {
+        background: $menu-on-bg;
+
+        & .emfe-menu-text {
+          opacity: 1;
+          color: $title-color;
+        }
+      }
+
+      & .emfe-menu-header-text {
+        opacity: 1;
+        color: $title-color;
+      }
+
+      & .emfe-menu-icon {
+        &::before {
+          color: $title-color;
+        }
+      }
+    }
+  }
+
+  &-list {
+    padding-bottom: 20px;
+
+    &:last-child {
+      padding-bottom: 0;
+    }
+
+    &-li {
+      height: 42px;
+      padding: 0 19px 0 20px;
+      display: flex;
+      font-size: 14px;
+      align-items: center;
+      justify-content: left;
+      cursor: pointer;
+
+      &-img {
+        height: 16px;
+      }
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.2);
+
+        & .emfe-menu-text {
+          opacity: 1;
+        }
+      }
+
+      &:active,
+      &-on {
+        background: $menu-on-bg;
+
+        &:hover {
+          background: $menu-on-bg;
+
+          & .emfe-menu-text {
+            opacity: 1;
+            color: $title-color;
+          }
+
+          & .emfe-menu-icon {
+            &::before {
+              color: $title-color;
+            }
+          }
+        }
+
+        & .emfe-menu-text {
+          opacity: 1;
+          color: $title-color;
+        }
+
+        & .emfe-menu-icon {
+          &::before {
+            color: $title-color;
+          }
+        }
+      }
+    }
+  }
+}

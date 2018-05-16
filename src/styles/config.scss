@@ -1,0 +1,243 @@
+// 前缀
+$prefix: 'emfe-';
+// 屏幕设置
+$screen-sm: 768px;
+$screen-md: 992px;
+$screen-lg: 1200px;
+$screen-xl: 1600px;
+// 栅格设置
+$gridColumns: 24 !default;
+// 字体设置
+$ionicons-font-path: './iconfont/fonts';
+$ionicons-font-family: 'Ionicons';
+$ionicons-font-file: 'iconfont';
+$ionicons-version: '1524885285002';
+// tooltip 颜色
+$tooltip-arrow-size: 5px;
+// 一级菜单宽度，大屏小屏
+$menu-md-width: 128px;
+$menu-sm-width: 56px;
+// 圆角尺寸
+$radius-size: 3px;
+
+//遮罩层的颜色
+$mask-color: rgba(0, 0, 0, 0.3);
+
+// 阴影的颜色
+$shadow-color: rgba(0, 0, 0, 0.1);
+
+// 默认颜色
+$nothing-color: #fff;
+
+// 边框默认颜色
+$border-color: #dbdbdb;
+
+// 边框选中颜色
+$border-on-color: #1996f9;
+
+// 字体图标的颜色
+$icon-color: #999;
+
+// 标题的颜色
+$title-color: #333;
+
+// 文字的颜色
+$text-color: #999;
+
+// 表格头部文字颜色
+$thead-text-color: #666;
+
+// 导航文字的颜色
+$menu-text-color: #454545;
+
+// 整体body，html的背景色
+$background-color: #f4f4f4;
+
+// 选中的颜色
+$background-on-color: #f2f9ff;
+
+// 边框选中颜色
+$background-active-color: #1996f9;
+
+// 成功颜色
+$color-success: #82c500;
+
+// 普通的颜色
+$color-info: #2099fa;
+
+// 警告的颜色
+$color-warning: #fd883b;
+
+// 危险的颜色
+$color-danger: #ff4949;
+
+// 按钮默认颜色
+$btn-color: #1996f9;
+
+// 按钮悬停颜色
+$btn-hover-color: #50affa;
+
+// 按钮点击颜色
+$btn-active-color: #147dd9;
+
+// 表格头部tr颜色
+$thead-tr-color: #f9f9fb;
+
+// 表格主体tr隔行颜色
+$thead-tr-color: #fcfcfd;
+
+// 表格悬浮tr颜色
+$tr-hover-color: #f2f9ff;
+
+// 输入框禁止背景颜色
+$input-disable-color: #f3f3f3;
+
+// 输入框禁止文字颜色
+$input-disable-text-color: #ccc;
+
+//------------ C ---------------
+
+// 品牌主色 默认 / 线框色 筛选标签 / 文字色 全局提示、标签、超链接文字 / 筛选标签色 选中边框 / 复选标签色 默认文字
+$brand-c-default: #fd883b;
+
+$btn-danger: #f66;
+
+//------------ B ---------------
+
+//品牌主色 默认 / 线框色 筛选标签 / 文字色 全局提示、标签、超链接文字 / 筛选标签色 选中边框 / 复选标签色 默认文字
+$brand-color-default: #1996f9;
+
+//品牌浅色 悬停 / 按钮边框色 悬停 / 筛选标签色 悬停边框 / 复选标签色 悬停
+$brand-color-hover: #50affa;
+
+//品牌重色 点击 / 按钮边框色 点击
+$brand-color-click: #147dd9;
+
+//品牌背景色 选中 / 背景色 全局提示/选择模板
+$brand-color-select: #f2f9ff;
+
+//辅助功能色 警告
+$auxiliary-color-warning: #fd883b;
+
+//辅助功能色 成功 / 文字色 收集中
+$auxiliary-color-success: #4cbd63;
+
+//辅助功能色 危险
+$auxiliary-color-danger: #ff4949;
+
+//按钮边框色 默认 / 线框色 分割线、内容
+$button-color-default: #dcdcdc;
+
+//背景色 标题、列表字段
+$background-color-title: #f5f6fa;
+
+//背景色 勾选展开、搜索区
+$background-color-open: #f9f9fb;
+
+//背景色 主背景
+$background-color-main: #f4f4f4;
+
+//背景色 禁用
+$background-color-disable: #f4f4f4;
+
+//背景色 列表内容（单数行）/ 文字色 标签选中、填充色
+$background-color-write: #fff;
+
+//背景色 列表内容（偶数行）
+$background-color-even: #fefefe;
+
+//文字色 列表内容、标签、默认文字
+$text-color-default: #333;
+
+//文字色 一级、二级展开
+$text-color-Three1: #454545;
+
+//文字色 三级展开
+$text-color-Three: #666;
+
+//文字色 禁用
+$text-color-disable: #d8d8d8;
+
+//文字色 列表字段、输入框默认、提示文字默认
+$text-color-prompt: #999;
+
+//文字色 复选标签 / 线框色 复选标签 / 复选标签色 选中文字
+$text-color-checkout: #ecb55d;
+
+//线框色 全局提示
+$border-color-prompt: #9dd1fe;
+
+//切换标签色 默认
+$switch-color-default: #dfe3e6;
+
+//切换标签色 选中
+$switch-color-selected: #607384;
+
+//切换标签色 悬停
+$switch-color-hover: #e8ebed;
+
+//切换标签色 选中后悬停
+$switch-color-hovered: #909da9;
+
+//筛选标签色 默认
+$screen-color-default: #ededed;
+
+//筛选标签色 选中背景色
+$screen-color-checked: #f0f3fa;
+
+//筛选标签色 悬停
+$screen-color-hover: #f2f2f2;
+
+//复选标签色 选中后悬停
+$checkout-color-hovered: #f1cb8d;
+
+//复选标签色 选中背景色
+$checkout-color-checked: #fffcf7;
+
+//图标色 默认
+$icon-color-default: #999;
+
+//登录错误提示
+$login-color-error: #f05229;
+
+// --------------------------------- C 端 新增颜色 --------------------------------
+
+//主题蓝色 默认
+$c-brand-color-default: #0297fe;
+
+//主题底色背景灰色 默认
+$c-brand-background-default: #f0f2f5;
+
+//列表灰色背景
+$c-list-color-background: #f9f9f9;
+
+//按钮橘色背景
+$c-button-color-orange: #fc5b08;
+
+//按钮绿色背景
+$c-button-color-green: #56d686;
+
+//按钮蓝色 滑过
+$c-button-color-hover: #158ee1;
+
+//按钮红色 可用于支付、购买、结算等
+$c-button-color-pay: #ff5a1a;
+
+//按钮红色 可用于支付、购买、结算等 滑过
+$c-button-color-payhover: #e55219;
+
+//描边线/边框 灰色默认
+$c-line-color-detault: #e5e5e5;
+
+//字体颜色 红色
+$c-font-color-red: #ff4949;
+
+//字体蓝色 滑过
+$c-font-color-hover: #7cc0ff;
+
+// bar 边框颜色
+$bar-border-color: #e8e8e8;
+$bar-on-bg: #f0f0f0;
+
+// menu
+$menu-on-bg: #f0f0f0;

@@ -1,0 +1,133 @@
+.#{$prefix}checkout {
+  &-icon {
+    display: block;
+  }
+
+  &-wrap {
+    display: flex;
+  }
+
+  &-box {
+    @include clearfix();
+
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+    display: block;
+
+    &-forever {
+      cursor: no-drop;
+    }
+  }
+
+  &-popper {
+    width: 208px;
+    white-space: normal;
+  }
+
+  &-inner {
+    @include border();
+
+    width: 16px;
+    height: 16px;
+    border-radius: $radius-size;
+    background: $background-color-write;
+    float: left;
+
+    &-checked {
+      @include border(all, $border-on-color);
+
+      background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMTZweCIgaGVpZ2h0PSIxNnB4IiB2aWV3Qm94PSIwIDAgMTYgMTYiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDQ5LjMgKDUxMTY3KSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT7lpJrpgIk8L3RpdGxlPgogICAgPGRlc2M+Q3JlYXRlZCB3aXRoIFNrZXRjaC48L2Rlc2M+CiAgICA8ZGVmcz48L2RlZnM+CiAgICA8ZyBpZD0iUGFnZS0xIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgICAgICA8ZyBpZD0i5aSa6YCJIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjAuMDAwMDAwLCAtMTkxLjAwMDAwMCkiPgogICAgICAgICAgICA8ZyBpZD0i5Yu+6YCJ5bGV5byAIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg2MC4wMDAwMDAsIDE5MS4wMDAwMDApIj4KICAgICAgICAgICAgICAgIDxnIGlkPSLlpJrpgIkiPgogICAgICAgICAgICAgICAgICAgIDxyZWN0IGlkPSJSZWN0YW5nbGUtMjMiIGZpbGw9IiMxOTk2RjkiIHg9IjAiIHk9IjAiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjQiPjwvcmVjdD4KICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNNi4wMjI1MDUxNiw1LjAwNDE3MDIyIEM1Ljg5MzIyODI0LDUuMDIxODkzNjcgNS43ODA2MzIyMiw1LjA5ODAwMDI0IDUuNzE1OTkzNzYsNS4yMTA1OTYyNyBMNC4wNTUyMDI0LDguMTE2MTk5MjQgQzMuOTQwNTIxMjYsOC4zMTYzNjk5NSA0LjAxMDM3MjUsOC41NzA3NTM1NiA0LjIxMDU0MzIxLDguNjg1NDM0NyBDNC40MTA3MTM5Miw4LjgwMDExNTgzIDQuNjY1MDk3NTMsOC43MzAyNjQ1OSA0Ljc3OTc3ODY3LDguNTMwMDkzODggTDYuMTY4NDYyOTcsNi4wOTg4NTM4IEwxMS4yODc0MTE5LDExLjIzMzQ0MSBDMTEuNDUwMDUwNiwxMS4zOTYwNzk3IDExLjcxMzgxNzIsMTEuMzk3MTIyMyAxMS44Nzc0OTg0LDExLjIzNDQ4MzYgQzEyLjA0MDEzNzEsMTEuMDcxODQ0OSAxMi4wNDExNzk3LDEwLjgwODA3ODMgMTEuODc4NTQxLDEwLjY0NDM5NyBMNi4zOTI2MTI0Niw1LjE0MTc4NzU5IEw2LjM3MjgwMzksNS4xMjE5NzkwMyBDNi4yOTM1Njk2Niw1LjA0Mjc0NDc5IDYuMTg3MjI4OTcsNSA2LjA3Nzc2MDYyLDUgQzYuMDU4OTk0NjEsNSA2LjA0MTI3MTE2LDUuMDAxMDQyNTYgNi4wMjI1MDUxNiw1LjAwNDE3MDIyIFoiIGlkPSJTaGFwZS1Db3B5IiBzdHJva2U9IiNGRkZGRkYiIGZpbGw9IiNGRkZGRkYiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDguMDAwMDAwLCA4LjE3Nzk3MSkgc2NhbGUoMSwgLTEpIHRyYW5zbGF0ZSgtOC4wMDAwMDAsIC04LjE3Nzk3MSkgIj48L3BhdGg+CiAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg==) $background-active-color no-repeat center center;
+
+      &-disabled {
+        @include border(all, $brand-color-default);
+
+        background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMTZweCIgaGVpZ2h0PSIxNnB4IiB2aWV3Qm94PSIwIDAgMTYgMTYiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDQ5LjMgKDUxMTY3KSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT7lpJrpgIk8L3RpdGxlPgogICAgPGRlc2M+Q3JlYXRlZCB3aXRoIFNrZXRjaC48L2Rlc2M+CiAgICA8ZGVmcz48L2RlZnM+CiAgICA8ZyBpZD0iUGFnZS0xIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgICAgICA8ZyBpZD0i5aSa6YCJIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNjAuMDAwMDAwLCAtMTkxLjAwMDAwMCkiPgogICAgICAgICAgICA8ZyBpZD0i5Yu+6YCJ5bGV5byAIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg2MC4wMDAwMDAsIDE5MS4wMDAwMDApIj4KICAgICAgICAgICAgICAgIDxnIGlkPSLlpJrpgIkiPgogICAgICAgICAgICAgICAgICAgIDxyZWN0IGlkPSJSZWN0YW5nbGUtMjMiIGZpbGw9IiMxOTk2RjkiIHg9IjAiIHk9IjAiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjQiPjwvcmVjdD4KICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNNi4wMjI1MDUxNiw1LjAwNDE3MDIyIEM1Ljg5MzIyODI0LDUuMDIxODkzNjcgNS43ODA2MzIyMiw1LjA5ODAwMDI0IDUuNzE1OTkzNzYsNS4yMTA1OTYyNyBMNC4wNTUyMDI0LDguMTE2MTk5MjQgQzMuOTQwNTIxMjYsOC4zMTYzNjk5NSA0LjAxMDM3MjUsOC41NzA3NTM1NiA0LjIxMDU0MzIxLDguNjg1NDM0NyBDNC40MTA3MTM5Miw4LjgwMDExNTgzIDQuNjY1MDk3NTMsOC43MzAyNjQ1OSA0Ljc3OTc3ODY3LDguNTMwMDkzODggTDYuMTY4NDYyOTcsNi4wOTg4NTM4IEwxMS4yODc0MTE5LDExLjIzMzQ0MSBDMTEuNDUwMDUwNiwxMS4zOTYwNzk3IDExLjcxMzgxNzIsMTEuMzk3MTIyMyAxMS44Nzc0OTg0LDExLjIzNDQ4MzYgQzEyLjA0MDEzNzEsMTEuMDcxODQ0OSAxMi4wNDExNzk3LDEwLjgwODA3ODMgMTEuODc4NTQxLDEwLjY0NDM5NyBMNi4zOTI2MTI0Niw1LjE0MTc4NzU5IEw2LjM3MjgwMzksNS4xMjE5NzkwMyBDNi4yOTM1Njk2Niw1LjA0Mjc0NDc5IDYuMTg3MjI4OTcsNSA2LjA3Nzc2MDYyLDUgQzYuMDU4OTk0NjEsNSA2LjA0MTI3MTE2LDUuMDAxMDQyNTYgNi4wMjI1MDUxNiw1LjAwNDE3MDIyIFoiIGlkPSJTaGFwZS1Db3B5IiBzdHJva2U9IiNGRkZGRkYiIGZpbGw9IiNGRkZGRkYiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDguMDAwMDAwLCA4LjE3Nzk3MSkgc2NhbGUoMSwgLTEpIHRyYW5zbGF0ZSgtOC4wMDAwMDAsIC04LjE3Nzk3MSkgIj48L3BhdGg+CiAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg==) $brand-color-default no-repeat center center;
+      }
+    }
+
+    &-disable {
+      @include border(all, $border-color);
+
+      background: $background-color-disable;
+    }
+
+    &-right {
+      float: right;
+    }
+  }
+
+  &-status {
+    width: 16px;
+    height: 16px;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    margin: 0;
+
+    &-right {
+      left: auto;
+      right: 0;
+    }
+  }
+
+  &-text {
+    //safari浏览器中文本样式会跑到下一行
+    //width: calc(100% - 24px);
+    font-size: 14px;
+    color: $text-color-default;
+    line-height: 16px;
+    word-wrap: break-word;
+    display: inline-block;
+    vertical-align: middle;
+    padding-right: 4px;
+    float: left;
+    margin-left: 8px;
+
+    &-notip {
+      // width: calc(100% - 24px);
+      padding-right: 0;
+    }
+
+    &-right {
+      margin-left: 0;
+      margin-right: 8px;
+    }
+  }
+
+  &-inline {
+    display: inline-block;
+    margin-right: 15px;
+  }
+
+  &-slide {
+    width: 100%;
+    margin-left: 8px;
+    position: relative;
+
+    &-wrap {
+      width: 100%;
+      height: auto;
+      margin-top: 12px;
+      padding: 16px;
+      position: relative;
+      background: $background-color-open;
+
+      @include border(left, $button-color-default, 1px, dashed);
+
+      &::before {
+        @include border(left, $button-color-default, 1px, dashed);
+
+        content: '';
+        position: absolute;
+        left: -1px;
+        top: -13px;
+        height: 12px;
+        width: 1px;
+      }
+    }
+  }
+}

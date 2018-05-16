@@ -1,0 +1,114 @@
+.#{$prefix}modal-c {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &-mask {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: $mask-color;
+    z-index: 505;
+  }
+
+  &-wrap {
+    height: auto;
+    background: $background-color-write;
+    z-index: 1000;
+
+    @include box-shadow(y);
+  }
+
+  &-header {
+    @include border(bottom);
+
+    height: 40px;
+    background: $background-color-title;
+    position: relative;
+    font-size: 14px;
+
+    &-inner {
+      text-align: center;
+      color: $text-color-default;
+      line-height: 40px;
+      font-size: 14px;
+    }
+
+    &-close {
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      right: 10px;
+      top: 6px;
+      color: $icon-color;
+      font-size: 28px;
+      text-align: center;
+      line-height: 20px;
+      transform: rotate(45deg);
+      cursor: pointer;
+    }
+  }
+
+  &-main {
+    width: 100%;
+    padding: 16px 40px 40px;
+    color: $text-color-default;
+    font-size: 14px;
+
+    &-prompt {
+      text-align: center;
+      margin-top: 24px;
+    }
+
+    &-input {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+
+      &-title {
+        font-size: 14px;
+        margin-right: 16px;
+      }
+    }
+  }
+
+  &-footer {
+    height: 32px;
+    width: 100%;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &-btn {
+    width: auto;
+    padding: 0 24px;
+    text-align: center;
+    line-height: 32px;
+    font-size: 14px;
+    border-radius: 4px;
+
+    &-ok {
+      background: $brand-c-default;
+      color: $background-color-write;
+      cursor: pointer;
+    }
+
+    &-cancel {
+      @include border();
+
+      color: $text-color-default;
+      margin-right: 16px;
+      cursor: pointer;
+    }
+  }
+}

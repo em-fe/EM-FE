@@ -1,0 +1,31 @@
+@mixin arrow($direction, $size: $tooltip-arrow-size) {
+  @if $direction == top {
+    bottom: -$size;
+    border-width: $size $size 0;
+  }
+
+  @else if $direction == right {
+    left: -$size;
+    border-width: $size $size $size 0;
+  }
+
+  @else if $direction == bottom {
+    top: -$size;
+    border-width: 0 $size $size;
+  }
+
+  @else {
+    right: -$size;
+    border-width: $size 0 $size $size;
+  }
+}
+
+@mixin arrowColor($direction, $theme: dark) {
+  @if $theme == light {
+    border-#{$direction}-color: $background-color-write;
+  }
+
+  @else {
+    border-#{$direction}-color: $mask-color;
+  }
+}

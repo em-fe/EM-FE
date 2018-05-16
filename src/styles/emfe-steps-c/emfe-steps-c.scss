@@ -1,0 +1,125 @@
+.#{$prefix}steps-c {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  &-top {
+    margin-bottom: 15px;
+  }
+
+  &-bottom {
+    margin-top: 15px;
+  }
+
+  &-text {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+
+    &-top {
+      width: 100px;
+      text-align: center;
+      font-size: 14px;
+      line-height: 14px;
+    }
+
+    &-item {
+      width: 80px;
+      display: flex;
+      justify-content: flex-end;
+
+      &-bottom {
+        width: 62px;
+        font-size: 14px;
+        line-height: 14px;
+      }
+    }
+
+    &-bottom {
+      &-name {
+        color: $text-color-default;
+
+        &-not {
+          color: $text-color-prompt;
+        }
+      }
+
+      &-describe {
+        font-size: 12px;
+        line-height: 12px;
+        color: $text-color-Three;
+        margin-top: 10px;
+
+        &-item {
+          display: block;
+          margin-bottom: 5px;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+
+  &-main {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 35px;
+
+    &-top {
+      padding: 0 35px;
+    }
+
+    &-bottom {
+      padding: 0 28px;
+    }
+
+    &-flex {
+      flex: 1;
+      display: flex;
+      align-items: center;
+    }
+
+    &-item-text {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      line-height: 22px;
+      text-align: center;
+      color: $input-disable-text-color;
+      font-size: 12px;
+
+      @include border(all, $input-disable-text-color);
+    }
+
+    &-item-now {
+      color: $background-color-write;
+      background: $c-brand-color-default;
+
+      @include border(all, $c-brand-color-default);
+    }
+
+    &-item-line {
+      flex: 1;
+      height: 1px;
+      background: $input-disable-text-color;
+
+      &-active {
+        background: $c-brand-color-default;
+      }
+    }
+  }
+
+  &-icon {
+    font-size: 25px;
+
+    &::before {
+      color: $c-brand-color-default;
+    }
+  }
+}

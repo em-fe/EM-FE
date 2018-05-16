@@ -1,0 +1,69 @@
+.#{$prefix}datapanel {
+  width: 100%;
+  background: $background-color-title;
+  padding: 16px 0 16px 16px;
+
+  &-box {
+    text-align: left;
+  }
+
+  &-tip {
+    width: 200px;
+    word-wrap: break-word;
+    white-space: normal;
+  }
+
+  &-title {
+    width: 100%;
+    position: relative;
+
+    &-text {
+      font-size: 14px;
+      line-height: 16px;
+      color: $text-color-default;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+
+  &-tooltip {
+    vertical-align: middle;
+  }
+
+  &-main {
+    margin-top: 16px;
+    display: flex;
+    align-items: flex-end;
+
+    &-content {
+      font-size: 24px;
+      line-height: 20px;
+      font-weight: bold;
+      display: block;
+      color: $auxiliary-color-success;
+    }
+
+    &-company {
+      font-size: 14px;
+      line-height: 14px;
+      display: block;
+      color: $text-color-default;
+      margin-left: 8px;
+    }
+
+    &-link {
+      display: block;
+      margin-left: 8px;
+      color: $brand-color-default;
+      cursor: pointer;
+      position: relative;
+      font-size: 14px;
+      line-height: 1;
+    }
+  }
+
+  &-mark-icon {
+    color: $brand-color-default;
+    margin-left: 8px;
+  }
+}

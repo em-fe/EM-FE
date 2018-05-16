@@ -1,0 +1,14 @@
+.#{$prefix}copy {
+  &-btn {
+    cursor: pointer;
+
+    &-icon {
+      font-size: 16px;
+    }
+  }
+
+  &-input {
+    color: $text-color-default;
+    border: none;
+  }
+}

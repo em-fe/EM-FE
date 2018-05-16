@@ -1,0 +1,169 @@
+$header-height: 36px;
+$bar-top: 64px;
+
+.#{$prefix}bar-c {
+  width: 170px;
+  height: 100%;
+  padding: 0 28px;
+  background: $background-color-write;
+  float: left;
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+
+  &-iscroll {
+    height: calc(100% - 48px);
+    position: relative;
+    overflow: auto;
+  }
+
+  &-item {
+    position: relative;
+
+    &-on {
+      color: $c-brand-color-default;
+
+      .emfe-bar-c-arrow {
+        transform: translateY(16px) rotate(45deg);
+      }
+    }
+  }
+
+  &-arrow {
+    display: block;
+    float: right;
+    width: 8px;
+    height: 8px;
+    border-left: 1px solid $text-color-Three;
+    border-top: 1px solid $text-color-Three;
+    border-radius: 1px;
+    transition: transform 0.4s;
+    transform: translateY(11px) rotate(-135deg);
+    position: absolute;
+    top: 4px;
+    right: 0;
+  }
+
+  &-btn {
+    width: 100%;
+    line-height: 16px;
+    font-size: 16px;
+    text-align: center;
+    color: $text-color-default;
+    display: block;
+    cursor: pointer;
+
+    &-disabled {
+      color: $text-color-disable;
+      pointer-events: none;
+      cursor: not-allowed;
+    }
+  }
+
+  &-link {
+    font-size: 16px;
+    line-height: 16px;
+    text-align: center;
+    color: $text-color-Three;
+    background: $background-color-write;
+    width: 100%;
+    display: block;
+
+    &:hover {
+      background: $brand-color-select;
+      color: $brand-color-default;
+    }
+
+    &:active {
+      background: $brand-color-select;
+      color: $brand-color-click;
+    }
+
+    &-disabled {
+      color: $text-color-disable;
+      pointer-events: none;
+      cursor: not-allowed;
+
+      &:hover {
+        background: none;
+        color: $text-color-disable;
+      }
+
+      &:active {
+        background: none;
+        color: $text-color-disable;
+      }
+    }
+  }
+
+  &-link.router-link-active {
+    background: $brand-color-select;
+    color: $brand-color-default;
+    cursor: default;
+
+    &:active {
+      background: $brand-color-select;
+      color: $brand-color-click;
+    }
+  }
+
+  &-parentbox {
+    width: 100%;
+    padding: 13px 0;
+    position: relative;
+
+    @include border(bottom);
+  }
+
+  &-icon {
+    position: absolute;
+    font-size: 14px;
+
+    &-light {
+      // color: $c-brand-color-default;
+      // &::before {
+      //   color: $c-brand-color-default;
+      // }
+    }
+  }
+
+  &-childlist {
+    width: 100%;
+  }
+
+  &-childitem {
+    padding: 13px 6px;
+    width: 100%;
+    display: block;
+    background: $background-color-write;
+
+    &:hover {
+      background: $button-color-default;
+      color: $text-color-Three;
+    }
+  }
+
+  &-childlink {
+    font-size: 14px;
+    line-height: 14px;
+    text-align: center;
+    color: $text-color-prompt;
+    width: 100%;
+    display: block;
+  }
+
+  &-childlink.router-link-active {
+    background: none;
+    color: $c-brand-color-default;
+
+    &:hover {
+      background: none;
+      color: $c-brand-color-default;
+    }
+  }
+} // end emfe-menu-bar
+
+.router-link-active.emfe-bar-link-disabled {
+  cursor: pointer;
+}

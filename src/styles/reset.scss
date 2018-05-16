@@ -1,0 +1,83 @@
+* {
+  box-sizing: border-box;
+
+  &::after,
+  &::before {
+    box-sizing: border-box;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: 'Microsoft YaHei', 'PingFangSC', 'Helvetica', 'Arial', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+li {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+}
+
+button {
+  border: none;
+  background: none;
+  margin: 0;
+  padding: 0;
+  font-family: 'Microsoft YaHei', 'PingFangSC', 'Helvetica', 'Arial', sans-serif !important;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+input,
+optgroup,
+select,
+textarea {
+  font-family: 'Microsoft YaHei', 'PingFangSC', 'Helvetica', 'Arial', sans-serif !important;
+}
+
+input {
+  &:focus {
+    outline: none;
+  }
+}
+
+th {
+  font-weight: normal;
+}
+
+p {
+  margin: 0;
+}
+
+// 自动填充
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #fff inset;
+}

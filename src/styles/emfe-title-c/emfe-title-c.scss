@@ -1,0 +1,11 @@
+.#{$prefix}title-c {
+  padding: 13px 0;
+  background-color: $nothing-color;
+
+  &-panel {
+    color: $title-color;
+    line-height: 24px;
+    font-size: 14px;
+    padding-left: 20px;
+  }
+}

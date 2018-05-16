@@ -1,0 +1,220 @@
+.#{$prefix}tooltip {
+  display: inline-block;
+
+  &-popper {
+    display: block;
+    visibility: visible;
+    position: fixed;
+    font-size: 14px;
+    line-height: 1.5;
+    z-index: 1060;
+    padding: 8px;
+    color: $background-color-write;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    white-space: nowrap;
+    text-align: left;
+    text-decoration: none;
+  }
+
+  &-arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+
+    &-top {
+      @include arrow(top);
+
+      left: 50%;
+      margin-left: -$tooltip-arrow-size;
+
+      &-end {
+        @include arrow(top);
+
+        left: auto;
+        right: 8px;
+      }
+
+      &-start {
+        @include arrow(top);
+
+        left: 8px;
+      }
+    }
+
+    &-right {
+      @include arrow(right);
+
+      top: 50%;
+      margin-top: -$tooltip-arrow-size;
+
+      &-end {
+        @include arrow(right);
+
+        top: auto;
+        bottom: 8px;
+      }
+
+      &-start {
+        @include arrow(right);
+
+        top: 8px;
+      }
+    }
+
+    &-bottom {
+      @include arrow(bottom);
+
+      left: 50%;
+      margin-left: -$tooltip-arrow-size;
+
+      &-end {
+        @include arrow(bottom);
+
+        left: auto;
+        right: 8px;
+      }
+
+      &-start {
+        @include arrow(bottom);
+
+        left: 8px;
+      }
+    }
+
+    &-left {
+      @include arrow(left);
+
+      top: 50%;
+      margin-top: -$tooltip-arrow-size;
+
+      &-end {
+        @include arrow(left);
+
+        top: auto;
+        bottom: 8px;
+      }
+
+      &-start {
+        @include arrow(left);
+
+        top: 8px;
+      }
+    }
+  }
+
+  &-dark {
+    &-popper {
+      @include tooltipBackgroundThemes();
+    }
+
+    &-arrow {
+      &-top {
+        @include arrowColor(top);
+
+        &-end {
+          @include arrowColor(top);
+        }
+
+        &-start {
+          @include arrowColor(top);
+        }
+      }
+
+      &-right {
+        @include arrowColor(right);
+
+        &-end {
+          @include arrowColor(right);
+        }
+
+        &-start {
+          @include arrowColor(right);
+        }
+      }
+
+      &-bottom {
+        @include arrowColor(bottom);
+
+        &-end {
+          @include arrowColor(bottom);
+        }
+
+        &-start {
+          @include arrowColor(bottom);
+        }
+      }
+
+      &-left {
+        @include arrowColor(left);
+
+        &-end {
+          @include arrowColor(left);
+        }
+
+        &-start {
+          @include arrowColor(left);
+        }
+      }
+    }
+  }
+
+  &-light {
+    &-popper {
+      @include tooltipBackgroundThemes(light);
+
+      color: $title-color;
+    }
+
+    &-arrow {
+      &-top {
+        @include arrowColor(top, light);
+
+        &-end {
+          @include arrowColor(top, light);
+        }
+
+        &-start {
+          @include arrowColor(top, light);
+        }
+      }
+
+      &-right {
+        @include arrowColor(right, light);
+
+        &-end {
+          @include arrowColor(right, light);
+        }
+
+        &-start {
+          @include arrowColor(right, light);
+        }
+      }
+
+      &-bottom {
+        @include arrowColor(bottom, light);
+
+        &-end {
+          @include arrowColor(bottom, light);
+        }
+
+        &-start {
+          @include arrowColor(bottom, light);
+        }
+      }
+
+      &-left {
+        @include arrowColor(left, light);
+
+        &-end {
+          @include arrowColor(left, light);
+        }
+
+        &-start {
+          @include arrowColor(left, light);
+        }
+      }
+    }
+  }
+}

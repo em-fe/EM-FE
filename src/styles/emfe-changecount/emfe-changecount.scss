@@ -1,0 +1,19 @@
+.#{$prefix}changecount {
+  height: 28px;
+  overflow: hidden;
+  position: relative;
+
+  &-box {
+    width: 15px;
+    word-wrap: break-word;
+    float: left;
+    transition: transform 0.3s ease-in-out;
+
+    &-count {
+      font-size: 24px;
+      height: 28px;
+      line-height: 28px;
+      font-weight: 600;
+    }
+  }
+}

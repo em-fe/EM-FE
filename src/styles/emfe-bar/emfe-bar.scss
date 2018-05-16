@@ -1,0 +1,174 @@
+$header-height: 40px;
+$bar-top: 64px;
+
+.#{$prefix}bar {
+  width: 112px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  background: $background-color-write;
+  font-size: 12px;
+
+  &-iscroll {
+    height: calc(100% - 48px);
+    position: relative;
+    overflow: auto;
+  }
+
+  &-header {
+    width: 100%;
+    height: $header-height;
+    line-height: $header-height;
+    font-size: 14px;
+    color: $text-color-default;
+    padding-left: 24px;
+    border-right: 1px solid $bar-border-color;
+    border-bottom: 1px solid $bar-border-color;
+  }
+
+  &-item {
+    position: relative;
+
+    &-on {
+      .emfe-bar-arrow {
+        transform: rotate(0deg);
+      }
+    }
+  }
+
+  &-arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 6px 5px 0;
+    border-top-color: $icon-color;
+    top: 21px;
+    left: 10px;
+    transition: transform 0.4s;
+    transform: rotate(-90deg);
+  }
+
+  &-btn {
+    color: $text-color-default;
+    height: 48px;
+    line-height: 48px;
+    width: 100%;
+    display: block;
+    padding-left: 32px;
+    cursor: pointer;
+
+    &-disabled {
+      color: $text-color-disable;
+      pointer-events: none;
+      cursor: not-allowed;
+    }
+  }
+
+  &-link {
+    color: $text-color-Three;
+    height: 48px;
+    line-height: 48px;
+    width: 100%;
+    display: block;
+    padding-left: 32px;
+
+    &:hover {
+      background: $brand-color-select;
+      color: $brand-color-default;
+    }
+
+    &:active {
+      background: $brand-color-select;
+      color: $brand-color-click;
+    }
+
+    &-disabled {
+      color: $text-color-disable;
+      pointer-events: none;
+      cursor: not-allowed;
+
+      &:hover {
+        background: none;
+        color: $text-color-disable;
+      }
+
+      &:active {
+        background: none;
+        color: $text-color-disable;
+      }
+    }
+  }
+
+  &-link.router-link-active {
+    background: $bar-on-bg;
+    color: $title-color;
+    cursor: default;
+
+    &:active {
+      background: $bar-on-bg;
+      color: $title-color;
+    }
+  }
+
+  &-childitem {
+    height: 48px;
+    width: 100%;
+    display: block;
+  }
+
+  &-childlink {
+    color: $text-color-Three;
+    height: 48px;
+    line-height: 48px;
+    padding-left: 40px;
+    width: 100%;
+    display: block;
+
+    &:hover {
+      color: $brand-color-hover;
+    }
+
+    &:active {
+      color: $brand-color-click;
+    }
+
+    &-disabled {
+      color: $text-color-disable;
+      pointer-events: none;
+      cursor: not-allowed;
+
+      &:hover {
+        background: none;
+        color: $text-color-disable;
+      }
+
+      &:active {
+        background: $brand-color-select;
+        color: $brand-color-default;
+      }
+    }
+  }
+
+  &-childlink.router-link-active {
+    background: $menu-on-bg;
+    color: $title-color;
+
+    &:hover {
+      background: $menu-on-bg;
+      color: $title-color;
+    }
+
+    &:active {
+      background: $menu-on-bg;
+      color: $title-color;
+    }
+  }
+} // end emfe-menu-bar
+
+.router-link-active.emfe-bar-link-disabled {
+  cursor: pointer;
+}

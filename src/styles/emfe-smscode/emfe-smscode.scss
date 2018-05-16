@@ -1,0 +1,82 @@
+.#{$prefix}smscode {
+  @include border();
+  @include clearfix();
+
+  height: 34px;
+  border-radius: $radius-size;
+  position: relative;
+
+  &-error {
+    color: $auxiliary-color-danger;
+    font-size: 12px;
+    position: absolute;
+    bottom: -18px;
+    left: 8px;
+  }
+
+  &-icon {
+    position: absolute;
+    top: 50%;
+    left: 8px;
+    margin: -8px 0 0;
+    font-size: 16px;
+    line-height: 1;
+    color: $icon-color-default;
+  }
+
+  &-input {
+    float: left;
+    width: 63%;
+    border: none;
+    height: 32px;
+    line-height: 32px;
+    padding: 0 8px;
+    font-size: 14px;
+    color: $text-color-default;
+    border-radius: $radius-size;
+
+    &-icon {
+      padding: 0 8px 0 32px;
+    }
+
+    &[disabled] {
+      background-color: $input-disable-color;
+      opacity: 1;
+      cursor: not-allowed;
+      color: $input-disable-text-color;
+    }
+  }
+
+  &-button {
+    @include border(left);
+
+    width: 37%;
+    height: 100%;
+    float: left;
+    border-radius: 0 $radius-size $radius-size 0;
+    cursor: pointer;
+    background: $background-color-title;
+    color: $brand-color-default;
+    font-size: 14px;
+
+    &:hover {
+      background: $brand-color-hover;
+      color: $background-color-write;
+    }
+
+    &:active {
+      background: $brand-color-click;
+      color: $background-color-write;
+    }
+
+    &:disabled {
+      color: $text-color-disable;
+      background: $background-color-disable;
+      border-color: $background-color-disable;
+
+      @include border(left);
+
+      cursor: no-drop;
+    }
+  }
+}
