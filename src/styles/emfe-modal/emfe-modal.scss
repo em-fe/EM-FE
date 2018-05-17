@@ -23,6 +23,7 @@
     height: auto;
     background: $background-color-write;
     z-index: 1000;
+    position: relative;
 
     @include box-shadow(y);
   }
