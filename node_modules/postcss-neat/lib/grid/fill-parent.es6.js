@@ -25,7 +25,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 
 var fillParent = function fillParent() {
-  var options = arguments.length <= 0 || arguments[0] === undefined ? _variablesEs2.default : arguments[0];
+  var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _variablesEs2.default;
 
   return {
     'box-sizing': 'border-box',
@@ -34,4 +34,4 @@ var fillParent = function fillParent() {
 };
 
 exports.default = fillParent;
-//# sourceMappingURL=fill-parent.es6.js.map
+//# sourceMappingURL=../grid/fill-parent.es6.js.map

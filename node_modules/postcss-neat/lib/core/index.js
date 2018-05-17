@@ -18,4 +18,4 @@ exports.default = {
   functions: _functionsEs2.default,
   variables: _variablesEs2.default
 };
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=../core/index.js.map

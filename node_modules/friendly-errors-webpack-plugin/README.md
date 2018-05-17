@@ -61,11 +61,11 @@ If you use the webpack-dev-server, there is a setting in webpack's ```devServer`
 }
 ```
 
-If you use webpack-hot-middleware, that is done by setting the log option to a no-op. You can do something sort of like this, depending upon your setup:
+If you use webpack-hot-middleware, that is done by setting the log option to `false`. You can do something sort of like this, depending upon your setup:
 
 ```javascript
 app.use(require('webpack-hot-middleware')(compiler, {
-  log: () => {}
+  log: false
 }));
 ```
 
@@ -130,7 +130,7 @@ new NotifierPlugin({
       }
       const error = errors[0];
       notifier.notify({
-        title: context.pkg.name,
+        title: "Webpack error",
         message: severity + ': ' + error.name,
         subtitle: error.file || '',
         icon: ICON
@@ -159,4 +159,4 @@ and the [default formatters](https://github.com/geowarin/friendly-errors-webpack
 ## TODO
 
 - [x] Make it compatible with node 4
-- [ ] Write tests using webpack 1
+

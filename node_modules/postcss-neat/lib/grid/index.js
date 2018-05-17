@@ -48,4 +48,4 @@ exports.default = {
   showGrid: _showGridEs2.default,
   spanColumns: _spanColumnsEs2.default
 };
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=../grid/index.js.map
