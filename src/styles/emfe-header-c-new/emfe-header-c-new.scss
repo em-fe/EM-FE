@@ -101,7 +101,7 @@ $header-height: 50px;
     background-color: #fff !important;
 
     &-icon {
-      &:before {
+      &::before {
         color: #1996f9 !important;
       }
     }
