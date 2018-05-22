@@ -17,7 +17,12 @@
           <emfe-icon v-else className="emfe-menu" :type="item.icon" />
           <span class="emfe-menu-text">{{item.name}}</span>
         </router-link>
-        <li v-else class="emfe-menu-list-li" :class="{'emfe-menu-list-li-on': indexs.length == 2 && menuIndex === indexs[0] && itemIndex === indexs[1]}" @click="goToPath(item)">
+        <li v-else-if="item.path" class="emfe-menu-list-li" :class="{'emfe-menu-list-li-on': indexs.length == 2 && menuIndex === indexs[0] && itemIndex === indexs[1]}" @click="goToPath(item)">
+          <img class="emfe-menu-list-li-img" v-if="item.icon === 'yingxiaogongju'" src="./yingxiao.svg" alt="">
+          <emfe-icon v-else className="emfe-menu" :type="item.icon" />
+          <span class="emfe-menu-text">{{item.name}}</span>
+        </li>
+        <li v-else-if="item.url" class="emfe-menu-list-li" :class="{'emfe-menu-list-li-on': indexs.length == 2 && menuIndex === indexs[0] && itemIndex === indexs[1]}" @click="goToUrl(item)">
           <img class="emfe-menu-list-li-img" v-if="item.icon === 'yingxiaogongju'" src="./yingxiao.svg" alt="">
           <emfe-icon v-else className="emfe-menu" :type="item.icon" />
           <span class="emfe-menu-text">{{item.name}}</span>
@@ -69,6 +74,11 @@ export default {
     goToPath(item) {
       if (O.hOwnProperty(item, 'path')) {
         window.location.href = item.path;
+      }
+    },
+    goToUrl(item) {
+      if (O.hOwnProperty(item, 'url')) {
+        window.open(item.url);
       }
     },
   },
