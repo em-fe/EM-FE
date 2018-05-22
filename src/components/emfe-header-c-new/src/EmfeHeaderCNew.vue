@@ -18,7 +18,7 @@
             <p class="emfe-header-c-new-erweima-text">扫一扫，下载App</p>
           </div>
         </emfe-tooltip>
-        <emfe-button className="emfe-header-c-new" theme="default" type="fabu" @click="release">免费发活动</emfe-button>
+        <emfe-button className="emfe-header-c-new" theme="primary" type="fabu" @click="release">免费发活动</emfe-button>
         <emfe-link class="emfe-header-c-new-logout" :routers="{}" @click="logout" v-if="loginFlg">退出</emfe-link>
       </div>
     </div>
