@@ -94,8 +94,17 @@ $header-height: 50px;
     width: 124px;
     height: 34px;
     border-radius: 0;
+    border: none !important;
     margin-top: 8px;
     padding: 10px 0 !important;
+    color: #1996f9 !important;
+    background-color: #fff !important;
+
+    &-icon {
+      &::before {
+        color: #1996f9 !important;
+      }
+    }
   }
 
   &-erweima {
