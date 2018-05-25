@@ -100,6 +100,7 @@ export default {
       this.end(false);
     },
     auto() {
+      console.log(1111, this.start);
       setTimeout(() => {
         if (this.start) {
           if (this.allTimes > 1) {
@@ -123,7 +124,6 @@ export default {
     clickFn() {
       if (go && !this.newDisabled && !this.start) {
         go = false;
-        this.auto();
         this.$emit('click');
       }
       if (this.click) {
@@ -156,6 +156,7 @@ export default {
     timeStart(val, oldVal) {
       if (val !== oldVal) {
         this.start = val;
+        this.auto();
       }
     },
   },
