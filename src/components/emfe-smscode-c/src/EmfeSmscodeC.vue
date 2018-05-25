@@ -100,7 +100,6 @@ export default {
       this.end(false);
     },
     auto() {
-      console.log(1111, this.start);
       setTimeout(() => {
         if (this.start) {
           if (this.allTimes > 1) {
