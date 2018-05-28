@@ -15,7 +15,7 @@
     <br>
     <br>
     <br>
-    <emfe-upload action="https://www.easy-mock.com/mock/5a2e29ed89d2205cbfe7a459/emfe/upload" :intercept="[100, 60]"></emfe-upload>
+    <emfe-upload action="https://www.easy-mock.com/mock/5a2e29ed89d2205cbfe7a459/emfe/upload" :intercept="[200, 200]"></emfe-upload>
     <pre>
       &lt;emfe-upload action="https://www.easy-mock.com/mock/5a2e29ed89d2205cbfe7a459/emfe/upload" :intercept="[100, 60]"&gt;&lt;/emfe-upload&gt;
     </pre>

@@ -568,8 +568,14 @@ export default {
                 this.interceptCanvasWidth = interceptCanvasScale / this.interceptCanvasHeight;
               }
               // 展示图片，截图的框框初始化在中间
-              this.interceptLeft = (this.dragWidth - this.intercept[0]) / 2;
-              this.interceptTop = (this.dragHeight - this.intercept[1]) / 2;
+              const dragWidthNew = this.dragWidth - this.intercept[0];
+              const dragHeightNew = this.dragHeight - this.intercept[1];
+              this.interceptLeft = dragWidthNew > 0 ? dragWidthNew / 2 : 0;
+              this.interceptTop = dragHeightNew > 0 ? dragHeightNew / 2 : 0;
+              // 如果图片小于截取器的尺寸, 针对 高度小于截取器的情况
+              if (this.interceptCanvasHeight < this.intercept[1]) {
+                this.interceptCanvasWidth = this.interceptCanvasHeight * interceptCanvasScale;
+              }
             }, 0);
           };
         };
