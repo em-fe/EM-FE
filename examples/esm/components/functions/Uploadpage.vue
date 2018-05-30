@@ -186,6 +186,12 @@
           <td>[]</td>
         </tr>
         <tr>
+          <td>interceptType</td>
+          <td>截取器图片类型</td>
+          <td>String</td>
+          <td>jpeg</td>
+        </tr>
+        <tr>
           <td>interceptSync</td>
           <td>截取器改变是否等比截图大小</td>
           <td>Boolean</td>
