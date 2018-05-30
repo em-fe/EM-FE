@@ -57,7 +57,6 @@ import EmfeMessage from '../../emfe-message/index';
 import ajax from './ajax';
 import CONSTANT from '../../../contant';
 
-const uploadJpeg = 'image/jpeg';
 let pointOldLeft = 0; // 改变截取器遮罩大小
 let nenwTopOld = 0; // 改变截取器遮罩大小， 只用于 右上角在不等比的时候
 const iconBoxHeight = 70; //icon模式外框的高度
@@ -68,6 +67,7 @@ export default {
   name: 'upload',
   data() {
     return {
+      uploadJpeg: `image/${this.interceptType}`,
       drag1: [],
       canUpload: true,
       src: '',
@@ -129,6 +129,10 @@ export default {
     intercept: {
       type: Array,
       default: () => [],
+    },
+    interceptType: {
+      type: String,
+      default: 'jpeg',
     },
     interceptSync: { // 是否等比缩放
       type: Boolean,
@@ -293,7 +297,7 @@ export default {
         this.canvas.width = this.interceptCanvasWidth;
         this.canvas.height = this.interceptCanvasHeight;
         this.getImageUrl();
-        this.postHandle(upload(this.clipData, uploadJpeg));
+        this.postHandle(upload(this.clipData, this.uploadJpeg));
         this.closeInterceptModal();
 
         // const { clientWidth, clienHegiht } = this.$refs.previewImg;
@@ -307,7 +311,7 @@ export default {
       const left = this.interceptLeft;
       const top = this.interceptTop;
       canvasContext.drawImage(previewImg, -left, -top, clientWidth, clientHeight);
-      this.clipData = this.canvas.toDataURL(uploadJpeg);
+      this.clipData = this.canvas.toDataURL(this.uploadJpeg);
     },
     // 拖拽大方块改变截图位置
     dragPosMove(ev, left, top) {
