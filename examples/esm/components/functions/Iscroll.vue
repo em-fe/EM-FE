@@ -13,6 +13,14 @@
     <br>
     <h3>示例</h3>
     <button @click="scrollToTop">Scroll To Top</button>
+    <emfe-iscroll ref="iscroll" class="docpage" :options="configSnap" :wrapperClass="['snap']">
+      <div class="snap-div">一些不必要的内容</div>
+      <div class="snap-div">一些不必要的内容</div>
+    </emfe-iscroll>
+    <br>
+    <br>
+    <h3>示例</h3>
+    <button @click="scrollToTop">Scroll To Top</button>
     <emfe-iscroll ref="iscroll" class="docpage" :options="config" :wrapperClass="['asdfasdf']">
       <p>一些不必要的内容</p>
       <p>一些不必要的内容</p>
@@ -132,6 +140,10 @@ export default {
         click: false,
         preventDefault: true,
       },
+      configSnap: {
+        snap: true,
+        mouseWheel: true,
+      },
     };
   },
   methods: {
@@ -149,5 +161,10 @@ export default {
   height: 200px;
   position: relative;
   overflow: hidden;
+}
+
+.snap,
+.snap-div {
+  height:100vh;
 }
 </style>
