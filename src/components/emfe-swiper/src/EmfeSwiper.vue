@@ -110,6 +110,7 @@
           scrollX: true,
           scrollY: false,
           momentum: false,
+          click: true,
           snap: {
             loop: this.loop,
             threshold: 0.3,
