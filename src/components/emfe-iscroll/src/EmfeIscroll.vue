@@ -69,6 +69,14 @@ export default {
     refresh() {
       this.$nextTick(() => this.iscroll.refresh.apply(this.iscroll, arguments));
     },
+    disable() {
+      console.log('disable');
+      this.$nextTick(() => this.iscroll.disable.apply(this.iscroll, arguments));
+    },
+    enable() {
+      console.log('enable');
+      this.$nextTick(() => this.iscroll.enable.apply(this.iscroll, arguments));
+    },
   },
   beforeDestroy() {
     this.iscroll && this.iscroll.destroy();
