@@ -84,6 +84,12 @@ export default [
     },
   },
   {
+    title: '短信验证码S smscodes',
+    routers: {
+      path: '/styles/smscodesCodepage',
+    },
+  },
+  {
     title: '短信验证码C smscodec',
     routers: {
       path: '/styles/smscodecCodepage',

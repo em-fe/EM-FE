@@ -77,6 +77,11 @@ const router = new VueRouter({
           component: require('./components/styles/SmscodeCodepage.vue'),
         },
         {
+          path: '/styles/smscodesCodepage',
+          name: 'smscodesCodepage',
+          component: require('./components/styles/SmscodesCodepage.vue'),
+        },
+        {
           path: '/styles/smscodecCodepage',
           name: 'smscodecCodepage',
           component: require('./components/styles/SmscodecCodepage.vue'),
