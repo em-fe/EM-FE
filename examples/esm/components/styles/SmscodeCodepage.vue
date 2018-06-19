@@ -120,7 +120,7 @@
 </template>
 <script>
 export default {
-  name: 'imgcodepage',
+  name: 'SmscodeCodepage',
   data() {
     return {
       model: 111111,

@@ -1,6 +1,6 @@
 <template>
 
-  <input class="emfe-smscode-input" 
+  <input class="emfe-smscode-s-input" 
         :type="type"  
         :maxlength="maxlength"
         :placeholder="placeholder" 
@@ -48,8 +48,8 @@ export default {
     codeName() {
       return [
         {
-          [`${this.$parent.className}-smscode-code`]: !!this.$parent.className,
-          'emfe-smscode-input-icon': this.$parent.icon,
+          [`${this.$parent.className}-smscode-s-code`]: !!this.$parent.className,
+          'emfe-smscode-s-input-icon': this.$parent.icon,
         },
       ];
     },

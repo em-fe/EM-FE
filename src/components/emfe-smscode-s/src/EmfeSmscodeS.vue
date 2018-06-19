@@ -1,9 +1,9 @@
 <template>
-  <div class="emfe-smscode" :class="[smscodeName, {'emfe-smscode-input-error': errOk}]">
-    <emfe-icon v-if="icon" className="emfe-smscode" :type="icon"></emfe-icon>
+  <div class="emfe-smscode-s" :class="[smscodeName, {'emfe-smscode-s-input-error': errOk}]">
+    <emfe-icon v-if="icon" className="emfe-smscode-s" :type="icon"></emfe-icon>
     <slot name="smsInput"></slot>
     <slot name="smsButton"></slot>
-    <div v-if="errOk" class="emfe-smscode-error" :class="ErrName" >
+    <div v-if="errOk" class="emfe-smscode-s-error" :class="ErrName" >
       <slot name="error"></slot>
     </div>
   </div>
@@ -33,7 +33,7 @@ export default {
     smscodeName() {
       return [
         {
-          [`${this.className}-smscode`]: !!this.className,
+          [`${this.className}-smscode-s`]: !!this.className,
           'emfe-smscodeicon': this.icon,
         },
       ];
@@ -41,7 +41,7 @@ export default {
     ErrName() {
       return [
         {
-          [`${this.className}-smscode-error`]: !!this.className,
+          [`${this.className}-smscode-s-error`]: !!this.className,
           'emfe-smscodeicon': this.icon,
         },
       ];

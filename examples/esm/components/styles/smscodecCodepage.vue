@@ -135,7 +135,7 @@
 </template>
 <script>
 export default {
-  name: 'imgcodepage',
+  name: 'smscodecCodepage',
   data() {
     return {
       model: 111111,

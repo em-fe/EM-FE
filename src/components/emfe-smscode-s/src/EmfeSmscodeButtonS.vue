@@ -1,5 +1,5 @@
 <template>
-    <button class="emfe-smscode-button"
+    <button class="emfe-smscode-s-button"
       :class="btmName" 
       :disabled="newDisabled"
       @click="clickFn"
@@ -47,9 +47,9 @@ export default {
     btmName() {
       return [
         {
-          [`${this.$parent.className}-smscode-button`]: !!this.$parent
+          [`${this.$parent.className}-smscode-s-button`]: !!this.$parent
             .className,
-          [`${this.$parent.className}-smscode-button-disableds`]:
+          [`${this.$parent.className}-smscode-s-button-disableds`]:
             !!this.$parent.className && this.$parent.newDisabled,
         },
       ];
