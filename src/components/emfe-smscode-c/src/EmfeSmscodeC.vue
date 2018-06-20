@@ -121,7 +121,6 @@ export default {
       this.$emit('input', val);
     },
     clickFn() {
-      console.log(123);
       if (go && !this.newDisabled && !this.start) {
         go = false;
         this.$emit('click');
