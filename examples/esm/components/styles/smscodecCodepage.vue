@@ -66,7 +66,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr
+        <tr>
           <td>className</td>
           <td>需要修改的样式</td>
           <td>String</td>
@@ -135,7 +135,7 @@
 </template>
 <script>
 export default {
-  name: 'imgcodepage',
+  name: 'smscodecCodepage',
   data() {
     return {
       model: 111111,

@@ -1,12 +1,18 @@
 <template>
   <div class="smscodeCodepage">
     <h3>普通用法</h3>
-    <emfe-smscode v-model="model1" times="22" @click="click1" :timeStart="start1" :end="timeEnd1"></emfe-smscode>
+    <emfe-smscode-s>
+      <emfe-smscode-input-s v-model="model1" slot="smsInput"></emfe-smscode-input-s>
+      <emfe-smscode-button-s @click="click1" slot="smsButton" times="3" :timeStart="start1" :end="timeEnd1"></emfe-smscode-button-s>
+    </emfe-smscode-s>
     当前： {{ model1 }}
-    <!-- <pre>
-      &lt;emfe-smscode v-model="model"&gt;&lt;/emfe-smscode&gt;
+    <pre>
+      &lt;emfe-smscode v-model="model"&gt;
+        &lt;emfe-smscode-input-s  slot="smsInput"&gt;&lt;/emfe-smscode-input-s&gt;
+        &lt;emfe-smscode-button-s times="3" :timeStart="start1" :end="timeEnd1" slot="smsButton"&gt;&lt;/emfe-smscode-button-s&gt;
+      &lt;/emfe-smscode&gt;
     </pre>
-    <br>
+    <!-- <br>
     <br>
     <br>
     <br>
@@ -17,19 +23,24 @@
     <br>
     <pre>
       &lt;emfe-smscode icon="fabu" v-model="model"&gt;&lt;/emfe-smscode&gt;
-    </pre> -->
+    </pre>
     <br>
     <br>
     <br>
-    <br>
+    <br> -->
     <h3>自定义用法</h3>
-    <emfe-smscode className="demo" v-model="model" times="6" @click="click" :timeStart="start" :end="timeEnd" :errOk="true">
-      <div slot="error">这是错误提示</div>
-    </emfe-smscode>
+    <emfe-smscode-s className="demo" :errOk="true">
+      <emfe-smscode-input-s :placeholder="placeholder" v-model="model" slot="smsInput"></emfe-smscode-input-s>
+      <emfe-smscode-button-s @click="click" :title="title" :timeStart="start" :end="timeEnd" :times="5" slot="smsButton"></emfe-smscode-button-s>
+       <div slot="error">这是错误提示</div>
+    </emfe-smscode-s>
     点击次数: {{ num }}
     {{ model }}
     <pre>
-      &lt;emfe-smscode className="demo" v-model="model" times="6" @click="click"&gt;&lt;/emfe-smscode&gt;
+      &lt;emfe-smscode className="demo" :errOk="true" &gt; 
+        &lt;emfe-smscode-input-s :placeholder="placeholder" v-model="model" slot="smsInput"&gt;&lt;/emfe-smscode-input-s&gt;
+        &lt;emfe-smscode-button-s @click="click" :title="title" :timeStart="start" :end="timeEnd" :times="5" slot="smsButton"&gt;&lt;/emfe-smscode-button-s&gt;
+      &lt;/emfe-smscode&gt;
     </pre>
     <br>
     <br>
@@ -120,14 +131,17 @@
 </template>
 <script>
 export default {
-  name: 'SmscodeCodepage',
+  name: 'SmscodesCodepage',
   data() {
     return {
-      model: 111111,
-      model1: 2222,
+      model: 1314,
+      model1: 520,
       num: 0,
+      placeholder:'爱输入啥输入啥',
+      title:'获取big晒',
       start: false,
       start1: false,
+      abc:true,
     };
   },
   watch: {
@@ -163,6 +177,7 @@ export default {
 .demo-smscode {
   width: 394px;
   height: 42px;
+
   &-code {
     height: 40px;
     line-height: 40px;

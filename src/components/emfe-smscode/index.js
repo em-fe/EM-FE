@@ -5,3 +5,4 @@ EmfeSmscode.install = (Vue) => {
 };
 
 export default EmfeSmscode;
+
