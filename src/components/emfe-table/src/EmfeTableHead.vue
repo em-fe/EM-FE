@@ -43,7 +43,7 @@ export default {
       return [
         {
           [`${this.$parent.tableName}-thead-tr-th`]: !!this.tableName,
-          'emfe-table-border': !!this.border,
+          'emfe-table-border': !!this.border && this.border === 'true',
         },
       ];
     },

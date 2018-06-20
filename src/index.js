@@ -21,6 +21,7 @@ import EmfeInputmore from './components/emfe-inputmore/index';
 import EmfeTel from './components/emfe-tel/index';
 import EmfeTelC from './components/emfe-tel-c/index';
 import EmfeSmscode from './components/emfe-smscode/index';
+import EmfeSms from './components/emfe-smscode-s/index';
 import EmfeSmscodeC from './components/emfe-smscode-c/index';
 import EmfeImgcode from './components/emfe-imgcode/index';
 import EmfeImgcodeC from './components/emfe-imgcode-c/index';
@@ -104,6 +105,9 @@ const emfeCpt = {
   EmfeTel,
   EmfeTelC,
   EmfeSmscode,
+  EmfeSmscodeS: EmfeSms.EmfeSmscodeS,
+  EmfeSmscodeInputS: EmfeSms.EmfeSmscodeInputS,
+  EmfeSmscodeButtonS: EmfeSms.EmfeSmscodeButtonS,
   EmfeSmscodeC,
   EmfeImgcode,
   EmfeImgcodeC,

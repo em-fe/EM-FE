@@ -3,11 +3,13 @@
   border-collapse: collapse;
 
   &-box {
-    @include border();
-
     width: 100%;
     overflow: auto;
     position: relative;
+
+    &-border {
+      @include border();
+    }
   }
 
   &-nothing {
@@ -28,14 +30,16 @@
     width: 100%;
 
     &-tr {
-      @include border(bottom);
-
       min-height: 48px;
       height: 48px;
       width: 100%;
-      background-color: $background-color-title;
+
+      &-border {
+        @include border(bottom);
+      }
 
       &-th {
+        background-color: $table-thead-bg;
         box-sizing: border-box;
         padding: 0 10px;
         text-align: left;
@@ -61,7 +65,7 @@
     background-color: $nothing-color;
 
     &:nth-child(2n) {
-      background-color: $background-color-even;
+      background-color: $table-td-bg;
     }
 
     &-hover {
