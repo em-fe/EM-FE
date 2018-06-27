@@ -106,6 +106,22 @@ export default {
       type: Number,
       default: 2020,
     },
+    monthStart: {
+      type: Number,
+      default: 1,
+    },
+    monthEnd: {
+      type: Number,
+      default: 13,
+    },
+    dayStart: {
+      type: Number,
+      default: 1,
+    },
+    dayEnd: {
+      type: Number,
+      default: 31,
+    },
     // 默认文案
     placeholder: {
       type: String,
@@ -194,12 +210,8 @@ export default {
     },
   },
   mounted() {
-    for (let i = this.yearEnd; i > this.yearStart - 1; i--) {
-      this.years.push(TimeTool.handleConputedDate(i, this.disabledYears));
-    }
-    for (let i = 1; i < 13; i++) {
-      this.months.push(TimeTool.handleConputedDate(i, this.disabledMonths));
-    }
+    this.renderYear();
+    this.renderMonth();
     this.resetDays();
     for (let i = 0; i < hourNum; i++) {
       this.hours.push(TimeTool.handleConputedTime(i, this.disabledHours));
@@ -214,6 +226,18 @@ export default {
     this.setTimeChoice();
   },
   methods: {
+    renderYear() {
+      this.years = [];
+      for (let i = this.yearEnd; i > this.yearStart - 1; i--) {
+        this.years.push(TimeTool.handleConputedDate(i, this.disabledYears));
+      }
+    },
+    renderMonth() {
+      this.months = [];
+      for (let i = this.monthStart; i < this.monthEnd; i++) {
+        this.months.push(TimeTool.handleConputedDate(i, this.disabledMonths));
+      }
+    },
     refreshIscroll() {
       Object.keys(this.$refs).forEach((iscroll) => {
         if (this.$refs[iscroll].refresh) {
@@ -232,9 +256,9 @@ export default {
       const hour = this.hours[hourNow];
       const minute = this.minutes[minuteNow];
       const second = this.seconds[secondNow];
-      const month = this.months[monthNow];
+      const month = this.months[monthNow > this.months.length - 1 ? 0 : monthNow];
       const year = this.years.find(iYear => iYear.num - 0 === yearNow);
-      const day = this.days[dayNow - 1];
+      const day = this.days[dayNow - 1 > this.days.length - 1 ? 0 : dayNow - 1];
       this.hour = hour.undo ? TimeTool.loopChoice(this.hours, hour.num) : hour.num;
       this.minute = minute.undo ? TimeTool.loopChoice(this.minutes, minute.num) : minute.num;
       this.second = second.undo ? TimeTool.loopChoice(this.seconds, second.num) : second.num;
@@ -320,8 +344,14 @@ export default {
     resetDays(year, month) {
       const dateCountOfLastMonth = getDayCountOfMonth(year - 0, month - 1);
       this.days = [];
+      let dayEnd = this.dayEnd;
+      if (dayEnd > dateCountOfLastMonth + 1) {
+        dayEnd = dateCountOfLastMonth + 1;
+      }
       for (let i = 1; i < dateCountOfLastMonth + 1; i++) {
-        this.days.push(TimeTool.handleConputedDate(i, this.disabledDays));
+        if (i > this.dayStart && i < dayEnd) {
+          this.days.push(TimeTool.handleConputedDate(i, this.disabledDays));
+        }
       }
       if (this.day > dateCountOfLastMonth) {
         this.day = TimeTool.loopChoice(this.days, this.day);
@@ -505,6 +535,36 @@ export default {
     value(val, oldVal) {
       if (val !== oldVal) {
         this.initData();
+      }
+    },
+    yearStart(val, oldVal) {
+      if (val !== oldVal) {
+        this.renderYear();
+      }
+    },
+    yearEnd(val, oldVal) {
+      if (val !== oldVal) {
+        this.renderYear();
+      }
+    },
+    monthStart(val, oldVal) {
+      if (val !== oldVal) {
+        this.renderMonth();
+      }
+    },
+    monthEnd(val, oldVal) {
+      if (val !== oldVal) {
+        this.renderMonth();
+      }
+    },
+    dayStart(val, oldVal) {
+      if (val !== oldVal) {
+        this.resetDays();
+      }
+    },
+    dayEnd(val, oldVal) {
+      if (val !== oldVal) {
+        this.resetDays();
       }
     },
   },
