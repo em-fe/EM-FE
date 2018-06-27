@@ -64,6 +64,15 @@
     <br>
     <br>
     <br>
+    <h3>起始设置示例</h3>
+    <br>
+    <br>
+    <emfe-button @click="changeStartEnd">起始设置示例</emfe-button>
+    <emfe-date-m :yearStart="yearStart" :monthStart="monthStart" :dayStart="dayStart" :yearEnd="yearEnd" :monthEnd="monthEnd" :dayEnd="dayEnd"></emfe-date-m>
+    <br>
+    <br>
+    <br>
+    <br>
     <br>
     <br>
     <br>
@@ -128,6 +137,30 @@
           <td>结束天数</td>
           <td>Number</td>
           <td>2020</td>
+        </tr>
+        <tr>
+          <td>monthStart</td>
+          <td>开始月数</td>
+          <td>Number</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>monthEnd</td>
+          <td>结束月数</td>
+          <td>Number</td>
+          <td>13</td>
+        </tr>
+        <tr>
+          <td>dayStart</td>
+          <td>开始天数</td>
+          <td>Number</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>dayEnd</td>
+          <td>结束天数</td>
+          <td>Number</td>
+          <td>13</td>
         </tr>
         <tr>
           <td>format</td>
@@ -197,6 +230,12 @@
 export default {
   data() {
     return {
+      yearStart: 1,
+      monthStart: 1,
+      dayStart: 1,
+      yearEnd: 2020,
+      monthEnd: 13,
+      dayEnd: 31,
       aaa: '',
       demo1: '',
       demo2: '',
@@ -207,6 +246,14 @@ export default {
     };
   },
   methods: {
+    changeStartEnd() {
+      this.yearStart = 1999;
+      this.monthStart = 3;
+      this.dayStart = 12;
+      this.yearEnd = 2031;
+      this.monthEnd = 8;
+      this.dayEnd = 19;
+    },
     demo1ok(date) {
       this.demo1 = date;
     },

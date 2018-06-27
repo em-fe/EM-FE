@@ -78,6 +78,22 @@ export default {
       type: Number,
       default: 2020,
     },
+    monthStart: {
+      type: Number,
+      default: 1,
+    },
+    monthEnd: {
+      type: Number,
+      default: 13,
+    },
+    dayStart: {
+      type: Number,
+      default: 1,
+    },
+    dayEnd: {
+      type: Number,
+      default: 31,
+    },
     // 默认文案
     placeholder: {
       type: String,
@@ -273,14 +289,20 @@ export default {
       }
 
       this.months = [];
-      for (let i = 1; i < 13; i++) {
+      for (let i = this.monthStart; i < this.monthEnd; i++) {
         this.months.push(TimeTool.handleConputedDate(i, this.disabledMonths, 'month', enabledDate, this, this.enabledDate.length > 1));
       }
 
       const dateCountOfLastMonth = getDayCountOfMonth(this.year - 0, this.month - 1);
       this.days = [];
+      let dayEnd = this.dayEnd;
+      if (dayEnd > dateCountOfLastMonth + 1) {
+        dayEnd = dateCountOfLastMonth + 1;
+      }
       for (let i = 1; i < dateCountOfLastMonth + 1; i++) {
-        this.days.push(TimeTool.handleConputedDate(i, this.disabledDays, 'day', enabledDate, this, this.enabledDate.length > 1));
+        if (i > this.dayStart && i < dayEnd) {
+          this.days.push(TimeTool.handleConputedDate(i, this.disabledDays, 'day', enabledDate, this, this.enabledDate.length > 1));
+        }
       }
       this.setWeekChoice();
     },
@@ -413,6 +435,36 @@ export default {
     value(val, oldVal) {
       if (val !== oldVal) {
         this.initData();
+        this.resetDays();
+      }
+    },
+    yearStart(val, oldVal) {
+      if (val !== oldVal) {
+        this.resetDays();
+      }
+    },
+    yearEnd(val, oldVal) {
+      if (val !== oldVal) {
+        this.resetDays();
+      }
+    },
+    monthStart(val, oldVal) {
+      if (val !== oldVal) {
+        this.resetDays();
+      }
+    },
+    monthEnd(val, oldVal) {
+      if (val !== oldVal) {
+        this.resetDays();
+      }
+    },
+    dayStart(val, oldVal) {
+      if (val !== oldVal) {
+        this.resetDays();
+      }
+    },
+    dayEnd(val, oldVal) {
+      if (val !== oldVal) {
         this.resetDays();
       }
     },
