@@ -68,9 +68,6 @@
     <br>
     <emfe-button @click="changeStartEnd">起始设置示例</emfe-button>
     <emfe-datetime-m :yearStart="yearStart" :monthStart="monthStart" :dayStart="dayStart" :yearEnd="yearEnd" :monthEnd="monthEnd" :dayEnd="dayEnd"></emfe-datetime-m>
-    <pre>
-      &lt;emfe-datetime-m v-model="demo4"&gt;&lt;/emfe-datetime-m&gt;
-    </pre>
     <br>
     <br>
     <br>
