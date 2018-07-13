@@ -1,14 +1,14 @@
 .#{$prefix}input {
   &-box {
     display: flex;
-    height: 36px;
+    height: 32px;
 
     &-input {
       @include border(all);
 
       box-sizing: border-box;
       width: 100%;
-      height: 36px;
+      height: 32px;
       background: $nothing-color;
       padding: 9px 10px;
       font-size: 12px;
@@ -47,7 +47,7 @@
 
     &-icon {
       box-sizing: border-box;
-      height: 36px;
+      height: 32px;
       background: $nothing-color;
       position: relative;
       color: $icon-color-default;
