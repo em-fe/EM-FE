@@ -4,8 +4,18 @@
     选中的颜色是：{{ color }} {{ status }}
     <br>
     <br>
-    <emfe-color className="my" v-model="color"></emfe-color>
+    <emfe-color :value="color" className="my" v-model="color"></emfe-color>
+    <span @click="resetBtn">重置</span>
     <br>
+    <pre>
+      &lt;emfe-color :value="color" className="my" v-model="color"&gt;&lt;/emfe-color&gt;
+      &lt;span @click="resetBtn">重置&lt;/span&gt;
+      <br>
+      span可以自定义
+      resetBtn(){
+        this.color='dcdcdc' //写入默认颜色
+      }
+    </pre>
     <br>
     <h3>API</h3>
     <table>
@@ -97,7 +107,7 @@ export default {
   name: 'colorpage',
   data() {
     return {
-      color: '00ff00',
+      color: 'ccc',
       status: '',
     };
   },
@@ -113,6 +123,9 @@ export default {
       this.ok(color);
       this.status = '移动中';
     },
+    resetBtn(){
+      this.color='dcdcdc'
+    }
   },
 };
 </script>
