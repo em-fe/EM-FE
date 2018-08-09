@@ -1,7 +1,7 @@
 <template>
   <div class="emfe-color" :class="colorName">
-    <div class="emfe-color-btn" ref="btn" :class="btnName">
-      <emfe-button @click="toggle">{{ btnText }}</emfe-button>
+    <div class="emfe-color-btn"  ref="btn" :class="btnName">
+      <emfe-button @click="toggle" :style="{'background':'#'+value}"></emfe-button>
     </div>
     <div class="emfe-color-box" :class="boxName" ref="colorbox" v-show="colorStatus" :style="colorBoxStyle">
       <emfe-drag :className="colorDrag" limit="true" :dragEl="colorMove" :style="rgbStyle" :initialValue="-6" :borderSize="2" limitPosition="center" @drag="dragSB" @beforeDrag="beforeDragSB">
@@ -221,6 +221,7 @@ export default {
     },
     toggle() {
       this.colorStatus = !this.colorStatus;
+      console.log(123, this.colorStatus);
     },
     ok() {
       this.close();
