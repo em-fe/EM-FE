@@ -86,6 +86,8 @@ export default {
           });
         }
       });
+      // 修复会员定位导航错误
+      this.testUrl();
     },
     testUrl() {
       const { fullPath, name } = this.$route;
