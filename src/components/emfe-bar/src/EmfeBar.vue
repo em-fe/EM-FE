@@ -114,7 +114,7 @@ export default {
         const eqLast = itemIndex === childrenLast;
         this.childrenIndex = eqLast ? -1 : itemIndex;
         childrenLast = eqLast ? -1 : itemIndex;
-        this.minorStatus.splice(itemIndex, 1, value ? value : !this.minorStatus[itemIndex]);
+        this.minorStatus.splice(itemIndex, 1, value || !this.minorStatus[itemIndex]);
       }
     },
     tochildren(item) {
