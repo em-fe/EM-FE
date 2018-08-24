@@ -9,6 +9,7 @@ $bar-top: 64px;
   bottom: 0;
   z-index: 1;
   background: $background-color-write;
+  border-right: 1px solid $bar-border-color;
   font-size: 12px;
 
   &-iscroll {
@@ -24,7 +25,6 @@ $bar-top: 64px;
     font-size: 14px;
     color: $text-color-default;
     padding-left: 24px;
-    border-right: 1px solid $bar-border-color;
     border-bottom: 1px solid $bar-border-color;
   }
 
