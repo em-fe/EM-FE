@@ -523,6 +523,7 @@ export default {
     },
     change(e) {
       const files = e.target.files;
+      this.$emit('getfileName', e.target.files);
 
       if (!files) {
         return;
