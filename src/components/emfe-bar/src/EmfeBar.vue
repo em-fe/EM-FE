@@ -86,6 +86,8 @@ export default {
           });
         }
       });
+      // 修复会员定位导航错误
+      this.testUrl();
     },
     testUrl() {
       const { fullPath, name } = this.$route;
@@ -98,20 +100,21 @@ export default {
             if (inChildFullPath || (
               O.hOwnProperty(dataChild, 'routers') && O.hOwnProperty(dataChild.routers, 'name') && name === dataChild.routers.name)) {
               // 打开二级导航的折叠
-              this.toogleChild(dataNum);
+              // true 修复会员点击bar来回折叠
+              this.toogleChild(dataNum, true);
             }
           });
         }
       });
       this.activeUrl = window.location.href;
     },
-    toogleChild(itemIndex) {
+    toogleChild(itemIndex, value) {
       if (!this.isDisabled) {
         this.canTestUrl = false; // 刷新新页面触发一次就行
         const eqLast = itemIndex === childrenLast;
         this.childrenIndex = eqLast ? -1 : itemIndex;
         childrenLast = eqLast ? -1 : itemIndex;
-        this.minorStatus.splice(itemIndex, 1, !this.minorStatus[itemIndex]);
+        this.minorStatus.splice(itemIndex, 1, value || !this.minorStatus[itemIndex]);
       }
     },
     tochildren(item) {
