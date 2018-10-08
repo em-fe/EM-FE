@@ -15,7 +15,8 @@
               <ul class="emfe-bar-childlist" v-show="accordion ? childrenIndex == childrenDataIndex : minorStatus[childrenDataIndex]">
                 <li class="emfe-bar-childitem" v-for="child in childrenData.children">
                   <router-link :to="child.routers" class="emfe-bar-childlink" :class="{' emfe-bar-childlink-disabled': isDisabled}" v-if="!child.url">{{ child.title }}</router-link>
-                  <a class="emfe-bar-childlink" :class="{'router-link-exact-active router-link-active': activeUrl === child.url}" :href="child.url" target="_blank" v-else>{{ child.title }}</a>
+                  <!--<a class="emfe-bar-childlink" :class="{'router-link-exact-active router-link-active': activeUrl === child.url}" :href="child.url" target="_blank" v-else>{{ child.title }}</a>-->
+                  <span class="emfe-bar-childlink" :class="{'router-link-exact-active router-link-active': activeUrl === child.url}" @click="goPath(child)" v-else>{{ child.title }}</span>
                 </li>
               </ul>
             </emfe-transition>
@@ -86,6 +87,12 @@ export default {
           });
         }
       });
+    },
+    goPath(val) {
+       if(val.orgUrl){
+          window.$cookie.set('CURREFERRER', val.orgUrl); //获取无权限路径
+       }
+       window.open(val.url);
     },
     testUrl() {
       const { fullPath, name } = this.$route;
