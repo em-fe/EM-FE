@@ -90,7 +90,7 @@ export default {
     },
     goPath(val) {
        if(val.orgUrl){
-          window.$cookie.set('CURREFERRER', val.orgUrl);
+          window.$cookie.set('CURREFERRER', val.orgUrl); //获取无权限路径
        }
        window.open(val.url);
     },
