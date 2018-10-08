@@ -15,15 +15,16 @@
               <ul class="emfe-bar-childlist" v-show="accordion ? childrenIndex == childrenDataIndex : minorStatus[childrenDataIndex]">
                 <li class="emfe-bar-childitem" v-for="child in childrenData.children">
                   <router-link :to="child.routers" class="emfe-bar-childlink" :class="{' emfe-bar-childlink-disabled': isDisabled}" v-if="!child.url">{{ child.title }}</router-link>
-                  <a class="emfe-bar-childlink" :class="{'router-link-exact-active router-link-active': activeUrl === child.url}" :href="child.url" target="_blank" v-else>{{ child.title }}</a>
-                </li>
-              </ul>
-            </emfe-transition>
-          </li>
-        </template>
-      </ul>
-    </div>
-  </div>
+                  <!--<a class="emfe-bar-childlink" :class="{'router-link-exact-active router-link-active': activeUrl === child.url}" :href="child.url" target="_blank" v-else>{{ child.title }}</a>-->
+                 <span class="emfe-bar-childlink" :class="{'router-link-exact-active router-link-active': activeUrl === child.url}" @click="goPath(child)" v-else>{{ child.title }}</span>
+               </li>
+             </ul>
+           </emfe-transition>
+         </li>
+       </template>
+     </ul>
+   </div>
+ </div>
 </template>
 <script>
 import Contant from '../../../contant';
@@ -32,121 +33,127 @@ import O from '../../../tools/o';
 let childrenLast = -1; // 记录上一个点击的二级手风琴的索引
 
 export default {
-  name: 'EmfeBar',
-  data() {
-    return {
-      Contant,
-      childrenIndex: -1,
-      isDisabled: this.disabled,
-      newDatas: [],
-      activeUrl: '',
-      minorStatus: [], // 二级展开收起状态
-    };
-  },
-  props: {
-    datas: {
-      type: Array,
-      required: true,
-    },
-    title: {
-      type: String,
-      required: true,
-    },
-    fullpath: {
-      type: String,
-      required: true,
-    },
-    className: String,
-    disabled: Boolean,
-    disableRex: String,
-    accordion: {
-      type: Boolean,
-      default: false,
-    },
-  },
-  computed: {
-    barName() {
-      return this.className ? `${this.className}-bar` : '';
-    },
-  },
-  mounted() {
-    this.handle(this.datas);
-    // 营销 B 端调用两次问题
-    // this.testUrl();
-  },
-  methods: {
-    handle(val) {
-      this.newDatas = val;
-      // 添加不是手风琴效果的二级展开状态
-      this.minorStatus = [];
-      val.forEach((data) => {
-        if (data.children) {
-          data.children.forEach(() => {
-            this.minorStatus.push(false);
-          });
-        }
-      });
-    },
-    testUrl() {
-      const { fullPath, name } = this.$route;
-      const newFullPath = this.fullpath ? this.fullpath : fullPath;
-      this.newDatas.forEach((data, dataNum) => {
-        // 如果一级导航有子节点
-        if (O.hOwnProperty(data, 'children')) {
-          data.children.forEach((dataChild) => {
-            const inChildFullPath = O.hOwnProperty(dataChild, 'routers') && O.hOwnProperty(dataChild.routers, 'path') && newFullPath.indexOf(dataChild.routers.path) > -1;
-            if (inChildFullPath || (
-              O.hOwnProperty(dataChild, 'routers') && O.hOwnProperty(dataChild.routers, 'name') && name === dataChild.routers.name)) {
-              // 打开二级导航的折叠
-              this.toogleChild(dataNum);
-            }
-          });
-        }
-      });
-      this.activeUrl = window.location.href;
-    },
-    toogleChild(itemIndex) {
-      if (!this.isDisabled) {
-        this.canTestUrl = false; // 刷新新页面触发一次就行
-        const eqLast = itemIndex === childrenLast;
-        this.childrenIndex = eqLast ? -1 : itemIndex;
-        childrenLast = eqLast ? -1 : itemIndex;
-        this.minorStatus.splice(itemIndex, 1, !this.minorStatus[itemIndex]);
-      }
-    },
-    tochildren(item) {
-      if (O.hOwnProperty(item, 'routers')) {
-        this.$router.push(item.routers);
-      }
-      if (O.hOwnProperty(item, 'url')) {
-        window.open(item.url);
-      }
-    },
-    headerClick(event) {
-      this.$emit('click', event);
-    },
-  },
-  watch: {
-    fullpath(val, oldVal) {
-      if (val !== oldVal) {
-        this.testUrl();
-      }
-    },
-    datas(val, oldVal) {
-      if (val !== oldVal) {
-        this.handle(val);
-      }
-    },
-    $route(val, oldVal) {
-      if (val.name !== oldVal.name) {
-        this.isDisabled = val.path.indexOf(this.disableRex) > -1;
-      }
-    },
-    disabled(val, oldVal) {
-      if (val !== oldVal) {
-        this.isDisabled = this.disabled;
-      }
-    },
-  },
+ name: 'EmfeBar',
+ data() {
+   return {
+     Contant,
+     childrenIndex: -1,
+     isDisabled: this.disabled,
+     newDatas: [],
+     activeUrl: '',
+     minorStatus: [], // 二级展开收起状态
+   };
+ },
+ props: {
+   datas: {
+     type: Array,
+     required: true,
+   },
+   title: {
+     type: String,
+     required: true,
+   },
+   fullpath: {
+     type: String,
+     required: true,
+   },
+   className: String,
+   disabled: Boolean,
+   disableRex: String,
+   accordion: {
+     type: Boolean,
+     default: false,
+   },
+ },
+ computed: {
+   barName() {
+     return this.className ? `${this.className}-bar` : '';
+   },
+ },
+ mounted() {
+   this.handle(this.datas);
+   // 营销 B 端调用两次问题
+   // this.testUrl();
+ },
+ methods: {
+   handle(val) {
+     this.newDatas = val;
+     // 添加不是手风琴效果的二级展开状态
+     this.minorStatus = [];
+     val.forEach((data) => {
+       if (data.children) {
+         data.children.forEach(() => {
+           this.minorStatus.push(false);
+         });
+       }
+     });
+   },
+   goPath(val) {
+     if(val.orgUrl){
+        window.$cookie.set('CURREFERRER', val.orgUrl);
+     }
+     window.open(val.url);
+   },
+   testUrl() {
+     const { fullPath, name } = this.$route;
+     const newFullPath = this.fullpath ? this.fullpath : fullPath;
+     this.newDatas.forEach((data, dataNum) => {
+       // 如果一级导航有子节点
+       if (O.hOwnProperty(data, 'children')) {
+         data.children.forEach((dataChild) => {
+           const inChildFullPath = O.hOwnProperty(dataChild, 'routers') && O.hOwnProperty(dataChild.routers, 'path') && newFullPath.indexOf(dataChild.routers.path) > -1;
+           if (inChildFullPath || (
+             O.hOwnProperty(dataChild, 'routers') && O.hOwnProperty(dataChild.routers, 'name') && name === dataChild.routers.name)) {
+             // 打开二级导航的折叠
+             this.toogleChild(dataNum);
+           }
+         });
+       }
+     });
+     this.activeUrl = window.location.href;
+   },
+   toogleChild(itemIndex) {
+     if (!this.isDisabled) {
+       this.canTestUrl = false; // 刷新新页面触发一次就行
+       const eqLast = itemIndex === childrenLast;
+       this.childrenIndex = eqLast ? -1 : itemIndex;
+       childrenLast = eqLast ? -1 : itemIndex;
+       this.minorStatus.splice(itemIndex, 1, !this.minorStatus[itemIndex]);
+     }
+   },
+   tochildren(item) {
+     if (O.hOwnProperty(item, 'routers')) {
+       this.$router.push(item.routers);
+     }
+     if (O.hOwnProperty(item, 'url')) {
+       window.open(item.url);
+     }
+   },
+   headerClick(event) {
+     this.$emit('click', event);
+   },
+ },
+ watch: {
+   fullpath(val, oldVal) {
+     if (val !== oldVal) {
+       this.testUrl();
+     }
+   },
+   datas(val, oldVal) {
+     if (val !== oldVal) {
+       this.handle(val);
+     }
+   },
+   $route(val, oldVal) {
+     if (val.name !== oldVal.name) {
+       this.isDisabled = val.path.indexOf(this.disableRex) > -1;
+     }
+   },
+   disabled(val, oldVal) {
+     if (val !== oldVal) {
+       this.isDisabled = this.disabled;
+     }
+   },
+ },
 };
 </script>
