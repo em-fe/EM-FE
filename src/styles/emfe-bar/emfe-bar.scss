@@ -129,10 +129,12 @@ $bar-top: 64px;
     display: block;
 
     &:hover {
+      cursor: pointer;
       color: $brand-color-hover;
     }
 
     &:active {
+      cursor: pointer;
       color: $brand-color-click;
     }
 
