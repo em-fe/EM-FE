@@ -91,10 +91,10 @@ export default {
       this.testUrl();
     },
     goPath(val) {
-       if(val.orgUrl){
-          window.$cookie.set('CURREFERRER', val.orgUrl); //获取无权限路径
-       }
-       window.open(val.url);
+      if (val.orgUrl) {
+        window.$cookie.set('CURREFERRER', val.orgUrl); //获取无权限路径
+      }
+      window.open(val.url);
     },
     testUrl() {
       const { fullPath, name } = this.$route;
