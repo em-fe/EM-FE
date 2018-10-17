@@ -9,7 +9,7 @@
     "src"
   ],
   "scripts": {
-    "start": "webpack-dev-server --open --inline --hot --compress --history-api-fallback --port 8081 --config build/webpack.config.js",
+    "start": "webpack-dev-server --open --inline --hot --compress --history-api-fallback --port 8086 --config build/webpack.config.js",
     "build0": "node build/build.js && npm run build:css",
     "build": "npm run dist:dev && npm run dist:prod && npm run build:css",
     "dist:prod": "webpack --config build/webpack.dist.prod.config.js",

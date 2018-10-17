@@ -75,6 +75,7 @@ $bar-top: 64px;
     width: 100%;
     display: block;
     padding-left: 32px;
+    cursor: pointer;
 
     &:hover {
       background: $brand-color-select;
@@ -106,7 +107,7 @@ $bar-top: 64px;
   &-link.router-link-active {
     background: $bar-on-bg;
     color: $title-color;
-    cursor: default;
+    cursor: pointer;
 
     &:active {
       background: $bar-on-bg;
