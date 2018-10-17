@@ -39,7 +39,6 @@ export default {
       childrenIndex: -1,
       isDisabled: this.disabled,
       newDatas: [],
-      activeUrl: '',
       activeBarUrl: '',
       minorStatus: [], // 二级展开收起状态
     };
@@ -85,7 +84,7 @@ export default {
       this.minorStatus = [];
       val.forEach((data) => {
         if (data.children) {
-          data.children.forEach((sonItem) => {
+          data.children.forEach(() => {
             this.minorStatus.push(false);
           });
         }
@@ -144,7 +143,6 @@ export default {
           });
         }
       });
-      //this.activeUrl = window.location.href;
     },
     toogleChild(itemIndex, value) {
       if (!this.isDisabled) {
