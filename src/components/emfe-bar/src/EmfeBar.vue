@@ -5,18 +5,17 @@
       <ul class="emfe-bar-list">
         <template v-for="(childrenData, childrenDataIndex) in newDatas">
           <li class="emfe-bar-item" v-if="!childrenData.children">
-            <router-link :to="childrenData.routers" class="emfe-bar-link" :class="{' emfe-bar-link-disabled': isDisabled}" v-if="!childrenData.url">{{ childrenData.title }}</router-link>
-            <a class="emfe-bar-link" :href="childrenData.url" target="_blank" v-else>{{ childrenData.title }}</a>
-          </li>
-          <li class="emfe-bar-item" :class="{'emfe-bar-item-on': accordion ? childrenIndex == childrenDataIndex : minorStatus[childrenDataIndex]}" v-else>
-            <span href="javascript:;" class="emfe-bar-btn" :class="{' emfe-bar-btn-disabled': isDisabled}" @click="toogleChild(childrenDataIndex)">{{ childrenData.title }}</span>
-            <i class="emfe-bar-arrow" @click="toogleChild(childrenDataIndex)"></i>
-            <emfe-transition name="gradual">
-              <ul class="emfe-bar-childlist" v-show="accordion ? childrenIndex == childrenDataIndex : minorStatus[childrenDataIndex]">
-                <li class="emfe-bar-childitem" v-for="child in childrenData.children">
-                  <router-link :to="child.routers" class="emfe-bar-childlink" :class="{' emfe-bar-childlink-disabled': isDisabled}" v-if="!child.url">{{ child.title }}</router-link>
-                  <!--<a class="emfe-bar-childlink" :class="{'router-link-exact-active router-link-active': activeUrl === child.url}" :href="child.url" target="_blank" v-else>{{ child.title }}</a>-->
-                  <span class="emfe-bar-childlink" :class="{'router-link-exact-active router-link-active': activeUrl === child.url}" @click="goPath(child)" v-else>{{ child.title }}</span>
+            <span class="emfe-bar-link" :class="{'router-link-exact-active router-link-active': (activeBarUrl === childrenData.routers.path || activeBarUrl.indexOf(childrenData.routers.path.split('?')[0])!==-1),'emfe-bar-link-disabled': isDisabled}" v-if="!childrenData.url" @click="goPathOne(childrenData)">{{ childrenData.title }}</span>
+            <a class="emfe-bar-link"  :class="{'router-link-exact-active router-link-active': (activeBarUrl === childrenData.url||activeBarUrl.indexOf(childrenData.url)!==-1)}" @click="goPath(child)" v-else>{{ childrenData.title }}</a>
+         </li>
+         <li class="emfe-bar-item" :class="{'emfe-bar-item-on': accordion ? childrenIndex == childrenDataIndex : minorStatus[childrenDataIndex]}" v-else>
+           <span class="emfe-bar-btn" :class="{'emfe-bar-btn-disabled': isDisabled}" @click="toogleChild(childrenDataIndex)">{{ childrenData.title }}</span>
+           <i class="emfe-bar-arrow" @click="toogleChild(childrenDataIndex)"></i>
+           <emfe-transition name="gradual">
+             <ul class="emfe-bar-childlist" v-show="accordion ? childrenIndex == childrenDataIndex : minorStatus[childrenDataIndex]">
+               <li class="emfe-bar-childitem" v-for="child in childrenData.children">
+                   <span class="emfe-bar-childlink" :class="{'router-link-exact-active router-link-active': (activeBarUrl === child.routers.path||activeBarUrl.indexOf(child.routers.path)!==-1),'emfe-bar-link-disabled': isDisabled}" @click="goPathOne(child)" v-if="!child.url">{{ child.title }}</span>
+                  <span class="emfe-bar-childlink" :class="{'router-link-exact-active router-link-active': (activeBarUrl === child.url||activeBarUrl.indexOf(child.url)!==-1)}" @click="goPath(child)" v-else>{{ child.title }}</span>
                 </li>
               </ul>
             </emfe-transition>
@@ -40,7 +39,7 @@ export default {
       childrenIndex: -1,
       isDisabled: this.disabled,
       newDatas: [],
-      activeUrl: '',
+      activeBarUrl: '',
       minorStatus: [], // 二级展开收起状态
     };
   },
@@ -72,8 +71,11 @@ export default {
   },
   mounted() {
     this.handle(this.datas);
+      if (window.$cookie.get("ACTIVEBARURL")) {
+          this.activeBarUrl = window.$cookie.get("ACTIVEBARURL")
+      }
     // 营销 B 端调用两次问题
-    // this.testUrl();
+    //this.testUrl();
   },
   methods: {
     handle(val) {
@@ -87,6 +89,24 @@ export default {
           });
         }
       });
+      let m= -1;
+      val.forEach((data, index) => {
+        if (data.children) {
+          data.children.forEach((sonItem) => {
+            if (window.$cookie.get('CURMENUNAME') === '票务') {
+               let n = window.location.href;
+               if(sonItem.url && n.indexOf(sonItem.url)!==-1){
+                  m = index;
+               }else if(sonItem.routers && n.indexOf(sonItem.routers.path)!==-1){
+                 m = index;
+               }
+            }
+          });
+        }
+      });
+      if (this.minorStatus.length!==0) {
+        this.minorStatus[m]=true;
+      }
       // 修复会员定位导航错误
       this.testUrl();
     },
@@ -94,7 +114,17 @@ export default {
       if (val.orgUrl) {
         window.$cookie.set('CURREFERRER', val.orgUrl); //获取无权限路径
       }
+      window.$cookie.set("ACTIVEBARURL", val.url);
+      this.activeBarUrl = val.url;
       window.open(val.url);
+    },
+    goPathOne(val) {
+        if (val.orgUrl) {
+          window.$cookie.set('CURREFERRER', val.orgUrl); //获取无权限路径
+        }
+        window.location.href = val.routers.path;
+        window.$cookie.set("ACTIVEBARURL", val.routers.path);
+        this.activeBarUrl = val.routers.path;
     },
     testUrl() {
       const { fullPath, name } = this.$route;
@@ -113,7 +143,6 @@ export default {
           });
         }
       });
-      this.activeUrl = window.location.href;
     },
     toogleChild(itemIndex, value) {
       if (!this.isDisabled) {
