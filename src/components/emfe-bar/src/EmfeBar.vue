@@ -144,7 +144,6 @@ export default {
         const domainName = this.domainName[curName];
         const valPath = val.routers.path.slice(1);
         window.location.href = `${domainName}${valPath}`;
-        this.$router.push(val.routers.path);
         window.$cookie.set("ACTIVEBARURL", val.routers.path);
         this.activeBarUrl = val.routers.path;
     },
