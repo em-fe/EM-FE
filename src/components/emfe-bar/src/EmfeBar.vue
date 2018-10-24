@@ -28,6 +28,7 @@
 <script>
 import Contant from '../../../contant';
 import O from '../../../tools/o';
+import development from '../../../tools/development';
 
 let childrenLast = -1; // 记录上一个点击的二级手风琴的索引
 
@@ -44,6 +45,10 @@ export default {
     };
   },
   props: {
+    processEnv: {
+      type: String,
+      default: 'development',
+    },
     datas: {
       type: Array,
       required: true,
@@ -70,6 +75,19 @@ export default {
     },
   },
   mounted() {
+    this.domainName={
+      '控制台':`${development[this.processEnv].account}`,
+      '报名': `${development[this.processEnv].activity}`,
+      '票务': `${development[this.processEnv].event}`,
+      '表单': `${development[this.processEnv].form}`,
+      '店铺': `${development[this.processEnv].shop}`,
+      '营销': `${development[this.processEnv].marketing}`,
+      '会员': `${development[this.processEnv].member}`,
+      '数据': `${development[this.processEnv].data}`,
+      '财务': `${development[this.processEnv].finance}`,
+      '周边': `${development[this.processEnv].goods}`,
+      '订单': `${development[this.processEnv].order}`,
+    };
     this.handle(this.datas);
       if (window.$cookie.get("ACTIVEBARURL")) {
           this.activeBarUrl = window.$cookie.get("ACTIVEBARURL")
@@ -122,7 +140,11 @@ export default {
         if (val.orgUrl) {
           window.$cookie.set('CURREFERRER', val.orgUrl); //获取无权限路径
         }
-        window.location.href = val.routers.path;
+        const curName = decodeURIComponent(window.$cookie.get('CURMENUNAME'));
+        const domainName = this.domainName[curName];
+        const valPath = val.routers.path.slice(1);
+        window.location.href = `${domainName}${valPath}`;
+        this.$router.push(val.routers.path);
         window.$cookie.set("ACTIVEBARURL", val.routers.path);
         this.activeBarUrl = val.routers.path;
     },
