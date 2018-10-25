@@ -87,4 +87,9 @@ module.exports = {
   B_EVENT_TESTING: 'http://home.inner.evente.cn:8000/event/',
   B_EVENT_LABING: 'http://home.lab.evente.cn/event/',
   B_EVENT_PRODUCTION: 'https://home.evente.cn/event/',
+
+  CRM_DEVELOPMENT: '"http://localhost:8191/"',
+  CRM_TESTING: '"http://home.inner.evente.cn:8000/crm/"',
+  CRM_LABING: '"http://home.lab.evente.cn/crm/"',
+  CRM_PRODUCTION: '"https://home.evente.cn/crm/"',
 };
