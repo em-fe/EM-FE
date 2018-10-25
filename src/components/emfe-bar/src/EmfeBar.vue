@@ -83,6 +83,7 @@ export default {
       '店铺': `${development[this.processEnv].shop}`,
       '营销': `${development[this.processEnv].marketing}`,
       '会员': `${development[this.processEnv].member}`,
+      'CRM': `${development[this.processEnv].crm}`,
       '数据': `${development[this.processEnv].data}`,
       '财务': `${development[this.processEnv].finance}`,
       '周边': `${development[this.processEnv].goods}`,
@@ -141,7 +142,16 @@ export default {
           window.$cookie.set('CURREFERRER', val.orgUrl); //获取无权限路径
         }
         const curName = decodeURIComponent(window.$cookie.get('CURMENUNAME'));
-        const domainName = this.domainName[curName];
+        let domainName = '';
+        if (curName === '会员' || curName === 'CRM' ){
+          if (val.routers.productType === 'member') {
+            domainName = this.domainName['会员'];
+          } else if (val.routers.productType === 'CRM'){
+            domainName = this.domainName['CRM'];
+          }
+        } else {
+          domainName = this.domainName[curName];
+        }
         const valPath = val.routers.path.slice(1);
         window.location.href = `${domainName}${valPath}`;
         window.$cookie.set("ACTIVEBARURL", val.routers.path);

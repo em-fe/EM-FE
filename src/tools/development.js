@@ -19,6 +19,7 @@ module.exports = {
     freight: constant.FREIGHT_TESTING,
     shop: constant.SHOP_TESTING,
     distri: constant.DISTRI_TESTING,
+    crm: constant.CRM_TESTING,
   },
   labing: {
     account: constant.ACCOUNT_LABING,
@@ -38,6 +39,7 @@ module.exports = {
     freight: constant.FREIGHT_LABING,
     shop: constant.SHOP_LABING,
     distri: constant.DISTRI_LABING,
+    crm: constant.CRM_LABING,
   },
   production: {
     account: constant.ACCOUNT_PRODUCTION,
@@ -57,6 +59,7 @@ module.exports = {
     freight: constant.FREIGHT_PRODUCTION,
     shop: constant.SHOP_PRODUCTION,
     distri: constant.DISTRI_PRODUCTION,
+      crm: constant.CRM_PRODUCTION,
   },
   development: {
     account: constant.ACCOUNT_DEVELOPMENT,
@@ -76,5 +79,6 @@ module.exports = {
     freight: constant.FREIGHT_DEVELOPMENT,
     shop: constant.SHOP_DEVELOPMENT,
     distri: constant.DISTRI_DEVELOPMENT,
+    crm: constant.CRM_DEVELOPMENT,
   },
 };
