@@ -75,8 +75,8 @@ export default {
     },
   },
   mounted() {
-    this.domainName={
-      '控制台':`${development[this.processEnv].account}`,
+    this.domainName = {
+      '控制台': `${development[this.processEnv].account}`,
       '报名': `${development[this.processEnv].activity}`,
       '票务': `${development[this.processEnv].event}`,
       '表单': `${development[this.processEnv].form}`,
@@ -90,9 +90,9 @@ export default {
       '订单': `${development[this.processEnv].order}`,
     };
     this.handle(this.datas);
-      if (window.$cookie.get("ACTIVEBARURL")) {
-          this.activeBarUrl = window.$cookie.get("ACTIVEBARURL")
-      }
+    if (window.$cookie.get('ACTIVEBARURL')) {
+      this.activeBarUrl = window.$cookie.get('ACTIVEBARURL');
+    }
     // 营销 B 端调用两次问题
     //this.testUrl();
   },
@@ -108,23 +108,23 @@ export default {
           });
         }
       });
-      let m= -1;
+      let m = -1;
       val.forEach((data, index) => {
         if (data.children) {
           data.children.forEach((sonItem) => {
             if (window.$cookie.get('CURMENUNAME') === '票务') {
-               let n = window.location.href;
-               if(sonItem.url && n.indexOf(sonItem.url)!==-1){
-                  m = index;
-               }else if(sonItem.routers && n.indexOf(sonItem.routers.path)!==-1){
-                 m = index;
-               }
+              const n = window.location.href;
+              if (sonItem.url && n.indexOf(sonItem.url) !== -1) {
+                m = index;
+              } else if (sonItem.routers && n.indexOf(sonItem.routers.path) !== -1) {
+                m = index;
+              }
             }
           });
         }
       });
-      if (this.minorStatus.length!==0) {
-        this.minorStatus[m]=true;
+      if (this.minorStatus.length !== 0) {
+        this.minorStatus[m] = true;
       }
       // 修复会员定位导航错误
       this.testUrl();
@@ -133,29 +133,29 @@ export default {
       if (val.orgUrl) {
         window.$cookie.set('CURREFERRER', val.orgUrl); //获取无权限路径
       }
-      window.$cookie.set("ACTIVEBARURL", val.url);
+      window.$cookie.set('ACTIVEBARURL', val.url);
       this.activeBarUrl = val.url;
       window.open(val.url);
     },
     goPathOne(val) {
-        if (val.orgUrl) {
-          window.$cookie.set('CURREFERRER', val.orgUrl); //获取无权限路径
+      if (val.orgUrl) {
+        window.$cookie.set('CURREFERRER', val.orgUrl); //获取无权限路径
+      }
+      const curName = decodeURIComponent(window.$cookie.get('CURMENUNAME'));
+      let domainName = '';
+      if (curName === '会员' || curName === 'CRM') {
+        if (val.routers.productType === 'member') {
+          domainName = this.domainName['会员'];
+        } else if (val.routers.productType === 'CRM') {
+          domainName = this.domainName.CRM;
         }
-        const curName = decodeURIComponent(window.$cookie.get('CURMENUNAME'));
-        let domainName = '';
-        if (curName === '会员' || curName === 'CRM' ){
-          if (val.routers.productType === 'member') {
-            domainName = this.domainName['会员'];
-          } else if (val.routers.productType === 'CRM'){
-            domainName = this.domainName['CRM'];
-          }
-        } else {
-          domainName = this.domainName[curName];
-        }
-        const valPath = val.routers.path.slice(1);
-        window.location.href = `${domainName}${valPath}`;
-        window.$cookie.set("ACTIVEBARURL", val.routers.path);
-        this.activeBarUrl = val.routers.path;
+      } else {
+        domainName = this.domainName[curName];
+      }
+      const valPath = val.routers.path.slice(1);
+      window.location.href = `${domainName}${valPath}`;
+      window.$cookie.set('ACTIVEBARURL', val.routers.path);
+      this.activeBarUrl = val.routers.path;
     },
     testUrl() {
       const { fullPath, name } = this.$route;
