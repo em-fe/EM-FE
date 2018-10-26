@@ -59,7 +59,7 @@ module.exports = {
     freight: constant.FREIGHT_PRODUCTION,
     shop: constant.SHOP_PRODUCTION,
     distri: constant.DISTRI_PRODUCTION,
-      crm: constant.CRM_PRODUCTION,
+    crm: constant.CRM_PRODUCTION,
   },
   development: {
     account: constant.ACCOUNT_DEVELOPMENT,
