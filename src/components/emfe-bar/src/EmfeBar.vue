@@ -178,8 +178,8 @@ export default {
       const {
         href,
       } = window.location;
-      let m = decodeURIComponent(window.$cookie.get('CURMENUNAME'));
-      let domainName = this.domainName[m];
+      const m = decodeURIComponent(window.$cookie.get('CURMENUNAME'));
+      const domainName = this.domainName[m];
       if (href.indexOf(domainName) === -1) {
         /* eslint-disable */
         for(let keyItem in this.domainName){
