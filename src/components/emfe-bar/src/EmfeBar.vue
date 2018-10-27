@@ -42,6 +42,20 @@ export default {
       newDatas: [],
       activeBarUrl: '',
       minorStatus: [], // 二级展开收起状态
+      domainName: {
+        '控制台': `${development[this.processEnv].account}`,
+        '报名': `${development[this.processEnv].activity}`,
+        '票务': `${development[this.processEnv].event}`,
+        '表单': `${development[this.processEnv].form}`,
+        '店铺': `${development[this.processEnv].shop}`,
+        '营销': `${development[this.processEnv].marketing}`,
+        '会员': `${development[this.processEnv].member}`,
+        'CRM': `${development[this.processEnv].crm}`,
+        '数据': `${development[this.processEnv].data}`,
+        '财务': `${development[this.processEnv].finance}`,
+        '周边': `${development[this.processEnv].goods}`,
+        '订单': `${development[this.processEnv].order}`,
+      },
     };
   },
   props: {
@@ -128,11 +142,13 @@ export default {
       }
       // 修复会员定位导航错误
       this.testUrl();
+      this.matchUrl();
     },
     goPath(val) {
       if (val.orgUrl) {
         window.$cookie.set('CURREFERRER', val.orgUrl); //获取无权限路径
       }
+      this.matchUrl();
       window.$cookie.set('ACTIVEBARURL', val.url);
       this.activeBarUrl = val.url;
       window.open(val.url);
@@ -141,6 +157,7 @@ export default {
       if (val.orgUrl) {
         window.$cookie.set('CURREFERRER', val.orgUrl); //获取无权限路径
       }
+      this.matchUrl();
       const curName = decodeURIComponent(window.$cookie.get('CURMENUNAME'));
       let domainName = '';
       if (curName === '会员' || curName === 'CRM') {
@@ -156,6 +173,30 @@ export default {
       window.location.href = `${domainName}${valPath}`;
       window.$cookie.set('ACTIVEBARURL', val.routers.path);
       this.activeBarUrl = val.routers.path;
+    },
+    matchUrl() {
+      const {
+        href,
+      } = window.location;
+      const m = decodeURIComponent(window.$cookie.get('CURMENUNAME'));
+      const domainName = this.domainName[m];
+      if (href.indexOf(domainName) === -1) {
+        /* eslint-disable */
+        for(let keyItem in this.domainName){
+          if(href.indexOf(this.domainName[keyItem]) !== -1){
+            if (keyItem ==='控制台' && m === '营销') {
+              window.$cookie.set('CURMENUNAME', '营销');
+              window.$cookie.set('ACTIVEBARURL', href);
+            } else if(keyItem ==='报名' && m === '票务') {
+              window.$cookie.set('CURMENUNAME', '票务');
+            } else {
+              window.$cookie.set('CURMENUNAME', keyItem);
+              window.$cookie.set('ACTIVEBARURL', href);
+            }
+          }
+        }
+        /* eslint-enable */
+      }
     },
     testUrl() {
       const { fullPath, name } = this.$route;
@@ -200,6 +241,7 @@ export default {
     fullpath(val, oldVal) {
       if (val !== oldVal) {
         this.testUrl();
+        this.matchUrl();
       }
     },
     datas(val, oldVal) {
