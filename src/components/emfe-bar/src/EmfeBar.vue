@@ -178,22 +178,24 @@ export default {
       const {
         href,
       } = window.location;
-      let m = decodeURIComponent(window.$cookie.get("CURMENUNAME"));
+      let m = decodeURIComponent(window.$cookie.get('CURMENUNAME'));
       let domainName = this.domainName[m];
       if (href.indexOf(domainName) === -1) {
+        /* eslint-disable */
         for(let keyItem in this.domainName){
           if(href.indexOf(this.domainName[keyItem]) !== -1){
             if (keyItem ==='控制台' && m === '营销') {
-              window.$cookie.set("CURMENUNAME", '营销');
-              window.$cookie.set("ACTIVEBARURL", href);
+              window.$cookie.set('CURMENUNAME', '营销');
+              window.$cookie.set('ACTIVEBARURL', href);
             } else if(keyItem ==='报名' && m === '票务') {
-              window.$cookie.set("CURMENUNAME", '票务');
+              window.$cookie.set('CURMENUNAME', '票务');
             } else {
-              window.$cookie.set("CURMENUNAME", keyItem);
-              window.$cookie.set("ACTIVEBARURL", href);
+              window.$cookie.set('CURMENUNAME', keyItem);
+              window.$cookie.set('ACTIVEBARURL', href);
             }
           }
         }
+        /* eslint-enable */
       }
     },
     testUrl() {
