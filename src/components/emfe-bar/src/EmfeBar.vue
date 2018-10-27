@@ -55,7 +55,7 @@ export default {
         '财务': `${development[this.processEnv].finance}`,
         '周边': `${development[this.processEnv].goods}`,
         '订单': `${development[this.processEnv].order}`,
-      }
+      },
     };
   },
   props: {
