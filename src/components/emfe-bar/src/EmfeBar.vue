@@ -41,7 +41,9 @@ export default {
       isDisabled: this.disabled,
       newDatas: [],
       activeBarUrl: '',
+      pathNoAuth: `${development[this.processEnv].member}error`,
       minorStatus: [], // 二级展开收起状态
+      /* eslint-disable */
       domainName: {
         '控制台': `${development[this.processEnv].account}`,
         '报名': `${development[this.processEnv].activity}`,
@@ -56,6 +58,7 @@ export default {
         '周边': `${development[this.processEnv].goods}`,
         '订单': `${development[this.processEnv].order}`,
       },
+      /* eslint-enable */
     };
   },
   props: {
@@ -89,26 +92,30 @@ export default {
     },
   },
   mounted() {
-    this.domainName = {
-      '控制台': `${development[this.processEnv].account}`,
-      '报名': `${development[this.processEnv].activity}`,
-      '票务': `${development[this.processEnv].event}`,
-      '表单': `${development[this.processEnv].form}`,
-      '店铺': `${development[this.processEnv].shop}`,
-      '营销': `${development[this.processEnv].marketing}`,
-      '会员': `${development[this.processEnv].member}`,
-      'CRM': `${development[this.processEnv].crm}`,
-      '数据': `${development[this.processEnv].data}`,
-      '财务': `${development[this.processEnv].finance}`,
-      '周边': `${development[this.processEnv].goods}`,
-      '订单': `${development[this.processEnv].order}`,
-    };
+    /* eslint-disable */
+    // this.domainName = {
+    //   '控制台': `${development[this.processEnv].account}`,
+    //   '报名': `${development[this.processEnv].activity}`,
+    //   '票务': `${development[this.processEnv].event}`,
+    //   '表单': `${development[this.processEnv].form}`,
+    //   '店铺': `${development[this.processEnv].shop}`,
+    //   '营销': `${development[this.processEnv].marketing}`,
+    //   '会员': `${development[this.processEnv].member}`,
+    //   'CRM': `${development[this.processEnv].crm}`,
+    //   '数据': `${development[this.processEnv].data}`,
+    //   '财务': `${development[this.processEnv].finance}`,
+    //   '周边': `${development[this.processEnv].goods}`,
+    //   '订单': `${development[this.processEnv].order}`,
+    // };
+    /* eslint-enable */
     this.handle(this.datas);
     if (window.$cookie.get('ACTIVEBARURL')) {
       this.activeBarUrl = window.$cookie.get('ACTIVEBARURL');
     }
     // 营销 B 端调用两次问题
-    //this.testUrl();
+    if (window.$cookie.get('CURMENUNAME') === '表单' || window.$cookie.get('CURMENUNAME') === 'CRM'|| window.$cookie.get('CURMENUNAME') === '会员'){
+      this.testUrl();
+    }
   },
   methods: {
     handle(val) {
@@ -149,8 +156,10 @@ export default {
         window.$cookie.set('CURREFERRER', val.orgUrl); //获取无权限路径
       }
       this.matchUrl();
-      window.$cookie.set('ACTIVEBARURL', val.url);
-      this.activeBarUrl = val.url;
+      if (val.url !== this.pathNoAuth) {
+        window.$cookie.set('ACTIVEBARURL', val.url);
+        this.activeBarUrl = val.url;
+      }
       window.open(val.url);
     },
     goPathOne(val) {
@@ -171,8 +180,11 @@ export default {
       }
       const valPath = val.routers.path.slice(1);
       window.location.href = `${domainName}${valPath}`;
-      window.$cookie.set('ACTIVEBARURL', val.routers.path);
-      this.activeBarUrl = val.routers.path;
+        if (val.routers.path !== this.pathNoAuth) {
+          window.$cookie.set('ACTIVEBARURL', val.routers.path);
+          this.activeBarUrl = val.routers.path;
+        }
+
     },
     matchUrl() {
       const {
@@ -186,12 +198,16 @@ export default {
           if(href.indexOf(this.domainName[keyItem]) !== -1){
             if (keyItem ==='控制台' && m === '营销') {
               window.$cookie.set('CURMENUNAME', '营销');
-              window.$cookie.set('ACTIVEBARURL', href);
+              if (href !== this.pathNoAuth) {
+                window.$cookie.set('ACTIVEBARURL', href);
+              }
             } else if(keyItem ==='报名' && m === '票务') {
               window.$cookie.set('CURMENUNAME', '票务');
             } else {
               window.$cookie.set('CURMENUNAME', keyItem);
-              window.$cookie.set('ACTIVEBARURL', href);
+              if (href !== this.pathNoAuth) {
+                window.$cookie.set('ACTIVEBARURL', href);
+              }
             }
           }
         }
