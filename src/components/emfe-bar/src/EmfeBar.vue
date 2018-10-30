@@ -116,6 +116,7 @@ export default {
     if (window.$cookie.get('CURMENUNAME') === '表单' || window.$cookie.get('CURMENUNAME') === 'CRM'|| window.$cookie.get('CURMENUNAME') === '会员'){
       this.testUrl();
     }
+    this.matchUrl();
   },
   methods: {
     handle(val) {
@@ -200,6 +201,7 @@ export default {
               window.$cookie.set('CURMENUNAME', '营销');
               if (href !== this.pathNoAuth) {
                 window.$cookie.set('ACTIVEBARURL', href);
+                this.activeBarUrl = href;
               }
             } else if(keyItem ==='报名' && m === '票务') {
               window.$cookie.set('CURMENUNAME', '票务');
@@ -207,11 +209,15 @@ export default {
               window.$cookie.set('CURMENUNAME', keyItem);
               if (href !== this.pathNoAuth) {
                 window.$cookie.set('ACTIVEBARURL', href);
+                this.activeBarUrl = href;
               }
             }
           }
         }
         /* eslint-enable */
+      } else {
+        window.$cookie.set('ACTIVEBARURL', href);
+        this.activeBarUrl = href;
       }
     },
     testUrl() {
