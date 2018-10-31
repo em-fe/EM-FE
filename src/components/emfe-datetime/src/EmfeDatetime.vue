@@ -172,6 +172,7 @@ export default {
       // this.$refs.date.cancel();
       // 让日期组件恢复初始状态
       // this.$refs.time.cancel();
+      this.isDate = true;
       this.$emit('cancel', '');
       this.$emit('input', '');
     },
