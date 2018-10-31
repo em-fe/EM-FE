@@ -113,7 +113,7 @@ export default {
       this.activeBarUrl = window.$cookie.get('ACTIVEBARURL');
     }
     // 营销 B 端调用两次问题
-    if (window.$cookie.get('CURMENUNAME') === '表单' || window.$cookie.get('CURMENUNAME') === 'CRM'|| window.$cookie.get('CURMENUNAME') === '会员'){
+    if (window.$cookie.get('CURMENUNAME') === '表单' || window.$cookie.get('CURMENUNAME') === 'CRM' || window.$cookie.get('CURMENUNAME') === '会员') {
       this.testUrl();
     }
     this.matchUrl();
@@ -181,11 +181,10 @@ export default {
       }
       const valPath = val.routers.path.slice(1);
       window.location.href = `${domainName}${valPath}`;
-        if (val.routers.path !== this.pathNoAuth) {
-          window.$cookie.set('ACTIVEBARURL', val.routers.path);
-          this.activeBarUrl = val.routers.path;
-        }
-
+      if (val.routers.path !== this.pathNoAuth) {
+        window.$cookie.set('ACTIVEBARURL', val.routers.path);
+        this.activeBarUrl = val.routers.path;
+      }
     },
     matchUrl() {
       const {
