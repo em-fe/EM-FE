@@ -211,7 +211,6 @@ export default {
          this.setCookie('ACTIVEBARURL', val.routers.path);
           this.activeBarUrl = val.routers.path;
         }
-
     },
     matchUrl() {
       const {
