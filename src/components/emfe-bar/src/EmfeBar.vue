@@ -109,16 +109,41 @@ export default {
     // };
     /* eslint-enable */
     this.handle(this.datas);
-    if (window.$cookie.get('ACTIVEBARURL')) {
-      this.activeBarUrl = window.$cookie.get('ACTIVEBARURL');
+    if (this.getCookie('ACTIVEBARURL')) {
+      this.activeBarUrl = this.getCookie('ACTIVEBARURL');
     }
     // 营销 B 端调用两次问题
-    if (window.$cookie.get('CURMENUNAME') === '表单' || window.$cookie.get('CURMENUNAME') === 'CRM'|| window.$cookie.get('CURMENUNAME') === '会员'){
+    if (this.getCookie('CURMENUNAME') === '表单' || this.getCookie('CURMENUNAME') === 'CRM'|| this.getCookie('CURMENUNAME') === '会员'){
       this.testUrl();
     }
     this.matchUrl();
   },
   methods: {
+      /* eslint-disable */
+      setCookie(name, value) {
+          const Days = 30;
+          const exp = new Date();
+          exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
+          document.cookie = `${encodeURIComponent(name)}=${encodeURIComponent(value)};expires=${exp.toGMTString()}`;
+      },
+      getCookie(name) {
+          let arr,
+              reg = new RegExp(`(^| )${name}=([^;]*)(;|$)`);
+          if (arr = document.cookie.match(reg)) {
+              const m = decodeURIComponent(arr[2]);
+              return (m);
+          }
+          return null;
+      },
+      delCookie(name) {
+          const exp = new Date();
+          exp.setTime(exp.getTime() - 1);
+          const cval = this.getCookie(name);
+          if (cval != null) {
+              document.cookie = `${name}=${cval};expires=${exp.toGMTString()}`;
+          }
+      },
+      /* eslint-enable */
     handle(val) {
       this.newDatas = val;
       // 添加不是手风琴效果的二级展开状态
@@ -134,7 +159,7 @@ export default {
       val.forEach((data, index) => {
         if (data.children) {
           data.children.forEach((sonItem) => {
-            if (window.$cookie.get('CURMENUNAME') === '票务') {
+            if (this.getCookie('CURMENUNAME') === '票务') {
               const n = window.location.href;
               if (sonItem.url && n.indexOf(sonItem.url) !== -1) {
                 m = index;
@@ -154,21 +179,22 @@ export default {
     },
     goPath(val) {
       if (val.orgUrl) {
-        window.$cookie.set('CURREFERRER', val.orgUrl); //获取无权限路径
+       this.setCookie('CURREFERRER', val.orgUrl); //获取无权限路径
       }
       this.matchUrl();
       if (val.url !== this.pathNoAuth) {
-        window.$cookie.set('ACTIVEBARURL', val.url);
+       this.setCookie('ACTIVEBARURL', val.url);
         this.activeBarUrl = val.url;
       }
       window.open(val.url);
     },
     goPathOne(val) {
       if (val.orgUrl) {
-        window.$cookie.set('CURREFERRER', val.orgUrl); //获取无权限路径
+       this.setCookie('CURREFERRER', val.orgUrl); //获取无权限路径
       }
       this.matchUrl();
-      const curName = decodeURIComponent(window.$cookie.get('CURMENUNAME'));
+      // const curName = decodeURIComponent(this.getCookie('CURMENUNAME'));
+        const curName = this.getCookie('CURMENUNAME');
       let domainName = '';
       if (curName === '会员' || curName === 'CRM') {
         if (val.routers.productType === 'member') {
@@ -182,7 +208,7 @@ export default {
       const valPath = val.routers.path.slice(1);
       window.location.href = `${domainName}${valPath}`;
         if (val.routers.path !== this.pathNoAuth) {
-          window.$cookie.set('ACTIVEBARURL', val.routers.path);
+         this.setCookie('ACTIVEBARURL', val.routers.path);
           this.activeBarUrl = val.routers.path;
         }
 
@@ -191,24 +217,25 @@ export default {
       const {
         href,
       } = window.location;
-      const m = decodeURIComponent(window.$cookie.get('CURMENUNAME'));
+      // const m = decodeURIComponent(this.getCookie('CURMENUNAME'));
+        const m = this.getCookie('CURMENUNAME');
       const domainName = this.domainName[m];
       if (href.indexOf(domainName) === -1) {
         /* eslint-disable */
         for(let keyItem in this.domainName){
           if(href.indexOf(this.domainName[keyItem]) !== -1){
             if (keyItem ==='控制台' && m === '营销') {
-              window.$cookie.set('CURMENUNAME', '营销');
+             this.setCookie('CURMENUNAME', '营销');
               if (href !== this.pathNoAuth) {
-                window.$cookie.set('ACTIVEBARURL', href);
+               this.setCookie('ACTIVEBARURL', href);
                 this.activeBarUrl = href;
               }
             } else if(keyItem ==='报名' && m === '票务') {
-              window.$cookie.set('CURMENUNAME', '票务');
+             this.setCookie('CURMENUNAME', '票务');
             } else {
-              window.$cookie.set('CURMENUNAME', keyItem);
+             this.setCookie('CURMENUNAME', keyItem);
               if (href !== this.pathNoAuth) {
-                window.$cookie.set('ACTIVEBARURL', href);
+               this.setCookie('ACTIVEBARURL', href);
                 this.activeBarUrl = href;
               }
             }
@@ -216,7 +243,7 @@ export default {
         }
         /* eslint-enable */
       } else {
-        window.$cookie.set('ACTIVEBARURL', href);
+       this.setCookie('ACTIVEBARURL', href);
         this.activeBarUrl = href;
       }
     },
