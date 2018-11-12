@@ -123,12 +123,10 @@ export default {
     handle(val) {
       this.newDatas = val;
       // 添加不是手风琴效果的二级展开状态
-      this.minorStatus = [];
-      val.forEach((data) => {
+      this.minorStatus = new Array(val.length);
+      val.forEach((data, dataIndex) => {
         if (data.children) {
-          data.children.forEach(() => {
-            this.minorStatus.push(false);
-          });
+          this.minorStatus.splice(dataIndex, 1, false);
         }
       });
       let m = -1;
