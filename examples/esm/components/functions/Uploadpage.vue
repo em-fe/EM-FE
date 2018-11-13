@@ -216,6 +216,11 @@
           <td>file, fileList,EmfeMessage</td>
         </tr>
         <tr>
+          <td>getfileName</td>
+          <td>获取文件名称的方法</td>
+          <td>file</td>
+        </tr>
+        <tr>
           <td>exceededSize</td>
           <td>文件超出指定大小限制时的钩子，返回字段为</td>
           <td>file, fileList,EmfeMessage</td>
