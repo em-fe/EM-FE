@@ -3,7 +3,7 @@
     <tr class="emfe-table-head-tr" :class="classTr">
       <template>
 	      <th class="emfe-table-head-tr-th" @click="jump(index)" :class="[classTh, {'emfe-table-head-tr-th-checked': checked === index}]" :key="index" v-for="(item , index) in this.$parent.columns">
-	        <div class="emfe-table-head-tr-th-div">{{item.title}}</div>
+          <div class="emfe-table-head-tr-th-div">{{item.title}}</div>
 	      </th>
       </template>
     </tr>
