@@ -1,5 +1,5 @@
  <template>
-  <tr @click="jump(ind)" class="emfe-table-tr" :class="[classTr, unHover, {
+  <tr @click="jump(ind)" @mouseover="mouseover(ind)" @mouseout="mouseout(ind)" class="emfe-table-tr" :class="[classTr, unHover, {
     'emfe-table-tr-disabled': dataList.disabled,
     'emfe-table-tr-border': !!border && border === 'true',
   }]">
@@ -119,6 +119,12 @@ export default {
     jump(i) {
       this.$emit('jump', i);
       this.$emit('click', i);
+    },
+    mouseover(i) {
+      this.$emit('mouseover', i);
+    },
+    mouseout(i) {
+      this.$emit('mouseout', i);
     },
   },
 };
