@@ -160,9 +160,11 @@ export default {
       this.$emit('choice-date', this.dateTime);
     },
     choiceTime() {
-      this.choiced = true;
-      this.$emit('change', this.dateTime);
-      this.$emit('choice-time', this.dateTime);
+      this.$nextTick(() => {
+        this.choiced = true;
+        this.$emit('change', this.dateTime);
+        this.$emit('choice-time', this.dateTime);
+      });
     },
     cancel() {
       this.date = '';
