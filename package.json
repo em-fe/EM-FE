@@ -1,6 +1,6 @@
 {
   "name": "em-fe",
-  "version": "2.8.2",
+  "version": "2.8.3",
   "description": "快速开发产品的UI库",
   "main": "dist/emfe.js",
   "unpkg": "dist/emfe.js",
