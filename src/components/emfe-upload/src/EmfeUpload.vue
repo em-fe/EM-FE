@@ -671,7 +671,7 @@ export default {
         }
       }
       //进行最小压缩
-      const ndata = canvas.toDataURL('image/jpeg', 0.1);
+      const ndata = canvas.toDataURL('image/jpeg', 1);
       tCanvas.width = 0;
       tCanvas.height = 0;
       canvas.width = 0;
