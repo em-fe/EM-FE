@@ -134,7 +134,9 @@ export default {
         newDateTime = `${this.date} ${this.time}`;
       }
 
-      this.$emit('input', newDateTime === this.placeholder ? '' : newDateTime);
+      if (newDateTime !== this.placeholder) {
+        this.$emit('input', newDateTime);
+      }
 
       return newDateTime;
     },
@@ -218,6 +220,10 @@ export default {
     value(val, oldVal) {
       if (val !== oldVal) {
         this.initData(val);
+        // 修复外部操作 v-model 清空问题
+        if (!val) {
+          this.cancel();
+        }
       }
     },
   },
