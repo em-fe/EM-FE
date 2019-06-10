@@ -177,7 +177,7 @@
           <td>fileType</td>
           <td>自定义上传文件类型</td>
           <td>String</td>
-          <td>默认image,</td>
+          <td>image/*</td>
         </tr>
         <tr>
           <td>intercept</td>
