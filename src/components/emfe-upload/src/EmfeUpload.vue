@@ -3,7 +3,7 @@
     <template v-if="type === 'icon'">
       <emfe-button :disabled="disabled || !canUpload" v-show="!src" :theme="theme" type="shangchuan" :className="iconName">{{
           iconText }}</emfe-button>
-      <input v-show="!src" class="emfe-upload-file" :class="fileName" :disabled="disabled || !canUpload" type="file" accept="image/*" @change="change" ref="upload">
+      <input v-show="!src" class="emfe-upload-file" :class="fileName" :disabled="disabled || !canUpload" type="file" :accept="fileType" @change="change" ref="upload">
       <div v-show="src" :style="{opacity: canShow ? 1 : 0}" class="emfe-upload-icon-wrap">
         <div class="emfe-upload-icon-wrap-box" :class="[`emfe-upload-icon-wrap-box-${align}`, imageName]">
           <img class="emfe-upload-icon-wrap-box-img" :class="[`emfe-upload-img-${align}`, imgName]" :src="src" ref="img">
@@ -13,7 +13,7 @@
     </template>
     <template v-if="type === 'plus'">
       <span v-show="!src" class="emfe-upload-btn" :class="btnName">{{ plusText }}</span>
-      <input v-show="!src" class="emfe-upload-file" :class="fileName" :disabled="disabled || !canUpload" type="file" accept="image/*" @change="change" ref="uploadPlus">
+      <input v-show="!src" class="emfe-upload-file" :class="fileName" :disabled="disabled || !canUpload" type="file" :accept="fileType" @change="change" ref="uploadPlus">
       <div v-show="src" class="emfe-upload-plus-box" :class="[`emfe-upload-plus-box-${align}`, imageName, {'emfe-upload-plus-box-disabled': disabled}]" :style="{opacity: canShow ? 1 : 0}">
         <img :class="[`emfe-upload-img-${align}`, imgName]" v-show="src" :src="src" ref="img">
         <i :class="['emfe-upload-plus-close', {'emfe-upload-plus-box-disabled': disabled}]" @click="closePlusFn"></i>
@@ -182,7 +182,7 @@ export default {
     },
     fileType: {
       type: String,
-      default: 'image',
+      default: 'image/*',
     },
   },
   computed: {
@@ -651,7 +651,7 @@ export default {
       if (fileData) {
         fileData.status = 'finished';
         fileData.response = res;
-        if (this.fileType === 'image') {
+        if (this.fileType.indexOf('image') > -1) {
           this.loadImg(res.url, res, fileData);
         } else {
           this.canLoad();
