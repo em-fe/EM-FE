@@ -1,7 +1,7 @@
 <template>
   <header class="emfe-header-active">
     <div class="emfe-header-active-main">
-      <div class="emfe-header-active-eye">
+      <div v-if="src" class="emfe-header-active-eye">
         <img :src="src" class="emfe-header-active-eye-img">
       </div>
       <div class="emfe-header-active-info">
