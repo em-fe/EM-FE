@@ -209,7 +209,7 @@
         </tr>
         <tr>
           <td>multiple</td>
-          <td>支持多次上传</td>
+          <td>支持多次上传。2.9.0 新增</td>
           <td>Boolean</td>
           <td>false</td>
         </tr>
