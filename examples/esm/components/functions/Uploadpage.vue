@@ -209,7 +209,7 @@
         </tr>
         <tr>
           <td>multiple</td>
-          <td>支持多次上传。2.9.0 新增</td>
+          <td>支持多次上传（只是可以多次单张上传，多张图片展示还需项目自行设置）。2.9.0 新增</td>
           <td>Boolean</td>
           <td>false</td>
         </tr>
