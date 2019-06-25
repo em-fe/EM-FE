@@ -116,6 +116,7 @@
     left: 0;
     cursor: pointer;
     opacity: 0;
+    overflow: hidden;
 
     &-disabled {
       cursor: not-allowed;
@@ -126,7 +127,6 @@
     position: relative;
     width: 160px;
     height: 160px;
-    // overflow: hidden;
 
     &-box {
       @include border(all, $border-color, 1px, dashed);
@@ -134,6 +134,7 @@
       width: 160px;
       height: 160px;
       cursor: pointer;
+      overflow: hidden;
 
       &-horizontal {
         display: flex;

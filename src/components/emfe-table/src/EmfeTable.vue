@@ -1,5 +1,8 @@
 <template>
-  <div class="emfe-table-box" :class="[boxName, {'emfe-table-box-flex': flex}]">
+  <div class="emfe-table-box" :class="[boxName, {
+    'emfe-table-box-flex': flex,
+    'emfe-table-box-border': !!border && border === 'true',
+  }]">
     <div :class="[flexTableName, {'emfe-table-tablebox': flex}]">
       <table v-if="columns.length" class="emfe-table" :class="[tableName]">
         <slot name="head"></slot>

@@ -178,6 +178,16 @@
           <td>点击 tr|th 触发</td>
           <td>当前索引</td>
         </tr>
+        <tr>
+          <td>mouseover</td>
+          <td>body 上移入 tr 触发， 2.8.0 新增</td>
+          <td>当前索引</td>
+        </tr>
+        <tr>
+          <td>mouseout</td>
+          <td>body 上移出 tr 触发， 2.8.0 新增</td>
+          <td>当前索引</td>
+        </tr>
       </tbody>
     </table>
   </div>

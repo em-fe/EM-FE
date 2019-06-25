@@ -23,3 +23,5 @@ test/unit/coverage
 .vscode
 $Recycle.Bin
 dist/
+package-lock.json
+yarn.lock

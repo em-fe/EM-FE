@@ -1,5 +1,8 @@
  <template>
-  <tr @click="jump(ind)" class="emfe-table-tr" :class="[classTr, unHover, {'emfe-table-tr-disabled': dataList.disabled}]">
+  <tr @click="jump(ind)" @mouseover="mouseover(ind)" @mouseout="mouseout(ind)" class="emfe-table-tr" :class="[classTr, unHover, {
+    'emfe-table-tr-disabled': dataList.disabled,
+    'emfe-table-tr-border': !!border && border === 'true',
+  }]">
     <template>
       <td class="emfe-table-tr-td" :class="[classTd, {'emfe-table-tr-td-checked': checked === index}]" :rowspan="dataList[list.key].row ? rowSpan[list.key]: ''"  v-for="(list , index) in dataSlice" :key="index" v-if="!dataList[list.key].hebing">
         <slot name="a" v-if="dataList[list.key].slot==='a'"></slot>
@@ -69,15 +72,15 @@ export default {
       return [
         {
           [`${this.$parent.tableName}-tbody-tr`]: !!this.tableName,
+          'emfe-table-border-bottom': !!this.border && this.border === 'true',
         },
-        'emfe-table-border-bottom',
       ];
     },
     classTd() {
       return [
         {
           [`${this.$parent.tableName}-tbody-tr-td`]: !!this.tableName,
-          'emfe-table-border': !!this.border,
+          'emfe-table-border': !!this.border && this.border === 'true',
         },
       ];
     },
@@ -116,6 +119,12 @@ export default {
     jump(i) {
       this.$emit('jump', i);
       this.$emit('click', i);
+    },
+    mouseover(i) {
+      this.$emit('mouseover', i);
+    },
+    mouseout(i) {
+      this.$emit('mouseout', i);
     },
   },
 };

@@ -15,7 +15,7 @@
     <br>
     <br>
     <br>
-    <emfe-upload action="https://www.easy-mock.com/mock/5a2e29ed89d2205cbfe7a459/emfe/upload" :intercept="[100, 60]"></emfe-upload>
+    <emfe-upload action="https://www.easy-mock.com/mock/5a2e29ed89d2205cbfe7a459/emfe/upload" :intercept="[200, 200]"></emfe-upload>
     <pre>
       &lt;emfe-upload action="https://www.easy-mock.com/mock/5a2e29ed89d2205cbfe7a459/emfe/upload" :intercept="[100, 60]"&gt;&lt;/emfe-upload&gt;
     </pre>
@@ -177,13 +177,19 @@
           <td>fileType</td>
           <td>自定义上传文件类型</td>
           <td>String</td>
-          <td>默认image,</td>
+          <td>image/*</td>
         </tr>
         <tr>
           <td>intercept</td>
           <td>截取器开关，支持格式 [宽，高]</td>
           <td>Array</td>
           <td>[]</td>
+        </tr>
+        <tr>
+          <td>interceptType</td>
+          <td>截取器图片类型</td>
+          <td>String</td>
+          <td>jpeg</td>
         </tr>
         <tr>
           <td>interceptSync</td>
@@ -208,6 +214,11 @@
           <td>formatError</td>
           <td>文件格式验证失败时的钩子</td>
           <td>file, fileList,EmfeMessage</td>
+        </tr>
+        <tr>
+          <td>getfileName</td>
+          <td>获取文件名称的方法</td>
+          <td>file</td>
         </tr>
         <tr>
           <td>exceededSize</td>

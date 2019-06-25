@@ -134,7 +134,9 @@ export default {
         newDateTime = `${this.date} ${this.time}`;
       }
 
-      this.$emit('input', newDateTime === this.placeholder ? '' : newDateTime);
+      if (newDateTime !== this.placeholder) {
+        this.$emit('input', newDateTime);
+      }
 
       return newDateTime;
     },
@@ -160,9 +162,11 @@ export default {
       this.$emit('choice-date', this.dateTime);
     },
     choiceTime() {
-      this.choiced = true;
-      this.$emit('change', this.dateTime);
-      this.$emit('choice-time', this.dateTime);
+      this.$nextTick(() => {
+        this.choiced = true;
+        this.$emit('change', this.dateTime);
+        this.$emit('choice-time', this.dateTime);
+      });
     },
     cancel() {
       this.date = '';
@@ -172,6 +176,7 @@ export default {
       // this.$refs.date.cancel();
       // 让日期组件恢复初始状态
       // this.$refs.time.cancel();
+      this.isDate = true;
       this.$emit('cancel', '');
       this.$emit('input', '');
     },
@@ -215,6 +220,10 @@ export default {
     value(val, oldVal) {
       if (val !== oldVal) {
         this.initData(val);
+        // 修复外部操作 v-model 清空问题
+        if (!val) {
+          this.cancel();
+        }
       }
     },
   },

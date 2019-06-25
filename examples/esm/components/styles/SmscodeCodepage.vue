@@ -120,7 +120,7 @@
 </template>
 <script>
 export default {
-  name: 'imgcodepage',
+  name: 'SmscodeCodepage',
   data() {
     return {
       model: 111111,
@@ -163,7 +163,6 @@ export default {
 .demo-smscode {
   width: 394px;
   height: 42px;
-
   &-code {
     height: 40px;
     line-height: 40px;

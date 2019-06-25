@@ -90,4 +90,110 @@ $header-height: 56px;
   &-signout {
     color: $text-color;
   }
+
+  &-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+
+    &-box {
+      width: 636px;
+      height: 418px;
+      background-color: #fff;
+      box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+      border-radius: 3px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate3d(-50%, -50%, 0);
+
+      &-close {
+        cursor: pointer;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+      }
+
+      &-title {
+        margin-top: 52px;
+        font-size: 18px;
+        color: #333;
+        text-align: center;
+        line-height: 18px;
+      }
+
+      &-modal {
+        margin-top: 40px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        &-light {
+          float: left;
+          position: relative;
+          width: 239px;
+          height: 239px;
+          text-align: center;
+          background-color: #1996f9;
+          border-radius: 3px;
+          margin-right: 30px;
+          font-size: 0;
+          cursor: pointer;
+
+          &:last-child {
+            margin-right: 0;
+            background-color: #ffa430;
+
+            & .emfe-header-mask-box-modal-light-title {
+              margin-top: 20px;
+            }
+          }
+
+          &-img {
+            margin-top: 65px;
+            transition: all 0.35s ease-in-out;
+          }
+
+          &-title {
+            font-size: 16px;
+            color: #fff;
+            text-align: center;
+            margin-top: 12px;
+          }
+
+          &-content {
+            width: 100%;
+            font-size: 12px;
+            color: #fff;
+            padding: 0 17px;
+            margin-top: 8px;
+            line-height: 18px;
+            text-align: center;
+          }
+
+          &-mask {
+            display: none;
+            transition: all 0.35s ease-in-out;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background-color: rgba(255, 255, 255, 0.2);
+          }
+
+          &:hover .emfe-header-mask-box-modal-light-mask {
+            display: block;
+          }
+
+          &:hover .emfe-header-mask-box-modal-light-img {
+            transform: translateY(-8px);
+          }
+        }
+      }
+    }
+  }
 }

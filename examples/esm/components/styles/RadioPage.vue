@@ -7,6 +7,18 @@
     </pre>
     <br>
     <br>
+    <h3>各种颜色 使用 styleIndex</h3>
+    <br>
+    <emfe-radio index="10" styleIndex="black" name="groupColor">black</emfe-radio>
+    <emfe-radio index="11" styleIndex="purple" name="groupColor">purple</emfe-radio>
+    <emfe-radio index="12" styleIndex="green" name="groupColor">green</emfe-radio>
+    <emfe-radio index="13" styleIndex="lightBlue" name="groupColor">lightBlue</emfe-radio>
+    <emfe-radio index="14" styleIndex="orange" name="groupColor">orange</emfe-radio>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <br>
     <br>
     <emfe-radio index="1" name="group1" tip="这是按钮的提示">这是单选按钮</emfe-radio>
@@ -117,7 +129,7 @@
         </tr>
         <tr>
           <td>styleIndex</td>
-          <td>控制选中图片颜色，purple: 紫色，green：绿色，lightBlue： 浅蓝色，orange： 橙色</td>
+          <td>控制选中图片颜色，purple: 紫色，green：绿色，lightBlue： 浅蓝色，orange： 橙色。 black 黑色(2.5.1新增)</td>
           <td>String</td>
           <td>default 为 蓝色</td>
         </tr>

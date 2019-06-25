@@ -12,10 +12,10 @@
   display: inline-block;
 
   &-icon {
-    color: $brand-color-default;
+    color: $icon-color-default;
 
     &::before {
-      color: $brand-color-default;
+      color: $icon-color-default;
     }
 
     &:hover {
@@ -26,7 +26,7 @@
   }
 
   &-default {
-    @include button-colors($brand-color-default, $brand-color-hover, $brand-color-click, $brand-color-default, $brand-color-hover, $brand-color-click);
+    @include button-colors($text-color-default, $brand-color-hover, $brand-color-click, $button-color-default, $brand-color-hover, $brand-color-click);
 
     &:disabled {
       color: $text-color-disable;

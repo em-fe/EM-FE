@@ -81,7 +81,7 @@
 </template>
 <script>
 export default {
-  name: 'imgcodepage',
+  name: 'imgcodeCpage',
   data() {
     return {
       model: 111111,

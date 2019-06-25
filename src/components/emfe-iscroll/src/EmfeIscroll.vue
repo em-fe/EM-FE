@@ -69,6 +69,12 @@ export default {
     refresh() {
       this.$nextTick(() => this.iscroll.refresh.apply(this.iscroll, arguments));
     },
+    disable() {
+      this.$nextTick(() => this.iscroll.disable.apply(this.iscroll, arguments));
+    },
+    enable() {
+      this.$nextTick(() => this.iscroll.enable.apply(this.iscroll, arguments));
+    },
   },
   beforeDestroy() {
     this.iscroll && this.iscroll.destroy();
@@ -85,28 +91,35 @@ export default {
       'zoomStart',
       'zoomEnd',
     ];
-    setTimeout(() => {
+
+    this.$nextTick(() => {
       let key;
       let value;
-      const attributes = this.$refs.scrollView.attributes;
-      this.$refs.scrollView.scrollTop = 0;
-      for (key in attributes) {
-        value = attributes[key];
-        if (value instanceof global.Attr && value.name.indexOf('data-v-') > -1) {
-          this.$refs.scroller.attributes.setNamedItem(document.createAttribute(value.name));
+      const { scrollView, scroller } = this.$refs;
+      if (scrollView) {
+        const attributes = scrollView.attributes;
+        scrollView.scrollTop = 0;
+        if (scroller) {
+          for (key in attributes) {
+            value = attributes[key];
+            if (value instanceof global.Attr && value.name.indexOf('data-v-') > -1) {
+              scroller.attributes.setNamedItem(document.createAttribute(value.name));
+            }
+          }
         }
       }
       try {
         global.location.hash && this.iscroll.scrollToElement(global.location.hash, 0);
       } catch (e) {
       }
-    }, 0);
-    this.$nextTick(() => {
-      this.iscroll = new IScroll(this.$refs.scrollView, this.options);
-      events.forEach((event) => {
-        this.iscroll.on(event, () => this.$emit(event, this.iscroll));
-      });
-      this.registPullEvents();
+
+      if (scrollView) {
+        this.iscroll = new IScroll(scrollView, this.options);
+        events.forEach((event) => {
+          this.iscroll.on(event, () => this.$emit(event, this.iscroll));
+        });
+        this.registPullEvents();
+      }
     });
   },
 };
