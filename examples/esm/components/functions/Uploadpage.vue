@@ -100,6 +100,16 @@
     <br>
     <br>
     <br>
+    <h3>多次上传用法</h3>
+    <emfe-upload action="https://www.easy-mock.com/mock/5a2e29ed89d2205cbfe7a459/emfe/upload" :multiple="true"></emfe-upload>
+    <pre>
+      &lt;emfe-upload type="icon" action="https://www.easy-mock.com/mock/5a2e29ed89d2205cbfe7a459/emfe/upload" :multiple="true"&gt;&lt;/emfe-upload&gt;
+    </pre>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <br>
     <br>
     <h3>API</h3>
@@ -177,7 +187,7 @@
           <td>fileType</td>
           <td>自定义上传文件类型</td>
           <td>String</td>
-          <td>默认image,</td>
+          <td>image/*</td>
         </tr>
         <tr>
           <td>intercept</td>
@@ -196,6 +206,12 @@
           <td>截取器改变是否等比截图大小</td>
           <td>Boolean</td>
           <td>true</td>
+        </tr>
+        <tr>
+          <td>multiple</td>
+          <td>支持多次上传（只是可以多次单张上传，多张图片展示还需项目自行设置）。2.9.0 新增</td>
+          <td>Boolean</td>
+          <td>false</td>
         </tr>
       </tbody>
     </table>
