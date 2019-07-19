@@ -103,7 +103,7 @@ export default {
   childAccount(val) {
      /* eslint-disable */
     //子账户正则
-    const childAccountPattern = /^(1[3456789][0-9]{9}):(1[345789][0-9]{9})$/;
+    const childAccountPattern = /^(1[3456789][0-9]{9}):(1[3456789][0-9]{9})$/;
     /* eslint-disable */
     return childAccountPattern.test(val);
   },
