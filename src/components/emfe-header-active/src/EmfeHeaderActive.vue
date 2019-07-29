@@ -11,7 +11,7 @@
         </span> -->
         <emfe-link className="emfe-header-active" :routers="{}" @click="myRegis">我的报名</emfe-link>
         <emfe-tooltip style="position:relative;" :styles="{'left': '-28px','top': '50px', 'position': 'absolute'}" theme="light" placement="bottom">
-          <emfe-link slot="render" className="emfe-header-active" :routers="{}" @click="organizer">主办方管理</emfe-link>
+          <emfe-link slot="render" className="emfe-header-active" :routers="{}" @click="organizer">主办APP</emfe-link>
           <div slot="tip" class="emfe-header-active-erweima">
             <img class="emfe-header-active-erweima-img" :src="erweimaSrc" alt="">
             <p class="emfe-header-active-erweima-text">扫一扫，下载App</p>
