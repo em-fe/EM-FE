@@ -300,7 +300,7 @@ export default {
         dayEnd = dateCountOfLastMonth + 1;
       }
       for (let i = 1; i < dateCountOfLastMonth + 1; i++) {
-        if (i > this.dayStart && i < dayEnd) {
+        if (i >= this.dayStart && i <= dayEnd) {
           this.days.push(TimeTool.handleConputedDate(i, this.disabledDays, 'day', enabledDate, this, this.enabledDate.length > 1));
         }
       }
