@@ -8,7 +8,7 @@
       <emfe-icon type="shanchu" className="emfe-datetime-m" v-show="choiced" @icon-click="cancel"></emfe-icon>
     </button>
     <button class="emfe-datetime-m-btn emfe-datetime-m-btn-disabled" v-if="!open && disabled">
-      <span class="emfe-datetime-m-btn-text">{{ date }}</span>
+      <span class="emfe-datetime-m-btn-text">{{ datetime }}</span>
       <!-- 日期 -->
       <emfe-icon type="rili" className="emfe-datetime-m" v-show="!choiced"></emfe-icon>
       <!-- 取消 -->

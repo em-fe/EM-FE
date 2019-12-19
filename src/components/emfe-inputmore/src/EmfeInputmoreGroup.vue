@@ -1,7 +1,7 @@
 <template>
   <div class="emfe-inputmore-group" :class="groupName">
     <div class="emfe-inputmore-group-wrap" :className="wrapName" v-for="(data, dataIndex) in loops" @click="moreClick(dataIndex)">
-      <emfe-inputmore :className="inputmoreName" :placeholder="data.placeholder || placeholder" :icon="data.icon || icon" :type="data.type || type" :key="dataIndex" :index="dataIndex" v-model="data.num" @reduce="reduce" @plus="plus" @input="input"></emfe-inputmore>
+      <emfe-inputmore :disabled="disabled" :className="inputmoreName" :placeholder="data.placeholder || placeholder" :icon="data.icon || icon" :type="data.type || type" :key="dataIndex" :index="dataIndex" v-model="data.num" @reduce="reduce" @plus="plus" @input="input"></emfe-inputmore>
     </div>
   </div>
 </template>
@@ -53,6 +53,10 @@ export default {
     inputHandle: Function,
     plusHandle: Function,
     reduceHandle: Function,
+    disabled: {
+      type: [Boolean],
+      default: false,
+    },
   },
   computed: {
     groupName() {
