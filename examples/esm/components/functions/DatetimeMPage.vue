@@ -55,7 +55,7 @@
     <br>
     <br>
     <p>当前日期： {{ demo4 }}</p>
-    <emfe-datetime-m v-model="demo4"></emfe-datetime-m>
+    <emfe-datetime-m :disabled="true" v-model="demo4"></emfe-datetime-m>
     <pre>
       &lt;emfe-datetime-m v-model="demo4"&gt;&lt;/emfe-datetime-m&gt;
     </pre>
