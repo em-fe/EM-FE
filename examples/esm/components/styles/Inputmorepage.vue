@@ -31,7 +31,7 @@
     <br>
     <br>
     <h3>整体组合用法1</h3>
-    <emfe-inputmore-group :datas="datas1" :inputHandle="inputdata1.bind(this)"></emfe-inputmore-group>
+    <emfe-inputmore-group :disabled='falg' :datas="datas1" :inputHandle="inputdata1.bind(this)"></emfe-inputmore-group>
     {{ datas1 }}
     <pre>
       &lg;emfe-inputmore-group :datas="datas1" :inputHandle="inputdata1.bind(this)"&gt;&lg;/emfe-inputmore-group&gt;
@@ -292,6 +292,7 @@ export default {
         icon: 'fabu',
       },
       groupNow: '',
+      falg: true,
     };
   },
   methods: {

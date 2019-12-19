@@ -1,7 +1,7 @@
 <template>
   <div class="emfe-inputmore" :class="inputmoreName">
     <emfe-icon :className="className ? className : 'emfe-inputmore'" v-if="icon" :type="icon"></emfe-icon>
-    <input :placeholder="newPlaceholder" :type="type"
+    <input :disabled="disabled" :placeholder="newPlaceholder" :type="type"
     :value="currentValue" class="emfe-inputmore-input" :class="inputName" @input="input" @focus="focus = true" @blur="focus = false">
     <button class="emfe-inputmore-button emfe-inputmore-button-plus"
     :class="addName" @click="plus"></button>
@@ -35,6 +35,10 @@ export default {
       required: true,
     },
     className: String,
+    disabled: {
+      type: [Boolean],
+      default: false,
+    },
   },
   computed: {
     inputmoreName() {
@@ -63,6 +67,7 @@ export default {
         {
           [`${this.className}-inputmore-button-plus`]: !!this.className,
           'emfe-inputmore-button-plus-disabled': !!hasMax,
+          'emfe-inputmore-button-plus-disabled': this.disabled,
         },
       ];
     },
@@ -76,6 +81,7 @@ export default {
         {
           [`${this.className}-inputmore-button-reduce`]: !!this.className,
           'emfe-inputmore-button-reduce-disabled': !!hasMin,
+          'emfe-inputmore-button-plus-disabled': this.disabled,
         },
       ];
     },
@@ -87,6 +93,9 @@ export default {
       this.$emit('input', val);
     },
     reduce() {
+      if (this.disabled) {
+        return;
+      }
       if (this.group) {
         const { loops, min } = this.$parent;
         const now = loops[this.index];
@@ -100,6 +109,9 @@ export default {
       }
     },
     plus() {
+      if (this.disabled) {
+        return;
+      }
       if (this.group) {
         const { loops, max, newLoops } = this.$parent;
 
