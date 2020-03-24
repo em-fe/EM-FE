@@ -8,7 +8,10 @@
           <input type="text" :placeholder="addText" class="emfe-select-input" v-model="newListVal">
           <span class="emfe-select-custab-btn" @click="newListBtn">保存</span>
         </div>
-        <div :class="{'emfe-select-flag-scroll': checkList.length > 5}">
+        <div class="emfe-select-custab" v-if="searchFlag">
+          <input type="text" @input="search" :placeholder="searchText" class="emfe-select-input" v-model="searchVal">
+        </div>
+        <div v-if="checkList.length > 0" :class="{'emfe-select-flag-scroll': checkList.length > 5}">
           <label v-for="(item, itemIndex) in checkList" :class="{'emfe-select-label-disabled': item.disabled}" class="emfe-select-label" v-if="type==='checkbox'" :key="item.id">
             <span class="emfe-select-text">{{ item.name }}</span>
             <div class="emfe-select-checkout-box">
@@ -22,6 +25,11 @@
             <span class="emfe-select-icon-piece">{{ item.name}}</span>
             <span class="emfe-select-icon-tel">{{ item.tel }}</span>
           </div>
+
+          <div v-if="moreloading && checkList.length > 10" @click="moreClick" class="emfe-select-label-more">{{moreText}}</div>
+        </div>
+        <div class="emfe-select-flag-nothing" v-if="checkList.length === 0">
+          暂无数据
         </div>
       </div>
     </div>
@@ -44,6 +52,7 @@ export default {
       flagCheck: false,
       checkVal: this.checkVals,
       newListVal: '',
+      searchVal: '',
       newDisabled: this.disabled,
       checkedNow: -1,
     };
@@ -145,6 +154,22 @@ export default {
       type: String,
       default: 'right',
     },
+    moreloading: {
+      type: Boolean,
+      default: false,
+    },
+    searchFlag: {
+      type: Boolean,
+      default: false,
+    },
+    searchText: {
+      type: String,
+      default: '搜索',
+    },
+    moreText: {
+      type: String,
+      default: '加载更多',
+    },
   },
   computed: {
     selectName() {
@@ -202,6 +227,17 @@ export default {
       this.addDataRadio(newdata, this.datas);
       this.add(newdata, this.datas);
     },
+    search() {
+      const keyWord = this.searchVal;
+      const dataList = [];
+      this.datas.forEach((item) => {
+        if (item.name.indexOf(keyWord) >= 0) {
+          dataList.push(item);
+        }
+      });
+      this.checkList = dataList.slice(0);
+      // this.$emit('search', keyWord, this.datas);
+    },
     spanTxt(item, index) {
       if (item.disabled !== 'disabled' && !item.disabled) {
         this.checkVal = item.name;
@@ -241,6 +277,9 @@ export default {
       this.getAllData(va, item, this.datas, index);
       this.$emit('change', va, item, this.datas, index);
       this.change(va, item, this.datas, index);
+    },
+    moreClick() {
+      this.$emit('moreLoading');
     },
   },
   watch: {

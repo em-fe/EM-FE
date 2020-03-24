@@ -4,6 +4,13 @@
     <emfe-select :datas="radio"></emfe-select>
     <br>
     <br>
+
+    <h2>带搜索下拉框和加载更多：</h2>
+    <emfe-select :moreloading="true" :searchFlag="true" :datas="radio"></emfe-select>
+    <br>
+    <br>
+
+
     <div style="margin-bottom:10px">
     多选：</div>
 
@@ -257,11 +264,11 @@ export default {
     return {
       radio: [
         {
-          name: '可用',
+          name: '可用1',
           disabled: false,
         },
         {
-          name: '可用',
+          name: '可用2',
           disabled: false,
         },
         {

@@ -196,6 +196,15 @@
       text-overflow: ellipsis;
       white-space: nowrap;
     }
+
+    &-more {
+      height: 28px;
+      line-height: 28px;
+      font-size: 12px;
+      text-align: center;
+      color: #1996f9;
+      cursor: pointer;
+    }
   }
 
   &-delabel {
@@ -239,6 +248,13 @@
     &-scroll {
       max-height: 160px;
       overflow: auto;
+    }
+
+    &-nothing {
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 
