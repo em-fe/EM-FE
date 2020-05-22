@@ -290,6 +290,12 @@ export default {
         this.newDisabled = val;
       }
     },
+    datas: {
+      handler(curVal) {
+        this.checkList = curVal;
+      },
+      deep: true,
+    },
   },
 };
 </script>
