@@ -6,7 +6,7 @@
     <br>
 
     <h2>带搜索下拉框和加载更多：</h2>
-    <emfe-select :moreloading="true" :searchFlag="true" :datas="radio"></emfe-select>
+    <emfe-select :moreloading="true" :searchFlag="true" @search="searchFun" :datas="radio"></emfe-select>
     <br>
     <br>
 
@@ -366,6 +366,9 @@ export default {
     },
     getlist2(item) {
       console.log('删除了：'+item);
+    },
+    searchFun() {
+      console.log('开始请求');
     },
   },
 };
