@@ -166,6 +166,10 @@ export default {
       type: String,
       default: '搜索',
     },
+    searchFun: {
+      type: Function,
+      default: () => {},
+    },
     moreText: {
       type: String,
       default: '加载更多',
@@ -228,15 +232,8 @@ export default {
       this.add(newdata, this.datas);
     },
     search() {
-      const keyWord = this.searchVal;
-      const dataList = [];
-      this.datas.forEach((item) => {
-        if (item.name.indexOf(keyWord) >= 0) {
-          dataList.push(item);
-        }
-      });
-      this.checkList = dataList.slice(0);
-      // this.$emit('search', keyWord, this.datas);
+      this.$emit('search', this.datas);
+      this.searchFun();
     },
     spanTxt(item, index) {
       if (item.disabled !== 'disabled' && !item.disabled) {
