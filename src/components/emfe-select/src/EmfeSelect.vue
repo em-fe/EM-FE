@@ -232,7 +232,7 @@ export default {
       this.add(newdata, this.datas);
     },
     search() {
-      this.$emit('search', this.datas);
+      this.$emit('search', this.searchVal);
       this.searchFun();
     },
     spanTxt(item, index) {
@@ -289,6 +289,12 @@ export default {
       if (val !== oldVal) {
         this.newDisabled = val;
       }
+    },
+    datas: {
+      handler(curVal) {
+        this.checkList = curVal;
+      },
+      deep: true,
     },
   },
 };

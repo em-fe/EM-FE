@@ -369,6 +369,7 @@ export default {
     },
     searchFun() {
       console.log('开始请求');
+      this.radio = [{name: '111'}]
     },
   },
 };
